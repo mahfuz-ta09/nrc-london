@@ -6,29 +6,34 @@ import { useState } from "react"
 
 
 const NavLinks = () => {
-    const [isOpen,setIsopen] = useState(false)
+    const [isOpen,setIsOpen] = useState(false)
 
-    const handleNavbar= () =>{
-        setIsopen(!isOpen)
-    }
     
+    const handleLogout = () =>{
+        // logOut()
+        // router.refresh()
+    }
+
+    const handleNavbar = () =>{
+        setIsOpen(!isOpen)
+    }
+
     return (
         <>
             {
                 isOpen ? 
-                <FontAwesomeIcon onClick={handleNavbar}  size="2xl" className="cancel" icon={faXmark} />:
-                <FontAwesomeIcon onClick={handleNavbar} size="2xl" className="ham-burger" icon={faBars} />
+                <FontAwesomeIcon onClick={handleNavbar}  size="2xl"  className='nav-btn-icon' icon={faXmark} />:
+                <FontAwesomeIcon onClick={handleNavbar} size="2xl"  className='nav-btn-icon' icon={faBars} />
             }
-            <ul className={isOpen  ? "link-list open" : "link-list close"}>
-                
-                <Link className='nav-link' href="/">k-12</Link>
-                <Link className='nav-link' href="/">Test Prep<FontAwesomeIcon icon={faChevronDown} /></Link>
-                <Link className='nav-link' href="/">Students<FontAwesomeIcon icon={faChevronDown} /></Link>
-                <Link className='nav-link' href="/">Centers<FontAwesomeIcon icon={faChevronDown} /></Link>
-                <Link className='nav-link' href="/">Services</Link>
-                <Link className='nav-link' href="/">Partner With us<FontAwesomeIcon icon={faChevronDown} /></Link>
-                <Link className='nav-link' href="/">Study Abroad News</Link>
-                <Link className='nav-link user' href="/"><FontAwesomeIcon icon={faCircleUser} size='2xl'/></Link>
+            <ul className={isOpen  ? 'nav-item show' : 'nav-item hide'}>
+                <Link className='link' href="/">k-12</Link>
+                <Link className='link' href="/">Test Prep<FontAwesomeIcon icon={faChevronDown} /></Link>
+                <Link className='link' href="/">Students<FontAwesomeIcon icon={faChevronDown} /></Link>
+                <Link className='link' href="/">Centers<FontAwesomeIcon icon={faChevronDown} /></Link>
+                <Link className='link' href="/">Services</Link>
+                <Link className='link' href="/">Partner With us<FontAwesomeIcon icon={faChevronDown} /></Link>
+                <Link className='link' href="/">Study Abroad News</Link>
+                <Link className='link user' href="/"><FontAwesomeIcon icon={faCircleUser} size='2xl'/></Link>
             </ul>
         </>
     )
