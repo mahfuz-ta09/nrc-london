@@ -1,12 +1,12 @@
 
 .nav-holder{
-    height: 12vh;
+    height: 8vh;
     width: 100%;
     position: fixed;
     top: 0;
     left: 0;
     right: 0;
-    background: rgba(255, 192, 203,0.2);
+    background: rgb(29, 79, 145);
     display: flex;
     align-items: center;
     justify-content: center;
@@ -66,9 +66,8 @@
 }
 
 .link{
-    color:black;
-    font-size:   14px;
-    line-height: 14px;
+    color:#fff;
+    font-size:   16px;
     font-weight: 700;
     text-decoration: none;
     display: flex;
@@ -79,11 +78,11 @@
 
 
 .link:hover{
-    color: rgb(255, 33, 70);
+    color: rgb(138, 255, 235);
 }
 
 .user{
-    color: rgb(255, 33, 70);
+    color: rgb(138, 255, 235);
 }
 
 .nav-btn-icon{
@@ -110,7 +109,11 @@
 .nav-logo{
     width: 140px;
     object-fit: contain;
-    z-index: 1000;
+}
+.banner-tag{
+    font-size: 25px;
+    color: white;
+    font-style: italic;
 }
 
 @media screen and (max-width:1150px) {
@@ -123,8 +126,8 @@
     }
     .nav-btn-icon{
         display: block;
-        font-size: 25px;
-        color:black;
+        font-size: 20px;
+        color: white;
         font-weight: 500;
         z-index: 100;
     }
@@ -132,18 +135,20 @@
     .nav-tag{
         font-size: 25px;
     }
+
     .nav-item{
         position: fixed;
         display: flex;
         align-items: center;
-        justify-content: center;
+        justify-content: start;
         flex-direction: column;
-        background: #fff;
+        background: rgba(29, 79, 145,0.91);
         width: 80%;
         height: 100vh;
         top: 0;
         transition: left 1s;
         gap: 25px;
+        padding: 40% 0;
     }
 
     .nav-logo{
@@ -155,7 +160,7 @@
     }
 
     .link{
-        color: black;
+        color: #fff;
         font-size: 18px;
         line-height: 20px;
         padding: 0 20px;
@@ -191,5 +196,10 @@
             right: -100%;
         }
     }
-
+    .banner-tag{
+        font-size: 20px;
+        color: white;
+        font-style: italic;
+    }
+    
 }

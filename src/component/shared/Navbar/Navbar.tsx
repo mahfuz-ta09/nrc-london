@@ -1,6 +1,7 @@
 import dynamic from 'next/dynamic'
 import '../../../css/shared/Navbar/Navbar.css'
-
+import logo from"../../../assets/logo.png"
+import Image from 'next/image'
 
 
 const Navbar = () => {
@@ -9,9 +10,9 @@ const Navbar = () => {
 
     return (
         <div className='nav-holder'>
-            
             <div className="nav-content">
-                <h1>NRC-london</h1>
+                <Image className='nav-logo' src={logo} alt="" />
+                {/* <h1 className='banner-tag'>NRC-london</h1> */}
                 <LinkList />
             </div>
             

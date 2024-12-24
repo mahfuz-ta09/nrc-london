@@ -1,10 +1,11 @@
+import Banner from "@/component/shared/Banner/Banner"
 
 
 const Page = () => {
   return (
-    <>
-        {/* <h1>hell yes</h1> */}
-    </>
+    <div className="home-page">
+        <Banner />
+    </div>
   )
 }
 

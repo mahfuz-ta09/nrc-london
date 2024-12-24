@@ -1,0 +1,85 @@
+.banner-container{
+    width: 100%;
+    background: linear-gradient(to bottom,rgba(0,0,0,.1),rgba(0,0,0,.5)),url('../../../assets/Banner.jpg');
+    height: 65vh;
+    background-position: center;
+    background-size: cover;
+    background-attachment: fixed;
+    position: relative;
+}
+
+
+.banner-content{
+    max-width: 1250px;
+    margin: 0 auto;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: start;
+}
+
+.banner-part{
+    border-top: 6px solid rgb(29, 79, 145);
+    background: rgba(255, 255, 255, 0.9);
+    width: 600px;
+    padding: 20px;
+    text-align: justify;
+}
+
+.banner-part h4{
+    font-size: 30px;
+    line-height: 35px;
+    font-weight: 700;
+    color: rgb(29, 79, 145) ;
+    padding-bottom: 15px;
+}
+
+.banner-part p{
+    font-size: 16px;
+    line-height: 16px;
+    font-weight: 300;
+    color: rgb(0, 0, 0) ;
+    padding-bottom: 15px;
+}
+
+.banner-buttons{
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+    flex-wrap: wrap;
+    gap: 5px;
+}
+
+.banner-button{
+    flex: 1;
+    padding: 9px 12px;
+    color: #fff;
+    background: rgb(29, 79, 145);
+    font-size: 14px;
+    border: none;
+}
+
+
+.banner-button:hover{
+    background: rgb(0, 56, 129);
+}
+
+
+.banner-bottom{
+    position: absolute;
+    height: 25px;
+    background: rgb(29, 79, 145);
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    padding: 0 30px;
+    display: flex;
+    align-items: center;
+    justify-content: start;
+}
+
+.banner-bottom-text{
+    font-size: 14px;
+    color: #fff;
+    font-weight: 300;
+}

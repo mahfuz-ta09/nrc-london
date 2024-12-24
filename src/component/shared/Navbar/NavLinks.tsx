@@ -28,7 +28,8 @@ const NavLinks = () => {
                 <Link className='link' href="/">Services</Link>
                 <Link className='link' href="/">Partner With us<FontAwesomeIcon icon={faChevronDown} /></Link>
                 <Link className='link' href="/">Study Abroad News</Link>
-                <Link className='link user' href="/"><FontAwesomeIcon icon={faCircleUser} size='2xl'/></Link>
+                <Link className='link' href="/">Login</Link>
+                {/* <Link className='link user' href="/"><FontAwesomeIcon icon={faCircleUser} size='2xl'/></Link> */}
             </ul>
         </>
     )
