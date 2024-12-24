@@ -8,11 +8,6 @@ import { useState } from "react"
 const NavLinks = () => {
     const [isOpen,setIsOpen] = useState(false)
 
-    
-    const handleLogout = () =>{
-        // logOut()
-        // router.refresh()
-    }
 
     const handleNavbar = () =>{
         setIsOpen(!isOpen)
