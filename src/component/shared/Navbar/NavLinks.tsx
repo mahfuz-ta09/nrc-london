@@ -17,8 +17,8 @@ const NavLinks = () => {
         <>
             {
                 isOpen ? 
-                <FontAwesomeIcon onClick={handleNavbar}  size="2xl"  className='nav-btn-icon' icon={faXmark} />:
-                <FontAwesomeIcon onClick={handleNavbar} size="2xl"  className='nav-btn-icon' icon={faBars} />
+                <FontAwesomeIcon onClick={handleNavbar}  size="xl"  className='nav-btn-icon' icon={faXmark} />:
+                <FontAwesomeIcon onClick={handleNavbar} size="xl"  className='nav-btn-icon' icon={faBars} />
             }
             <ul className={isOpen  ? 'nav-item show' : 'nav-item hide'}>
                 <Link className='link' href="/">k-12</Link>

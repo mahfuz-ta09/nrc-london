@@ -6,7 +6,7 @@
     top: 0;
     left: 0;
     right: 0;
-    background: #343c97;
+    background: rgba(255, 192, 203,0.2);
     display: flex;
     align-items: center;
     justify-content: center;
@@ -66,16 +66,24 @@
 }
 
 .link{
-    color: white;
-    font-size:   18px;
-    line-height: 18px;
+    color:black;
+    font-size:   14px;
+    line-height: 14px;
+    font-weight: 700;
     text-decoration: none;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 4px;
 }
 
 
 .link:hover{
-    transition: all .3s ease-in-out;
-    transform: scale(1.1);
+    color: rgb(255, 33, 70);
+}
+
+.user{
+    color: rgb(255, 33, 70);
 }
 
 .nav-btn-icon{
@@ -115,9 +123,9 @@
     }
     .nav-btn-icon{
         display: block;
-        font-size: 35px;
-        color: white;
-        font-weight: 600;
+        font-size: 25px;
+        color:black;
+        font-weight: 500;
         z-index: 100;
     }
 
@@ -125,15 +133,15 @@
         font-size: 25px;
     }
     .nav-item{
-        position: absolute;
+        position: fixed;
         display: flex;
         align-items: center;
         justify-content: center;
         flex-direction: column;
-        background: #343c97;
-        width: 90%;
+        background: #fff;
+        width: 80%;
         height: 100vh;
-        top: 8vh;
+        top: 0;
         transition: left 1s;
         gap: 25px;
     }
@@ -142,9 +150,12 @@
         width: 120px;
         object-fit: contain;
     }
+    .user{
+        color: rgb(255, 33, 70);
+    }
 
     .link{
-        color: white;
+        color: black;
         font-size: 18px;
         line-height: 20px;
         padding: 0 20px;
