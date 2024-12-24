@@ -56,16 +56,20 @@
 @media screen and (max-width: 1150) {
     .ham-burger{
         display: block;
-        z-index: 20001;
     }
 
     .cancel{
         display: block;
     }
+    
+    .nav-content{
+        padding: 0 15px;
+    }
+    
 
     .link-list{
         position: absolute;
-        top: 0;
+        top: 12vh;
         right: 0;
         background: #fff;
         display: flex;

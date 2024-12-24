@@ -6,7 +6,7 @@ import { useState } from "react"
 
 
 const NavLinks = () => {
-    const [isOpen,setIsopen] = useState(true)
+    const [isOpen,setIsopen] = useState(false)
 
     const handleNavbar= () =>{
         setIsopen(!isOpen)
@@ -16,8 +16,8 @@ const NavLinks = () => {
         <>
             {
                 isOpen ? 
-                <FontAwesomeIcon onClick={handleNavbar} size="2xl" className="ham-burger" icon={faBars} />:
-                <FontAwesomeIcon onClick={handleNavbar}  size="2xl" className="cancel" icon={faXmark} />
+                <FontAwesomeIcon onClick={handleNavbar}  size="2xl" className="cancel" icon={faXmark} />:
+                <FontAwesomeIcon onClick={handleNavbar} size="2xl" className="ham-burger" icon={faBars} />
             }
             <ul className={isOpen  ? "link-list open" : "link-list close"}>
                 
