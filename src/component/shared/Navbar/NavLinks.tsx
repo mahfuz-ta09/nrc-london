@@ -1,5 +1,5 @@
 'use client'
-import { faBars, faChevronDown, faCircleUser, faXmark } from "@fortawesome/free-solid-svg-icons"
+import { faBars, faChevronDown, faXmark } from "@fortawesome/free-solid-svg-icons"
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
 import Link from "next/link"
 import { useState } from "react"

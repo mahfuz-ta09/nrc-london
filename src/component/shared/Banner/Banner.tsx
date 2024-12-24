@@ -1,11 +1,8 @@
-import Image from 'next/image'
 import '../../../css/shared/Banner/Banner.css'
-// import banner from '../../../assets/Banner.jpg'
 
 const Banner = () => {
     return (
         <div className="banner-container">
-            {/* <Image src={banner} width={1000} height={1000} alt=''/> */}
             <div className="banner-content">
                 <div className="banner-part">
                     <h4>Lorem ipsum dolor sit amet consectetur adipisicing elit. Totam eos enim minus omnis vitae dolore.</h4>
