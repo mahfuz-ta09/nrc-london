@@ -3,7 +3,7 @@ import Banner from "@/component/shared/Banner/Banner"
 
 const Page = () => {
   return (
-    <div className="home-page">
+    <div>
         <Banner />
     </div>
   )
