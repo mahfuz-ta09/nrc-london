@@ -186,19 +186,21 @@
         align-items: center;
         justify-content: center;
         flex-direction: column-reverse;
-        height: 10vh;
+        height: 15vh;
         width: 40vw;
         background: rgb(20, 6, 72);
+        padding: 10px;
     }
 } 
 
 
-
- 
 @media screen and (max-width:450px){
     .nav-links{
         width: 60vw;
     }
 
+    .link-items{
+        width: 60vw;
+    }
 
 }
