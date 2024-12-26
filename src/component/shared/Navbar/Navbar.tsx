@@ -20,7 +20,12 @@ const Navbar = () => {
     }, [])
 
     const changeNavBg = () => {
-        window.scrollY >= 80 ? setNavBg(true) : setNavBg(false);
+        // window.scrollY >= 80 ? setNavBg(true) : setNavBg(false);
+        if(window.scrollY >= 80){
+            setNavBg(true)
+        }else{
+            setNavBg(false)
+        }
     }
 
     const handleNavbar = () =>{
