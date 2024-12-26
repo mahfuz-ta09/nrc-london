@@ -116,11 +116,11 @@
         align-items: center;
         justify-content: center;
         flex-direction: column;
-        padding-top: 20vh;
+        padding: 20vh  20px;
     }
     
     .banner-part{
-        gap: 10px;
+        gap: 40px;
     }
 
     .banner-picture{
@@ -130,7 +130,8 @@
     }
     
     .banner-part h4{
-        font-size: 38px;
+        font-size: 48px;
+        font-weight: 600;
     }
     .banner-part p{
         font-size: 18px;

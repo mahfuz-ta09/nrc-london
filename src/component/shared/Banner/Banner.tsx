@@ -22,9 +22,6 @@ const Banner = () => {
             </div>
 
 
-            <div className='banner-bottom'>
-                <h1 className='banner-bottom-text'>Home</h1>
-            </div>
         </div>
     )
 }

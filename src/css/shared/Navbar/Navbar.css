@@ -11,6 +11,10 @@
     background: transparent;
 }
 
+.nav-color{
+    background: rgb(20, 6, 72);
+}
+
 .nav-content{
     max-width: 1250px;
     width: 100%;
