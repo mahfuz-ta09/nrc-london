@@ -127,6 +127,7 @@
         font-size: 25px;
         color: #fff;
     }
+
     .nav-links{
         position: fixed;
         display: flex;
@@ -190,3 +191,14 @@
         background: rgb(20, 6, 72);
     }
 } 
+
+
+
+ 
+@media screen and (max-width:450px){
+    .nav-links{
+        width: 60vw;
+    }
+
+
+}
