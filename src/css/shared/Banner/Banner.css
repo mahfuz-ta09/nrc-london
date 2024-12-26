@@ -1,6 +1,6 @@
 .banner-container{
     width: 100%;
-    background: linear-gradient(rgb(20, 6, 72),rgba(20, 6, 72));
+    background: linear-gradient(to bottom,rgb(20, 6, 72),rgba(20, 6, 72,0.7));
     height: 100vh;
     background-position: center;
     background-size: cover;
