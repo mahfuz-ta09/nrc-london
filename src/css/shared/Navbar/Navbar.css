@@ -1,6 +1,6 @@
 .nav-holder{
     width: 100%;
-    height: 8vh;
+    height: 10vh;
     position: fixed;
     top: 0;
     left: 0;
@@ -57,11 +57,12 @@
     justify-content: center;
     flex-direction: column;
     gap: 10px;
-    top: 8vh;
+    top: 10vh;
     right: 0;
     width: 100%;
     height: 40vh;
-    background: #1a1a31;
+    /* background: #BCBCC4; */
+    background: rgb(11, 3, 38);
     border-top:.5px solid #fff;
 }
 
@@ -74,10 +75,10 @@
 }
 
 .link{
-    color: #e7e2cf;
+    color: #BCBCC4;
     text-decoration: none;
     font-weight: 100;
-    font-size: 16px;
+    font-size: 19px;
     line-height: 16px;
     gap: 5px;
 }
@@ -86,7 +87,7 @@
     display: flex;
     align-items: center;
     justify-content: center;
-    gap: 20px;
+    gap: 10px;
 }
 
 .link-items button{
@@ -95,14 +96,25 @@
     font-weight: 700;
     border: none;
     border-radius: 3px;
-    color: #1d4f91;
+    color: #2E34EA;
     background: #fff;
+    transition: .2s all;
+}
+
+.link-items .dash{
+    font-size: 15px;
+    padding: 7px 19px;
+    font-weight: 700;
+    border: none;
+    border-radius: 3px;
+    color: #fff;
+    background: #2E34EA;
     transition: .2s all;
 }
 
 .link-items .icon{
     color: #5aa2ff;
-    font-size: 30px;
+    font-size: 28px;
 }
 
 .link-items button:hover{

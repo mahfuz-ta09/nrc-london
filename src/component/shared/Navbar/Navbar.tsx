@@ -26,7 +26,7 @@ const Navbar = () => {
                     </div>
                     
                     <div className='link-holder'>
-                        <Link className='link' href="/">Test Prep</Link>
+                        <Link className='link' href="/">Test prep</Link>
                         <div className='drop-down'>
                             <Link className='drop-down-link' href="/">IELTS</Link>
                             <Link className='drop-down-link' href="/">IELTS</Link>
@@ -61,10 +61,10 @@ const Navbar = () => {
                     <div className='link-holder'>
                         <Link className='link' href="/">Services</Link>
                     </div>
-                    
+
                     
                     <div className='link-holder'>
-                        <Link className='link' href="/">Partner With us</Link>
+                        <Link className='link' href="/">Partner with us</Link>
                         <div className='drop-down'>
                             <Link className='drop-down-link' href="/">IELTS</Link>
                             <Link className='drop-down-link' href="/">IELTS</Link>
@@ -79,8 +79,9 @@ const Navbar = () => {
                     </div>
                 </div>
                 <div className={isOpen ? 'link-items show' :'link-items hide'}>
-                    <button>Login</button>
-                    <FontAwesomeIcon  className='icon' icon={faUser} />
+                    <button>login</button>
+                    <button className='dash'>monitor</button>
+                    {/* <FontAwesomeIcon  className='icon' icon={faUser} /> */}
                 </div>
                 <FontAwesomeIcon onClick={handleNavbar} className='menu-icon' icon={faBars}/>
             </div>
