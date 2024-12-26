@@ -16,7 +16,7 @@
     display: flex;
     align-items: start;
     justify-content: center;
-    padding-top: 20vh;
+    padding: 20vh 10px;
     z-index: 2;
 }
 
@@ -31,7 +31,7 @@
 
 .banner-picture{
     object-fit: contain; 
-     width: 850px;
+    width: 850px;
 }
 
 .banner-part h4{
@@ -105,4 +105,36 @@
     font-size: 14px;
     color: #fff;
     font-weight: 300;
+}
+
+
+@media screen and (max-width:450px) {
+    .banner-container{
+        height: auto;
+    }
+    .banner-content{
+        align-items: center;
+        justify-content: center;
+        flex-direction: column;
+        padding-top: 20vh;
+    }
+    
+    .banner-part{
+        gap: 10px;
+    }
+
+    .banner-picture{
+        margin-top: 80px;
+        width: 270px;
+        height: 300px;
+    }
+    
+    .banner-part h4{
+        font-size: 38px;
+    }
+    .banner-part p{
+        font-size: 18px;
+    }
+    
+
 }
