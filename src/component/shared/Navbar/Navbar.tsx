@@ -62,6 +62,7 @@ const Navbar = () => {
                         <Link className='link' href="/">Services</Link>
                     </div>
                     
+                    
                     <div className='link-holder'>
                         <Link className='link' href="/">Partner With us</Link>
                         <div className='drop-down'>
