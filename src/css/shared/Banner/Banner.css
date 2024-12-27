@@ -28,7 +28,7 @@
     justify-content: start;
     flex-direction: column;
     max-width:600px ;
-    gap: 40px;
+    gap: 20px;
 }
 
 .banner-picture{

@@ -44,33 +44,72 @@ const Navbar = () => {
                     <div className='link-holder'>
                         <Link className='link' href="/">Test prep</Link>
                         <div className='drop-down'>
-                            <Link className='drop-down-link' href="/">IELTS</Link>
-                            <Link className='drop-down-link' href="/">IELTS</Link>
-                            <Link className='drop-down-link' href="/">IELTS</Link>
-                            <Link className='drop-down-link' href="/">IELTS</Link>
-                            <Link className='drop-down-link' href="/">IELTS</Link>
+                            <div className="drop-down-content">
+                                <div className="drop-down-group">
+                                    <Link className='drop-down-link' href="/">IELTS</Link>
+                                    <Link className='drop-down-link' href="/">IELTS</Link>
+                                </div>
+                                <div className="drop-down-group">
+                                    <Link className='drop-down-link' href="/">IELTS</Link>
+                                    <Link className='drop-down-link' href="/">IELTS</Link>
+                                </div>
+                                <div className="drop-down-group">
+                                    <Link className='drop-down-link' href="/">IELTS</Link>
+                                    <Link className='drop-down-link' href="/">IELTS</Link>
+                                </div>
+                                <div className="drop-down-group">
+                                    <Link className='drop-down-link' href="/">IELTS</Link>
+                                    <Link className='drop-down-link' href="/">IELTS</Link>
+                                </div>
+                            </div>
                         </div>
                     </div>
                     
                     <div className='link-holder'>
                         <Link className='link' href="/">Students</Link>
                         <div className='drop-down'>
-                            <Link className='drop-down-link' href="/">IELTS</Link>
-                            <Link className='drop-down-link' href="/">IELTS</Link>
-                            <Link className='drop-down-link' href="/">IELTS</Link>
-                            <Link className='drop-down-link' href="/">IELTS</Link>
-                            <Link className='drop-down-link' href="/">IELTS</Link>
+                            <div className="drop-down-content">
+                                <div className="drop-down-group">
+                                    <Link className='drop-down-link' href="/">IELTS</Link>
+                                    <Link className='drop-down-link' href="/">IELTS</Link>
+                                </div>
+                                <div className="drop-down-group">
+                                    <Link className='drop-down-link' href="/">IELTS</Link>
+                                    <Link className='drop-down-link' href="/">IELTS</Link>
+                                </div>
+                                <div className="drop-down-group">
+                                    <Link className='drop-down-link' href="/">IELTS</Link>
+                                    <Link className='drop-down-link' href="/">IELTS</Link>
+                                </div>
+                                <div className="drop-down-group">
+                                    <Link className='drop-down-link' href="/">IELTS</Link>
+                                    <Link className='drop-down-link' href="/">IELTS</Link>
+                                </div>
+                            </div>
                         </div>
                     </div>
                     
                     <div className='link-holder'>
                         <Link className='link' href="/">Centers</Link>
                         <div className='drop-down'>
-                            <Link className='drop-down-link' href="/">IELTS</Link>
-                            <Link className='drop-down-link' href="/">IELTS</Link>
-                            <Link className='drop-down-link' href="/">IELTS</Link>
-                            <Link className='drop-down-link' href="/">IELTS</Link>
-                            <Link className='drop-down-link' href="/">IELTS</Link>
+                            <div className="drop-down-content">
+                                <div className="drop-down-group">
+                                    <Link className='drop-down-link' href="/">IELTS</Link>
+                                    <Link className='drop-down-link' href="/">IELTS</Link>
+                                </div>
+                                <div className="drop-down-group">
+                                    <Link className='drop-down-link' href="/">IELTS</Link>
+                                    <Link className='drop-down-link' href="/">IELTS</Link>
+                                </div>
+                                <div className="drop-down-group">
+                                    <Link className='drop-down-link' href="/">IELTS</Link>
+                                    <Link className='drop-down-link' href="/">IELTS</Link>
+                                </div>
+                                <div className="drop-down-group">
+                                    <Link className='drop-down-link' href="/">IELTS</Link>
+                                    <Link className='drop-down-link' href="/">IELTS</Link>
+                                </div>
+                            </div>
                         </div>
                     </div>
                     
@@ -82,11 +121,24 @@ const Navbar = () => {
                     <div className='link-holder'>
                         <Link className='link' href="/">Partner with us</Link>
                         <div className='drop-down'>
-                            <Link className='drop-down-link' href="/">IELTS</Link>
-                            <Link className='drop-down-link' href="/">IELTS</Link>
-                            <Link className='drop-down-link' href="/">IELTS</Link>
-                            <Link className='drop-down-link' href="/">IELTS</Link>
-                            <Link className='drop-down-link' href="/">IELTS</Link>
+                            <div className="drop-down-content">
+                                <div className="drop-down-group">
+                                    <Link className='drop-down-link' href="/">IELTS</Link>
+                                    <Link className='drop-down-link' href="/">IELTS</Link>
+                                </div>
+                                <div className="drop-down-group">
+                                    <Link className='drop-down-link' href="/">IELTS</Link>
+                                    <Link className='drop-down-link' href="/">IELTS</Link>
+                                </div>
+                                <div className="drop-down-group">
+                                    <Link className='drop-down-link' href="/">IELTS</Link>
+                                    <Link className='drop-down-link' href="/">IELTS</Link>
+                                </div>
+                                <div className="drop-down-group">
+                                    <Link className='drop-down-link' href="/">IELTS</Link>
+                                    <Link className='drop-down-link' href="/">IELTS</Link>
+                                </div>
+                            </div>
                         </div>
                     </div>
                     

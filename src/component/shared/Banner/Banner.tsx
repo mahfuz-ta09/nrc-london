@@ -8,7 +8,7 @@ const Banner = () => {
         <div className="banner-container">
             <div className="banner-content">
                 <div className="banner-part">
-                    <h4>Lorem ipsum dolor sit</h4>
+                    <h4>Plan your future with us!</h4>
                     <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Deleniti voluptas temporibus alias adipisci, assumenda officiis cupiditate facilis.</p>
                     <div className="banner-buttons">
                         <button className='banner-button-3rd'>Recruitment Partner?</button>
