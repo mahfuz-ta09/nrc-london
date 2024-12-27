@@ -1,16 +1,11 @@
 import type { Metadata } from "next";
 import "./globals.css";
-import { Open_Sans } from 'next/font/google'
+import { Ysabeau_SC } from 'next/font/google';
 import { config } from '@fortawesome/fontawesome-svg-core'
 import '@fortawesome/fontawesome-svg-core/styles.css'
 config.autoAddCss = false
 
-const openSans = Open_Sans({
-  subsets: ['latin'],
-  display: 'swap',
-  variable: '--font-opensans',
-})
-
+const ysabeau = Ysabeau_SC({ subsets: ['latin'], weight: ['400', '500', '700'] })
 
 export const metadata: Metadata = {
   title: "Create Next App",
@@ -24,7 +19,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body className={openSans.variable}>
+      <body className={ysabeau.className}>
         {children}
       </body>
     </html>
