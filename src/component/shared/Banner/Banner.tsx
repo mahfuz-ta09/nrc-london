@@ -1,8 +1,6 @@
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import '../../../css/shared/Banner/Banner.css'
 import { faArrowAltCircleRight } from '@fortawesome/free-solid-svg-icons'
-import Image from 'next/image'
-import logo from"../../../assets/banner.png"
 
 
 const Banner = () => {
