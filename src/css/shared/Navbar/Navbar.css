@@ -165,6 +165,7 @@
         z-index: 99999999;
         font-size: 25px;
         color: #fff;
+        margin-right: 10px;
     }
 
     .nav-links{
@@ -227,8 +228,11 @@
         flex-direction: column;
         height: 15vh;
         width:  40vw;
-        background: rgb(20, 6, 72);
+        background: rgb(9, 1, 37);
         padding: 10px;
+    }
+    .link-items button{
+        width: 100%;
     }
 } 
 
@@ -269,4 +273,7 @@
         background: rgb(9, 1, 37);
     }
 
+    .link-items button{
+        width: 100%;
+    }
 }

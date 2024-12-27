@@ -4,7 +4,7 @@ import logo from"../../../assets/logo.png"
 import Image from 'next/image'
 import Link from 'next/link'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faBars } from '@fortawesome/free-solid-svg-icons'
+import { faBars, faXmark } from '@fortawesome/free-solid-svg-icons'
 import { useEffect, useState } from 'react'
 
 
@@ -151,7 +151,11 @@ const Navbar = () => {
                     <button className='dash'>monitor</button>
                     {/* <FontAwesomeIcon  className='icon' icon={faUser} /> */}
                 </div>
-                <FontAwesomeIcon onClick={handleNavbar} className='menu-icon' icon={faBars}/>
+                {
+                    isOpen ?
+                    <FontAwesomeIcon onClick={handleNavbar} className='menu-icon' icon={faXmark}/>  :
+                    <FontAwesomeIcon onClick={handleNavbar} className='menu-icon' icon={faBars}/>
+                }
             </div>
             
         </div>
