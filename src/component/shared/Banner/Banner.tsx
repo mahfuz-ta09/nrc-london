@@ -1,6 +1,8 @@
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import '../../../css/shared/Banner/Banner.css'
 import { faArrowAltCircleRight } from '@fortawesome/free-solid-svg-icons'
+import Image from 'next/image'
+import banner from '../../../assets/laptop.webp'
 
 
 const Banner = () => {
@@ -16,8 +18,12 @@ const Banner = () => {
                         <button className='banner-button-3rd'>I am a Student <FontAwesomeIcon icon={faArrowAltCircleRight} /></button>
                     </div>
                 </div>
+                <Image className='banner-photo' src={banner} alt='Laptop'/>
             </div>
 
+            <div className="banner-addition">
+
+            </div>
 
         </div>
     )

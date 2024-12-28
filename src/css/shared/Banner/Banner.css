@@ -1,7 +1,7 @@
 .banner-container{
     width: 100%;
-    /* background: linear-gradient(to bottom,rgb(20, 6, 72),rgba(20, 6, 72,0.7)); */
-    background: url('../../../assets//home.png');
+    background: linear-gradient(to bottom,#140648,#140648b3);
+    /* background: url('../../../assets/laptop.webp'); */
     height: 100vh;
     background-position: center;
     background-size: cover;
@@ -22,7 +22,6 @@
 }
 
 .banner-part{
-    /* text-align: center; */
     display: flex;
     align-items: start;
     justify-content: start;
@@ -31,9 +30,10 @@
     gap: 20px;
 }
 
-.banner-picture{
+.banner-photo{
     object-fit: contain; 
-    /* width: 1050px; */
+    width: 750px;
+    height: 400px;
 }
 
 .banner-part h4{
@@ -110,24 +110,28 @@
 }
 
 
+
 @media screen and (max-width:450px) {
     .banner-container{
-        height: 100vh;
+        height: auto;
     }
     .banner-content{
-        align-items: center;
+        width: 100%;
+        align-items: start;
         justify-content: center;
+        gap: 60px;
         flex-direction: column;
-        padding: 20vh  20px;
+        padding: 10vh  20px;
     }
     
     .banner-part{
         gap: 40px;
     }
 
-    .banner-picture{
-        margin-top: 80px;
-        width: 270px;
+    
+    .banner-photo{
+        object-fit: contain; 
+        width: 95%;
         height: 300px;
     }
     
