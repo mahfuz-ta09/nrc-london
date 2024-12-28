@@ -1,0 +1,123 @@
+.unioption-cotainer{
+    width: 100%;
+    height: auto;
+    margin: 0 auto;
+    color: aliceblue;
+    padding: 20vh 0;
+    background: linear-gradient(to right,#140648,#140648b3);
+}
+
+.uni-content{
+    max-width: 1210px;
+    margin: 0 auto;
+    width: 100%;
+    height: 100%;
+    background: url('../../../assets/uni.png');
+    background-position: center;
+    background-size: cover;
+}
+
+.unicaro{
+    display: grid;
+    grid-template-columns: repeat(4,1fr);
+    gap: 20px;
+    width: 100%;
+    height: auto;
+    flex-wrap: wrap;
+    padding: 40px 5px;
+}
+
+.uni{
+    height: 400px;
+    position: relative;
+    border-radius: 5px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow:8px 8px 20px 3px #1f227d;
+    overflow: hidden;
+}
+
+.uni-image{
+    display: block;
+    object-fit: cover;
+    width: 100%;
+    height: 100%;
+    border-radius: 5px;
+}
+
+.uni button{
+    position: absolute;
+    bottom: 10px;
+    background: transparent;
+    border: none;
+    color: #fff;
+    font-size: 18px;
+    z-index: 3;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.uni button:hover{
+    gap:5px;
+}
+.overlay{
+    position: absolute;
+    top: 50%;
+    left: 0;
+    height: 100%;
+    width:  100%;
+    z-index: 2;
+    transition: .4s all;
+    border-radius: 5px;
+    background: linear-gradient(to bottom,rgba(20, 6, 72,0.6),rgba(20, 6, 72, 0.1));
+}
+.details{
+    position: absolute;
+    top: 40%;
+    left: 0;
+    height: 100%;
+    width:  100%;
+    z-index: 3;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    text-align: center;
+    gap: 100px;
+    transition: .4s all;
+    border-radius: 5px;
+}
+
+.details h3{
+    font-size: 22px;
+    color:#fff;
+}
+
+.details p{
+    font-size: 17px;
+    color:#fff;
+}
+
+.uni:hover .overlay{
+    top: 0;
+}
+
+.uni:hover .details{
+    top: 0;
+}
+
+@media screen and (max-width:450px) {
+    .unicaro{
+        display: grid;
+        grid-template-columns: repeat(1,1fr);
+        gap: 20px;
+        width: 100%;
+        height: auto;
+        flex-wrap: wrap;
+        padding: 40px 40px;
+    }
+    
+    
+}
