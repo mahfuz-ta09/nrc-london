@@ -9,7 +9,7 @@
     justify-content: center;
     z-index: 99999;
     background: transparent;
-    background: rgb(20, 6, 72);
+    background: rgb(6, 22, 72) ;
 }
 
 .nav-content{
@@ -120,7 +120,7 @@
     font-weight: 700;
     border: none;
     border-radius: 3px;
-    color: #2E34EA;
+    color: rgba(15, 72, 6,0.7);
     background: #fff;
     transition: .2s all;
 }
@@ -132,7 +132,7 @@
     border: none;
     border-radius: 3px;
     color: #fff;
-    background: #2E34EA;
+    background: rgba(15, 72, 6,0.7);
     transition: .2s all;
 }
 
