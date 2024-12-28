@@ -5,12 +5,11 @@ import Image from 'next/image'
 import Link from 'next/link'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faBars, faXmark } from '@fortawesome/free-solid-svg-icons'
-import { useEffect, useState } from 'react'
+import { useState } from 'react'
 
 
 const Navbar = () => {
     const [isOpen,setIsOpen] = useState(false)
-    const [navBg, setNavBg] = useState(false);
 
 
     const handleNavbar = () =>{
