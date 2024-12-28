@@ -1,6 +1,6 @@
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import '../../../css/shared/Banner/Banner.css'
-import { faArrowAltCircleRight, faUser } from '@fortawesome/free-solid-svg-icons'
+import { faArrowAltCircleRight } from '@fortawesome/free-solid-svg-icons'
 import Image from 'next/image'
 import banner from '../../../assets/laptop.webp'
 import building from '../../../assets/buildingsvg.svg'
