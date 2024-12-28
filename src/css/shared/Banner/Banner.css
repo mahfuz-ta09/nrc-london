@@ -1,8 +1,7 @@
 .banner-container{
     width: 100%;
     background: linear-gradient(to bottom,#140648,#140648b3);
-    /* background: url('../../../assets/laptop.webp'); */
-    height: 100vh;
+    height: 95vh;
     background-position: center;
     background-size: cover;
     background-attachment: fixed;
@@ -17,7 +16,7 @@
     display: flex;
     align-items: start;
     justify-content: start;
-    padding: 20vh 10px;
+    padding: 25vh 10px;
     z-index: 2;
 }
 
@@ -109,11 +108,57 @@
     font-weight: 300;
 }
 
+.banner-addition{
+    max-width: 1200px;
+    width: 100%;
+    margin: -8vh auto 0;
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+    flex-wrap: wrap;
+    gap: 30px;
+}
+
+.achiev{
+    background:linear-gradient(#5b4f8d,#0e052f);
+    min-width: 280px;
+    padding: 20px;
+    border: 1px solid #fff;
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+    box-shadow:8px 8px 20px 3px #1f227d;
+    object-fit: contain;
+    flex: 1;
+}
+
+.achiev-icon{
+    color: white;
+    font-size: 55px;
+}
 
 
+.achiev-details{
+    height: 100%;
+    gap: 5px;
+}
+
+.achiev-details h1{
+    color: #fff;
+    font-size: 25px;
+    font-weight: 700;
+}
+
+.achiev-details p{
+    color: #fff;
+    font-size: 22px;
+    font-weight: 500;
+}
 @media screen and (max-width:450px) {
+    
     .banner-container{
         height: auto;
+        padding: 10px;
     }
     .banner-content{
         width: 100%;
@@ -143,5 +188,16 @@
         font-size: 18px;
     }
     
+    .banner-addition{
+        max-width: 1200px;
+        width: 90%;
+        margin: 8vh auto 0;
+        display: flex;
+        align-items: center;
+        justify-content: space-around;
+        flex-wrap: wrap;
+        gap: 30px;
+    }
+
 
 }

@@ -1,6 +1,6 @@
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import '../../../css/shared/Banner/Banner.css'
-import { faArrowAltCircleRight } from '@fortawesome/free-solid-svg-icons'
+import { faArrowAltCircleRight, faUser } from '@fortawesome/free-solid-svg-icons'
 import Image from 'next/image'
 import banner from '../../../assets/laptop.webp'
 
@@ -22,7 +22,30 @@ const Banner = () => {
             </div>
 
             <div className="banner-addition">
-
+                <div className="achiev">
+                    <FontAwesomeIcon className='achiev-icon' icon={faUser}/>
+                    <div className="achiev-details">
+                        <h1>30+</h1>
+                        <p>Study</p>
+                        <p>Destination</p>
+                    </div>
+                </div>
+                <div className="achiev">
+                    <FontAwesomeIcon className='achiev-icon' icon={faUser}/>
+                    <div className="achiev-details">
+                        <h1>300+</h1>
+                        <p>Partnered</p>
+                        <p>Universities</p>
+                    </div>
+                </div>
+                <div className="achiev">
+                    <FontAwesomeIcon className='achiev-icon' icon={faUser}/>
+                    <div className="achiev-details">
+                        <h1>5k+</h1>
+                        <p>Enrolled</p>
+                        <p>Students</p>
+                    </div>
+                </div>
             </div>
 
         </div>
