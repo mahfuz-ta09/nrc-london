@@ -3,6 +3,9 @@ import '../../../css/shared/Banner/Banner.css'
 import { faArrowAltCircleRight, faUser } from '@fortawesome/free-solid-svg-icons'
 import Image from 'next/image'
 import banner from '../../../assets/laptop.webp'
+import building from '../../../assets/buildingsvg.svg'
+import student from '../../../assets/student.svg'
+import map from '../../../assets/map.svg'
 
 
 const Banner = () => {
@@ -23,7 +26,7 @@ const Banner = () => {
 
             <div className="banner-addition">
                 <div className="achiev">
-                    <FontAwesomeIcon className='achiev-icon' icon={faUser}/>
+                <Image className='achiev-photo' src={map} alt='University'/>
                     <div className="achiev-details">
                         <h1>30+</h1>
                         <p>Study</p>
@@ -31,7 +34,7 @@ const Banner = () => {
                     </div>
                 </div>
                 <div className="achiev">
-                    <FontAwesomeIcon className='achiev-icon' icon={faUser}/>
+                <Image className='achiev-photo' src={building} alt='University'/>
                     <div className="achiev-details">
                         <h1>300+</h1>
                         <p>Partnered</p>
@@ -39,7 +42,7 @@ const Banner = () => {
                     </div>
                 </div>
                 <div className="achiev">
-                    <FontAwesomeIcon className='achiev-icon' icon={faUser}/>
+                <Image className='achiev-photo' src={student} alt='University'/>
                     <div className="achiev-details">
                         <h1>5k+</h1>
                         <p>Enrolled</p>

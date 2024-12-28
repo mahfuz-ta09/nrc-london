@@ -12,28 +12,13 @@ const Navbar = () => {
     const [isOpen,setIsOpen] = useState(false)
     const [navBg, setNavBg] = useState(false);
 
-    useEffect(() => {
-        window.addEventListener('scroll', changeNavBg);
-        return () => {
-          window.removeEventListener('scroll', changeNavBg);
-        }
-    }, [])
-
-    const changeNavBg = () => {
-        // window.scrollY >= 80 ? setNavBg(true) : setNavBg(false);
-        if(window.scrollY >= 80){
-            setNavBg(true)
-        }else{
-            setNavBg(false)
-        }
-    }
 
     const handleNavbar = () =>{
         setIsOpen(!isOpen)
     }
 
     return (
-        <div className={navBg?'nav-holder nav-color':'nav-holder'}>
+        <div className='nav-holder'>
             <div className="nav-content">
                 <Image className='nav-logo' src={logo} alt="" />
                 <div className={isOpen ? 'nav-links show':'nav-links hide'}>

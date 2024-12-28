@@ -120,7 +120,7 @@
 }
 
 .achiev{
-    background:linear-gradient(#5b4f8d,#0e052f);
+    background:linear-gradient(to right,#5b4f8d,#0e052f);
     min-width: 280px;
     padding: 20px;
     border: 1px solid #fff;
@@ -132,11 +132,12 @@
     flex: 1;
 }
 
-.achiev-icon{
-    color: white;
-    font-size: 55px;
+.achiev-photo{
+    width:  55px;
+    height: 55px;
+    object-fit: contain;
+    box-shadow: 3px 3px 29px 1px #fff;
 }
-
 
 .achiev-details{
     height: 100%;
