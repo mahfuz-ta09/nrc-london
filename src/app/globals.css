@@ -8,5 +8,17 @@
   margin-top: 8vh;
 }
 
+.home-contain{
+  background: linear-gradient(90deg, rgba(35,135,85,.4) 37%, rgba(5,222,235,.7) 100%),url('../assets/uni.png');
+  background-position: center;
+  background-size: cover;
+  width: 100%;
+  height: auto;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 40px;
+}
 /* rgb(6, 22, 72) */
 /* rgba(15, 72, 6,0.7) */

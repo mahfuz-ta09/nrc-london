@@ -6,7 +6,12 @@ const Page = () => {
   return (
     <>
         <Banner />
-        <UniOption />
+        <div className="home-contain">
+          <UniOption />
+          <UniOption />
+          <UniOption />
+          <UniOption />
+        </div>
     </>
   )
 }

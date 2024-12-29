@@ -43,6 +43,9 @@ const UniOption = () => {
                     <button>details</button>
                 </div>
             </div>
+            <div className="uni-nav">
+                
+            </div>
         </div>
     </div>
   )

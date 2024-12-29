@@ -1,6 +1,6 @@
 .banner-container{
     width: 100%;
-    background: linear-gradient(to bottom,rgb(6, 22, 72),rgba(15, 72, 6,0.7));
+    background: linear-gradient(90deg, rgba(35,135,85,1) 37%, rgba(5,222,235,1) 100%);
     height: 95vh;
     background-position: center;
     background-size: cover;
@@ -62,7 +62,6 @@
     line-break: none;
     color: #fff;
     white-space: nowrap;
-    /* background: rgba(15, 72, 6,0.7); */
     font-size: 16px;
     border: none;
     text-decoration: underline;
@@ -87,20 +86,6 @@
     background: rgb(0, 56, 129);
 }
 
-/* 
-.banner-bottom{
-    position: absolute;
-    height: 25px;
-    background: rgba(15, 72, 6,0.7);
-    bottom: 0;
-    left: 0;
-    width: 100%;
-    padding: 0 30px;
-    z-index: 1;
-    display: flex;
-    align-items: center;
-    justify-content: start;
-} */
 
 .banner-bottom-text{
     font-size: 14px;
@@ -121,7 +106,7 @@
 
 
 .achiev{
-    background:linear-gradient(to right,rgba(15, 72, 6,0.7),rgb(6, 22, 72));
+    background:linear-gradient(to right,rgba(15, 72, 6),rgb(6, 22, 72));
     min-width: 280px;
     padding: 20px;
     border: 1px solid #fff;
