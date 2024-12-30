@@ -1,4 +1,6 @@
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import '../../../css/shared/Unioption/UniOption.css'
+import { faArrowAltCircleLeft, faArrowAltCircleRight } from '@fortawesome/free-solid-svg-icons'
 
 const UniOption = () => {
   return (
@@ -44,7 +46,11 @@ const UniOption = () => {
                 </div>
             </div>
             <div className="uni-nav">
-                
+                <button className='uni-nav-btn'>see more</button>
+                <div className="uni-nav-nav">
+                    <button className='uni-nav-nav-btn'><FontAwesomeIcon icon={faArrowAltCircleLeft} /></button>
+                    <button className='uni-nav-nav-btn'><FontAwesomeIcon icon={faArrowAltCircleRight}/></button>
+                </div>
             </div>
         </div>
     </div>

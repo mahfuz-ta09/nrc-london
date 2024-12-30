@@ -7,7 +7,7 @@ const Page = () => {
     <>
         <Banner />
         <div className="home-contain">
-          <UniOption />
+          <UniOption/>
           <UniOption />
           <UniOption />
           <UniOption />
