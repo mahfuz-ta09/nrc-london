@@ -1,4 +1,5 @@
 import Banner from "@/component/shared/Banner/Banner"
+import Footer from "@/component/shared/Footer/Footer"
 import UniOption from "@/component/shared/UniOption/UniOption"
 
 
@@ -12,6 +13,7 @@ const Page = () => {
           <UniOption />
           <UniOption />
         </div>
+        <Footer />
     </>
   )
 }
