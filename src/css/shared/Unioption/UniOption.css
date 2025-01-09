@@ -67,7 +67,7 @@
     z-index: 2;
     transition: .4s all;
     border-radius: 5px;
-    background: linear-gradient( rgba(0,98,65,.7) 0%, rgba(208,240,192,.9) 100%)
+    background:  linear-gradient(to right, rgba(0,74,98,.8) 0%, rgb(152, 158, 149) 100%);
 }
 .details{
     position: absolute;
@@ -128,7 +128,7 @@
     justify-content: center;
     color: rgba(0,98,65,.7);
     font-size: 18px;
-    box-shadow: 4px 4px 20px 10px rgba(0,98,65,.7);
+    box-shadow: 4px 4px 20px 10px rgba(0,74,98,.5);
 }
 
 .uni-nav-btn{
@@ -138,11 +138,11 @@
     background: #fff;
     border-radius: 2px;
     color: rgba(0,98,65,.7);
-    box-shadow: 4px 4px 20px 10px rgba(0,98,65,.7);
+    box-shadow: 4px 4px 20px 10px rgba(0,74,98,.5);
 }
 
 .uni-nav button:hover{
-    box-shadow: 4px 4px 20px 10px rgba(2, 37, 25, 0.7);
+    box-shadow: 4px 4px 20px 10px rgba(0,74,98,.9);
 }
 
 @media screen and (max-width:1200px) {
@@ -160,6 +160,9 @@
     }
 }
 
+.uni-content h1{
+    color: rgba(0,74,98,1);
+}
 
 @media screen and (max-width:450px) {
     .unicaro{

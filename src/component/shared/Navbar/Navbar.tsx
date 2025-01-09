@@ -133,7 +133,6 @@ const Navbar = () => {
                 <div className={isOpen ? 'link-items show' :'link-items hide'}>
                     <button>login</button>
                     <button className='dash'>monitor</button>
-                    {/* <FontAwesomeIcon  className='icon' icon={faUser} /> */}
                 </div>
                 {
                     isOpen ?
@@ -141,7 +140,7 @@ const Navbar = () => {
                     <FontAwesomeIcon onClick={handleNavbar} className='menu-icon' icon={faBars}/>
                 }
             </div>
-            
+
         </div>
     )
 }

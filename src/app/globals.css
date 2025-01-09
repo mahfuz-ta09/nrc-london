@@ -3,9 +3,8 @@
   padding: 0;
   margin: 0;
 }
-
+/* ,url('../assets/Banner.jpg') */
 .home-contain{
-  background: linear-gradient(rgba(0,98,65,0.6),rgba(0,98,65,0.6)),url('../assets/Banner.jpg');
   min-height: 500px;
   background-attachment: fixed;
   background-position: center;
@@ -23,6 +22,11 @@
   border-top: 2px solid #fff;
 }
 
-.home-contain > :nth-child(n){
-  margin-top: 20vh;
+.home-contain > :nth-child(1){
+  padding-top: 20vh;
+}
+
+
+.home-contain > :nth-child(odd) {
+  background: #efefef;
 }
