@@ -67,7 +67,7 @@
     z-index: 2;
     transition: .4s all;
     border-radius: 5px;
-    background:  linear-gradient(to right, rgba(0,74,98,.8) 0%, rgb(152, 158, 149) 100%);
+    background:  linear-gradient(to top, rgba(0,74,98,.8) 0%, rgb(152, 158, 149) 100%);
 }
 .details{
     position: absolute;
@@ -159,6 +159,7 @@
         grid-template-columns: repeat(2,1fr);
     }
 }
+
 
 .uni-content h1{
     color: rgba(0,74,98,1);
