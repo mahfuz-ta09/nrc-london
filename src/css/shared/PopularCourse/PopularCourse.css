@@ -70,3 +70,21 @@
 .see-all:hover{
     background: rgb(1, 50, 67);
 }
+
+
+
+@media screen and (max-width:450px) {
+    .courses-tag{
+        padding-left: 10px;
+    }
+    .single-course{
+        padding: 10px 30px;
+    }
+}
+
+
+@media screen and (max-width:400px) {
+    .single-course{
+        padding: 10px 15px;
+    }
+}
