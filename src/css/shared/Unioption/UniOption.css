@@ -53,10 +53,12 @@
     display: flex;
     align-items: center;
     justify-content: center;
+    gap: 5px;
+    cursor: pointer;
 }
 
 .uni button:hover{
-    gap:5px;
+    gap:15px;
 }
 .overlay{
     position: absolute;
@@ -128,6 +130,7 @@
     justify-content: center;
     color: rgba(0,98,65,.7);
     font-size: 18px;
+    cursor: pointer;
     box-shadow: 4px 4px 20px 10px rgba(0,74,98,.5);
 }
 
@@ -138,6 +141,7 @@
     background: #fff;
     border-radius: 2px;
     color: rgba(0,98,65,.7);
+    cursor: pointer;
     box-shadow: 4px 4px 20px 10px rgba(0,74,98,.5);
 }
 

@@ -16,7 +16,7 @@ const UniOption = () => {
                         <h3>Study in srilanks</h3>
                         <h3>Inspiring higher study in abroad</h3>
                     </div>
-                    <button>details</button>
+                    <button>details <FontAwesomeIcon icon={faArrowAltCircleRight}/> </button>
                 </div>
                 <div className="uni">
                     <img className="uni-image" src='https://images.pexels.com/photos/18647836/pexels-photo-18647836/free-photo-of-gate-of-buddhist-temple.jpeg?auto=compress&cs=tinysrgb&w=600&lazy=load' alt='' />
@@ -25,7 +25,7 @@ const UniOption = () => {
                         <h3>Study in srilanks</h3>
                         <h3>Inspiring higher study in abroad</h3>
                     </div>
-                    <button>details</button>
+                    <button>details <FontAwesomeIcon icon={faArrowAltCircleRight}/> </button>
                 </div>
                 <div className="uni">
                     <img className="uni-image" src='https://images.pexels.com/photos/18647836/pexels-photo-18647836/free-photo-of-gate-of-buddhist-temple.jpeg?auto=compress&cs=tinysrgb&w=600&lazy=load' alt='' />
@@ -34,7 +34,7 @@ const UniOption = () => {
                         <h3>Study in srilanks</h3>
                         <h3>Inspiring higher study in abroad</h3>
                     </div>
-                    <button>details</button>
+                    <button>details <FontAwesomeIcon icon={faArrowAltCircleRight}/> </button>
                 </div>
                 <div className="uni">
                     <img className="uni-image" src='https://images.pexels.com/photos/18647836/pexels-photo-18647836/free-photo-of-gate-of-buddhist-temple.jpeg?auto=compress&cs=tinysrgb&w=600&lazy=load' alt='' />
@@ -43,7 +43,7 @@ const UniOption = () => {
                         <h3>Study in srilanks</h3>
                         <h3>Inspiring higher study in abroad</h3>
                     </div>
-                    <button>details</button>
+                    <button>details <FontAwesomeIcon icon={faArrowAltCircleRight}/> </button>
                 </div>
             </div>
             <div className="uni-nav">

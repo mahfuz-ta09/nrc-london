@@ -3,7 +3,7 @@ a {
     text-decoration: none;
   }
   .footer {
-      background-color: rgba(0,98,65);
+      background-color: rgba(0,74,98);
       color: #fff;
   }
   .footer-wave-svg {
@@ -74,13 +74,13 @@ a {
   }
   .footer-call-to-action-button:hover {
       background-color: #fffff2;
-      color: rgba(0,98,65);
+      color: rgb(3, 195, 131);
   }
   .button:last-of-type {
       margin-right: 0;
   }
   .footer-call-to-action-button {
-      background-color: rgb(1, 35, 24);
+      background-color: rgb(21, 182, 235);
       border-radius: 21px;
       color: #fffff2;
       display: inline-block;
@@ -203,7 +203,7 @@ a {
   }
   
   .footer-copyright {
-      background-color: rgba(0,98,65)a;
+      background-color: rgb(0, 41, 54);
       border-top: 2px solid #fff;
       color: #fff;
       padding: 15px 30px;

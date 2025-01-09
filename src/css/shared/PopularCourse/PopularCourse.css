@@ -20,3 +20,53 @@
 .courses-tag span{
     color: rgba(0,74,98);
 }
+
+.courses{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 20px;
+    padding: 30px 5px;
+}
+.single-course{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 20px;
+    border:solid 2px rgb(189, 189, 189);
+    padding: 10px 30px;
+    width:fit-content;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.single-course:hover{
+    border:solid 2px rgba(0,74,98);
+}
+
+.single-course-icon{
+    color: rgba(0,74,98);
+    font-size: 22px;
+}
+
+.single-course-heading{
+    color: #000;
+    font-size: 22px;
+}
+
+.see-all{
+    padding: 12px 25px;
+    font-size: 17px;
+    width: fit-content;
+    display: block;
+    margin: 20px auto;
+    border-radius: 3px;
+    background: rgba(0,74,98);
+    border: none;
+    color: #fff;
+}
+
+.see-all:hover{
+    background: rgb(1, 50, 67);
+}
