@@ -24,7 +24,7 @@ const FAQ = () => {
                     <div className="faq-question">
                         <input id="q3" type="checkbox" className="panel"/>
                         <div className="plus">+</div>
-                        <label htmlFor="q3" className="panel-title">What happens if Pinocchio says, "my nose will grow now"?</label>
+                        <label htmlFor="q3" className="panel-title">What happens if Pinocchio says, my nose will grow now?</label>
                         <div className="panel-content">Lorem ipsum dolor, sit amet consectetur adipisicing elit. Molestiae ducimus, facere non qui aspernatur, reprehenderit aliquid magni eligendi, illum consequuntur maiores aliquam. Facere ipsam ut atque quasi. Sapiente, sequi dicta!</div>
                     </div>
                 </div>
