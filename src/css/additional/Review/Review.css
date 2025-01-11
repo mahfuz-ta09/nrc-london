@@ -1,0 +1,155 @@
+.review-container{
+    width: 100%;
+    height: auto;
+    margin: 0 auto;
+    color: aliceblue;
+    padding: 5vh 0;
+    background-color: #efefef;
+    position: relative;
+}
+
+
+.top-image{
+    position: absolute;
+    height: 300px;
+    width:  300px;
+    object-fit:cover;
+    top: 20%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+.review-content{
+    max-width: 1210px;
+    margin: 0 auto;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    align-content: center;
+    justify-content: space-between;
+    padding: 5px;
+}
+
+.review-header{
+    display: flex;
+    align-content: center;
+    justify-content: center;
+    flex-direction: column;
+    gap: 20px;
+    width: 40%;
+    min-height: 60vh;
+}
+
+.review-header h1{
+    color: #000;
+    font-size: 35px;
+}
+
+.review-header p{
+    color: #000;
+    font-size: 15px;
+}
+
+.review-comment{
+    padding: 10px 25px;
+    width: fit-content;
+    border: 1px solid rgba(0,74,98,.8);
+    background: rgba(0,74,98,.8);
+    color: #fff;
+    font-size: 17px;
+}
+
+.comments{
+    width: 40%;
+    display: flex;
+    align-items: right;
+    justify-content: center;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.comment{
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: row;
+    gap: 10px;
+    border: 1px solid #aba9a9;
+    border-left: 7px solid #aba9a9;
+    padding: 15px 5px;
+}
+
+.comment-image{
+    font-size: 50px;
+    padding: 14px;
+    border-radius: 50%;
+    color: #a39c9c;
+}
+
+.comment-header{
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-direction: row;
+
+}
+
+.comment-header h1{
+    color: #000;
+    font-size: 18px;
+}
+
+.qoutation{
+    font-size: 18px;
+    padding-right: 30px;
+    color: #aba9a9;
+}
+
+.comment-main{
+    color: #000;
+    font-size: 14px;
+}
+.focus{
+    border-left: 7px solid rgba(0,74,98);
+    margin-left: -60px;
+}
+.focus-icon{
+    color: rgba(0,74,98);
+}
+
+@media screen and (max-width:450px) {
+    .review-content{
+        flex-direction: column;
+    }
+    .review-header{
+        margin: 5vh auto;
+        gap: 10px;
+        width: 95%;
+        min-height: auto;
+        z-index: 1;
+    }
+    .review-comment{
+        padding: 5px 25px;
+    }
+    
+    .comments{
+        width: 95%;
+        margin: 0 auto;
+    }
+    .focus{
+        border-left: 7px solid rgba(0,74,98);
+        margin-left: -0px;
+    }
+    .top-image{
+        position: absolute;
+        height: 300px;
+        width:  300px;
+        object-fit:cover;
+        top: 10%;
+        left: 40%;
+        z-index: 0;
+        transform: translate(-50%, -50%);
+    }
+}

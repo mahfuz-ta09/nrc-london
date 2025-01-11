@@ -54,12 +54,12 @@
 }
 
 .plan-header{
-    color: rgba(0,74,98);
+    color: #fff;
     font-size: 24px;
 }
 
 .plan-addition{
-    color: #000;
+    color: #fff;
     font-size: 16px;
 }
 
@@ -67,6 +67,7 @@
     padding: 7px 30px;
     border: 2px solid rgba(0,74,98);
     color: rgba(0,74,98);
+    border: none;
     cursor: pointer;
     z-index: 3;
 }
