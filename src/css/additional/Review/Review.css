@@ -11,11 +11,12 @@
 
 .top-image{
     position: absolute;
-    height: 300px;
-    width:  300px;
+    /* height: 300px; */
+    width:  30%;
     object-fit:cover;
-    top: 20%;
-    left: 50%;
+    top: 30%;
+    left: 15%;
+    z-index: 1;
     transform: translate(-50%, -50%);
 }
 
@@ -38,6 +39,7 @@
     gap: 20px;
     width: 40%;
     min-height: 60vh;
+    z-index: 2;
 }
 
 .review-header h1{
@@ -66,6 +68,7 @@
     justify-content: center;
     flex-direction: column;
     gap: 10px;
+    z-index: 2;
 }
 
 .comment{
@@ -144,7 +147,6 @@
     }
     .top-image{
         position: absolute;
-        height: 300px;
         width:  300px;
         object-fit:cover;
         top: 10%;
