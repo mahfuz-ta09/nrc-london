@@ -34,7 +34,7 @@
 }
 
 .home-contain > :nth-child(4){
-  background: linear-gradient(to bottom,rgba(0,74,98,0.7),rgba(0,74,98,0.6)),url('https://i.ibb.co.com/ZNsVDwk/Green-Beige-Aesthetic-Leaves-Illustration-Background-Instagram-Story-1.png');
+  background: linear-gradient(to bottom,rgba(0,0,0,.2),rgba(0,0,0,0.6)),url('https://i.ibb.co.com/ZNsVDwk/Green-Beige-Aesthetic-Leaves-Illustration-Background-Instagram-Story-1.png');
   background-position: center;
   background-size: cover;
 }
@@ -42,4 +42,13 @@
 
 .home-contain > :nth-child(3) {
   /* background: #efefef; */
+}
+
+
+@media screen and (max-width:450px) {
+  .home-contain > :nth-child(1){
+    padding-top: 10vh;
+  }
+  
+  
 }
