@@ -61,7 +61,7 @@ const Footer = () => {
           </div>
           <div className="pg-footer-content-column">
             <div className="pg-footer-call-to-action">
-              <h2 className="pg-footer-call-to-action-title">Let's Chat</h2>
+              <h2 className="pg-footer-call-to-action-title">Let&apos;s Chat</h2>
               <p className="pg-footer-call-to-action-description">
                 Have a support question?
               </p>
