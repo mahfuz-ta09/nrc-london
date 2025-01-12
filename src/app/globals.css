@@ -23,7 +23,7 @@
 }
 
 .home-contain > :nth-child(1){
-  padding-top: 20vh;
+  /* padding-top: 20vh; */
   background: #efefef;
 }
 
@@ -42,13 +42,4 @@
 
 .home-contain > :nth-child(3) {
   background: #efefef;
-}
-
-
-@media screen and (max-width:450px) {
-  .home-contain > :nth-child(1){
-    padding-top: 10vh;
-  }
-  
-  
 }

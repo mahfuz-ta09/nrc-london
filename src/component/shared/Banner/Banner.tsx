@@ -8,6 +8,7 @@ import student from '../../../assets/student.svg'
 import map from '../../../assets/map.svg'
 
 
+
 const Banner = () => {
     return (
         <div className="banner-container">

@@ -3,7 +3,7 @@
     height: auto;
     margin: 0 auto;
     color: aliceblue;
-    padding: 10vh 0;
+    /* padding: 10vh 0; */
 }
 
 .popular-courses{
@@ -11,6 +11,10 @@
     margin: 0 auto;
     width: 100%;
     height: 100%;
+}
+
+.footer-wave-path{
+    fill: rgba(0,74,98);
 }
 
 .courses-tag{
