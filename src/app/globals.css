@@ -3,7 +3,7 @@
   padding: 0;
   margin: 0;
 }
-/* ,url('../assets/Banner.jpg') */
+
 
 .home-contain{
   min-height: 500px;
@@ -23,15 +23,9 @@
 }
 
 .home-contain > :nth-child(1){
-  /* padding-top: 20vh; */
   background: #efefef;
 }
 
-.home-contain > :nth-child(2){
-  /* background: linear-gradient(to bottom,rgba(0,74,98,0.1),rgba(0,74,98,0.6)),url('../assets/forest.png');
-  background-position: center;
-  background-size: cover; */
-}
 
 .home-contain > :nth-child(4){
   background: linear-gradient(to bottom,rgba(0,0,0,.2),rgba(0,0,0,0.6)),url('https://i.ibb.co.com/ZNsVDwk/Green-Beige-Aesthetic-Leaves-Illustration-Background-Instagram-Story-1.png');

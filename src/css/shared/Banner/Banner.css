@@ -106,14 +106,14 @@
 
 
 .achiev{
-    background:linear-gradient(180deg, rgba(0,74,98,1) 0%, rgba(213,223,208,1) 100%);
+    background:rgba(0,74,98,1);
     min-width: 280px;
     padding: 20px;
     border: 1px solid #fff;
     display: flex;
     align-items: center;
     justify-content: space-around;
-    box-shadow:8px 8px 20px 3px rgb(20, 60, 47);
+    box-shadow:1px 1px 10px 1px #fff;
     object-fit: contain;
     flex: 1;
 }
