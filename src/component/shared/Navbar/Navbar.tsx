@@ -26,24 +26,28 @@ const Navbar = () => {
                     </div>
                     
                     <div className='link-holder'>
-                        <Link className='link' href="/">Test prep</Link>
+                        <p className='link'>Test prep</p>
                         <div className='drop-down'>
                             <div className="drop-down-content">
                                 <div className="drop-down-group">
-                                    <Link className='drop-down-link' href="/">IELTS</Link>
-                                    <Link className='drop-down-link' href="/">IELTS</Link>
+                                    <Link className='drop-down-link' href="/TestPrep/ielts">IELTS</Link>
+                                    <Link className='drop-down-link' href="/TestPrep/toefl">TOEFL</Link>
+                                    <Link className='drop-down-link' href="/TestPrep/pte">PTE</Link>
+                                    <Link className='drop-down-link' href="/TestPrep/oet">OET</Link>
                                 </div>
                                 <div className="drop-down-group">
-                                    <Link className='drop-down-link' href="/">IELTS</Link>
-                                    <Link className='drop-down-link' href="/">IELTS</Link>
+                                    <Link className='drop-down-link' href="/TestPrep/duolingo">DUOLINGO</Link>
+                                    <Link className='drop-down-link' href="/TestPrep/gre">GRE</Link>
+                                    <Link className='drop-down-link' href="/TestPrep/gmat">GMAT</Link>
                                 </div>
                                 <div className="drop-down-group">
-                                    <Link className='drop-down-link' href="/">IELTS</Link>
-                                    <Link className='drop-down-link' href="/">IELTS</Link>
+                                    <Link className='drop-down-link' href="/TestPrep/sat">SAT</Link>
+                                    <Link className='drop-down-link' href="/TestPrep/act">ACT</Link>
+                                    <Link className='drop-down-link' href="/TestPrep/ap">AP</Link>
                                 </div>
                                 <div className="drop-down-group">
-                                    <Link className='drop-down-link' href="/">IELTS</Link>
-                                    <Link className='drop-down-link' href="/">IELTS</Link>
+                                    {/* <Link className='drop-down-link' href="/">IELTS</Link>
+                                    <Link className='drop-down-link' href="/">IELTS</Link> */}
                                 </div>
                             </div>
                         </div>
@@ -74,7 +78,7 @@ const Navbar = () => {
                     </div>
                     
                     <div className='link-holder'>
-                        <Link className='link' href="/">Centers</Link>
+                        <Link className='link' href="/">Centres</Link>
                         <div className='drop-down'>
                             <div className="drop-down-content">
                                 <div className="drop-down-group">
