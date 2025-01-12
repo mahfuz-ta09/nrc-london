@@ -1,24 +1,23 @@
-.process-container{
+.process-container {
     width: 100%;
     height: auto;
     margin: 0 auto;
     padding: 10vh 0;
 }
 
-.process-content{
+.process-content {
     max-width: 1210px;
     margin: 0 auto;
     width: 100%;
     height: 100%;
 }
 
-/* style="--accent-color:#4CADAD"
-style="--accent-color:#1B5F8C"
-style="--accent-color:#E24A68"
-style="--accent-color:#FBCA3E"
-style="--accent-color:#41516C" */
+.process-content h1 {
+    margin-bottom: 90px;
+}
 
-ul {
+/* Styling for the timeline list */
+.process-timeline {
     --col-gap: 2rem;
     --row-gap: 2rem;
     --line-w: 0.25rem;
@@ -29,54 +28,46 @@ ul {
     list-style: none;
     width: min(60rem, 90%);
     margin-inline: auto;
-  }
-  
+    padding: 0;
+}
 
-  ul::before {
+.process-timeline::before {
     content: "";
     grid-column: 1;
     grid-row: 1 / span 20;
     background: rgb(225, 225, 225);
     border-radius: calc(var(--line-w) / 2);
-  }
-  
+}
 
-  ul li:not(:last-child) {
+.process-timeline-item:not(:last-child) {
     margin-bottom: var(--row-gap);
-  }
- 
-  /* card */
-  ul li {
+}
+
+.process-timeline-item {
     grid-column: 2;
     --inlineP: 1.5rem;
     margin-inline: var(--inlineP);
     grid-row: span 2;
     display: grid;
     grid-template-rows: min-content min-content min-content;
-  }
-  
+}
 
-  ul li .date {
+.process-timeline-item .date {
     --dateH: 3rem;
     height: var(--dateH);
     margin-inline: calc(var(--inlineP) * -1);
-  
     text-align: center;
     background-color: var(--accent-color);
-  
     color: white;
     font-size: 1.25rem;
     font-weight: 700;
-  
     display: grid;
     place-content: center;
     position: relative;
-  
     border-radius: calc(var(--dateH) / 2) 0 0 calc(var(--dateH) / 2);
-  }
-  
-  /* date flap */
-  ul li .date::before {
+}
+
+.process-timeline-item .date::before {
     content: "";
     width: var(--inlineP);
     aspect-ratio: 1;
@@ -84,13 +75,11 @@ ul {
     background-image: linear-gradient(rgba(0, 0, 0, 0.2) 100%, transparent);
     position: absolute;
     top: 100%;
-  
     clip-path: polygon(0 0, 100% 0, 0 100%);
     right: 0;
-  }
-  
+}
 
-  ul li .date::after {
+.process-timeline-item .date::after {
     content: "";
     position: absolute;
     width: 2rem;
@@ -99,89 +88,92 @@ ul {
     border: 0.3rem solid var(--accent-color);
     border-radius: 50%;
     top: 50%;
-  
     transform: translate(50%, -50%);
     right: calc(100% + var(--col-gap) + var(--line-w) / 2);
-  }
-  
+}
 
-  ul li .title,
-  ul li .descr {
+.process-timeline-item .title,
+.process-timeline-item .descr {
     background: var(--bgColor);
     position: relative;
     padding-inline: 1.5rem;
-  }
-  ul li .title {
+}
+
+.process-timeline-item .title {
     overflow: hidden;
     padding-block-start: 1.5rem;
     padding-block-end: 1rem;
     font-weight: 500;
-  }
-  ul li .descr {
+}
+
+.process-timeline-item .descr {
     padding-block-end: 1.5rem;
     font-weight: 300;
-  }
-  
-  /* shadows */
-  ul li .title::before,
-  ul li .descr::before {
+}
+
+.process-timeline-item .title::before,
+.process-timeline-item .descr::before {
     content: "";
     position: absolute;
     width: 90%;
     height: 0.5rem;
-    background: rgba(0, 0, 0, 0.5);
+    background: rgba(58, 76, 82, 0.7);
     left: 50%;
     border-radius: 50%;
     filter: blur(4px);
     transform: translate(-50%, 50%);
-  }
-  ul li .title::before {
+}
+
+.process-timeline-item .title::before {
     bottom: calc(100% + 0.125rem);
-  }
-  
-  ul li .descr::before {
+}
+
+.process-timeline-item .descr::before {
     z-index: -1;
     bottom: 0.25rem;
-  }
-  
-  @media (min-width: 40rem) {
-    ul {
-      grid-template-columns: 1fr var(--line-w) 1fr;
+}
+
+@media (min-width: 40rem) {
+    .process-timeline {
+        grid-template-columns: 1fr var(--line-w) 1fr;
     }
-    ul::before {
-      grid-column: 2;
+
+    .process-timeline::before {
+        grid-column: 2;
     }
-    ul li:nth-child(odd) {
-      grid-column: 1;
+
+    .process-timeline-item:nth-child(odd) {
+        grid-column: 1;
     }
-    ul li:nth-child(even) {
-      grid-column: 3;
+
+    .process-timeline-item:nth-child(even) {
+        grid-column: 3;
     }
-  
-    /* start second card */
-    ul li:nth-child(2) {
-      grid-row: 2/4;
+
+    .process-timeline-item:nth-child(2) {
+        grid-row: 2/4;
     }
-  
-    ul li:nth-child(odd) .date::before {
-      clip-path: polygon(0 0, 100% 0, 100% 100%);
-      left: 0;
+
+    .process-timeline-item:nth-child(odd) .date::before {
+        clip-path: polygon(0 0, 100% 0, 100% 100%);
+        left: 0;
     }
-  
-    ul li:nth-child(odd) .date::after {
-      transform: translate(-50%, -50%);
-      left: calc(100% + var(--col-gap) + var(--line-w) / 2);
+
+    .process-timeline-item:nth-child(odd) .date::after {
+        transform: translate(-50%, -50%);
+        left: calc(100% + var(--col-gap) + var(--line-w) / 2);
     }
-    ul li:nth-child(odd) .date {
-      border-radius: 0 calc(var(--dateH) / 2) calc(var(--dateH) / 2) 0;
+
+    .process-timeline-item:nth-child(odd) .date {
+        border-radius: 0 calc(var(--dateH) / 2) calc(var(--dateH) / 2) 0;
     }
-  }
-  
-  .credits {
+}
+
+.credits {
     margin-top: 1rem;
     text-align: right;
-  }
-  .credits a {
+}
+
+.credits a {
     color: var(--color);
-  }
-  
+}
