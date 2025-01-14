@@ -10,7 +10,7 @@ interface TestType {
     description?: string;
 }
 
-const page = () => {
+export default function Page(){
     const pathname= usePathname()
     const paths= pathname.split('/')
     const [test, setTest] = useState<TestType | undefined>(undefined);
@@ -19,7 +19,6 @@ const page = () => {
         fetch('/test.json')
             .then((res) => res.json())
             .then((data: TestType[]) => {
-                console.log(data);
                 if (paths[2]) {
                     setTest(data.find((s) => s.name.toLowerCase() === paths[2].toLowerCase()));
                 } else {
@@ -29,7 +28,7 @@ const page = () => {
             .catch((error) => console.error("Failed to fetch data:", error));
     }, []);
     
-    console.log(test)
+    // console.log(test)
     return (
         <div className='element-container'>
             <div className="test-banner">
@@ -44,6 +43,5 @@ const page = () => {
     )
 }
 
-export default page
 
 
