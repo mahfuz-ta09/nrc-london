@@ -1,3 +1,37 @@
-.element-container{
-    margin-top: 10vh;
+.element-container{    
+    width: 100%;
+    height: auto;
+    margin: 10vh auto;
+    color: aliceblue;
+}
+
+.test-banner{
+    height: 60vh;
+    width: 100%;
+    background: linear-gradient(to right,rgba(0,0,0,0.5),rgba(0,0,0,0.1)),url('https://i.ibb.co.com/VvSHJKf/Untitled-design-1.png');
+    background-position: center;
+    background-size: cover;
+    background-repeat: no-repeat;
+}
+
+.test-banner-content{
+    max-width: 1210px;
+    margin: 0 auto;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    align-items: start;
+    justify-content: center;
+    flex-direction: column;
+}
+
+.test-banner-content-header{
+    color: black;
+    font-size: 30px;
+    background-color: aliceblue;
+    padding: 10px 40px;
+    border-radius: 0 30px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }

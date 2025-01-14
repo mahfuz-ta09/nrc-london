@@ -1,0 +1,162 @@
+[
+      {
+        "name": "IELTS",
+        "full_abbreviation": "International English Language Testing System",
+        "purpose": "To assess English language proficiency for study, work, or migration.",
+        "details": {
+          "purpose_of_test": "To measure the English language skills (listening, reading, writing, and speaking) of non-native speakers.",
+          "types_of_test": ["IELTS Academic", "IELTS General Training", "IELTS UKVI"],
+          "result_format": "Band score from 1 to 9 for each section (Listening, Reading, Writing, Speaking), with an overall band score.",
+          "scoring_pattern": "Each section is scored on a scale of 1 to 9, and the overall score is the average of the four sections.",
+          "frequently_asked_questions": [
+            "What is the validity of the IELTS test? (Answer: 2 years)",
+            "Can I take IELTS online? (Answer: Yes, IELTS Indicator is available in some regions.)",
+            "How soon can I retake the test? (Answer: Anytime, but preparation is recommended.)"
+          ]
+        }
+      },
+      {
+        "name": "TOEFL",
+        "full_abbreviation": "Test of English as a Foreign Language",
+        "purpose": "To assess the English proficiency of non-native speakers for academic purposes.",
+        "details": {
+          "purpose_of_test": "To evaluate English reading, listening, speaking, and writing skills required in academic settings.",
+          "types_of_test": ["TOEFL iBT", "TOEFL Essentials"],
+          "result_format": "Score out of 120, with section scores for Reading, Listening, Speaking, and Writing.",
+          "scoring_pattern": "Each section is scored out of 30, and the total score is the sum of all sections.",
+          "frequently_asked_questions": [
+            "How long is the TOEFL score valid? (Answer: 2 years)",
+            "Can I take TOEFL from home? (Answer: Yes, TOEFL iBT Home Edition is available.)",
+            "What is the minimum score for TOEFL? (Answer: It depends on the institution, typically around 80 for iBT.)"
+          ]
+        }
+      },
+      {
+        "name": "PTE",
+        "full_abbreviation": "Pearson Test of English",
+        "purpose": "To measure English language proficiency for study, work, and migration.",
+        "details": {
+          "purpose_of_test": "To test the English skills of non-native speakers in academic and professional contexts.",
+          "types_of_test": ["PTE Academic", "PTE General"],
+          "result_format": "Score out of 90, with communicative skills (Listening, Reading, Speaking, Writing) and enabling skills.",
+          "scoring_pattern": "Automated scoring algorithm that evaluates communicative and enabling skills on a scale of 10 to 90.",
+          "frequently_asked_questions": [
+            "Is PTE accepted for immigration? (Answer: Yes, in many countries including Australia and New Zealand.)",
+            "How quickly can I get my PTE results? (Answer: Within 48 hours in most cases.)",
+            "What is the PTE validity period? (Answer: 2 years for most purposes.)"
+          ]
+        }
+      },
+      {
+        "name": "OET",
+        "full_abbreviation": "Occupational English Test",
+        "purpose": "To assess English proficiency for healthcare professionals.",
+        "details": {
+          "purpose_of_test": "To test the English language skills required in healthcare settings.",
+          "types_of_test": ["OET for Nurses", "OET for Doctors", "OET for other healthcare professions"],
+          "result_format": "Grade from A (highest) to E (lowest) for each sub-test (Listening, Reading, Writing, Speaking).",
+          "scoring_pattern": "Each sub-test is graded separately, and there is no overall score.",
+          "frequently_asked_questions": [
+            "Is OET accepted worldwide? (Answer: Yes, in many countries like the UK, Australia, and the USA.)",
+            "What is the validity of OET scores? (Answer: Typically 2 years.)",
+            "Can I retake specific OET sub-tests? (Answer: Yes, you can retake individual sub-tests.)"
+          ]
+        }
+      },
+      {
+        "name": "Duolingo",
+        "full_abbreviation": "Duolingo English Test",
+        "purpose": "To evaluate English proficiency online for academic and professional purposes.",
+        "details": {
+          "purpose_of_test": "To measure English reading, writing, listening, and speaking skills in a short online test.",
+          "types_of_test": ["Duolingo English Test"],
+          "result_format": "Score out of 160, with proficiency levels indicated.",
+          "scoring_pattern": "Adaptive test scored on a scale of 10 to 160.",
+          "frequently_asked_questions": [
+            "How long does the Duolingo test take? (Answer: Around 1 hour.)",
+            "How soon are results available? (Answer: Within 48 hours.)",
+            "Is the Duolingo test accepted by universities? (Answer: Yes, by many institutions globally.)"
+          ]
+        }
+      },
+      {
+        "name": "GRE",
+        "full_abbreviation": "Graduate Record Examination",
+        "purpose": "To evaluate analytical writing, verbal reasoning, and quantitative reasoning for graduate admissions.",
+        "details": {
+          "purpose_of_test": "To assess skills required for graduate-level study, including analytical writing, verbal, and quantitative reasoning.",
+          "types_of_test": ["GRE General Test", "GRE Subject Test"],
+          "result_format": "Score out of 340 for Verbal and Quantitative, plus an Analytical Writing score out of 6.",
+          "scoring_pattern": "Verbal and Quantitative sections are scored on a scale of 130-170 each, and Writing is scored 0-6.",
+          "frequently_asked_questions": [
+            "How long is the GRE valid? (Answer: 5 years.)",
+            "Can I take the GRE at home? (Answer: Yes, GRE at Home is available.)",
+            "What is a good GRE score? (Answer: Depends on the program, but typically 310+ is considered competitive.)"
+          ]
+        }
+      },
+      {
+        "name": "GMAT",
+        "full_abbreviation": "Graduate Management Admission Test",
+        "purpose": "To assess skills for business school admissions.",
+        "details": {
+          "purpose_of_test": "To evaluate analytical, writing, quantitative, verbal, and reading skills for business school applicants.",
+          "types_of_test": ["GMAT General Test"],
+          "result_format": "Score out of 800, with section scores for Quantitative, Verbal, Integrated Reasoning, and Analytical Writing.",
+          "scoring_pattern": "Quantitative and Verbal sections are scored on a scale of 6-51, combined for the total score.",
+          "frequently_asked_questions": [
+            "How long is the GMAT valid? (Answer: 5 years.)",
+            "Can I retake the GMAT? (Answer: Yes, up to 5 times in a 12-month period.)",
+            "What is a good GMAT score? (Answer: Around 700+ for top business schools.)"
+          ]
+        }
+      },
+      {
+        "name": "SAT",
+        "full_abbreviation": "Scholastic Assessment Test",
+        "purpose": "To evaluate readiness for college admissions.",
+        "details": {
+          "purpose_of_test": "To assess critical reading, mathematics, and writing skills for college admissions.",
+          "types_of_test": ["SAT General Test", "SAT Subject Tests (discontinued)"],
+          "result_format": "Score out of 1600, with 800 each for Math and Evidence-Based Reading & Writing.",
+          "scoring_pattern": "Math and Reading/Writing sections are scored separately, and combined for the total score.",
+          "frequently_asked_questions": [
+            "How long is the SAT valid? (Answer: Typically 5 years.)",
+            "Can I take the SAT multiple times? (Answer: Yes, most students take it 2-3 times.)",
+            "What is a good SAT score? (Answer: Depends on the institution, but typically 1200+ is competitive.)"
+          ]
+        }
+      },
+      {
+        "name": "ACT",
+        "full_abbreviation": "American College Testing",
+        "purpose": "To assess readiness for college admissions.",
+        "details": {
+          "purpose_of_test": "To evaluate English, math, reading, and science skills for college admissions.",
+          "types_of_test": ["ACT General Test"],
+          "result_format": "Composite score out of 36, with individual section scores.",
+          "scoring_pattern": "Each section is scored out of 36, and the composite score is the average of the sections.",
+          "frequently_asked_questions": [
+            "How long is the ACT valid? (Answer: Typically 5 years.)",
+            "What is a good ACT score? (Answer: A score of 25+ is considered competitive.)",
+            "Can I take the ACT multiple times? (Answer: Yes, you can take it up to 12 times.)"
+          ]
+        }
+      },
+      {
+        "name": "APT",
+        "full_abbreviation": "Advanced Placement Test",
+        "purpose": "To assess college-level knowledge for high school students.",
+        "details": {
+          "purpose_of_test": "To evaluate college-level subject knowledge and skills for earning college credits in high school.",
+          "types_of_test": ["Subject-specific AP exams"],
+          "result_format": "Score from 1 to 5, with 5 being the highest.",
+          "scoring_pattern": "The score reflects mastery of the subject, with 3 or above typically considered passing.",
+          "frequently_asked_questions": [
+            "What is the purpose of AP exams? (Answer: To earn college credits while in high school.)",
+            "How long is the AP score valid? (Answer: Valid indefinitely, but policies vary by college.)",
+            "Can I retake AP exams? (Answer: Yes, but only during the next testing cycle.)"
+          ]
+        }
+      }
+]

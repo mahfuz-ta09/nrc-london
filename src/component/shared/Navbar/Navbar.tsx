@@ -19,7 +19,7 @@ const Navbar = () => {
     return (
         <div className='nav-holder'>
             <div className="nav-content">
-                <Image className='nav-logo' src={logo} alt="" />
+                <Link href="/"><Image className='nav-logo' src={logo} alt="" /></Link>
                 <div className={isOpen ? 'nav-links show':'nav-links hide'}>
                     <div className='link-holder'>
                         <Link className='link' href="/">k-12</Link>
