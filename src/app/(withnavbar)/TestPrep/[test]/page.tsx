@@ -10,7 +10,7 @@ interface TestType {
     description?: string;
 }
 
-export default function Page(){
+const Page = () => {
     const pathname= usePathname()
     const paths= pathname.split('/')
     const [test, setTest] = useState<TestType | undefined>(undefined);
@@ -43,5 +43,6 @@ export default function Page(){
     )
 }
 
+export default Page
 
 
