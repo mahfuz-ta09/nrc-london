@@ -187,6 +187,7 @@ const Page = () => {
                                 ))
                             }
                         </div>
+                        <div className="table-container">
                         <table>
                             <thead>
                                 <tr>
@@ -210,6 +211,7 @@ const Page = () => {
                                 }
                             </tbody>
                         </table>
+                        </div>
                     </div>
 
                 </div>
@@ -220,29 +222,32 @@ const Page = () => {
                             {test?.targetAudience} Lorem ipsum dolor sit, amet consectetur adipisicing elit. Illo accusamus ab nisi pariatur voluptates, molestiae ut quibusdam ullam sunt aliquid tempora error hic sit. Reiciendis harum corrupti, minima, officiis ex deleniti quisquam vitae natus nisi deserunt nostrum provident adipisci recusandae.
                         </p>
                 </div>
-                <table>
-                            <thead>
-                                <tr>
-                                    <th>Module</th>
-                                    <th>Sections</th>
-                                    <th>Questions</th>
-                                    <th>Duration</th>
-                                    <th>Focus</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                {
-                                    test?.format?.map((item,index)=>(
-                                        <tr key={index}>
-                                            <td>{item?.module? item?.module :"--"}</td>
-                                            <td>{item?.sections? item?.sections :"--"}</td>
-                                            <td>{item?.questions? item?.questions :"--"}</td>
-                                            <td>{item?.duration? item?.duration :"--"}</td>
-                                            <td>{item?.focus? item?.focus :"--"}</td>
-                                        </tr>))
-                                }
-                            </tbody>
-                        </table>
+                <div className="table-container">
+                    
+                    <table>
+                                <thead>
+                                    <tr>
+                                        <th>Module</th>
+                                        <th>Sections</th>
+                                        <th>Questions</th>
+                                        <th>Duration</th>
+                                        <th>Focus</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    {
+                                        test?.format?.map((item,index)=>(
+                                            <tr key={index}>
+                                                <td>{item?.module? item?.module :"--"}</td>
+                                                <td>{item?.sections? item?.sections :"--"}</td>
+                                                <td>{item?.questions? item?.questions :"--"}</td>
+                                                <td>{item?.duration? item?.duration :"--"}</td>
+                                                <td>{item?.focus? item?.focus :"--"}</td>
+                                            </tr>))
+                                    }
+                                </tbody>
+                    </table>
+                </div>
             </div>
             <FAQ />
             <Footer />
