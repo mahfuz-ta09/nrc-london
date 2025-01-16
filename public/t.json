@@ -3,6 +3,24 @@
       "name": "IELTS",
       "purpose": "Tests English language proficiency for academic, migration, and general purposes.",
       "targetAudience": "Non-native English speakers seeking higher education, employment, or migration opportunities.",
+      "faq":[
+        {
+          "question":"Designed for individuals applying to higher education?",
+          "answer":"Designed for individuals applying to higher education?Designed for individuals applying to higher educationDesigned for individuals applying to higher education"
+        },
+        {
+          "question":"Designed for individuals applying to higher education?",
+          "answer":"Designed for individuals applying to higher education?Designed for individuals applying to higher educationDesigned for individuals applying to higher education"
+        },
+        {
+          "question":"Designed for individuals applying to higher education?",
+          "answer":"Designed for individuals applying to higher education?Designed for individuals applying to higher educationDesigned for individuals applying to higher education"
+        },
+        {
+          "question":"Designed for individuals applying to higher education?",
+          "answer":"Designed for individuals applying to higher education?Designed for individuals applying to higher educationDesigned for individuals applying to higher education"
+        }
+      ],
       "types": [
         {
           "type": "IELTS Academic",
@@ -145,6 +163,7 @@
       "name": "SAT",
       "purpose": "Assesses college readiness and scholarship eligibility.",
       "targetAudience": "High school students applying to undergraduate programs.",
+      
       "format": [
         {
           "module": "Reading",

@@ -1,6 +1,6 @@
 'use client'
-import FAQ from '@/component/additional/FAQ/FAQ';
 import Footer from '@/component/shared/Footer/Footer';
+import FAQ from '@/component/UI/FAQ/FAQ';
 import '@/css/TestPrep/CommonStyle.css'
 import { usePathname } from "next/navigation"
 import { useEffect, useState } from 'react'
@@ -17,6 +17,10 @@ interface TestType {
         questions?: number;
         duration: string;
         focus: string;
+    }>;
+    faq?: Array<{
+        question: string;
+        answer: string;
     }>;
     types?: Array<{
         type: string;
@@ -44,7 +48,7 @@ const Page = () => {
                 }
             })
             .catch((error) => console.error("Failed to fetch data:", error));
-    }, [paths])
+    }, [])
 
     const [formData, setFormData] = useState({
         fullName: "",
@@ -69,7 +73,7 @@ const Page = () => {
         e.preventDefault();
         console.log(formData);
     }
-      console.log(test)
+      console.log(test?.faq)
     
     return (
         <div className='element-container'>
@@ -258,7 +262,7 @@ const Page = () => {
                     </table>
                 </div>
             </div>
-            <FAQ />
+            <FAQ items={test?.faq} title="Frequently Asked Questions"/>
             <Footer />
         </div>
         
