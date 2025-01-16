@@ -8,19 +8,23 @@ import { useEffect, useState } from 'react'
 interface TestType {
     name: string;
     full_abbreviation: string;
-    targetAudience?:string;
+    targetAudience?: string;
     purpose: string;
     description?: string;
-    format?:any
-    types?:[
-        {
-            type:string,
-            description:string,
-        }
-    ]
-    details?:{
+    format?: Array<{
+        module: string;
+        sections: number;
+        questions?: number;
+        duration: string;
+        focus: string;
+    }>;
+    types?: Array<{
+        type: string;
+        description: string;
+    }>;
+    details?: {
         purpose_of_test?: string;
-    }
+    };
 }
 
 
@@ -34,14 +38,14 @@ const Page = () => {
             .then((res) => res.json())
             .then((data: TestType[]) => {
                 if (paths[2]) {
-                    setTest(data.find((s) => s?.name?.toLowerCase() === paths[2].toLowerCase()))
+                    setTest(data.find((s) => s?.name?.toLowerCase() === paths[2].toLowerCase()));
                 } else {
-                    console.error("Invalid path segment:", paths[2])
+                    console.error("Invalid path segment:", paths[2]);
                 }
             })
             .catch((error) => console.error("Failed to fetch data:", error));
     }, [paths])
-    
+
     const [formData, setFormData] = useState({
         fullName: "",
         email: "",
@@ -52,20 +56,14 @@ const Page = () => {
         agreed: false,
       });
     
-      const handleChange = (e:any) => {
-        const { name, value, type, checked } = e.target;
-        setFormData({
-          ...formData,
-          [name]: type === "checkbox" ? checked : value,
-        });
-      };
+      const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>) => {
+        
+    };
     
-      const handleSubmit = (e:any) => {
+    const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
         e.preventDefault();
-        // Handle form submission
         console.log(formData);
-      }
-
+    }
       console.log(test)
     
     return (
@@ -196,7 +194,7 @@ const Page = () => {
                             </thead>
                             <tbody>
                                 {
-                                    test?.format?.map((item:any,index:number)=>(
+                                    test?.format?.map((item,index)=>(
                                         <tr key={index}>
                                             <td>{item?.module? item?.module :"--"}</td>
                                             <td>{item?.sections? item?.sections :"--"}</td>
