@@ -166,7 +166,16 @@ const Page = () => {
             <div className="details-container">
 
                 <div className="questions">
-                    page:{pathname}
+                        
+                    {
+                        paths.slice(1,2)?.map((path,index)=>(
+                            <div key={index} className="breadcrumb">
+                                <p className="breadcrumb-item">Home</p>
+                                <p className="breadcrumb-item">{path}</p>
+                                <p className="breadcrumb-item">{path}</p>
+                            </div>
+                        ))
+                    }
 
                     <div className="question">
                         <h1 className="question-main">What is the <span>purpose of ielts?</span></h1>

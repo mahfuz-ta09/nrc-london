@@ -252,6 +252,43 @@ tr:hover {
   padding: 5px;
 }
 
+.breadcrumb {
+  display: flex;
+  align-items: start;
+  justify-content: start;
+  width: 80%;
+  margin-top: 20px;
+}
+
+.breadcrumb-item {
+  position: relative;
+  padding: 15px 25px;
+  font-weight: 700;
+  line-height: 14px;
+  color: #000;
+  background-color: rgb(159, 177, 182,0.9);
+  font-size: 14px;
+  clip-path: polygon(75% 0%, 100% 50%, 75% 100%, 0% 100%, 18% 49%, 0% 0%);
+}
+
+.breadcrumb-item:first-child {
+  clip-path: polygon(75% 0%, 100% 50%, 75% 100%, 0% 100%, 0 48%, 0% 0%);
+}
+
+.breadcrumb-item:last-child {
+  clip-path: polygon(75% 0%, 100% 50%, 75% 100%, 0% 100%, 18% 49%, 0% 0%);
+  border-right: none;
+}
+
+
+
+.breadcrumb-item:not(.active):hover {
+  background-color: #e0e8ef;
+}
+
+
+
+
 @media screen and (max-width:600px) {
   
     .test-banner{
@@ -340,5 +377,7 @@ tr:hover {
         background-color: #ddd;
     }
 
-
+    .breadcrumb {
+      width: 95%;
+    }
 }
