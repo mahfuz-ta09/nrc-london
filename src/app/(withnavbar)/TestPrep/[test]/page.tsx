@@ -57,11 +57,12 @@ const Page = () => {
       });
     
       const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>) => {
-        const { name, value, type, agreed } = e.target;
+        const { name, value, type } = e.target;
+
         setFormData({
             ...formData,
-            [name]: type === "checkbox" ? agreed : value,
-        });
+            [name]: type === "checkbox" && e.target instanceof HTMLInputElement ? e.target.checked : value,
+        })
     };
     
     const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
