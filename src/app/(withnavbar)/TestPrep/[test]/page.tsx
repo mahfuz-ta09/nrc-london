@@ -231,7 +231,7 @@ const Page = () => {
                             </thead>
                             <tbody>
                                 {
-                                    test?.format?.map((item:any,index:number)=>(
+                                    test?.format?.map((item,index)=>(
                                         <tr key={index}>
                                             <td>{item?.module? item?.module :"--"}</td>
                                             <td>{item?.sections? item?.sections :"--"}</td>
