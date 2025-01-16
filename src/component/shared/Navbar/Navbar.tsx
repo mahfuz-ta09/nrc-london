@@ -24,7 +24,7 @@ const Navbar = () => {
                     <div className='link-holder'>
                         <Link className='link' href="/">k-12</Link>
                     </div>
-                    
+
                     <div className='link-holder'>
                         <p className='link'>Test prep</p>
                         <div className='drop-down'>
@@ -52,7 +52,7 @@ const Navbar = () => {
                             </div>
                         </div>
                     </div>
-                    
+
                     <div className='link-holder'>
                         <Link className='link' href="/">Students</Link>
                         <div className='drop-down'>

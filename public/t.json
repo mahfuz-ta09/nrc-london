@@ -1,0 +1,198 @@
+[
+    {
+      "name": "IELTS",
+      "purpose": "Tests English language proficiency for academic, migration, and general purposes.",
+      "targetAudience": "Non-native English speakers seeking higher education, employment, or migration opportunities.",
+      "types": [
+        {
+          "type": "IELTS Academic",
+          "description": "Designed for individuals applying to higher education institutions or seeking professional registration in English-speaking countries."
+        },
+        {
+          "type": "IELTS General",
+          "description": "Aimed at individuals migrating to English-speaking countries for work, training, or secondary education."
+        },
+        {
+          "type": "IELTS Life Skills",
+          "description": "For those who need to demonstrate English-speaking and listening skills at CEFR levels A1 or B1, often for UK visa applications."
+        }
+      ],
+      "format": [
+        { "module": "Listening", "sections": 4, "questions": 40, "duration": "30 minutes", "focus": "Understanding main ideas and factual information in spoken English." },
+        { "module": "Reading", "sections": 3, "questions": 40, "duration": "60 minutes", "focus": "Comprehension of academic texts (Academic) or everyday material (General)." },
+        { "module": "Writing", "sections": 2, "duration": "60 minutes", "focus": "Writing essays, reports, or letters depending on the type of IELTS." },
+        { "module": "Speaking", "sections": 3, "duration": "11-14 minutes", "focus": "Ability to communicate effectively in spoken English." }
+      ],
+      "scoringSystem": {
+        "bandScale": "0-9",
+        "criteria": [
+          "Fluency and Coherence",
+          "Lexical Resource",
+          "Grammatical Range and Accuracy",
+          "Pronunciation (for Speaking)"
+        ]
+      }
+    },
+    {
+      "name": "TOEFL",
+      "purpose": "Measures English proficiency for academic purposes.",
+      "targetAudience": "Students seeking admission to universities in English-speaking countries.",
+      "types": [
+        { "type": "TOEFL iBT", "description": "Internet-based test for academic English skills." },
+        { "type": "TOEFL Essentials", "description": "Shorter version of TOEFL for general English proficiency." }
+      ],
+      "format": [
+        { "module": "Reading", "questions": "30-40", "duration": "54-72 minutes", "focus": "Comprehension of academic passages." },
+        { "module": "Listening", "questions": "28-39", "duration": "41-57 minutes", "focus": "Understanding conversations and lectures." },
+        { "module": "Speaking", "tasks": 4, "duration": "17 minutes", "focus": "Speaking about familiar topics and academic material." },
+        { "module": "Writing", "tasks": 2, "duration": "50 minutes", "focus": "Writing responses to reading and listening tasks, and writing an essay." }
+      ],
+      "scoringSystem": {
+        "totalScore": "0-120",
+        "sectionScores": {
+          "Reading": "0-30",
+          "Listening": "0-30",
+          "Speaking": "0-30",
+          "Writing": "0-30"
+        }
+      }
+    },
+    {
+      "name": "PTE",
+      "purpose": "Tests English proficiency for academic and migration purposes.",
+      "targetAudience": "Non-native English speakers applying to universities or migration programs.",
+      "format": [
+        {
+          "module": "Speaking & Writing",
+          "tasks": [
+            "Personal Introduction",
+            "Read Aloud",
+            "Repeat Sentence",
+            "Describe Image",
+            "Re-tell Lecture",
+            "Essay Writing"
+          ],
+          "duration": "54-67 minutes",
+          "focus": "Integrated communication and writing skills."
+        },
+        {
+          "module": "Reading",
+          "tasks": [
+            "Fill in the Blanks",
+            "Multiple Choice",
+            "Re-order Paragraphs"
+          ],
+          "duration": "29-30 minutes",
+          "focus": "Reading comprehension and analysis."
+        },
+        {
+          "module": "Listening",
+          "tasks": [
+            "Summarize Spoken Text",
+            "Multiple Choice",
+            "Fill in the Blanks",
+            "Highlight Incorrect Words",
+            "Write from Dictation"
+          ],
+          "duration": "30-43 minutes",
+          "focus": "Understanding spoken English and summarization."
+        }
+      ],
+      "scoringSystem": {
+        "scale": "10-90",
+        "criteria": ["Grammar", "Oral Fluency", "Pronunciation", "Vocabulary", "Spelling"]
+      }
+    },
+    {
+      "name": "GRE",
+      "purpose": "Tests skills for graduate and business school programs.",
+      "targetAudience": "Applicants for master's, MBA, or doctoral programs.",
+      "format": [
+        {
+          "module": "Analytical Writing",
+          "tasks": [
+            "Analyze an Issue",
+            "Analyze an Argument"
+          ],
+          "duration": "60 minutes",
+          "focus": "Critical thinking and argumentative writing."
+        },
+        {
+          "module": "Verbal Reasoning",
+          "questions": 40,
+          "sections": 2,
+          "duration": "60 minutes",
+          "focus": "Understanding and analyzing written material."
+        },
+        {
+          "module": "Quantitative Reasoning",
+          "questions": 40,
+          "sections": 2,
+          "duration": "70 minutes",
+          "focus": "Problem-solving with arithmetic, algebra, geometry, and data analysis."
+        }
+      ],
+      "scoringSystem": {
+        "totalScore": "260-340",
+        "sectionScores": {
+          "Verbal Reasoning": "130-170",
+          "Quantitative Reasoning": "130-170",
+          "Analytical Writing": "0-6"
+        }
+      }
+    },
+    {
+      "name": "SAT",
+      "purpose": "Assesses college readiness and scholarship eligibility.",
+      "targetAudience": "High school students applying to undergraduate programs.",
+      "format": [
+        {
+          "module": "Reading",
+          "questions": 52,
+          "duration": "65 minutes",
+          "focus": "Comprehension of passages from literature, history, and science."
+        },
+        {
+          "module": "Writing and Language",
+          "questions": 44,
+          "duration": "35 minutes",
+          "focus": "Grammar, punctuation, and effective language use."
+        },
+        {
+          "module": "Math",
+          "questions": 58,
+          "sections": 2,
+          "duration": "80 minutes",
+          "focus": "Problem-solving, data analysis, and algebra."
+        }
+      ],
+      "scoringSystem": {
+        "totalScore": "400-1600",
+        "sectionScores": {
+          "Evidence-Based Reading and Writing": "200-800",
+          "Math": "200-800"
+        }
+      }
+    },
+    {
+      "name": "ACT",
+      "purpose": "Measures academic readiness for college.",
+      "targetAudience": "High school students applying to undergraduate programs.",
+      "format": [
+        { "module": "English", "questions": 75, "duration": "45 minutes", "focus": "Grammar and rhetorical skills." },
+        { "module": "Math", "questions": 60, "duration": "60 minutes", "focus": "Algebra, geometry, and trigonometry." },
+        { "module": "Reading", "questions": 40, "duration": "35 minutes", "focus": "Comprehension of literary and informative texts." },
+        { "module": "Science", "questions": 40, "duration": "35 minutes", "focus": "Interpretation, analysis, and problem-solving in science." },
+        { "module": "Writing (Optional)", "questions": 1, "duration": "40 minutes", "focus": "Analysis and persuasive writing." }
+      ],
+      "scoringSystem": {
+        "totalScore": "1-36",
+        "sectionScores": {
+          "English": "1-36",
+          "Math": "1-36",
+          "Reading": "1-36",
+          "Science": "1-36"
+        }
+      }
+    }
+]
