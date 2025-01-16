@@ -11,7 +11,7 @@ interface FAQProps {
 }
 
 const FAQ: React.FC<FAQProps> = ({ items, title = "Frequently Asked Questions" }) => {
-    // console.log(items)
+
     return (
         <div className="faq-container">
         <div className="faq-content">
