@@ -40,7 +40,8 @@ const Page = () => {
                 }
             })
             .catch((error) => console.error("Failed to fetch data:", error));
-    }, []);
+    }, [paths])
+    
     const [formData, setFormData] = useState({
         fullName: "",
         email: "",
