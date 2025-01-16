@@ -165,8 +165,8 @@ const Page = () => {
 
             <div className="details-container">
 
-                page:{pathname}
                 <div className="questions">
+                    page:{pathname}
 
                     <div className="question">
                         <h1 className="question-main">What is the <span>purpose of ielts?</span></h1>
