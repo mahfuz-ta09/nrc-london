@@ -1,11 +1,11 @@
 'use client'
-import Footer from '@/component/shared/Footer/Footer';
-import FAQ from '@/component/UI/FAQ/FAQ';
-import Table from '@/component/UI/Table/Table';
+import Footer from '@/component/shared/Footer/Footer'
+import FAQ from '@/component/UI/FAQ/FAQ'
+import Table from '@/component/UI/Table/Table'
 import '@/css/TestPrep/CommonStyle.css'
 import { usePathname } from "next/navigation"
 import { useEffect, useState } from 'react'
-import EnquireForm from '../EnquireForm/EnquireForm';
+import EnquireForm from '../EnquireForm/EnquireForm'
 
 interface TestType {
     name: string;
@@ -52,21 +52,43 @@ const Page = () => {
             .catch((error) => console.error("Failed to fetch data:", error));
     }, [])
 
-    const column = [
-        { key: "module", label: "Module" },
-        { key: "sections", label: "Sections" },
-        { key: "questions", label: "Questions" },
-        { key: "duration", label: "Duration" },
-        { key: "focus", label: "Focus" },
-      ];
-    
-      const tableValue = [
-        { module: "Listening", sections: 4, questions: 40, duration: "30 minutes", focus: "Understanding main ideas and factual information in spoken English." },
-        { module: "Reading", sections: 3, questions: 40, duration: "60 minutes", focus: "Comprehension of academic texts (Academic) or everyday material (General)." },
-        { module: "Writing", sections: 2, duration: "60 minutes", focus: "Writing essays, reports, or letters depending on the type of IELTS." },
-        { module: "Speaking", sections: 3, duration: "11-14 minutes", focus: "Ability to communicate effectively in spoken English." },
+    const header = [
+        { key: 'module', label: 'Module' },
+        { key: 'sections', label: 'Sections' },
+        { key: 'questions', label: 'Questions' },
+        { key: 'duration', label: 'Duration' },
+        { key: 'focus', label: 'Focus' },
       ]
     
+      const body = [
+        {
+          module: 'Listening',
+          sections: 4,
+          questions: 40,
+          duration: '30 minutes',
+          focus: 'Understanding main ideas and factual information in spoken English.',
+        },
+        {
+          module: 'Reading',
+          sections: 3,
+          questions: 40,
+          duration: '60 minutes',
+          focus: 'Comprehension of academic texts (Academic) or everyday material (General).',
+        },
+        {
+          module: 'Writing',
+          sections: 2,
+          duration: '60 minutes',
+          focus: 'Writing essays, reports, or letters depending on the type of IELTS.',
+        },
+        {
+          module: 'Speaking',
+          sections: 3,
+          duration: '11-14 minutes',
+          focus: 'Ability to communicate effectively in spoken English.',
+        },
+      ]
+      
     return (
         <div className='element-container'>
             <div className="test-banner">
@@ -89,7 +111,6 @@ const Page = () => {
                         paths.slice(1,2)?.map((path,index)=>(
                             <div key={index} className="breadcrumb">
                                 <p className="breadcrumb-item">Home</p>
-                                <p className="breadcrumb-item">{path}</p>
                                 <p className="breadcrumb-item">{path}</p>
                             </div>
                         ))
@@ -115,7 +136,7 @@ const Page = () => {
                             }
                         </div>
                         <div className="table-container">
-                            <Table columns={column} data={tableValue}/>
+                            <Table header={header} body={body} />
                         </div>
                     </div>
 
@@ -128,7 +149,7 @@ const Page = () => {
                         </p>
                 </div>
                 <div className="table-container">
-                    <Table columns={column} data={tableValue}/>
+                    <Table header={header} body={body} />
                 </div>
             </div>
             <FAQ items={test?.faq} title="Frequently Asked Questions"/>
