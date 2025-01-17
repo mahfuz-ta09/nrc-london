@@ -37,7 +37,7 @@ const PopularCourse = () => {
                         <FontAwesomeIcon className='single-course-icon' icon={faServer}/>
                         <h2 className='single-course-heading' >Business</h2>
                     </div>
-                    
+                
 
                     <div className="single-course">
                         <FontAwesomeIcon className='single-course-icon' icon={faServer}/>

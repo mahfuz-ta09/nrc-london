@@ -76,17 +76,23 @@
 
 
 @media screen and (max-width:450px) {
+    .courses{
+        gap: 10px;
+    }
     .courses-tag{
         padding-left: 10px;
     }
     .single-course{
-        padding: 10px 30px;
+        padding: 5px 10px;
     }
-}
 
-
-@media screen and (max-width:400px) {
-    .single-course{
-        padding: 10px 15px;
+    
+    .single-course-icon{
+        font-size: 14px;
     }
+
+    .single-course-heading{
+        font-size: 14px;
+    }
+
 }

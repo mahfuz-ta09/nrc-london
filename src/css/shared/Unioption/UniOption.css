@@ -181,7 +181,11 @@
         width: 100%;
         height: auto;
         flex-wrap: wrap;
-        padding: 40px 40px;
+        padding: 10px;
+    }
+
+    .uni{
+        width: 100%;
     }
     
     .uni-content h1{
