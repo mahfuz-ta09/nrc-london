@@ -1,11 +1,9 @@
 'use client'
 import Footer from '@/component/shared/Footer/Footer'
 import FAQ from '@/component/UI/FAQ/FAQ'
-import Table from '@/component/UI/Table/Table'
 import '@/css/TestPrep/CommonStyle.css'
 import { usePathname } from "next/navigation"
 import { useEffect, useState } from 'react'
-import EnquireForm from '../EnquireForm/EnquireForm'
 
 interface TestType {
     name: string;
@@ -38,6 +36,15 @@ const Page = () => {
     const pathname= usePathname()
     const paths= pathname.split('/')
     const [test, setTest] = useState<TestType | undefined>(undefined);
+    const [formData, setFormData] = useState({
+        fullName: "",
+        email: "",
+        phone: "",
+        country: "",
+        state: "",
+        message: "",
+        agreed: false,
+    })
 
     useEffect(() => {
         fetch('/t.json')
@@ -51,44 +58,23 @@ const Page = () => {
             })
             .catch((error) => console.error("Failed to fetch data:", error));
     }, [])
-
-    const header = [
-        { key: 'module', label: 'Module' },
-        { key: 'sections', label: 'Sections' },
-        { key: 'questions', label: 'Questions' },
-        { key: 'duration', label: 'Duration' },
-        { key: 'focus', label: 'Focus' },
-      ]
     
-      const body = [
-        {
-          module: 'Listening',
-          sections: 4,
-          questions: 40,
-          duration: '30 minutes',
-          focus: 'Understanding main ideas and factual information in spoken English.',
-        },
-        {
-          module: 'Reading',
-          sections: 3,
-          questions: 40,
-          duration: '60 minutes',
-          focus: 'Comprehension of academic texts (Academic) or everyday material (General).',
-        },
-        {
-          module: 'Writing',
-          sections: 2,
-          duration: '60 minutes',
-          focus: 'Writing essays, reports, or letters depending on the type of IELTS.',
-        },
-        {
-          module: 'Speaking',
-          sections: 3,
-          duration: '11-14 minutes',
-          focus: 'Ability to communicate effectively in spoken English.',
-        },
-      ]
-      
+    
+    const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>) => {
+        const { name, value, type } = e.target
+
+        setFormData({
+            ...formData,
+            [name]: type === "checkbox" && e.target instanceof HTMLInputElement ? e.target.checked : value,
+        })
+    }
+    
+    const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
+        e.preventDefault();
+        console.log(formData);
+    }
+
+
     return (
         <div className='element-container'>
             <div className="test-banner">
@@ -99,7 +85,85 @@ const Page = () => {
                         <p className='header-addition'>{test?.purpose}</p>
                         <p className='header-addition'>{test?.purpose}</p>
                     </div>
-                    <EnquireForm />
+                    <form className="enquire-form" onSubmit={handleSubmit}>
+                            <h2>Enquire Now</h2>
+                            <input
+                                type="text"
+                                name="fullName"
+                                placeholder="Enter Full Name*"
+                                value={formData.fullName}
+                                onChange={handleChange}
+                                required
+                            />
+                            <input
+                                type="email"
+                                name="email"
+                                placeholder="Enter mail id*"
+                                value={formData.email}
+                                onChange={handleChange}
+                                required
+                            />
+                            <div className="phone-input">
+                                <span>+91</span>
+                                <input
+                                type="tel"
+                                name="phone"
+                                placeholder="Phone number*"
+                                value={formData.phone}
+                                onChange={handleChange}
+                                required
+                                />
+                            </div>
+                            <select
+                                name="country"
+                                value={formData.country}
+                                onChange={handleChange}
+                            >
+                                <option value="UK">UK</option>
+                                <option value="UK">UK</option>
+                                <option value="Canada">Canada</option>
+                            </select>
+                            <select
+                                name="state"
+                                value={formData.state}
+                                onChange={handleChange}
+                                required
+                            >
+                                <option value="">Select State*</option>
+                                <option value="Delhi">Delhi</option>
+                                <option value="California">California</option>
+                                <option value="Ontario">Ontario</option>
+                            </select>
+                            <textarea
+                                name="message"
+                                placeholder="Message*"
+                                value={formData.message}
+                                onChange={handleChange}
+                                required
+                            ></textarea>
+                            <div className="checkbox-group">
+                                <input
+                                type="checkbox"
+                                name="agreed"
+                                checked={formData.agreed}
+                                onChange={handleChange}
+                                required
+                                />
+                                <label>
+                                I have read and agreed to{" "}
+                                <a href="/terms" target="_blank" rel="noopener noreferrer">
+                                    terms
+                                </a>{" "}
+                                &{" "}
+                                <a href="/privacy" target="_blank" rel="noopener noreferrer">
+                                    privacy policy
+                                </a>
+                                </label>
+                            </div>
+                            <button type="submit" className="submit-button">
+                                Submit
+                            </button>
+                    </form>
                 </div>
             </div>
 
@@ -111,6 +175,7 @@ const Page = () => {
                         paths.slice(1,2)?.map((path,index)=>(
                             <div key={index} className="breadcrumb">
                                 <p className="breadcrumb-item">Home</p>
+                                <p className="breadcrumb-item">{path}</p>
                                 <p className="breadcrumb-item">{path}</p>
                             </div>
                         ))
@@ -136,7 +201,29 @@ const Page = () => {
                             }
                         </div>
                         <div className="table-container">
-                            <Table header={header} body={body} />
+                        <table>
+                            <thead>
+                                <tr>
+                                    <th>Module</th>
+                                    <th>Sections</th>
+                                    <th>Questions</th>
+                                    <th>Duration</th>
+                                    <th>Focus</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                {
+                                    test?.format?.map((item,index)=>(
+                                        <tr key={index}>
+                                            <td>{item?.module? item?.module :"--"}</td>
+                                            <td>{item?.sections? item?.sections :"--"}</td>
+                                            <td>{item?.questions? item?.questions :"--"}</td>
+                                            <td>{item?.duration? item?.duration :"--"}</td>
+                                            <td>{item?.focus? item?.focus :"--"}</td>
+                                        </tr>))
+                                }
+                            </tbody>
+                        </table>
                         </div>
                     </div>
 
@@ -149,7 +236,30 @@ const Page = () => {
                         </p>
                 </div>
                 <div className="table-container">
-                    <Table header={header} body={body} />
+                    
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>Module</th>
+                                <th>Sections</th>
+                                <th>Questions</th>
+                                <th>Duration</th>
+                                <th>Focus</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {
+                                test?.format?.map((item,index)=>(
+                                    <tr key={index}>
+                                        <td>{item?.module? item?.module :"--"}</td>
+                                        <td>{item?.sections? item?.sections :"--"}</td>
+                                        <td>{item?.questions? item?.questions :"--"}</td>
+                                        <td>{item?.duration? item?.duration :"--"}</td>
+                                        <td>{item?.focus? item?.focus :"--"}</td>
+                                    </tr>))
+                            }
+                        </tbody>
+                    </table>
                 </div>
             </div>
             <FAQ items={test?.faq} title="Frequently Asked Questions"/>
