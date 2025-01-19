@@ -57,9 +57,9 @@
     justify-content: center;
     gap: 50px;
     top: 10vh;
-    right: 50%;
+    right: 0;
     width: 100%;
-    height: auto;
+    height: 40vh;
     background: rgb(1, 30, 39);
     border-top:.5px solid #fff;
     z-index: 999999;
@@ -242,7 +242,8 @@
         background: rgb(0, 20, 26);
         height: auto;
         padding: 20px 30px;
-        width: 30%;
+        width: 40%;
+        right: 50%;
     }
     
     .drop-down-content{
