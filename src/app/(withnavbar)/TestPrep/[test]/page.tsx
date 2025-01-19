@@ -1,7 +1,7 @@
 'use client'
+import '@/css/TestPrep/CommonStyle.css'
 import Footer from '@/component/shared/Footer/Footer'
 import FAQ from '@/component/UI/FAQ/FAQ'
-import '@/css/TestPrep/CommonStyle.css'
 import { usePathname } from "next/navigation"
 import { useEffect, useState } from 'react'
 
@@ -172,14 +172,14 @@ const Page = () => {
                 <div className="questions">
                         
                     {
-                        paths.slice(1,2)?.map((path,index)=>(
+                        paths.slice(1,paths.length-1)?.map((path,index)=>(
                             <div key={index} className="breadcrumb">
                                 <p className="breadcrumb-item">Home</p>
-                                <p className="breadcrumb-item">{path}</p>
                                 <p className="breadcrumb-item">{path}</p>
                             </div>
                         ))
                     }
+                    
 
                     <div className="question">
                         <h1 className="question-main">What is the <span>purpose of ielts?</span></h1>

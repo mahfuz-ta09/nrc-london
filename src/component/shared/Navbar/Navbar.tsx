@@ -102,7 +102,7 @@ const Navbar = () => {
                     </div>
                     
                     <div className='link-holder'>
-                        <Link className='link' href="/">Services</Link>
+                        <Link className='link' href="/Services">Services</Link>
                     </div>
 
                     
