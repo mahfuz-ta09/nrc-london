@@ -72,9 +72,9 @@
     padding: 12px;
     border: none;
     background: #ced4d6;
-    box-shadow: 14px 10px 15px #ced4d6;
+    box-shadow: 4px 4px 10px #0d242b;
     font-size: 20px;
-    font-weight: 700;
+    font-weight: 500;
     border-radius: 5px;
     color:#004a62;
 }
@@ -97,11 +97,12 @@
 
 
 .specialties{
-    background: #aac5d0;
+    background: #ededed;
     display: flex;
     align-items: center;
     justify-content: center;
     flex-direction: column;
+    padding: 10px;
 }
 
 .area-specialties{
@@ -113,12 +114,40 @@
 }
 
 .specialties-card{
-    width: 30%;
+    width: 250px;
     height: 300px;
-    background: #bfd6dd;
-    box-shadow: 10px 10px 40px #004a62;
+    background: #efeff0;
+    box-shadow: 4px 4px 10px #004a62;
+    border-radius: 5px;
+    align-content: center;
+    justify-content: center;
+    text-align: center;
+    position: relative;
 }
 
+.sp-card-img{
+    position: absolute;
+    width: 200px;
+    height: 200px;
+    object-fit: cover;
+    left: 13%;
+    top: -20%;
+}
+
+.specialties-card h1{
+    font-size: 20px;
+    color: #004a62;
+}
+
+.specialties-card p{
+    font-size: 15px;
+    margin-top: 20px;
+}
+
+.spacialties-header{
+    text-align: start;
+    margin: 50px 0 50px;
+}
 
 @media screen and (max-width:450px){
     
@@ -151,8 +180,18 @@
     }
     
     .specialties-card{
-        width: 60%;
+        width: 80%;
+        padding: 10px;
     }
 
 
+    .sp-card-img{
+        position: absolute;
+        width: 200px;
+        height: 200px;
+        object-fit: cover;
+        left: 18%;
+        top:-8%;
+    }
+    
 }

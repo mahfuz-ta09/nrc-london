@@ -37,11 +37,28 @@ const page = () => {
         </div>
         
         <div className="specialties">
+          <h1 className='spacialties-header wdth'>Our area of specialization</h1>
           <div className="area-specialties wdth">
-            <div className="specialties-card">sdfasdf</div>
-            <div className="specialties-card">sfdasfd</div>
-            <div className="specialties-card">sdfasdf</div>
-            <div className="specialties-card">sdfsd</div>
+            <div className="specialties-card">
+              <img className='sp-card-img' src="https://i.ibb.co.com/WW6r7v8/Untitled-design-removebg-preview.png" alt="" />
+              <h1>Lorem, ipsum dolor.</h1>
+              <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Nisi, sint.</p>
+            </div>
+            <div className="specialties-card">
+              <img className='sp-card-img' src="https://i.ibb.co.com/WW6r7v8/Untitled-design-removebg-preview.png" alt="" />
+              <h1>Lorem, ipsum dolor.</h1>
+              <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Nisi, sint.</p>
+            </div>
+            <div className="specialties-card">
+              <img className='sp-card-img' src="https://i.ibb.co.com/WW6r7v8/Untitled-design-removebg-preview.png" alt="" />
+              <h1>Lorem, ipsum dolor.</h1>
+              <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Nisi, sint.</p>
+            </div>
+            <div className="specialties-card">
+              <img className='sp-card-img' src="https://i.ibb.co.com/WW6r7v8/Untitled-design-removebg-preview.png" alt="" />
+              <h1>Lorem, ipsum dolor.</h1>
+              <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Nisi, sint.</p>
+            </div>
           </div>
           <Process />
         </div>
