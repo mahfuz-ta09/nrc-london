@@ -1,0 +1,158 @@
+.services-container{
+    width: 100%;
+    height: auto;
+    margin: 10vh auto 0;
+}
+
+.services-banner{
+    min-height: 40vh;
+    background:url('https://i.ibb.co.com/JRgV0m8/Green-Watercolour-Opening-Soon-Banner.png');
+    background-position: center;
+    background-size: cover;
+    background-repeat: no-repeat;
+}
+
+.services-banner-content{
+    height: 40vh;
+    justify-items: start;
+    align-content:center;
+}
+
+.services-banner-content h1{
+    font-size: 45px;
+    color: #004a62;
+    font-weight: 700;
+}
+
+.services-banner-content p{
+    font-size: 18px;
+    color: #000;
+    font-weight: 700;
+}
+
+.services-banner-content button{
+    font-size: 15px;
+    padding: 9px 20px;
+    margin-top: 20px;
+    border: none;
+    border-radius: 2px;
+    color: #fff;
+    background: #004a62;
+    font-weight: 700;
+}
+
+
+.service-content p{
+    font-size: 20px;
+    text-align: justify;
+    padding-top: 20px;
+}
+
+.services{
+    padding: 60px 0;
+    margin-top: 60px;
+    margin-top: 60px;
+    display: flex;
+    align-items: start;
+    justify-content: space-between;
+    gap: 60px;
+    border-top: 2px dotted #000;
+}
+
+.services-btn-grp{
+    width: 30%;
+    display: flex;
+    align-items: left;
+    justify-content: space-between;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.services-btn{
+    padding: 12px;
+    border: none;
+    background: #ced4d6;
+    box-shadow: 14px 10px 15px #ced4d6;
+    font-size: 20px;
+    font-weight: 700;
+    border-radius: 5px;
+    color:#004a62;
+}
+
+.services-item{
+    width: 70%;
+}
+
+.services-item{
+    display: flex;
+    align-items: left;
+    justify-content: space-between;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.services-item li{
+    font-size: 20px;
+}
+
+
+.specialties{
+    background: #aac5d0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+}
+
+.area-specialties{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    gap: 40px;
+}
+
+.specialties-card{
+    width: 30%;
+    height: 300px;
+    background: #bfd6dd;
+    box-shadow: 10px 10px 40px #004a62;
+}
+
+
+@media screen and (max-width:450px){
+    
+    .services-banner-content h1{
+        font-size: 22px;
+    }
+    
+    .services{
+        flex-direction: column;
+        width: 100%;
+    }
+    .services-btn-grp{
+        width: 100%;
+        gap: 10px;
+    }
+    .services-btn{
+        padding: 12px;
+        font-size: 13px;
+        font-weight: 400;
+    }
+    
+    .services-item{
+        width: 100%;
+        text-align: justify;
+        list-style:lower-latin;
+    }
+
+    .area-specialties{
+        flex-direction: column;
+    }
+    
+    .specialties-card{
+        width: 60%;
+    }
+
+
+}
