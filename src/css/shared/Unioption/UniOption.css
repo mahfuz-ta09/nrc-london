@@ -148,7 +148,6 @@
 }
 
 .uni-nav button:hover{
-    /* box-shadow: 4px 4px 20px 10px rgba(0,74,98,.9); */
     background: rgba(0,74,98,.9);
     color: #fff;
 }
@@ -175,17 +174,18 @@
 
 @media screen and (max-width:450px) {
     .unicaro{
-        display: grid;
-        grid-template-columns: repeat(1,1fr);
+        display: flex;
+        align-items: center;
+        justify-content: center;
         gap: 20px;
         width: 100%;
+        margin: 10px auto;
         height: auto;
-        flex-wrap: wrap;
         padding: 10px;
     }
 
     .uni{
-        width: 100%;
+        width: 85%;
     }
     
     .uni-content h1{
