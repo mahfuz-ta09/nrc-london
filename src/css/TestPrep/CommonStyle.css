@@ -336,7 +336,7 @@ padding: 5px;
     }
 
     .enquire-form {
-      width: 95%;
+      width: 100%;
       margin: 0px auto ;
     }
 
@@ -350,7 +350,6 @@ padding: 5px;
       color: black;
       font-size: 30px;
       padding: 7px 40px;
-      /* border-radius: 0 30px; */
     }
     
 
