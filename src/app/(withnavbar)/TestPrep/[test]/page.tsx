@@ -74,7 +74,6 @@ const Page = () => {
         console.log(formData);
     }
 
-
     return (
         <div className='element-container'>
             <div className="test-banner">

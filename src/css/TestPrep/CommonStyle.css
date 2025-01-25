@@ -29,24 +29,26 @@
     align-items: start;
     justify-content: center;
     flex-direction: column;
-    gap: 30px;
+    gap: 5px;
 }
 
 .test-banner-content-header{
     color: black;
     font-size: 40px;
     background-color: #fff;
-    padding: 10px 40px;
-    border-radius: 0 30px;
+    padding: 10px 60px;
+    border-radius:  80px;
     display: flex;
     align-items: center;
     justify-content: center;
 }
 .header-abbri{
-    color: #000;
+  color: #fff;
+    font-size: 19px;
 }
 .header-addition{
   color: #fff;
+  font-size: 19px;
 }
 
 
@@ -324,11 +326,8 @@ padding: 5px;
 @media screen and (max-width:600px) {
   
     .test-banner{
-      height: 40vh;
-      margin-bottom: 35vh;
+      height: auto;
       padding-top: 35px;
-      border-bottom-right-radius: 30%;
-      border-bottom-left-radius: 30%;
     }
     
     .test-banner-container{
@@ -338,19 +337,20 @@ padding: 5px;
 
     .enquire-form {
       width: 95%;
-      margin: 50px auto ;
+      margin: 0px auto ;
     }
 
     .test-banner-content{
       width: 100%;
       gap: 10px;
+      padding-bottom: 35px;
     }
 
     .test-banner-content-header{
       color: black;
       font-size: 30px;
       padding: 7px 40px;
-      border-radius: 0 30px;
+      /* border-radius: 0 30px; */
     }
     
 
