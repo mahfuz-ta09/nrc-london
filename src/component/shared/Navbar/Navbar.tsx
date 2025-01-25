@@ -22,7 +22,7 @@ const Navbar = () => {
                 <Link href="/"><Image className='nav-logo' src={logo} alt="" /></Link>
                 <div className={isOpen ? 'nav-links show':'nav-links hide'}>
                     <div className='link-holder'>
-                        <Link className='link' href="/">k-12</Link>
+                        <Link className='link' href="/k12">k-12</Link>
                     </div>
 
                     <div className='link-holder'>

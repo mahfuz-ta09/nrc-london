@@ -81,8 +81,9 @@ const Page = () => {
                     <div className="test-banner-content">
                         <h1 className='test-banner-content-header'>{test?.name}</h1>
                         <h1 className='header-abbri'>{test?.full_abbreviation}</h1>
+                        <p className='header-abbri'>{test?.purpose}</p>
                         <p className='header-addition'>{test?.purpose}</p>
-                        <p className='header-addition'>{test?.purpose}</p>
+                        <button>Contact</button>
                     </div>
                     <form className="enquire-form" onSubmit={handleSubmit}>
                             <h2>Enquire Now</h2>
