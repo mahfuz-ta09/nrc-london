@@ -113,6 +113,14 @@
         margin-top: 30px;
     }
     
+    .k12-text{
+        padding: 30px;
+    }
+
+    .k12-text h1{
+        font-size: 16px;
+    }
+
         
     .k12-content-main img{
         object-fit: contain;
@@ -126,9 +134,22 @@
         margin: 30px 0;
     }
 
+    .k12-addition-des  ul{
+        padding-left: 0px;
+    }
+    
     
     .k12-addition-detail-1{
         width: 100%;
     }
-    
+
+    .k12-addition-des{
+        padding: 10px;
+        text-align: justify;
+    }
+        
+    .k12-addition-des h1{
+        font-size: 15px;
+    }
+
 }
