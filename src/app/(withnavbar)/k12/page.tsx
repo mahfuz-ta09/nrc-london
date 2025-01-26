@@ -3,6 +3,8 @@ import Footer from '@/component/shared/Footer/Footer'
 import FAQ from '@/component/UI/FAQ/FAQ'
 import '@/css/k12/k12.css'
 import '@/css/TestPrep/CommonStyle.css'
+import { faPen } from '@fortawesome/free-solid-svg-icons'
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { useState } from 'react'
 
 
@@ -167,12 +169,68 @@ const Page = () => {
                     </div>
                     <img src="https://i.ibb.co.com/ZL4xB6Y/Untitled-design-1-removebg-preview.png" alt="" />
                 </div>
+            </div>
 
-                <div className="k12">
+            <div className="k12-addition">
+                <div className="wdth ">
+                    <h1 className='k12-header'>Lorem ipsum <span>sit amet consectetur</span></h1>
+                    
+                    <div className='k12-addition-des'>
+                        <h1>
+                            Lorem ipsum dolor sit amet consectetur adipisicing elit. Obcaecati tempore rem 
+                            facilis! Dolorem neque beatae est nobis quis, officiis incidunt qui, libero suscipit, 
+                            totam possimus iste a perferendis voluptate quos?
+                            facilis! Dolorem neque beatae est nobis quis, officiis incidunt qui, libero suscipit, 
+                            totam possimus iste a perferendis voluptate quos?
+                        </h1>
+
+                        <ul>
+                            <li><FontAwesomeIcon icon={faPen}/>Lorem, ipsum dolor sit amet consectetur adipisicing elit.</li>
+                            <li><FontAwesomeIcon icon={faPen}/>Lorem, ipsum dolor sit amet consectetur adipisicing elit.</li>
+                            <li><FontAwesomeIcon icon={faPen}/>Lorem, ipsum dolor sit amet consectetur adipisicing elit.</li>
+                            <li><FontAwesomeIcon icon={faPen}/>Lorem, ipsum dolor sit amet consectetur adipisicing elit.</li>
+                        </ul>
+                        <h1>
+                            totam possimus iste a perferendis voluptate quos?
+                            facilis! Dolorem neque beatae est nobis quis, officiis incidunt qui, libero suscipit, 
+                            totam possimus iste a perferendis voluptate quos?
+                        </h1>
+
+                    </div>
+
+                    <div className='k12-addition-detail'>
+
+                        <div className='k12-addition-detail-1'>
+                            <h1>Lorem ipsum <span>sit amet consectetur</span></h1>
+                    
+                            <ul>
+                                <li><FontAwesomeIcon icon={faPen}/>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Lorem ipsum dolor sit amet.</li>
+                                <li><FontAwesomeIcon icon={faPen}/>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Lorem ipsum dolor sit amet.</li>
+                                <li><FontAwesomeIcon icon={faPen}/>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Lorem ipsum dolor sit amet.</li>
+                                <li><FontAwesomeIcon icon={faPen}/>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Lorem ipsum dolor sit amet.</li>
+                                <li><FontAwesomeIcon icon={faPen}/>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Lorem ipsum dolor sit amet.</li>
+                                <li><FontAwesomeIcon icon={faPen}/>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Lorem ipsum dolor sit amet.</li>
+                            </ul>
+                        </div>
+
+                        <div className='k12-addition-detail-1'>
+                            <h1>Lorem ipsum <span>sit amet consectetur</span></h1>
+                    
+                            <ul>
+                                <li><FontAwesomeIcon icon={faPen}/>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Lorem ipsum dolor sit amet.</li>
+                                <li><FontAwesomeIcon icon={faPen}/>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Lorem ipsum dolor sit amet.</li>
+                                <li><FontAwesomeIcon icon={faPen}/>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Lorem ipsum dolor sit amet.</li>
+                                <li><FontAwesomeIcon icon={faPen}/>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Lorem ipsum dolor sit amet.</li>
+                                <li><FontAwesomeIcon icon={faPen}/>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Lorem ipsum dolor sit amet.</li>
+                                <li><FontAwesomeIcon icon={faPen}/>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Lorem ipsum dolor sit amet.</li>
+                            </ul>
+                        </div>
+                        
+                    </div>
 
                 </div>
-
             </div>
+
             <FAQ items={faqItems} title="Frequently Asked Questions"/>
             <Footer />
         </div>
