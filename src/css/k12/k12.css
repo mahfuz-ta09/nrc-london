@@ -11,3 +11,40 @@
     background-size: cover;
     background-repeat: no-repeat;
 }
+
+.k12-content{
+    align-content: center;
+    justify-content: center;
+    margin-top: 30px;
+}
+
+.k12-header{
+    color: #000;
+    font-size: 45px;
+}
+
+.k12-header span{
+    color: rgba(0,74,98);
+}
+
+.k12-content-main{
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 30px;
+    margin: 30px 0;
+}
+
+.k12-text h1{
+    font-size: 22px;
+    text-align: justify;
+    margin-top: 18px;
+    font-weight: 300;
+}
+
+.k12-content-main img{
+    object-fit: contain;
+    width: 600px;
+    height: 700px;
+}

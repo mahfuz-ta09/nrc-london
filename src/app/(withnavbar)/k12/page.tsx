@@ -1,9 +1,12 @@
 'use client'
+import Footer from '@/component/shared/Footer/Footer'
+import FAQ from '@/component/UI/FAQ/FAQ'
 import '@/css/k12/k12.css'
 import '@/css/TestPrep/CommonStyle.css'
 import { useState } from 'react'
 
-const page = () => {
+
+const Page = () => {
     const [formData, setFormData] = useState({
         fullName: "",
         email: "",
@@ -28,6 +31,25 @@ const page = () => {
         e.preventDefault();
         console.log(formData);
     }
+
+    const faqItems = [
+        {
+          question: "What is the meaning of life?",
+          answer: "42",
+        },
+        {
+          question: "How much wood would a woodchuck chuck?",
+          answer: "A woodchuck would chuck all the wood he could chuck, if a woodchuck could chuck wood!",
+        },
+        {
+          question: "What happens if Pinocchio says, 'my nose will grow now'?",
+          answer: "This is a paradox that has puzzled philosophers and fairy tale enthusiasts alike!",
+        },
+        {
+          question: "What happens if Pinocchio says, 'my nose will grow now'?",
+          answer: "This is a paradox that has puzzled philosophers and fairy tale enthusiasts alike!",
+        },
+    ]
 
     return (
         <div className='k12-container'>
@@ -118,10 +140,43 @@ const page = () => {
                     </form>
                 </div>
             </div>
+
             <div className="k12-content wdth">
+                <h1 className='k12-header'>Lorem ipsum <span>sit amet consectetur</span></h1>
+            
+                <div className="k12-content-main">
+                    <div className="k12-text">
+                        <h1>
+                            Lorem, ipsum dolor sit amet consectetur adipisicing elit. Nemo eveniet tempore quae 
+                            alias dignissimos. Suscipit et dicta inventore cumque. Excepturi eveniet nemo nihil 
+                            deleniti cumque aperiam sapiente obcaecati totam ratione, enim rem in asperiores nam 
+                            odit aliquam tenetur saepe ea voluptatibus sit, natus quia, maxime laborum commodi
+                        </h1> 
+                        <h1> 
+                            exercitationem. Aperiam, magnam?Lorem, ipsum dolor sit amet consectetur adipisicing 
+                            elit. Adipisci eum libero dolorum soluta nostrum neque fuga ipsum? Magni, at culpa!
+                            Lorem, ipsum dolor sit amet consectetur adipisicing elit. Nemo eveniet tempore quae 
+                            alias dignissimos. Suscipit et dicta inventore cumque. Excepturi eveniet nemo nihil 
+                        </h1>
+                        <h1>
+                            deleniti cumque aperiam sapiente obcaecati totam ratione, enim rem in asperiores nam 
+                            odit aliquam tenetur saepe ea voluptatibus sit, natus quia, maxime laborum commodi 
+                            exercitationem. Aperiam, magnam?Lorem, ipsum dolor sit amet consectetur adipisicing 
+                            elit. Adipisci eum libero dolorum soluta nostrum neque fuga ipsum? Magni, at culpa!
+                        </h1>
+                    </div>
+                    <img src="https://i.ibb.co.com/ZL4xB6Y/Untitled-design-1-removebg-preview.png" alt="" />
+                </div>
+
+                <div className="k12">
+
+                </div>
+
             </div>
+            <FAQ items={faqItems} title="Frequently Asked Questions"/>
+            <Footer />
         </div>
     )
 }
 
-export default page
+export default Page
