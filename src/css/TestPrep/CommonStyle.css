@@ -338,6 +338,7 @@ padding: 5px;
     .test-banner{
       height: auto;
       padding-top: 35px;
+      padding: 10px;
     }
     
     .test-banner-container{
@@ -352,14 +353,15 @@ padding: 5px;
 
     .test-banner-content{
       width: 100%;
-      gap: 10px;
-      padding-bottom: 35px;
+      gap: 0px;
+      padding-bottom: 15px;
     }
 
     .test-banner-content-header{
       color: black;
       font-size: 30px;
       padding: 7px 40px;
+      text-align: justify;
     }
     
 
@@ -404,6 +406,15 @@ padding: 5px;
 
     .breadcrumb {
       width: 95%;
+    }
+
+    .test-banner-content button{
+      padding: 4px 13px;
+      font-size: 15px;
+    }
+
+    .question{
+      padding: 10px;
     }
 }
 
