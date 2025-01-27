@@ -95,7 +95,7 @@ const PopularCourse = () => {
                     </div>
 
                 </div>
-                <button className="see-all">see all courses</button>
+                {/* <button className="see-all">see all courses</button> */}
             </div>
         </div>
     )

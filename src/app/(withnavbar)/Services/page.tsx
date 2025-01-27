@@ -1,15 +1,19 @@
+'use client'
 import Footer from '@/component/shared/Footer/Footer'
 import Process from '@/component/shared/Process/Process'
 import '@/css/Services/Services.css'
+import { useRouter } from 'next/navigation'
 
 const page = () => {
+    const router = useRouter()
+    
     return (
       <div className='services-container'>
         <div className="services-banner">
           <div className="services-banner-content wdth">
             <h1>Comprehensive Services for Success</h1>
             <p>Explore your limits with us</p>
-            <button>Contact</button>
+            <button onClick={() => router.push('/Contact')}>Contact</button>
           </div>
         </div>
         

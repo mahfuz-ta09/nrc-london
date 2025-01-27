@@ -15,7 +15,7 @@ const Navbar = () => {
     const handleNavbar = () =>{
         setIsOpen(!isOpen)
     }
-    // 
+    
     return (
         <div className='nav-holder'>
             <div className="nav-content">

@@ -133,6 +133,12 @@
     bottom: 0.25rem;
 }
 
+@media screen and (max-width:450px) {
+    .process-content{
+        padding: 10px;
+    }
+}
+
 @media (min-width: 40rem) {
     .process-timeline {
         grid-template-columns: 1fr var(--line-w) 1fr;

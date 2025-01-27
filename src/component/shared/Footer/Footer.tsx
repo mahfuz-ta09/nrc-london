@@ -1,4 +1,8 @@
+import Link from 'next/link';
 import '../../../css/shared/Footer/Footer.css';
+import Image from 'next/image';
+import logo from"../../../assets/logo.png"
+
 
 const Footer = () => {
   return (
@@ -7,14 +11,11 @@ const Footer = () => {
         <div className="pg-footer-content">
           <div className="pg-footer-content-column">
             <div className="pg-footer-logo">
-              <a className="pg-footer-logo-link" href="#">
-                <span className="pg-hidden-link-text">LOGO</span>
-                <h1>LOGO</h1>
-              </a>
+              <Link href="/"><Image className='nav-logo' src={logo} alt="" /></Link>
             </div>
             <div className="pg-footer-menu">
-              <h2 className="pg-footer-menu-name">Get Started</h2>
-              <ul className="pg-footer-menu-list">
+              {/* <h2 className="pg-footer-menu-name">Get Started</h2> */}
+              {/* <ul className="pg-footer-menu-list">
                 <li>
                   <a href="#">Start</a>
                 </li>
@@ -24,18 +25,18 @@ const Footer = () => {
                 <li>
                   <a href="#">Installation</a>
                 </li>
-              </ul>
+              </ul> */}
             </div>
           </div>
           <div className="pg-footer-content-column">
             <div className="pg-footer-menu">
-              <h2 className="pg-footer-menu-name">Company</h2>
+              {/* <h2 className="pg-footer-menu-name">Company</h2> */}
               <ul className="pg-footer-menu-list">
                 <li>
-                  <a href="#">Contact</a>
+                  <Link href="/Contact">Contact</Link>
                 </li>
                 <li>
-                  <a href="#">News</a>
+                  <Link href="/Services">Services</Link>
                 </li>
                 <li>
                   <a href="#">Careers</a>
