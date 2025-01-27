@@ -4,7 +4,7 @@ import Process from '@/component/shared/Process/Process'
 import '@/css/Services/Services.css'
 import { useRouter } from 'next/navigation'
 
-const page = () => {
+const Page = () => {
     const router = useRouter()
     
     return (
@@ -72,4 +72,4 @@ const page = () => {
 }
 
 
-export default page
+export default Page
