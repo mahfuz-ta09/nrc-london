@@ -1,9 +1,13 @@
+'use client'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import '../../../css/shared/PopularCourse/PopularCourse.css'
 import { faServer } from '@fortawesome/free-solid-svg-icons'
+import { useRouter } from 'next/navigation'
 
 
 const PopularCourse = () => {
+    const router = useRouter()
+
     return (
         <div className="popular-container">
         
@@ -95,7 +99,7 @@ const PopularCourse = () => {
                     </div>
 
                 </div>
-                {/* <button className="see-all">see all courses</button> */}
+                <button onClick={()=>router.push('/Students/subjects')} className="see-all">see all courses</button>
             </div>
         </div>
     )

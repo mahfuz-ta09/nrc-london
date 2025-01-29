@@ -54,12 +54,11 @@ const Navbar = () => {
                     </div>
 
                     <div className='link-holder'>
-                        <Link className='link' href="/">Students</Link>
+                        <p className='link'>Students</p>
                         <div className='drop-down'>
                             <div className="drop-down-content">
                                 <div className="drop-down-group">
-                                    <Link className='drop-down-link' href="/">IELTS</Link>
-                                    <Link className='drop-down-link' href="/">IELTS</Link>
+                                    <Link className='drop-down-link' href="/Students/subjects">SUBJECTS</Link>
                                 </div>
                                 <div className="drop-down-group">
                                     <Link className='drop-down-link' href="/">IELTS</Link>

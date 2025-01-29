@@ -6,8 +6,8 @@
 
 
 .test-banner{
-    min-height: 60vh;
-    background: linear-gradient(to right,rgb(0,0,0,0.5),rgba(0,0,0,0.1)),url('https://i.ibb.co.com/VvSHJKf/Untitled-design-1.png');
+    /* min-height: 60vh; */
+    background: linear-gradient(to right,rgba(0, 74, 98,0.9),rgb(0, 74, 98,0.3)),linear-gradient(to right,rgb(0,0,0,0.5),rgba(0,0,0,0.1)),url('https://i.ibb.co.com/VvSHJKf/Untitled-design-1.png');
     background-position: center;
     background-size: cover;
     background-repeat: no-repeat;
@@ -32,26 +32,24 @@
     gap: 5px;
 }
 .test-banner-content button{
-  padding: 12px 50px;
-  margin-top: 20px;
-  border-radius: 4px;
-  border: none;
-  font-size: 18px;
+    padding: 7px 30px;
+    background: #fff;
+    border: none;
 }
 
 .test-banner-content-header{
     color: rgba(0,74,98);
     font-size: 40px;
     background-color: #fff;
-    padding: 10px 60px;
+    padding: 6px 40px;
     border-radius:  80px;
     display: flex;
     align-items: center;
     justify-content: center;
 }
 .header-abbri{
-  color: #fff;
-    font-size: 30px;
+    color: #fff;
+    font-size: 20px;
     margin-top: 20px;
 }
 
