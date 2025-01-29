@@ -139,6 +139,19 @@
     margin-top: 10px;
 }
 
+.navigation{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+}
+
+.navigation button{
+    border: none;
+    background: transparent;
+    font-size: 15px;
+}
+
 @media screen and (max-width:450px) {
     .single-subject{
         width: 95%;

@@ -1,6 +1,6 @@
 import Footer from '@/component/shared/Footer/Footer'
 import '@/css/Students/Subjects/Subjects.css'
-import { faCancel, faDollar } from '@fortawesome/free-solid-svg-icons'
+import { faCancel, faDollar, faDotCircle } from '@fortawesome/free-solid-svg-icons'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 
 
@@ -340,6 +340,16 @@ const page = () => {
                         <button className='apply-now'>apply now</button>
                     </div>
                     
+                </div>
+                <div className="navigation">
+                    <button><FontAwesomeIcon icon={faDotCircle}/></button>
+                    <button><FontAwesomeIcon icon={faDotCircle}/></button>
+                    <button><FontAwesomeIcon icon={faDotCircle}/></button>
+                    <button><FontAwesomeIcon icon={faDotCircle}/></button>
+                    <button><FontAwesomeIcon icon={faDotCircle}/></button>
+                    <button><FontAwesomeIcon icon={faDotCircle}/></button>
+                    <button><FontAwesomeIcon icon={faDotCircle}/></button>
+                    <button><FontAwesomeIcon icon={faDotCircle}/></button>
                 </div>
             </div>
 
