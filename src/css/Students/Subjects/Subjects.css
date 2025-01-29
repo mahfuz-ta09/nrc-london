@@ -138,3 +138,9 @@
     background: #fff;
     margin-top: 10px;
 }
+
+@media screen and (max-width:450px) {
+    .single-subject{
+        width: 95%;
+    }
+}
