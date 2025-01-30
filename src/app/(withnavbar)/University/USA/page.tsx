@@ -1,6 +1,6 @@
 import Footer from '@/component/shared/Footer/Footer'
 import '@/css/Students/Subjects/Subjects.css'
-import { faCancel, faDollar, faDotCircle } from '@fortawesome/free-solid-svg-icons'
+import { faCancel, faDollar } from '@fortawesome/free-solid-svg-icons'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 
 
