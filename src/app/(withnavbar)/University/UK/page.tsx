@@ -10,8 +10,7 @@ const page = () => {
             <div className="subjects-banner">
                 <div className="wdth subjects-banner-content">
                     <h1>UK</h1>
-                    <p>Study in uk</p>
-                    {/* <button>Apply now</button> */}
+                    <p>as study destination</p>
                 </div>
             </div>
             <div className="subjects-content wdth">
@@ -22,7 +21,7 @@ const page = () => {
                             <p>Computer Science</p>
                         </div>
                         <div className="additional">
-                            <h4>Your possible destination:</h4>
+                            <h4>Required Document:</h4>
                             <h5>Australia, Australia, Australia, Australia, Australia, Australia, Australia, Australia, Australia, Australia, Australia, Australia, Australia, Australia, Australia, Australia</h5>
                             <div className="addition-data">
                                 <p className=''>Tuition fee:</p>
@@ -58,7 +57,7 @@ const page = () => {
                             <p>Computer Science</p>
                         </div>
                         <div className="additional">
-                            <h4>Your possible destination:</h4>
+                            <h4>Required Document:</h4>
                             <h5>Australia, Australia, Australia, Australia, Australia, Australia, Australia, Australia, Australia, Australia, Australia, Australia, Australia, Australia, Australia, Australia</h5>
                             <div className="addition-data">
                                 <p className=''>Tuition fee:</p>
@@ -94,7 +93,7 @@ const page = () => {
                             <p>Computer Science</p>
                         </div>
                         <div className="additional">
-                            <h4>Your possible destination:</h4>
+                            <h4>Required Document:</h4>
                             <h5>Australia, Australia, Australia, Australia, Australia, Australia, Australia, Australia, Australia, Australia, Australia, Australia, Australia, Australia, Australia, Australia</h5>
                             <div className="addition-data">
                                 <p className=''>Tuition fee:</p>
@@ -130,7 +129,7 @@ const page = () => {
                             <p>Computer Science</p>
                         </div>
                         <div className="additional">
-                            <h4>Your possible destination:</h4>
+                            <h4>Required Document:</h4>
                             <h5>Australia, Australia, Australia, Australia, Australia, Australia, Australia, Australia, Australia, Australia, Australia, Australia, Australia, Australia, Australia, Australia</h5>
                             <div className="addition-data">
                                 <p className=''>Tuition fee:</p>
@@ -166,7 +165,7 @@ const page = () => {
                             <p>Computer Science</p>
                         </div>
                         <div className="additional">
-                            <h4>Your possible destination:</h4>
+                            <h4>Required Document:</h4>
                             <h5>Australia, Australia, Australia, Australia, Australia, Australia, Australia, Australia, Australia, Australia, Australia, Australia, Australia, Australia, Australia, Australia</h5>
                             <div className="addition-data">
                                 <p className=''>Tuition fee:</p>
@@ -202,7 +201,7 @@ const page = () => {
                             <p>Computer Science</p>
                         </div>
                         <div className="additional">
-                            <h4>Your possible destination:</h4>
+                            <h4>Required Document:</h4>
                             <h5>Australia, Australia, Australia, Australia, Australia, Australia, Australia, Australia, Australia, Australia, Australia, Australia, Australia, Australia, Australia, Australia</h5>
                             <div className="addition-data">
                                 <p className=''>Tuition fee:</p>
@@ -238,7 +237,7 @@ const page = () => {
                             <p>Computer Science</p>
                         </div>
                         <div className="additional">
-                            <h4>Your possible destination:</h4>
+                            <h4>Required Document:</h4>
                             <h5>Australia, Australia, Australia, Australia, Australia, Australia, Australia, Australia, Australia, Australia, Australia, Australia, Australia, Australia, Australia, Australia</h5>
                             <div className="addition-data">
                                 <p className=''>Tuition fee:</p>
@@ -274,7 +273,7 @@ const page = () => {
                             <p>Computer Science</p>
                         </div>
                         <div className="additional">
-                            <h4>Your possible destination:</h4>
+                            <h4>Required Document:</h4>
                             <h5>Australia, Australia, Australia, Australia, Australia, Australia, Australia, Australia, Australia, Australia, Australia, Australia, Australia, Australia, Australia, Australia</h5>
                             <div className="addition-data">
                                 <p className=''>Tuition fee:</p>
@@ -310,7 +309,7 @@ const page = () => {
                             <p>Computer Science</p>
                         </div>
                         <div className="additional">
-                            <h4>Your possible destination:</h4>
+                            <h4>Required Document:</h4>
                             <h5>Australia, Australia, Australia, Australia, Australia, Australia, Australia, Australia, Australia, Australia, Australia, Australia, Australia, Australia, Australia, Australia</h5>
                             <div className="addition-data">
                                 <p className=''>Tuition fee:</p>
@@ -340,16 +339,6 @@ const page = () => {
                         <button className='apply-now'>apply now</button>
                     </div>
                     
-                </div>
-                <div className="navigation">
-                    <button><FontAwesomeIcon icon={faDotCircle}/></button>
-                    <button><FontAwesomeIcon icon={faDotCircle}/></button>
-                    <button><FontAwesomeIcon icon={faDotCircle}/></button>
-                    <button><FontAwesomeIcon icon={faDotCircle}/></button>
-                    <button><FontAwesomeIcon icon={faDotCircle}/></button>
-                    <button><FontAwesomeIcon icon={faDotCircle}/></button>
-                    <button><FontAwesomeIcon icon={faDotCircle}/></button>
-                    <button><FontAwesomeIcon icon={faDotCircle}/></button>
                 </div>
             </div>
 

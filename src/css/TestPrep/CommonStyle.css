@@ -13,7 +13,7 @@
     background-repeat: no-repeat;
 }
 .test-banner-container{
-    max-width: 1210px;
+    max-width: 1240px;
     margin: 0 auto;
     width: 100%;
     display: flex;
@@ -71,7 +71,7 @@
   }
 
   .question{    
-    max-width: 1210px;
+    max-width: 1240px;
     margin: 0 auto ;
     width: 100%;
     display: flex;
@@ -112,7 +112,7 @@
     align-items: center;
     justify-content: center;
     color: #000;
-    max-width: 1210px;
+    max-width: 1240px;
     margin: 0 auto;
     width: 100%;
     gap: 30px;
@@ -126,7 +126,7 @@
     min-height: 24vh;
     box-shadow: 2px 4px 10px rgba(0,74,98,.1);
     border-radius: 4px;    
-    max-width: 1210px;
+    max-width: 1240px;
     margin: 0 auto;
     width: 100%;
   }
@@ -277,7 +277,7 @@
 
 
 table {
-  max-width: 1210px;
+  max-width: 1240px;
   margin: 5vh auto;
   width: 100%;
   border-collapse: collapse;
@@ -383,7 +383,7 @@ padding: 5px;
       justify-content: center;
       flex-direction: column;
       color: #000;
-      max-width: 1210px;
+      max-width: 1240px;
       margin: 0 auto;
       width: 100%;
       gap: 30px;
