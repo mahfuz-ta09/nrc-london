@@ -56,8 +56,8 @@
 }
 
 .single-subject{
-    height: 600px;
-    width: 360px;
+    height: auto;
+    width: 380px;
     background: rgba(217, 234, 240, 0.9);
     border: 1px solid rgba(0, 74, 98,0.9);
     border-radius: 15px;
@@ -86,13 +86,13 @@
 }
 
 .apply-now{
-    width: 90%;
+    object-fit: contain;
     margin: 0 auto;
     position: absolute;
     left: 10px;
-    right: 10px;
-    bottom: 10px;
-    background: #fff;
+    bottom: 20px;
+    color: #fff;
+    background: rgb(0, 74, 98);
     border: 1px solid rgb(0, 74, 98);
     padding: 10px;
     display: flex;
@@ -107,6 +107,7 @@
 
 .additional{
     margin-top: 70px;
+    margin-bottom: 80px;
 }
 
 .additional h4{
