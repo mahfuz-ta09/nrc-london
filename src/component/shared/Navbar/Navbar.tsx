@@ -22,7 +22,7 @@ const Navbar = () => {
                 <Link href="/"><Image className='nav-logo' src={logo} alt="" /></Link>
                 <div className={isOpen ? 'nav-links show':'nav-links hide'}>
                     <div className='link-holder'>
-                        <Link className='link' href="/k12">k-12</Link>
+                        <Link className='link' href="/Subjects">Subjects</Link>
                     </div>
 
                     <div className='link-holder'>
@@ -45,33 +45,41 @@ const Navbar = () => {
                                     <Link className='drop-down-link' href="/TestPrep/act">ACT</Link>
                                     <Link className='drop-down-link' href="/TestPrep/ap">AP</Link>
                                 </div>
-                                <div className="drop-down-group">
-                                    {/* <Link className='drop-down-link' href="/">IELTS</Link>
-                                    <Link className='drop-down-link' href="/">IELTS</Link> */}
+                                <div className="contact-section">
+                                    <Link className='drop-down-link' href="/">Contact</Link>
+                                    <Link className='drop-down-link' href="/">Enquire</Link>
                                 </div>
                             </div>
                         </div>
                     </div>
 
                     <div className='link-holder'>
-                        <p className='link'>Students</p>
+                        <p className='link'>University</p>
                         <div className='drop-down'>
                             <div className="drop-down-content">
                                 <div className="drop-down-group">
-                                    <Link className='drop-down-link' href="/Students/subjects">SUBJECTS</Link>
+                                    <Link className='drop-down-link' href="/University/UK">UK</Link>
+                                    <Link className='drop-down-link' href="/University/USA">USA</Link>
+                                    <Link className='drop-down-link' href="/University/Australia">Australia</Link>
+                                    <Link className='drop-down-link' href="/University/Canada">Canada</Link>
+                                </div>
+                                <div className="drop-down-group">
+                                    <Link className='drop-down-link' href="/">France</Link>
+                                    <Link className='drop-down-link' href="/">Germany</Link>
+                                    <Link className='drop-down-link' href="/">Itali</Link>
+                                </div>
+                                <div className="contact-section">
+                                    <Link className='drop-down-link' href="/">Contact</Link>
+                                    <Link className='drop-down-link' href="/">Enquire</Link>
+                                </div>
+                                {/* <div className="drop-down-group">
+                                    <Link className='drop-down-link' href="/">IELTS</Link>
+                                    <Link className='drop-down-link' href="/">IELTS</Link>
                                 </div>
                                 <div className="drop-down-group">
                                     <Link className='drop-down-link' href="/">IELTS</Link>
                                     <Link className='drop-down-link' href="/">IELTS</Link>
-                                </div>
-                                <div className="drop-down-group">
-                                    <Link className='drop-down-link' href="/">IELTS</Link>
-                                    <Link className='drop-down-link' href="/">IELTS</Link>
-                                </div>
-                                <div className="drop-down-group">
-                                    <Link className='drop-down-link' href="/">IELTS</Link>
-                                    <Link className='drop-down-link' href="/">IELTS</Link>
-                                </div>
+                                </div> */}
                             </div>
                         </div>
                     </div>
@@ -125,12 +133,16 @@ const Navbar = () => {
                                     <Link className='drop-down-link' href="/">IELTS</Link>
                                     <Link className='drop-down-link' href="/">IELTS</Link>
                                 </div>
+                                <div className="contact-section">
+                                    <Link className='drop-down-link' href="/">Contact</Link>
+                                    <Link className='drop-down-link' href="/">Enquire</Link>
+                                </div>
                             </div>
                         </div>
                     </div>
                     
                     <div className='link-holder'>
-                        <Link className='link' href="/">News</Link>
+                        <Link className='link' href="/">Proceed</Link>
                     </div>
                 </div>
                 <div className={isOpen ? 'link-items show' :'link-items hide'}>
