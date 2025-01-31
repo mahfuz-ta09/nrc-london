@@ -4,7 +4,7 @@ import logo from"../../../assets/logo.png"
 import Image from 'next/image'
 import Link from 'next/link'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faBars, faXmark } from '@fortawesome/free-solid-svg-icons'
+import { faBars, faBook, faGlobe, faPhone, faXmark } from '@fortawesome/free-solid-svg-icons'
 import { useState } from 'react'
 
 
@@ -30,24 +30,24 @@ const Navbar = () => {
                         <div className='drop-down'>
                             <div className="drop-down-content">
                                 <div className="drop-down-group">
-                                    <Link className='drop-down-link' href="/TestPrep/ielts">IELTS</Link>
-                                    <Link className='drop-down-link' href="/TestPrep/toefl">TOEFL</Link>
-                                    <Link className='drop-down-link' href="/TestPrep/pte">PTE</Link>
-                                    <Link className='drop-down-link' href="/TestPrep/oet">OET</Link>
+                                    <Link className='drop-down-link' href="/TestPrep/ielts"><FontAwesomeIcon icon={faBook}/> IELTS</Link>
+                                    <Link className='drop-down-link' href="/TestPrep/toefl"><FontAwesomeIcon icon={faBook}/> TOEFL</Link>
+                                    <Link className='drop-down-link' href="/TestPrep/pte"><FontAwesomeIcon icon={faBook}/> PTE</Link>
+                                    <Link className='drop-down-link' href="/TestPrep/oet"><FontAwesomeIcon icon={faBook}/> OET</Link>
                                 </div>
                                 <div className="drop-down-group">
-                                    <Link className='drop-down-link' href="/TestPrep/duolingo">DUOLINGO</Link>
-                                    <Link className='drop-down-link' href="/TestPrep/gre">GRE</Link>
-                                    <Link className='drop-down-link' href="/TestPrep/gmat">GMAT</Link>
+                                    <Link className='drop-down-link' href="/TestPrep/duolingo"><FontAwesomeIcon icon={faBook}/> DUOLINGO</Link>
+                                    <Link className='drop-down-link' href="/TestPrep/gre"><FontAwesomeIcon icon={faBook}/> GRE</Link>
+                                    <Link className='drop-down-link' href="/TestPrep/gmat"><FontAwesomeIcon icon={faBook}/> GMAT</Link>
                                 </div>
                                 <div className="drop-down-group">
-                                    <Link className='drop-down-link' href="/TestPrep/sat">SAT</Link>
-                                    <Link className='drop-down-link' href="/TestPrep/act">ACT</Link>
-                                    <Link className='drop-down-link' href="/TestPrep/ap">AP</Link>
+                                    <Link className='drop-down-link' href="/TestPrep/sat"><FontAwesomeIcon icon={faBook}/> SAT</Link>
+                                    <Link className='drop-down-link' href="/TestPrep/act"><FontAwesomeIcon icon={faBook}/> ACT</Link>
+                                    <Link className='drop-down-link' href="/TestPrep/ap"><FontAwesomeIcon icon={faBook}/> AP</Link>
                                 </div>
                                 <div className="contact-section">
-                                    <Link className='drop-down-link' href="/">Contact</Link>
-                                    <Link className='drop-down-link' href="/">Enquire</Link>
+                                    <Link className='contact-section-link' href="/"><FontAwesomeIcon icon={faPhone}/>  Contact</Link>
+                                    <Link className='contact-section-link' href="/"><FontAwesomeIcon icon={faPhone}/>  Enquire</Link>
                                 </div>
                             </div>
                         </div>
@@ -58,28 +58,21 @@ const Navbar = () => {
                         <div className='drop-down'>
                             <div className="drop-down-content">
                                 <div className="drop-down-group">
-                                    <Link className='drop-down-link' href="/University/UK">UK</Link>
-                                    <Link className='drop-down-link' href="/University/USA">USA</Link>
-                                    <Link className='drop-down-link' href="/University/Australia">Australia</Link>
-                                    <Link className='drop-down-link' href="/University/Canada">Canada</Link>
+                                    <Link className='drop-down-link' href="/University/UK"><FontAwesomeIcon icon={faGlobe}/> UK</Link>
+                                    <Link className='drop-down-link' href="/University/USA"><FontAwesomeIcon icon={faGlobe}/> USA</Link>
+                                    <Link className='drop-down-link' href="/University/Australia"><FontAwesomeIcon icon={faGlobe}/> Australia</Link>
+                                    <Link className='drop-down-link' href="/University/Canada"><FontAwesomeIcon icon={faGlobe}/> Canada</Link>
                                 </div>
                                 <div className="drop-down-group">
-                                    <Link className='drop-down-link' href="/">France</Link>
-                                    <Link className='drop-down-link' href="/">Germany</Link>
-                                    <Link className='drop-down-link' href="/">Itali</Link>
+                                    <Link className='drop-down-link' href="/"><FontAwesomeIcon icon={faGlobe}/> France</Link>
+                                    <Link className='drop-down-link' href="/"><FontAwesomeIcon icon={faGlobe}/> Germany</Link>
+                                    <Link className='drop-down-link' href="/"><FontAwesomeIcon icon={faGlobe}/> Itali</Link>
+                                    <Link className='drop-down-link' href="/"><FontAwesomeIcon icon={faGlobe}/> Bangladesh</Link>
                                 </div>
                                 <div className="contact-section">
-                                    <Link className='drop-down-link' href="/">Contact</Link>
-                                    <Link className='drop-down-link' href="/">Enquire</Link>
+                                    <Link className='contact-section-link' href="/"><FontAwesomeIcon icon={faPhone}/> Contact</Link>
+                                    <Link className='contact-section-link' href="/"><FontAwesomeIcon icon={faPhone}/> Enquire</Link>
                                 </div>
-                                {/* <div className="drop-down-group">
-                                    <Link className='drop-down-link' href="/">IELTS</Link>
-                                    <Link className='drop-down-link' href="/">IELTS</Link>
-                                </div>
-                                <div className="drop-down-group">
-                                    <Link className='drop-down-link' href="/">IELTS</Link>
-                                    <Link className='drop-down-link' href="/">IELTS</Link>
-                                </div> */}
                             </div>
                         </div>
                     </div>
@@ -114,28 +107,15 @@ const Navbar = () => {
 
                     
                     <div className='link-holder'>
-                        <Link className='link' href="/">Partner with us</Link>
+                        <Link className='link' href="/">Recruitement partner</Link>
                         <div className='drop-down'>
                             <div className="drop-down-content">
                                 <div className="drop-down-group">
-                                    <Link className='drop-down-link' href="/">IELTS</Link>
-                                    <Link className='drop-down-link' href="/">IELTS</Link>
-                                </div>
-                                <div className="drop-down-group">
-                                    <Link className='drop-down-link' href="/">IELTS</Link>
-                                    <Link className='drop-down-link' href="/">IELTS</Link>
-                                </div>
-                                <div className="drop-down-group">
-                                    <Link className='drop-down-link' href="/">IELTS</Link>
-                                    <Link className='drop-down-link' href="/">IELTS</Link>
-                                </div>
-                                <div className="drop-down-group">
-                                    <Link className='drop-down-link' href="/">IELTS</Link>
-                                    <Link className='drop-down-link' href="/">IELTS</Link>
+                                    <Link className='drop-down-link' href="/">Become an agent</Link>
                                 </div>
                                 <div className="contact-section">
-                                    <Link className='drop-down-link' href="/">Contact</Link>
-                                    <Link className='drop-down-link' href="/">Enquire</Link>
+                                    <Link className='contact-section-link' href="/"><FontAwesomeIcon icon={faPhone}/> Contact</Link>
+                                    <Link className='contact-section-link' href="/"><FontAwesomeIcon icon={faPhone}/> Enquire</Link>
                                 </div>
                             </div>
                         </div>

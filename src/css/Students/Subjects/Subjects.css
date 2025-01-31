@@ -5,7 +5,7 @@
 }
 
 .subjects-banner{
-    background:linear-gradient(to right,rgba(0, 74, 98,0.9),rgb(0, 74, 98,0.3)),url('https://i.ibb.co.com/JRgV0m8/Green-Watercolour-Opening-Soon-Banner.png');
+    background:linear-gradient(to right,rgba(0, 74, 98),rgb(0, 74, 98,0.3)),url('https://i.ibb.co.com/JRgV0m8/Green-Watercolour-Opening-Soon-Banner.png');
     background-position: center;
     background-size: cover;
     background-repeat: no-repeat;
@@ -83,6 +83,7 @@
     display: flex;
     align-items: center;
     justify-content: center;
+    flex-direction: column;
 }
 
 .apply-now{
@@ -106,7 +107,7 @@
 }
 
 .additional{
-    margin-top: 70px;
+    margin-top: 90px;
     margin-bottom: 80px;
 }
 

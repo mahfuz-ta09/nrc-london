@@ -18,7 +18,8 @@ const page = () => {
                     
                     <div className="single-subject">
                         <div className="subject-header">
-                            <p>Computer Science</p>
+                            <p>Bornmouth</p>
+                            <p>University</p>
                         </div>
                         <div className="additional">
                             <h4>Required Document:</h4>
@@ -54,7 +55,9 @@ const page = () => {
 
                     <div className="single-subject">
                         <div className="subject-header">
-                            <p>Computer Science</p>
+                            
+                            <p>Bornmouth</p>
+                            <p>University</p>
                         </div>
                         <div className="additional">
                             <h4>Required Document:</h4>
@@ -90,7 +93,9 @@ const page = () => {
 
                     <div className="single-subject">
                         <div className="subject-header">
-                            <p>Computer Science</p>
+                            
+                            <p>Bornmouth</p>
+                            <p>University</p>
                         </div>
                         <div className="additional">
                             <h4>Required Document:</h4>
@@ -126,7 +131,9 @@ const page = () => {
 
                     <div className="single-subject">
                         <div className="subject-header">
-                            <p>Computer Science</p>
+                            
+                            <p>Bornmouth</p>
+                            <p>University</p>
                         </div>
                         <div className="additional">
                             <h4>Required Document:</h4>
@@ -162,7 +169,9 @@ const page = () => {
 
                     <div className="single-subject">
                         <div className="subject-header">
-                            <p>Computer Science</p>
+                            
+                            <p>Bornmouth</p>
+                            <p>University</p>
                         </div>
                         <div className="additional">
                             <h4>Required Document:</h4>
@@ -198,7 +207,9 @@ const page = () => {
 
                     <div className="single-subject">
                         <div className="subject-header">
-                            <p>Computer Science</p>
+                            
+                            <p>Bornmouth</p>
+                            <p>University</p>
                         </div>
                         <div className="additional">
                             <h4>Required Document:</h4>
@@ -234,7 +245,9 @@ const page = () => {
 
                     <div className="single-subject">
                         <div className="subject-header">
-                            <p>Computer Science</p>
+                            
+                            <p>Bornmouth</p>
+                            <p>University</p>
                         </div>
                         <div className="additional">
                             <h4>Required Document:</h4>
@@ -270,7 +283,9 @@ const page = () => {
 
                     <div className="single-subject">
                         <div className="subject-header">
-                            <p>Computer Science</p>
+                            
+                            <p>Bornmouth</p>
+                            <p>University</p>
                         </div>
                         <div className="additional">
                             <h4>Required Document:</h4>
@@ -306,7 +321,9 @@ const page = () => {
 
                     <div className="single-subject">
                         <div className="subject-header">
-                            <p>Computer Science</p>
+                            
+                            <p>Bornmouth</p>
+                            <p>University</p>
                         </div>
                         <div className="additional">
                             <h4>Required Document:</h4>
