@@ -129,7 +129,7 @@ const Navbar = () => {
                 </div>
                 <div className={isOpen ? 'link-items show' :'link-items hide'}>
                     <button onClick={()=>router.push('/Login')}>login</button>
-                    <button className='dash'>monitor</button>
+                    <button className='dash' onClick={()=>router.push('/Dashboard')}>monitor</button>
                 </div>
                 {
                     isOpen ?
