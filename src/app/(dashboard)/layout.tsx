@@ -1,5 +1,5 @@
 import '@/css/Dashboard/layout.css'
-import LayoutPage from "./LayourPage"
+import LayoutPage from "./LayoutPage"
 
 
 const layout = ({ children } : {children : React.ReactNode}) => {

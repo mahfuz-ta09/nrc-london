@@ -6,7 +6,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 
 const DashNavLink = () => {
     const pathname = usePathname() 
-    let dashTitle:string = "/dashboard/" 
+    const dashTitle:string = "/dashboard/" 
 
     const item=[{
         title   : "Dashboard",

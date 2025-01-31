@@ -16,18 +16,24 @@ const LayoutPage = () => {
 
 
     const NavLink = dynamic(() => import('./DashNavLink'), { ssr: false })
-
-    useEffect(()=>{
-      const handleNavBar = (e:any) => {
-        if(navRef.current && btnRef.current && !navRef.current.contains(e.target) &&  !btnRef.current.contains(e.target)){
-          setIsOpen(false)
+    useEffect(() => {
+      const handleNavBar = (e: MouseEvent) => {
+        if (
+          navRef.current &&
+          btnRef.current &&
+          !navRef.current.contains(e.target as Node) &&
+          !btnRef.current.contains(e.target as Node)
+        ) {
+          setIsOpen(false);
         }
-      }
-      document.addEventListener("click",handleNavBar)
-      return ()=> {
-        document.removeEventListener("click",handleNavBar)
-      }
-    },[])
+      };
+    
+      document.addEventListener("click", handleNavBar);
+      return () => {
+        document.removeEventListener("click", handleNavBar);
+      };
+    }, []);
+    
 
     const handler = () =>{
       setIsOpen(true)
