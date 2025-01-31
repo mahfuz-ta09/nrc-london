@@ -6,10 +6,12 @@ import Link from 'next/link'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faBars, faBook, faGlobe, faPhone, faXmark } from '@fortawesome/free-solid-svg-icons'
 import { useState } from 'react'
+import { useRouter } from 'next/navigation'
 
 
 const Navbar = () => {
     const [isOpen,setIsOpen] = useState(false)
+    const router=useRouter()
 
 
     const handleNavbar = () =>{
@@ -66,7 +68,7 @@ const Navbar = () => {
                                 <div className="drop-down-group">
                                     <Link className='drop-down-link' href="/"><FontAwesomeIcon icon={faGlobe}/> France</Link>
                                     <Link className='drop-down-link' href="/"><FontAwesomeIcon icon={faGlobe}/> Germany</Link>
-                                    <Link className='drop-down-link' href="/"><FontAwesomeIcon icon={faGlobe}/> Itali</Link>
+                                    <Link className='drop-down-link' href="/"><FontAwesomeIcon icon={faGlobe}/> Italy</Link>
                                     <Link className='drop-down-link' href="/"><FontAwesomeIcon icon={faGlobe}/> Bangladesh</Link>
                                 </div>
                                 <div className="contact-section">
@@ -126,7 +128,7 @@ const Navbar = () => {
                     </div>
                 </div>
                 <div className={isOpen ? 'link-items show' :'link-items hide'}>
-                    <button>login</button>
+                    <button onClick={()=>router.push('/Login')}>login</button>
                     <button className='dash'>monitor</button>
                 </div>
                 {

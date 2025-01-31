@@ -99,7 +99,7 @@ const PopularCourse = () => {
                     </div>
 
                 </div>
-                <button onClick={()=>router.push('/Students/subjects')} className="see-all">see all courses</button>
+                <button onClick={()=>router.push('/Subjects')} className="see-all">see all courses</button>
             </div>
         </div>
     )
