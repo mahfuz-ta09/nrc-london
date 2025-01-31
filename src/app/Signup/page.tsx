@@ -1,11 +1,9 @@
 'use client'
 import Link from "next/link"
 import '@/css/Login/Login.css'
-import { useRouter } from "next/navigation"
 
 
 const SignUpPage = () => {
-    const router = useRouter()
 
 
     return (
