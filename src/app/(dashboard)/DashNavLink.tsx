@@ -3,33 +3,27 @@ import '@/css/Dashboard/layout.css'
 import Link from 'next/link'
 import { usePathname } from 'next/navigation'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import sideNavItem from './navItem'
+import { Role } from '@/types/nav/type'
 
 const DashNavLink = () => {
+    const users =  {
+        // role: 'super_admin'
+        role: 'admin'
+        // role: 'student'
+        // role: 'user'
+    }
+
     const pathname = usePathname() 
     const dashTitle:string = "/dashboard/" 
 
-    const item=[{
-        title   : "Dashboard",
-        path    : `user`,
-        icon    : faUser,
-    },
-    {
-        title   : "Manage Users",
-        path    : `user/manage-users`,
-        icon    : faUser,
-    },
-    {
-        title   : "Statistics",
-        path    : `user/web-stat`,
-        icon    : faUser,
-    }]
 
     return (
         <div className='dash-nav-body'>
             {
-                item?.map((item,index) => (
+                sideNavItem(users?.role as Role).map((item,index) => (
                     <Link className={pathname === `${dashTitle}`+item?.path ? 'nav-link active' :'nav-link'} key={index} href={`/dashboard/${item?.path}`}>
-                        <FontAwesomeIcon icon={item?.icon}/>
+                        <FontAwesomeIcon icon={item.icon} />
                         <span>{item?.title}</span>
                     </Link>
                 ))

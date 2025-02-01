@@ -17,7 +17,7 @@ const Navbar = () => {
     const handleNavbar = () =>{
         setIsOpen(!isOpen)
     }
-    
+
     return (
         <div className='nav-holder'>
             <div className="nav-content">
@@ -80,27 +80,7 @@ const Navbar = () => {
                     </div>
                     
                     <div className='link-holder'>
-                        <Link className='link' href="/">Centres</Link>
-                        <div className='drop-down'>
-                            <div className="drop-down-content">
-                                <div className="drop-down-group">
-                                    <Link className='drop-down-link' href="/">IELTS</Link>
-                                    <Link className='drop-down-link' href="/">IELTS</Link>
-                                </div>
-                                <div className="drop-down-group">
-                                    <Link className='drop-down-link' href="/">IELTS</Link>
-                                    <Link className='drop-down-link' href="/">IELTS</Link>
-                                </div>
-                                <div className="drop-down-group">
-                                    <Link className='drop-down-link' href="/">IELTS</Link>
-                                    <Link className='drop-down-link' href="/">IELTS</Link>
-                                </div>
-                                <div className="drop-down-group">
-                                    <Link className='drop-down-link' href="/">IELTS</Link>
-                                    <Link className='drop-down-link' href="/">IELTS</Link>
-                                </div>
-                            </div>
-                        </div>
+                        <Link className='link' href="/Centre">Centre</Link>
                     </div>
                     
                     <div className='link-holder'>
@@ -124,7 +104,7 @@ const Navbar = () => {
                     </div>
                     
                     <div className='link-holder'>
-                        <Link className='link' href="/">Proceed</Link>
+                        <Link className='link' href="/Proceed">Proceed</Link>
                     </div>
                 </div>
                 <div className={isOpen ? 'link-items show' :'link-items hide'}>

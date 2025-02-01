@@ -1,10 +1,13 @@
+'use client'
 import Footer from '@/component/shared/Footer/Footer'
 import '@/css/Students/Subjects/Subjects.css'
 import { faCancel, faDollar } from '@fortawesome/free-solid-svg-icons'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { useRouter } from 'next/navigation'
 
 
-const page = () => {
+const Page = () => {
+    const router = useRouter()
     return (
         <div className='subjects-container'>
             <div className="subjects-banner">
@@ -48,7 +51,7 @@ const page = () => {
                                 <p className=''>18000-19000 <FontAwesomeIcon icon={faDollar}/>yr</p>
                             </div>
                         </div>
-                        <button className='apply-now'>apply now</button>
+                        <button onClick={()=>router.push('/Proceed')}className='apply-now'>apply now</button>
                     </div>
                     
 
@@ -84,7 +87,8 @@ const page = () => {
                                 <p className=''>18000-19000 <FontAwesomeIcon icon={faDollar}/>yr</p>
                             </div>
                         </div>
-                        <button className='apply-now'>apply now</button>
+                        
+                        <button onClick={()=>router.push('/Proceed')}className='apply-now'>apply now</button>
                     </div>
                     
 
@@ -120,7 +124,8 @@ const page = () => {
                                 <p className=''>18000-19000 <FontAwesomeIcon icon={faDollar}/>yr</p>
                             </div>
                         </div>
-                        <button className='apply-now'>apply now</button>
+                        
+                        <button onClick={()=>router.push('/Proceed')}className='apply-now'>apply now</button>
                     </div>
                     
 
@@ -156,7 +161,8 @@ const page = () => {
                                 <p className=''>18000-19000 <FontAwesomeIcon icon={faDollar}/>yr</p>
                             </div>
                         </div>
-                        <button className='apply-now'>apply now</button>
+                        
+                        <button onClick={()=>router.push('/Proceed')}className='apply-now'>apply now</button>
                     </div>
                     
 
@@ -192,7 +198,8 @@ const page = () => {
                                 <p className=''>18000-19000 <FontAwesomeIcon icon={faDollar}/>yr</p>
                             </div>
                         </div>
-                        <button className='apply-now'>apply now</button>
+                        
+                        <button onClick={()=>router.push('/Proceed')}className='apply-now'>apply now</button>
                     </div>
                     
 
@@ -228,7 +235,8 @@ const page = () => {
                                 <p className=''>18000-19000 <FontAwesomeIcon icon={faDollar}/>yr</p>
                             </div>
                         </div>
-                        <button className='apply-now'>apply now</button>
+                        
+                        <button onClick={()=>router.push('/Proceed')}className='apply-now'>apply now</button>
                     </div>
                     
 
@@ -264,7 +272,8 @@ const page = () => {
                                 <p className=''>18000-19000 <FontAwesomeIcon icon={faDollar}/>yr</p>
                             </div>
                         </div>
-                        <button className='apply-now'>apply now</button>
+                        
+                        <button onClick={()=>router.push('/Proceed')}className='apply-now'>apply now</button>
                     </div>
                     
 
@@ -300,7 +309,8 @@ const page = () => {
                                 <p className=''>18000-19000 <FontAwesomeIcon icon={faDollar}/>yr</p>
                             </div>
                         </div>
-                        <button className='apply-now'>apply now</button>
+                        
+                        <button onClick={()=>router.push('/Proceed')}className='apply-now'>apply now</button>
                     </div>
                     
 
@@ -336,7 +346,8 @@ const page = () => {
                                 <p className=''>18000-19000 <FontAwesomeIcon icon={faDollar}/>yr</p>
                             </div>
                         </div>
-                        <button className='apply-now'>apply now</button>
+                        
+                        <button onClick={()=>router.push('/Proceed')}className='apply-now'>apply now</button>
                     </div>
                     
                 </div>
@@ -348,4 +359,4 @@ const page = () => {
     )
 }
 
-export default page
+export default Page
