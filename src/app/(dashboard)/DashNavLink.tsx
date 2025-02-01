@@ -1,4 +1,3 @@
-import { faUser } from '@fortawesome/free-solid-svg-icons'
 import '@/css/Dashboard/layout.css'
 import Link from 'next/link'
 import { usePathname } from 'next/navigation'
