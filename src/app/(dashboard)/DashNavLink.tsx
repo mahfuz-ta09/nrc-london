@@ -5,16 +5,17 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import sideNavItem from './navItem'
 import { Role } from '@/types/nav/type'
 
+
+
 const DashNavLink = () => {
+    const pathname = usePathname() 
+    const dashTitle:string = "/dashboard/"
     const users =  {
         // role: 'super_admin'
         role: 'admin'
         // role: 'student'
         // role: 'user'
     }
-
-    const pathname = usePathname() 
-    const dashTitle:string = "/dashboard/" 
 
 
     return (

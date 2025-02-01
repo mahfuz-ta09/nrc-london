@@ -89,7 +89,7 @@ const Navbar = () => {
 
                     
                     <div className='link-holder'>
-                        <Link className='link' href="/">Recruitement partner</Link>
+                        <p className='link'>Recruitement partner</p>
                         <div className='drop-down'>
                             <div className="drop-down-content">
                                 <div className="drop-down-group">
