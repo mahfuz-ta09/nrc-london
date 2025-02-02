@@ -1,4 +1,4 @@
-import { responseSuccess } from "@/types/common"
+import { responseError, responseSuccess } from "@/types/common"
 import axios from "axios"
 
 const instance = axios.create()
@@ -20,20 +20,27 @@ function(error){
 })
 
 
-
 instance.interceptors.response.use(
-//@ts-ignore
-    function (response){
-        
+    //@ts-ignore
+    
+    function (response) {
+    
         const responseObject:responseSuccess = {
-            data: response?.data?.data,
-            meta: response?.data?.meta,
+          data: response?.data?.data,
+          meta: response?.data?.meta,
         }
-  
-      return responseObject
-},
-function (error){
-    return Promise.reject(error)
-})
+    
+        return responseObject
+    }, function (error) {
+    
+        const responseObject:responseError = {
+          errorMessage: error?.response.data?.message,
+          statusCode: error?.response?.data?.statusCode || 500,
+          message: error?.response.data?.message || "something went wrong!!",
+        }
+    
+        return responseObject
+    })
+    
 
 export { instance }
