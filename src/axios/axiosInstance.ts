@@ -19,7 +19,7 @@ instance.interceptors.request.use(function (config) {
 
 
 instance.interceptors.response.use(
-//@ts-ignore
+//@ts-expect-error
 
 function (response) {
 
