@@ -1,4 +1,3 @@
-import { responseError, responseSuccess } from '@/types/common'
 import axios from 'axios'
 
 
@@ -19,25 +18,13 @@ instance.interceptors.request.use(function (config) {
 
 
 instance.interceptors.response.use(
-//@ts-expect-error
+    function (response) {
 
-function (response) {
-
-    const responseObject:responseSuccess = {
-      data: response?.data?.data,
-      meta: response?.data?.meta,
-    }
-
-    return responseObject
+    return response
 }, function (error) {
 
-    const responseObject:responseError = {
-      errorMessage: error?.response.data?.message,
-      statusCode: error?.response?.data?.statusCode || 500,
-      message: error?.response.data?.message || "something went wrong!!",
-    }
 
-    return responseObject
+    return error
 })
 
 export { instance }
