@@ -5,7 +5,7 @@ export type metaT = {
 }
 
 export type responseSuccess = {
-    data: any
+    data: string
     meta?: metaT
 }
 
