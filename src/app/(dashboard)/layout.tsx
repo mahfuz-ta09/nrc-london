@@ -1,8 +1,16 @@
+'use client'
 import '@/css/Dashboard/layout.css'
 import LayoutPage from "./LayoutPage"
+import { useRouter } from 'next/navigation'
+import { isLoggedIn } from '@/actions/authActions'
 
 
-const layout = ({ children } : {children : React.ReactNode}) => {
+const Layout = ({ children } : {children : React.ReactNode}) => {
+    const router = useRouter()
+
+    if(!isLoggedIn()){
+      return router.push('/Login')
+    }
 
     return (
       <div  className='dashboard-layout'>
@@ -24,5 +32,5 @@ const layout = ({ children } : {children : React.ReactNode}) => {
       </div>
     )
   }
-
-export default layout
+ 
+export default Layout

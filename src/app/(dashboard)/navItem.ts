@@ -1,5 +1,5 @@
 import { NavContent, Role } from "@/types/nav/type"
-import { faUser } from "@fortawesome/free-solid-svg-icons";
+import { faBook, faBuilding, faHand, faHandshake, faPaperPlane, faPen, faUser } from "@fortawesome/free-solid-svg-icons";
 
 const sideNavItem = (role : Role) => {
     const navItem:NavContent[] = []
@@ -40,32 +40,32 @@ const sideNavItem = (role : Role) => {
                 {
                     title       : "Subjects",
                     path        : `${role}/specialties`,
-                    icon        : faUser,
+                    icon        : faBook,
                 },
                 {
                     title       : "Test preparation",
                     path        : `${role}/courses`,
-                    icon        : faUser,
+                    icon        : faPen,
                 },
                 {
                     title       : "University",
                     path        : `${role}/schedules`,
-                    icon        : faUser,
+                    icon        : faBuilding,
                 },
                 {
                     title       : "Services",
                     path        : `${role}/banner`,
-                    icon        : faUser,
+                    icon        : faPaperPlane,
                 },
                 {
                     title       : "Reviews",
                     path        : `${role}/reviews`,
-                    icon        : faUser,
+                    icon        : faHand,
                 },
                 {
                     title       : "Process Req",
                     path        : `${role}/course-content`,
-                    icon        : faUser,
+                    icon        : faHandshake,
                 },
             );
             break;
