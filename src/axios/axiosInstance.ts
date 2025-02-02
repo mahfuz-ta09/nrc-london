@@ -22,7 +22,7 @@ function(error){
 
 
 instance.interceptors.response.use(
-// @ts-expect-error
+// @ts-expect-error:TypeScript might not infer the correct type for response
 
     function (response){
         
