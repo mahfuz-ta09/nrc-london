@@ -5,17 +5,34 @@ import Image from 'next/image'
 import Link from 'next/link'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faBars, faBook, faGlobe, faPhone, faXmark } from '@fortawesome/free-solid-svg-icons'
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import { useRouter } from 'next/navigation'
+import { logOut } from '@/utils/authAction'
+import { userInfo } from '@/utils/userInfo'
 
 
 const Navbar = () => {
+    const [user, setUser] = useState({ Uemail: "", Urole: "", Uid: "" })
     const [isOpen,setIsOpen] = useState(false)
     const router=useRouter()
 
 
+    useEffect(() => {
+        const { Uemail , Urole , Uid } = userInfo()
+        setUser({
+             Uemail: Uemail, 
+             Urole: Urole, 
+             Uid: Uid
+        });
+    }, [])
+    
     const handleNavbar = () =>{
-        setIsOpen(!isOpen)
+        setIsOpen((prev) => !prev)
+    }
+    
+    const handleLogOut = () =>{
+        router.refresh()
+        logOut(router)
     }
 
     return (
@@ -108,7 +125,10 @@ const Navbar = () => {
                     </div>
                 </div>
                 <div className={isOpen ? 'link-items show' :'link-items hide'}>
-                    <button onClick={()=>router.push('/Login')}>login</button>
+                    {
+                        !user?.Uemail ?<button onClick={()=>router.push('/Login')}>login</button>  :
+                        <button onClick={()=>handleLogOut()}>logout</button>
+                    }
                     <button className='dash' onClick={()=>router.push('/Dashboard')}>monitor</button>
                 </div>
                 {
