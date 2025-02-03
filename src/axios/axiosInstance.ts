@@ -1,3 +1,4 @@
+import { responseError, responseSuccess } from '@/types/common'
 import axios from 'axios'
 
 
@@ -8,6 +9,7 @@ instance.defaults.timeout = 60000
 
 
 instance.interceptors.request.use(function (config) {
+    console.log("response from instance success",config)
     
     return config
   }, function (error) {
@@ -18,13 +20,26 @@ instance.interceptors.request.use(function (config) {
 
 
 instance.interceptors.response.use(
+    //@ts-ignore
+    
     function (response) {
-
-    return response
-}, function (error) {
-
-
-    return error
-})
-
+        console.log("response from instance error",response)
+        const responseObject:responseSuccess = {
+          data: response?.data?.data,
+          meta: response?.data?.meta,
+        }
+    
+        return responseObject
+    }, function (error) {
+    
+        const responseObject:responseError = {
+          errorMessage: error?.response.data?.message,
+          statusCode: error?.response?.data?.statusCode || 500,
+          message: error?.response.data?.message || "something went wrong!!",
+        }
+    
+        return responseObject
+    })
+    
+    
 export { instance }
