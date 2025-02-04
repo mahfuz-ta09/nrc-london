@@ -10,6 +10,7 @@ const sideNavItem = (role : Role) => {
         USER: "user"
     }
 
+    // console.log("sad",role)
     switch(role){
         case USER_ROLE.SUPER_ADMIN:
             navItem.push(

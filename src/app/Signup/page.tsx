@@ -54,7 +54,7 @@ const SignUpPage = () => {
                             <button type="submit">signup</button>
                         </div>
                     </form>
-                    <Link className='forgot-link underline' href="/login">Already have an account? login</Link>
+                    <Link className='forgot-link underline' href="/Login">Already have an account? login</Link>
                 </div>
                 <div className='image-conteiner'>
                     {/* <Image src={bgImg} priority alt=""/> */}

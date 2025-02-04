@@ -58,7 +58,7 @@ const LoginPage = () => {
                         <button className="">google</button>
                                 <button className="" onClick={()=>router.push('/')}>home?</button>
                         </div>
-                        <Link className='forgot-link underline' href="/signup">Do not have account? sign up</Link>
+                        <Link className='forgot-link underline' href="/Signup">Do not have account? sign up</Link>
                     </div>
                     <div className='image-conteiner'>
                         <img src='https://i.ibb.co.com/yN0nYww/books.webp' className="" alt=''/>

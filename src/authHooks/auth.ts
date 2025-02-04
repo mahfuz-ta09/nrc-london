@@ -1,3 +1,4 @@
+import { setCookie } from "@/utils/setCookies"
 
 
 export const logInUser = async(formData: FormData)=>{
@@ -8,6 +9,10 @@ export const logInUser = async(formData: FormData)=>{
     })
 
     const userInfo = await response.json()
+    
+    if(userInfo?.meta?.accessToken){
+        setCookie(userInfo?.meta?.accessToken)
+    }
     return userInfo
 }
 
@@ -20,5 +25,9 @@ export const signUpUser = async(formData: FormData)=>{
     })
 
     const userInfo = await response.json()
+    
+    if(userInfo?.meta?.accessToken){
+        setCookie(userInfo?.meta?.accessToken)
+    }
     return userInfo
 }
