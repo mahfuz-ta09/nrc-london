@@ -18,7 +18,7 @@ const DashNavLink = () => {
         <div className='dash-nav-body'>
             {
                 sideNavItem(Urole as Role).map((item,index) => (
-                    <Link className={pathname === `${dashTitle}`+item?.path ? 'nav-link active' :'nav-link'} key={index} href={`/dashboard/${item?.path}`}>
+                    <Link className={pathname === `${dashTitle}`+item?.path ? 'nav-link active' :'nav-link'} key={index} href={`/Dashboard/${item?.path}`}>
                         <FontAwesomeIcon icon={item.icon} />
                         <span>{item?.title}</span>
                     </Link>

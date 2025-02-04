@@ -40,24 +40,24 @@ const sideNavItem = (role : Role) => {
                 },
                 {
                     title       : "Subjects",
-                    path        : `${role}/specialties`,
+                    path        : `${role}/subjects`,
                     icon        : faBook,
                 },
                 {
                     title       : "Test preparation",
-                    path        : `${role}/courses`,
+                    path        : `${role}/test-prep`,
                     icon        : faPen,
                 },
                 {
                     title       : "University",
-                    path        : `${role}/schedules`,
+                    path        : `${role}/university`,
                     icon        : faBuilding,
                 },
-                {
-                    title       : "Services",
-                    path        : `${role}/banner`,
-                    icon        : faPaperPlane,
-                },
+                // {
+                //     title       : "Services",
+                //     path        : `${role}/banner`,
+                //     icon        : faPaperPlane,
+                // },
                 {
                     title       : "Reviews",
                     path        : `${role}/reviews`,
@@ -65,7 +65,7 @@ const sideNavItem = (role : Role) => {
                 },
                 {
                     title       : "Process Req",
-                    path        : `${role}/course-content`,
+                    path        : `${role}/process-req`,
                     icon        : faHandshake,
                 },
             );
