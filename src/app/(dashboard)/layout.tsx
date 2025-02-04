@@ -2,16 +2,11 @@
 import '@/css/Dashboard/layout.css'
 import LayoutPage from "./LayoutPage"
 import { useRouter } from 'next/navigation'
-import { isLoggedIn } from '@/actions/authActions'
 
 
 const Layout = ({ children } : {children : React.ReactNode}) => {
     const router = useRouter()
-
-    if(!isLoggedIn()){
-      return router.push('/Login')
-    }
-
+   
     return (
       <div  className='dashboard-layout'>
           <div className="dash-content">

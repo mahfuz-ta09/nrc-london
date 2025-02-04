@@ -26,13 +26,14 @@ const Navbar = () => {
         });
     }, [])
     
+    
     const handleNavbar = () =>{
         setIsOpen((prev) => !prev)
     }
     
     const handleLogOut = () =>{
-        router.refresh()
         logOut(router)
+        setUser({ Uemail: "", Urole: "", Uid: "" })
     }
 
     return (

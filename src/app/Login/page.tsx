@@ -55,8 +55,8 @@ const LoginPage = () => {
                         </form>
                         <h2 className="link-header">or login with</h2>
                         <div className="social-login">
-                                <button className="">facebook</button>
-                                <button className="">google</button>
+                        <button className="">google</button>
+                                <button className="" onClick={()=>router.push('/')}>home?</button>
                         </div>
                         <Link className='forgot-link underline' href="/signup">Do not have account? sign up</Link>
                     </div>

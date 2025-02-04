@@ -8,7 +8,6 @@ export const logInUser = async(formData: FormData)=>{
     })
 
     const userInfo = await response.json()
-    console.log(userInfo)
     return userInfo
 }
 
