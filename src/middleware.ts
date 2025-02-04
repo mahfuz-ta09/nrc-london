@@ -1,4 +1,4 @@
-import { jwtDecode } from 'jwt-decode'
+import { jwtDecode, JwtPayload } from 'jwt-decode'
 import { cookies } from 'next/headers'
 import { NextResponse } from 'next/server'
 import type { NextRequest } from 'next/server'
@@ -10,11 +10,10 @@ const roleBasedAccess = {
     ADMIN: [/^\/Dashboard\/admin/],
     STUDENT: [/^\/Dashboard\/student/],
 }
-type Role = {
-    email?: string,
-    role?: string,
-    id?: string
-}
+
+interface CustomJwtPayload extends JwtPayload {
+    role?: string;
+  }
 
 export async function middleware(request: NextRequest) {
     const { pathname } = request.nextUrl
@@ -22,11 +21,8 @@ export async function middleware(request: NextRequest) {
     const cookieStore = await cookies()
     const accessToken = cookieStore.get("accessToken")?.value
 
-    let decoded = null
-    if(accessToken){
-        decoded = jwtDecode(accessToken)
-    }
-    const role=decoded?.role
+    const decoded: CustomJwtPayload | null = accessToken ? jwtDecode<CustomJwtPayload>(accessToken) : null;
+    const role = decoded?.role;
     
     if(!accessToken){
         if(authRoutes.includes(pathname)) {
