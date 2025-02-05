@@ -8,11 +8,17 @@ import UpdateUni from './UpdateUni'
 
 const page = () => {
     const [open,setOpen] = useState(false)
+    const [name,setName] = useState("")
+
+
+
+
+
     return (
       <div className='university-content'>
         <div className="header">
           <h1>University:</h1>
-          <button onClick={()=>setOpen(!open)}>Add University</button>
+          <button onClick={()=>{setOpen(!open);setName("Add")}}>Add University</button>
         </div>
 
 
@@ -21,6 +27,7 @@ const page = () => {
                 <thead className="thead">
                     <tr className="tr">
                         <th className="th">University Name</th>
+                        <th className="th">Country</th>
                         <th className="th">Logo</th>
                         <th className="th">Ranking</th>
                         <th className="th">Tuition Fee</th>
@@ -37,6 +44,7 @@ const page = () => {
                 <tbody className="tbody">
                     <tr className="tr">
                         <td className="td" data-label="University Name">Harvard University</td>
+                        <td className="td" data-label="Ranking">Uk</td>
                         <td className="td" data-label="Logo"><img className="logo-img" src="https://upload.wikimedia.org/wikipedia/en/2/29/Harvard_shield_wreath.svg" alt="Harvard Logo"/></td>
                         <td className="td" data-label="Ranking">#1</td>
                         <td className="td" data-label="Tuition Fee">$50,000/year</td>
@@ -46,11 +54,12 @@ const page = () => {
                         <td className="td" data-label="Intakes">September, January</td>
                         <td className="td" data-label="Entry Requirements">SAT, 3.5+ GPA</td>
                         <td className="td" data-label="Application Deadlines">Dec 15</td>
-                        <td className="td" data-label="Application Deadlines"><FontAwesomeIcon onClick={()=>setOpen(!open)}  icon={faPen}/></td>
+                        <td className="td" data-label="Application Deadlines"><FontAwesomeIcon onClick={()=>{setOpen(!open);setName("Edit")}} icon={faPen}/></td>
                         <td className="td" data-label="Application Deadlines"><FontAwesomeIcon icon={faCancel}/></td>
                     </tr>
                     <tr className="tr">
                         <td className="td" data-label="University Name">Oxford University</td>
+                        <td className="td" data-label="Ranking">uk</td>
                         <td className="td" data-label="Logo"><img className="logo-img" src="https://upload.wikimedia.org/wikipedia/en/d/d6/Oxford_university_coat_of_arms.svg" alt="Oxford Logo"/></td>
                         <td className="td" data-label="Ranking">#2</td>
                         <td className="td" data-label="Tuition Fee">$45,000/year</td>
@@ -60,11 +69,12 @@ const page = () => {
                         <td className="td" data-label="Intakes">October</td>
                         <td className="td" data-label="Entry Requirements">A-levels, GPA 3.8+</td>
                         <td className="td" data-label="Application Deadlines">Jan 10</td>
-                        <td className="td" data-label="Application Deadlines"><FontAwesomeIcon onClick={()=>setOpen(!open)}  icon={faPen}/></td>
+                        <td className="td" data-label="Application Deadlines"><FontAwesomeIcon onClick={()=>{setOpen(!open);setName("Edit")}}  icon={faPen}/></td>
                         <td className="td" data-label="Application Deadlines"><FontAwesomeIcon icon={faCancel}/></td>
                     </tr>
                     <tr className="tr">
                         <td className="td" data-label="University Name">Oxford University</td>
+                        <td className="td" data-label="Ranking">uk</td>
                         <td className="td" data-label="Logo"><img className="logo-img" src="https://upload.wikimedia.org/wikipedia/en/d/d6/Oxford_university_coat_of_arms.svg" alt="Oxford Logo"/></td>
                         <td className="td" data-label="Ranking">#2</td>
                         <td className="td" data-label="Tuition Fee">$45,000/year</td>
@@ -74,7 +84,7 @@ const page = () => {
                         <td className="td" data-label="Intakes">October</td>
                         <td className="td" data-label="Entry Requirements">A-levels, GPA 3.8+</td>
                         <td className="td" data-label="Application Deadlines">Jan 10</td>
-                        <td className="td" data-label="Application Deadlines"><FontAwesomeIcon onClick={()=>setOpen(!open)}  icon={faPen}/></td>
+                        <td className="td" data-label="Application Deadlines"><FontAwesomeIcon onClick={()=>{setOpen(!open);setName("Edit")}}  icon={faPen}/></td>
                         <td className="td" data-label="Application Deadlines"><FontAwesomeIcon icon={faCancel}/></td>
                     </tr>
                 </tbody>
@@ -83,7 +93,7 @@ const page = () => {
 
         <div className={open? "mod-open" : "modal"}>
             <button onClick={()=>setOpen(!open)} className='mod-close'>Close</button>
-            <UpdateUni />
+            <UpdateUni name={name} setOpen={setOpen}/>
         </div>
       </div>
     )
