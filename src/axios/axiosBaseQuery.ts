@@ -4,7 +4,6 @@ import { AxiosError, AxiosRequestConfig } from "axios"
 import { instance as axiosInstance } from "./axiosInstance"
 
 
-
 export const axiosBaseQuery = ({ baseUrl }: { baseUrl: string } = { baseUrl: '' },): BaseQueryFn<{
       url: string
       method?: AxiosRequestConfig['method']
@@ -24,7 +23,7 @@ export const axiosBaseQuery = ({ baseUrl }: { baseUrl: string } = { baseUrl: '' 
                 headers,
             })
             console.log("from axios base query success",result)
-            return { data: result.data }
+            return { data: result }
         } catch (axiosError) {
             const err = axiosError as AxiosError
             console.log("from axios base query error",err)

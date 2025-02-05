@@ -1,4 +1,5 @@
 import { responseError, responseSuccess } from '@/types/common'
+import { accessToken } from '@/utils/accessToken'
 import axios from 'axios'
 
 
@@ -7,10 +8,20 @@ instance.defaults.headers.post["Content-Type"] = "application/json"
 instance.defaults.headers["Accept"] = "application/json"
 instance.defaults.timeout = 60000
 
+ 
 
 instance.interceptors.request.use(function (config) {
-    console.log("response from instance success",config)
+    // console.log("response from instance success",config)
+    const token = accessToken()
+
+    if(token){
+      config.headers.Authorization = token
+    }
     
+    if (!(config.data instanceof FormData)) {
+      config.headers["Content-Type"] = "application/json";
+    }
+
     return config
   }, function (error) {
 

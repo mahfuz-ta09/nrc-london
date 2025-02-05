@@ -1,10 +1,13 @@
 'use client'
 import '@/css/Dashboard/admin/university.css'
+import { useCreateUniversityMutation, useUpdateUniversityMutation } from '@/redux/endpoints/university/universityEndpoints';
+import convertFormData from '@/utils/convertFormData';
 import { useForm, SubmitHandler } from "react-hook-form"
+import { toast } from 'react-toastify';
 
 interface University {
     name: string;
-    logo: string;
+    file: FileList | null;
     ranking: string;
     tuitionFee: string;
     requiredDocs: string;
@@ -15,7 +18,7 @@ interface University {
     applicationDeadlines: string;
 }
 
-const UpdateUni = ({name,setOpen}:{name:string,setOpen:React.Dispatch<React.SetStateAction<boolean>>}) => {
+const UpdateUni = ({name,setOpen,uniId}:{name:string,setOpen:React.Dispatch<React.SetStateAction<boolean>>,uniId:string}) => {
     const {
         register,
         handleSubmit,
@@ -23,11 +26,30 @@ const UpdateUni = ({name,setOpen}:{name:string,setOpen:React.Dispatch<React.SetS
         reset,
         formState: { errors },
     } = useForm<University>()
+    const [createUniversity,{isLoading:createLoad}] = useCreateUniversityMutation()
+    const [updateUniversity,{isLoading:editLoad}] = useUpdateUniversityMutation()
 
-    const onSubmit: SubmitHandler<University> = (data) => {
-        console.log(data)
-
-        // reset()
+    const onSubmit: SubmitHandler<University> = async(data) => {
+        const formData = convertFormData(data)
+        
+        try{
+            let res
+            if(name==="Add"){
+                res = await createUniversity(formData)
+            }else{
+                res = await updateUniversity({data:formData,id:uniId})
+            }
+            console.log(res)
+            if(res?.data?.data?.acknowledged){
+                toast.success("Insertion successful!!!")
+                setOpen(false)
+                reset()
+            }else{
+                toast.error(res?.data?.message || "Failed!")
+            }
+        }catch(err){
+            console.log(err)
+        }
     }
 
     return (
@@ -41,7 +63,7 @@ const UpdateUni = ({name,setOpen}:{name:string,setOpen:React.Dispatch<React.SetS
 
             <div className="form-group">
                 <label htmlFor="logo">Add university image:</label>
-                <input id="logo" type="file" {...register("logo")}  required />
+                <input id="file" type="file" {...register("file")}  required />
             </div>
 
             <div className="form-group">
@@ -85,7 +107,9 @@ const UpdateUni = ({name,setOpen}:{name:string,setOpen:React.Dispatch<React.SetS
             </div>
 
             <div className="form-actions">
-                <button type="submit" className="btn-update">{name}</button>
+                <button type="submit" className="btn-update" disabled={createLoad || editLoad}>
+                    {createLoad || editLoad ? "Processing..." : name}
+                </button>
             </div>
         </form>
     )
