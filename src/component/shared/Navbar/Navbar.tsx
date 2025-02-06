@@ -9,6 +9,8 @@ import { useState } from 'react'
 import { useRouter } from 'next/navigation'
 import { logOut } from '@/utils/authAction'
 import { useUserInfo } from '@/utils/useUserInfo'
+import dynamic from 'next/dynamic'
+import UniNav from './UniNav'
 
 
 const Navbar = () => {
@@ -21,6 +23,7 @@ const Navbar = () => {
         setIsOpen((prev) => !prev)
     }
     
+
     const handleLogOut = () =>{
         logOut(router)
     }
@@ -62,29 +65,7 @@ const Navbar = () => {
                         </div>
                     </div>
 
-                    <div className='link-holder'>
-                        <p className='link'>University</p>
-                        <div className='drop-down'>
-                            <div className="drop-down-content">
-                                <div className="drop-down-group">
-                                    <Link className='drop-down-link' href="/University/UK"><FontAwesomeIcon icon={faGlobe}/> UK</Link>
-                                    <Link className='drop-down-link' href="/University/USA"><FontAwesomeIcon icon={faGlobe}/> USA</Link>
-                                    <Link className='drop-down-link' href="/University/Australia"><FontAwesomeIcon icon={faGlobe}/> Australia</Link>
-                                    <Link className='drop-down-link' href="/University/Canada"><FontAwesomeIcon icon={faGlobe}/> Canada</Link>
-                                </div>
-                                <div className="drop-down-group">
-                                    <Link className='drop-down-link' href="/"><FontAwesomeIcon icon={faGlobe}/> France</Link>
-                                    <Link className='drop-down-link' href="/"><FontAwesomeIcon icon={faGlobe}/> Germany</Link>
-                                    <Link className='drop-down-link' href="/"><FontAwesomeIcon icon={faGlobe}/> Italy</Link>
-                                    <Link className='drop-down-link' href="/"><FontAwesomeIcon icon={faGlobe}/> Bangladesh</Link>
-                                </div>
-                                <div className="contact-section">
-                                    <Link className='contact-section-link' href="/"><FontAwesomeIcon icon={faPhone}/> Contact</Link>
-                                    <Link className='contact-section-link' href="/"><FontAwesomeIcon icon={faPhone}/> Enquire</Link>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
+                    <UniNav />
                     
                     <div className='link-holder'>
                         <Link className='link' href="/Centre">Centre</Link>

@@ -1,18 +1,20 @@
 'use client'
-import Footer from '@/component/shared/Footer/Footer'
 import '@/css/Students/Subjects/Subjects.css'
+import Footer from '@/component/shared/Footer/Footer'
 import { faCancel, faDollar } from '@fortawesome/free-solid-svg-icons'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { useRouter } from 'next/navigation'
+import { useParams, useRouter } from 'next/navigation'
 
-
-const Page = () => {
+const page = () => {
+    const { country } = useParams()
     const router = useRouter()
+    // console.log(country)
+
     return (
         <div className='subjects-container'>
             <div className="subjects-banner">
                 <div className="wdth subjects-banner-content">
-                    <h1>UK</h1>
+                    <h1>{String(country)?.toUpperCase()}</h1>
                     <p>as study destination</p>
                 </div>
             </div>
@@ -21,7 +23,8 @@ const Page = () => {
                     
                     <div className="single-subject">
                         <div className="subject-header">
-                            <p>Computer Science</p>
+                            <p>Bornmouth</p>
+                            <p>University</p>
                         </div>
                         <div className="additional">
                             <h4>Required Document:</h4>
@@ -57,7 +60,9 @@ const Page = () => {
 
                     <div className="single-subject">
                         <div className="subject-header">
-                            <p>Computer Science</p>
+                            
+                            <p>Bornmouth</p>
+                            <p>University</p>
                         </div>
                         <div className="additional">
                             <h4>Required Document:</h4>
@@ -87,14 +92,15 @@ const Page = () => {
                                 <p className=''>18000-19000 <FontAwesomeIcon icon={faDollar}/>yr</p>
                             </div>
                         </div>
-                        
                         <button onClick={()=>router.push('/Proceed')}className='apply-now'>apply now</button>
                     </div>
                     
 
                     <div className="single-subject">
                         <div className="subject-header">
-                            <p>Computer Science</p>
+                            
+                            <p>Bornmouth</p>
+                            <p>University</p>
                         </div>
                         <div className="additional">
                             <h4>Required Document:</h4>
@@ -124,14 +130,15 @@ const Page = () => {
                                 <p className=''>18000-19000 <FontAwesomeIcon icon={faDollar}/>yr</p>
                             </div>
                         </div>
-                        
                         <button onClick={()=>router.push('/Proceed')}className='apply-now'>apply now</button>
                     </div>
                     
 
                     <div className="single-subject">
                         <div className="subject-header">
-                            <p>Computer Science</p>
+                            
+                            <p>Bornmouth</p>
+                            <p>University</p>
                         </div>
                         <div className="additional">
                             <h4>Required Document:</h4>
@@ -161,14 +168,15 @@ const Page = () => {
                                 <p className=''>18000-19000 <FontAwesomeIcon icon={faDollar}/>yr</p>
                             </div>
                         </div>
-                        
                         <button onClick={()=>router.push('/Proceed')}className='apply-now'>apply now</button>
                     </div>
                     
 
                     <div className="single-subject">
                         <div className="subject-header">
-                            <p>Computer Science</p>
+                            
+                            <p>Bornmouth</p>
+                            <p>University</p>
                         </div>
                         <div className="additional">
                             <h4>Required Document:</h4>
@@ -198,14 +206,15 @@ const Page = () => {
                                 <p className=''>18000-19000 <FontAwesomeIcon icon={faDollar}/>yr</p>
                             </div>
                         </div>
-                        
                         <button onClick={()=>router.push('/Proceed')}className='apply-now'>apply now</button>
                     </div>
                     
 
                     <div className="single-subject">
                         <div className="subject-header">
-                            <p>Computer Science</p>
+                            
+                            <p>Bornmouth</p>
+                            <p>University</p>
                         </div>
                         <div className="additional">
                             <h4>Required Document:</h4>
@@ -235,14 +244,15 @@ const Page = () => {
                                 <p className=''>18000-19000 <FontAwesomeIcon icon={faDollar}/>yr</p>
                             </div>
                         </div>
-                        
                         <button onClick={()=>router.push('/Proceed')}className='apply-now'>apply now</button>
                     </div>
                     
 
                     <div className="single-subject">
                         <div className="subject-header">
-                            <p>Computer Science</p>
+                            
+                            <p>Bornmouth</p>
+                            <p>University</p>
                         </div>
                         <div className="additional">
                             <h4>Required Document:</h4>
@@ -272,14 +282,15 @@ const Page = () => {
                                 <p className=''>18000-19000 <FontAwesomeIcon icon={faDollar}/>yr</p>
                             </div>
                         </div>
-                        
                         <button onClick={()=>router.push('/Proceed')}className='apply-now'>apply now</button>
                     </div>
                     
 
                     <div className="single-subject">
                         <div className="subject-header">
-                            <p>Computer Science</p>
+                            
+                            <p>Bornmouth</p>
+                            <p>University</p>
                         </div>
                         <div className="additional">
                             <h4>Required Document:</h4>
@@ -309,14 +320,15 @@ const Page = () => {
                                 <p className=''>18000-19000 <FontAwesomeIcon icon={faDollar}/>yr</p>
                             </div>
                         </div>
-                        
                         <button onClick={()=>router.push('/Proceed')}className='apply-now'>apply now</button>
                     </div>
                     
 
                     <div className="single-subject">
                         <div className="subject-header">
-                            <p>Computer Science</p>
+                            
+                            <p>Bornmouth</p>
+                            <p>University</p>
                         </div>
                         <div className="additional">
                             <h4>Required Document:</h4>
@@ -346,7 +358,6 @@ const Page = () => {
                                 <p className=''>18000-19000 <FontAwesomeIcon icon={faDollar}/>yr</p>
                             </div>
                         </div>
-                        
                         <button onClick={()=>router.push('/Proceed')}className='apply-now'>apply now</button>
                     </div>
                     
@@ -359,4 +370,4 @@ const Page = () => {
     )
 }
 
-export default Page
+export default page

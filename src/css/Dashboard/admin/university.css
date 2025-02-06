@@ -78,6 +78,7 @@
     border: 1px solid #ddd;
     padding: 10px;
     text-align: center;
+    background: #00394b;
 }
 
 .th {
@@ -91,11 +92,21 @@
 }
 
 @media (max-width: 1400px) {
-
     .edit-university-form {
         margin-top: 35vh;
         margin-bottom: 5vh;
     }
+}
+
+@media (max-width: 450px) {
+
+    .th, .td {
+        border: 1px solid #ddd;
+        padding: 10px;
+        text-align: center;
+        background: transparent;
+    }
+    
 }
 
 @media (max-width: 768px) {
@@ -105,14 +116,16 @@
     
     .thead {
         display: none;
+        color: #000;
     }
     
     .tr {
         margin-bottom: 15px;
         border: 1px solid #ddd;
         border-radius: 10px;
-        background: white;
-        padding: 10px;
+        background: #ccc;
+        padding: 4px;
+        color: #000;
     }
     
     .td {
@@ -120,24 +133,26 @@
         justify-content: space-between;
         padding: 10px;
         text-align: right;
+        color: #000;
     }
     
     .td::before {
         content: attr(data-label);
         font-weight: bold;
         text-align: left;
+        color: #000;
     }
 }
 
 
 .edit-university-form {
-    background-color: #fff;
+    background: #ccc;
     padding: 20px;
     border-radius: 8px;
     box-shadow: 2px 2px 10px rgba(255, 255, 255, 0.7);
-    width: 100%;
-    max-width: 1000px;
-    /* margin: 35vh 0 10vh 0; */
+    width: 95%;
+    margin: 0 auto;
+    max-width: 700px;
 }
 
 .form-title {

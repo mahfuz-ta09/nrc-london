@@ -1,11 +1,8 @@
 'use client'
 import '@/css/Dashboard/layout.css'
 import LayoutPage from "./LayoutPage"
-import { useRouter } from 'next/navigation'
-
 
 const Layout = ({ children } : {children : React.ReactNode}) => {
-    const router = useRouter()
    
     return (
       <div  className='dashboard-layout'>

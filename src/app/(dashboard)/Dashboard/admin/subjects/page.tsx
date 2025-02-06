@@ -57,23 +57,23 @@ const page = () => {
                                 <th className="th">Update</th>
                                 <th className="th">Delete</th>
                             </tr>
-                        </thead>
+                        </thead> 
                         <tbody className="tbody">
                         {
                             data?.data?.map((sub:any,index:number)=>(
                                 <tr key={sub?._id} className="tr">
-                                    <td className="td">{index+1}</td>
-                                    <td className="td">{sub?.name}</td>
-                                    <td className="td">{sub?.destination}</td>
-                                    <td className="td">#{sub?.duration}</td>
-                                    <td className="td">${sub?.tuitionFee}</td>
-                                    <td className="td">{sub?.requiredDocs}</td>
-                                    <td className="td">${sub?.applicationFee}</td>
-                                    <td className="td">{sub?.intakes}</td>
-                                    <td className="td">{sub?.entryRequirements}</td>
-                                    <td className="td">{sub?.applicationDeadlines}</td>
-                                    <td className="td"><FontAwesomeIcon onClick={()=>{setOpen(!open);setName("Edit");setUniId(sub?._id)}} icon={faPen}/></td>
-                                    <td className="td"><FontAwesomeIcon onClick={()=>handleDelete(sub?._id)} icon={faCancel}/></td>
+                                    <td className="td" data-label="Serial">{index+1}</td>
+                                    <td className="td" data-label="Subject Name">{sub?.name}</td>
+                                    <td className="td" data-label="Possible Destination">{sub?.destination}</td>
+                                    <td className="td" data-label="Duration (Months)">#{sub?.duration}</td>
+                                    <td className="td" data-label="Tuition Fee">${sub?.tuitionFee}</td>
+                                    <td className="td" data-label="Required Document">{sub?.requiredDocs}</td>
+                                    <td className="td" data-label="Application Fee">${sub?.applicationFee}</td>
+                                    <td className="td" data-label="Intakes">{sub?.intakes}</td>
+                                    <td className="td" data-label="Entry Requirements">{sub?.entryRequirements}</td>
+                                    <td className="td" data-label="Application Deadlines">{sub?.applicationDeadlines}</td>
+                                    <td className="td" data-label="Update"><FontAwesomeIcon onClick={()=>{setOpen(!open);setName("Edit");setUniId(sub?._id)}} icon={faPen}/></td>
+                                    <td className="td" data-label="Delete"><FontAwesomeIcon onClick={()=>handleDelete(sub?._id)} icon={faCancel}/></td>
                                 </tr>
                             ))
                         }

@@ -54,7 +54,6 @@ const LayoutPage = () => {
                 <button  className='nav-icon-btn' onClick={() => handler()} ref={btnRef} ><FontAwesomeIcon icon={faArrowCircleRight} className='nav-icon'/></button>
                 <button  className='nav-icon-home-btn' onClick={() => homeHandler()}><FontAwesomeIcon className='nav-icon' icon={faHome}/></button>
                 <div className='dash-nav-footer'>
-                    <Link className='footer-nav' href="/">back to home</Link>
                 </div>
             </div>
         </div>

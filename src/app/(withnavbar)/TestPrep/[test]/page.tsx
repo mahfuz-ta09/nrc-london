@@ -171,14 +171,14 @@ const Page = () => {
 
                 <div className="questions">
                         
-                    {
+                    {/* {
                         paths.slice(1,paths.length-1)?.map((path,index)=>(
                             <div key={index} className="breadcrumb">
                                 <p className="breadcrumb-item">Home</p>
                                 <p className="breadcrumb-item">{path}</p>
                             </div>
                         ))
-                    }
+                    } */}
                     
 
                     <div className="question">

@@ -1,4 +1,3 @@
-
 .dashboard-layout{
 	max-width: 2000px;
 	width: 100%;
@@ -15,13 +14,13 @@
 }
 
 .dash-nav {
-	width: 15vw;
+	width: 20vw;
 	height: 100%;
 	overflow: hidden;
 	position: fixed;
 	top: 0;
 	z-index: 3;
-	left: -15vw;
+	left: -20vw;
 	transition: left 0.3s ease-in;
 }
 
@@ -30,7 +29,7 @@
 }
 
 .dash-nav.hide {
-	left: -15vw; 
+	left: -20vw; 
 }
 
 .dash-nav-element{
@@ -181,7 +180,7 @@
 
 @media screen and (max-width:450px) {
 	.dash-nav {
-		width: 50vw;
+		width: 70vw;
 		height: 100%;
 		background: #004a62;
 		border-right: 3px solid white;
@@ -197,7 +196,7 @@
 	}
 
 	.dash-nav.hide {
-		left: -50vw; 
+		left: -70vw; 
 	}
 
 }
