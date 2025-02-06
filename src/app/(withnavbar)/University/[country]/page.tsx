@@ -4,11 +4,16 @@ import Footer from '@/component/shared/Footer/Footer'
 import { faCancel, faDollar } from '@fortawesome/free-solid-svg-icons'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { useParams, useRouter } from 'next/navigation'
+import { useGetAllUniByCountryQuery } from '@/redux/endpoints/university/universityEndpoints'
 
 const page = () => {
     const { country } = useParams()
     const router = useRouter()
-    // console.log(country)
+    const {data,isLoading,error} = useGetAllUniByCountryQuery(String(country))
+
+
+    if (isLoading) return <p>Loading...</p>;
+    if (error) return <p>Error loading universities</p>
 
     return (
         <div className='subjects-container'>

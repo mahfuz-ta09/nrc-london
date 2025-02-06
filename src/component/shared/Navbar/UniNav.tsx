@@ -8,7 +8,7 @@ import Link from "next/link"
 
 const UniNav = () => {
     const {data,isLoading} = useGetUniNavItemQuery()
-    
+
     return (
         <div className='link-holder'>
             <p className='link'>University</p>

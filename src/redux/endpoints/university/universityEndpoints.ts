@@ -11,6 +11,15 @@ const universityApi = baseApi.injectEndpoints({
             providesTags: ["university"]
         }),
 
+        getAllUniByCountry:build.query<any,string>({
+            
+            query:(uni:string) =>({
+                url: `/university/all/${uni}`,
+                method:'GET',
+            }),
+            providesTags: ["university"]
+        }),
+
         getUniNavItem: build.query<any, void>({
             query: () =>({
                 url    : '/university/uni-area',
@@ -27,6 +36,7 @@ const universityApi = baseApi.injectEndpoints({
             }),
             providesTags: ["university"]
         }),
+
 
 
         deleteUniversity: build.mutation<any, string>({
@@ -60,6 +70,7 @@ const universityApi = baseApi.injectEndpoints({
         }),
 
     }),
+    overrideExisting: true,
 })
 
 export const {
@@ -68,5 +79,6 @@ export const {
     useDeleteUniversityMutation,
     useGetSingleUniversityQuery,
     useGetUniversityQuery,
-    useUpdateUniversityMutation
+    useUpdateUniversityMutation,
+    useGetAllUniByCountryQuery
 } = universityApi
