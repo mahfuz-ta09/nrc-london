@@ -15,9 +15,9 @@ const sideNavItem = (role : Role) => {
         case USER_ROLE.SUPER_ADMIN:
             navItem.push(
                 {
-                    title   : "Profile",
-                    path    : `${role}`,
-                    icon    : faUser,
+                    title       : "Profile",
+                    path        : "/",
+                    icon        : faUser,
                 },
                 {
                     title   : "Manage Users",
@@ -35,7 +35,7 @@ const sideNavItem = (role : Role) => {
             navItem.push(
                 {
                     title       : "Profile",
-                    path        : `${role}`,
+                    path        : "/",
                     icon        : faUser,
                 },
                 {
@@ -74,7 +74,7 @@ const sideNavItem = (role : Role) => {
             navItem.push(
                 {
                     title       : "Profile",
-                    path        : `${role}`,
+                    path        : "/",
                     icon        : faUser,
                 },
                 {
