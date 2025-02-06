@@ -8,15 +8,14 @@ import { faBars, faBook, faGlobe, faPhone, faXmark } from '@fortawesome/free-sol
 import { useState } from 'react'
 import { useRouter } from 'next/navigation'
 import { logOut } from '@/utils/authAction'
-import { useUserInfo } from '@/utils/useUserInfo '
+import { useUserInfo } from '@/utils/useUserInfo'
 
 
 const Navbar = () => {
-    const data = useUserInfo()
     const [isOpen,setIsOpen] = useState(false)
+    const data = useUserInfo()
     const router=useRouter()
 
-    
     
     const handleNavbar = () =>{
         setIsOpen((prev) => !prev)

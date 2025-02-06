@@ -96,6 +96,8 @@
 }
 
 .dash-item-header{
+	position: fixed;
+	top: 0;
 	width: 100%;
 	height: auto;
 	padding: 10px 45px;
@@ -112,8 +114,8 @@
 .nav-icon-btn{
 	position: fixed;
 	z-index: -1;
-	left: 10px;
-	top: 25px;
+	right:55px;
+	top:  25px;
     background: transparent;
     border: none;
 	font-size: 25px;
@@ -121,11 +123,12 @@
 	transition: .3s ease-in-out;
 }
 
+
 .nav-icon-home-btn{
 	position: fixed;
 	z-index: -1;
-	right: 10px;
-	top: 25px;
+	right:20px;
+	top:  25px;
 	font-size: 25px;
 	transition: .3s ease-in-out;
     background: transparent;
@@ -149,6 +152,7 @@
 
 .dash-item-content{
 	width: 100%;
+	margin-top: 10vh;
 }
 
 .dash-nav-footer{

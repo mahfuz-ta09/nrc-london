@@ -1,10 +1,12 @@
 'use client'
 import "@/css/Dashboard/profile.css"
-import { useUserInfo } from "@/utils/useUserInfo "
+import { useUserInfo } from "@/utils/useUserInfo"
 
 const page = () => {
     const data = useUserInfo()
-    console.log(data)
+
+
+
     return (
       <div className="profile-container">
         <div className="card">

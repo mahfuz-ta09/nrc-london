@@ -4,20 +4,20 @@ import { usePathname } from 'next/navigation'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import sideNavItem from './navItem'
 import { Role } from '@/types/nav/type'
-import { userInfo } from '@/utils/userInfo'
+import { useUserInfo } from '@/utils/useUserInfo'
 
 
 
 const DashNavLink = () => {
     const pathname = usePathname() 
     const dashTitle:string = "/dashboard/"
-    const { Urole  } = userInfo()
+    const data = useUserInfo()
 
 
     return (
         <div className='dash-nav-body'>
             {
-                sideNavItem(Urole as Role).map((item,index) => (
+                sideNavItem(data?.Urole as Role).map((item,index) => (
                     <Link className={pathname === `${dashTitle}`+item?.path ? 'nav-link active' :'nav-link'} key={index} href={`/Dashboard/${item?.path}`}>
                         <FontAwesomeIcon icon={item.icon} />
                         <span>{item?.title}</span>
