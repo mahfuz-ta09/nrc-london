@@ -34,7 +34,7 @@ const universityApi = baseApi.injectEndpoints({
             query: (data) => ({
               url         : '/university/create',
               method      : "POST",
-              contentType : "multipart/form-data",
+              contentType : "application/json",
               data
             }),
             invalidatesTags: ["university"]
@@ -45,7 +45,7 @@ const universityApi = baseApi.injectEndpoints({
             query: ({ data , id }) => ({
               url         : `/university/update/${id}`,
               method      : "PATCH",
-              contentType : "multipart/form-data",
+              contentType : "application/json",
               data
             }),
             invalidatesTags: ["university"]

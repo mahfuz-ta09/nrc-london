@@ -22,11 +22,11 @@ export const axiosBaseQuery = ({ baseUrl }: { baseUrl: string } = { baseUrl: '' 
                 params,
                 headers,
             })
-            console.log("from axios base query success",result)
+            // console.log("from axios base query success",result)
             return { data: result }
         } catch (axiosError) {
             const err = axiosError as AxiosError
-            console.log("from axios base query error",err)
+            // console.log("from axios base query error",err)
             return {
                 error: {
                     status: err.response?.status,

@@ -34,7 +34,7 @@ instance.interceptors.response.use(
     //@ts-ignore
     
     function (response) {
-        console.log("response from instance error",response)
+        // console.log("response from instance error",response)
         const responseObject:responseSuccess = {
           data: response?.data?.data,
           meta: response?.data?.meta,

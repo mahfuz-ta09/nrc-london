@@ -2,11 +2,13 @@
 import '@/css/Dashboard/admin/university.css'
 import { useCreateUniversityMutation, useUpdateUniversityMutation } from '@/redux/endpoints/university/universityEndpoints';
 import convertFormData from '@/utils/convertFormData';
+import useImgBBUpload from '@/utils/useImgBBUpload';
 import { useForm, SubmitHandler } from "react-hook-form"
 import { toast } from 'react-toastify';
 
 interface University {
     name: string;
+    country: string;
     file: FileList | null;
     ranking: string;
     tuitionFee: string;
@@ -26,20 +28,38 @@ const UpdateUni = ({name,setOpen,uniId}:{name:string,setOpen:React.Dispatch<Reac
         reset,
         formState: { errors },
     } = useForm<University>()
+    const { uploadImage, isLoading:imgLoad, error } = useImgBBUpload()
     const [createUniversity,{isLoading:createLoad}] = useCreateUniversityMutation()
     const [updateUniversity,{isLoading:editLoad}] = useUpdateUniversityMutation()
 
     const onSubmit: SubmitHandler<University> = async(data) => {
-        const formData = convertFormData(data)
         
         try{
-            let res
-            if(name==="Add"){
-                res = await createUniversity(formData)
-            }else{
-                res = await updateUniversity({data:formData,id:uniId})
+            let res,url=""
+            if(data?.file){
+                url = await uploadImage(data?.file)
             }
-            console.log(res)
+
+            const dataUpload ={
+                name: data?.name,
+                country: data?.country,
+                url: url,
+                ranking: data?.ranking,
+                tuitionFee: data?.tuitionFee,
+                requiredDocs: data?.requiredDocs,
+                applicationFee: data?.applicationFee,
+                duration: data?.duration,
+                intakes: data?.intakes,
+                entryRequirements: data?.entryRequirements,
+                applicationDeadlines: data?.applicationDeadlines,
+            }
+
+            if(name==="Add" && !error){
+                res = await createUniversity(dataUpload)
+            }else if(name==="Edit" && !error){
+                res = await updateUniversity({data:dataUpload,id:uniId})
+            }
+            
             if(res?.data?.data?.acknowledged){
                 toast.success("Insertion successful!!!")
                 setOpen(false)
@@ -59,6 +79,11 @@ const UpdateUni = ({name,setOpen,uniId}:{name:string,setOpen:React.Dispatch<Reac
             <div className="form-group">
                 <label htmlFor="name">University Name:</label>
                 <input id="name" type="text" {...register("name")} required />
+            </div>
+
+            <div className="form-group">
+                <label htmlFor="name">Country Name:</label>
+                <input id="name" type="text" {...register("country")} required />
             </div>
 
             <div className="form-group">
@@ -107,8 +132,8 @@ const UpdateUni = ({name,setOpen,uniId}:{name:string,setOpen:React.Dispatch<Reac
             </div>
 
             <div className="form-actions">
-                <button type="submit" className="btn-update" disabled={createLoad || editLoad}>
-                    {createLoad || editLoad ? "Processing..." : name}
+                <button type="submit" className="btn-update" disabled={createLoad || editLoad || imgLoad}>
+                    {imgLoad || createLoad || editLoad ? "Processing..." : name}
                 </button>
             </div>
         </form>
