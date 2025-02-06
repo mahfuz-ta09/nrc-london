@@ -2,14 +2,12 @@
 import '@/css/Dashboard/admin/university.css'
 import { toast } from 'react-toastify'
 import { SubmitHandler, useForm } from 'react-hook-form'
-import convertFormData from '@/utils/convertFormData'
 import { usePostSubjectMutation, useUpdateSubjectMutation } from '@/redux/endpoints/subject/subjectEndpoints'
-import useImgBBUpload from '@/utils/useImgBBUpload'
+
 
 interface Subject {
     name: string;
-    file: FileList | null;
-    ranking: string;
+    destination: string;
     tuitionFee: string;
     requiredDocs: string;
     applicationFee: string;
@@ -27,21 +25,19 @@ const UpdateUni = ({name,setOpen,uniId}:{name:string,setOpen:React.Dispatch<Reac
         reset,
         formState: { errors },
     } = useForm<Subject>()
-    const { uploadImage, isLoading:imgLoad, error } = useImgBBUpload()
     const [postSubject,{isLoading:createLoad}] = usePostSubjectMutation()
     const [updateSubject,{isLoading:editLoad}] = useUpdateSubjectMutation()
 
     const onSubmit: SubmitHandler<Subject> = async(data) => {
-        const formData = convertFormData(data)
-        
         try{
             let res
             if(name==="Add"){
-                res = await postSubject(formData)
+                res = await postSubject(data)
             }else{
-                res = await updateSubject({data:formData,id:uniId})
+                res = await updateSubject({data:data,id:uniId})
             }
-            console.log(res)
+            
+            
             if(res?.data?.data?.acknowledged){
                 toast.success("Insertion successful!!!")
                 setOpen(false)
@@ -60,58 +56,54 @@ const UpdateUni = ({name,setOpen,uniId}:{name:string,setOpen:React.Dispatch<Reac
             <h2 className="form-title">{name} subjects</h2>
 
             <div className="form-group">
-                <label htmlFor="name">University Name:</label>
-                <input id="name" type="text" {...register("name")} required />
+                <label htmlFor="name">Subject Name:</label>
+                <input id="name" type="text" {...register("name")}  />
             </div>
 
             <div className="form-group">
-                <label htmlFor="logo">Add university image:</label>
-                <input id="file" type="file" {...register("file")}  required />
+                <label htmlFor="destination">Add posible destination:(counrty name)</label>
+                <input id="name" type="text" {...register("destination")}  />
             </div>
 
             <div className="form-group">
-                <label htmlFor="ranking">Ranking:</label>
-                <input id="ranking" type="text"{...register("ranking")} required />
+                <label htmlFor="ranking">Duration:(pg&ug in month)</label>
+                <input id="ranking" type="text"{...register("duration")}  />
             </div>
 
             <div className="form-group">
-                <label htmlFor="tuitionFee">Tuition Fee:</label>
-                <input id="tuitionFee" type="text" {...register("tuitionFee")} required />
+                <label htmlFor="tuitionFee">Tuition Fee:(estimated)</label>
+                <input id="tuitionFee" type="text" {...register("tuitionFee")}  />
             </div>
 
             <div className="form-group">
                 <label htmlFor="requiredDocs">Required Documents:</label>
-                <input id="requiredDocs" type="text" {...register("requiredDocs")} required />
+                <input id="requiredDocs" type="text" {...register("requiredDocs")}  />
             </div>
 
             <div className="form-group">
-                <label htmlFor="applicationFee">Application Fee:</label>
-                <input id="applicationFee" type="text" {...register("applicationFee")} required />
+                <label htmlFor="applicationFee">Application Fee:($estimated)</label>
+                <input id="applicationFee" type="text" {...register("applicationFee")}  />
             </div>
 
-            <div className="form-group">
-                <label htmlFor="duration">Duration (Months):</label>
-                <input id="duration" type="text" {...register("duration")} required />
-            </div>
 
             <div className="form-group">
-                <label htmlFor="intakes">Intakes:</label>
-                <input id="intakes" type="text" {...register("intakes")} required />
+                <label htmlFor="intakes">Intakes:(estimated)</label>
+                <input id="intakes" type="text" {...register("intakes")}  />
             </div>
 
             <div className="form-group">
                 <label htmlFor="entryRequirements">Entry Requirements:</label>
-                <input id="entryRequirements" type="text" {...register("entryRequirements")} required />
+                <input id="entryRequirements" type="text" {...register("entryRequirements")}  />
             </div>
 
             <div className="form-group">
-                <label htmlFor="applicationDeadlines">Application Deadlines:</label>
-                <input id="applicationDeadlines" type="text" {...register("applicationDeadlines")} required />
+                <label htmlFor="applicationDeadlines">Application Deadlines:($estimated)</label>
+                <input id="applicationDeadlines" type="text" {...register("applicationDeadlines")}/>
             </div>
 
             <div className="form-actions">
-                <button type="submit" className="btn-update" disabled={createLoad || editLoad || imgLoad}>
-                    {imgLoad || createLoad || editLoad ? "Processing..." : name}
+                <button type="submit" className="btn-update" disabled={createLoad || editLoad}>
+                    {createLoad || editLoad ? "Processing..." : name}
                 </button>
             </div>
         </form>

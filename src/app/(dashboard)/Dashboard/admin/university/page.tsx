@@ -47,6 +47,7 @@ const page = () => {
                 <table className="table">
                     <thead className="thead">
                         <tr className="tr">
+                            <th className="th">Serial</th>
                             <th className="th">University Name</th>
                             <th className="th">Country</th>
                             <th className="th">Image</th>
@@ -64,20 +65,21 @@ const page = () => {
                     </thead>
                     <tbody className="tbody">
                         {
-                            data?.data?.map((uni:any)=>(
+                            data?.data?.map((uni:any,index:number)=>(
                                 <tr key={uni?._id} className="tr">
+                                    <td className="td" data-label="University Name">{index+1}</td>
                                     <td className="td" data-label="University Name">{uni?.name}</td>
-                                    <td className="td" data-label="Ranking">{uni?.country}</td>
+                                    <td className="td" data-label="Ranking">#{uni?.country}</td>
                                     <td className="td" data-label="Logo"><img className="logo-img" src={uni?.url} alt="Harvard Logo"/></td>
                                     <td className="td" data-label="Ranking">{uni?.ranking}</td>
-                                    <td className="td" data-label="Tuition Fee">{uni?.tuitionFee}</td>
+                                    <td className="td" data-label="Tuition Fee">${uni?.tuitionFee}</td>
                                     <td className="td" data-label="Required Document">{uni?.requiredDocs}</td>
-                                    <td className="td" data-label="Application Fee">{uni?.applicationFee}</td>
+                                    <td className="td" data-label="Application Fee">${uni?.applicationFee}</td>
                                     <td className="td" data-label="Duration (Months)">{uni?.duration}</td>
                                     <td className="td" data-label="Intakes">{uni?.intakes}</td>
                                     <td className="td" data-label="Entry Requirements">{uni?.entryRequirements}</td>
                                     <td className="td" data-label="Application Deadlines">{uni?.applicationDeadlines}</td>
-                                    <td className="td" data-label="Application Deadlines"><FontAwesomeIcon onClick={()=>{setOpen(!open);setName("Edit");setUniId(uni?.url)}} icon={faPen}/></td>
+                                    <td className="td" data-label="Application Deadlines"><FontAwesomeIcon onClick={()=>{setOpen(!open);setName("Edit");setUniId(uni?._id)}} icon={faPen}/></td>
                                     <td className="td" data-label="Application Deadlines"><FontAwesomeIcon onClick={()=>handleDelete(uni?._id)} icon={faCancel}/></td>
                                 </tr>))
                         }

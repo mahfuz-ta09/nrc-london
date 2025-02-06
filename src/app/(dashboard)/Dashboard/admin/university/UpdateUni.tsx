@@ -54,9 +54,9 @@ const UpdateUni = ({name,setOpen,uniId}:{name:string,setOpen:React.Dispatch<Reac
                 applicationDeadlines: data?.applicationDeadlines,
             }
 
-            if(name==="Add" && !error){
+            if(name==="Add"){
                 res = await createUniversity(dataUpload)
-            }else if(name==="Edit" && !error){
+            }else{
                 res = await updateUniversity({data:dataUpload,id:uniId})
             }
             
@@ -74,61 +74,61 @@ const UpdateUni = ({name,setOpen,uniId}:{name:string,setOpen:React.Dispatch<Reac
 
     return (
         <form className="edit-university-form" onSubmit={handleSubmit(onSubmit)}>
-            <h2 className="form-title">{name} University</h2>
+            <h2 className="form-title">{name} University-{uniId}</h2>
 
             <div className="form-group">
                 <label htmlFor="name">University Name:</label>
-                <input id="name" type="text" {...register("name")} required />
+                <input id="name" type="text" {...register("name")} />
             </div>
 
             <div className="form-group">
                 <label htmlFor="name">Country Name:</label>
-                <input id="name" type="text" {...register("country")} required />
+                <input id="name" type="text" {...register("country")} />
             </div>
 
             <div className="form-group">
                 <label htmlFor="logo">Add university image:</label>
-                <input id="file" type="file" {...register("file")}  required />
+                <input id="file" type="file" {...register("file")}  />
             </div>
 
             <div className="form-group">
                 <label htmlFor="ranking">Ranking:</label>
-                <input id="ranking" type="text"{...register("ranking")} required />
+                <input id="ranking" type="text"{...register("ranking")} />
             </div>
 
             <div className="form-group">
                 <label htmlFor="tuitionFee">Tuition Fee:</label>
-                <input id="tuitionFee" type="text" {...register("tuitionFee")} required />
+                <input id="tuitionFee" type="text" {...register("tuitionFee")} />
             </div>
 
             <div className="form-group">
-                <label htmlFor="requiredDocs">Required Documents:</label>
-                <input id="requiredDocs" type="text" {...register("requiredDocs")} required />
+                <label htmlFor="requiredDocs">Required documents:</label>
+                <input id="requiredDocs" type="text" {...register("requiredDocs")} />
             </div>
 
             <div className="form-group">
                 <label htmlFor="applicationFee">Application Fee:</label>
-                <input id="applicationFee" type="text" {...register("applicationFee")} required />
+                <input id="applicationFee" type="text" {...register("applicationFee")} />
             </div>
 
             <div className="form-group">
                 <label htmlFor="duration">Duration (Months):</label>
-                <input id="duration" type="text" {...register("duration")} required />
+                <input id="duration" type="text" {...register("duration")} />
             </div>
 
             <div className="form-group">
                 <label htmlFor="intakes">Intakes:</label>
-                <input id="intakes" type="text" {...register("intakes")} required />
+                <input id="intakes" type="text" {...register("intakes")} />
             </div>
 
             <div className="form-group">
                 <label htmlFor="entryRequirements">Entry Requirements:</label>
-                <input id="entryRequirements" type="text" {...register("entryRequirements")} required />
+                <input id="entryRequirements" type="text" {...register("entryRequirements")} />
             </div>
 
             <div className="form-group">
                 <label htmlFor="applicationDeadlines">Application Deadlines:</label>
-                <input id="applicationDeadlines" type="text" {...register("applicationDeadlines")} required />
+                <input id="applicationDeadlines" type="text" {...register("applicationDeadlines")} />
             </div>
 
             <div className="form-actions">

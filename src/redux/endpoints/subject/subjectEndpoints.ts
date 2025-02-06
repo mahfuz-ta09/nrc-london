@@ -25,13 +25,13 @@ const subjectApi = baseApi.injectEndpoints({
 
     deleteSubject: build.mutation<any, string>({
       query: (id) =>({
-        url    : `/Subject/delete/${id}`,
+        url    : `/subject/delete/${id}`,
         method : 'DELETE',
       }),
       invalidatesTags: ["subjects"]
     }),
 
-    
+
     updateSubject: build.mutation<any, { data: any, id: string }>({
         query: ({ data , id }) => ({
           url         : `/subject/update/${id}`,
