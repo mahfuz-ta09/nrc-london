@@ -20,6 +20,7 @@ const Page = () => {
                     <p>Choose your dream course</p>
                 </div>
             </div>
+            
             <div className="subjects-content wdth">
                 <div className="subject-card">
                     {

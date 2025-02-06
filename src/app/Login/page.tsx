@@ -26,7 +26,6 @@ const LoginPage = () => {
       let formData = convertFormData(data)
         try{
             const res = await logInUser(formData)
-
             if(res?.statusCode === 200){
                 localStorage.setItem('accessToken',res?.meta?.accessToken)
                 toast.success(res?.message)
