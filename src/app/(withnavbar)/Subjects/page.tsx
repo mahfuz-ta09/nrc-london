@@ -11,7 +11,7 @@ const Page = () => {
     const { data , isLoading : dataLoading } = useGetSubjectQuery()
     const router = useRouter()
 
-    console.log(data?.data)
+
     return (
         <div className='subjects-container'>
             <div className="subjects-banner">
