@@ -4,12 +4,11 @@ import logo from"../../../assets/logo.png"
 import Image from 'next/image'
 import Link from 'next/link'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faBars, faBook, faGlobe, faPhone, faXmark } from '@fortawesome/free-solid-svg-icons'
+import { faBars, faBook, faPhone, faXmark } from '@fortawesome/free-solid-svg-icons'
 import { useState } from 'react'
 import { useRouter } from 'next/navigation'
 import { logOut } from '@/utils/authAction'
 import { useUserInfo } from '@/utils/useUserInfo'
-import dynamic from 'next/dynamic'
 import UniNav from './UniNav'
 
 
@@ -18,16 +17,17 @@ const Navbar = () => {
     const data = useUserInfo()
     const router=useRouter()
 
-    
+    console.log(data)
     const handleNavbar = () =>{
         setIsOpen((prev) => !prev)
     }
     
 
     const handleLogOut = () =>{
+        // router.refresh()
         logOut(router)
     }
-
+    console.log(data)
     return (
         <div className='nav-holder'>
             <div className="nav-content">

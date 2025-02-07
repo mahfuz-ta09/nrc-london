@@ -9,7 +9,7 @@ import Link from "next/link"
 const UniNav = () => {
     const {data,isLoading} = useGetUniNavItemQuery()
     
-    
+    console.log(data?.data)
     return (
         <div className='link-holder'>
             <p className='link'>University</p>
@@ -22,7 +22,7 @@ const UniNav = () => {
                             <div key={index} className="drop-down-group">
                                 {data.data.slice(4 * index, 4 * index + 4).map((uni: any, ind: number) => (
                                     <Link key={ind} className="drop-down-link" href={`/University/${uni?.country}`}>
-                                    <FontAwesomeIcon icon={faGlobe} /> {uni?.country}
+                                        <FontAwesomeIcon icon={faGlobe} /> {uni?.country}
                                     </Link>
                                 ))}
                             </div>
