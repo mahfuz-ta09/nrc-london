@@ -1,19 +1,15 @@
 'use client'
 import '@/css/Students/Subjects/Subjects.css'
 import Footer from '@/component/shared/Footer/Footer'
-import { faCancel, faDollar } from '@fortawesome/free-solid-svg-icons'
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { useParams, useRouter } from 'next/navigation'
 import { useGetAllUniByCountryQuery } from '@/redux/endpoints/university/universityEndpoints'
 
 const page = () => {
     const { country } = useParams()
     const router = useRouter()
-    const {data,isLoading,error} = useGetAllUniByCountryQuery(String(country))
+    const {data,isLoading} = useGetAllUniByCountryQuery(String(country))
 
 
-    if (isLoading) return <p>Loading...</p>;
-    if (error) return <p>Error loading universities</p>
 
     return (
         <div className='subjects-container'>
@@ -25,347 +21,42 @@ const page = () => {
             </div>
             <div className="subjects-content wdth">
                 <div className="subject-card">
-                    
-                    <div className="single-subject">
-                        <div className="subject-header">
-                            <p>Bornmouth</p>
-                            <p>University</p>
-                        </div>
-                        <div className="additional">
-                            <h4>Required Document:</h4>
-                            <h5>Australia, Australia, Australia, Australia, Australia, Australia, Australia, Australia, Australia, Australia, Australia, Australia, Australia, Australia, Australia, Australia</h5>
-                            <div className="addition-data">
-                                <p className=''>Tuition fee:</p>
-                                <p className=''>18000-19000 <FontAwesomeIcon icon={faDollar}/>yr</p>
+                   
+                    {
+                        isLoading ? <p>Loading...</p>: 
+                        data?.data?.map((uni:any)=> 
+                            <div key={uni?._id} className="single-subject">
+                                <div className="subject-header">
+                                    <p>{uni?.name}</p>
+                                </div>
+                                <div className="additional">
+                                    <h4>Required Document:</h4>
+                                    <h5>{uni?.requiredDocs}</h5>
+                                    <div className="addition-data">
+                                        <p className=''>Tuition fee:</p>
+                                        <p className=''>{uni?.tuitionFee}</p>
+                                    </div>
+                                    <div className="addition-data">
+                                        <p className=''>Duration[months]:</p>
+                                        <p className=''>{uni?.duration}</p>
+                                    </div>
+                                    <div className="addition-data">
+                                        <p className=''>Intakes:</p>
+                                        <p className=''>{uni?.intakes}</p>
+                                    </div>
+                                    <div className="addition-data">
+                                        <p className=''>Entry requirements</p>
+                                        <p className=''>{uni?.entryRequirements}</p>
+                                    </div>
+                                    <div className="addition-data">
+                                        <p className=''>Application fee:</p>
+                                        <p className=''>{uni?.applicationFee}</p>
+                                    </div>
+                                </div>
+                                <button onClick={()=>router.push('/Proceed')}className='apply-now'>apply now</button>
                             </div>
-                            <div className="addition-data">
-                                <p className=''>Application fee:</p>
-                                <p className=''><FontAwesomeIcon icon={faCancel}/>/NA</p>
-                            </div>
-                            <div className="addition-data">
-                                <p className=''>Duration[months]:</p>
-                                <p className=''>ug-48 pg-12</p>
-                            </div>
-                            <div className="addition-data">
-                                <p className=''>Intakes:</p>
-                                <p className=''>September</p>
-                            </div>
-                            <div className="addition-data">
-                                <p className=''>Entry requirements</p>
-                                <p className=''>ug-60% pg-55%</p>
-                            </div>
-                            <div className="addition-data">
-                                <p className=''>Tuition fee:</p>
-                                <p className=''>18000-19000 <FontAwesomeIcon icon={faDollar}/>yr</p>
-                            </div>
-                        </div>
-                        <button onClick={()=>router.push('/Proceed')}className='apply-now'>apply now</button>
-                    </div>
-                    
-
-                    <div className="single-subject">
-                        <div className="subject-header">
                             
-                            <p>Bornmouth</p>
-                            <p>University</p>
-                        </div>
-                        <div className="additional">
-                            <h4>Required Document:</h4>
-                            <h5>Australia, Australia, Australia, Australia, Australia, Australia, Australia, Australia, Australia, Australia, Australia, Australia, Australia, Australia, Australia, Australia</h5>
-                            <div className="addition-data">
-                                <p className=''>Tuition fee:</p>
-                                <p className=''>18000-19000 <FontAwesomeIcon icon={faDollar}/>yr</p>
-                            </div>
-                            <div className="addition-data">
-                                <p className=''>Application fee:</p>
-                                <p className=''><FontAwesomeIcon icon={faCancel}/>/NA</p>
-                            </div>
-                            <div className="addition-data">
-                                <p className=''>Duration[months]:</p>
-                                <p className=''>ug-48 pg-12</p>
-                            </div>
-                            <div className="addition-data">
-                                <p className=''>Intakes:</p>
-                                <p className=''>September</p>
-                            </div>
-                            <div className="addition-data">
-                                <p className=''>Entry requirements</p>
-                                <p className=''>ug-60% pg-55%</p>
-                            </div>
-                            <div className="addition-data">
-                                <p className=''>Tuition fee:</p>
-                                <p className=''>18000-19000 <FontAwesomeIcon icon={faDollar}/>yr</p>
-                            </div>
-                        </div>
-                        <button onClick={()=>router.push('/Proceed')}className='apply-now'>apply now</button>
-                    </div>
-                    
-
-                    <div className="single-subject">
-                        <div className="subject-header">
-                            
-                            <p>Bornmouth</p>
-                            <p>University</p>
-                        </div>
-                        <div className="additional">
-                            <h4>Required Document:</h4>
-                            <h5>Australia, Australia, Australia, Australia, Australia, Australia, Australia, Australia, Australia, Australia, Australia, Australia, Australia, Australia, Australia, Australia</h5>
-                            <div className="addition-data">
-                                <p className=''>Tuition fee:</p>
-                                <p className=''>18000-19000 <FontAwesomeIcon icon={faDollar}/>yr</p>
-                            </div>
-                            <div className="addition-data">
-                                <p className=''>Application fee:</p>
-                                <p className=''><FontAwesomeIcon icon={faCancel}/>/NA</p>
-                            </div>
-                            <div className="addition-data">
-                                <p className=''>Duration[months]:</p>
-                                <p className=''>ug-48 pg-12</p>
-                            </div>
-                            <div className="addition-data">
-                                <p className=''>Intakes:</p>
-                                <p className=''>September</p>
-                            </div>
-                            <div className="addition-data">
-                                <p className=''>Entry requirements</p>
-                                <p className=''>ug-60% pg-55%</p>
-                            </div>
-                            <div className="addition-data">
-                                <p className=''>Tuition fee:</p>
-                                <p className=''>18000-19000 <FontAwesomeIcon icon={faDollar}/>yr</p>
-                            </div>
-                        </div>
-                        <button onClick={()=>router.push('/Proceed')}className='apply-now'>apply now</button>
-                    </div>
-                    
-
-                    <div className="single-subject">
-                        <div className="subject-header">
-                            
-                            <p>Bornmouth</p>
-                            <p>University</p>
-                        </div>
-                        <div className="additional">
-                            <h4>Required Document:</h4>
-                            <h5>Australia, Australia, Australia, Australia, Australia, Australia, Australia, Australia, Australia, Australia, Australia, Australia, Australia, Australia, Australia, Australia</h5>
-                            <div className="addition-data">
-                                <p className=''>Tuition fee:</p>
-                                <p className=''>18000-19000 <FontAwesomeIcon icon={faDollar}/>yr</p>
-                            </div>
-                            <div className="addition-data">
-                                <p className=''>Application fee:</p>
-                                <p className=''><FontAwesomeIcon icon={faCancel}/>/NA</p>
-                            </div>
-                            <div className="addition-data">
-                                <p className=''>Duration[months]:</p>
-                                <p className=''>ug-48 pg-12</p>
-                            </div>
-                            <div className="addition-data">
-                                <p className=''>Intakes:</p>
-                                <p className=''>September</p>
-                            </div>
-                            <div className="addition-data">
-                                <p className=''>Entry requirements</p>
-                                <p className=''>ug-60% pg-55%</p>
-                            </div>
-                            <div className="addition-data">
-                                <p className=''>Tuition fee:</p>
-                                <p className=''>18000-19000 <FontAwesomeIcon icon={faDollar}/>yr</p>
-                            </div>
-                        </div>
-                        <button onClick={()=>router.push('/Proceed')}className='apply-now'>apply now</button>
-                    </div>
-                    
-
-                    <div className="single-subject">
-                        <div className="subject-header">
-                            
-                            <p>Bornmouth</p>
-                            <p>University</p>
-                        </div>
-                        <div className="additional">
-                            <h4>Required Document:</h4>
-                            <h5>Australia, Australia, Australia, Australia, Australia, Australia, Australia, Australia, Australia, Australia, Australia, Australia, Australia, Australia, Australia, Australia</h5>
-                            <div className="addition-data">
-                                <p className=''>Tuition fee:</p>
-                                <p className=''>18000-19000 <FontAwesomeIcon icon={faDollar}/>yr</p>
-                            </div>
-                            <div className="addition-data">
-                                <p className=''>Application fee:</p>
-                                <p className=''><FontAwesomeIcon icon={faCancel}/>/NA</p>
-                            </div>
-                            <div className="addition-data">
-                                <p className=''>Duration[months]:</p>
-                                <p className=''>ug-48 pg-12</p>
-                            </div>
-                            <div className="addition-data">
-                                <p className=''>Intakes:</p>
-                                <p className=''>September</p>
-                            </div>
-                            <div className="addition-data">
-                                <p className=''>Entry requirements</p>
-                                <p className=''>ug-60% pg-55%</p>
-                            </div>
-                            <div className="addition-data">
-                                <p className=''>Tuition fee:</p>
-                                <p className=''>18000-19000 <FontAwesomeIcon icon={faDollar}/>yr</p>
-                            </div>
-                        </div>
-                        <button onClick={()=>router.push('/Proceed')}className='apply-now'>apply now</button>
-                    </div>
-                    
-
-                    <div className="single-subject">
-                        <div className="subject-header">
-                            
-                            <p>Bornmouth</p>
-                            <p>University</p>
-                        </div>
-                        <div className="additional">
-                            <h4>Required Document:</h4>
-                            <h5>Australia, Australia, Australia, Australia, Australia, Australia, Australia, Australia, Australia, Australia, Australia, Australia, Australia, Australia, Australia, Australia</h5>
-                            <div className="addition-data">
-                                <p className=''>Tuition fee:</p>
-                                <p className=''>18000-19000 <FontAwesomeIcon icon={faDollar}/>yr</p>
-                            </div>
-                            <div className="addition-data">
-                                <p className=''>Application fee:</p>
-                                <p className=''><FontAwesomeIcon icon={faCancel}/>/NA</p>
-                            </div>
-                            <div className="addition-data">
-                                <p className=''>Duration[months]:</p>
-                                <p className=''>ug-48 pg-12</p>
-                            </div>
-                            <div className="addition-data">
-                                <p className=''>Intakes:</p>
-                                <p className=''>September</p>
-                            </div>
-                            <div className="addition-data">
-                                <p className=''>Entry requirements</p>
-                                <p className=''>ug-60% pg-55%</p>
-                            </div>
-                            <div className="addition-data">
-                                <p className=''>Tuition fee:</p>
-                                <p className=''>18000-19000 <FontAwesomeIcon icon={faDollar}/>yr</p>
-                            </div>
-                        </div>
-                        <button onClick={()=>router.push('/Proceed')}className='apply-now'>apply now</button>
-                    </div>
-                    
-
-                    <div className="single-subject">
-                        <div className="subject-header">
-                            
-                            <p>Bornmouth</p>
-                            <p>University</p>
-                        </div>
-                        <div className="additional">
-                            <h4>Required Document:</h4>
-                            <h5>Australia, Australia, Australia, Australia, Australia, Australia, Australia, Australia, Australia, Australia, Australia, Australia, Australia, Australia, Australia, Australia</h5>
-                            <div className="addition-data">
-                                <p className=''>Tuition fee:</p>
-                                <p className=''>18000-19000 <FontAwesomeIcon icon={faDollar}/>yr</p>
-                            </div>
-                            <div className="addition-data">
-                                <p className=''>Application fee:</p>
-                                <p className=''><FontAwesomeIcon icon={faCancel}/>/NA</p>
-                            </div>
-                            <div className="addition-data">
-                                <p className=''>Duration[months]:</p>
-                                <p className=''>ug-48 pg-12</p>
-                            </div>
-                            <div className="addition-data">
-                                <p className=''>Intakes:</p>
-                                <p className=''>September</p>
-                            </div>
-                            <div className="addition-data">
-                                <p className=''>Entry requirements</p>
-                                <p className=''>ug-60% pg-55%</p>
-                            </div>
-                            <div className="addition-data">
-                                <p className=''>Tuition fee:</p>
-                                <p className=''>18000-19000 <FontAwesomeIcon icon={faDollar}/>yr</p>
-                            </div>
-                        </div>
-                        <button onClick={()=>router.push('/Proceed')}className='apply-now'>apply now</button>
-                    </div>
-                    
-
-                    <div className="single-subject">
-                        <div className="subject-header">
-                            
-                            <p>Bornmouth</p>
-                            <p>University</p>
-                        </div>
-                        <div className="additional">
-                            <h4>Required Document:</h4>
-                            <h5>Australia, Australia, Australia, Australia, Australia, Australia, Australia, Australia, Australia, Australia, Australia, Australia, Australia, Australia, Australia, Australia</h5>
-                            <div className="addition-data">
-                                <p className=''>Tuition fee:</p>
-                                <p className=''>18000-19000 <FontAwesomeIcon icon={faDollar}/>yr</p>
-                            </div>
-                            <div className="addition-data">
-                                <p className=''>Application fee:</p>
-                                <p className=''><FontAwesomeIcon icon={faCancel}/>/NA</p>
-                            </div>
-                            <div className="addition-data">
-                                <p className=''>Duration[months]:</p>
-                                <p className=''>ug-48 pg-12</p>
-                            </div>
-                            <div className="addition-data">
-                                <p className=''>Intakes:</p>
-                                <p className=''>September</p>
-                            </div>
-                            <div className="addition-data">
-                                <p className=''>Entry requirements</p>
-                                <p className=''>ug-60% pg-55%</p>
-                            </div>
-                            <div className="addition-data">
-                                <p className=''>Tuition fee:</p>
-                                <p className=''>18000-19000 <FontAwesomeIcon icon={faDollar}/>yr</p>
-                            </div>
-                        </div>
-                        <button onClick={()=>router.push('/Proceed')}className='apply-now'>apply now</button>
-                    </div>
-                    
-
-                    <div className="single-subject">
-                        <div className="subject-header">
-                            
-                            <p>Bornmouth</p>
-                            <p>University</p>
-                        </div>
-                        <div className="additional">
-                            <h4>Required Document:</h4>
-                            <h5>Australia, Australia, Australia, Australia, Australia, Australia, Australia, Australia, Australia, Australia, Australia, Australia, Australia, Australia, Australia, Australia</h5>
-                            <div className="addition-data">
-                                <p className=''>Tuition fee:</p>
-                                <p className=''>18000-19000 <FontAwesomeIcon icon={faDollar}/>yr</p>
-                            </div>
-                            <div className="addition-data">
-                                <p className=''>Application fee:</p>
-                                <p className=''><FontAwesomeIcon icon={faCancel}/>/NA</p>
-                            </div>
-                            <div className="addition-data">
-                                <p className=''>Duration[months]:</p>
-                                <p className=''>ug-48 pg-12</p>
-                            </div>
-                            <div className="addition-data">
-                                <p className=''>Intakes:</p>
-                                <p className=''>September</p>
-                            </div>
-                            <div className="addition-data">
-                                <p className=''>Entry requirements</p>
-                                <p className=''>ug-60% pg-55%</p>
-                            </div>
-                            <div className="addition-data">
-                                <p className=''>Tuition fee:</p>
-                                <p className=''>18000-19000 <FontAwesomeIcon icon={faDollar}/>yr</p>
-                            </div>
-                        </div>
-                        <button onClick={()=>router.push('/Proceed')}className='apply-now'>apply now</button>
-                    </div>
-                    
+                    )}
                 </div>
             </div>
 
