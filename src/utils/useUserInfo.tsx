@@ -8,7 +8,7 @@ export const useUserInfo = () => {
         Uemail: "",
         Urole: "",
         Uid: "",
-    });
+    })
 
     const updateUser = () => {
         const token = accessToken();

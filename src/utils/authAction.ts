@@ -5,8 +5,8 @@ import { cookieRemove } from "@/authHooks/auth"
 
 
 export const logOut = async(route:AppRouterInstance) =>{
-    await cookieRemove()
     localStorage.removeItem('accessToken')
+    await cookieRemove()
     window.dispatchEvent(new Event("tokenChanged"))
     deleteCookies()
     route.refresh()

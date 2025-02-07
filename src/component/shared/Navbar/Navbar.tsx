@@ -17,17 +17,16 @@ const Navbar = () => {
     const data = useUserInfo()
     const router=useRouter()
 
-    console.log(data)
+    
     const handleNavbar = () =>{
         setIsOpen((prev) => !prev)
     }
     
 
     const handleLogOut = () =>{
-        // router.refresh()
         logOut(router)
     }
-    console.log(data)
+    
     return (
         <div className='nav-holder'>
             <div className="nav-content">

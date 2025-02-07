@@ -21,10 +21,10 @@
 .home-contain > :nth-child(n):not(:first-child) {
   border-top: 2px solid #fff;
 }
-
+/* 
 .home-contain > :nth-child(1){
   background: #efefef;
-}
+} */
 
 
 .home-contain > :nth-child(4){

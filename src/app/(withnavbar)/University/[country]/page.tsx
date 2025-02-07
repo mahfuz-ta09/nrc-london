@@ -10,7 +10,6 @@ const page = () => {
     const {data,isLoading} = useGetAllUniByCountryQuery(String(country))
 
 
-
     return (
         <div className='subjects-container'>
             <div className="subjects-banner">

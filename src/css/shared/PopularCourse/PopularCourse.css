@@ -2,7 +2,9 @@
     width: 100%;
     height: auto;
     margin: 0 auto;
+    background: rgba(0,74,98);
 }
+
 
 .popular-courses{
     max-width: 1240px;
@@ -16,11 +18,11 @@
 }
 
 .courses-tag{
-    color: black;
+    color: #fff;
 }
 
 .courses-tag span{
-    color: rgba(0,74,98);
+    color: rgba(255, 255, 255);
 }
 
 .courses{
@@ -36,24 +38,25 @@
     align-items: center;
     justify-content: center;
     gap: 20px;
-    border:solid 2px rgb(189, 189, 189);
+    border: 2px solid rgba(255, 255, 255,0.2);
     padding: 10px 30px;
     width:fit-content;
     border-radius: 5px;
     cursor: pointer;
+    background: rgba(255, 255, 255,0.2);
 }
 
 .single-course:hover{
-    border:solid 2px rgba(0,74,98);
+    border: 2px solid rgb(189, 189, 189);
 }
 
 .single-course-icon{
-    color: rgba(0,74,98);
+    color: #fff;
     font-size: 22px;
 }
 
 .single-course-heading{
-    color: #000;
+    color: #fff;
     font-size: 22px;
 }
 
@@ -68,6 +71,7 @@
     border: none;
     color: #fff;
 }
+
 
 .see-all:hover{
     background: rgb(1, 50, 67);

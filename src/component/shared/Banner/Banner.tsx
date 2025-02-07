@@ -12,6 +12,7 @@ import map from '../../../assets/map.svg'
 const Banner = () => {
     return (
         <div className="banner-container">
+            <div className="bottom"></div>
             <div className="banner-content">
                 <div className="banner-part">
                     <h4>Plan your future with us!</h4>

@@ -8,6 +8,20 @@
     position: relative;
 }
 
+.bottom{
+    position: absolute;
+    background: rgb(2, 82, 108);
+    z-index: 1;
+    height:300px;
+    width: 300px;
+    border-radius: 10px;
+    left: 30%;
+    top: 40%;
+    border-radius: 50%;
+    box-shadow: 30px 10px 55px 3px rgba(255,255,255, 0.5);
+    transform: rotate(70deg);
+}
+
 
 .banner-content{
     max-width: 1240px;
@@ -17,7 +31,6 @@
     align-items: start;
     justify-content: start;
     padding: 25vh 10px;
-    z-index: 2;
 }
 
 .banner-part{
@@ -27,12 +40,14 @@
     flex-direction: column;
     max-width:600px ;
     gap: 20px;
+    z-index: 3;
 }
 
 .banner-photo{
     object-fit: contain; 
     width: 750px;
     height: 400px;
+    z-index: 3;
 }
 
 .banner-part h4{
@@ -115,6 +130,7 @@
     box-shadow:2px 4px 10px  #fff;
     object-fit: contain;
     flex: 1;
+    z-index: 3;
 }
 
 .achiev-photo{
@@ -154,6 +170,21 @@
         flex-direction: column;
         padding: 10vh  20px;
     }
+    
+    .bottom{
+        position: absolute;
+        background: rgb(2, 82, 108);
+        z-index: 1;
+        height:200px;
+        width: 200px;
+        border-radius: 10px;
+        left: 20%;
+        top: 20%;
+        border-radius: 50%;
+        box-shadow: 30px 10px 55px 3px rgba(255,255,255, 0.5);
+        transform: rotate(70deg);
+    }
+
     
     .banner-part{
         gap: 40px;

@@ -10,7 +10,6 @@ export const logInUser = async(formData: FormData)=>{
     })
 
     const userInfo = await response.json()
-    
     if(userInfo?.meta?.accessToken){
         setCookie(userInfo?.meta?.accessToken)
     }

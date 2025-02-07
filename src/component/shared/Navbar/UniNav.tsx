@@ -9,7 +9,7 @@ import Link from "next/link"
 const UniNav = () => {
     const {data,isLoading} = useGetUniNavItemQuery()
     
-    console.log(data?.data)
+
     return (
         <div className='link-holder'>
             <p className='link'>University</p>
