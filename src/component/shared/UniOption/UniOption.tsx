@@ -4,21 +4,24 @@ import '../../../css/shared/Unioption/UniOption.css'
 import { faArrowAltCircleLeft, faArrowAltCircleRight } from '@fortawesome/free-solid-svg-icons'
 import { useGetUniNavItemQuery } from '@/redux/endpoints/university/universityEndpoints'
 import { useRouter } from 'next/navigation'
+import { useState } from 'react'
 
 
 const UniOption = () => {
     const router = useRouter()
     const {data,isLoading} = useGetUniNavItemQuery()
+    const [cur,setCur] = useState(4);
 
+    console.log(data?.data.length,cur-4,cur)
 
-    return (
+    return (    
         <div className='unioption-cotainer'>
             <div className="uni-content">
                 <h1>Have a look at your University options:</h1>
                 <div className="unicaro">
                     {
                         isLoading ? <p>Loading...</p> :
-                        data?.data?.map((option:any)=>
+                        data?.data?.slice(cur-4,cur).map((option:any)=>
                             <div key={option.country} className="uni">
                                 <img className="uni-image" src={option.image}alt='' />
                                 <div className="overlay"></div>
@@ -30,13 +33,15 @@ const UniOption = () => {
                             </div>)
                     }
                 </div>
+                
                 <div className="uni-nav">
-                    {/* <button className='uni-nav-btn'>see more</button> */}
                     <div className="uni-nav-nav">
-                        <button className='uni-nav-nav-btn'><FontAwesomeIcon icon={faArrowAltCircleLeft} /></button>
-                        <button className='uni-nav-nav-btn'><FontAwesomeIcon icon={faArrowAltCircleRight}/></button>
+                        <button onClick={()=>setCur(cur>4? cur-1 : data?.data?.length)} className='uni-nav-nav-btn'><FontAwesomeIcon icon={faArrowAltCircleLeft} /></button>
+                        <button onClick={()=>setCur(cur<data?.data?.length? cur+1 : 4)} className='uni-nav-nav-btn'><FontAwesomeIcon icon={faArrowAltCircleRight}/></button>
                     </div>
                 </div>
+
+                
             </div>
         </div>
     )
