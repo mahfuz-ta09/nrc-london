@@ -3,7 +3,9 @@ import '@/css/shared/Loader/Loader.css'
 
 const Loader = () => {
   return (
-    <div className='loader-container'>Loading...</div>
+    <div className='loader-container'>
+      <div className="spinner"></div>
+    </div>
   )
 }
 
