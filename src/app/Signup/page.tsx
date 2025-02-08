@@ -3,7 +3,7 @@ import Link from "next/link"
 import '@/css/Login/Login.css'
 import { useRouter } from "next/navigation"
 import { useForm, SubmitHandler } from "react-hook-form"
-import { signUpUser } from "@/authHooks/auth"
+import { useAuth } from '@/authHooks/useAuth'
 import { toast } from "react-toastify"
 import convertFormData from "@/utils/convertFormData"
 
@@ -21,6 +21,7 @@ const SignUpPage = () => {
         handleSubmit,
         formState: { errors },
     } = useForm<Inputs>()
+    const { signUpUser, loading } = useAuth()
 
     const onSubmit: SubmitHandler<Inputs> =  async(data) => {
         var formData = convertFormData(data)
@@ -51,13 +52,12 @@ const SignUpPage = () => {
                         <input type='email' {...register("email", { required: true })}  placeholder="enter your email" className=""/>
                         <input type='password' {...register("password", { required: true })}  placeholder="enter your password" className=""/>
                         <div className="form-link">
-                            <button type="submit">signup</button>
+                            {loading ? <p>loading...</p> :<button type="submit">signup</button>}
                         </div>
                     </form>
                     <Link className='forgot-link underline' href="/Login">Already have an account? login</Link>
                 </div>
                 <div className='image-conteiner'>
-                    {/* <Image src={bgImg} priority alt=""/> */}
                     <img src='https://i.ibb.co.com/yN0nYww/books.webp' className="" alt=''/>
                 </div>
             </div>

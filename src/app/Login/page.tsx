@@ -3,9 +3,9 @@ import Link from 'next/link'
 import '@/css/Login/Login.css'
 import { useRouter } from 'next/navigation'
 import { SubmitHandler, useForm } from 'react-hook-form'
-import { logInUser } from '@/authHooks/auth'
 import convertFormData from '@/utils/convertFormData'
 import { toast } from 'react-toastify'
+import { useAuth } from '@/authHooks/useAuth'
 
 
 
@@ -22,6 +22,7 @@ const LoginPage = () => {
         formState: { errors },
     } = useForm<Inputs>()
     const router = useRouter()
+    const { logInUser, loading } = useAuth()
 
     const onSubmit: SubmitHandler<Inputs> = async(data) => {
       let formData = convertFormData(data)
@@ -50,7 +51,7 @@ const LoginPage = () => {
                             <input type='password' {...register("password", { required: true })}   placeholder="enter your password" className=""/>
                             <div className="form-link">
                                 <Link className='forgot-link' href="">forgot password?</Link>
-                                <button type="submit" className="">login</button>
+                                {loading? <p>loading...</p> :<button type="submit" className="">login</button>}
                             </div>
                         </form>
                         <h2 className="link-header">or login with</h2>
