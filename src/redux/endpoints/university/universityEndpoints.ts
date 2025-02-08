@@ -12,7 +12,6 @@ const universityApi = baseApi.injectEndpoints({
         }),
 
         getAllUniByCountry:build.query<any,string>({
-            
             query:(uni:string) =>({
                 url: `/university/all/${uni}`,
                 method:'GET',

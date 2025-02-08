@@ -39,7 +39,7 @@
 	justify-content: space-between;
 	height: 100%;
 	width: 100%;
-	padding: 55px 0 55px 20px;
+	padding: 15px;
 	margin: 0 auto;
 	color: white;
 	background: #002633;
@@ -69,7 +69,7 @@
 	flex-direction: column;
 	align-items: start;
 	justify-content: start;
-	gap: 30px;
+	gap: 10px;
 }
 
 .nav-link{
@@ -99,7 +99,7 @@
 	top: 0;
 	width: 100%;
 	height: auto;
-	padding: 10px 45px;
+	padding: 10px 15px;
 	background: #004a62;
 	box-shadow: 0 2px 10px #2ec8fb;
 	color: #fff;
@@ -109,12 +109,24 @@
 	gap: 20px;
 }
 
-
-.nav-icon-btn{
+.dash-nav-action{
 	position: fixed;
-	z-index: -1;
-	right:55px;
+	right:15px;
 	top:  25px;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	gap: 10px;
+}
+.nav-icon-btn{
+    background: transparent;
+    border: none;
+	font-size: 25px;
+    color: white;
+	transition: .3s ease-in-out;
+}
+
+.nav-logout-btn{
     background: transparent;
     border: none;
 	font-size: 25px;
@@ -124,16 +136,16 @@
 
 
 .nav-icon-home-btn{
-	position: fixed;
-	z-index: -1;
-	right:20px;
-	top:  25px;
 	font-size: 25px;
 	transition: .3s ease-in-out;
     background: transparent;
     border: none;
 	font-size: 25px;
     color: white;
+}
+
+.nav-logout-btn:hover .nav-icon{
+	scale: .8;
 }
 
 .nav-icon-home-btn:hover .nav-icon{

@@ -1,11 +1,11 @@
 'use client'
-import Link from 'next/link'
 import '@/css/Dashboard/layout.css'
 import { useEffect, useRef, useState } from 'react'
 import dynamic from 'next/dynamic'
 import { useRouter } from 'next/navigation'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faArrowCircleRight, faHome } from '@fortawesome/free-solid-svg-icons'
+import { faArrowCircleRight, faHome, faRightFromBracket } from '@fortawesome/free-solid-svg-icons'
+import { logOut } from '@/utils/authAction'
 
 
 const LayoutPage = () => {
@@ -26,12 +26,12 @@ const LayoutPage = () => {
         ) {
           setIsOpen(false);
         }
-      };
+      }
     
       document.addEventListener("click", handleNavBar);
       return () => {
         document.removeEventListener("click", handleNavBar);
-      };
+      }
     }, []);
     
 
@@ -51,9 +51,11 @@ const LayoutPage = () => {
                     <h1>NRC-london</h1>
                     <NavLink />
                 </div>
-                <button  className='nav-icon-btn' onClick={() => handler()} ref={btnRef} ><FontAwesomeIcon icon={faArrowCircleRight} className='nav-icon'/></button>
-                <button  className='nav-icon-home-btn' onClick={() => homeHandler()}><FontAwesomeIcon className='nav-icon' icon={faHome}/></button>
-                <div className='dash-nav-footer'>
+                
+                <div className='dash-nav-action'>
+                  <button  className='nav-logout-btn' onClick={() => logOut(route)} ref={btnRef} ><FontAwesomeIcon icon={faRightFromBracket} className='nav-icon'/></button>
+                  <button  className='nav-icon-btn' onClick={() => handler()} ref={btnRef} ><FontAwesomeIcon icon={faArrowCircleRight} className='nav-icon'/></button>
+                  <button  className='nav-icon-home-btn' onClick={() => homeHandler()}><FontAwesomeIcon className='nav-icon' icon={faHome}/></button>
                 </div>
             </div>
         </div>

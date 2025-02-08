@@ -10,9 +10,8 @@ import { useState } from 'react'
 const UniOption = () => {
     const router = useRouter()
     const {data,isLoading} = useGetUniNavItemQuery()
-    const [cur,setCur] = useState(4);
+    const [cur,setCur] = useState(4)
 
-    console.log(data?.data.length,cur-4,cur)
 
     return (    
         <div className='unioption-cotainer'>
