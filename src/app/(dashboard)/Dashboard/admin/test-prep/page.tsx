@@ -1,94 +1,85 @@
 'use client'
-import '@/css/Dashboard/admin/university.css'
-import { faCancel, faPen } from '@fortawesome/free-solid-svg-icons'
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import '@/css/Dashboard/admin/test-prep.css'
 import { useState } from 'react'
-import TestCntrl from './TestCntrl'
+import { SubmitHandler, useForm } from 'react-hook-form'
 
+type Inputs = {
+    question: string
+    answer: string
+}
 
 const page = () => {
-    const [open,setOpen] = useState(false)
+    const [access,setAccess] = useState(false)
+    const {
+        register,
+        handleSubmit,
+        watch,
+        formState: { errors },
+    } = useForm<Inputs>()
+    
+    const onSubmit: SubmitHandler<Inputs> = (data) => console.log(data)
+
     return (
-      <div className='university-content'>
+      <div className='testPrep-content'>
         <div className="header">
           <h1>Test Preparation:</h1>
-          <button onClick={()=>setOpen(!open)}>Add test prep.</button>
+          <button>Add</button>
         </div>
 
 
         <div className="table-container">
-            <table className="table">
-                <thead className="thead">
-                    <tr className="tr">
-                        <th className="th">University Name</th>
-                        <th className="th">Country</th>
-                        <th className="th">Logo</th>
-                        <th className="th">Ranking</th>
-                        <th className="th">Tuition Fee</th>
-                        <th className="th">Required Document</th>
-                        <th className="th">Application Fee</th>
-                        <th className="th">Duration (Months)</th>
-                        <th className="th">Intakes</th>
-                        <th className="th">Entry Requirements</th>
-                        <th className="th">Application Deadlines</th>
-                        <th className="th">Update</th>
-                        <th className="th">Delete</th>
-                    </tr>
-                </thead>
-                <tbody className="tbody">
-                    <tr className="tr">
-                        <td className="td" data-label="University Name">Harvard University</td>
-                        <td className="td" data-label="Ranking">Uk</td>
-                        <td className="td" data-label="Logo"><img className="logo-img" src="https://upload.wikimedia.org/wikipedia/en/2/29/Harvard_shield_wreath.svg" alt="Harvard Logo"/></td>
-                        <td className="td" data-label="Ranking">#1</td>
-                        <td className="td" data-label="Tuition Fee">$50,000/year</td>
-                        <td className="td" data-label="Required Document">Passport, IELTS, Transcripts</td>
-                        <td className="td" data-label="Application Fee">$75</td>
-                        <td className="td" data-label="Duration (Months)">48</td>
-                        <td className="td" data-label="Intakes">September, January</td>
-                        <td className="td" data-label="Entry Requirements">SAT, 3.5+ GPA</td>
-                        <td className="td" data-label="Application Deadlines">Dec 15</td>
-                        <td className="td" data-label="Application Deadlines"><FontAwesomeIcon onClick={()=>setOpen(!open)}  icon={faPen}/></td>
-                        <td className="td" data-label="Application Deadlines"><FontAwesomeIcon icon={faCancel}/></td>
-                    </tr>
-                    <tr className="tr">
-                        <td className="td" data-label="University Name">Oxford University</td>
-                        <td className="td" data-label="Ranking">uk</td>
-                        <td className="td" data-label="Logo"><img className="logo-img" src="https://upload.wikimedia.org/wikipedia/en/d/d6/Oxford_university_coat_of_arms.svg" alt="Oxford Logo"/></td>
-                        <td className="td" data-label="Ranking">#2</td>
-                        <td className="td" data-label="Tuition Fee">$45,000/year</td>
-                        <td className="td" data-label="Required Document">Visa, TOEFL, SOP</td>
-                        <td className="td" data-label="Application Fee">$100</td>
-                        <td className="td" data-label="Duration (Months)">36</td>
-                        <td className="td" data-label="Intakes">October</td>
-                        <td className="td" data-label="Entry Requirements">A-levels, GPA 3.8+</td>
-                        <td className="td" data-label="Application Deadlines">Jan 10</td>
-                        <td className="td" data-label="Application Deadlines"><FontAwesomeIcon onClick={()=>setOpen(!open)}  icon={faPen}/></td>
-                        <td className="td" data-label="Application Deadlines"><FontAwesomeIcon icon={faCancel}/></td>
-                    </tr>
-                    <tr className="tr">
-                        <td className="td" data-label="University Name">Oxford University</td>
-                        <td className="td" data-label="Ranking">uk</td>
-                        <td className="td" data-label="Logo"><img className="logo-img" src="https://upload.wikimedia.org/wikipedia/en/d/d6/Oxford_university_coat_of_arms.svg" alt="Oxford Logo"/></td>
-                        <td className="td" data-label="Ranking">#2</td>
-                        <td className="td" data-label="Tuition Fee">$45,000/year</td>
-                        <td className="td" data-label="Required Document">Visa, TOEFL, SOP</td>
-                        <td className="td" data-label="Application Fee">$100</td>
-                        <td className="td" data-label="Duration (Months)">36</td>
-                        <td className="td" data-label="Intakes">October</td>
-                        <td className="td" data-label="Entry Requirements">A-levels, GPA 3.8+</td>
-                        <td className="td" data-label="Application Deadlines">Jan 10</td>
-                        <td className="td" data-label="Application Deadlines"><FontAwesomeIcon onClick={()=>setOpen(!open)}  icon={faPen}/></td>
-                        <td className="td" data-label="Application Deadlines"><FontAwesomeIcon icon={faCancel}/></td>
-                    </tr>
-                </tbody>
-            </table>
+            {/* <h1>Edit mode/ your data</h1> */}
+            <form onSubmit={handleSubmit(onSubmit)} className='prep-table'>
+                <div className='item-group'>
+                    <div className="item">
+                        <label htmlFor="What is your question?">What is your question?</label>
+                        <input type="text" value="hell yes" {...register("question")}/>
+                    </div>
+                    
+                    <div className="item">
+                        <label htmlFor="Your answer">Your answer</label>
+                        <textarea {...register("answer")}/>
+                    </div>
+                </div>
+                <div className='item-group'>
+                    <div className="item">
+                        <label htmlFor="What is your question?">What is your question?</label>
+                        <input type="text" value="hell yes" {...register("question")}/>
+                    </div>
+                    
+                    <div className="item">
+                        <label htmlFor="Your answer">Your answer</label>
+                        <textarea {...register("answer")}/>
+                    </div>
+                </div>
+                <div className='item-group'>
+                    <div className="item">
+                        <label htmlFor="What is your question?">What is your question?</label>
+                        <input type="text" value="hell yes" {...register("question")}/>
+                    </div>
+                    
+                    <div className="item">
+                        <label htmlFor="Your answer">Your answer</label>
+                        <textarea {...register("answer")}/>
+                    </div>
+                </div>
+                <div className='item-group'>
+                    <div className="item">
+                        <label htmlFor="What is your question?">What is your question?</label>
+                        <input type="text" value="hell yes" {...register("question")}/>
+                    </div>
+                    
+                    <div className="item">
+                        <label htmlFor="Your answer">Your answer</label>
+                        <textarea {...register("answer")}/>
+                    </div>
+                </div>
+
+                <input className='edit' type="submit" value="edit"/>
+                {/* <input className='edit' type="submit" value="edit"/> */}
+            </form>
         </div>
 
-        <div className={open? "mod-open" : "modal"}>
-            <button onClick={()=>setOpen(!open)} className='mod-close'>Close</button>
-            <TestCntrl />
-        </div>
       </div>
     )
 }

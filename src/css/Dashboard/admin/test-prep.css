@@ -1,0 +1,102 @@
+.testPrep-content{
+    padding: 20px;
+    width: 100%;
+    z-index: -4;
+}
+
+.header{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+}
+
+.header h1{
+    font-size: 30px;
+    color: #fff;
+}
+
+.header button{
+    padding: 8px 35px;
+    border-radius: 3px;
+    background: #000;
+    color: #fff;
+    box-shadow: 4px 4px 10px #9f9c9c;
+    border: none;
+
+    &:hover{
+        transform: scale(1.1);
+    }
+}
+
+.table-container{
+    width: 100%;
+    padding: 20px;
+}
+
+.prep-table{
+    background: rgb(255, 255, 255,0.2);
+    border-radius:5px ;
+    width: 60%;
+    margin: 10px auto;
+    padding: 30px 20px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 20px;
+    position: relative;
+}
+
+.prep-table .edit{
+    position: absolute;
+    right: 20px;
+    bottom: 20px;
+    padding: 8px 35px;
+    border-radius: 3px;
+    background: #000;
+    color: #fff;
+    box-shadow: 4px 4px 10px #9f9c9c;
+    border: none;
+
+    &:hover{
+        transform: scale(1.1);
+    }
+}
+
+.item-group{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    width: 45%;
+    margin: 0 auto;
+
+}
+
+.item{
+    display: flex;
+    align-items: left;
+    justify-content: left;
+    flex-direction: column;
+    margin: 0px auto 10px;
+    width: 100%;
+}
+
+.item input{
+    padding: 10px;
+    border-radius: 3px;
+    border: none;
+}
+
+.item textarea{
+    padding: 20px;
+    border-radius: 3px;
+    border: none;
+}
+
+
+.item label{
+    color: white;
+    margin-bottom: 5px;
+}
