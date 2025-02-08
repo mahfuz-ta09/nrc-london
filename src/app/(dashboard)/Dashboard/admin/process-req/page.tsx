@@ -28,7 +28,9 @@ const page = () => {
             console.log(err)
         }
     }
-    // console.log(data)
+    
+
+    
     return (
       <div className='university-content'>
         <div className="header">

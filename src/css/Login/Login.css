@@ -15,8 +15,9 @@
     top: 50%;
     left: 50%;
     transform: translate(-50%,-50%);
-    background: white;
+    background: rgba(0,0,0,0.7);
 }
+
 
 .image-conteiner{
     position: absolute;
@@ -51,12 +52,14 @@
     font-size: 30px;
     line-height: 30px;
     font-weight: 500;
+    color: #fff;
 }
 
 .login-content-item p{
     font-size: 15px;
     line-height: 20px;
     font-weight: 400;
+    color: #fff;
 }
 
 .input-container{
@@ -68,14 +71,13 @@
 
 .input-container input{
     width: 100%;
-    border-bottom: 1px solid black;
+    border: none;
     padding: 10px;
     background: #fff;
 }
 
 .input-container input:focus{
-    border: 1px solid black;
-    outline: none;
+    border: none;
     border-radius: 3px;
 }
 
@@ -87,7 +89,7 @@
 }
 
 .forgot-link{
-    color: rgba(0,74,98,1);
+    color: #fff;
 }
 
 .form-link button{
@@ -100,6 +102,7 @@
 
 .link-header{
     text-align:center;
+    color: #fff;
     font-size: 15px;
 }
 
@@ -132,6 +135,10 @@
     .login-content{
         width: 100%;
         height: 100%;
+    }
+
+    .login-content-item{
+        background: rgba(0,0,0,0.7);
     }
 
     .image-conteiner{
