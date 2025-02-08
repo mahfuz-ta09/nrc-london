@@ -6,6 +6,7 @@ import { SubmitHandler, useForm } from 'react-hook-form'
 import convertFormData from '@/utils/convertFormData'
 import { toast } from 'react-toastify'
 import { useAuth } from '@/authHooks/useAuth'
+import Loader from '@/component/shared/Loader/Loader'
 
 
 type Inputs = {
@@ -38,6 +39,9 @@ const LoginPage = () => {
         }
     }
 
+
+    if(loading) return <Loader />
+
     return (
             <div className="login-container">
                 <div className="login-content">
@@ -49,7 +53,7 @@ const LoginPage = () => {
                             <input type='password' {...register("password", { required: true })}   placeholder="enter your password" className=""/>
                             <div className="form-link">
                                 <Link className='forgot-link' href="">forgot password?</Link>
-                                {loading? <p>loading...</p> :<button type="submit" className="">login</button>}
+                                <button type="submit" className="">login</button>
                             </div>
                         </form>
                         <h2 className="link-header">or login with</h2>

@@ -8,7 +8,6 @@ export const logOut = async(route:AppRouterInstance) =>{
     deleteCookies()
     await cookieRemove()
     window.dispatchEvent(new Event("tokenChanged"))
-    window.location.href = "/Login"
+    window.location.href = "/"
     route.refresh()
-    route.push('/')
 }
