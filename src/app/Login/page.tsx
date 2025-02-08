@@ -8,12 +8,10 @@ import { toast } from 'react-toastify'
 import { useAuth } from '@/authHooks/useAuth'
 
 
-
 type Inputs = {
     email: string
     password: string
 }
-
 
 const LoginPage = () => {
     const {

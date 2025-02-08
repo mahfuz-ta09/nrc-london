@@ -30,7 +30,7 @@ const page = () => {
     }
     
 
-    
+
     return (
       <div className='university-content'>
         <div className="header">

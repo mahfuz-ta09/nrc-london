@@ -174,18 +174,18 @@
 
 @media screen and (max-width:450px) {
     .unicaro{
-        display: flex;
-        align-items: center;
-        justify-content: center;
         gap: 20px;
         width: 100%;
         margin: 10px auto;
         height: auto;
         padding: 10px;
+        display: grid;
+        grid-template-columns: repeat(1,1fr);
     }
 
     .uni{
-        width: 85%;
+        width: 90%;
+        margin: 0 auto;
     }
     
     .uni-content h1{

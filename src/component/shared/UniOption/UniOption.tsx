@@ -9,8 +9,8 @@ import { useState } from 'react'
 
 const UniOption = () => {
     const router = useRouter()
-    const {data,isLoading} = useGetUniNavItemQuery()
-    const [cur,setCur] = useState(4)
+    const { data , isLoading } = useGetUniNavItemQuery()
+    const [ cur , setCur ] = useState(4)
 
 
     return (    
