@@ -3,40 +3,40 @@ import '@/css/Dashboard/admin/university.css'
 import { useState } from 'react'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faCancel } from '@fortawesome/free-solid-svg-icons'
-import { useDeleteSubjectMutation, useGetSubjectQuery } from '@/redux/endpoints/subject/subjectEndpoints'
 import { toast } from 'react-toastify'
+import { useDeleteReviewMutation, useGetALlReviewQuery } from '@/redux/endpoints/review/reviewEndpoints'
 
 
 
 const page = () => {
     const [open,setOpen] = useState(false)
     const [name,setName] = useState("")
-    const { data , isLoading : dataLoading } = useGetSubjectQuery()
-    const [ deleteSubject , { isLoading : deleteLoading }] = useDeleteSubjectMutation()
+    const [ deleteReview , { isLoading : deleteLoading }] = useDeleteReviewMutation()
+    const { data: review , isLoading : reviewLoading} = useGetALlReviewQuery()
     
+
     const handleDelete= async(id:string) =>  {
         try{
-            const res = await deleteSubject(id)
-            console.log(res)
-            if(res?.data?.data?.deletedCount){
+            const res = await deleteReview(id)
+            if(res?.data?.data?.acknowledged){
                 toast.success("Deletion successful!!")
             }else{
-                toast.error("Deletion successful!!")
+                toast.error("Deletion failed!!")
             }
         }catch(err){
             console.log(err)
         }
     }
-    // console.log(data)
+
+    
     return (
       <div className='university-content'>
         <div className="header">
-          <h1>Review:</h1>
-          <button onClick={()=>{setOpen(!open);setName("Add")}}>Add Subjects</button>
+          <h1>Review: (current total review-{review?.meta?.total})</h1>
         </div>
 
         {
-            (dataLoading || deleteLoading) ?
+            (reviewLoading || deleteLoading) ?
             <p>Loading...</p> :
              
                 <div className="table-container">
@@ -52,13 +52,13 @@ const page = () => {
                         </thead> 
                         <tbody className="tbody">
                         {
-                            data?.data?.map((sub:any,index:number)=>(
+                            review?.data?.map((sub:any,index:number)=>(
                                 <tr key={sub?._id} className="tr">
                                     <td className="td" data-label="Serial">{index+1}</td>
                                     <td className="td" data-label="Subject Name">{sub?.name}</td>
-                                    <td className="td" data-label="Possible Destination">{sub?.destination}</td>
-                                    <td className="td" data-label="Duration (Months)">#{sub?.duration}</td>
-                                    <td className="td" data-label="Delete"><FontAwesomeIcon onClick={()=>handleDelete(sub?._id)} icon={faCancel}/></td>
+                                    <td className="td" data-label="Possible Destination">{sub?.email}</td>
+                                    <td className="td" data-label="Duration (Months)">{sub?.comment}</td>
+                                    <td className="td" data-label="Delete"><FontAwesomeIcon onClick={()=>handleDelete(sub?.email)} icon={faCancel}/></td>
                                 </tr>
                             ))
                         }

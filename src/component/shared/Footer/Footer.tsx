@@ -20,24 +20,28 @@ const Footer = () => {
       register,
       handleSubmit,
       watch,
+      reset,
       formState: { errors },
     } = useForm<Inputs>()
     const user = useUserInfo()
 
 
     const onSubmit: SubmitHandler<Inputs> = async(data) => {
-      const item = {
-        email:user?.Uemail,
-        comment:data?.comment,
-
-      }
-      
-      const res = await postReview(item)
-      if(res?.data?.statusCode === 200){
-          toast.success(res?.data?.message)
-      }else{
-          toast.error(res?.data?.message)
-      }
+        try{
+            const item = {
+                email:user?.Uemail,
+                comment:data?.comment,
+            }
+            const res = await postReview(item)
+            if(res?.data?.data?.acknowledged){
+                toast.success("You have commented!!")
+                reset()
+            }else{
+                toast.error(res?.data?.message)
+            }
+        }catch(err){
+            console.log(err)
+        }
     }
     
     return (
@@ -102,7 +106,7 @@ const Footer = () => {
                                 your though about us!
                             </p>
                             <form style={{display:"flex",flexDirection:"column"}}  onSubmit={handleSubmit(onSubmit)}>
-                              <textarea  {...register("comment", { required: true })}  style={{margin:"10px 0",borderRadius:"4px",minHeight:"70px",maxWidth:"300px"}}/>
+                              <textarea  {...register("comment", { required: true })}  style={{padding:"5px",margin:"10px 0",borderRadius:"4px",minHeight:"70px",maxWidth:"300px"}}/>
                               {reviewLoading ? <p>Loading...</p> : <input type='submit' style={{padding:"5px 20px",border:"none",width:"110px",objectFit:"contain",borderRadius:"4px"}} />}
                             </form>
                         </div>
