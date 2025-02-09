@@ -27,18 +27,15 @@ export const useUserInfo = () => {
         } else {
             setUser({ Uemail: "", Urole: "", Uid: "" })
         }
-    };
+    }
 
     useEffect(() => {
         updateUser()
-
-        
-        window.addEventListener("tokenChanged", updateUser);
-
+        window.addEventListener("tokenChanged", updateUser)
         return () => {
-            window.removeEventListener("tokenChanged", updateUser);
-        };
-    }, []);
+            window.removeEventListener("tokenChanged", updateUser)
+        }
+    }, [])
 
-    return user;
-};
+    return user
+}

@@ -26,6 +26,7 @@ const Navbar = () => {
     const handleLogOut = () =>{
         logOut(router)
     }
+
     
     return (
         <div className='nav-holder'>
