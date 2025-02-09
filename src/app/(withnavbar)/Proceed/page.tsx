@@ -1,17 +1,32 @@
+'use client'
 import Footer from '@/component/shared/Footer/Footer'
 import '@/css/Proceed/Proceed.css'
+import { SubmitHandler, useForm } from 'react-hook-form';
+
+
+interface IFormInput {
+    firstName: string;
+    name: string;
+    age: number;
+}
+
+
 
 const page = () => {
+    const { register , handleSubmit } = useForm<IFormInput>();
+    const onSubmit: SubmitHandler<IFormInput> = data => console.log(data)
+
+
     return (
       <div>
         <div className="container wdth">
             <h2 className="form-header">Student Registration Form</h2>
-            <form>
+            <form onSubmit={handleSubmit(onSubmit)}>
                 <label className="form-label" htmlFor="name">Name:</label>
-                <input className="form-input" type="text" id="name" name="name" required/>
+                <input className="form-input" type="text" {...register("name")} required/>
 
                 <label className="form-label" htmlFor="mobile">Mobile Number:</label>
-                <input className="form-input" type="text" id="mobile" name="mobile" required/>
+                <input className="form-input" type="number" {...register("name")} required/>
 
                 <label className="form-label" htmlFor="emergency">Emergency Number:</label>
                 <input className="form-input" type="text" id="emergency" name="emergency" required/>
@@ -22,23 +37,85 @@ const page = () => {
                 <label className="form-label" htmlFor="dob">Date of Birth:</label>
                 <input className="form-input" type="date" id="dob" name="dob" required/>
 
+
                 <h3>Educational Qualification</h3>
-                <label className="form-label" htmlFor="degree">Degree:</label>
-                <input className="form-input" type="text" id="degree" name="degree"/>
 
-                <label className="form-label" htmlFor="institution">Institution Name:</label>
-                <input className="form-input" type="text" id="institution" name="institution"/>
-
-                <label className="form-label" htmlFor="group">Group:</label>
-                <input className="form-input" type="text" id="group" name="group"/>
-
-                <label className="form-label" htmlFor="passing-year">Passing Year:</label>
-                <input className="form-input" type="text" id="passing-year" name="passing-year"/>
-
-                <label className="form-label" htmlFor="result">Result:</label>
-                <input className="form-input" type="text" id="result" name="result"/>
+                <table className="">
+                    <thead>
+                        <tr>
+                            <th>Degree</th>
+                            <th>Institution</th>
+                            <th>Group</th>
+                            <th>Result</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>SSC</td>
+                            <td><input className="form-input" type="text" id="name" name="name"/></td>
+                            <td><input className="form-input" type="text" id="name" name="name"/></td>
+                            <td><input className="form-input" type="text" id="name" name="name"/></td>
+                        </tr>
+                        <tr>
+                            <td>HSC</td>
+                            <td><input className="form-input" type="text" id="name" name="name"/></td>
+                            <td><input className="form-input" type="text" id="name" name="name"/></td>
+                            <td><input className="form-input" type="text" id="name" name="name"/></td>
+                        </tr>
+                        <tr>
+                            <td>Bachelor</td>
+                            <td><input className="form-input" type="text" id="name" name="name"/></td>
+                            <td><input className="form-input" type="text" id="name" name="name"/></td>
+                            <td><input className="form-input" type="text" id="name" name="name"/></td>
+                        </tr>
+                        <tr>
+                            <td>Master</td>
+                            <td><input className="form-input" type="text" id="name" name="name"/></td>
+                            <td><input className="form-input" type="text" id="name" name="name"/></td>
+                            <td><input className="form-input" type="text" id="name" name="name"/></td>
+                        </tr>
+                        <tr>
+                            <td><input className="form-input" type="text" id="name" name="name"/></td>
+                            <td><input className="form-input" type="text" id="name" name="name"/></td>
+                            <td><input className="form-input" type="text" id="name" name="name"/></td>
+                            <td><input className="form-input" type="text" id="name" name="name"/></td>
+                        </tr>
+                    </tbody>
+                </table>
 
                 <h3>English Proficiency Test</h3>
+                
+                <table className="">
+                    <thead>
+                        <tr>
+                            <th>Test</th>
+                            <th>Listening</th>
+                            <th>Reading</th>
+                            <th>Writing</th>
+                            <th>WritingSpeaking</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>
+                                <select className="form-select" id="preferred-country" name="preferred-country">
+                                    <option value="IELTS">IELTS</option>
+                                    <option value="OIETC">OIETC</option>
+                                    <option value="DUOLINGO">DUOLINGO</option>
+                                    <option value="PTE">PTE</option>
+                                    <option value="TOFEL">TOFEL</option>
+                                    <option value="MOI">MOI</option>
+                                    <option value="ESOL">ESOL</option>
+                                </select>
+                            </td>
+                            <td><input className="form-input" type="text" id="name" name="name"/></td>
+                            <td><input className="form-input" type="text" id="name" name="name"/></td>
+                            <td><input className="form-input" type="text" id="name" name="name"/></td>
+                            <td><input className="form-input" type="text" id="name" name="name"/></td>
+                        </tr>
+                    </tbody>
+                </table>
+
                 <label className="form-label" htmlFor="test-date">Test Taken Date:</label>
                 <input className="form-input" type="date" id="test-date" name="test-date"/>
 
@@ -67,6 +144,15 @@ const page = () => {
                     <option value="friends">Friends</option>
                     <option value="others">Others</option>
                 </select>
+
+                <label className="form-label" htmlFor="referral">Have you ever been refused entry by any country?</label>
+                <select className="form-select" id="referral" name="referral">
+                    <option value="no">No</option>
+                    <option value="yes">Yes</option>
+                </select>
+                
+                <label className="form-label" htmlFor="test-date">Tell country name: </label>
+                <input className="form-input" type="text" id="text" name="text"/>
                 
                 <button className="form-button" type="submit">Submit</button>
             </form>

@@ -34,32 +34,32 @@ const Navbar = () => {
                 <Link href="/"><Image className='nav-logo' src={logo} alt="" /></Link>
                 <div className={isOpen ? 'nav-links show':'nav-links hide'}>
                     <div className='link-holder'>
-                        <Link className='link' href="/Subjects">Subjects</Link>
+                        <Link onClick={()=>setIsOpen(false)} className='link' href="/Subjects">Subjects</Link>
                     </div>
 
                     <div className='link-holder'>
                         <p className='link'>Test prep</p>
                         <div className='drop-down'>
-                            <div className="drop-down-content">
+                            <div className="drop-down-content ">
                                 <div className="drop-down-group">
-                                    <Link className='drop-down-link' href="/TestPrep/ielts"><FontAwesomeIcon icon={faBook}/> IELTS</Link>
-                                    <Link className='drop-down-link' href="/TestPrep/toefl"><FontAwesomeIcon icon={faBook}/> TOEFL</Link>
-                                    <Link className='drop-down-link' href="/TestPrep/pte"><FontAwesomeIcon icon={faBook}/> PTE</Link>
-                                    <Link className='drop-down-link' href="/TestPrep/oet"><FontAwesomeIcon icon={faBook}/> OET</Link>
+                                    <Link onClick={()=>setIsOpen(false)} className='drop-down-link' href="/TestPrep/ielts"><FontAwesomeIcon icon={faBook}/> IELTS</Link>
+                                    <Link onClick={()=>setIsOpen(false)} className='drop-down-link' href="/TestPrep/toefl"><FontAwesomeIcon icon={faBook}/> TOEFL</Link>
+                                    <Link onClick={()=>setIsOpen(false)} className='drop-down-link' href="/TestPrep/pte"><FontAwesomeIcon icon={faBook}/> PTE</Link>
+                                    <Link onClick={()=>setIsOpen(false)} className='drop-down-link' href="/TestPrep/oet"><FontAwesomeIcon icon={faBook}/> OET</Link>
                                 </div>
                                 <div className="drop-down-group">
-                                    <Link className='drop-down-link' href="/TestPrep/duolingo"><FontAwesomeIcon icon={faBook}/> DUOLINGO</Link>
-                                    <Link className='drop-down-link' href="/TestPrep/gre"><FontAwesomeIcon icon={faBook}/> GRE</Link>
-                                    <Link className='drop-down-link' href="/TestPrep/gmat"><FontAwesomeIcon icon={faBook}/> GMAT</Link>
+                                    <Link onClick={()=>setIsOpen(false)} className='drop-down-link' href="/TestPrep/duolingo"><FontAwesomeIcon icon={faBook}/> DUOLINGO</Link>
+                                    <Link onClick={()=>setIsOpen(false)} className='drop-down-link' href="/TestPrep/gre"><FontAwesomeIcon icon={faBook}/> GRE</Link>
+                                    <Link onClick={()=>setIsOpen(false)} className='drop-down-link' href="/TestPrep/gmat"><FontAwesomeIcon icon={faBook}/> GMAT</Link>
                                 </div>
                                 <div className="drop-down-group">
-                                    <Link className='drop-down-link' href="/TestPrep/sat"><FontAwesomeIcon icon={faBook}/> SAT</Link>
-                                    <Link className='drop-down-link' href="/TestPrep/act"><FontAwesomeIcon icon={faBook}/> ACT</Link>
-                                    <Link className='drop-down-link' href="/TestPrep/ap"><FontAwesomeIcon icon={faBook}/> AP</Link>
+                                    <Link onClick={()=>setIsOpen(false)} className='drop-down-link' href="/TestPrep/sat"><FontAwesomeIcon icon={faBook}/> SAT</Link>
+                                    <Link onClick={()=>setIsOpen(false)} className='drop-down-link' href="/TestPrep/act"><FontAwesomeIcon icon={faBook}/> ACT</Link>
+                                    <Link onClick={()=>setIsOpen(false)} className='drop-down-link' href="/TestPrep/ap"><FontAwesomeIcon icon={faBook}/> AP</Link>
                                 </div>
                                 <div className="contact-section">
-                                    <Link className='contact-section-link' href="/"><FontAwesomeIcon icon={faPhone}/>  Contact</Link>
-                                    <Link className='contact-section-link' href="/"><FontAwesomeIcon icon={faPhone}/>  Enquire</Link>
+                                    <Link onClick={()=>setIsOpen(false)} className='contact-section-link' href="/"><FontAwesomeIcon icon={faPhone}/>  Contact</Link>
+                                    <Link onClick={()=>setIsOpen(false)} className='contact-section-link' href="/"><FontAwesomeIcon icon={faPhone}/>  Enquire</Link>
                                 </div>
                             </div>
                         </div>
@@ -68,11 +68,11 @@ const Navbar = () => {
                     <UniNav />
                     
                     <div className='link-holder'>
-                        <Link className='link' href="/Centre">Centre</Link>
+                        <Link onClick={()=>setIsOpen(false)} className='link' href="/Centre">Centre</Link>
                     </div>
                     
                     <div className='link-holder'>
-                        <Link className='link' href="/Services">Services</Link>
+                        <Link onClick={()=>setIsOpen(false)} className='link' href="/Services">Services</Link>
                     </div>
 
                     
@@ -81,18 +81,18 @@ const Navbar = () => {
                         <div className='drop-down'>
                             <div className="drop-down-content">
                                 <div className="drop-down-group">
-                                    <Link className='drop-down-link' href="/">Become an agent</Link>
+                                    <Link onClick={()=>setIsOpen(false)} className='drop-down-link' href="/">Become an agent</Link>
                                 </div>
                                 <div className="contact-section">
-                                    <Link className='contact-section-link' href="/"><FontAwesomeIcon icon={faPhone}/> Contact</Link>
-                                    <Link className='contact-section-link' href="/"><FontAwesomeIcon icon={faPhone}/> Enquire</Link>
+                                    <Link onClick={()=>setIsOpen(false)} className='contact-section-link' href="/"><FontAwesomeIcon icon={faPhone}/> Contact</Link>
+                                    <Link onClick={()=>setIsOpen(false)} className='contact-section-link' href="/"><FontAwesomeIcon icon={faPhone}/> Enquire</Link>
                                 </div>
                             </div>
                         </div>
                     </div>
                     
                     <div className='link-holder'>
-                        <Link className='link' href="/Proceed">Proceed</Link>
+                        <Link onClick={()=>setIsOpen(false)} className='link' href="/Proceed">Proceed</Link>
                     </div>
                 </div>
                 <div className={isOpen ? 'link-items show' :'link-items hide'}>

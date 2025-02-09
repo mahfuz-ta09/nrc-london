@@ -44,11 +44,6 @@ const sideNavItem = (role : Role) => {
                     icon        : faBook,
                 },
                 {
-                    title       : "Test preparation",
-                    path        : `${role}/test-prep`,
-                    icon        : faPen,
-                },
-                {
                     title       : "University",
                     path        : `${role}/university`,
                     icon        : faBuilding,
@@ -67,6 +62,16 @@ const sideNavItem = (role : Role) => {
                     title       : "Process Req",
                     path        : `${role}/process-req`,
                     icon        : faHandshake,
+                },
+                {
+                    title       : "Manage user",
+                    path        : `${role}/manage-user`,
+                    icon        : faPen,
+                },
+                {
+                    title       : "Test preparation",
+                    path        : `${role}/test-prep`,
+                    icon        : faPen,
                 },
             );
             break;

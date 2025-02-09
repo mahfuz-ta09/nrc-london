@@ -298,10 +298,10 @@ tr:hover {
   background-color: #ddd;
 }
 .table-container {
-overflow-x: auto;
-margin: 0 auto;
-width: 100%;
-padding: 5px;
+  overflow-x: auto;
+  margin: 0 auto;
+  width: 100%;
+  padding: 5px;
 }
 
 @media screen and (max-width:600px) {

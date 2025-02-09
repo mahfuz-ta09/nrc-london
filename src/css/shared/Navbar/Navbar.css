@@ -58,7 +58,8 @@
     gap: 50px;
     top: 10vh;
     right: 0;
-    width: 100%;
+    left: 0;
+    width: 100vw;
     min-height: 30vh;
     background: rgb(1, 30, 39);
     border-top:.5px solid #fff;
