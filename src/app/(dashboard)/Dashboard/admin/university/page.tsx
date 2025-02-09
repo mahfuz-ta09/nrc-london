@@ -6,6 +6,7 @@ import { useState } from 'react'
 import UpdateUni from './UpdateUni'
 import { useDeleteUniversityMutation, useGetUniversityQuery } from '@/redux/endpoints/university/universityEndpoints'
 import { toast } from 'react-toastify'
+import Loader from '@/component/shared/Loader/Loader'
 
 
 const page = () => {
@@ -41,7 +42,7 @@ const page = () => {
 
         {
             (fetchLoading || deleteLoading) ?
-            <p>Loading...</p> :
+            <Loader /> :
              
             <div className="table-container">
                 <table className="table">

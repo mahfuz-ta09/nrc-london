@@ -4,6 +4,7 @@ import '../../../css/shared/Navbar/Navbar.css'
 import { faGlobe, faPhone } from "@fortawesome/free-solid-svg-icons"
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
 import Link from "next/link"
+import Loader from '../Loader/Loader'
 
 
 const UniNav = () => {
@@ -15,7 +16,7 @@ const UniNav = () => {
         <div className='link-holder'>
             <p className='link'>University</p>
             <div className='drop-down'>
-                {isLoading ? (<p>Loading....</p>
+                {isLoading ? (<Loader />
                     ) : (
                     <div className="drop-down-content">
                         {Array.isArray(data?.data) && data?.meta?.total ? (

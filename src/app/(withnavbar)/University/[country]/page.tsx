@@ -3,6 +3,7 @@ import '@/css/Students/Subjects/Subjects.css'
 import Footer from '@/component/shared/Footer/Footer'
 import { useParams, useRouter } from 'next/navigation'
 import { useGetAllUniByCountryQuery } from '@/redux/endpoints/university/universityEndpoints'
+import Loader from '@/component/shared/Loader/Loader'
 
 const page = () => {
     const { country } = useParams()
@@ -22,7 +23,7 @@ const page = () => {
                 <div className="subject-card">
                    
                     {
-                        isLoading ? <p>Loading...</p>: 
+                        isLoading ? <Loader />: 
                         data?.data?.map((uni:any)=> 
                             <div key={uni?._id} className="single-subject">
                                 <div className="subject-header">

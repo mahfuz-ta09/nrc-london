@@ -1,5 +1,6 @@
 'use client'
 import Footer from '@/component/shared/Footer/Footer'
+import Loader from '@/component/shared/Loader/Loader'
 import '@/css/Students/Subjects/Subjects.css'
 import { useGetSubjectQuery } from '@/redux/endpoints/subject/subjectEndpoints'
 import { faCancel, faDollar, faDotCircle } from '@fortawesome/free-solid-svg-icons'
@@ -25,7 +26,7 @@ const Page = () => {
                 <div className="subject-card">
                     {
                         dataLoading ?
-                        <p>Loading...</p> :
+                        <Loader /> :
                             data?.data?.map((sub:any) =>
                             <div key={sub?._id} className="single-subject">
                                 <div className="subject-header">

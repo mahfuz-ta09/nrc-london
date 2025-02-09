@@ -112,7 +112,7 @@
 .dash-nav-action{
 	position: fixed;
 	right:15px;
-	top:  25px;
+	top:  20px;
 	display: flex;
 	align-items: center;
 	justify-content: center;
@@ -129,9 +129,14 @@
 .nav-logout-btn{
     background: transparent;
     border: none;
-	font-size: 25px;
+	font-size: 20px;
     color: white;
 	transition: .3s ease-in-out;
+	margin-right: 30px;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	gap: 5px;
 }
 
 
@@ -187,7 +192,7 @@
 }
 
 .header-title h1{
-    font-size: 20px;
+    font-size: 17px;
 }
 
 @media screen and (max-width:450px) {

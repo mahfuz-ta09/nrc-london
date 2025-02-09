@@ -5,6 +5,7 @@ import { faArrowAltCircleLeft, faArrowAltCircleRight } from '@fortawesome/free-s
 import { useGetUniNavItemQuery } from '@/redux/endpoints/university/universityEndpoints'
 import { useRouter } from 'next/navigation'
 import { useState } from 'react'
+import Loader from '../Loader/Loader'
 
 
 const UniOption = () => {
@@ -19,7 +20,7 @@ const UniOption = () => {
                 <h1>Have a look at your University options:</h1>
                 <div className="unicaro">
                     {
-                        isLoading ? <p>Loading...</p> :
+                        isLoading ? <Loader /> :
                         data?.data?.slice(cur-4,cur).map((option:any)=>
                             <div key={option.country} className="uni">
                                 <img className="uni-image" src={option.image}alt='' />

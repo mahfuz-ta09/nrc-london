@@ -4,6 +4,7 @@ import '../../../css/shared/PopularCourse/PopularCourse.css'
 import { faServer } from '@fortawesome/free-solid-svg-icons'
 import { useRouter } from 'next/navigation'
 import { useGetSubjectQuery } from '@/redux/endpoints/subject/subjectEndpoints'
+import Loader from '../Loader/Loader'
 
 
 const PopularCourse = () => {
@@ -22,7 +23,7 @@ const PopularCourse = () => {
                 <div className="courses">
 
                     {
-                        isLoading? <p>Loading...</p>:
+                        isLoading? <Loader />:
                         data?.data?.map((course) => 
                             <div key={course?._id} className="single-course">
                                 <FontAwesomeIcon className='single-course-icon' icon={faServer}/>

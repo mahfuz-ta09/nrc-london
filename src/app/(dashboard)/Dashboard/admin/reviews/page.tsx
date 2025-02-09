@@ -5,6 +5,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faCancel } from '@fortawesome/free-solid-svg-icons'
 import { toast } from 'react-toastify'
 import { useDeleteReviewMutation, useGetALlReviewQuery } from '@/redux/endpoints/review/reviewEndpoints'
+import Loader from '@/component/shared/Loader/Loader'
 
 
 
@@ -37,7 +38,7 @@ const page = () => {
 
         {
             (reviewLoading || deleteLoading) ?
-            <p>Loading...</p> :
+            <Loader /> :
              
                 <div className="table-container">
                     <table className="table">

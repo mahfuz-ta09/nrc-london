@@ -51,9 +51,9 @@ const LayoutPage = () => {
                     <h1>NRC-london</h1>
                     <NavLink />
                 </div>
-                
+
                 <div className='dash-nav-action'>
-                  <button  className='nav-logout-btn' onClick={() => logOut(route)} ref={btnRef} ><FontAwesomeIcon icon={faRightFromBracket} className='nav-icon'/></button>
+                  <button  className='nav-logout-btn' onClick={() => logOut(route)} ref={btnRef} ><FontAwesomeIcon icon={faRightFromBracket} className='nav-icon'/>logout</button>
                   <button  className='nav-icon-btn' onClick={() => handler()} ref={btnRef} ><FontAwesomeIcon icon={faArrowCircleRight} className='nav-icon'/></button>
                   <button  className='nav-icon-home-btn' onClick={() => homeHandler()}><FontAwesomeIcon className='nav-icon' icon={faHome}/></button>
                 </div>
