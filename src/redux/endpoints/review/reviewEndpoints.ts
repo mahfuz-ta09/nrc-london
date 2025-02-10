@@ -6,7 +6,9 @@ const reviewApi = baseApi.injectEndpoints({
         query: (data) => ({
             url: "/review/create",
             method: "POST",
-            headers: { "Content-Type": "application/json" }, 
+            headers: { 
+              "Content-Type": "application/json" 
+            }, 
             data,
         }),
       invalidatesTags: ["review"],  
@@ -32,7 +34,9 @@ const reviewApi = baseApi.injectEndpoints({
         query: ({ data, id }) => ({
             url: `/subject/update/${id}`,
             method: "PATCH",
-            headers: { "Content-Type": "application/json" },  
+            headers: { 
+              "Content-Type": "application/json" 
+            },  
             body: data,   
         }),
       invalidatesTags: ["review"], 
