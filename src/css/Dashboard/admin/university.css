@@ -41,6 +41,8 @@
     background: rgb(0, 0, 0,0.9);
     padding: 30px 0;
     overflow: auto;
+    align-content: center;
+    justify-content: center;
 }
 
 .mod-close{

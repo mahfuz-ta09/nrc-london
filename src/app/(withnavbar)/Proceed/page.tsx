@@ -5,89 +5,25 @@ import '@/css/TestPrep/CommonStyle.css'
 import '@/css/Proceed/Proceed.css'
 import { usePostProcessDataMutation } from '@/redux/endpoints/proceed/proceedEndpoints'
 import { toast } from 'react-toastify'
+import { useUserInfo } from '@/utils/useUserInfo'
+import { IFormInput } from '@/types/common'
 
-
-type test_type = {
-    IELTS: string,
-    OIETC: string,
-    DUOLINGO: string,
-    PTE: string,
-    TOFEL: string,
-    MOI: string,
-    ESOL: string
-}
-
-type Ref = {
-    google:string,
-    facebook:string,
-    linkedin:string,
-    youtube:string,
-    friends:string,
-    others:string,
-}
-
-type Refused = {
-    no:string,
-    yes:string,
-}
-
-type country_type = {
-    uk:string,
-    usa:string,
-    aus:string,
-    canada:string,
-    denmark:string,
-    spain:string,
-    sweden:string,
-    malta:string,
-    hungary:string,
-    portugal:string,
-    france:string,
-    others:string,
-}
-
-interface IFormInput {
-    name: string;
-    mobile_number: string;
-    emergency_number: string;
-    age: number;
-    email: string;
-    db:number;
-    ssc_institution:string;
-    ssc_group:string;
-    ssc_result:string;
-    hsc_institution:string;
-    hsc_group:string;
-    hsc_result:string;
-    other_deg:string;
-    other_institution:string;
-    other_group:string;
-    other_result:string;
-    master_institution:string;
-    master_group:string;
-    master_result:string;
-    en_proficiency:test_type;
-    listening:string;
-    reading:string;
-    writing:string;
-    speaking:string;
-    exam_taken_time:string;
-    prefered_country: country_type;
-    referral: Ref;
-    refused: Refused;
-    country_name:string;
-}
 
 
 
 const page = () => {
     const { register , reset, handleSubmit } = useForm<IFormInput>()
     const [ postProcessData , { isLoading: postLoading }]= usePostProcessDataMutation()
+    const { Uemail , Urole } = useUserInfo()
 
     const onSubmit: SubmitHandler<IFormInput> = async(data) => {
-        console.log(data)
+        const insertedData = {
+            ...data,
+            email: Uemail,
+            role: Urole,
+        }
         try{
-            const res = await postProcessData(data)
+            const res = await postProcessData(insertedData)
             if(res?.data?.data?.acknowledged){
                 toast.success("Successfull, we will contact you for further information!!")
                 reset()
@@ -114,10 +50,10 @@ const page = () => {
                 <input className="form-input" type="number" {...register("emergency_number")} required/>
 
                 <label className="form-label" htmlFor="email">Email:</label>
-                <input className="form-input" type="email" {...register("email")} required/>
+                <input className="form-input" type="email" value={Uemail} readOnly/>
 
                 <label className="form-label" htmlFor="dob">Date of Birth:</label>
-                <input className="form-input" type="date" {...register("db")} required/>
+                <input className="form-input" type="date" {...register("dob")} required/>
 
 
                 <h3>Educational Qualification</h3>
@@ -233,7 +169,7 @@ const page = () => {
                 <label className="form-label" htmlFor="test-date">Tell country name: </label>
                 <input className="form-input" type="text" {...register("country_name")}/>
                 
-                <input className="form-button" type="submit" value="Proceed"/>
+                { postLoading ? <p>Loading...</p> : <input className="form-button" type="submit" value="Proceed"/>}
             </form>
         </div>
         <Footer />

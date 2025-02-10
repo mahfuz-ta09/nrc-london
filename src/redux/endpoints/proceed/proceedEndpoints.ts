@@ -1,11 +1,13 @@
 import { baseApi } from "@/redux/baseApi";
 
+
+
 const proceedApi = baseApi.injectEndpoints({
   endpoints: (build) => ({
     
     postProcessData: build.mutation({
         query: (data) => ({
-            url: "/proceed/create",
+            url: "/process/create",
             method: "POST",
             headers: { 
                 "Content-Type": "application/json" 
@@ -17,7 +19,7 @@ const proceedApi = baseApi.injectEndpoints({
 
     getALlProcessReq: build.query<any, void>({
         query: () => ({
-            url: "/proceed/all",
+            url: "/process/all",
             method: "GET",
         }),
       providesTags: ["proceed"],
@@ -25,7 +27,7 @@ const proceedApi = baseApi.injectEndpoints({
 
     deleteProcessReq: build.mutation<any, string>({
         query: (email) => ({
-            url: `/proceed/delete/${email}`,
+            url: `/process/delete/${email}`,
             method: "DELETE",
         }),
       invalidatesTags: ["proceed"],  
@@ -33,7 +35,7 @@ const proceedApi = baseApi.injectEndpoints({
 
     updatedProcessReq: build.mutation<any, { data: any; id: string }>({
         query: ({ data, id }) => ({
-            url: `/proceed/update/${id}`,
+            url: `/process/update/${id}`,
             method: "PATCH",
             headers: { 
                 "Content-Type": "application/json" 
@@ -45,7 +47,7 @@ const proceedApi = baseApi.injectEndpoints({
 
     getProcessReqPagination: build.query<any, { page: number , item: number }>({
         query: ({ page , item }) => ({
-                url: `/proceed/partial/${page}/${item}`,
+                url: `/process/partial/${page}/${item}`,
                 method: "GET",
             }),
             providesTags: ["review"],

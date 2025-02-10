@@ -32,7 +32,7 @@ const reviewApi = baseApi.injectEndpoints({
 
     updateReview: build.mutation<any, { data: any; id: string }>({
         query: ({ data, id }) => ({
-            url: `/subject/update/${id}`,
+            url: `/review/update/${id}`,
             method: "PATCH",
             headers: { 
               "Content-Type": "application/json" 

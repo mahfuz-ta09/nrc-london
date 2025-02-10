@@ -1,0 +1,55 @@
+.req-details{
+    background: #00394b;
+    max-width: 500px;
+    margin: 0px auto;
+    padding: 10px 20px;
+    text-align: center;
+    border-radius: 10px;
+}
+
+.req-details p{
+    font-size: 20px;
+    color: white;
+}
+
+
+.vertical-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 10px;
+}
+
+
+.vertical-table .key {
+    width: 40%;
+    font-weight: bold;
+    background-color: #f0f0f0;
+    padding: 10px;
+    text-align: left;
+    border: 1px solid #ddd;
+}
+
+/* Value Column */
+.vertical-table .value {
+    width: 60%;
+    padding: 10px;
+    text-align: left;
+    border: 1px solid #ddd;
+    color: white;
+
+    &:hover{
+        color:#000;
+    }
+}
+
+/* Table Row Hover Effect */
+.vertical-table tr:hover {
+    background-color: #f9f9f9;
+}
+
+/* Responsive */
+@media (max-width: 600px) {
+    .vertical-table {
+        font-size: 14px;
+    }
+}
