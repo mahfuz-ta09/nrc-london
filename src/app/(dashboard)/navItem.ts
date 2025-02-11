@@ -63,16 +63,16 @@ const sideNavItem = (role : Role) => {
                     path        : `${role}/process-req`,
                     icon        : faHandshake,
                 },
-                {
-                    title       : "Manage user",
-                    path        : `${role}/manage-user`,
-                    icon        : faPen,
-                },
-                {
-                    title       : "Test preparation",
-                    path        : `${role}/test-prep`,
-                    icon        : faPen,
-                },
+                // {
+                //     title       : "Manage user",
+                //     path        : `${role}/manage-user`,
+                //     icon        : faPen,
+                // },
+                // {
+                //     title       : "Test preparation",
+                //     path        : `${role}/test-prep`,
+                //     icon        : faPen,
+                // },
             );
             break;
         case USER_ROLE.STUDENT:

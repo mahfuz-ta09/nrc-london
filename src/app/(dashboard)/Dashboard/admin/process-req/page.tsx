@@ -55,6 +55,7 @@ const page = () => {
                                 <th className="th">Point</th>
                                 <th className="th">Updated</th>
                                 <th className="th">Status</th>
+                                <th className="th">Change Status</th>
                                 <th className="th">Details</th>
                                 <th className="th">Delete</th>
                             </tr>
@@ -70,6 +71,15 @@ const page = () => {
                                     <td className="td" data-label="Possible Destination">{person?.en_proficiency}</td>
                                     <td className="td" data-label="updated">{person?.updated}</td>
                                     <td className="td" data-label="updated">{person?.condition}</td>
+                                    <td className="td" data-label="updated">
+                                        <select name="" id="">
+                                            <option value="initial">initial</option>
+                                            <option value="applied">applied</option>
+                                            <option value="document_collection">document_collection</option>
+                                            <option value="document_collection">document_collection</option>
+                                            <option value="document_collection">document_collection</option>
+                                        </select>
+                                    </td>
                                     <td className="td" data-label="details"><FontAwesomeIcon onClick={()=>{setOpen(!open);setNumber(index)}} icon={faAngleDoubleRight}/></td>
                                     <td className="td" data-label="Delete"><FontAwesomeIcon onClick={()=>handleDelete(person?._id)} icon={faCancel}/></td>
                                 </tr>

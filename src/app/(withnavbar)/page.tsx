@@ -7,7 +7,6 @@ import Review from "@/component/additional/Review/Review"
 import Process from "@/component/shared/Process/Process"
 import FAQ from "@/component/UI/FAQ/FAQ"
 
-
 const Page = () => {
   const faqItems = [
     {
@@ -24,6 +23,8 @@ const Page = () => {
     },
   ]
   
+
+
   return (
     <>
         <Banner />

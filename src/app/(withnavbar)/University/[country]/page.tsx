@@ -10,6 +10,7 @@ const page = () => {
     const router = useRouter()
     const {data,isLoading} = useGetAllUniByCountryQuery(String(country))
 
+    
 
     return (
         <div className='subjects-container'>
