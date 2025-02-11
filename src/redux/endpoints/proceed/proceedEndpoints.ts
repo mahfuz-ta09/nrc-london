@@ -26,8 +26,8 @@ const proceedApi = baseApi.injectEndpoints({
     }),
 
     deleteProcessReq: build.mutation<any, string>({
-        query: (email) => ({
-            url: `/process/delete/${email}`,
+        query: (id) => ({
+            url: `/process/delete/${id}`,
             method: "DELETE",
         }),
       invalidatesTags: ["proceed"],  

@@ -1,7 +1,8 @@
 import { useState, useCallback } from "react"
 import { setCookie } from "@/utils/setCookies"
 
-const API_URL = "https://nrc-server.onrender.com/app/v1/auth"; 
+// const API_URL = "https://nrc-server.onrender.com/app/v1/auth"
+const API_URL = "https://nrc-server-production.up.railway.app/app/v1/auth"
 
 export const useAuth = () => {
     const [loading, setLoading] = useState(false);

@@ -1,55 +1,63 @@
-.req-details{
-    background: #00394b;
-    max-width: 500px;
-    margin: 0px auto;
-    padding: 10px 20px;
+
+.form-container {
+    max-width: 800px;
+    /* background: rgba(0,0,0,0.5); */
+    color: #61ddff;
+    margin: 20px auto;
+    font-family: Arial, sans-serif;
+    padding: 20px;
+}
+
+
+.header {
     text-align: center;
-    border-radius: 10px;
+    font-size: 24px;
+    font-weight: bold;
+    margin-bottom: 30px;
 }
 
-.req-details p{
-    font-size: 20px;
-    color: white;
+.section {
+    margin-bottom: 25px;
 }
 
+.section-title {
+    font-weight: bold;
+    margin: 15px 0;
+    font-size: 18px;
+}
 
-.vertical-table {
+table {
     width: 100%;
     border-collapse: collapse;
-    margin-top: 10px;
+    margin: 15px 0;
 }
 
-
-.vertical-table .key {
-    width: 40%;
-    font-weight: bold;
-    background-color: #f0f0f0;
-    padding: 10px;
+th, td {
+    border: 1px solid #636363;
+    padding: 8px;
     text-align: left;
-    border: 1px solid #ddd;
 }
 
-/* Value Column */
-.vertical-table .value {
-    width: 60%;
-    padding: 10px;
-    text-align: left;
-    border: 1px solid #ddd;
+.dynamic-data td {
+    padding: 4px 8px;
+}
+
+.columns {
+    display: flex;
+    gap: 20px;
+    margin: 10px 0;
+}
+
+.address {
+    text-align: right;
+    margin-top: 30px;
+    font-style: italic;
     color: white;
-
-    &:hover{
-        color:#000;
-    }
 }
 
-/* Table Row Hover Effect */
-.vertical-table tr:hover {
-    background-color: #f9f9f9;
-}
-
-/* Responsive */
-@media (max-width: 600px) {
-    .vertical-table {
-        font-size: 14px;
-    }
+.checkbox-list {
+    display: flex;
+    gap: 15px;
+    flex-wrap: wrap;
+    color: white;
 }

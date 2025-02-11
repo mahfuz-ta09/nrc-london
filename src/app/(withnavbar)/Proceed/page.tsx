@@ -57,50 +57,56 @@ const page = () => {
 
 
                 <h3>Educational Qualification</h3>
-
-                <table className="table-container">
-                    <thead>
-                        <tr>
-                            <th>Degree</th>
-                            <th>Institution</th>
-                            <th>Group</th>
-                            <th>Result</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr>
-                            <td>SSC</td>
-                            <td><input className="form-input" type="text" {...register("ssc_institution")}/></td>
-                            <td><input className="form-input" type="text" {...register("ssc_group")}/></td>
-                            <td><input className="form-input" type="text" {...register("ssc_result")} required/></td>
-                        </tr>
-                        <tr>
-                            <td>HSC</td>
-                            <td><input className="form-input" type="text" {...register("hsc_institution")}/></td>
-                            <td><input className="form-input" type="text" {...register("hsc_group")}/></td>
-                            <td><input className="form-input" type="text" {...register("hsc_result")}/></td>
-                        </tr>
-                        <tr>
-                            <td>Bachelor</td>
-                            <td><input className="form-input" type="text" {...register("hsc_institution")}/></td>
-                            <td><input className="form-input" type="text" {...register("hsc_group")}/></td>
-                            <td><input className="form-input" type="text" {...register("hsc_result")}/></td>
-                        </tr>
-                        <tr>
-                            <td>Master</td>
-                            <td><input className="form-input" type="text" {...register("master_institution")}/></td>
-                            <td><input className="form-input" type="text" {...register("master_group")}/></td>
-                            <td><input className="form-input" type="text" {...register("master_result")}/></td>
-                        </tr>
-                        <tr>
-                            <td><input className="form-input" type="text" {...register("other_deg")}/></td>
-                            <td><input className="form-input" type="text" {...register("other_institution")}/></td>
-                            <td><input className="form-input" type="text" {...register("other_group")}/></td>
-                            <td><input className="form-input" type="text" {...register("other_result")}/></td>
-                        </tr>
-                    </tbody>
-                </table>
-
+                <div className='table-content'>
+                    <table className="table-container">
+                        <thead>
+                            <tr>
+                                <th>Degree</th>
+                                <th>Institution</th>
+                                <th>Group</th>
+                                <th>Result</th>
+                                <th>Year</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>SSC</td>
+                                <td><input className="form-input" type="text" {...register("ssc_institution")}/></td>
+                                <td><input className="form-input" type="text" {...register("ssc_group")}/></td>
+                                <td><input className="form-input" type="text" {...register("ssc_result")}/></td>
+                                <td><input className="form-input" type="text" {...register("ssc_year")}/></td>
+                            </tr>
+                            <tr>
+                                <td>HSC</td>
+                                <td><input className="form-input" type="text" {...register("hsc_institution")}/></td>
+                                <td><input className="form-input" type="text" {...register("hsc_group")}/></td>
+                                <td><input className="form-input" type="text" {...register("hsc_result")}/></td>
+                                <td><input className="form-input" type="text" {...register("hsc_year")}/></td>
+                            </tr>
+                            <tr>
+                                <td>Bachelor</td>
+                                <td><input className="form-input" type="text" {...register("Bachelor_institution")}/></td>
+                                <td><input className="form-input" type="text" {...register("Bachelor_group")}/></td>
+                                <td><input className="form-input" type="text" {...register("Bachelor_result")}/></td>
+                                <td><input className="form-input" type="text" {...register("Bachelor_year")}/></td>
+                            </tr>
+                            <tr>
+                                <td>Master</td>
+                                <td><input className="form-input" type="text" {...register("master_institution")}/></td>
+                                <td><input className="form-input" type="text" {...register("master_group")}/></td>
+                                <td><input className="form-input" type="text" {...register("master_result")}/></td>
+                                <td><input className="form-input" type="text" {...register("master_year")}/></td>
+                            </tr>
+                            <tr>
+                                <td><input className="form-input" type="text" {...register("other_deg")}/></td>
+                                <td><input className="form-input" type="text" {...register("other_institution")}/></td>
+                                <td><input className="form-input" type="text" {...register("other_group")}/></td>
+                                <td><input className="form-input" type="text" {...register("other_result")}/></td>
+                                <td><input className="form-input" type="text" {...register("other_year")}/></td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
                 <h3>English Proficiency Test</h3>
                 <select className="form-select" id="preferred-country" {...register("en_proficiency")}>
                     <option value="IELTS">IELTS</option>
@@ -112,25 +118,29 @@ const page = () => {
                     <option value="ESOL">ESOL</option>
                 </select>
                 
-                <table className="">
-                    <thead>
-                        <tr>
-                            <th>Listening</th>
-                            <th>Reading</th>
-                            <th>Writing</th>
-                            <th>speaking</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr>
-                            <td><input className="form-input" type="text" {...register("listening")}/></td>
-                            <td><input className="form-input" type="text" {...register("reading")}/></td>
-                            <td><input className="form-input" type="text" {...register("writing")}/></td>
-                            <td><input className="form-input" type="text" {...register("speaking")}/></td>
-                        </tr>
-                    </tbody>
-                </table>
-
+                <div className='table-content'>
+                    <table className="">
+                        <thead>
+                            <tr>
+                                <th>Listening</th>
+                                <th>Reading</th>
+                                <th>Writing</th>
+                                <th>Speaking</th>
+                                <th>Overall</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td><input className="form-input" type="text" {...register("listening")}/></td>
+                                <td><input className="form-input" type="text" {...register("reading")}/></td>
+                                <td><input className="form-input" type="text" {...register("writing")}/></td>
+                                <td><input className="form-input" type="text" {...register("speaking")}/></td>
+                                <td><input className="form-input" type="text" {...register("overall")}/></td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+                
                 <label className="form-label" htmlFor="test-date">Test Taken Date:</label>
                 <input className="form-input" type="date" {...register("exam_taken_time")}/>
 

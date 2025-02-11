@@ -70,26 +70,35 @@ export interface IFormInput {
     ssc_institution:string;
     ssc_group:string;
     ssc_result:string;
+    ssc_year:string;
     hsc_institution:string;
     hsc_group:string;
     hsc_result:string;
+    hsc_year:string;
     other_deg:string;
     other_institution:string;
     other_group:string;
     other_result:string;
+    other_year:string;
     master_institution:string;
     master_group:string;
     master_result:string;
+    master_year:string;
     en_proficiency:test_type;
     listening:string;
     reading:string;
     writing:string;
     speaking:string;
+    overall:string;
     exam_taken_time:string;
     prefered_country: country_type;
     referral: Ref;
     refused: Refused;
     country_name:string;
+    Bachelor_institution:string;
+    Bachelor_group:string;
+    Bachelor_result:string;
+    Bachelor_year:string;
 }
 
 
