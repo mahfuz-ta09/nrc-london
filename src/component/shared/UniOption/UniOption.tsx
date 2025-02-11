@@ -16,7 +16,10 @@ const UniOption = () => {
     const scroll = (direction: 'left' | 'right') => {
         if (scrollContainerRef.current) {
             const scrollAmount = 280
-            scrollContainerRef.current.scrollLeft += direction === 'left' ? -scrollAmount : scrollAmount;
+            scrollContainerRef.current.scrollBy({
+                left: direction === 'left' ? -scrollAmount : scrollAmount,
+                behavior: 'smooth'
+            });
         }
     }
 
@@ -24,7 +27,6 @@ const UniOption = () => {
         <div className='unioption-cotainer'>
             <div className="wdth">
                 <h2 className='uniHeader'>Have a look at your University options:</h2>
-                
                 
                 <div className="uni-content" ref={scrollContainerRef}>
                     <div style={{width:`${320*data?.meta?.total}px`}} className="unicaro">
