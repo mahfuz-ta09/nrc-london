@@ -15,7 +15,7 @@ const UniOption = () => {
 
     const scroll = (direction: 'left' | 'right') => {
         if (scrollContainerRef.current) {
-            const scrollAmount = 280
+            const scrollAmount = 320
             scrollContainerRef.current.scrollBy({
                 left: direction === 'left' ? -scrollAmount : scrollAmount,
                 behavior: 'smooth'
