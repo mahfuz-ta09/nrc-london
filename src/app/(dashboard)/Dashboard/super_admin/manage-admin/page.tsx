@@ -3,7 +3,7 @@ import '@/css/Dashboard/super_admin/common.css'
 import '@/css/Dashboard/admin/university.css'
 import { useState } from 'react'
 import { useForm, SubmitHandler } from "react-hook-form"
-import { useCreateAdminMutation, useGetALlAdminQuery } from '@/redux/endpoints/sAdmin/superAdmin'
+import { useCreateAdminMutation, useGetALlAdminQuery, useUpdateAdminStatusMutation } from '@/redux/endpoints/sAdmin/superAdmin'
 import { toast } from 'react-toastify'
 import Loader from '@/component/shared/Loader/Loader'
 
@@ -23,7 +23,7 @@ const page = () => {
     } = useForm<Inputs>()
     const [createAdmin , { isLoading : createLoading }] = useCreateAdminMutation()
     const { data , isLoading: dataLoading } = useGetALlAdminQuery()
-
+    const [ updateAdminStatus , { isLoading : updateLoading }] = useUpdateAdminStatusMutation() 
 
 
     const onSubmit: SubmitHandler<Inputs> = async(data) => {
@@ -40,15 +40,19 @@ const page = () => {
         }
     }
     
-    
 
-    const handleStatusChange = (e:React.ChangeEvent<HTMLSelectElement>,id:string) =>{
-        
+    const handleStatusChange = async(e:React.ChangeEvent<HTMLSelectElement>,id:string) =>{    
         let a = window.confirm("Do you want to change the status?")
         if(a){
-            console.log(e.target.value,id)
+            const res = await updateAdminStatus({status: e.target.value , id:id})
+            if(res?.data?.data?.modifiedCount){
+                toast.success("Status updated!!")
+            }else{
+                toast.error("Failed to update!")
+            }
         }
     }
+
     return (
         <div className="sAdmin">
             <div className="sAdmin-header">
@@ -65,13 +69,15 @@ const page = () => {
                             <th className="th">Name</th>
                             <th className="th">Email</th>
                             <th className="th">Mobile</th>
-                            <th className="th">Active</th>
+                            <th className="th">Country</th>
+                            <th className="th">Role</th>
+                            <th className="th">Created</th>
                             <th className="th">Status</th>
                             <th className="th">Change Status</th>
                         </tr>
                     </thead>
                     <tbody className="tbody">
-                        {dataLoading || createLoading ? (
+                        {(dataLoading || createLoading || updateLoading) ? (
                             <tr>
                                 <td className="td" colSpan={8} style={{ textAlign: "center" }}>
                                     <Loader />
@@ -85,7 +91,9 @@ const page = () => {
                                     <td className="td">{admin?.name}</td>
                                     <td className="td">{admin?.email}</td>
                                     <td className="td">{admin?.mobile}</td>
-                                    <td className="td">{admin?.active?.toString()}</td>
+                                    <td className="td">{admin?.counrty}</td>
+                                    <td className="td">{admin?.role}</td>
+                                    <td className="td">{admin?.createdAt}</td>
                                     <td className="td">{admin?.status}</td>
                                     <td className="td">
                                         <select 
@@ -94,6 +102,7 @@ const page = () => {
                                         >
                                             <option value="active">active</option>
                                             <option value="inactive">inactive</option>
+                                            <option value="banned">banned</option>
                                         </select>
                                     </td>
                                 </tr>

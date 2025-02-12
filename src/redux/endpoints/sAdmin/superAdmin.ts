@@ -23,6 +23,14 @@ const sAdminApi = baseApi.injectEndpoints({
       providesTags: ["admin"],
     }),
 
+    getALlUser: build.query<any, void>({
+        query: () => ({
+            url: "/super_admin/users/all",
+            method: "GET",
+        }),
+      providesTags: ["admin"],
+    }),
+
     deleteAdmin: build.mutation<any, string>({
         query: (email) => ({
             url: `/super_admin/delete/${email}`,
@@ -31,14 +39,13 @@ const sAdminApi = baseApi.injectEndpoints({
       invalidatesTags: ["admin"],  
     }),
 
-    updateAdmin: build.mutation<any, { data: any; id: string }>({
-        query: ({ data, id }) => ({
-            url: `/super_admin/update/${id}`,
+    updateAdminStatus: build.mutation<any, { status: string ; id: string }>({
+        query: ({ status, id }) => ({
+            url: `/super_admin/update/${id}/${status}`,
             method: "PATCH",
             headers: { 
               "Content-Type": "application/json" 
             },  
-            body: data,   
         }),
       invalidatesTags: ["admin"], 
     }),
@@ -58,6 +65,7 @@ const sAdminApi = baseApi.injectEndpoints({
 export const {
     useCreateAdminMutation,
     useGetALlAdminQuery,
-    useUpdateAdminMutation,
+    useGetALlUserQuery,
+    useUpdateAdminStatusMutation,
     useDeleteAdminMutation
 } = sAdminApi
