@@ -3,6 +3,7 @@ import { deleteCookies } from "./deleteCookies"
 import { cookieRemove } from "./removeCookie"
 
 
+
 export const logOut = async(route:AppRouterInstance) =>{
     localStorage.removeItem('accessToken')
     deleteCookies()

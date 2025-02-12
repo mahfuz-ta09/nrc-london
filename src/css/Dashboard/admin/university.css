@@ -99,9 +99,10 @@
 
 @media (max-width: 450px) {
 
-    .th, .td {
+    .th,.td {
         border: 1px solid #ddd;
         padding: 10px;
+        color: #000;
         text-align: center;
         background: transparent;
     }

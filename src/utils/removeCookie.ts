@@ -1,4 +1,3 @@
-
 const API_URL = "https://nrc-server.onrender.com/app/v1/auth/logout"; 
 // const API_URL = "http://localhost:7373/app/v1/auth/logout"; 
 

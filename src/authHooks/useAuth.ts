@@ -3,6 +3,7 @@ import { setCookie } from "@/utils/setCookies"
 
 // const API_URL = "https://nrc-server.onrender.com/app/v1/auth"
 const API_URL = "https://nrc-server-production.up.railway.app/app/v1/auth"
+// const API_URL = "http://localhost:7373/app/v1/auth"
 
 export const useAuth = () => {
     const [loading, setLoading] = useState(false);
@@ -67,29 +68,7 @@ export const useAuth = () => {
         }
     }, [])
 
-    const cookieRemove = useCallback(async () => {
-            setLoading(true)
-            setError(null)
-            try {
-                const response = await fetch(`${API_URL}/logout`, {
-                    method: "GET",
-                    credentials: "include",
-                })
+    
 
-                const result = await response.json()
-
-                if (!response.ok) {
-                    throw new Error(result?.message || "Logout failed")
-                }
-
-                return result
-            } catch (err: any) {
-                setError(err.message)
-                return null
-            } finally {
-                setLoading(false)
-            }
-    }, [])
-
-    return { logInUser, signUpUser, cookieRemove, loading, error }
+    return { logInUser, signUpUser, loading, error }
 }

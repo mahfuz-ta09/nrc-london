@@ -10,14 +10,20 @@ const sideNavItem = (role : Role) => {
         USER: "user"
     }
 
+
     // console.log("sad",role)
     switch(role){
         case USER_ROLE.SUPER_ADMIN:
             navItem.push(
                 {
-                    title       : "Profile",
-                    path        : "/",
-                    icon        : faUser,
+                    title    : "Profile",
+                    path     : "/",
+                    icon     : faUser,
+                },
+                {
+                    title   : "Manage Admin",
+                    path    : `${role}/manage-admin`,
+                    icon    : faUser,
                 },
                 {
                     title   : "Manage Users",
