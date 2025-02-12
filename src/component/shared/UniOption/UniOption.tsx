@@ -22,7 +22,8 @@ const UniOption = () => {
             });
         }
     }
-    console.log(data)
+
+    
     return (    
         <div className='unioption-cotainer'>
             <div className="wdth">

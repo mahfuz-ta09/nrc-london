@@ -29,8 +29,8 @@ const UpdateUni = ({name,setOpen,uniId}:{name:string,setOpen:React.Dispatch<Reac
         formState: { errors },
     } = useForm<University>()
     const { uploadImage, isLoading:imgLoad, error } = useImgBBUpload()
-    const [createUniversity,{isLoading:createLoad}] = useCreateUniversityMutation()
-    const [updateUniversity,{isLoading:editLoad}] = useUpdateUniversityMutation()
+    const [ createUniversity,{isLoading:createLoad} ] = useCreateUniversityMutation()
+    const [ updateUniversity,{isLoading:editLoad} ] = useUpdateUniversityMutation()
 
     const onSubmit: SubmitHandler<University> = async(data) => {
         

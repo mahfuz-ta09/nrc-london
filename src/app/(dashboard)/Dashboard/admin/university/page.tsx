@@ -1,6 +1,6 @@
 'use client'
 import '@/css/Dashboard/admin/university.css'
-import { faCancel, faPen } from '@fortawesome/free-solid-svg-icons'
+import { faPen, faTrash } from '@fortawesome/free-solid-svg-icons'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { useState } from 'react'
 import UpdateUni from './UpdateUni'
@@ -83,7 +83,7 @@ const page = () => {
                                     <td className="td" data-label="Entry Requirements">{uni?.entryRequirements}</td>
                                     <td className="td" data-label="Application Deadlines">{uni?.applicationDeadlines}</td>
                                     <td className="td" data-label="Edit button"><FontAwesomeIcon onClick={()=>{setOpen(!open);setName("Edit");setUniId(uni?._id)}} icon={faPen}/></td>
-                                    <td className="td" data-label="Delete Button"><FontAwesomeIcon onClick={()=>handleDelete(uni?._id)} icon={faCancel}/></td>
+                                    <td className="td" data-label="Delete Button"><FontAwesomeIcon onClick={()=>handleDelete(uni?._id)} icon={faTrash}/></td>
                                 </tr>))
                         }
                     </tbody>
