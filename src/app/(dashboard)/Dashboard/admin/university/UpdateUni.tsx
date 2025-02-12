@@ -10,6 +10,7 @@ interface University {
     name: string;
     country: string;
     file: FileList | null;
+    flag: FileList;
     ranking: string;
     tuitionFee: string;
     requiredDocs: string;
@@ -24,7 +25,6 @@ const UpdateUni = ({name,setOpen,uniId}:{name:string,setOpen:React.Dispatch<Reac
     const {
         register,
         handleSubmit,
-        watch,
         reset,
         formState: { errors },
     } = useForm<University>()
@@ -35,15 +35,17 @@ const UpdateUni = ({name,setOpen,uniId}:{name:string,setOpen:React.Dispatch<Reac
     const onSubmit: SubmitHandler<University> = async(data) => {
         
         try{
-            let res,url=""
+            let res,url="",flag=""
             if(data?.file){
                 url = await uploadImage(data?.file)
+                flag = await uploadImage(data?.flag)
             }
 
             const dataUpload ={
                 name: data?.name,
                 country: data?.country,
                 url: url,
+                flag: flag,
                 ranking: data?.ranking,
                 tuitionFee: data?.tuitionFee,
                 requiredDocs: data?.requiredDocs,
@@ -88,7 +90,12 @@ const UpdateUni = ({name,setOpen,uniId}:{name:string,setOpen:React.Dispatch<Reac
 
             <div className="form-group">
                 <label htmlFor="logo">Add university image:</label>
-                <input id="file" type="file" {...register("file")}  />
+                <input style={{color:"white"}} id="file" type="file" {...register("file")}  />
+            </div>
+
+            <div className="form-group">
+                <label htmlFor="logo">Country flag image:</label>
+                <input style={{color:"white"}} id="file" type="file" {...register("flag")}  />
             </div>
 
             <div className="form-group">

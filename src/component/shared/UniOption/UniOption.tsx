@@ -22,7 +22,7 @@ const UniOption = () => {
             });
         }
     }
-
+    console.log(data)
     return (    
         <div className='unioption-cotainer'>
             <div className="wdth">
@@ -35,10 +35,11 @@ const UniOption = () => {
                             data?.data?.map((option:any)=>
                                 <div key={option.country} className="uni">
                                     <img className="uni-image" src={option.image}alt='' />
+                                    <img className="uni-country-image" src={option.flag}alt='' />
                                     <div className="overlay"></div>
                                     <div className="details">
                                         <h3>Study in {option.country}</h3>
-                                        <h3>Inspiring higher study in abroad</h3>
+                                        <p>Inspiring higher study in abroad</p>
                                         <button onClick={()=> router.push(`/University/${option.country}`)}>details <FontAwesomeIcon icon={faArrowAltCircleRight}/> </button>
                                     </div>
                                 </div>)

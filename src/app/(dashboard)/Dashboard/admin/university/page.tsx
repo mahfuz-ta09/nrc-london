@@ -52,6 +52,7 @@ const page = () => {
                             <th className="th">University Name</th>
                             <th className="th">Country</th>
                             <th className="th">Image</th>
+                            <th className="th">Flag</th>
                             <th className="th">Ranking</th>
                             <th className="th">Tuition Fee</th>
                             <th className="th">Required Document</th>
@@ -71,7 +72,8 @@ const page = () => {
                                     <td className="td" data-label="University Name">{index+1}</td>
                                     <td className="td" data-label="University Name">{uni?.name}</td>
                                     <td className="td" data-label="Ranking">#{uni?.country}</td>
-                                    <td className="td" data-label="Logo"><img className="logo-img" src={uni?.url} alt="Harvard Logo"/></td>
+                                    <td className="td" data-label="Logo"><img className="logo-img" src={uni?.url} alt="University Image"/></td>
+                                    <td className="td" data-label="Logo"><img className="logo-img" src={uni?.flag} alt="Flag Image"/></td>
                                     <td className="td" data-label="Ranking">{uni?.ranking}</td>
                                     <td className="td" data-label="Tuition Fee">${uni?.tuitionFee}</td>
                                     <td className="td" data-label="Required Document">{uni?.requiredDocs}</td>
@@ -80,8 +82,8 @@ const page = () => {
                                     <td className="td" data-label="Intakes">{uni?.intakes}</td>
                                     <td className="td" data-label="Entry Requirements">{uni?.entryRequirements}</td>
                                     <td className="td" data-label="Application Deadlines">{uni?.applicationDeadlines}</td>
-                                    <td className="td" data-label="Application Deadlines"><FontAwesomeIcon onClick={()=>{setOpen(!open);setName("Edit");setUniId(uni?._id)}} icon={faPen}/></td>
-                                    <td className="td" data-label="Application Deadlines"><FontAwesomeIcon onClick={()=>handleDelete(uni?._id)} icon={faCancel}/></td>
+                                    <td className="td" data-label="Edit button"><FontAwesomeIcon onClick={()=>{setOpen(!open);setName("Edit");setUniId(uni?._id)}} icon={faPen}/></td>
+                                    <td className="td" data-label="Delete Button"><FontAwesomeIcon onClick={()=>handleDelete(uni?._id)} icon={faCancel}/></td>
                                 </tr>))
                         }
                     </tbody>
