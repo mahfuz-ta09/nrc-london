@@ -12,6 +12,7 @@ import { toast } from "react-toastify"
 type Inputs = {
     name: string;
     email: string;
+    role:string,
     mobile_number: string;
     alternate_mobile?: string;
     dob: string;
@@ -51,6 +52,7 @@ const Becomeanagent = () => {
                 data.license_document = await uploadImage(data?.license_document)
             }
             data.email = Uemail
+            data.role = Urole
 
             const res = await createAgentsReq(data)
             if(res?.data?.data?.acknowledged){

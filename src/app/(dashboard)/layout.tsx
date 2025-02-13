@@ -2,6 +2,7 @@
 import '@/css/Dashboard/layout.css'
 import LayoutPage from "./LayoutPage"
 
+
 const Layout = ({ children } : {children : React.ReactNode}) => {
    
     return (
