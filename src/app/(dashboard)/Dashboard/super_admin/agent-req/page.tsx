@@ -20,7 +20,6 @@ const page = () => {
         let a = window.confirm("Do you want to change the status?")
         if(a){
             const res = await updateAgentStatus({status: "accepted" , id:id})
-            console.log(res)
             if(res?.data?.data?.modifiedCount){
                 toast.success("Status updated!!")
             }else{
@@ -70,7 +69,7 @@ const page = () => {
                                 <th className="th">Role</th> 
                                 <th className="th">Services</th> 
                                 <th className="th">Tax id</th> 
-                                <th className="th">State</th> 
+                                <th className="th">Status</th> 
                                 <th className="th">Update Status</th>
                                 <th className="th">Delete</th>
                             </tr>
@@ -105,7 +104,7 @@ const page = () => {
                                         <td className="td" >{req?.role}</td>
                                         <td className="td" >{req?.services}</td>
                                         <td className="td" >{req?.tax_id}</td>
-                                        <td className="td" >{req?.state}</td>
+                                        <td className="td" >{req?.status}</td>
                                         <td className="td" ><FontAwesomeIcon onClick={()=>handleStatusChange(req?._id)} icon={faCheckDouble}/></td>
                                         <td className="td" ><FontAwesomeIcon icon={faTrash}/></td>
                                     </tr>

@@ -6,7 +6,6 @@ import '@/css/Dashboard/admin/university.css'
 import { useRouter } from "next/navigation"
 
 
-
 const page = () => {
     const { data , isLoading : dataLoading } = useGetALlAgentQuery()
     const router = useRouter()
@@ -84,7 +83,7 @@ const page = () => {
                                         <td className="td" >{req?.role}</td>
                                         <td className="td" >{req?.services}</td>
                                         <td className="td" >{req?.tax_id}</td>
-                                        <td className="td" >{req?.state}</td>
+                                        <td className="td" >{req?.status}</td>
                                     </tr>
                                 ))
                             }

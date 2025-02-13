@@ -12,12 +12,12 @@ type Inputs = {
     password: string
 }
 
+
 const page = () => {
     const [create,setCreate] = useState(false)
     const {
         register,
         handleSubmit,
-        watch,
         reset,
         formState: { errors },
     } = useForm<Inputs>()
@@ -45,7 +45,8 @@ const page = () => {
         let a = window.confirm("Do you want to change the status?")
         if(a){
             const res = await updateAdminStatus({status: e.target.value , id:id})
-            if(res?.data?.data?.modifiedCount){
+            console.log(res)
+            if(res?.data?.data?.modifiedCount===1){
                 toast.success("Status updated!!")
             }else{
                 toast.error("Failed to update!")

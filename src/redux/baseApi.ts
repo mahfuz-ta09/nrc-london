@@ -6,6 +6,7 @@ let url = ''
 url = 'https://nrc-server-production.up.railway.app/app/v1'
 // url = 'http://localhost:7373/app/v1'
 
+
 export const baseApi = createApi({
     reducerPath: 'api',
     baseQuery: axiosBaseQuery({ 

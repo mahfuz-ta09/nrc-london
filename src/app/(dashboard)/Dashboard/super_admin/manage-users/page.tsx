@@ -14,7 +14,6 @@ const page = () => {
             let a = window.confirm("Do you want to change the status?")
             if(a){
                 const res = await updateAdminStatus({status: e.target.value , id:id})
-                console.log(res)
                 if(res?.data?.data?.modifiedCount){
                     toast.success("Status updated!!")
                 }else{
