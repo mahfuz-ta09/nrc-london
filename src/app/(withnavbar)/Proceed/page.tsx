@@ -176,7 +176,7 @@ const page = () => {
                     <option value="yes">Yes</option>
                 </select>
                 
-                <label className="form-label" htmlFor="test-date">Tell country name: </label>
+                <label className="form-label" htmlFor="test-date">Refused country name: (If not, then leave the box empty.)</label>
                 <input className="form-input" type="text" {...register("country_name")}/>
                 
                 { postLoading ? <p>Loading...</p> : <input className="form-button" type="submit" value="Proceed"/>}

@@ -81,7 +81,7 @@ const Navbar = () => {
                         <div className='drop-down'>
                             <div className="drop-down-content">
                                 <div className="drop-down-group">
-                                    <Link onClick={()=>setIsOpen(false)} className='drop-down-link' href="/">Become an agent</Link>
+                                    <Link onClick={()=>setIsOpen(false)} className='drop-down-link' href="/RecruitmentPartner/Becomeanagent">Become an agent</Link>
                                 </div>
                                 <div className="contact-section">
                                     <Link onClick={()=>setIsOpen(false)} className='contact-section-link' href="/"><FontAwesomeIcon icon={faPhone}/> Contact</Link>

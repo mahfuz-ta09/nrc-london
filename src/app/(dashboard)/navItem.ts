@@ -34,6 +34,11 @@ const sideNavItem = (role : Role) => {
                     title   : "Statistics",
                     path    : `${role}/web-stat`,
                     icon    : faUser,
+                },
+                {
+                    title   : "Agents",
+                    path    : `${role}/AllAgents`,
+                    icon    : faUser,
                 }
             );
             break;

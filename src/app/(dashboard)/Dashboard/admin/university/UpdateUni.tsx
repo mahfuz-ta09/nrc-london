@@ -1,8 +1,8 @@
 'use client'
 import '@/css/Dashboard/admin/university.css'
 import { useCreateUniversityMutation, useUpdateUniversityMutation } from '@/redux/endpoints/university/universityEndpoints';
-import convertFormData from '@/utils/convertFormData';
-import useImgBBUpload from '@/utils/useImgBBUpload';
+import convertFormData from '@/utils/convertFormData'
+import useImgBBUpload from '@/utils/useImgBBUpload'
 import { useForm, SubmitHandler } from "react-hook-form"
 import { toast } from 'react-toastify';
 

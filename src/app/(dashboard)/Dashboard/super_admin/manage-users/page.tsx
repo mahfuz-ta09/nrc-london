@@ -10,7 +10,6 @@ const page = () => {
         const { data , isLoading: dataLoading } = useGetALlUserQuery()
         const [ updateAdminStatus , { isLoading : updateLoading }] = useUpdateAdminStatusMutation() 
     
-    
         const handleStatusChange = async(e:React.ChangeEvent<HTMLSelectElement>,id:string) =>{    
             let a = window.confirm("Do you want to change the status?")
             if(a){
@@ -50,7 +49,7 @@ const page = () => {
                             </tr>
                         </thead>
                         <tbody className="tbody">
-                            {dataLoading ? (
+                            {(dataLoading || updateLoading) ? (
                                 <tr>
                                     <td className="td" colSpan={8} style={{ textAlign: "center" }}>
                                         <Loader />
