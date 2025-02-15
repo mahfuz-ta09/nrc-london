@@ -56,7 +56,7 @@ const page = () => {
             </div>
           </div>
 
-          {profile?.data?.review && <div className="comments">
+          {profile?.data?.review && <div className="profile-comments">
                 <p>your previous comment : </p>
                 <p className="form-label">{profile?.data?.review}</p>
                 {deleteLoading ? <p>Loading...</p> :<button onClick={()=>handleDelete(data?.Uid)} style={{padding:"5px 16px",width:"80px",margin:"10px 0",border:"none",borderRadius:"4px"}}>delete</button>}

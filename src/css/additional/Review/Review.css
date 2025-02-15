@@ -41,10 +41,12 @@
 }
 
 .btn-group button{
-    height: 30px;
-    width:  30px;
-    border-radius: 50%;
-    /* padding: 10px; */
+    border-radius: 5px;
+    padding: 4px 12px;
+
+    &:hover{
+        transform: scale(.9);
+    }
 }
 
 .review-header{
@@ -75,6 +77,11 @@
     background: rgba(0,74,98,.8);
     color: #fff;
     font-size: 17px;
+
+    &:hover{
+        transform: scale(1.1);
+        background: rgba(0,74,98);
+    }
 }
 
 .comments{
