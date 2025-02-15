@@ -8,6 +8,7 @@
     position: relative;
 }
 
+
 .bottom{
     position: absolute;
     background: rgb(2, 82, 108);
@@ -121,16 +122,23 @@
 
 
 .achiev{
-    background:rgba(0,74,98,1);
-    min-width: 280px;
+    background:rgba(255,255,255,.3);
+    backdrop-filter: blur(30px);
+    width: 280px;
     padding: 20px;
+    border:1px solid rgba(255,255,255,.8);
+    border-radius: 3px;
     display: flex;
     align-items: center;
     justify-content: space-around;
-    box-shadow:2px 4px 10px  #fff;
+    box-shadow: 3px 3px 10px  rgba(255,255,255,.7);
     object-fit: contain;
     flex: 1;
     z-index: 3;
+    &:hover{
+        transform: translateY(-5px);
+        transition: .5s ease-in-out;
+    }
 }
 
 .achiev-photo{
