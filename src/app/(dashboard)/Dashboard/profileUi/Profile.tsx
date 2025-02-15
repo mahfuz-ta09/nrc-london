@@ -12,7 +12,7 @@ interface IFormInput {
     phone: number
     dob: string
     country: string
-    image?: File | null
+    image?: FileList | null
     password:string
     review:string
 }
