@@ -50,7 +50,7 @@ const proceedApi = baseApi.injectEndpoints({
                 url: `/process/partial/${page}/${item}`,
                 method: "GET",
             }),
-            providesTags: ["review"],
+            providesTags: ["proceed"],
         }),
     }),
 
