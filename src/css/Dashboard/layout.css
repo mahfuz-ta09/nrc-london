@@ -11,6 +11,7 @@
 	width: 100vw;
 	min-height: 100vh;
 	position: relative;
+	z-index: 100;
 }
 
 .dash-nav {
@@ -107,18 +108,14 @@
 	align-items: center;
 	justify-content: start;
 	gap: 20px;
+	z-index: 1;
 }
 
-.dash-nav-action{
-	position: fixed;
-	right:15px;
-	top:  20px;
-	display: flex;
-	align-items: center;
-	justify-content: center;
-	gap: 10px;
-}
+
 .nav-icon-btn{
+	position: fixed;
+	right: 10px;
+	top: 20px;
     background: transparent;
     border: none;
 	font-size: 25px;
@@ -127,6 +124,9 @@
 }
 
 .nav-logout-btn{
+	position: fixed;
+	right: 60px;
+	top: 23px;
     background: transparent;
     border: none;
 	font-size: 20px;
@@ -141,6 +141,9 @@
 
 
 .nav-icon-home-btn{
+	position: fixed;
+	right: 50px;
+	top: 20px;
 	font-size: 25px;
 	transition: .3s ease-in-out;
     background: transparent;
@@ -169,6 +172,7 @@
 .dash-item-content{
 	width: 100%;
 	margin-top: 11vh;
+	z-index: -1;
 }
 
 .dash-nav-footer{
@@ -187,10 +191,6 @@
 	color: #ffaaaa;
 }
 
-.header-title{
-
-}
-
 .header-title h1{
     font-size: 17px;
 }
@@ -203,7 +203,6 @@
 		border-right: 3px solid white;
 		position: fixed;
 		top: 0;
-		z-index: 1;
 		left: -75vw;
 		transition: left 0.5s ease-in;
 	}

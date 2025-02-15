@@ -10,6 +10,7 @@ const Layout = ({ children } : {children : React.ReactNode}) => {
     const data = useUserInfo()
     const { data: profile , isLoading } = useGetProfileByIdQuery(data?.Uid)
    
+
     return (
       <div  className='dashboard-layout'>
           <div className="dash-content">
@@ -17,7 +18,7 @@ const Layout = ({ children } : {children : React.ReactNode}) => {
             <div className="dash-item">
               <div className="dash-item-header">
                   <div className='header-title'>
-                      <h1>hello mr {profile?.data?.name}</h1>
+                      <h1>hello mr {isLoading ? "Loading.." :profile?.data?.name}</h1>
                       <h1>wellcome to dashboard</h1>
                   </div>
               </div>

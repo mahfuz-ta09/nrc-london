@@ -71,7 +71,7 @@ const Profile = ({profileData}:{profileData:boolean}) => {
                 <label className="form-label" htmlFor="image">Your image:</label>
                 <input style={{color:"white"}} id="file" type="file" {...register("image")}  />
                 
-                {(uploadLoading || imageLoading) ? <p>Loading...</p> : <input className='prfl-btn' type="submit" value="Update"/>}
+                {(uploadLoading || imageLoading) ? <p>Loading...</p> : <button className='prfl-udate-btn' type="submit" >Update</button>}
             </form>
 
         </div>
