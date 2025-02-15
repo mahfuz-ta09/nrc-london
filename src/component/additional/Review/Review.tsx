@@ -14,8 +14,6 @@ const Review = () => {
     const [item,setItem] = useState(3)
     const { data , isLoading } = useGetPageReviewQuery({page,item})
 
-    
-
     return (
         <div className='review-container'>
             <div className="review-content">
@@ -34,44 +32,44 @@ const Review = () => {
                         
                         <div className="comments">
                             <div className='comment'>
-                            {data?.data[0]?.url ? <img src={data?.data[0]?.url} alt="" /> :<FontAwesomeIcon className='comment-image' icon={faUser}/>}
+                            {data?.data[0]?.image ? <img className='comment-image' src={data?.data[0]?.image} alt="" /> :<FontAwesomeIcon className='comment-font' icon={faUser}/>}
                                 <div className="comment-body">
                                     <div className="comment-header">
                                         <h1>{data?.data[0]?.name || data?.data[0]?.email}</h1>
                                         <FontAwesomeIcon className='qoutation' icon={faQuoteRight}/>
                                     </div>
                                     <p className="comment-main">
-                                        {data?.data[0]?.comment ? data?.data[0]?.comment : "No comment exist!"}
+                                        {data?.data[0]?.review ? data?.data[0]?.review : "No comment exist!"}
                                     </p>
                                 </div>
                             </div>
                         
 
                             <div className='comment focus'>
-                            {data?.data[1]?.url ? <img src={data?.data[1]?.url} alt="" /> :<FontAwesomeIcon className='comment-image' icon={faUser}/>}
+                            {data?.data[1]?.image ? <img className='comment-image' src={data?.data[1]?.image} alt="" /> :<FontAwesomeIcon className='comment-font' icon={faUser}/>}
                                 <div className="comment-body">
                                     <div className="comment-header">
                                         <h1>{data?.data[1]?.name || data?.data[1]?.email}</h1>
                                         <FontAwesomeIcon className='qoutation focus-icon' icon={faQuoteRight}/>
                                     </div>
                                     <p className="comment-main">
-                                        {data?.data[1]?.comment ? data?.data[1]?.comment : "No comment exist!"}
+                                        {data?.data[1]?.review ? data?.data[1]?.review : "No comment exist!"}
                                     </p>
                                 </div>
                             </div>
 
                             <div className='comment'>
-                            {data?.data[2]?.url ? <img src={data?.data[2]?.url} alt="" /> :<FontAwesomeIcon className='comment-image' icon={faUser}/>}
-                                <div className="comment-body">
-                                    <div className="comment-header">
-                                        <h1>{data?.data[2]?.name || data?.data[2]?.email}</h1>
-                                        <FontAwesomeIcon className='qoutation' icon={faQuoteRight}/>
+                                {data?.data[2]?.image ? <img className='comment-image' src={data?.data[2]?.image} alt="" /> :<FontAwesomeIcon className='comment-font' icon={faUser}/>}
+                                    <div className="comment-body">
+                                        <div className="comment-header">
+                                            <h1>{data?.data[2]?.name || data?.data[2]?.email}</h1>
+                                            <FontAwesomeIcon className='qoutation' icon={faQuoteRight}/>
+                                        </div>
+                                        <p className="comment-main">
+                                            {data?.data[2]?.review ? data?.data[2]?.review : "No comment exist!"}
+                                        </p>
                                     </div>
-                                    <p className="comment-main">
-                                        {data?.data[2]?.comment ? data?.data[2]?.comment : "No comment exist!"}
-                                    </p>
                                 </div>
-                            </div>
                         </div>
 
                     }

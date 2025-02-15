@@ -111,9 +111,19 @@
     left: 50%;
 }
 
-.comment-image{
+
+
+.comment-font{
     font-size: 50px;
     padding: 14px;
+    border-radius: 50%;
+    color: #a39c9c;
+}
+
+.comment-image{
+    height:60px;
+    width: 60px;
+    object-fit: cover;
     border-radius: 50%;
     color: #a39c9c;
 }

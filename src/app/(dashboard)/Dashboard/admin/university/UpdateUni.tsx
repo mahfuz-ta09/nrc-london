@@ -1,7 +1,6 @@
 'use client'
 import '@/css/Dashboard/admin/university.css'
-import { useCreateUniversityMutation, useUpdateUniversityMutation } from '@/redux/endpoints/university/universityEndpoints';
-import convertFormData from '@/utils/convertFormData'
+import { useCreateUniversityMutation, useUpdateUniversityMutation } from '@/redux/endpoints/university/universityEndpoints'
 import useImgBBUpload from '@/utils/useImgBBUpload'
 import { useForm, SubmitHandler } from "react-hook-form"
 import { toast } from 'react-toastify';
@@ -28,12 +27,11 @@ const UpdateUni = ({name,setOpen,uniId}:{name:string,setOpen:React.Dispatch<Reac
         reset,
         formState: { errors },
     } = useForm<University>()
-    const { uploadImage, isLoading:imgLoad, error } = useImgBBUpload()
+    const { uploadImage, isLoading:imgLoad } = useImgBBUpload()
     const [ createUniversity,{isLoading:createLoad} ] = useCreateUniversityMutation()
     const [ updateUniversity,{isLoading:editLoad} ] = useUpdateUniversityMutation()
 
     const onSubmit: SubmitHandler<University> = async(data) => {
-        
         try{
             let res,url="",flag=""
             if(data?.file){

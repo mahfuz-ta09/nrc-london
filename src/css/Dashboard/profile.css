@@ -63,21 +63,23 @@
 .button-grp{
     display: flex;
     align-items: center;
-    justify-content: center;
+    justify-content: right;
     flex-wrap: wrap;
     gap: 20px;
     width: 100%;
     margin: 50px 0 20px;
     width: 100%;
+    padding: 10px;
+    border-bottom: 2px solid rgba(0,0,0,1);
 }
 
 .button-grp button{
     width:fit-content;
-    padding: 8px 28px;
+    padding: 6px 18px;
     border: none;
     border-radius: 4px;
-    background: #fff;
-    color: #000;
+    background: rgba(255,255,255,0.2);
+    color: #fff;
     font-size: 18px;
     font-weight: 400;
     cursor: pointer;
@@ -102,5 +104,58 @@
         gap: 30px;
     }
     
+    
+}
+
+/* -------------------------------------------profile------------------------------------------- */
+
+.profile-edit-container{
+    width: 100%;
+    height:100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    height: auto;
+    margin: 0 auto;
+    border-radius: 14px;
+}
+
+.profile-container-hode{
+    display: none;
+}
+
+.profile-edit-container form{
+    display: flex;
+    align-items: start;
+    justify-content: start;
+    flex-direction: column;
+    padding: 30px;
+    width: 70%;
+    margin: 10px 0;
+}
+
+
+.profile-edit-container form input{
+    padding: 10px;
+    width: 100%;
+    border-radius: 4px;
+    border: none;
+}
+
+.profile-edit-container form .form-label{
+    padding: 10px 0;
+    color: #fff;
+}
+
+.prfl-btn{
+    gap: 20px;
+    margin: 20px 0;
+}
+
+@media screen and (max-width:450px) {
+    .profile-edit-container form{
+        width: 100%;
+    }
     
 }
