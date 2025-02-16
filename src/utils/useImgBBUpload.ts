@@ -1,6 +1,6 @@
-const apiKey = "70658ec884a671dba00f64777f0d9ae1"
+const apiKey = "759c221a2bb6cc68c0c947c44ee5bfc4"
 const url = `https://api.imgbb.com/1/upload?key=${apiKey}`
-import { useState } from "react";
+import { useState } from "react"
 
 const useImgBBUpload = () => {
   const [isLoading, setIsLoading] = useState(false);

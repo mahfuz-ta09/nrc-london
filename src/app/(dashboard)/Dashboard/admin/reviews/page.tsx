@@ -58,8 +58,8 @@ const page = () => {
                                     <td className="td" data-label="Serial">{index+1}</td>
                                     <td className="td" data-label="Subject Name">{sub?.name}</td>
                                     <td className="td" data-label="Possible Destination">{sub?.email}</td>
-                                    <td className="td" data-label="Duration (Months)">{sub?.comment}</td>
-                                    <td className="td" data-label="Delete"><FontAwesomeIcon onClick={()=>handleDelete(sub?.email)} icon={faCancel}/></td>
+                                    <td className="td" data-label="Duration (Months)">{sub?.review}</td>
+                                    <td className="td" data-label="Delete"><FontAwesomeIcon onClick={()=>handleDelete(sub?._id)} icon={faCancel}/></td>
                                 </tr>
                             ))
                         }

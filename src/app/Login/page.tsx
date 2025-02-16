@@ -21,7 +21,7 @@ const LoginPage = () => {
         formState: { errors },
     } = useForm<Inputs>()
     const router = useRouter()
-    const { logInUser, loading } = useAuth()
+    const { logInUser, loading , error} = useAuth()
 
     const onSubmit: SubmitHandler<Inputs> = async(data) => {
       let formData = convertFormData(data)
@@ -58,7 +58,6 @@ const LoginPage = () => {
                         </form>
                         <h2 className="link-header">or login with</h2>
                         <div className="social-login">
-                        <button className="">google</button>
                                 <button className="" onClick={()=>router.push('/')}>home?</button>
                         </div>
                         <Link className='forgot-link underline' href="/Signup">Do not have account? sign up</Link>

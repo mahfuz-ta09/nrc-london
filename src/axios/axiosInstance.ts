@@ -1,5 +1,7 @@
 import { responseError, responseSuccess } from '@/types/common'
 import { accessToken } from '@/utils/accessToken'
+import { getNewAccessToken } from '@/utils/removeCookie'
+import { setCookie } from '@/utils/setCookies'
 import axios from 'axios'
 
 
@@ -11,7 +13,6 @@ instance.defaults.timeout = 60000
  
 
 instance.interceptors.request.use(function (config) {
-    // console.log("response from instance success",config)
     const token = accessToken()
 
     if(token){
@@ -24,8 +25,6 @@ instance.interceptors.request.use(function (config) {
 
     return config
   }, function (error) {
-
-
     return Promise.reject(error)
 })
 
@@ -34,23 +33,33 @@ instance.interceptors.response.use(
     //@ts-ignore
     
     function (response) {
-        // console.log("response from instance error",response)
         const responseObject:responseSuccess = {
           data: response?.data?.data,
           meta: response?.data?.meta,
         }
     
         return responseObject
-    }, function (error) {
+    }, 
     
-        const responseObject:responseError = {
-          errorMessage: error?.response.data?.message,
-          statusCode: error?.response?.data?.statusCode || 500,
-          message: error?.response.data?.message || "something went wrong!!",
+    async function (error) {
+        if(error?.response?.status === 500){
+            const res:any = await getNewAccessToken()
+            error.config.headers['Authorization'] = res?.meta.accessToken
+            localStorage.setItem("accessToken",res?.meta.accessToken)
+            setCookie(res?.meta.accessToken)
+
+          return instance(error.config)
+        }else{
+          const responseObject:responseError = {
+            errorMessage: error?.response.data?.message,
+            statusCode: error?.response?.data?.statusCode || 500,
+            message: error?.response.data?.message || "something went wrong!!",
+          }
+          return responseObject
         }
     
-        return responseObject
-    })
+    }
+)
     
     
 export { instance }
