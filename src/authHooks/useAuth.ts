@@ -1,9 +1,8 @@
 import { useState, useCallback } from "react"
 import { setCookie } from "@/utils/setCookies"
 
-// const API_URL = "https://nrc-server.onrender.com/app/v1/auth"
-// const API_URL = "nrc-server-production.up.railway.app/app/v1/auth"
-const API_URL = "http://localhost:7373/app/v1/auth"
+const API_URL = "https://unique-vision-production.up.railway.app/app/v1/auth"
+// const API_URL = "http://localhost:7373/app/v1/auth"
 
 export const useAuth = () => {
     const [loading, setLoading] = useState(false);
@@ -18,7 +17,7 @@ export const useAuth = () => {
                 method: "POST",
                 body: formData,
                 credentials: "include",
-            });
+            })
 
             const userInfo = await response.json();
             
