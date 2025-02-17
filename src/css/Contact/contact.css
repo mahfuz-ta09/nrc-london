@@ -1,0 +1,233 @@
+.contact-container{
+    width: 100%;
+    height: 100%;
+    margin: 10vh auto 0;
+}
+
+.contact-banner{
+    background: linear-gradient(to right,rgba(0, 74, 98,0.9),rgb(0, 74, 98,0.3)),url('https://i.ibb.co.com/TVD8vHm/Untitled-design-1.png');
+    height: 40vh;
+    display: flex;
+    align-items: end;
+    justify-content: start;
+    background-position: center;
+    background-size: cover;
+}
+
+.contact h1{
+    font-size: 75px;
+    color: white;
+    text-shadow: 2px 2px 30px  rgba(255,255,255,0.9);
+}
+
+.contact-body{
+    width: 100%;
+    padding: 30px 0;
+    display: flex;
+} 
+
+.enquire-div{
+    width: 50%;
+    max-width: 490px;
+    margin: 20px auto;
+    padding: 20px;
+    box-shadow: 1px 1px 30px rgba(0, 74, 98,0.4);
+    border-radius: 10px;
+}
+
+.contact-heading{
+    font-size: 26px;
+    font-weight: bold;
+    color: #333;
+    margin-bottom: 15px;
+}
+
+.contact-info p {
+  font-size: 18px;
+  margin: 10px 0;
+}
+
+.contact-info .icon {
+  margin-right: 10px;
+}
+
+.phone-icon {
+  color: #007bff;
+}
+
+.email-icon {
+  color: #d9534f;
+}
+
+.address-icon {
+  color: #28a745;
+}
+
+.contact-info a {
+  color: #333;
+  text-decoration: none;
+  font-weight: bold;
+}
+
+.contact-info a:hover {
+  color: #007bff;
+}
+
+.social-icons {
+  margin-top: 20px;
+}
+
+.social-icon {
+  font-size: 28px;
+  margin: 0 10px;
+  transition: color 0.3s ease;
+}
+
+.instagram {
+  color: #e1306c;
+}
+
+.instagram:hover {
+  color: #c13584;
+}
+
+.facebook {
+  color: #1877f2;
+}
+
+.facebook:hover {
+  color: #125bc9;
+}
+
+.twitter {
+  color: #1da1f2;
+}
+
+.twitter:hover {
+  color: #0d8aec;
+}
+
+.map-container {
+  margin-top: 20px;
+  overflow: hidden;
+  border-radius: 10px;
+}
+
+.google-map {
+  width: 100%;
+  height: 250px;
+  border: none;
+  border-radius: 10px;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+}
+
+hr{
+    border: 1px dotted rgb(0, 74, 98);
+}
+
+.enquire-form {
+    width: 50%;
+    max-width: 490px;
+    margin: 20px auto;
+    padding: 20px;
+    border: 1px solid rgba(0,74,98,.8);
+    border-radius: 10px;
+    background-color: #fff;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+  
+.enquire-form h2 {
+  text-align: center;
+  margin-bottom: 20px;
+  font-size: 1.5em;
+  color: #333;
+}
+
+.enquire-form input,
+.enquire-form select,
+.enquire-form textarea {
+  width: 100%;
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  font-size: 1em;
+  margin: 5px 0;
+}
+
+.phone-input {
+  display: flex;
+  align-items: center;
+}
+
+.phone-input span {
+  padding: 8px;
+  background-color: #f5f5f5;
+  border: 1px solid #ccc;
+  border-right: none;
+  border-radius: 5px 0 0 5px;
+}
+
+.phone-input input {
+  flex: 1;
+  border-radius: 0 5px 5px 0;
+}
+
+.enquire-form textarea {
+  resize: vertical;
+  height: 80px;
+}
+
+.checkbox-group {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.checkbox-group input {
+  margin-right: 10px;
+}
+
+.checkbox-group label {
+  font-size: 0.9em;
+}
+
+.checkbox-group a {
+  color: rgba(0,74,98,.8);
+  text-decoration: none;
+}
+
+.checkbox-group a:hover {
+  text-decoration: underline;
+}
+
+.submit-button {
+  width: 100%;
+  padding: 10px;
+  background-color: rgba(0,74,98,.8);
+  color: #fff;
+  border: none;
+  border-radius: 5px;
+  font-size: 1em;
+  cursor: pointer;
+}
+
+.submit-button:hover {
+  background-color: rgba(0,74,98,1);
+}
+  
+@media screen and (max-width:1000px) {
+    .contact-body{
+        flex-direction: column;
+        width: 100%;
+    } 
+    
+    .enquire-div{
+        width: 95%;
+    } 
+
+    .enquire-form{
+        width: 95%;
+    }
+    
+}

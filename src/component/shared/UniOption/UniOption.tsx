@@ -7,7 +7,6 @@ import { useRouter } from 'next/navigation'
 import { useRef} from 'react'
 import Loader from '../Loader/Loader'
 
-
 const UniOption = () => {
     const router = useRouter()
     const { data , isLoading } = useGetUniNavItemQuery()
@@ -30,7 +29,7 @@ const UniOption = () => {
                 <h2 className='uniHeader'>Have a look at your University options:</h2>
                 
                 <div className="uni-content" ref={scrollContainerRef}>
-                    <div style={{width:`${320*data?.meta?.total}px`}} className="unicaro">
+                    <div style={{width:`${360*data?.meta?.total}px`}} className="unicaro">
                         {
                             isLoading ? <Loader /> :
                             data?.data?.map((option:any)=>

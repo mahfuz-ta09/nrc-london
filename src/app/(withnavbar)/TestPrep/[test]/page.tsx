@@ -2,7 +2,7 @@
 import '@/css/TestPrep/CommonStyle.css'
 import Footer from '@/component/shared/Footer/Footer'
 import FAQ from '@/component/UI/FAQ/FAQ'
-import { usePathname } from "next/navigation"
+import { usePathname, useRouter } from "next/navigation"
 import { useEffect, useState } from 'react'
 
 interface TestType {
@@ -35,6 +35,7 @@ interface TestType {
 const Page = () => {
     const pathname= usePathname()
     const paths= pathname.split('/')
+    const router = useRouter()
     const [test, setTest] = useState<TestType | undefined>(undefined);
     const [formData, setFormData] = useState({
         fullName: "",
@@ -83,9 +84,9 @@ const Page = () => {
                         <h1 className='header-abbri'>{test?.full_abbreviation}</h1>
                         <p className='header-abbri'>{test?.purpose}</p>
                         <p className='header-addition'>{test?.purpose}</p>
-                        <button>Contact</button>
+                        <button onClick={()=>router.push('/Contact')}>Contact</button>
                     </div>
-                    <form className="enquire-form" onSubmit={handleSubmit}>
+                    {/* <form className="enquire-form" onSubmit={handleSubmit}>
                             <h2>Enquire Now</h2>
                             <input
                                 type="text"
@@ -163,7 +164,7 @@ const Page = () => {
                             <button type="submit" className="submit-button">
                                 Submit
                             </button>
-                    </form>
+                    </form> */}
                 </div>
             </div>
 
