@@ -10,16 +10,24 @@ import FAQ from "@/component/UI/FAQ/FAQ"
 const Page = () => {
   const faqItems = [
     {
-      question: "What is the meaning of life?",
-      answer: "42",
+      question: "What are the requirements to study abroad?",
+      answer: "Requirements vary by country and university but generally include academic transcripts, proof of English proficiency (IELTS/TOEFL), a Statement of Purpose (SOP), Letters of Recommendation (LORs), and financial proof.",
     },
     {
-      question: "How much wood would a woodchuck chuck?",
-      answer: "A woodchuck would chuck all the wood he could chuck, if a woodchuck could chuck wood!",
+      question: "How long does the student visa process take?",
+      answer: "The processing time depends on the country, but typically it takes 4-12 weeks. It is advisable to apply at least 3-6 months in advance.",
     },
     {
-      question: "What happens if Pinocchio says, 'my nose will grow now'?",
-      answer: "This is a paradox that has puzzled philosophers and fairy tale enthusiasts alike!",
+      question: "Can I work while studying abroad?",
+      answer: "Most countries allow international students to work part-time during studies (usually 20 hours per week) and full-time during holidays. However, specific rules vary by country.",
+    },
+    {
+      question: "What are the best countries to study abroad?",
+      answer: "The best country depends on your field of study, budget, and career goals. Popular options include the USA, Canada, UK, Australia, and Germany for their quality education and post-study work opportunities.",
+    },
+    {
+      question: "How much does it cost to study abroad?",
+      answer: "The cost depends on the country, university, and course. Tuition fees range from $5,000 to $50,000 per year, plus living expenses. Scholarships and financial aid are available to help reduce costs.",
     },
   ]
   
