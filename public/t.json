@@ -1,26 +1,28 @@
 [
     {
       "name": "IELTS",
-      "purpose": "Tests English language proficiency for academic, migration, and general purposes.",
+      "abbreviation":" International English Language Testing System.",
+      "purpose": "The purpose of the IELTS (International English Language Testing System) is to assess and evaluate the English language proficiency of non-native speakers. It is widely recognized and used by educational institutions, governments, and employers around the world to ensure that individuals have the necessary language skills for studying, working, or living in an English-speaking environment.",
       "targetAudience": "Non-native English speakers seeking higher education, employment, or migration opportunities.",
-      "faq":[
-        {
-          "question":"Designed for individuals applying to higher education?",
-          "answer":"Designed for individuals applying to higher education?Designed for individuals applying to higher educationDesigned for individuals applying to higher education"
-        },
-        {
-          "question":"Designed for individuals applying to higher education?",
-          "answer":"Designed for individuals applying to higher education?Designed for individuals applying to higher educationDesigned for individuals applying to higher education"
-        },
-        {
-          "question":"Designed for individuals applying to higher education?",
-          "answer":"Designed for individuals applying to higher education?Designed for individuals applying to higher educationDesigned for individuals applying to higher education"
-        },
-        {
-          "question":"Designed for individuals applying to higher education?",
-          "answer":"Designed for individuals applying to higher education?Designed for individuals applying to higher educationDesigned for individuals applying to higher education"
-        }
-      ],
+      "test_type":"IELTS offers two types of tests: Academic for those pursuing higher education, assessing academic English skills, and General Training for individuals migrating or working, focusing on everyday English for social or workplace settings. Both tests cover Listening, Reading, Writing, and Speaking.",
+      "faq": [
+          {
+            "question": "What is the purpose of the IELTS exam for higher education?",
+            "answer": "The IELTS Academic test is designed to assess your English proficiency for higher education, evaluating your ability to understand complex academic texts and communicate effectively in academic settings."
+          },
+          {
+            "question": "What is the difference between the IELTS Academic and General Training tests?",
+            "answer": "The IELTS Academic test is for those applying to universities or higher education institutions, while the General Training test is for individuals seeking to migrate or work in English-speaking countries."
+          },
+          {
+            "question": "How is the IELTS exam scored?",
+            "answer": "IELTS is scored on a band scale from 0 to 9, with each section (Listening, Reading, Writing, and Speaking) contributing to your overall band score."
+          },
+          {
+            "question": "What skills are tested in the IELTS exam?",
+            "answer": "The IELTS exam tests four key skills: Listening, Reading, Writing, and Speaking, to evaluate your ability to use English in academic or general contexts."
+          }
+        ],
       "types": [
         {
           "type": "IELTS Academic",
@@ -53,165 +55,294 @@
     },
     {
       "name": "TOEFL",
-      "purpose": "Measures English proficiency for academic purposes.",
-      "targetAudience": "Students seeking admission to universities in English-speaking countries.",
+      "abbreviation": "Test of English as a Foreign Language",
+      "purpose": "The TOEFL exam measures the English language proficiency of non-native speakers. It is widely accepted by universities, colleges, and institutions around the world to evaluate academic English skills for higher education purposes.",
+      "targetAudience": "Non-native English speakers applying for higher education in English-speaking countries.",
+      "test_type": "TOEFL offers a single test format focused on academic English, assessing listening, reading, writing, and speaking skills through integrated tasks.",
+      "faq": [
+        {
+          "question": "What is the purpose of the TOEFL exam?",
+          "answer": "The TOEFL exam assesses your ability to use and understand English at the university level, ensuring you can communicate effectively in academic settings."
+        },
+        {
+          "question": "How is the TOEFL exam scored?",
+          "answer": "TOEFL scores range from 0 to 120, with individual section scores ranging from 0 to 30."
+        },
+        {
+          "question": "What skills are tested in the TOEFL exam?",
+          "answer": "TOEFL tests four skills: Reading, Listening, Speaking, and Writing, all of which are essential for academic success."
+        }
+      ],
       "types": [
-        { "type": "TOEFL iBT", "description": "Internet-based test for academic English skills." },
-        { "type": "TOEFL Essentials", "description": "Shorter version of TOEFL for general English proficiency." }
+        {
+          "type": "TOEFL iBT",
+          "description": "The most common TOEFL test, taken online, assesses academic English skills for university admissions."
+        }
       ],
       "format": [
-        { "module": "Reading", "questions": "30-40", "duration": "54-72 minutes", "focus": "Comprehension of academic passages." },
-        { "module": "Listening", "questions": "28-39", "duration": "41-57 minutes", "focus": "Understanding conversations and lectures." },
-        { "module": "Speaking", "tasks": 4, "duration": "17 minutes", "focus": "Speaking about familiar topics and academic material." },
-        { "module": "Writing", "tasks": 2, "duration": "50 minutes", "focus": "Writing responses to reading and listening tasks, and writing an essay." }
+        { "module": "Reading", "sections": "3-4", "questions": "36-56", "duration": "54-72 minutes", "focus": "Reading comprehension of academic texts." },
+        { "module": "Listening", "sections": 4, "questions": "28-39", "duration": "41-57 minutes", "focus": "Understanding spoken English in academic contexts." },
+        { "module": "Speaking", "sections": 6, "duration": "20 minutes", "focus": "Communicating effectively in spoken English." },
+        { "module": "Writing", "sections": 2, "duration": "50 minutes", "focus": "Writing essays and integrated writing tasks based on reading and listening material." }
       ],
       "scoringSystem": {
-        "totalScore": "0-120",
-        "sectionScores": {
-          "Reading": "0-30",
-          "Listening": "0-30",
-          "Speaking": "0-30",
-          "Writing": "0-30"
-        }
+        "bandScale": "0-120",
+        "criteria": [
+          "Reading Comprehension",
+          "Listening Comprehension",
+          "Speaking Skills",
+          "Writing Skills"
+        ]
       }
     },
     {
       "name": "PTE",
-      "purpose": "Tests English proficiency for academic and migration purposes.",
-      "targetAudience": "Non-native English speakers applying to universities or migration programs.",
-      "format": [
+      "abbreviation": "Pearson Test of English",
+      "purpose": "The PTE exam assesses the English language proficiency of non-native speakers for academic purposes. It is widely used for university admissions and immigration applications in English-speaking countries.",
+      "targetAudience": "Non-native English speakers seeking admission to educational institutions or applying for visas in English-speaking countries.",
+      "test_type": "PTE offers a single test format that evaluates Listening, Reading, Speaking, and Writing skills through integrated tasks in an academic context.",
+      "faq": [
         {
-          "module": "Speaking & Writing",
-          "tasks": [
-            "Personal Introduction",
-            "Read Aloud",
-            "Repeat Sentence",
-            "Describe Image",
-            "Re-tell Lecture",
-            "Essay Writing"
-          ],
-          "duration": "54-67 minutes",
-          "focus": "Integrated communication and writing skills."
+          "question": "What is the purpose of the PTE exam?",
+          "answer": "PTE assesses your ability to use English effectively in an academic environment, ensuring you can understand and produce academic English."
         },
         {
-          "module": "Reading",
-          "tasks": [
-            "Fill in the Blanks",
-            "Multiple Choice",
-            "Re-order Paragraphs"
-          ],
-          "duration": "29-30 minutes",
-          "focus": "Reading comprehension and analysis."
+          "question": "How is the PTE exam scored?",
+          "answer": "PTE scores range from 10 to 90, with a score for each of the four skills as well as an overall score."
         },
         {
-          "module": "Listening",
-          "tasks": [
-            "Summarize Spoken Text",
-            "Multiple Choice",
-            "Fill in the Blanks",
-            "Highlight Incorrect Words",
-            "Write from Dictation"
-          ],
-          "duration": "30-43 minutes",
-          "focus": "Understanding spoken English and summarization."
+          "question": "What skills are tested in the PTE exam?",
+          "answer": "PTE tests Speaking, Listening, Reading, and Writing skills, with tasks designed to mirror academic situations."
         }
       ],
+      "types": [
+        {
+          "type": "PTE Academic",
+          "description": "The most common version of PTE, designed for individuals seeking to study abroad or migrate to an English-speaking country."
+        }
+      ],
+      "format": [
+        { "module": "Speaking and Writing", "sections": 2, "duration": "77-93 minutes", "focus": "Speaking and writing tasks based on reading and listening material." },
+        { "module": "Reading", "sections": 2, "questions": "15-20", "duration": "32-41 minutes", "focus": "Reading comprehension and task responses." },
+        { "module": "Listening", "sections": 2, "questions": "8-10", "duration": "45-57 minutes", "focus": "Listening comprehension and summarizing spoken content." }
+      ],
       "scoringSystem": {
-        "scale": "10-90",
-        "criteria": ["Grammar", "Oral Fluency", "Pronunciation", "Vocabulary", "Spelling"]
+        "bandScale": "10-90",
+        "criteria": [
+          "Speaking",
+          "Writing",
+          "Reading",
+          "Listening"
+        ]
       }
     },
     {
       "name": "GRE",
-      "purpose": "Tests skills for graduate and business school programs.",
-      "targetAudience": "Applicants for master's, MBA, or doctoral programs.",
-      "format": [
+      "abbreviation": "Graduate Record Examination",
+      "purpose": "The GRE is a standardized test used for admissions to graduate programs. It measures verbal reasoning, quantitative reasoning, and analytical writing skills, commonly required by universities in the United States.",
+      "targetAudience": "Individuals seeking admission to graduate programs in the U.S. or other countries that recognize GRE scores.",
+      "test_type": "GRE offers a general test, which includes sections on Verbal Reasoning, Quantitative Reasoning, and Analytical Writing.",
+      "faq": [
         {
-          "module": "Analytical Writing",
-          "tasks": [
-            "Analyze an Issue",
-            "Analyze an Argument"
-          ],
-          "duration": "60 minutes",
-          "focus": "Critical thinking and argumentative writing."
+          "question": "What is the purpose of the GRE exam?",
+          "answer": "The GRE assesses verbal, quantitative, and analytical reasoning skills required for success in graduate school."
         },
         {
-          "module": "Verbal Reasoning",
-          "questions": 40,
-          "sections": 2,
-          "duration": "60 minutes",
-          "focus": "Understanding and analyzing written material."
+          "question": "How is the GRE exam scored?",
+          "answer": "The GRE is scored on a scale of 130 to 170 for the Verbal and Quantitative sections, with an Analytical Writing score from 0 to 6."
         },
         {
-          "module": "Quantitative Reasoning",
-          "questions": 40,
-          "sections": 2,
-          "duration": "70 minutes",
-          "focus": "Problem-solving with arithmetic, algebra, geometry, and data analysis."
+          "question": "What skills are tested in the GRE exam?",
+          "answer": "The GRE tests Verbal Reasoning, Quantitative Reasoning, and Analytical Writing skills, which are essential for graduate-level academic success."
         }
       ],
-      "scoringSystem": {
-        "totalScore": "260-340",
-        "sectionScores": {
-          "Verbal Reasoning": "130-170",
-          "Quantitative Reasoning": "130-170",
-          "Analytical Writing": "0-6"
+      "types": [
+        {
+          "type": "GRE General Test",
+          "description": "The standard GRE test, required for admissions to most graduate programs, focusing on verbal, quantitative, and writing skills."
         }
+      ],
+      "format": [
+        { "module": "Verbal Reasoning", "sections": 2, "questions": 40, "duration": "60 minutes", "focus": "Vocabulary, reading comprehension, and sentence completion." },
+        { "module": "Quantitative Reasoning", "sections": 2, "questions": 40, "duration": "70 minutes", "focus": "Mathematical reasoning, problem-solving, and data analysis." },
+        { "module": "Analytical Writing", "sections": 2, "duration": "60 minutes", "focus": "Essay writing and analysis of complex issues." }
+      ],
+      "scoringSystem": {
+        "bandScale": "130-170 (Verbal and Quantitative), 0-6 (Analytical Writing)",
+        "criteria": [
+          "Verbal Reasoning",
+          "Quantitative Reasoning",
+          "Analytical Writing"
+        ]
       }
     },
     {
       "name": "SAT",
-      "purpose": "Assesses college readiness and scholarship eligibility.",
-      "targetAudience": "High school students applying to undergraduate programs.",
-      
-      "format": [
+      "abbreviation": "Scholastic Assessment Test",
+      "purpose": "The SAT is a standardized test used for college admissions in the United States, assessing readiness for college-level work in reading, writing, and mathematics.",
+      "targetAudience": "High school students applying for college admissions in the U.S.",
+      "test_type": "The SAT consists of two main sections: Evidence-Based Reading and Writing (EBRW), and Math, with an optional Essay section.",
+      "faq": [
         {
-          "module": "Reading",
-          "questions": 52,
-          "duration": "65 minutes",
-          "focus": "Comprehension of passages from literature, history, and science."
+          "question": "What is the purpose of the SAT exam?",
+          "answer": "The SAT assesses academic readiness for college, testing your skills in reading, writing, and mathematics."
         },
         {
-          "module": "Writing and Language",
-          "questions": 44,
-          "duration": "35 minutes",
-          "focus": "Grammar, punctuation, and effective language use."
+          "question": "How is the SAT exam scored?",
+          "answer": "The SAT is scored on a scale of 400-1600, combining scores from the Reading and Writing section and the Math section."
         },
         {
-          "module": "Math",
-          "questions": 58,
-          "sections": 2,
-          "duration": "80 minutes",
-          "focus": "Problem-solving, data analysis, and algebra."
+          "question": "What skills are tested in the SAT exam?",
+          "answer": "The SAT tests reading comprehension, mathematical problem-solving, and writing skills."
         }
       ],
-      "scoringSystem": {
-        "totalScore": "400-1600",
-        "sectionScores": {
-          "Evidence-Based Reading and Writing": "200-800",
-          "Math": "200-800"
+      "types": [
+        {
+          "type": "SAT General Test",
+          "description": "The standard SAT test, required for college admissions, assessing reading, writing, and mathematics skills."
         }
+      ],
+      "format": [
+        { "module": "Evidence-Based Reading and Writing", "sections": 2, "questions": 52, "duration": "65 minutes", "focus": "Reading comprehension and writing skills." },
+        { "module": "Mathematics", "sections": 2, "questions": 58, "duration": "80 minutes", "focus": "Algebra, problem-solving, and data analysis." },
+        { "module": "Essay (Optional)", "sections": 1, "duration": "50 minutes", "focus": "Essay writing and analysis." }
+      ],
+      "scoringSystem": {
+        "bandScale": "400-1600",
+        "criteria": [
+          "Reading",
+          "Writing",
+          "Mathematics"
+        ]
       }
     },
     {
       "name": "ACT",
-      "purpose": "Measures academic readiness for college.",
-      "targetAudience": "High school students applying to undergraduate programs.",
+      "abbreviation": "American College Testing",
+      "purpose": "The ACT is a standardized test used for college admissions in the United States, measuring a student's academic skills in English, math, reading, and science, with an optional writing section.",
+      "targetAudience": "High school students applying for college admissions in the U.S.",
+      "test_type": "The ACT offers a single test format, consisting of English, Math, Reading, and Science sections, with an optional Writing section.",
+      "faq": [
+        {
+          "question": "What is the purpose of the ACT exam?",
+          "answer": "The ACT measures your academic readiness for college, assessing your knowledge in English, math, reading, and science."
+        },
+        {
+          "question": "How is the ACT exam scored?",
+          "answer": "The ACT is scored on a scale of 1 to 36, with an optional Writing section scored separately."
+        },
+        {
+          "question": "What skills are tested in the ACT exam?",
+          "answer": "The ACT tests skills in English, mathematics, reading, science reasoning, and optionally, writing."
+        }
+      ],
+      "types": [
+        {
+          "type": "ACT Standard Test",
+          "description": "The standard ACT test, assessing skills in English, math, reading, and science, with an optional Writing section."
+        }
+      ],
       "format": [
-        { "module": "English", "questions": 75, "duration": "45 minutes", "focus": "Grammar and rhetorical skills." },
-        { "module": "Math", "questions": 60, "duration": "60 minutes", "focus": "Algebra, geometry, and trigonometry." },
-        { "module": "Reading", "questions": 40, "duration": "35 minutes", "focus": "Comprehension of literary and informative texts." },
-        { "module": "Science", "questions": 40, "duration": "35 minutes", "focus": "Interpretation, analysis, and problem-solving in science." },
-        { "module": "Writing (Optional)", "questions": 1, "duration": "40 minutes", "focus": "Analysis and persuasive writing." }
+        { "module": "English", "sections": 1, "questions": 75, "duration": "45 minutes", "focus": "Grammar, punctuation, and sentence structure." },
+        { "module": "Mathematics", "sections": 1, "questions": 60, "duration": "60 minutes", "focus": "Algebra, geometry, and trigonometry." },
+        { "module": "Reading", "sections": 1, "questions": 40, "duration": "35 minutes", "focus": "Reading comprehension and analysis." },
+        { "module": "Science", "sections": 1, "questions": 40, "duration": "35 minutes", "focus": "Data analysis, scientific reasoning, and interpreting scientific information." },
+        { "module": "Writing (Optional)", "sections": 1, "duration": "40 minutes", "focus": "Essay writing and argument analysis." }
       ],
       "scoringSystem": {
-        "totalScore": "1-36",
-        "sectionScores": {
-          "English": "1-36",
-          "Math": "1-36",
-          "Reading": "1-36",
-          "Science": "1-36"
+        "bandScale": "1-36",
+        "criteria": [
+          "English",
+          "Mathematics",
+          "Reading",
+          "Science",
+          "Writing (optional)"
+        ]
+      }
+    },{
+      "name": "PTE",
+      "abbreviation": "Pearson Test of English",
+      "purpose": "The PTE exam assesses the English language proficiency of non-native speakers for academic purposes. It is widely used for university admissions and immigration applications in English-speaking countries.",
+      "targetAudience": "Non-native English speakers seeking admission to educational institutions or applying for visas in English-speaking countries.",
+      "test_type": "PTE offers a single test format that evaluates Listening, Reading, Speaking, and Writing skills through integrated tasks in an academic context.",
+      "faq": [
+        {
+          "question": "What is the purpose of the PTE exam?",
+          "answer": "PTE assesses your ability to use English effectively in an academic environment, ensuring you can understand and produce academic English."
         }
+      ]
+    },
+    {
+      "name": "Duolingo",
+      "abbreviation": "Duolingo English Test",
+      "purpose": "The Duolingo English Test is an online assessment designed to evaluate English language proficiency for academic and professional purposes.",
+      "targetAudience": "Students and professionals seeking to demonstrate their English proficiency for universities or job applications.",
+      "test_type": "Duolingo offers an adaptive test that assesses Listening, Reading, Writing, and Speaking skills.",
+      "faq": [
+        {
+          "question": "How long does the Duolingo test take?",
+          "answer": "The test takes approximately 60 minutes and provides results within 48 hours."
+        }
+      ]
+    },
+    {
+      "name": "GMAT",
+      "abbreviation": "Graduate Management Admission Test",
+      "purpose": "The GMAT is a standardized test used for admission to business schools and MBA programs. It assesses analytical, writing, quantitative, verbal, and reading skills.",
+      "targetAudience": "Individuals seeking admission to graduate business programs, including MBA programs.",
+      "test_type": "GMAT consists of four sections: Analytical Writing, Integrated Reasoning, Quantitative, and Verbal Reasoning.",
+      "faq": [
+        {
+          "question": "What is the scoring range for GMAT?",
+          "answer": "GMAT scores range from 200 to 800, with each section contributing to the final score."
+        }
+      ]
+    },
+    {
+      "name": "APT",
+      "abbreviation": "Academic Proficiency Test",
+      "purpose": "The APT is designed to evaluate students' academic proficiency in various subjects, including mathematics, science, and language skills.",
+      "targetAudience": "Students preparing for higher education admissions or academic assessments.",
+      "test_type": "APT includes multiple-choice and essay-based questions covering key academic subjects.",
+      "faq": [
+        {
+          "question": "What subjects are covered in the APT?",
+          "answer": "The test covers mathematics, science, language skills, and logical reasoning."
+        }
+      ]
+    },
+    {
+      "name": "OET",
+      "abbreviation": "Occupational English Test",
+      "purpose": "OET is designed for healthcare professionals to assess their English proficiency in medical and healthcare settings. It is recognized by regulatory healthcare bodies for registration and licensing purposes.",
+      "targetAudience": "Healthcare professionals, including doctors, nurses, and pharmacists, seeking to work in English-speaking healthcare environments.",
+      "test_type": "OET assesses Listening, Reading, Writing, and Speaking skills, focusing on healthcare-related scenarios.",
+      "faq": [
+        {
+          "question": "What is the purpose of the OET exam?",
+          "answer": "OET tests English proficiency in a healthcare context, ensuring that professionals can communicate effectively in medical settings."
+        }
+      ],
+      "types": [
+        {
+          "type": "OET for Healthcare Professionals",
+          "description": "Designed specifically for healthcare workers, covering real-life medical scenarios."
+        }
+      ],
+      "format": [
+        { "module": "Listening", "sections": 3, "duration": "45 minutes", "focus": "Understanding patient and professional conversations in healthcare settings." },
+        { "module": "Reading", "sections": 3, "duration": "60 minutes", "focus": "Comprehension of healthcare-related texts." },
+        { "module": "Writing", "sections": 1, "duration": "45 minutes", "focus": "Writing referral letters or case notes for medical professionals." },
+        { "module": "Speaking", "sections": 2, "duration": "20 minutes", "focus": "Role-play conversations with patients and colleagues." }
+      ],
+      "scoringSystem": {
+        "bandScale": "A-E",
+        "criteria": [
+          "Listening",
+          "Reading",
+          "Writing",
+          "Speaking"
+        ]
       }
     }
 ]

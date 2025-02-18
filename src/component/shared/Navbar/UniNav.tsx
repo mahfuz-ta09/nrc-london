@@ -1,7 +1,7 @@
 'use client'
 import { useGetUniNavItemQuery } from '@/redux/endpoints/university/universityEndpoints'
 import '../../../css/shared/Navbar/Navbar.css'
-import { faGlobe, faPhone } from "@fortawesome/free-solid-svg-icons"
+import { faGlobe, faPhone, faUser } from "@fortawesome/free-solid-svg-icons"
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
 import Link from "next/link"
 import Loader from '../Loader/Loader'
@@ -34,12 +34,8 @@ const UniNav = () => {
                         )}
 
                         <div className="contact-section">
-                            <Link className="contact-section-link" href="/">
-                                <FontAwesomeIcon icon={faPhone} /> Contact
-                            </Link>
-                            <Link className="contact-section-link" href="/">
-                                <FontAwesomeIcon icon={faPhone} /> Enquire
-                            </Link>
+                                    <Link className='contact-section-link' href="/Contact"><FontAwesomeIcon icon={faPhone}/> Contact</Link>
+                                    <Link className='contact-section-link' href="/Dashboard"><FontAwesomeIcon icon={faUser}/> Profile</Link>
                         </div>
                     </div>
                 )}

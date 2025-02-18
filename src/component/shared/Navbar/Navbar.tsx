@@ -4,7 +4,7 @@ import logo from"../../../assets/logo.png"
 import Image from 'next/image'
 import Link from 'next/link'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faBars, faBook, faPhone, faXmark } from '@fortawesome/free-solid-svg-icons'
+import { faBars, faBook, faPhone, faUser, faXmark } from '@fortawesome/free-solid-svg-icons'
 import { useState } from 'react'
 import { useRouter } from 'next/navigation'
 import { logOut } from '@/utils/authAction'
@@ -55,11 +55,11 @@ const Navbar = () => {
                                 <div className="drop-down-group">
                                     <Link onClick={()=>setIsOpen(false)} className='drop-down-link' href="/TestPrep/sat"><FontAwesomeIcon icon={faBook}/> SAT</Link>
                                     <Link onClick={()=>setIsOpen(false)} className='drop-down-link' href="/TestPrep/act"><FontAwesomeIcon icon={faBook}/> ACT</Link>
-                                    <Link onClick={()=>setIsOpen(false)} className='drop-down-link' href="/TestPrep/ap"><FontAwesomeIcon icon={faBook}/> AP</Link>
+                                    <Link onClick={()=>setIsOpen(false)} className='drop-down-link' href="/TestPrep/apt"><FontAwesomeIcon icon={faBook}/> APT</Link>
                                 </div>
                                 <div className="contact-section">
-                                    <Link onClick={()=>setIsOpen(false)} className='contact-section-link' href="/"><FontAwesomeIcon icon={faPhone}/>  Contact</Link>
-                                    <Link onClick={()=>setIsOpen(false)} className='contact-section-link' href="/"><FontAwesomeIcon icon={faPhone}/>  Enquire</Link>
+                                    <Link onClick={()=>setIsOpen(false)} className='contact-section-link' href="/Contact"><FontAwesomeIcon icon={faPhone}/> Contact</Link>
+                                    <Link onClick={()=>setIsOpen(false)} className='contact-section-link' href="/Dashboard"><FontAwesomeIcon icon={faUser}/> Profile</Link>
                                 </div>
                             </div>
                         </div>
@@ -84,8 +84,8 @@ const Navbar = () => {
                                     <Link onClick={()=>setIsOpen(false)} className='drop-down-link' href="/RecruitmentPartner/Becomeanagent">Become an agent</Link>
                                 </div>
                                 <div className="contact-section">
-                                    <Link onClick={()=>setIsOpen(false)} className='contact-section-link' href="/"><FontAwesomeIcon icon={faPhone}/> Contact</Link>
-                                    <Link onClick={()=>setIsOpen(false)} className='contact-section-link' href="/"><FontAwesomeIcon icon={faPhone}/> Enquire</Link>
+                                    <Link onClick={()=>setIsOpen(false)} className='contact-section-link' href="/Contact"><FontAwesomeIcon icon={faPhone}/> Contact</Link>
+                                    <Link onClick={()=>setIsOpen(false)} className='contact-section-link' href="/Dashboard"><FontAwesomeIcon icon={faUser}/> Profile</Link>
                                 </div>
                             </div>
                         </div>
@@ -100,7 +100,7 @@ const Navbar = () => {
                         !data?.Uemail ?<button onClick={()=>router.push('/Login')}>login</button>  :
                         <button onClick={()=>handleLogOut()}>logout</button>
                     }
-                    <button className='dash' onClick={()=>router.push('/Dashboard')}>monitor</button>
+                    <button className='dash' onClick={()=>router.push('/Dashboard')}>dashboard</button>
                 </div>
                 {
                     isOpen ?
