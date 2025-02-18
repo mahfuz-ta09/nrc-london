@@ -12,6 +12,7 @@
     background-repeat: no-repeat;
 }
 
+
 .services-banner-content{
     height: 40vh;
     justify-items: start;
@@ -47,54 +48,30 @@
     text-align: justify;
     padding-top: 20px;
 }
-
-.services{
-    padding: 60px 0;
-    margin-top: 60px;
-    margin-top: 60px;
-    display: flex;
-    align-items: start;
-    justify-content: space-between;
-    gap: 60px;
-    border-top: 2px dotted #000;
+.services-list {
+    list-style: none;
+    padding: 0;
+    margin: 20px 0;
 }
 
-.services-btn-grp{
-    width: 30%;
+.services-list li {
+    font-size: 16px;
+    color: #333;
+    padding: 10px;
+    border-left: 4px solid #004a62;
+    background: #f9f9f9;
+    margin-bottom: 10px;
     display: flex;
-    align-items: left;
-    justify-content: space-between;
-    flex-direction: column;
-    gap: 20px;
-}
-
-.services-btn{
-    padding: 12px;
-    border: none;
-    background: #ced4d6;
-    box-shadow: 4px 4px 10px #0d242b;
-    font-size: 20px;
-    font-weight: 500;
+    align-items: center;
+    gap: 10px;
     border-radius: 5px;
-    color:#004a62;
 }
 
-.services-item{
-    width: 70%;
+.services-list li span {
+    font-size: 18px;
+    color: #004a62;
+    font-weight: bold;
 }
-
-.services-item{
-    display: flex;
-    align-items: left;
-    justify-content: space-between;
-    flex-direction: column;
-    gap: 20px;
-}
-
-.services-item li{
-    font-size: 20px;
-}
-
 
 .specialties{
     background: #ededed;
@@ -102,7 +79,7 @@
     align-items: center;
     justify-content: center;
     flex-direction: column;
-    padding: 10px;
+    padding: 60px 0;
 }
 
 .area-specialties{
@@ -111,18 +88,26 @@
     justify-content: center;
     width: 100%;
     gap: 40px;
+    margin: 60px 0 0 0;
 }
 
 .specialties-card{
     width: 250px;
     height: 300px;
     background: #efeff0;
-    box-shadow: 4px 4px 10px #004a62;
+    box-shadow: 1px 1px 20px rgb(0, 74, 98,0.4);
     border-radius: 5px;
     align-content: center;
     justify-content: center;
     text-align: center;
     position: relative;
+    padding: 10px;
+    transition: .3s ease-in-out;
+
+    &:hover{
+        box-shadow: 1px 1px 20px rgb(0, 74, 98,0.8);
+        transform: translateY(-10px);
+    }
 }
 
 .sp-card-img{

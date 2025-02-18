@@ -1,4 +1,5 @@
-import '../../../css/shared/Process/Process.css';
+import '../../../css/shared/Process/Process.css'
+
 
 const Process = () => {
     return (
@@ -6,32 +7,33 @@ const Process = () => {
             <div className="process-content">
                 <h1>Our process</h1>
                 <ul className="process-timeline">
-                    <li className="process-timeline-item" style={{ '--accent-color': '#004a62' } as React.CSSProperties}>
-                        <div className="date">2002</div>
-                        <div className="title">Title 1</div>
-                        <div className="descr">Lorem ipsum, dolor sit amet consectetur adipisicing elit. Quas itaque hic quibusdam fugiat est numquam harum, accusamus suscipit consequatur laboriosam!</div>
-                    </li>
-                    <li className="process-timeline-item" style={{ '--accent-color': '#004a62' } as React.CSSProperties}>
-                        <div className="date">2007</div>
-                        <div className="title">Title 2</div>
-                        <div className="descr">Lorem ipsum dolor sit, amet consectetur adipisicing elit. Quos adipisci nobis nostrum vero nihil veniam.</div>
-                    </li>
-                    <li className="process-timeline-item" style={{ '--accent-color': '#004a62' } as React.CSSProperties}>
-                        <div className="date">2012</div>
-                        <div className="title">Title 3</div>
-                        <div className="descr">Lorem ipsum dolor sit amet consectetur adipisicing elit. Fuga minima consequuntur soluta placeat iure totam commodi repellendus ea delectus, libero fugit quod reprehenderit, sequi quo, et dolorum saepe nulla hic.</div>
-                    </li>
-                    <li className="process-timeline-item" style={{ '--accent-color': '#004a62' } as React.CSSProperties}>
-                        <div className="date">2017</div>
-                        <div className="title">Title 4</div>
-                        <div className="descr">Lorem ipsum dolor, sit amet consectetur adipisicing elit. Impedit, cumque.</div>
-                    </li>
-                    <li className="process-timeline-item" style={{ '--accent-color': '#004a62' } as React.CSSProperties}>
-                        <div className="date">2022</div>
-                        <div className="title">Title 5</div>
-                        <div className="descr">Lorem, ipsum dolor sit amet consectetur adipisicing elit. Odit, non.</div>
-                    </li>
-                </ul>
+                <li className="process-timeline-item" style={{ '--accent-color': '#004a62' } as React.CSSProperties}>
+                    <div className="date">Step 1</div>
+                    <div className="title">Initial Consultation</div>
+                    <div className="descr">Discuss your study abroad goals, preferred countries, and eligibility with our experts.</div>
+                </li>
+                <li className="process-timeline-item" style={{ '--accent-color': '#004a62' } as React.CSSProperties}>
+                    <div className="date">Step 2</div>
+                    <div className="title">University & Course Selection</div>
+                    <div className="descr">Choose from top universities based on your academic background, career goals, and budget.</div>
+                </li>
+                <li className="process-timeline-item" style={{ '--accent-color': '#004a62' } as React.CSSProperties}>
+                    <div className="date">Step 3</div>
+                    <div className="title">Application & Documentation</div>
+                    <div className="descr">Prepare and submit your university application along with required documents like SOPs, LORs, and transcripts.</div>
+                </li>
+                <li className="process-timeline-item" style={{ '--accent-color': '#004a62' } as React.CSSProperties}>
+                    <div className="date">Step 4</div>
+                    <div className="title">Visa Processing</div>
+                    <div className="descr">Submit your student visa application, attend interviews, and meet financial requirements.</div>
+                </li>
+                <li className="process-timeline-item" style={{ '--accent-color': '#004a62' } as React.CSSProperties}>
+                    <div className="date">Step 5</div>
+                    <div className="title">Pre-Departure Guidance</div>
+                    <div className="descr">Receive travel, accommodation, and orientation support to prepare for your study abroad journey.</div>
+                </li>
+            </ul>
+
             </div>
         </div>
     );
