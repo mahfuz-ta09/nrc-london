@@ -8,7 +8,7 @@
     align-items: center;
     justify-content: center;
     z-index: 99999;
-    background: rgba(0,74,98,1);  
+    background: rgb(0, 44, 58);  
 }
 
 .nav-content{
@@ -150,7 +150,7 @@
     border: none;
     border-radius: 3px;
     color: #fff;
-    background: rgb(43, 202, 255);
+    background: rgba(0, 135, 175);
     transition: .2s all;
 }
 

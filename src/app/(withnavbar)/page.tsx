@@ -43,8 +43,8 @@ const Page = () => {
           <AcademicSolution />
           <Review />
           <FAQ items={faqItems}  title="Frequently Asked Questions"/>
+          <Footer />
         </div>
-        <Footer />
     </>
   )
 }

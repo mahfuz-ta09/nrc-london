@@ -14,6 +14,7 @@
 
 .process-content h1 {
     margin-bottom: 90px;
+    color: white;
 }
 
 
@@ -30,6 +31,7 @@
     width: min(60rem, 90%);
     margin-inline: auto;
     padding: 0;
+    color: white;
 }
 
 .process-timeline::before {
@@ -48,6 +50,10 @@
     grid-column: 2;
     --inlineP: 1.5rem;
     margin-inline: var(--inlineP);
+    background: rgb(225, 225, 225,0.4);
+    backdrop-filter: blur(60px);
+    border: 1px solid rgb(225, 225, 225,0.8);
+    box-shadow: 2px 2px 20px rgb(225, 225, 225,0.4);
     grid-row: span 2;
     display: grid;
     grid-template-rows: min-content min-content min-content;
@@ -98,6 +104,8 @@
     background: var(--bgColor);
     position: relative;
     padding-inline: 1.5rem;
+    color: black;
+    font-weight: 500;
 }
 
 .process-timeline-item .title {

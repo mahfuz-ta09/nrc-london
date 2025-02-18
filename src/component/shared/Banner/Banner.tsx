@@ -10,13 +10,13 @@ import map from '../../../assets/map.svg'
 import { useRouter } from 'next/navigation'
 
 
-// ikamrul14
-// 0VKZq0diNzgR2EJ4
 const Banner = () => {
     const router = useRouter()
+
+
     return (
         <div className="banner-container">
-            <div className="bottom"></div>
+            <img className='banner-bg' src="https://i.ibb.co.com/j98rcS4b/bg.png" alt="" />
             <div className="banner-content">
                 <div className="banner-part">
                     <h4>Plan your future with us!</h4>

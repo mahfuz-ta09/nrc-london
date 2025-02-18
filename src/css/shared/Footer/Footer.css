@@ -6,6 +6,7 @@
 .pg-footer {
     background-color: rgba(0,74,98);
     color: #fff;
+    width: 100%;
 }
 
 .pg-footer-wave-svg {

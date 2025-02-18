@@ -44,7 +44,6 @@ const Footer = () => {
     }
     
     return (
-        <div className="pg-footer">
             <footer className="pg-footer">
                 <div className="pg-footer-content">
                     <div className="pg-footer-content-column">
@@ -118,7 +117,6 @@ const Footer = () => {
                     </p>
                 </div>
             </footer>
-        </div>
     )
 }
 
