@@ -169,27 +169,15 @@
         gap: 60px;
         flex-direction: column;
         padding: 10vh  20px;
-    }
+    }    
     
-    .bottom{
-        position: absolute;
-        background: rgb(2, 82, 108);
-        z-index: 1;
-        height:200px;
-        width: 200px;
-        border-radius: 10px;
-        left: 20%;
-        top: 20%;
-        border-radius: 50%;
-        box-shadow: 30px 10px 55px 3px rgba(255,255,255, 0.5);
-        transform: rotate(70deg);
-    }
-
+    .banner-bg{
+        width: 95%;
+    }   
     
     .banner-part{
         gap: 40px;
     }
-
     
     .banner-photo{
         object-fit: contain; 
