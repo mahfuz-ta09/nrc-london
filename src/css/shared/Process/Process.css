@@ -2,7 +2,6 @@
     width: 100%;
     height: auto;
     margin: 0 auto;
-    padding: 5vh 0;
 }
 
 .process-content {
@@ -18,7 +17,6 @@
 }
 
 
-/* Styling for the timeline list */
 .process-timeline {
     --col-gap: 2rem;
     --row-gap: 2rem;
@@ -92,11 +90,12 @@
     width: 2rem;
     aspect-ratio: 1;
     background: var(--bgColor);
-    border: 0.3rem solid var(--accent-color);
+    border: 0.3rem solid #fff;
     border-radius: 50%;
     top: 50%;
     transform: translate(50%, -50%);
     right: calc(100% + var(--col-gap) + var(--line-w) / 2);
+    color: #fff;
 }
 
 .process-timeline-item .title,

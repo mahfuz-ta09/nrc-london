@@ -5,7 +5,7 @@ const Process = () => {
     return (
         <div className='process-container'>
             <div className="process-content">
-                <h1>Our process</h1>
+                <h1>How We Work</h1>
                 <ul className="process-timeline">
                 <li className="process-timeline-item" style={{ '--accent-color': '#004a62' } as React.CSSProperties}>
                     <div className="date">Step 1</div>
