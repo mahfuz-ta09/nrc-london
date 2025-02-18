@@ -2,7 +2,6 @@
     width: 100%;
     height: auto;
     margin: 0 auto;
-    color: aliceblue;
     padding: 5vh 0;
 }
 
@@ -14,11 +13,7 @@
 }
 
 .academicSolution-header{
-    color: black;
-}
-
-.academicSolution-header span{
-    color: rgba(0,74,98);
+    color: #fff;
 }
 
 .academic-plans{
@@ -26,7 +21,7 @@
     align-items: center;
     justify-content: space-around;
     flex-wrap: wrap;
-    gap: 30px;
+    gap: 10px;
     padding: 30px 0;
     width: 100%;
     margin: 0 auto;
@@ -35,32 +30,43 @@
 
 .single-plan{
     height: auto;
-    width: 300px;
+    width: 380px;
+    height:500px;
     gap: 10px;
+    border-radius: 5px;
     display: flex;
     align-items: start;
-    justify-content: center;
+    justify-content: space-between;
     flex-direction: column;
     background: transparent;
-    text-align: justify;
+    text-align: center;
+    box-shadow: 1px 1px 30px rgba(255,255,255,0.3);
+}
+
+.single-plan:hover{
+    transform: translateY(-5px);
+    transition: .3s ease-in-out;
+    box-shadow: 1px 1px 30px rgba(255,255,255,0.6);
 }
 
 .plan-image{
     display: block;
     object-fit: cover;
-    width: 300px;
-    height: 250px;
+    width: 380px;
+    height: 200px;
     border-radius: 5px;
 }
 
 .plan-header{
     color: #fff;
     font-size: 24px;
+    padding: 0px 15px;
 }
 
 .plan-addition{
     color: #fff;
     font-size: 16px;
+    padding: 0px 15px 15px;
 }
 
 .plan-button{
@@ -76,5 +82,16 @@
 @media screen and (max-width:450px) {
     .academicSolution-header{
         padding-left: 10px;
+    }
+
+    .academic-plans{
+        gap: 30px;
+    }
+        
+    .single-plan{
+        width: 90%;
+    }
+    .plan-image{
+        width: 100%;
     }
 }

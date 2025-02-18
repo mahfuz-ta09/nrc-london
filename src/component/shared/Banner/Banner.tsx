@@ -1,12 +1,7 @@
 'use client'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import '../../../css/shared/Banner/Banner.css'
-import { faArrowAltCircleRight } from '@fortawesome/free-solid-svg-icons'
-import Image from 'next/image'
-import banner from '../../../assets/laptop.webp'
-import building from '../../../assets/buildingsvg.svg'
-import student from '../../../assets/student.svg'
-import map from '../../../assets/map.svg'
+import { faArrowAltCircleRight, faCalendarDays, faPlaneDeparture, faSchool } from '@fortawesome/free-solid-svg-icons'
 import { useRouter } from 'next/navigation'
 
 
@@ -26,12 +21,12 @@ const Banner = () => {
                         <button onClick={()=>router.push('/Proceed')} className='banner-button-3rd'>I am a Student <FontAwesomeIcon icon={faArrowAltCircleRight} /></button>
                     </div>
                 </div>
-                <Image className='banner-photo' src={banner} alt='Laptop'/>
+                <img className='banner-photo' src="https://i.ibb.co.com/V0gmz1S6/laptop.webp" alt='Laptop'/>
             </div>
 
             <div className="banner-addition">
                 <div className="achiev">
-                <Image className='achiev-photo' src={map} alt='University'/>
+                    <FontAwesomeIcon className='achiev-photo' icon={faPlaneDeparture}/>
                     <div className="achiev-details">
                         <h1>30+</h1>
                         <p>Study</p>
@@ -39,15 +34,15 @@ const Banner = () => {
                     </div>
                 </div>
                 <div className="achiev">
-                <Image className='achiev-photo' src={building} alt='University'/>
+                    <FontAwesomeIcon className='achiev-photo' icon={faSchool}/>
                     <div className="achiev-details">
                         <h1>300+</h1>
-                        <p>Partnered</p>
-                        <p>Universities</p>
+                        <p>Global</p>
+                        <p>Institutions</p>
                     </div>
                 </div>
                 <div className="achiev">
-                <Image className='achiev-photo' src={student} alt='University'/>
+                    <FontAwesomeIcon className='achiev-photo' icon={faCalendarDays} />
                     <div className="achiev-details">
                         <h1>24/7</h1>
                         <p>Online</p>

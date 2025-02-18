@@ -34,18 +34,12 @@
   justify-content: center;
   position: absolute;
   z-index: 2;
-  background: linear-gradient(to right,rgb(0, 44, 58),rgb(0, 44, 58,0.9)),url('https://cdn.prod.website-files.com/63ed4bc7a4b189da942a6b8c/665f7d069b94b460fd9f7f7b_bg-block-single-v2.png');
+  background: linear-gradient(to right,rgb(0, 44, 58,0.9),rgb(0, 44, 58,0.9)),url('https://i.ibb.co.com/j98rcS4b/bg.png');
   background-size: 100% 160vh;
+  background-position: center;
   background-repeat: repeat;
 }
 
-@media screen and (max-width:450px) {
-  .home-contain{
-    /* background-size: 100% 160vh;
-    background-position: center; */
-
-  }
-}
 
 .wdth{
     max-width: 1300px;

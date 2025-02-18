@@ -42,7 +42,7 @@ const Page = () => {
           <Process />
           <AcademicSolution />
           <Review />
-          <FAQ items={faqItems}  title="Frequently Asked Questions"/>
+          <FAQ items={faqItems}  title="Frequently Asked Questions" color="white"/>
           <Footer />
         </div>
     </>

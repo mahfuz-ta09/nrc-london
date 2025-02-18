@@ -7,16 +7,6 @@
 }
 
 
-.top-image{
-    position: absolute;
-    width:  600px;
-    object-fit:cover;
-    top: 10%;
-    left: 45%;
-    z-index: 1;
-    transform: translate(-50%, -50%);
-}
-
 .review-content{
     max-width: 1240px;
     margin: 0 auto;
@@ -44,7 +34,7 @@
     padding: 4px 12px;
 
     &:hover{
-        transform: scale(.9);
+        transform: scale(-0.7);
     }
 }
 
@@ -59,13 +49,23 @@
     z-index: 2;
 }
 
+.top-image{
+    position: absolute;
+    width:  360px;
+    object-fit:cover;
+    top: 30%;
+    left: 20%;
+    z-index: 3;
+    transform: translate(-50%, -50%);
+}
+
 .review-header h1{
-    color: #000;
+    color: #fff;
     font-size: 35px;
 }
 
 .review-header p{
-    color: #000;
+    color: #fff;
     font-size: 15px;
 }
 
@@ -111,7 +111,7 @@
 
 .loading{
     font-size: 45px;
-    color: #000;
+    color: #fff;
     position: absolute;
     top: 50%;
     left: 50%;
@@ -144,18 +144,18 @@
 }
 
 .comment-header h1{
-    color: #000;
+    color: #fff;
     font-size: 18px;
 }
 
 .qoutation{
     font-size: 18px;
     padding-right: 30px;
-    color: #aba9a9;
+    color: #fff;
 }
 
 .comment-main{
-    color: #000;
+    color: #fff;
     font-size: 14px;
 }
 .focus{

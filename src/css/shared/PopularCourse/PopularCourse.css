@@ -46,6 +46,7 @@
     background: rgba(255, 255, 255,0.2);
 }
 
+
 .single-course:hover{
     border: 2px solid rgb(189, 189, 189);
 }
@@ -57,7 +58,7 @@
 
 .single-course-heading{
     color: #fff;
-    font-size: 22px;
+    font-size: 20px;
 }
 
 .see-all{
@@ -92,11 +93,11 @@
 
     
     .single-course-icon{
-        font-size: 14px;
+        font-size: 12px;
     }
 
     .single-course-heading{
-        font-size: 14px;
+        font-size: 12px;
     }
 
 }

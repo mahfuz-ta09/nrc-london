@@ -134,10 +134,10 @@
 }
 
 .achiev-photo{
-    width:  55px;
-    height: 55px;
-    object-fit: contain;
-    box-shadow: 3px 3px 29px 1px #fff;
+    width:  75px;
+    height: 75px;
+    color: white;
+    /* box-shadow: 3px 3px 29px 1px #fff; */
 }
 
 .achiev-details{

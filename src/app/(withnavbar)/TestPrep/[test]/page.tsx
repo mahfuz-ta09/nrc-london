@@ -140,7 +140,7 @@ const Page = () => {
                 </div>
             </div>
 
-            <FAQ items={test?.faq} title="Frequently Asked Questions" />
+            <FAQ items={test?.faq} title="Frequently Asked Questions"  color="black"/>
             <Footer />
         </div>
     );
