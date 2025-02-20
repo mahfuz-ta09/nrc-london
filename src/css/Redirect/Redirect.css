@@ -1,0 +1,56 @@
+.redirect-page{
+    width: 100%;
+    height: 100vh;
+    background: rgba(0,74,98,1);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.redirect-page div{
+    background: #fff;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    height:40vh;
+    width: 40vh;
+    gap: 40px;
+    border-radius: 4px;
+    padding: 10px;
+}
+
+.redirect-page div h1{
+    font-size: 15px;
+}
+
+
+.redirect-page div form{
+    background: #fff;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    gap: 10px;
+    border-radius: 4px;
+}
+
+.redirect-page div form input{
+    padding: 10px;
+}
+
+.redirect-page div form button{
+    padding: 10px;
+    width: 100%;
+    background: rgba(0,74,98,1);
+    color: #fff;
+    border: rgba(0,74,98,1);
+
+    &:hover{
+        transform: scale(.9);
+        border-radius: 2px;
+    }
+}
