@@ -19,7 +19,8 @@ const page = () => {
         formState: { errors },
     } = useForm<Inputs>()
     const {verifyUser , loading } = useAuth()
-    const logItem = JSON.parse(sessionValue())
+    const rawLogItem = sessionValue()
+    const logItem = rawLogItem ? JSON.parse(rawLogItem) : null
     const router = useRouter()
 
 
@@ -28,7 +29,6 @@ const page = () => {
             router.push('/')
         }
     },[])
-
     
 
     const onSubmit: SubmitHandler<Inputs> = async(data) => {

@@ -7,9 +7,11 @@ export const accessToken = () => {
     return ""
 }
 
+
 export const sessionValue = () => {
     if (typeof window !== "undefined") {
-        return sessionStorage.getItem("logItem") || "";
+        const storedValue = sessionStorage.getItem("logItem")
+        return storedValue ? storedValue : null
     }
-    return ""
+    return null
 }
