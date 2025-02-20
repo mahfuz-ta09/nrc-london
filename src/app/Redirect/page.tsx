@@ -6,6 +6,7 @@ import { useForm, SubmitHandler } from "react-hook-form"
 import { useAuth } from '@/authHooks/useAuth'
 import { toast } from 'react-toastify'
 import { setCookie } from '@/utils/setCookies'
+import { sessionValue } from '@/utils/accessToken'
 
 type Inputs = {
   code: string
@@ -18,15 +19,17 @@ const page = () => {
         formState: { errors },
     } = useForm<Inputs>()
     const {verifyUser , loading } = useAuth()
-    const logItem = JSON.parse(sessionStorage.getItem('logItem') || '{}')
+    const logItem = JSON.parse(sessionValue())
     const router = useRouter()
 
+
     useEffect(()=>{
-        if(!logItem?.email && !logItem?.id){
+        if(!logItem?.email || !logItem.id){
             router.push('/')
         }
     },[])
 
+    
 
     const onSubmit: SubmitHandler<Inputs> = async(data) => {
         try{
@@ -35,7 +38,7 @@ const page = () => {
                     ...logItem,
                     code:data?.code
                 }
-                
+                console.log(obj)
                 const res = await verifyUser(obj)
                 console.log(res)
                 if(res?.success){

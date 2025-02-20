@@ -5,4 +5,11 @@ export const accessToken = () => {
         return localStorage.getItem("accessToken") || "";
     }
     return ""
-};
+}
+
+export const sessionValue = () => {
+    if (typeof window !== "undefined") {
+        return sessionStorage.getItem("logItem") || "";
+    }
+    return ""
+}
