@@ -1,7 +1,7 @@
 import { useState, useCallback } from "react"
 import { setCookie } from "@/utils/setCookies"
 
-const API_URL = "https://nrc-server-production.up.railway.app/app/v1/auth"
+const API_URL = "https://nrc-server-production-19f8.up.railway.app/app/v1/auth"
 // const API_URL = "http://localhost:7373/app/v1/auth"
 
 export const useAuth = () => {
