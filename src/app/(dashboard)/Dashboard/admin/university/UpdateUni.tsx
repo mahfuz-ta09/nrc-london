@@ -10,9 +10,8 @@ interface University {
     country: string;
     file: FileList | null;
     flag: FileList;
-    ranking: string;
-    tuitionFee: string;
-    requiredDocs: string;
+    initialDepossit: string;
+    requardQualification: string;
     applicationFee: string;
     duration: string;
     intakes: string;
@@ -44,9 +43,8 @@ const UpdateUni = ({name,setOpen,uniId}:{name:string,setOpen:React.Dispatch<Reac
                 country: data?.country,
                 url: url,
                 flag: flag,
-                ranking: data?.ranking,
-                tuitionFee: data?.tuitionFee,
-                requiredDocs: data?.requiredDocs,
+                initialDepossit: data?.initialDepossit,
+                requardQualification: data?.requardQualification,
                 applicationFee: data?.applicationFee,
                 duration: data?.duration,
                 intakes: data?.intakes,
@@ -97,18 +95,13 @@ const UpdateUni = ({name,setOpen,uniId}:{name:string,setOpen:React.Dispatch<Reac
             </div>
 
             <div className="form-group">
-                <label htmlFor="ranking">Ranking:</label>
-                <input id="ranking" type="text"{...register("ranking")} />
-            </div>
-
-            <div className="form-group">
-                <label htmlFor="tuitionFee">Tuition Fee:</label>
-                <input id="tuitionFee" type="text" {...register("tuitionFee")} />
+                <label htmlFor="initialDepossit">Initial Depossit:</label>
+                <input id="initialDepossit" type="text"{...register("initialDepossit")} />
             </div>
 
             <div className="form-group">
                 <label htmlFor="requiredDocs">Required documents:</label>
-                <input id="requiredDocs" type="text" {...register("requiredDocs")} />
+                <input id="requiredDocs" type="text" {...register("requardQualification")} />
             </div>
 
             <div className="form-group">
@@ -129,11 +122,6 @@ const UpdateUni = ({name,setOpen,uniId}:{name:string,setOpen:React.Dispatch<Reac
             <div className="form-group">
                 <label htmlFor="entryRequirements">Entry Requirements:</label>
                 <input id="entryRequirements" type="text" {...register("entryRequirements")} />
-            </div>
-
-            <div className="form-group">
-                <label htmlFor="applicationDeadlines">Application Deadlines:</label>
-                <input id="applicationDeadlines" type="text" {...register("applicationDeadlines")} />
             </div>
 
             <div className="form-actions">

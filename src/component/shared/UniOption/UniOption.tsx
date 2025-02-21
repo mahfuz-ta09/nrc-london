@@ -22,7 +22,7 @@ const UniOption = () => {
         }
     }
 
-    
+
     return (    
         <div className='unioption-cotainer'>
             <div className="wdth">

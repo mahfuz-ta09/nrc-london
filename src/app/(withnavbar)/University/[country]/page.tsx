@@ -10,7 +10,6 @@ const page = () => {
     const router = useRouter()
     const {data,isLoading} = useGetAllUniByCountryQuery(String(country))
 
-    
 
     return (
         <div className='subjects-container'>
@@ -31,27 +30,19 @@ const page = () => {
                                     <p>{uni?.name}</p>
                                 </div>
                                 <div className="additional">
-                                    <h4>Required Document:</h4>
-                                    <h5>{uni?.requiredDocs}</h5>
+                                    <h4>Required Qualifications:</h4>
+                                    <h5>{uni?.requardQualification}</h5>
                                     <div className="addition-data">
                                         <p className=''>Tuition fee:</p>
-                                        <p className=''>{uni?.tuitionFee}</p>
+                                        <p style={{textAlign:"end"}} className=''>{uni?.tuitionFee}</p>
                                     </div>
                                     <div className="addition-data">
-                                        <p className=''>Duration[months]:</p>
-                                        <p className=''>{uni?.duration}</p>
+                                        <p className=''>Englis:</p>
+                                        <p style={{textAlign:"end"}} className=''>{uni?.englishTest}</p>
                                     </div>
                                     <div className="addition-data">
-                                        <p className=''>Intakes:</p>
-                                        <p className=''>{uni?.intakes}</p>
-                                    </div>
-                                    <div className="addition-data">
-                                        <p className=''>Entry requirements</p>
-                                        <p className=''>{uni?.entryRequirements}</p>
-                                    </div>
-                                    <div className="addition-data">
-                                        <p className=''>Application fee:</p>
-                                        <p className=''>{uni?.applicationFee}</p>
+                                        <p className=''>Initial Deposit:</p>
+                                        <p style={{textAlign:"end"}} className=''>{uni?.initialDepossit}</p>
                                     </div>
                                 </div>
                                 <button onClick={()=>router.push('/Proceed')}className='apply-now'>apply now</button>

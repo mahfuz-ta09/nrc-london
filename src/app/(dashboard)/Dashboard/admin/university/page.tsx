@@ -31,7 +31,7 @@ const page = () => {
         }
     }
 
-    
+    console.log(data?.data)
 
     return (
       <div className='university-content'>
@@ -53,14 +53,10 @@ const page = () => {
                             <th className="th">Country</th>
                             <th className="th">Image</th>
                             <th className="th">Flag</th>
-                            <th className="th">Ranking</th>
+                            <th className="th">English Skills</th>
                             <th className="th">Tuition Fee</th>
-                            <th className="th">Required Document</th>
-                            <th className="th">Application Fee</th>
-                            <th className="th">Duration (Months)</th>
-                            <th className="th">Intakes</th>
-                            <th className="th">Entry Requirements</th>
-                            <th className="th">Application Deadlines</th>
+                            <th className="th">Required Qualifications</th>
+                            <th className="th">Initial Depossit</th>
                             <th className="th">Update</th>
                             <th className="th">Delete</th>
                         </tr>
@@ -74,14 +70,10 @@ const page = () => {
                                     <td className="td" data-label="Ranking">#{uni?.country}</td>
                                     <td className="td" data-label="Logo"><img className="logo-img" src={uni?.url} alt="University Image"/></td>
                                     <td className="td" data-label="Logo"><img className="logo-img" src={uni?.flag} alt="Flag Image"/></td>
-                                    <td className="td" data-label="Ranking">{uni?.ranking}</td>
+                                    <td className="td" data-label="Ranking">{uni?.englishTest}</td>
                                     <td className="td" data-label="Tuition Fee">${uni?.tuitionFee}</td>
-                                    <td className="td" data-label="Required Document">{uni?.requiredDocs}</td>
-                                    <td className="td" data-label="Application Fee">${uni?.applicationFee}</td>
-                                    <td className="td" data-label="Duration (Months)">{uni?.duration}</td>
-                                    <td className="td" data-label="Intakes">{uni?.intakes}</td>
-                                    <td className="td" data-label="Entry Requirements">{uni?.entryRequirements}</td>
-                                    <td className="td" data-label="Application Deadlines">{uni?.applicationDeadlines}</td>
+                                    <td className="td" data-label="Required Document">{uni?.requardQualification}</td>
+                                    <td className="td" data-label="Initial Depossit">{uni?.initialDepossit}</td>
                                     <td className="td" data-label="Edit button"><FontAwesomeIcon onClick={()=>{setOpen(!open);setName("Edit");setUniId(uni?._id)}} icon={faPen}/></td>
                                     <td className="td" data-label="Delete Button"><FontAwesomeIcon onClick={()=>handleDelete(uni?._id)} icon={faTrash}/></td>
                                 </tr>))
