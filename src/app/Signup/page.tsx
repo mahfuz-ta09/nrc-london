@@ -51,7 +51,7 @@ const SignUpPage = () => {
         <div className="login-container">
             <div className="login-content">
                 <div className="login-content-item">
-                    <h1 className="">Sign upss</h1>
+                    <h1 className="">Sign up</h1>
                     <p className="">Signup to open the horizon</p>
                     <form onSubmit={handleSubmit(onSubmit)} className="input-container">
                         <input type='text' {...register("name", { required: true })}  placeholder="enter your name" className=""/>
