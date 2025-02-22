@@ -1,13 +1,13 @@
 'use client'
 import { faFacebook, faInstagram, faTwitter } from '@fortawesome/free-brands-svg-icons'
 import { faEnvelope, faMapMarkerAlt, faPhone } from '@fortawesome/free-solid-svg-icons'
+import { useSendEmailMutation } from '@/redux/endpoints/profile/profileEndpoints'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { useForm, SubmitHandler } from "react-hook-form"
 import Footer from '@/component/shared/Footer/Footer'
-import '@/css/Contact/contact.css'
-import { useSendEmailMutation } from '@/redux/endpoints/profile/profileEndpoints'
-import { toast } from 'react-toastify'
 import { useUserInfo } from '@/utils/useUserInfo'
+import { toast } from 'react-toastify'
+import '@/css/Contact/contact.css'
 
 
 type Inputs = {
@@ -19,12 +19,7 @@ type Inputs = {
 }
 
 const ContactPage = () => {
-    const {
-        register,
-        handleSubmit,
-        reset,
-        formState: { errors }
-    } = useForm<Inputs>()
+    const { register, handleSubmit, reset, formState: { errors } } = useForm<Inputs>()
     const [ sendEmail , {  isLoading: emailLoading } ] = useSendEmailMutation()
     const user = useUserInfo()
 
@@ -75,11 +70,9 @@ const ContactPage = () => {
                             <span>101 WhiteChapel Road, London</span>
                         </p>
                         <p>
-                            {/* <FontAwesomeIcon icon={faMapMarkerAlt} className="icon address-icon" /> */}
                             <span>E17RA, London Borough of hackney</span>
                         </p>
                         <p>
-                            {/* <FontAwesomeIcon icon={faMapMarkerAlt} className="icon address-icon" /> */}
                             <span>United Kingdom</span>
                         </p>
                     </div>
@@ -99,7 +92,7 @@ const ContactPage = () => {
                     <div className="map-container">
                         <iframe
                             className="google-map"
-                            src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3151.835434509374!2d144.96305791531642!3d-37.81627917975148!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x6ad65d5df012c9fb%3A0x5045675218cee40!2sMelbourne%20VIC%2C%20Australia!5e0!3m2!1sen!2sbd!4v1633875952989"
+                            src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d9912.71203967644!2d-0.06612502165619698!3d51.51957267102453!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x487603612bd528b9%3A0xc3e8d4b0c9eb6c1f!2s101%20Whitechapel%20Rd%2C%20London%20E1%207RA%2C%20UK!5e0!3m2!1sen!2sbd!4v1708561723928"
                             allowFullScreen
                             loading="lazy"
                         ></iframe>

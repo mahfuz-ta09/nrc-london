@@ -12,13 +12,10 @@ const profileApi = baseApi.injectEndpoints({
       }),
 
       
-      updateUserProfile: build.mutation<any, { data:any, id:string }>({
+      updateUserProfile: build.mutation<any, { data: FormData, id:string }>({
           query: ({ data , id }) => ({
               url: `/profile/update/${id}`,
-              method: "PATCH",
-              headers: { 
-                "Content-Type": "application/json" 
-              },  
+              method: "PATCH", 
               data,
           }),
         invalidatesTags: ["profile"], 
