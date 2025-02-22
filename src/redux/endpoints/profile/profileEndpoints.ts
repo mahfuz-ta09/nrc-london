@@ -10,10 +10,25 @@ const profileApi = baseApi.injectEndpoints({
           }),
         providesTags: ["profile"],  
       }),
+
+      
       updateUserProfile: build.mutation<any, { data:any, id:string }>({
           query: ({ data , id }) => ({
               url: `/profile/update/${id}`,
               method: "PATCH",
+              headers: { 
+                "Content-Type": "application/json" 
+              },  
+              data,
+          }),
+        invalidatesTags: ["profile"], 
+      }),
+
+
+      sendEmail: build.mutation<any, { data:any }>({
+          query: ({ data }) => ({
+              url: `/profile/email-contact`,
+              method: "POST",
               headers: { 
                 "Content-Type": "application/json" 
               },  
@@ -31,4 +46,5 @@ const profileApi = baseApi.injectEndpoints({
 export const {
     useGetProfileByIdQuery,
     useUpdateUserProfileMutation,
+    useSendEmailMutation
 } = profileApi

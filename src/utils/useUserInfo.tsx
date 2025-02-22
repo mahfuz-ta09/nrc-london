@@ -1,7 +1,7 @@
-"use client";
-import { useState, useEffect } from "react";
-import { jwtDecode } from "jwt-decode";
-import { accessToken } from "./accessToken";
+"use client"
+import { useState, useEffect } from "react"
+import { jwtDecode } from "jwt-decode"
+import { accessToken } from "./accessToken"
 
 
 export const useUserInfo = () => {
@@ -13,7 +13,7 @@ export const useUserInfo = () => {
     })
 
     const updateUser = () => {
-        const token = accessToken();
+        const token = accessToken()
         if (token) {
             try {
                 const decoded: any = jwtDecode(token)
@@ -22,7 +22,7 @@ export const useUserInfo = () => {
                     Urole: decoded?.role || "",
                     Uid: decoded?.id || "",
                     Ustatus: decoded?.status || "",
-                });
+                })
             } catch (error) {
                 console.error("Invalid token:", error);
                 setUser({ Uemail: "", Urole: "", Uid: "" , Ustatus: ""})
