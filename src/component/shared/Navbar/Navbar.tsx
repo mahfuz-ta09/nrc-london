@@ -1,6 +1,6 @@
 'use client'
 import '../../../css/shared/Navbar/Navbar.css'
-import logo from"../../../assets/logo.png"
+import logo from"../../../assets/nrc.logo.png"
 import Image from 'next/image'
 import Link from 'next/link'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
@@ -31,7 +31,7 @@ const Navbar = () => {
     return (
         <div className='nav-holder'>
             <div className="nav-content">
-                <Link href="/"><Image className='nav-logo' src={logo} alt="" /></Link>
+                <Link href="/"><Image className='nav-logo' src={logo} alt="logo" /></Link>
                 <div className={isOpen ? 'nav-links show':'nav-links hide'}>
                     <div className='link-holder'>
                         <Link onClick={()=>setIsOpen(false)} className='link' href="/Subjects">Subjects</Link>

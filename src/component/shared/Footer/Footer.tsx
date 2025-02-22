@@ -3,7 +3,7 @@ import { useForm, SubmitHandler } from "react-hook-form"
 import Link from 'next/link'
 import '../../../css/shared/Footer/Footer.css'
 import Image from 'next/image'
-import logo from "../../../assets/logo.png"
+import logo from "../../../assets/nrc.logo.png"
 import { useGetUniNavItemQuery } from '@/redux/endpoints/university/universityEndpoints';
 import { usePostReviewMutation } from "@/redux/endpoints/review/reviewEndpoints"
 import { toast } from "react-toastify"

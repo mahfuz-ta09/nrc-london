@@ -3,6 +3,9 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import '../../../css/shared/Banner/Banner.css'
 import { faArrowAltCircleRight, faCalendarDays, faPlaneDeparture, faSchool } from '@fortawesome/free-solid-svg-icons'
 import { useRouter } from 'next/navigation'
+import imgBgBanner from '../../../assets/banner-background.png'
+import BannerImg from '../../../assets/laptop.webp'
+import Image from 'next/image'
 
 
 const Banner = () => {
@@ -11,7 +14,7 @@ const Banner = () => {
 
     return (
         <div className="banner-container">
-            <img className='banner-bg' src="https://i.ibb.co.com/S4d0db4q/banner-background.png" alt="" />
+            <Image className="banner-bg" src={imgBgBanner} alt="Banner" />
             <div className="banner-content">
                 <div className="banner-part">
                     <h4>Plan your future with us!</h4>
@@ -21,7 +24,7 @@ const Banner = () => {
                         <button onClick={()=>router.push('/Proceed')} className='banner-button-3rd'>I am a Student <FontAwesomeIcon icon={faArrowAltCircleRight} /></button>
                     </div>
                 </div>
-                <img className='banner-photo' src="https://i.ibb.co.com/V0gmz1S6/laptop.webp" alt='Laptop'/>
+                <Image className="banner-photo" src={BannerImg} alt="Banner" />
             </div>
 
             <div className="banner-addition">
