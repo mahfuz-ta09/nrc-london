@@ -30,7 +30,7 @@ const UniNav = () => {
                             </div>
                         ))
                         ) : (
-                        <p>Currently no data available</p>
+                        <p>...</p>
                         )}
 
                         <div className="contact-section">
