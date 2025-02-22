@@ -1,6 +1,5 @@
 'use client'
 import Footer from '@/component/shared/Footer/Footer'
-import Process from '@/component/shared/Process/Process'
 import '@/css/Services/Services.css'
 import { useRouter } from 'next/navigation'
 
@@ -66,7 +65,6 @@ const Page = () => {
                 </div>
             </div>
         </div>
-        <Process />
 
         <Footer />
       </div>
