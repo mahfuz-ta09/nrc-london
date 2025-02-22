@@ -37,11 +37,15 @@ const Page = () => {
                                     <h5  style={{"whiteSpace": "pre-wrap"}}>{sub?.destination}</h5>
                                     <div className="addition-data">
                                         <p className=''>Tuition fee:</p>
-                                        <p className=''>{sub?.tuitionFee} <FontAwesomeIcon icon={faDollar}/>yr</p>
+                                        <p className=''>{sub?.tuitionFee} </p>
                                     </div>
                                     <div className="addition-data">
                                         <p className=''>Application fee:</p>
-                                        <p className=''><FontAwesomeIcon icon={faCancel}/>{sub?.applicationFee}</p>
+                                        <p className=''>{sub?.applicationFee}</p>
+                                    </div>
+                                    <div className="addition-data">
+                                        <p className=''>Required Doc:</p>
+                                        <p className=''>{sub?.requiredDocs}</p>
                                     </div>
                                     <div className="addition-data">
                                         <p className=''>Duration[months]:</p>
@@ -56,8 +60,8 @@ const Page = () => {
                                         <p className=''>{sub?.entryRequirements}</p>
                                     </div>
                                     <div className="addition-data">
-                                        <p className=''>Tuition fee:</p>
-                                        <p className=''>18000-19000 <FontAwesomeIcon icon={faDollar}/>yr</p>
+                                        <p className=''>Entry requirements</p>
+                                        <p className=''>{sub?.applicationDeadlines}</p>
                                     </div>
                                 </div>
                                 <button onClick={()=>router.push('/Proceed')}className='apply-now'>apply now</button>
