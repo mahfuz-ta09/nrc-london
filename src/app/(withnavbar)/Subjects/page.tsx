@@ -28,7 +28,7 @@ const Page = () => {
                         dataLoading ?
                         <Loader /> :
                             data?.data?.map((sub:any) =>
-                            <div key={sub?._id} style={{height:"auto"}} className="single-subject">
+                            <div key={sub?._id} style={{height:"600px"}} className="single-subject">
                                 <div className="subject-header">
                                     <p style={{"whiteSpace": "pre-wrap"}}>{sub?.name}</p>
                                 </div>
