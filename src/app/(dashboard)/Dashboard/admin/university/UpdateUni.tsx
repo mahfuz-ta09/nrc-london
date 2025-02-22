@@ -96,7 +96,7 @@ const UpdateUni = ({name,setOpen,uniId}:{name:string,setOpen:React.Dispatch<Reac
             </div>
 
             <div className="form-group">
-                <label htmlFor="requiredDocs">Required documents:</label>
+                <label htmlFor="requiredDocs">Required Qualification:</label>
                 <input id="requiredDocs" type="text" {...register("requardQualification")} />
             </div>
 

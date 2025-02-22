@@ -31,7 +31,7 @@ const page = () => {
         }
     }
 
-    console.log(data?.data)
+
 
     return (
       <div className='university-content'>
@@ -57,6 +57,7 @@ const page = () => {
                             <th className="th">Tuition Fee</th>
                             <th className="th">Required Qualifications</th>
                             <th className="th">Initial Depossit</th>
+                            <th className="th">SCHOLARSHIP</th>
                             <th className="th">Update</th>
                             <th className="th">Delete</th>
                         </tr>
@@ -74,6 +75,7 @@ const page = () => {
                                     <td className="td" data-label="Tuition Fee">${uni?.tuitionFee}</td>
                                     <td className="td" data-label="Required Document">{uni?.requardQualification}</td>
                                     <td className="td" data-label="Initial Depossit">{uni?.initialDepossit}</td>
+                                    <td className="td" data-label="Initial Depossit">{uni?.SCHOLARSHIP}</td>
                                     <td className="td" data-label="Edit button"><FontAwesomeIcon onClick={()=>{setOpen(!open);setName("Edit");setUniId(uni?._id)}} icon={faPen}/></td>
                                     <td className="td" data-label="Delete Button"><FontAwesomeIcon onClick={()=>handleDelete(uni?._id)} icon={faTrash}/></td>
                                 </tr>))

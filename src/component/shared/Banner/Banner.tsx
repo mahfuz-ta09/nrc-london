@@ -11,7 +11,7 @@ const Banner = () => {
 
     return (
         <div className="banner-container">
-            <img className='banner-bg' src="https://i.ibb.co.com/j98rcS4b/bg.png" alt="" />
+            <img className='banner-bg' src="https://i.ibb.co.com/S4d0db4q/banner-background.png" alt="" />
             <div className="banner-content">
                 <div className="banner-part">
                     <h4>Plan your future with us!</h4>
