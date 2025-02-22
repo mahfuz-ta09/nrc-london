@@ -12,11 +12,9 @@ interface University {
     flag: FileList;
     initialDepossit: string;
     requardQualification: string;
-    applicationFee: string;
-    duration: string;
-    intakes: string;
-    entryRequirements: string;
-    applicationDeadlines: string;
+    SCHOLARSHIP: string;
+    englishTest: string;
+    tuitionFee: string;
 }
 
 const UpdateUni = ({name,setOpen,uniId}:{name:string,setOpen:React.Dispatch<React.SetStateAction<boolean>>,uniId:string}) => {
@@ -45,11 +43,9 @@ const UpdateUni = ({name,setOpen,uniId}:{name:string,setOpen:React.Dispatch<Reac
                 flag: flag,
                 initialDepossit: data?.initialDepossit,
                 requardQualification: data?.requardQualification,
-                applicationFee: data?.applicationFee,
-                duration: data?.duration,
-                intakes: data?.intakes,
-                entryRequirements: data?.entryRequirements,
-                applicationDeadlines: data?.applicationDeadlines,
+                SCHOLARSHIP: data?.SCHOLARSHIP,
+                englishTest: data?.englishTest,
+                tuitionFee: data?.tuitionFee,
             }
 
             if(name==="Add"){
@@ -105,23 +101,18 @@ const UpdateUni = ({name,setOpen,uniId}:{name:string,setOpen:React.Dispatch<Reac
             </div>
 
             <div className="form-group">
-                <label htmlFor="applicationFee">Application Fee:</label>
-                <input id="applicationFee" type="text" {...register("applicationFee")} />
+                <label htmlFor="SCHOLARSHIP">Scholership:</label>
+                <input id="SCHOLARSHIP" type="text" {...register("SCHOLARSHIP")} />
             </div>
 
             <div className="form-group">
-                <label htmlFor="duration">Duration (Months):</label>
-                <input id="duration" type="text" {...register("duration")} />
+                <label htmlFor="englishTest">English Test:</label>
+                <input id="englishTest" type="text" {...register("englishTest")} />
             </div>
 
             <div className="form-group">
-                <label htmlFor="intakes">Intakes:</label>
-                <input id="intakes" type="text" {...register("intakes")} />
-            </div>
-
-            <div className="form-group">
-                <label htmlFor="entryRequirements">Entry Requirements:</label>
-                <input id="entryRequirements" type="text" {...register("entryRequirements")} />
+                <label htmlFor="tuitionFee">Tuition Fee:</label>
+                <input id="tuitionFee" type="text" {...register("tuitionFee")} />
             </div>
 
             <div className="form-actions">
