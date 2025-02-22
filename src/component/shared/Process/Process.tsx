@@ -1,6 +1,7 @@
 import '../../../css/shared/Process/Process.css'
 
 
+
 const Process = () => {
     return (
         <div className='process-container'>
