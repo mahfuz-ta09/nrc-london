@@ -22,7 +22,7 @@
     display: flex;
     align-items: start;
     justify-content: start;
-    padding: 25vh 10px;
+    padding: 20vh 10px;
 }
 
 .banner-part{
@@ -37,9 +37,10 @@
 
 .banner-photo{
     object-fit: contain; 
-    width: 750px;
+    width: 650px;
     height: 400px;
     z-index: 3;
+    margin-left: 30px;
 }
 
 .banner-part h4{
@@ -103,7 +104,7 @@
 .banner-addition{
     max-width: 1200px;
     width: 100%;
-    margin: -8vh auto 0;
+    margin: -10vh auto 0;
     display: flex;
     align-items: center;
     justify-content: space-around;
@@ -183,6 +184,7 @@
         object-fit: contain; 
         width: 95%;
         height: 300px;
+        margin-left: 0;
     }
     
     .banner-part h4{

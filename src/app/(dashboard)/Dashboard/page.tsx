@@ -7,10 +7,12 @@ import { useState } from "react"
 import Profile from "./profileUi/Profile"
 import { useDeleteReviewMutation } from "@/redux/endpoints/review/reviewEndpoints"
 import { toast } from "react-toastify"
+import { useRouter } from "next/navigation"
 
 
 const page = () => {
     const data = useUserInfo()
+    const router = useRouter()
     const [profileData, setProfileData] = useState<boolean>(false)
     const { data: profile, refetch , isLoading: profileLoading } = useGetProfileByIdQuery(data?.Uid)
     const [deleteReview , { isLoading: deleteLoading }] = useDeleteReviewMutation()
@@ -64,6 +66,7 @@ const page = () => {
 
           <div className="button-grp">
             <button onClick={()=>{setProfileData(!profileData)}} className="btn">{profileData?"close":"profile"}</button>
+            <button onClick={()=>router.push('/ResetPass')} className="btn">reset password</button>
           </div>
         </div>
         

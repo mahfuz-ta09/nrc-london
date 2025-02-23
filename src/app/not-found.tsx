@@ -1,12 +1,13 @@
 import Link from 'next/link'
+import '@/css/Redirect/Redirect.css'
  
 
 export default function NotFound() {
   return (
-    <div>
-      <h2>Not Found</h2>
+    <div className='redirect-page' style={{color:"white",gap:"20px"}}>
+      <h2>Error!</h2>
       <p>Could not find requested resource</p>
-      <Link href="/">Return Home</Link>
+      <Link style={{color:"white"}} href="/">Return Home</Link>
     </div>
   )
 }

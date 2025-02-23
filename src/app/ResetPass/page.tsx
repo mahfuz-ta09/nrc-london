@@ -42,7 +42,7 @@ const page = () => {
                 <h1>Reset your password!</h1>
                 <form  onSubmit={handleSubmit(onSubmit)}>
                     <input type="email" placeholder='Enter your email' {...register("email", { required: true })}/>
-                    {loading ? 'Loading...' : <button type="submit">Verify</button>}
+                    {loading ? 'Loading...' : <button type="submit">proceed</button>}
                 </form>
             </div>
         </div>
