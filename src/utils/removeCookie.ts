@@ -1,7 +1,9 @@
 import { instance as axiosTokenInstance } from "@/axios/axiosInstance"
 
-const API_URL = "https://nrc-server-production-19f8.up.railway.app/app/v1/auth"
-// const API_URL = "http://localhost:7373/app/v1/auth"
+let API_URL = ''
+
+API_URL = "https://nrc-server-production-19f8.up.railway.app/app/v1/auth"
+// API_URL = "http://localhost:7373/app/v1/auth"
 
 export const cookieRemove = async()=>{
     const res = await fetch(`${API_URL}/logout`,{
