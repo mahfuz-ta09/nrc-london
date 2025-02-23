@@ -1,13 +1,13 @@
 import type { Metadata } from "next"
 import "./globals.css"
-import { Ysabeau_SC } from 'next/font/google'
+import {  Kanit ,Roboto_Condensed } from 'next/font/google'
 import { config } from '@fortawesome/fontawesome-svg-core'
 import '@fortawesome/fontawesome-svg-core/styles.css'
 import Providers from "@/redux/Providers"
 import { Bounce, ToastContainer } from "react-toastify"
 config.autoAddCss = false
 
-const ysabeau = Ysabeau_SC({ subsets: ['latin'], weight: ['400', '500', '700'] })
+const kanit = Roboto_Condensed({ subsets: ['latin'], weight: ['400', '500', '700','800','900'] })
 
 export const metadata: Metadata = {
   title: "nrc-london",
@@ -22,7 +22,7 @@ export default function RootLayout({
   return (
     <html lang="en">
       <Providers>
-        <body className={ysabeau.className}>
+        <body className={kanit.className}>
           {children}
           <ToastContainer
               style={{"zIndex":"999999"}}

@@ -62,7 +62,7 @@ const page = () => {
             <div>
                 <h1>Check your email for a code!</h1>
                 <form  onSubmit={handleSubmit(onSubmit)}>
-                    <input type="digit"  {...register("code", { required: true })}/>
+                    <input type="digit" placeholder='Required 6 digit code' {...register("code", { required: true })}/>
                     {loading ? 'Loading...' : <button type="submit">Verify</button>}
                 </form>
             </div>

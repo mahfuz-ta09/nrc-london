@@ -4,7 +4,7 @@ import { setCookie } from "@/utils/setCookies"
 let API_URL = ''
 
 API_URL = "https://nrc-server-production-19f8.up.railway.app/app/v1/auth"
-// API_URL = "http://localhost:7373/app/v1/auth"
+API_URL = "http://localhost:7373/app/v1/auth"
 
 export const useAuth = () => {
     const [loading, setLoading] = useState(false);
@@ -80,5 +80,28 @@ export const useAuth = () => {
         }
     }, [])
 
-    return { logInUser, signUpUser, verifyUser, loading, error }
+    const resetPassword = useCallback(async (data:any) => {
+        setLoading(true)
+        setError(null)
+        try {
+            const response = await fetch(`${API_URL}/reset`, {
+                method: "POST",
+                credentials: "include",
+                headers:{
+                    'content-type':'application/json',
+                },
+                body: JSON.stringify(data),
+            })
+
+            const verificationResponse = await response.json()
+            return verificationResponse
+        } catch (err: any) {
+            setError(err.message)
+            return null
+        } finally {
+            setLoading(false)
+        }
+    }, [])
+
+    return { logInUser, signUpUser, verifyUser, resetPassword , loading, error }
 }

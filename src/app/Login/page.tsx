@@ -52,11 +52,10 @@ const LoginPage = () => {
                             <input type='email' {...register("email", { required: true })} placeholder="enter your email" className=""/>
                             <input type='password' {...register("password", { required: true })}   placeholder="enter your password" className=""/>
                             <div className="form-link">
-                                <Link className='forgot-link' href="">forgot password?</Link>
+                                <Link className='forgot-link' href="/ResetPass">forgot password?</Link>
                                 <button type="submit" className="">login</button>
                             </div>
                         </form>
-                        <h2 className="link-header">or login with</h2>
                         <div className="social-login">
                                 <button className="" onClick={()=>router.push('/')}>home?</button>
                         </div>
