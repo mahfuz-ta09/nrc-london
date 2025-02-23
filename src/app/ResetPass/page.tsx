@@ -8,7 +8,7 @@ import { toast } from 'react-toastify'
 type Inputs = {
     email: string
 }
-  
+
 
 const page = () => {
     const {

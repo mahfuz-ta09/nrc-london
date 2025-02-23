@@ -11,6 +11,7 @@ import Image from 'next/image'
 const Banner = () => {
     const router = useRouter()
 
+
     return (
         <div className="banner-container">
             <Image className="banner-bg" src={imgBgBanner} alt="Banner" />

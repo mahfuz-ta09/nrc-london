@@ -53,7 +53,6 @@ const Footer = () => {
                         <div className="pg-footer-menu">
                             <h2 className="pg-footer-menu-name">Get Started</h2>
                             <ul className="pg-footer-menu-list">
-                                <li><Link href="#">Start</Link></li>
                                 <li><Link href="/Centre">Centre</Link></li>
                                 <li><Link href="/Subjects">Subjects</Link></li>
                             </ul>
@@ -101,7 +100,7 @@ const Footer = () => {
                         <div className="pg-footer-call-to-action">
                             <h2 className="pg-footer-call-to-action-title">Let&apos;s share</h2>
                             <p className="pg-footer-call-to-action-description">
-                                your though about us!
+                                your thought about us!
                             </p>
                             <form style={{display:"flex",flexDirection:"column"}}  onSubmit={handleSubmit(onSubmit)}>
                               <textarea  {...register("comment", { required: true })}  style={{padding:"5px",margin:"10px 0",borderRadius:"4px",minHeight:"70px",maxWidth:"300px"}}/>

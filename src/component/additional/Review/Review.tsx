@@ -1,7 +1,7 @@
 'use client'
 import '../../../css/additional/Review/Review.css'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faQuoteRight, faUser } from '@fortawesome/free-solid-svg-icons'
+import { faArrowAltCircleLeft, faArrowAltCircleRight, faQuoteRight, faUser } from '@fortawesome/free-solid-svg-icons'
 import { useGetPageReviewQuery } from '@/redux/endpoints/review/reviewEndpoints'
 import { useRouter } from 'next/navigation'
 import { useState, useEffect } from 'react'
@@ -13,7 +13,7 @@ const Review = () => {
     const [item] = useState(3)
     const { data, refetch, isLoading } = useGetPageReviewQuery({ page, item })
 
-    
+
     useEffect(() => {
         refetch()
     }, [page, refetch])
@@ -21,7 +21,6 @@ const Review = () => {
     return (
         <div className='review-container'>
             <div className="review-content">
-                <img className='top-image' src='https://i.ibb.co.com/PTJW3jY/Green-Beige-Aesthetic-Leaves-Illustration-Background-Instagram-Story-removebg-preview.png' alt="Background" />
                 
                 <div className="review-header">
                     <div>
@@ -62,13 +61,13 @@ const Review = () => {
                         disabled={page <= 1} 
                         onClick={() => setPage(prev => Math.max(prev - 1, 1))}
                     >
-                        Prev
+                        <FontAwesomeIcon icon={faArrowAltCircleLeft} />
                     </button>
                     <button 
                         disabled={page >= data?.meta?.totalPages} 
                         onClick={() => setPage(prev => Math.min(prev + 1, data?.meta?.totalPages))}
                     >
-                        Next
+                        <FontAwesomeIcon icon={faArrowAltCircleRight} />
                     </button>
                 </div>
             </div>
