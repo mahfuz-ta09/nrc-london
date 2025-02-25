@@ -2,19 +2,20 @@ import { baseApi } from "@/redux/baseApi";
 
 const agentApi = baseApi.injectEndpoints({
   endpoints: (build) => ({
-    
+       
         createAgentsReq: build.mutation({
-            query: (data) => ({
+            query: (data: FormData) => ({
                 url: "/agent/create",
                 method: "POST",
-                headers: { 
-                "Content-Type": "application/json" 
-                }, 
-                data,
+                headers: {
+                    'Content-Type': 'multipart/form-data',
+                },
+                data, 
             }),
-        invalidatesTags: ["agents"],  
+            invalidatesTags: ["agents"],
         }),
 
+        
         getALlAgentReq: build.query<any, void>({
             query: () => ({
                 url: "/agent/request",

@@ -5,7 +5,6 @@ import '@/css/TestPrep/CommonStyle.css'
 import '@/css/Proceed/Proceed.css'
 import { useUserInfo } from "@/utils/useUserInfo"
 import { useCreateAgentsReqMutation } from "@/redux/endpoints/agent/agentsEndpoints"
-import useImgBBUpload from '@/utils/useImgBBUpload'
 import { toast } from "react-toastify"
 
 
@@ -26,48 +25,51 @@ type Inputs = {
     services: string;
     partner_universities?: string;
     license_number: string;
-    license_document: FileList;
     tax_id: string;
     criminal_record: "yes" | "no";
-    background_check: FileList;
     referral: "google" | "facebook" | "linkedin" | "youtube" | "friends" | "others";
+    background_check: FileList;
+    license_document: FileList;
 }
 
 const Becomeanagent = () => {
     const { Uemail , Urole } = useUserInfo()
-    const { uploadImage, isLoading:imgLoad, error } = useImgBBUpload()
     const [ createAgentsReq ,{ isLoading: agentLoading}] = useCreateAgentsReqMutation()
     const {
         register,
         handleSubmit,
-        watch,
         reset,
         formState: { errors },
     } = useForm<Inputs>()
     
-    const onSubmit: SubmitHandler<Inputs> = async (data) => {
-        try{
-            if(data.background_check || data.license_document){
-                data.background_check = await uploadImage(data?.background_check)
-                data.license_document = await uploadImage(data?.license_document)
-            }
+
+    const onSubmit: SubmitHandler<Inputs> = async (data: any) => {
+        try {
             data.email = Uemail
             data.role = Urole
-
-            const res = await createAgentsReq(data)
-            if(res?.data?.data?.acknowledged){
-                toast.success("You requested successfully!")
-                toast.success(`You can modify it from dashboard profile`)
-                reset()
-            }else{
-                toast.error(res?.data?.message)
+            const formData = new FormData()
+            Object.entries(data).forEach(([key, value]) => {
+                if(value instanceof FileList) {
+                    for (let i = 0; i < value.length; i++) {
+                        formData.append(key, value[i]);
+                    }
+                }else if (value !== undefined && value !== null) {
+                    formData.append(key, String(value));
+                }
+            })
+    
+            const res = await createAgentsReq(formData)
+            if (res?.data?.data?.acknowledged) {
+                toast.success("You requested successfully! You can modify it from dashboard profile")
+                // reset()
+            } else {
+                toast.error(res?.data?.message);
             }
-        }catch(err){
-            console.log(err)
+        } catch (err) {
+            console.log(err);
         }
-        
     }
-
+            
     return (
         <div>
             <div className="container wdth">
@@ -138,7 +140,7 @@ const Becomeanagent = () => {
                         <option value="yes">Yes</option>
                     </select>
 
-                    <label className="form-label" htmlFor="background_check">Upload Background Check Document:</label>
+                    <label className="form-label" htmlFor="backgroun/d_check">Upload Background Check Document:</label>
                     <input className="form-input" type="file" {...register("background_check")} accept=".pdf,.jpg,.png" required/>
 
                     {/* Additional Information */}
@@ -152,8 +154,7 @@ const Becomeanagent = () => {
                         <option value="others">Others</option>
                     </select>
 
-                    {/* { postLoading ? <p>Loading...</p> : <input className="form-button" type="submit" value="Submit Application"/>} */}
-                    <input className="form-button" type="submit" value="Submit Application"/>
+                    { agentLoading ? <p>Loading...</p> : <input className="form-button" type="submit" value="Submit Application"/>}
                 </form>
             </div>
             <Footer />

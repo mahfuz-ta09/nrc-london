@@ -21,7 +21,7 @@ const profileApi = baseApi.injectEndpoints({
         invalidatesTags: ["profile"], 
       }),
 
-
+      
       sendEmail: build.mutation<any, { data:any }>({
           query: ({ data }) => ({
               url: `/profile/email-contact`,
