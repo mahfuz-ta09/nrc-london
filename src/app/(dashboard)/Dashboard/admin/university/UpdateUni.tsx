@@ -8,8 +8,8 @@ import { toast } from 'react-toastify';
 interface University {
     name: string;
     country: string;
-    file: FileList | null;
-    flag: FileList;
+    file?: FileList | null;
+    flag?: FileList| null;
     initialDepossit: string;
     requardQualification: string;
     SCHOLARSHIP: string;
@@ -28,30 +28,23 @@ const UpdateUni = ({name,setOpen,uniId}:{name:string,setOpen:React.Dispatch<Reac
     const [ createUniversity,{isLoading:createLoad} ] = useCreateUniversityMutation()
     const [ updateUniversity,{isLoading:editLoad} ] = useUpdateUniversityMutation()
 
-    const onSubmit: SubmitHandler<University> = async(data) => {
+    const onSubmit: SubmitHandler<University> = async(data: University) => {
         try{
-            let res,url="",flag=""
-            if(data?.file){
-                url = await uploadImage(data?.file)
-                flag = await uploadImage(data?.flag)
+            let res
+            var form_data = new FormData()
+            for(var key in data){
+                if(key === 'file' || key === 'flag'){
+                    form_data.append(key,data[key][0])
+                }else{
+                    form_data.append(key,data[key])
+                }
             }
 
-            const dataUpload ={
-                name: data?.name,
-                country: data?.country,
-                url: url,
-                flag: flag,
-                initialDepossit: data?.initialDepossit,
-                requardQualification: data?.requardQualification,
-                SCHOLARSHIP: data?.SCHOLARSHIP,
-                englishTest: data?.englishTest,
-                tuitionFee: data?.tuitionFee,
-            }
 
             if(name==="Add"){
-                res = await createUniversity(dataUpload)
+                res = await createUniversity(form_data)
             }else{
-                res = await updateUniversity({data:dataUpload,id:uniId})
+                res = await updateUniversity({data: form_data,id:uniId})
             }
             
             if(res?.data?.data?.acknowledged){

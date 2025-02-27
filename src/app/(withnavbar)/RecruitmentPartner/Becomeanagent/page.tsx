@@ -61,7 +61,7 @@ const Becomeanagent = () => {
             const res = await createAgentsReq(formData)
             if (res?.data?.data?.acknowledged) {
                 toast.success("You requested successfully! You can modify it from dashboard profile")
-                // reset()
+                reset()
             } else {
                 toast.error(res?.data?.message);
             }
@@ -76,7 +76,7 @@ const Becomeanagent = () => {
                 <h2 className="form-header">Agent Application Form</h2>
                 <form onSubmit={handleSubmit(onSubmit)}>
 
-                    {/* Personal Information */}
+
                     <label className="form-label" htmlFor="name">Full Name:</label>
                     <input className="form-input" type="text" {...register("name")} required/>
 
@@ -101,7 +101,7 @@ const Becomeanagent = () => {
                     <label className="form-label" htmlFor="passport_number">Passport Number:</label>
                     <input className="form-input" type="text" {...register("passport_number")} />
 
-                    {/* Agency Information */}
+
                     <h3>Agency Information</h3>
 
                     <label className="form-label" htmlFor="agency_name">Agency Name:</label>
@@ -122,7 +122,7 @@ const Becomeanagent = () => {
                     <label className="form-label" htmlFor="partner_universities">Partner Universities (If any):</label>
                     <textarea className="form-input" {...register("partner_universities")}></textarea>
 
-                    {/* Legal & Verification */}
+                    
                     <h3>Legal & Verification</h3>
 
                     <label className="form-label" htmlFor="license_number">Business License Number:</label>
@@ -143,7 +143,7 @@ const Becomeanagent = () => {
                     <label className="form-label" htmlFor="backgroun/d_check">Upload Background Check Document:</label>
                     <input className="form-input" type="file" {...register("background_check")} accept=".pdf,.jpg,.png" required/>
 
-                    {/* Additional Information */}
+                    
                     <label className="form-label" htmlFor="referral">How did you hear about us?</label>
                     <select className="form-select" {...register("referral")}>
                         <option value="google">Google</option>

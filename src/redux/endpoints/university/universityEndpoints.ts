@@ -48,10 +48,12 @@ const universityApi = baseApi.injectEndpoints({
 
 
         createUniversity: build.mutation({
-            query: (data) => ({
+            query: (data: FormData) => ({
               url         : '/university/create',
               method      : "POST",
-              contentType : "application/json",
+              headers: {
+                  'Content-Type': 'multipart/form-data',
+              },
               data
             }),
             invalidatesTags: ["university"]
