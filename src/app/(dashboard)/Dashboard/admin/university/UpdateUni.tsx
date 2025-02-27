@@ -32,13 +32,16 @@ const UpdateUni = ({name,setOpen,uniId}:{name:string,setOpen:React.Dispatch<Reac
         try{
             let res
             var form_data = new FormData()
-            for(var key in data){
-                if(key === 'file' || key === 'flag'){
-                    form_data.append(key,data[key][0])
-                }else{
-                    form_data.append(key,data[key])
+            
+            Object.entries(data).forEach(([key, value]) => {
+                if(value instanceof FileList) {
+                    for (let i = 0; i < value.length; i++) {
+                        form_data.append(key, value[i]);
+                    }
+                }else if (value !== undefined && value !== null) {
+                    form_data.append(key, String(value));
                 }
-            }
+            })
 
 
             if(name==="Add"){
