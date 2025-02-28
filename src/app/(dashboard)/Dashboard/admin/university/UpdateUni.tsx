@@ -1,7 +1,6 @@
 'use client'
 import '@/css/Dashboard/admin/university.css'
 import { useCreateUniversityMutation, useUpdateUniversityMutation } from '@/redux/endpoints/university/universityEndpoints'
-import useImgBBUpload from '@/utils/useImgBBUpload'
 import { useForm, SubmitHandler } from "react-hook-form"
 import { toast } from 'react-toastify';
 
@@ -17,14 +16,13 @@ interface University {
     tuitionFee: string;
 }
 
-const UpdateUni = ({name,setOpen,uniId}:{name:string,setOpen:React.Dispatch<React.SetStateAction<boolean>>,uniId:string}) => {
+const UpdateUni = ({ name , setOpen , uniId }:{name:string,setOpen:React.Dispatch<React.SetStateAction<boolean>>,uniId:string}) => {
     const {
         register,
         handleSubmit,
         reset,
         formState: { errors },
     } = useForm<University>()
-    const { uploadImage, isLoading:imgLoad } = useImgBBUpload()
     const [ createUniversity,{isLoading:createLoad} ] = useCreateUniversityMutation()
     const [ updateUniversity,{isLoading:editLoad} ] = useUpdateUniversityMutation()
 
@@ -65,7 +63,7 @@ const UpdateUni = ({name,setOpen,uniId}:{name:string,setOpen:React.Dispatch<Reac
     return (
         <form className="edit-university-form" onSubmit={handleSubmit(onSubmit)}>
             <h2 className="form-title">{name} University-{uniId}</h2>
-
+            {name!='Add' && <p style={{color:'white'}}>Delete the document to update photo</p> }
             <div className="form-group">
                 <label htmlFor="name">University Name:</label>
                 <input id="name" type="text" {...register("name")} />
@@ -76,15 +74,15 @@ const UpdateUni = ({name,setOpen,uniId}:{name:string,setOpen:React.Dispatch<Reac
                 <input id="name" type="text" {...register("country")} />
             </div>
 
-            <div className="form-group">
-                <label htmlFor="logo">Add university image:</label>
+            {name==='Add' && <div className="form-group">
+                <label htmlFor="logo">Add university/random image:</label>
                 <input style={{color:"white"}} id="file" type="file" {...register("file")}  />
-            </div>
+            </div>}
 
-            <div className="form-group">
+            {name==='Add' && <div className="form-group">
                 <label htmlFor="logo">Country flag image:</label>
                 <input style={{color:"white"}} id="file" type="file" {...register("flag")}  />
-            </div>
+            </div>}
 
             <div className="form-group">
                 <label htmlFor="initialDepossit">Initial Depossit:</label>
@@ -112,8 +110,8 @@ const UpdateUni = ({name,setOpen,uniId}:{name:string,setOpen:React.Dispatch<Reac
             </div>
 
             <div className="form-actions">
-                <button type="submit" className="btn-update" disabled={createLoad || editLoad || imgLoad}>
-                    {imgLoad || createLoad || editLoad ? "Processing..." : name}
+                <button type="submit" className="btn-update" disabled={createLoad || editLoad}>
+                    {createLoad || editLoad ? "Processing..." : name}
                 </button>
             </div>
         </form>

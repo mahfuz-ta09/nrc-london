@@ -32,7 +32,6 @@ const page = () => {
     }
 
 
-
     return (
       <div className='university-content'>
         <div className="header">
@@ -68,11 +67,11 @@ const page = () => {
                                 <tr key={uni?._id} className="tr">
                                     <td className="td" data-label="University Name">{index+1}</td>
                                     <td className="td" data-label="University Name">{uni?.name}</td>
-                                    <td className="td" data-label="Ranking">#{uni?.country}</td>
+                                    <td className="td" data-label="Ranking">{uni?.country}</td>
                                     <td className="td" data-label="Logo"><img className="logo-img" src={uni?.url} alt="University Image"/></td>
                                     <td className="td" data-label="Logo"><img className="logo-img" src={uni?.flag} alt="Flag Image"/></td>
                                     <td className="td" data-label="Ranking">{uni?.englishTest}</td>
-                                    <td className="td" data-label="Tuition Fee">${uni?.tuitionFee}</td>
+                                    <td className="td" data-label="Tuition Fee">{uni?.tuitionFee}</td>
                                     <td className="td" data-label="Required Document">{uni?.requardQualification}</td>
                                     <td className="td" data-label="Initial Depossit">{uni?.initialDepossit}</td>
                                     <td className="td" data-label="Initial Depossit">{uni?.SCHOLARSHIP}</td>
