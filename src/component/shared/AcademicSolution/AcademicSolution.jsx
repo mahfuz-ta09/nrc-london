@@ -18,7 +18,7 @@ const AcademicSolution = () => {
                         <p className='plan-addition'>Our MBA plan provides an in-depth understanding of business strategies, marketing, finance, and entrepreneurship. With a focus on leadership and management, this program is ideal for students looking to advance their careers in the corporate world.</p>
                     </div>
                     <div className="single-plan">
-                        <img className="plan-image" src='https://i.ibb.co.com/zC84q1X/canada.jpg' alt='' />
+                        <img className="plan-image" src='https://i.ibb.co.com/sd0yFDPk/log.webp' alt='' />
                         <h2 className='plan-header'>Study Abroad – International Relations</h2>
                         <p className='plan-addition'>This plan is tailored for students passionate about global affairs, diplomacy, and international relations. Gain critical insights into politics, economics, and cultural studies while experiencing life in top universities around the world.</p>
                     </div>
