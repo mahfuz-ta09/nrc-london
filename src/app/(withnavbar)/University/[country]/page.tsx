@@ -37,7 +37,7 @@ const page = () => {
                                         <p style={{textAlign:"end"}} className=''>{uni?.tuitionFee}</p>
                                     </div>
                                     <div className="addition-data">
-                                        <p className=''>Englis:</p>
+                                        <p className=''>English:</p>
                                         <p style={{textAlign:"end"}} className=''>{uni?.englishTest}</p>
                                     </div>
                                     <div className="addition-data">

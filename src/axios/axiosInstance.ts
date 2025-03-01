@@ -42,6 +42,7 @@ instance.interceptors.response.use(
     }, 
     
     async function (error) {
+      console.log(error)
         if(error?.response?.status === 500){
             const res:any = await getNewAccessToken()
             error.config.headers['Authorization'] = res?.meta.accessToken
