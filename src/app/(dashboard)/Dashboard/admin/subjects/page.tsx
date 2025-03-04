@@ -45,15 +45,13 @@ const page = () => {
                         <thead className="thead">
                             <tr className="tr">
                                 <th className="th">Serial</th>
-                                <th className="th">Subject Name</th>
-                                <th className="th">Possible Destination</th>
-                                <th className="th">Duration (Months)</th>
+                                <th className="th">Course name</th>
+                                <th className="th">Country</th>
+                                <th className="th">Initial Depossit</th>
                                 <th className="th">Tuition Fee</th>
-                                <th className="th">Required Document</th>
-                                <th className="th">Application Fee</th>
-                                <th className="th">Intakes</th>
-                                <th className="th">Entry Requirements</th>
-                                <th className="th">Application Deadlines</th>
+                                <th className="th">Entry Requarment</th>
+                                <th className="th">English Test</th>
+                                <th className="th">Duration</th>
                                 <th className="th">Update</th>
                                 <th className="th">Delete</th>
                             </tr>
@@ -63,15 +61,13 @@ const page = () => {
                             data?.data?.map((sub:any,index:number)=>(
                                 <tr key={sub?._id} className="tr">
                                     <td className="td" data-label="Serial">{index+1}</td>
-                                    <td className="td" data-label="Subject Name">{sub?.name}</td>
-                                    <td className="td" data-label="Possible Destination">{sub?.destination}</td>
-                                    <td className="td" data-label="Duration (Months)">#{sub?.duration}</td>
-                                    <td className="td" data-label="Tuition Fee">${sub?.tuitionFee}</td>
-                                    <td className="td" data-label="Required Document">{sub?.requiredDocs}</td>
-                                    <td className="td" data-label="Application Fee">${sub?.applicationFee}</td>
-                                    <td className="td" data-label="Intakes">{sub?.intakes}</td>
-                                    <td className="td" data-label="Entry Requirements">{sub?.entryRequirements}</td>
-                                    <td className="td" data-label="Application Deadlines">{sub?.applicationDeadlines}</td>
+                                    <td className="td" data-label="Subject Name">         {sub?.name}</td>
+                                    <td className="td" data-label="Possible Destination"> {sub?.country}</td>
+                                    <td className="td" data-label="Duration (Months)">    {sub?.initialDepossit}</td>
+                                    <td className="td" data-label="Tuition Fee">          {sub?.tuitionFee}</td>
+                                    <td className="td" data-label="Required Document">    {sub?.entryRequ}</td>
+                                    <td className="td" data-label="Application Fee">      {sub?.engTest}</td>
+                                    <td className="td" data-label="Intakes">              {sub?.duration}</td>
                                     <td className="td" data-label="Update"><FontAwesomeIcon onClick={()=>{setOpen(!open);setName("Edit");setUniId(sub?._id)}} icon={faPen}/></td>
                                     <td className="td" data-label="Delete"><FontAwesomeIcon onClick={()=>handleDelete(sub?._id)} icon={faCancel}/></td>
                                 </tr>

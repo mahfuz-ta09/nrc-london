@@ -3,18 +3,18 @@ import '@/css/Dashboard/admin/university.css'
 import { toast } from 'react-toastify'
 import { SubmitHandler, useForm } from 'react-hook-form'
 import { usePostSubjectMutation, useUpdateSubjectMutation } from '@/redux/endpoints/subject/subjectEndpoints'
+import convertFormData from '@/utils/convertFormData'
 
 
-interface Subject {
-    name: string;
-    destination: string;
-    tuitionFee: string;
-    requiredDocs: string;
-    applicationFee: string;
-    duration: string;
-    intakes: string;
-    entryRequirements: string;
-    applicationDeadlines: string;
+interface Subject{
+    name:string; 
+    country:string; 
+    initialDepossit:string; 
+    tuitionFee:string; 
+    entryRequ:string; 
+    engTest:string;
+    duration:string;
+    details:string;
 }
 
 const UpdateUni = ({name,setOpen,uniId}:{name:string,setOpen:React.Dispatch<React.SetStateAction<boolean>>,uniId:string}) => {
@@ -30,16 +30,17 @@ const UpdateUni = ({name,setOpen,uniId}:{name:string,setOpen:React.Dispatch<Reac
 
     const onSubmit: SubmitHandler<Subject> = async(data) => {
         try{
+            const formData = convertFormData(data)
             let res
             if(name==="Add"){
-                res = await postSubject(data)
+                res = await postSubject(formData)
             }else{
-                res = await updateSubject({data:data,id:uniId})
+                res = await updateSubject({data:formData,id:uniId})
             }
             
             
             if(res?.data?.data?.acknowledged){
-                toast.success("Insertion successful!!!")
+                toast.success("Successful!!!")
                 setOpen(false)
                 reset()
             }else{
@@ -61,44 +62,39 @@ const UpdateUni = ({name,setOpen,uniId}:{name:string,setOpen:React.Dispatch<Reac
             </div>
 
             <div className="form-group">
-                <label htmlFor="destination">Add posible destination:(counrty name)</label>
-                <input id="name" type="text" {...register("destination")}  />
+                <label htmlFor="country">counrty name</label>
+                <input id="name" type="text" {...register("country")}  />
             </div>
 
             <div className="form-group">
-                <label htmlFor="ranking">Duration:(pg&ug in month)</label>
-                <input id="ranking" type="text"{...register("duration")}  />
+                <label htmlFor="initialDepossit">Initial deposit</label>
+                <input id="initialDepossit" type="text"{...register("initialDepossit")}  />
             </div>
 
             <div className="form-group">
-                <label htmlFor="tuitionFee">Tuition Fee:(estimated)</label>
+                <label htmlFor="tuitionFee">Tuition Fee:</label>
                 <input id="tuitionFee" type="text" {...register("tuitionFee")}  />
             </div>
 
             <div className="form-group">
-                <label htmlFor="requiredDocs">Required Documents:</label>
-                <input id="requiredDocs" type="text" {...register("requiredDocs")}  />
+                <label htmlFor="entryRequ">Entry requarment:</label>
+                <input id="entryRequ" type="text" {...register("entryRequ")}  />
             </div>
 
             <div className="form-group">
-                <label htmlFor="applicationFee">Application Fee:($estimated)</label>
-                <input id="applicationFee" type="text" {...register("applicationFee")}  />
+                <label htmlFor="details">Details:</label>
+                <input id="details" type="text" {...register("details")}  />
+            </div>
+
+            <div className="form-group">
+                <label htmlFor="engTest">English Test</label>
+                <input id="engTest" type="text" {...register("engTest")}  />
             </div>
 
 
             <div className="form-group">
-                <label htmlFor="intakes">Intakes:(estimated)</label>
-                <input id="intakes" type="text" {...register("intakes")}  />
-            </div>
-
-            <div className="form-group">
-                <label htmlFor="entryRequirements">Entry Requirements:</label>
-                <input id="entryRequirements" type="text" {...register("entryRequirements")}  />
-            </div>
-
-            <div className="form-group">
-                <label htmlFor="applicationDeadlines">Application Deadlines:($estimated)</label>
-                <input id="applicationDeadlines" type="text" {...register("applicationDeadlines")}/>
+                <label htmlFor="duration">Course Duration</label>
+                <input id="duration" type="text" {...register("duration")}  />
             </div>
 
             <div className="form-actions">

@@ -9,7 +9,9 @@ const subjectApi = baseApi.injectEndpoints({
       query: (data) => ({
         url         : '/subject/create',
         method      : "POST",
-        contentType : "application/json",
+        headers: {
+            'Content-Type': 'multipart/form-data',
+        },
         data
       }),
       invalidatesTags: ["subjects"]
