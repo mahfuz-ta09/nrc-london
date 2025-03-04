@@ -25,12 +25,29 @@ const subjectApi = baseApi.injectEndpoints({
       providesTags: ["subjects"]
     }),
 
+
+    getAllSubByCountry:build.query<any,string>({
+        query:(uni:string) =>({
+            url: `/subject/all/${uni}`,
+            method:'GET',
+        }),
+        providesTags: ["subjects"]
+    }),
+
     deleteSubject: build.mutation<any, string>({
       query: (id) =>({
         url    : `/subject/delete/${id}`,
         method : 'DELETE',
       }),
       invalidatesTags: ["subjects"]
+    }),
+  
+    getSubNavItem: build.query<any, void>({
+      query: () =>({
+          url    : '/subject/sub-area',
+          method : 'GET'
+      }),
+      providesTags: ["subjects"]
     }),
 
 
@@ -52,5 +69,7 @@ export const {
     usePostSubjectMutation,
     useGetSubjectQuery,
     useDeleteSubjectMutation,
-    useUpdateSubjectMutation
+    useUpdateSubjectMutation,
+    useGetSubNavItemQuery,
+    useGetAllSubByCountryQuery
 } = subjectApi

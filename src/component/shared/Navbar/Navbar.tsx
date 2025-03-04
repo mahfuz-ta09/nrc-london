@@ -10,6 +10,7 @@ import { useRouter } from 'next/navigation'
 import { logOut } from '@/utils/authAction'
 import { useUserInfo } from '@/utils/useUserInfo'
 import UniNav from './UniNav'
+import SubNav from './SubNav'
 
 
 const Navbar = () => {
@@ -32,10 +33,11 @@ const Navbar = () => {
             <div className="nav-content">
                 <Link href="/"><Image className='nav-logo' src={logo} alt="logo" /></Link>
                 <div className={isOpen ? 'nav-links show':'nav-links hide'}>
-                    <div className='link-holder'>
+                    {/* <div className='link-holder'>
                         <Link onClick={()=>setIsOpen(false)} className='link' href="/Subjects">Subjects</Link>
-                    </div>
+                    </div> */}
 
+                    <SubNav />
                     <div className='link-holder'>
                         <p className='link'>Test prep</p>
                         <div className='drop-down'>
