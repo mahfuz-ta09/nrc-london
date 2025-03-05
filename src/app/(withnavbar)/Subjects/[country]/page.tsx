@@ -18,8 +18,8 @@ const Page = () => {
         <div className='subjects-container'>
             <div className="subjects-banner">
                 <div className="wdth subjects-banner-content">
-                    <h1>Subjects</h1>
-                    <p>Choose your dream course</p>
+                    <p>Choose your dream course in</p>
+                    <h1>{country}</h1>
                 </div>
             </div>
             
