@@ -59,16 +59,6 @@ const Page = () => {
                         )
                     }
                 </div>
-                {/* <div className="navigation">
-                    <button><FontAwesomeIcon icon={faDotCircle}/></button>
-                    <button><FontAwesomeIcon icon={faDotCircle}/></button>
-                    <button><FontAwesomeIcon icon={faDotCircle}/></button>
-                    <button><FontAwesomeIcon icon={faDotCircle}/></button>
-                    <button><FontAwesomeIcon icon={faDotCircle}/></button>
-                    <button><FontAwesomeIcon icon={faDotCircle}/></button>
-                    <button><FontAwesomeIcon icon={faDotCircle}/></button>
-                    <button><FontAwesomeIcon icon={faDotCircle}/></button>
-                </div> */}
             </div>
 
             <Footer />
