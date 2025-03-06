@@ -56,7 +56,7 @@
 }
 
 .single-subject{
-    height: 530px;
+    height: 680px;
     width: 380px;
     background: rgba(217, 234, 240, 0.9);
     border: 1px solid rgba(0, 74, 98,0.9);
@@ -133,9 +133,11 @@
 
 .addition-data{
     display: flex;
-    align-items: center;
-    justify-content: space-between;
+    align-items: start;
+    justify-content: start;
+    flex-direction: column;
     padding: 10px;
+    gap: 10px;
     border-radius: 20px 20px;
     background: #fff;
     margin-top: 10px;

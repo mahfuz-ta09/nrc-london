@@ -25,7 +25,7 @@ const page = () => {
                     {
                         isLoading ? <Loader />: 
                         data?.data?.map((uni:any)=> 
-                            <div key={uni?._id} className="single-subject">
+                            <div style={{height:"560px"}} key={uni?._id} className="single-subject">
                                 <div className="subject-header">
                                     <p>{uni?.name}</p>
                                 </div>
@@ -34,15 +34,15 @@ const page = () => {
                                     <h5>{uni?.requardQualification}</h5>
                                     <div className="addition-data">
                                         <p className=''>Tuition fee:</p>
-                                        <p style={{textAlign:"end"}} className=''>{uni?.tuitionFee}</p>
+                                        <p className=''>{uni?.tuitionFee}</p>
                                     </div>
                                     <div className="addition-data">
                                         <p className=''>English:</p>
-                                        <p style={{textAlign:"end"}} className=''>{uni?.englishTest}</p>
+                                        <p className=''>{uni?.englishTest}</p>
                                     </div>
                                     <div className="addition-data">
                                         <p className=''>Initial Deposit:</p>
-                                        <p style={{textAlign:"end"}} className=''>{uni?.initialDepossit}</p>
+                                        <p className=''>{uni?.initialDepossit}</p>
                                     </div>
                                 </div>
                                 <button onClick={()=>router.push('/Proceed')}className='apply-now'>apply now</button>

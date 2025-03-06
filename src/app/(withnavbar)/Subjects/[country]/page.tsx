@@ -3,8 +3,6 @@ import Footer from '@/component/shared/Footer/Footer'
 import Loader from '@/component/shared/Loader/Loader'
 import '@/css/Students/Subjects/Subjects.css'
 import { useGetAllSubByCountryQuery } from '@/redux/endpoints/subject/subjectEndpoints'
-import { faDotCircle } from '@fortawesome/free-solid-svg-icons'
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { useParams, useRouter } from 'next/navigation'
 
 
@@ -72,7 +70,6 @@ const Page = () => {
                     <button><FontAwesomeIcon icon={faDotCircle}/></button>
                 </div> */}
             </div>
-
 
             <Footer />
         </div>
