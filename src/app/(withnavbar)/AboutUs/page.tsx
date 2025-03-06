@@ -6,6 +6,7 @@ import { useRouter } from 'next/navigation'
 
 const page = () => {
   const router = useRouter()
+  
   return (
       <div className='centre-container'>
         <div className="responsive-container-block bigContainer">

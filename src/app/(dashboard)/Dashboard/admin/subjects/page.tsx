@@ -28,7 +28,8 @@ const page = () => {
             console.log(err)
         }
     }
-    // console.log(data)
+    
+    
     return (
       <div className='university-content'>
         <div className="header">
@@ -52,6 +53,7 @@ const page = () => {
                                 <th className="th">Entry Requarment</th>
                                 <th className="th">English Test</th>
                                 <th className="th">Duration</th>
+                                <th className="th">Details</th>
                                 <th className="th">Update</th>
                                 <th className="th">Delete</th>
                             </tr>
@@ -68,6 +70,7 @@ const page = () => {
                                     <td className="td" data-label="Required Document">    {sub?.entryRequ}</td>
                                     <td className="td" data-label="Application Fee">      {sub?.engTest}</td>
                                     <td className="td" data-label="Intakes">              {sub?.duration}</td>
+                                    <td className="td" data-label="details">              {sub?.details}</td>
                                     <td className="td" data-label="Update"><FontAwesomeIcon onClick={()=>{setOpen(!open);setName("Edit");setUniId(sub?._id)}} icon={faPen}/></td>
                                     <td className="td" data-label="Delete"><FontAwesomeIcon onClick={()=>handleDelete(sub?._id)} icon={faCancel}/></td>
                                 </tr>

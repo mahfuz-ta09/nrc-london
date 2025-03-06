@@ -21,7 +21,6 @@ const UpdateUni = ({name,setOpen,uniId}:{name:string,setOpen:React.Dispatch<Reac
     const {
         register,
         handleSubmit,
-        watch,
         reset,
         formState: { errors },
     } = useForm<Subject>()
@@ -37,7 +36,6 @@ const UpdateUni = ({name,setOpen,uniId}:{name:string,setOpen:React.Dispatch<Reac
             }else{
                 res = await updateSubject({data:formData,id:uniId})
             }
-            
             
             if(res?.data?.data?.acknowledged){
                 toast.success("Successful!!!")

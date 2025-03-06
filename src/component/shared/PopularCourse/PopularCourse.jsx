@@ -11,7 +11,6 @@ const PopularCourse = () => {
     const router = useRouter()
     const { data , isLoading } = useGetSubjectQuery()
 
-
     return (
         <div className="popular-container">
             
@@ -22,15 +21,14 @@ const PopularCourse = () => {
                     {
                         isLoading? <Loader />:
                         data?.data?.map((course) => 
-                            <div key={course?._id} className="single-course">
+                            <div onClick={()=>router.push(`/Subjects/${course?.country}`)}  key={course?._id} className="single-course">
                                 <FontAwesomeIcon className='single-course-icon' icon={faServer}/>
-                                <h2 className='single-course-heading' >{course?.name}</h2>
+                                <h2 className='single-course-heading' >{course?.name?.slice(0,10)}...</h2>
                             </div>
                         )
                     }
 
                 </div>
-                {/* <button onClick={()=>router.push('/Subjects')} className="see-all">see all courses</button> */}
             </div>
         </div>
     )

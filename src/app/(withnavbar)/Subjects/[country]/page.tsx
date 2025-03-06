@@ -34,7 +34,6 @@ const Page = () => {
                                     <p style={{"whiteSpace": "pre-wrap"}}>{sub?.name}</p>
                                 </div>
                                 <div className="additional">
-                                    <h4>Details :</h4>
                                     <h5  style={{"whiteSpace": "pre-wrap"}}>{sub?.details}</h5>
                                     <div className="addition-data">
                                         <p className=''>Tuition fee:</p>

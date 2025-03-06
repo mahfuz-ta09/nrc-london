@@ -69,13 +69,8 @@ const Navbar = () => {
                     <UniNav />
                     
                     <div className='link-holder'>
-                        <Link onClick={()=>setIsOpen(false)} className='link' href="/Centre">Centre</Link>
+                        <Link onClick={()=>setIsOpen(false)} className='link' href="/AboutUs">About us</Link>
                     </div>
-                    
-                    <div className='link-holder'>
-                        <Link onClick={()=>setIsOpen(false)} className='link' href="/Services">Services</Link>
-                    </div>
-
                     
                     <div className='link-holder'>
                         <p className='link'>Recruitement partner</p>
