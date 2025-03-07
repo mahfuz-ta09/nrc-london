@@ -12,7 +12,6 @@ interface IFormInput {
     dob: string
     country: string
     file?: FileList | null
-    password:string
     review:string
 }
 
@@ -55,9 +54,6 @@ const Profile = ({profileData}:{profileData:boolean}) => {
 
                 <label className="form-label" htmlFor="mobile">Mobile Number:</label>
                 <input className="form-input" type="number" {...register("phone")}/>
-
-                <label className="form-label" htmlFor="password">Password:</label>
-                <input className="form-input" autoComplete="new-password" type="password" {...register("password",{ required: false })}/>
 
                 <label className="form-label" htmlFor="dob">Date of Birth:</label>
                 <input className="form-input" type="date" {...register("dob")}/>

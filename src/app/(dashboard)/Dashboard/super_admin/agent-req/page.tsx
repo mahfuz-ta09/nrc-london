@@ -7,6 +7,7 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
 import {  faCheckDouble, faTrash } from "@fortawesome/free-solid-svg-icons"
 import { toast } from "react-toastify"
 import { useRouter } from "next/navigation"
+import Link from "next/link"
 
 
 
@@ -27,7 +28,6 @@ const page = () => {
             }
         }
     }
-
 
     return (
         <div className="sAdmin">
@@ -68,7 +68,6 @@ const page = () => {
                                 <th className="th">Referral</th> 
                                 <th className="th">Role</th> 
                                 <th className="th">Services</th> 
-                                <th className="th">Tax id</th> 
                                 <th className="th">Status</th> 
                                 <th className="th">Update Status</th>
                                 <th className="th">Delete</th>
@@ -78,33 +77,32 @@ const page = () => {
                             {
                                 data?.data?.map((req:any,index:number)=>(
                                     <tr key={req?._id} className="tr">
-                                        <td className="td" >{index+1}</td>
-                                        <td className="td" >{req?._id}</td>
-                                        <td className="td" >{req?.name}</td>
-                                        <td className="td" >{req?.email}</td>
-                                        <td className="td" >{req?.mobile_number}</td>
-                                        <td className="td" >{req?.alternate_mobile}</td>
-                                        <td className="td" >{req?.dob}</td>
-                                        <td className="td" >{req?.address}</td>
-                                        <td className="td" >{req?.nationality}</td>
-                                        <td className="td" >{req?.passport_number}</td>
-                                        <td className="td" >{req?.agency_name}</td>
-                                        <td className="td" >{req?.agency_address}</td>
-                                        <td className="td" >{req?.agency_website}</td>
-                                        <td className="td" >{req?.experience}</td>
-                                        <td className="td" >{req?.services}</td>
-                                        <td className="td" >{req?.partner_universities}</td>
-                                        <td className="td" >{req?.license_number}</td>
-                                        <td className="td" >{req?.license_document}</td>
-                                        <td className="td" >{req?.tax_id}</td>
-                                        <td className="td" >{req?.criminal_record}</td>
-                                        <td className="td" >{req?.background_check}</td>
-                                        <td className="td" >{req?.createdAt}</td>
-                                        <td className="td" >{req?.referral}</td>
-                                        <td className="td" >{req?.role}</td>
-                                        <td className="td" >{req?.services}</td>
-                                        <td className="td" >{req?.tax_id}</td>
-                                        <td className="td" >{req?.status}</td>
+                                        <td data-label="serial"  className="td" >{index+1}</td>
+                                        <td data-label="id"  className="td" >{req?._id}</td>
+                                        <td data-label="name"  className="td" >{req?.name}</td>
+                                        <td data-label="email"  className="td" >{req?.email}</td>
+                                        <td data-label="mobile"  className="td" >{req?.mobile_number}</td>
+                                        <td data-label="alternate mobile" className="td" >{req?.alternate_mobile}</td>
+                                        <td data-label="dob"  className="td">{req?.dob}</td>
+                                        <td data-label="address"  className="td">{req?.address}</td>
+                                        <td data-label="nationality"  className="td">{req?.nationality}</td>
+                                        <td data-label="passport no" className="td">{req?.passport_number}</td>
+                                        <td data-label="agency name" className="td">{req?.agency_name}</td>
+                                        <td data-label="agency address" className="td">{req?.agency_address}</td>
+                                        <td data-label="agency website" className="td"><Link style={{color:"white"}}  href={req?.agency_website}>visit</Link></td>
+                                        <td data-label="experience"  className="td" >{req?.experience}</td>
+                                        <td data-label="services"  className="td" >{req?.services}</td>
+                                        <td data-label="parter uni" className="td" >{req?.partner_universities}</td>
+                                        <td data-label="license number" className="td" >{req?.license_number}</td>
+                                        <td data-label="license doc" className="td" ><Link style={{color:"white"}} href={req?.license_document}>check</Link></td>
+                                        <td data-label="tax id" className="td" >{req?.tax_id}</td>
+                                        <td data-label="criminal record" className="td" >{req?.criminal_record}</td>
+                                        <td data-label="background check" className="td" ><Link style={{color:"white"}}  href={req?.background_check}>check</Link></td>
+                                        <td data-label="created"  className="td" >{req?.createdAt}</td>
+                                        <td data-label="referral"  className="td" >{req?.referral}</td>
+                                        <td data-label="role"  className="td" >{req?.role}</td>
+                                        <td data-label="services"  className="td" >{req?.services}</td>
+                                        <td data-label="status"  className="td" >{req?.status}</td>
                                         <td className="td" ><FontAwesomeIcon onClick={()=>handleStatusChange(req?._id)} icon={faCheckDouble}/></td>
                                         <td className="td" ><FontAwesomeIcon icon={faTrash}/></td>
                                     </tr>

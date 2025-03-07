@@ -65,11 +65,11 @@ const page = () => {
                                     <td className="td" data-label="Serial">{index+1}</td>
                                     <td className="td" data-label="Subject Name">         {sub?.name}</td>
                                     <td className="td" data-label="Possible Destination"> {sub?.country}</td>
-                                    <td className="td" data-label="Duration (Months)">    {sub?.initialDepossit}</td>
+                                    <td className="td" data-label="Initial Depossit">    {sub?.initialDepossit}</td>
                                     <td className="td" data-label="Tuition Fee">          {sub?.tuitionFee}</td>
-                                    <td className="td" data-label="Required Document">    {sub?.entryRequ}</td>
-                                    <td className="td" data-label="Application Fee">      {sub?.engTest}</td>
-                                    <td className="td" data-label="Intakes">              {sub?.duration}</td>
+                                    <td className="td" data-label="Entry Requirement">    {sub?.entryRequ}</td>
+                                    <td className="td" data-label="English test">      {sub?.engTest}</td>
+                                    <td className="td" data-label="Duration">              {sub?.duration}</td>
                                     <td className="td" data-label="details">              {sub?.details}</td>
                                     <td className="td" data-label="Update"><FontAwesomeIcon onClick={()=>{setOpen(!open);setName("Edit");setUniId(sub?._id)}} icon={faPen}/></td>
                                     <td className="td" data-label="Delete"><FontAwesomeIcon onClick={()=>handleDelete(sub?._id)} icon={faCancel}/></td>

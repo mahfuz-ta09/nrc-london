@@ -40,7 +40,6 @@ const page = () => {
         }
     }
     
-
     const handleStatusChange = async(e:React.ChangeEvent<HTMLSelectElement>,id:string) =>{    
         let a = window.confirm("Do you want to change the status?")
         if(a){
@@ -87,16 +86,16 @@ const page = () => {
                         ) : (
                             Array.isArray(data?.data) && data.data.map((admin: any, index: number) => (
                                 <tr key={admin?._id || index} className="tr">
-                                    <td className="td">{index + 1}</td>
-                                    <td className="td">{admin?._id}</td>
-                                    <td className="td">{admin?.name}</td>
-                                    <td className="td">{admin?.email}</td>
-                                    <td className="td">{admin?.mobile}</td>
-                                    <td className="td">{admin?.counrty}</td>
-                                    <td className="td">{admin?.role}</td>
-                                    <td className="td">{admin?.createdAt}</td>
-                                    <td className="td">{admin?.status}</td>
-                                    <td className="td">
+                                    <td  data-label="Serial" className="td">{index + 1}</td>
+                                    <td  data-label="id" className="td">{admin?._id}</td>
+                                    <td  data-label="name" className="td">{admin?.name}</td>
+                                    <td  data-label="email" className="td">{admin?.email}</td>
+                                    <td  data-label="mobile" className="td">{admin?.mobile}</td>
+                                    <td  data-label="country" className="td">{admin?.counrty}</td>
+                                    <td  data-label="role" className="td">{admin?.role}</td>
+                                    <td  data-label="created" className="td">{admin?.createdAt}</td>
+                                    <td  data-label="Status" className="td">{admin?.status}</td>
+                                    <td  data-label="Change status" className="td">
                                         <select 
                                             value={admin?.status} 
                                             onChange={(e) => handleStatusChange(e,admin?._id)}

@@ -57,17 +57,17 @@ const page = () => {
                             ) : (
                                 Array.isArray(data?.data) && data.data.map((admin: any, index: number) => (
                                     <tr key={admin?._id || index} className="tr">
-                                        <td className="td">{index + 1}</td>
-                                        <td className="td">{admin?._id}</td>
-                                        <td className="td"><img src={admin?.image ? admin?.image : " "} alt=''/></td>
-                                        <td className="td">{admin?.name}</td>
-                                        <td className="td">{admin?.email}</td>
-                                        <td className="td">{admin?.mobile}</td>
-                                        <td className="td">{admin?.role}</td>
-                                        <td className="td">{admin?.dob}</td>
-                                        <td className="td">{admin?.createdAt}</td>
-                                        <td className="td">{admin?.status}</td>
-                                        <td className="td">
+                                        <td  data-label="serial" className="td">{index + 1}</td>
+                                        <td  data-label="id" className="td">{admin?._id}</td>
+                                        <td  data-label="image" className="td"><img style={{width:"80px"}} src={admin?.image ? admin?.image : " "} alt=''/></td>
+                                        <td  data-label="name" className="td">{admin?.name}</td>
+                                        <td  data-label="email" className="td">{admin?.email}</td>
+                                        <td  data-label="mobile" className="td">{admin?.mobile}</td>
+                                        <td  data-label="role" className="td">{admin?.role}</td>
+                                        <td  data-label="dob" className="td">{admin?.dob}</td>
+                                        <td  data-label="created" className="td">{admin?.createdAt}</td>
+                                        <td  data-label="status" className="td">{admin?.status}</td>
+                                        <td  data-label="change status" className="td">
                                             <select 
                                                 value={admin?.status} 
                                                 onChange={(e) => handleStatusChange(e,admin?._id)}

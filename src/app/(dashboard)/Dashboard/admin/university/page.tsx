@@ -65,18 +65,18 @@ const page = () => {
                         {
                             data?.data?.map((uni:any,index:number)=>(
                                 <tr key={uni?._id} className="tr">
-                                    <td className="td" data-label="University Name">{index+1}</td>
+                                    <td className="td" data-label="Serial">{index+1}</td>
                                     <td className="td" data-label="University Name">{uni?.name}</td>
-                                    <td className="td" data-label="Ranking">{uni?.country}</td>
-                                    <td className="td" data-label="Logo"><img className="logo-img" src={uni?.url} alt="University Image"/></td>
-                                    <td className="td" data-label="Logo"><img className="logo-img" src={uni?.flag} alt="Flag Image"/></td>
-                                    <td className="td" data-label="Ranking">{uni?.englishTest}</td>
+                                    <td className="td" data-label="Country">{uni?.country}</td>
+                                    <td className="td" data-label="University image"><img className="logo-img" src={uni?.url} alt="University Image"/></td>
+                                    <td className="td" data-label="Country flag"><img className="logo-img" src={uni?.flag} alt="Flag Image"/></td>
+                                    <td className="td" data-label="English Test">{uni?.englishTest}</td>
                                     <td className="td" data-label="Tuition Fee">{uni?.tuitionFee}</td>
-                                    <td className="td" data-label="Required Document">{uni?.requardQualification}</td>
+                                    <td className="td" data-label="Required qualification">{uni?.requardQualification}</td>
                                     <td className="td" data-label="Initial Depossit">{uni?.initialDepossit}</td>
-                                    <td className="td" data-label="Initial Depossit">{uni?.SCHOLARSHIP}</td>
-                                    <td className="td" data-label="Edit button"><FontAwesomeIcon onClick={()=>{setOpen(!open);setName("Edit");setUniId(uni?._id)}} icon={faPen}/></td>
-                                    <td className="td" data-label="Delete Button"><FontAwesomeIcon onClick={()=>handleDelete(uni?._id)} icon={faTrash}/></td>
+                                    <td className="td" data-label="Scholarship">{uni?.SCHOLARSHIP}</td>
+                                    <td className="td" data-label="Edit"><FontAwesomeIcon onClick={()=>{setOpen(!open);setName("Edit");setUniId(uni?._id)}} icon={faPen}/></td>
+                                    <td className="td" data-label="Delete"><FontAwesomeIcon onClick={()=>handleDelete(uni?._id)} icon={faTrash}/></td>
                                 </tr>))
                         }
                     </tbody>
