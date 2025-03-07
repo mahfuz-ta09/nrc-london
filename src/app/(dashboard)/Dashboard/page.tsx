@@ -18,7 +18,7 @@ const page = () => {
     const [deleteReview , { isLoading: deleteLoading }] = useDeleteReviewMutation()
 
 
-    const iUrl = "https://i.ibb.co.com/rRNMCXtf/vr2.png"
+    const iUrl = "https://i.ibb.co.com/d06pb1G0/Blue-and-White-Modern-Computer-Illustrative-Tech-Website-Logo.png"
     
     
     if(profileLoading || deleteLoading) return <Loader />
