@@ -10,7 +10,7 @@ config.autoAddCss = false
 const kanit = Roboto_Condensed({ subsets: ['latin'], weight: ['400', '500', '700','800','900'] })
 
 export const metadata: Metadata = {
-  title: "nrc-london",
+  title: "nrcedu-uk",
   description: "Your future destination",
 };
 
