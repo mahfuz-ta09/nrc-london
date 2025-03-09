@@ -1,7 +1,7 @@
 .centre-container{
     width: 100%;
     height: auto;
-    /* margin-top: 10vh; */
+    margin-top: 10vh;
 }
 .responsive-container-block {
     min-height: 75px;
@@ -121,66 +121,12 @@
     font-size: 16px;
     line-height: 28px;
     color: rgb(102, 102, 102);
-    border-top-width: 2px;
-    border-right-width: 2px;
-    border-bottom-width: 2px;
-    border-left-width: 2px;
-    border-top-style: solid;
-    border-right-style: solid;
-    border-bottom-style: solid;
-    border-left-style: solid;
-    border-top-color: rgb(102, 102, 102);
-    border-right-color: rgb(102, 102, 102);
-    border-bottom-color: rgb(102, 102, 102);
-    border-left-color: rgb(102, 102, 102);
-    border-image-source: initial;
-    border-image-slice: initial;
-    border-image-width: initial;
-    border-image-outset: initial;
-    border-image-repeat: initial;
     cursor: pointer;
     background-color: white;
-    margin-top: 0px;
-    margin-right: 0px;
-    margin-bottom: 0px;
-    margin-left: 0px;
-    padding-top: 8px;
-    padding-right: 40px;
-    padding-bottom: 8px;
-    padding-left: 40px;
+    padding: 8px 28px;
   }
   
-  .explore:hover {
-    background-image: initial;
-    background-position-x: initial;
-    background-position-y: initial;
-    background-size: initial;
-    /* background-repeat-x: initial;
-    background-repeat-y: initial; */
-    background-attachment: initial;
-    background-origin: initial;
-    background-clip: initial;
-    background-color: #002c3a;
-    color: white;
-    border-top-width: initial;
-    border-right-width: initial;
-    border-bottom-width: initial;
-    border-left-width: initial;
-    border-top-style: none;
-    border-right-style: none;
-    border-bottom-style: none;
-    border-left-style: none;
-    border-top-color: initial;
-    border-right-color: initial;
-    border-bottom-color: initial;
-    border-left-color: initial;
-    border-image-source: initial;
-    border-image-slice: initial;
-    border-image-width: initial;
-    border-image-outset: initial;
-    border-image-repeat: initial;
-  }
-  
+
 .adress{
     display: flex;
     flex-wrap: wrap;
@@ -245,7 +191,7 @@
     margin-bottom: 50px;
     margin-left: auto;
     justify-content: center;
-    align-items: center;
+    align-items: start;
     max-width: 1320px;
     padding-top: 10px;
     padding-right: 10px;

@@ -1,7 +1,7 @@
 'use client'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import '../../../css/shared/Banner/Banner.css'
-import { faArrowAltCircleRight, faCalendarDays, faPlaneDeparture, faSchool } from '@fortawesome/free-solid-svg-icons'
+import { faArrowAltCircleRight, faCalendarDays, faGraduationCap, faPlaneDeparture, faSchool } from '@fortawesome/free-solid-svg-icons'
 import { useRouter } from 'next/navigation'
 import imgBgBanner from '../../../assets/banner-background.png'
 import BannerImg from '../../../assets/laptop.webp'
@@ -17,16 +17,19 @@ const Banner = () => {
             <Image className="banner-bg" src={imgBgBanner} alt="Banner" />
             <div className="banner-content">
                 <div className="banner-part">
+                    <div className="mobile-email">
+                        <h5>+44 2033554453</h5>
+                        <h5>Info@nrclondon.co.uk</h5>
+                    </div>
                     <h4>Plan your future with us!</h4>
                     <p>Empower yourself with knowledge and build a brighter future. Our comprehensive courses and expert support will guide you every step of the way.</p>
                     <div className="banner-buttons">
-                        <button onClick={()=>router.push('/RecruitmentPartner/Becomeanagent')} className='banner-button-3rd'>Recruitment Partner?</button>
-                        <button onClick={()=>router.push('/Proceed')} className='banner-button-3rd'>I am a Student <FontAwesomeIcon icon={faArrowAltCircleRight} /></button>
+                        <button onClick={()=>router.push('/Proceed')} className='banner-button-3rd'>I am a Student</button>
+                        <button onClick={()=>router.push('/Contact')} className='banner-button-3rd'>contact</button>
+                        <button onClick={()=>router.push('/RecruitmentPartner/Becomeanagent')} className='banner-button-3rd'>Recruitment Partner</button>
                     </div>
                 </div>
-                <Image className="banner-photo" src={BannerImg} alt="Banner" />
-            </div>
-
+                {/* <Image className="banner-photo" src={BannerImg} alt="Banner" /> */}
             <div className="banner-addition">
                 <div className="achiev">
                     <FontAwesomeIcon className='achiev-photo' icon={faPlaneDeparture}/>
@@ -39,7 +42,7 @@ const Banner = () => {
                 <div className="achiev">
                     <FontAwesomeIcon className='achiev-photo' icon={faSchool}/>
                     <div className="achiev-details">
-                        <h1>300+</h1>
+                        <h1>70+</h1>
                         <p>Global</p>
                         <p>Institutions</p>
                     </div>
@@ -52,7 +55,17 @@ const Banner = () => {
                         <p>Presence</p>
                     </div>
                 </div>
+                <div className="achiev">
+                    <FontAwesomeIcon className='achiev-photo' icon={faGraduationCap} />
+                    <div className="achiev-details">
+                        <h1>500+</h1>
+                        <p>Students</p>
+                        <p>Consulted</p>
+                    </div>
+                </div>
             </div>
+            </div>
+
 
         </div>
     )
