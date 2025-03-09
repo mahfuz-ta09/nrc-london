@@ -2,7 +2,7 @@
     width: 100%;
     height: auto;
     margin: 0 auto;
-    padding: 15vh 0 5vh;
+    padding: 5vh 0;
 }
 
 
@@ -80,7 +80,22 @@
     background: rgb(1, 50, 67);
 }
 
+.btn-grp{
+    display: flex;
+    align-items: start;
+    justify-content: start;
+    gap: 10px;
+}
 
+.btn-grp button{
+    background: #000;
+    color: #fff;
+    padding: 3px 10px;
+
+    &:hover{
+       transform: scale(.9); 
+    }
+}
 
 @media screen and (max-width:450px) {
     .courses{
