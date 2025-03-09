@@ -33,7 +33,7 @@
     flex-wrap: wrap;
     gap: 5px;
     padding: 30px 5px;
-    min-height: 20vh;
+    min-height: 25vh;
 }
 .single-course{
     display: flex;
