@@ -1,7 +1,7 @@
 'use client'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import '../../../css/shared/PopularCourse/PopularCourse.css'
-import { faServer } from '@fortawesome/free-solid-svg-icons'
+import { faArrowLeft, faArrowRight, faServer } from '@fortawesome/free-solid-svg-icons'
 import { useRouter } from 'next/navigation'
 import { useGetSubjectQuery } from '@/redux/endpoints/subject/subjectEndpoints'
 import Loader from '../Loader/Loader'
@@ -58,10 +58,10 @@ const PopularCourse = () => {
                 </div>
                 <div className="btn-grp">
                     <button className="prv" onClick={prevPage} disabled={currentPage === 0}>
-                        Prev
+                        <FontAwesomeIcon  icon={faArrowLeft}/>
                     </button>
                     <button className="nxt" onClick={nextPage} disabled={currentPage >= totalPages - 1}>
-                        Next
+                        <FontAwesomeIcon  icon={faArrowRight}/>
                     </button>
                 </div>
             </div>

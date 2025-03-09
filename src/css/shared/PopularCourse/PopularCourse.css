@@ -83,17 +83,20 @@
 
 .btn-grp{
     display: flex;
-    align-items: start;
-    justify-content: start;
+    align-items: center;
+    justify-content: center;
     gap: 10px;
-    padding: 0 20px;
+    width: 100%;
 }
 
 .btn-grp button{
-    background: #000;
+    background: none;
     color: #fff;
-    padding: 3px 10px;
-
+    padding: 10px;
+    font-weight: 800;
+    border: none;
+    font-size: 20px;
+    border-radius: 50%;
     &:hover{
        transform: scale(.9); 
     }
