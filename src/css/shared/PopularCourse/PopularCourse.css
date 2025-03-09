@@ -29,7 +29,7 @@
 .courses{
     display: flex;
     align-items: center;
-    justify-content: space-around;
+    justify-content:start;
     flex-wrap: wrap;
     gap: 5px;
     padding: 30px 5px;
