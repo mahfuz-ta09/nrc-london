@@ -3,13 +3,13 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import '../../../css/shared/PopularCourse/PopularCourse.css'
 import { faServer } from '@fortawesome/free-solid-svg-icons'
 import { useRouter } from 'next/navigation'
-import { useGetSubNavItemQuery } from '@/redux/endpoints/subject/subjectEndpoints'
+import { useGetSubjectQuery } from '@/redux/endpoints/subject/subjectEndpoints'
 import Loader from '../Loader/Loader'
 
 
 const PopularCourse = () => {
     const router = useRouter()
-    const { data , isLoading } = useGetSubNavItemQuery()
+    const { data , isLoading } = useGetSubjectQuery()
 
     return (
         <div className="popular-container">
@@ -21,9 +21,9 @@ const PopularCourse = () => {
                     {
                         isLoading? <Loader />:
                         data?.data?.map((course) => 
-                            <div onClick={()=>router.push(`/Subjects/${course?.country}`)}  key={course?._id} className="single-course">
+                            <div onClick={()=>router.push(`/Subjects/${course?.country}`)}   key={course?._id} className="single-course">
                                 <FontAwesomeIcon className='single-course-icon' icon={faServer}/>
-                                <h2 className='single-course-heading' >{course?.country}</h2>
+                                <h2 className='single-course-heading' >{course?.name.slice(0,15)}...</h2>
                             </div>
                         )
                     }
@@ -35,3 +35,5 @@ const PopularCourse = () => {
 }
 
 export default PopularCourse
+
+
