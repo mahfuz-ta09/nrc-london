@@ -30,12 +30,21 @@ const Navbar = () => {
     
     return (
         <div className='nav-holder'>
+            <div className="nav-head">
+                <div className="mobile-email">
+                    <h5>+44 2033554453</h5>
+                    <h5>Info@nrclondon.co.uk</h5>
+                </div>
+            </div>
             <div className="nav-content">
-                <Link href="/"><Image className='nav-logo' src={logo} alt="logo" /></Link>
+                <div className="navimage">
+                    <Link href="/"><Image className='nav-logo' src={logo} alt="logo" /></Link>
+                    <div className='nav-text'>
+                        <h2>University</h2>
+                        <h2>Representative</h2>
+                    </div>
+                </div>
                 <div className={isOpen ? 'nav-links show':'nav-links hide'}>
-                    {/* <div className='link-holder'>
-                        <Link onClick={()=>setIsOpen(false)} className='link' href="/Subjects">Subjects</Link>
-                    </div> */}
 
                     <SubNav />
                     <div className='link-holder'>

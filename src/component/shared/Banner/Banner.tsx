@@ -17,10 +17,6 @@ const Banner = () => {
             <Image className="banner-bg" src={imgBgBanner} alt="Banner" />
             <div className="banner-content">
                 <div className="banner-part">
-                    <div className="mobile-email">
-                        <h5>+44 2033554453</h5>
-                        <h5>Info@nrclondon.co.uk</h5>
-                    </div>
                     <h4>Plan your future with us!</h4>
                     <p>Empower yourself with knowledge and build a brighter future. Our comprehensive courses and expert support will guide you every step of the way.</p>
                     <div className="banner-buttons">

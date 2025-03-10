@@ -1,8 +1,9 @@
 .banner-container{
     width: 100%;
     background: rgb(0, 44, 58);
-    height: 95vh; 
+    height: 85vh; 
     position: relative;
+    margin-top: 12vh;
 }
 
 .banner-bg{
@@ -95,14 +96,6 @@
 
 
 
-.mobile-email{
-    display: flex;
-    align-items: start;
-    justify-content: center;
-    gap: 20px;
-    color: #fff;
-}
-
 .banner-bottom-text{
     font-size: 14px;
     color: #fff;
@@ -185,6 +178,7 @@
     .banner-bg{
         width: 95%;
     }   
+
     
     .banner-part{
         gap: 40px;
