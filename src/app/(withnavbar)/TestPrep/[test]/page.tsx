@@ -49,7 +49,7 @@ const Page = () => {
                 }
             })
             .catch((error) => console.error("Failed to fetch data:", error));
-    }, []);
+    }, [])
 
     return (
         <div className="element-container">

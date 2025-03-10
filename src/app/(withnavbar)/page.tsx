@@ -6,6 +6,7 @@ import AcademicSolution from "@/component/shared/AcademicSolution/AcademicSoluti
 import Review from "@/component/additional/Review/Review"
 import Process from "@/component/shared/Process/Process"
 import FAQ from "@/component/UI/FAQ/FAQ"
+import HomeTestPrep from "@/component/shared/HomeTestPrep/HomeTestPrep"
 
 const Page = () => {
   const faqItems = [
@@ -41,6 +42,7 @@ const Page = () => {
           <UniOption/>
           <Process />
           <AcademicSolution />
+          <HomeTestPrep />
           <Review />
           <FAQ items={faqItems}  title="Frequently Asked Questions" color="white"/>
           <Footer />
