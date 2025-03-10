@@ -14,7 +14,7 @@
 .nav-head{
     height: 3vh;
     width: 100%;
-    background: #fff;
+    background: rgb(0, 28, 37);
     display: flex;
     align-items: center;
     justify-content: center;
@@ -28,7 +28,7 @@
     padding: 0px 10px;
     max-width: 1300px;
     width: 100%;
-    color: rgba(0,74,98,1);
+    color: #fff;
 }
 
 .mobile-email h5{

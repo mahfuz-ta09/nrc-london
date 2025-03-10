@@ -38,8 +38,10 @@ const AcademicSolution = () => {
                         </p>
                     </div>
                 </div>
-
-                <button onClick={()=>router.push('/Services')} className='plan-button'>see our services</button>
+                <div className="sol-bottom">
+                    <h5>See all our services?</h5>
+                    <button onClick={()=>router.push('/Services')} className='plan-button'>services</button>
+                </div>
             </div>
         </div>
     )

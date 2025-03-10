@@ -29,7 +29,7 @@ const UniOption = () => {
                 <h2 className='uniHeader'>Have a look at your University options:</h2>
                 
                 <div className="uni-content" ref={scrollContainerRef}>
-                    <div style={{width:`${320*data?.meta?.total}px`}} className="unicaro">
+                    <div style={{width:`${340*data?.meta?.total}px`}} className="unicaro">
                         {
                             isLoading ? <Loader /> :
                             data?.data?.map((option:any)=>

@@ -62,7 +62,7 @@ const HomeTestPrep = () => {
     return (
         <div className='homeTest-container'>
             <div className="wdth">
-                <h2 className='uniHeader'>Get preapred for test</h2>
+                <h2 className='uniHeader'>Get prepared for your future journey</h2>
                 
                 <div className="homeTest-content" ref={scrollContainerRef}>
                     <div style={{minWidth:`${250*11}px`}}  className="homeTestcaro">
