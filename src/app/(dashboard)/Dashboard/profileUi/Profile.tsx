@@ -13,6 +13,7 @@ interface IFormInput {
     country: string
     file?: FileList | null
     review:string
+    password:string
 }
 
 
@@ -48,6 +49,10 @@ const Profile = ({profileData}:{profileData:boolean}) => {
                 
                 <label className="form-label" htmlFor="Country">Country:</label>
                 <input className="form-input" type="text" {...register("country")}/>
+                
+                
+                <label className="form-label" htmlFor="Password">Reset password:</label>
+                <input className="form-input" type="text" {...register("password")}/>
                 
                 <label className="form-label" htmlFor="Country">Comment/delete/update:</label>
                 <textarea className="form-input" style={{minHeight:"10vh",padding:'10px',width:'100%'}} {...register("review")}/>
