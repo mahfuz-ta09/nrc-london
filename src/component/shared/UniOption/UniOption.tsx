@@ -40,7 +40,7 @@ const UniOption = () => {
                                     <div className="details">
                                         <h3>Study in {option.country}</h3>
                                         <p>Inspiring higher study in abroad</p>
-                                        <button onClick={()=> router.push(`/TestPrep/${option.type}`)}>details <FontAwesomeIcon icon={faArrowAltCircleRight}/> </button>
+                                        <button onClick={()=> router.push(`/University/${option?.country}`)}>details <FontAwesomeIcon icon={faArrowAltCircleRight}/> </button>
                                     </div>
                                 </div>)
                         }
