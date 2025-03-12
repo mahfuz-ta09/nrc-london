@@ -21,7 +21,6 @@ const page = () => {
     const handleDelete= async(id:string) =>  {
         try{
             const res = await deleteSubject(id)
-            console.log(res,id)
             if(res?.data?.data?.deletedCount){
                 toast.success("Deletion successful!!")
             }else{

@@ -35,14 +35,24 @@ const PopularCourse = () => {
     return (
         <div className="popular-container">
             <div className="popular-courses">
-                <h1 className="courses-tag">
-                    Popular <span>Courses</span> in
-                </h1>
+                <div className="popular-header">
+                    <h1 className="courses-tag">
+                        Popular Courses 
+                    </h1>
+                    <div className="btn-grp">
+                        <button className="prv" onClick={prevPage} disabled={currentPage === 0}>
+                            <FontAwesomeIcon  icon={faArrowLeft}/>
+                        </button>
+                        <button className="nxt" onClick={nextPage} disabled={currentPage >= totalPages - 1}>
+                            <FontAwesomeIcon  icon={faArrowRight}/>
+                        </button>
+                    </div>
+                </div>
                 <div className="courses">
                     {isLoading ? (
                         <Loader />
                     ) : (
-                        displayedCourses.map((course) => (
+                        displayedCourses.map((course:any) => (
                             <div
                                 key={course?._id}
                                 onClick={() => router.push(`/Subjects/${course?.country}`)}
@@ -55,14 +65,6 @@ const PopularCourse = () => {
                             </div>
                         ))
                     )}
-                </div>
-                <div className="btn-grp">
-                    <button className="prv" onClick={prevPage} disabled={currentPage === 0}>
-                        <FontAwesomeIcon  icon={faArrowLeft}/>
-                    </button>
-                    <button className="nxt" onClick={nextPage} disabled={currentPage >= totalPages - 1}>
-                        <FontAwesomeIcon  icon={faArrowRight}/>
-                    </button>
                 </div>
             </div>
         </div>

@@ -13,6 +13,7 @@ import UniNav from './UniNav'
 import SubNav from './SubNav'
 
 
+
 const Navbar = () => {
     const [isOpen,setIsOpen] = useState(false)
     const data = useUserInfo()
@@ -25,7 +26,8 @@ const Navbar = () => {
     
 
     const handleLogOut = () =>{
-        logOut(router)
+        logOut()
+        router.refresh()
     }
     
     return (

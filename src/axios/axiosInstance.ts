@@ -1,7 +1,8 @@
 import { responseError, responseSuccess } from '@/types/common'
 import { accessToken } from '@/utils/accessToken'
-import { getNewAccessToken } from '@/utils/removeCookie'
+import {  getNewAccessToken } from '@/utils/removeCookie'
 import { setCookie } from '@/utils/setCookies'
+import { logOut } from '@/utils/authAction'
 import axios from 'axios'
 
 
@@ -42,7 +43,6 @@ instance.interceptors.response.use(
     }, 
     
     async function (error) {
-      console.log(error)
         if(error?.response?.status === 500){
             const res:any = await getNewAccessToken()
             error.config.headers['Authorization'] = res?.meta.accessToken

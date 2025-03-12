@@ -8,6 +8,7 @@ import { faArrowCircleRight, faHome, faRightFromBracket } from '@fortawesome/fre
 import { logOut } from '@/utils/authAction'
 
 
+
 const LayoutPage = () => {
     const btnRef = useRef<HTMLButtonElement>(null)
     const navRef = useRef<HTMLDivElement>(null)
@@ -50,7 +51,7 @@ const LayoutPage = () => {
                     <h1>NRC-london</h1>
                     <NavLink />
                 </div>
-                  <button  className='nav-logout-btn' onClick={() => logOut(route)} ref={btnRef} ><FontAwesomeIcon icon={faRightFromBracket} className='nav-icon'/>logout</button>
+                  <button  className='nav-logout-btn' onClick={() => {logOut(),route.refresh()}} ref={btnRef} ><FontAwesomeIcon icon={faRightFromBracket} className='nav-icon'/>logout</button>
                   <button  className='nav-icon-home-btn' onClick={() => homeHandler()}><FontAwesomeIcon className='nav-icon' icon={faHome}/></button>
                   <button  className='nav-icon-btn' onClick={() => handler()} ref={btnRef} ><FontAwesomeIcon icon={faArrowCircleRight} className='nav-icon'/></button>
             </div>
