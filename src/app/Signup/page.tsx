@@ -3,7 +3,7 @@ import Link from "next/link"
 import '@/css/Login/Login.css'
 import { useRouter } from "next/navigation"
 import { useForm, SubmitHandler } from "react-hook-form"
-import { useAuth } from '@/authHooks/useAuth'
+import useAuth from '@/authHooks/useAuth'
 import { toast } from "react-toastify"
 import convertFormData from "@/utils/convertFormData"
 import Loader from "@/component/shared/Loader/Loader"

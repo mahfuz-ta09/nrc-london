@@ -1,3 +1,4 @@
+import { setCookie } from "@/utils/setCookies";
 import { useState, useCallback } from "react"
 
 let API_URL = ''
@@ -5,13 +6,13 @@ let API_URL = ''
 API_URL = "https://nrc-server-production-19f8.up.railway.app/app/v1/auth"
 // API_URL = "http://localhost:7373/app/v1/auth"
 
-export const useAuth = () => {
+export default () => {
     const [loading, setLoading] = useState(false);
-    const [error, setError] = useState<string | null>(null)
+    const [error, setError] = useState<string | null>(null);
 
     const logInUser = useCallback(async (formData: FormData) => {
-        setLoading(true)
-        setError(null)
+        setLoading(true);
+        setError(null);
 
         try {
             const response = await fetch(`${API_URL}/login`, {
@@ -20,20 +21,24 @@ export const useAuth = () => {
                 credentials: "include",
             });
 
-            const userInfo = await response.json()
-            
-            return userInfo
+            const userInfo = await response.json();
+
+            if (userInfo?.meta?.accessToken) {
+                setCookie(userInfo.meta.accessToken)
+            }
+
+            return userInfo;
         } catch (err: any) {
-            setError(err.message)
-            return null
+            setError(err.message);
+            return null;
         } finally {
-            setLoading(false)
+            setLoading(false);
         }
-    }, [])
+    }, []);
 
     const signUpUser = useCallback(async (formData: FormData) => {
-        setLoading(true)
-        setError(null)
+        setLoading(true);
+        setError(null);
         try {
             const response = await fetch(`${API_URL}/signup`, {
                 method: "POST",
@@ -41,62 +46,62 @@ export const useAuth = () => {
                 credentials: "include",
             });
 
-            const userInfo = await response.json()
+            const userInfo = await response.json();
 
-            return userInfo
+            return userInfo;
         } catch (err: any) {
-            setError(err.message)
-            return null
+            setError(err.message);
+            return null;
         } finally {
-            setLoading(false)
+            setLoading(false);
         }
-    }, [])
+    }, []);
 
-    const verifyUser = useCallback(async (data:any) => {
-        setLoading(true)
-        setError(null)
+    const verifyUser = useCallback(async (data: any) => {
+        setLoading(true);
+        setError(null);
         try {
             const response = await fetch(`${API_URL}/verify`, {
                 method: "POST",
-                headers:{
-                    'content-type':'application/json',
+                headers: {
+                    'content-type': 'application/json',
                 },
                 credentials: "include",
                 body: JSON.stringify(data),
-            })
+            });
 
-            const verificationResponse = await response.json()
-            return verificationResponse
+            const verificationResponse = await response.json();
+            return verificationResponse;
         } catch (err: any) {
-            setError(err.message)
-            return null
+            setError(err.message);
+            return null;
         } finally {
-            setLoading(false)
+            setLoading(false);
         }
-    }, [])
+    }, []);
 
-    const resetPassword = useCallback(async (data:any) => {
-        setLoading(true)
-        setError(null)
+    const resetPassword = useCallback(async (data: any) => {
+        setLoading(true);
+        setError(null);
         try {
             const response = await fetch(`${API_URL}/reset`, {
                 method: "POST",
                 credentials: "include",
-                headers:{
-                    'content-type':'application/json',
+                headers: {
+                    'content-type': 'application/json',
                 },
                 body: JSON.stringify(data),
-            })
+            });
 
-            const verificationResponse = await response.json()
-            return verificationResponse
+            const verificationResponse = await response.json();
+            return verificationResponse;
         } catch (err: any) {
-            setError(err.message)
-            return null
+            setError(err.message);
+            return null;
         } finally {
-            setLoading(false)
+            setLoading(false);
         }
-    }, [])
+    }, []);
 
-    return { logInUser, signUpUser, verifyUser, resetPassword , loading, error }
-}
+    return { logInUser, signUpUser, verifyUser, resetPassword, loading, error };
+};

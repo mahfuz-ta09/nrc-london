@@ -1,5 +1,5 @@
 'use client'
-import { useAuth } from '@/authHooks/useAuth'
+import useAuth from '@/authHooks/useAuth'
 import '@/css/Redirect/Redirect.css'
 import { useRouter } from 'next/navigation'
 import { SubmitHandler, useForm } from 'react-hook-form'

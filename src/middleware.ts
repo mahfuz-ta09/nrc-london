@@ -1,3 +1,4 @@
+'use server'
 import { jwtDecode, JwtPayload } from 'jwt-decode'
 import { cookies } from 'next/headers'
 import { NextResponse } from 'next/server'
@@ -24,7 +25,7 @@ export async function middleware(request: NextRequest) {
     const decoded: CustomJwtPayload | null = accessToken ? jwtDecode<CustomJwtPayload>(accessToken) : null;
     let role = decoded?.role ? decoded.role.toUpperCase() : null
 
-    // console.log(role, decoded, pathname)
+    console.log(role, decoded, pathname)
 
 
     if (accessToken && authRoutes.includes(pathname)) {

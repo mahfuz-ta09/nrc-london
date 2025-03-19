@@ -5,7 +5,7 @@ import { useRouter } from 'next/navigation'
 import { SubmitHandler, useForm } from 'react-hook-form'
 import convertFormData from '@/utils/convertFormData'
 import { toast } from 'react-toastify'
-import { useAuth } from '@/authHooks/useAuth'
+import useAuth from '@/authHooks/useAuth'
 import Loader from '@/component/shared/Loader/Loader'
 
 
