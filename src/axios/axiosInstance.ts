@@ -1,7 +1,6 @@
 import { responseError, responseSuccess } from '@/types/common'
 import { accessToken } from '@/utils/accessToken'
 import {  getNewAccessToken } from '@/utils/removeCookie'
-import { setCookie } from '@/utils/setCookies'
 import { logOut } from '@/utils/authAction'
 import axios from 'axios'
 
@@ -47,7 +46,6 @@ instance.interceptors.response.use(
             const res:any = await getNewAccessToken()
             error.config.headers['Authorization'] = res?.meta.accessToken
             localStorage.setItem("accessToken",res?.meta.accessToken)
-            setCookie(res?.meta.accessToken)
 
           return instance(error.config)
         }else{

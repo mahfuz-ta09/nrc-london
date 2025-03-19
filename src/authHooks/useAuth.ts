@@ -1,10 +1,9 @@
 import { useState, useCallback } from "react"
-import { setCookie } from "@/utils/setCookies"
 
 let API_URL = ''
 
 API_URL = "https://nrc-server-production-19f8.up.railway.app/app/v1/auth"
-// API_URL = "http://localhost:7373/app/v1/auth"
+API_URL = "http://localhost:7373/app/v1/auth"
 
 export const useAuth = () => {
     const [loading, setLoading] = useState(false);
@@ -23,10 +22,6 @@ export const useAuth = () => {
 
             const userInfo = await response.json()
             
-            if (userInfo?.meta?.accessToken) {
-                setCookie(userInfo.meta.accessToken)
-            }
-
             return userInfo
         } catch (err: any) {
             setError(err.message)
