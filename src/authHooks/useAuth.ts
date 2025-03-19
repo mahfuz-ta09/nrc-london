@@ -3,7 +3,7 @@ import { useState, useCallback } from "react"
 let API_URL = ''
 
 API_URL = "https://nrc-server-production-19f8.up.railway.app/app/v1/auth"
-API_URL = "http://localhost:7373/app/v1/auth"
+// API_URL = "http://localhost:7373/app/v1/auth"
 
 export const useAuth = () => {
     const [loading, setLoading] = useState(false);
