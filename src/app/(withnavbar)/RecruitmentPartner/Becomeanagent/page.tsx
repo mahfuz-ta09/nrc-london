@@ -43,11 +43,13 @@ const Becomeanagent = () => {
     } = useForm<Inputs>()
     
 
+
     const onSubmit: SubmitHandler<Inputs> = async (data: any) => {
         try {
             data.email = Uemail
             data.role = Urole
             const formData = new FormData()
+            
             Object.entries(data).forEach(([key, value]) => {
                 if(value instanceof FileList) {
                     for (let i = 0; i < value.length; i++) {

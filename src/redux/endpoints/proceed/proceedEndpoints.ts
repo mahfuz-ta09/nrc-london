@@ -9,9 +9,9 @@ const proceedApi = baseApi.injectEndpoints({
         query: (data) => ({
             url: "/process/create",
             method: "POST",
-            headers: { 
-                "Content-Type": "application/json" 
-            }, 
+            headers: {
+                'Content-Type': 'multipart/form-data',
+            },
             data,
         }),
       invalidatesTags: ["proceed"],  

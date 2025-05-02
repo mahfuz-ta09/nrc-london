@@ -35,7 +35,7 @@ const Navbar = () => {
             <div className="nav-head">
                 <div className="mobile-email">
                     <h5>+44 2033554453</h5>
-                    <h5>Info@nrclondon.co.uk</h5>
+                    <h5>admin@nrcedu-uk.com</h5>
                 </div>
             </div>
             <div className="nav-content">

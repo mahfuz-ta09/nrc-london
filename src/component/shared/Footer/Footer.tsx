@@ -54,7 +54,6 @@ const Footer = () => {
                             <h2 className="pg-footer-menu-name">Get Started</h2>
                             <ul className="pg-footer-menu-list">
                                 <li><Link href="/AboutUs">About us</Link></li>
-                                <li><Link href="/Subjects">Subjects</Link></li>
                             </ul>
                         </div>
                     </div>
@@ -74,7 +73,7 @@ const Footer = () => {
                             <h2 className="pg-footer-menu-name">Quick Links</h2>
                             <ul className="pg-footer-menu-list">
                                 {isLoading ? (
-                                    <li>Loading...</li> // ✅ Fix for <ul> structure
+                                    <li>Loading...</li>
                                 ) : (
                                     <>
                                         {Array.isArray(data?.data) && data?.meta?.total ? (
@@ -112,7 +111,10 @@ const Footer = () => {
 
                 <div className="pg-footer-copyright">
                     <p className="pg-footer-copyright-text">
-                        ©2025. | Designed By: Md Mahfuz Anam Tasnim. | All rights reserved.
+                        ©2025 | developed By: Md Mahfuz Anam Tasnim. | All rights reserved.
+                    </p>
+                    <p className="pg-footer-copyright-text">
+                        mahfuz.ta09@gmail.com
                     </p>
                 </div>
             </footer>

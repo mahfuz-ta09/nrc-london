@@ -17,13 +17,30 @@ const page = () => {
     const { Uemail , Urole } = useUserInfo()
 
     const onSubmit: SubmitHandler<IFormInput> = async(data) => {
+        if(!Uemail){
+            toast.error("Please login to proceed!!")
+            return
+        }
         const insertedData = {
             ...data,
             email: Uemail,
             role: Urole,
         }
+        const formData = new FormData()
+            
+        Object.entries(insertedData).forEach(([key, value]) => {
+            console.log(key, value)
+            if(value instanceof FileList) {
+                for (let i = 0; i < value.length; i++) {
+                    formData.append(key, value[i]);
+                }
+            }else if (value !== undefined && value !== null) {
+                formData.append(key, String(value));
+            }
+        })
+
         try{
-            const res = await postProcessData(insertedData)
+            const res = await postProcessData(formData)
             if(res?.data?.data?.acknowledged){
                 toast.success("Successfull, we will contact you for further information!!")
                 reset()
@@ -56,59 +73,26 @@ const page = () => {
                 <input className="form-input" type="date" {...register("dob")} required/>
 
 
-                <h3>Educational Qualification</h3>
+                <h3 style={{margin:"20px 0 10px"}}>Educational Qualification</h3>
                 <div className='table-content'>
-                    <table className="table-container">
-                        <thead>
-                            <tr>
-                                <th>Degree</th>
-                                <th>Institution</th>
-                                <th>Group</th>
-                                <th>Result</th>
-                                <th>Year</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <tr>
-                                <td>SSC</td>
-                                <td><input className="form-input" type="text" {...register("ssc_institution")}/></td>
-                                <td><input className="form-input" type="text" {...register("ssc_group")}/></td>
-                                <td><input className="form-input" type="text" {...register("ssc_result")}/></td>
-                                <td><input className="form-input" type="text" {...register("ssc_year")}/></td>
-                            </tr>
-                            <tr>
-                                <td>HSC</td>
-                                <td><input className="form-input" type="text" {...register("hsc_institution")}/></td>
-                                <td><input className="form-input" type="text" {...register("hsc_group")}/></td>
-                                <td><input className="form-input" type="text" {...register("hsc_result")}/></td>
-                                <td><input className="form-input" type="text" {...register("hsc_year")}/></td>
-                            </tr>
-                            <tr>
-                                <td>Bachelor</td>
-                                <td><input className="form-input" type="text" {...register("Bachelor_institution")}/></td>
-                                <td><input className="form-input" type="text" {...register("Bachelor_group")}/></td>
-                                <td><input className="form-input" type="text" {...register("Bachelor_result")}/></td>
-                                <td><input className="form-input" type="text" {...register("Bachelor_year")}/></td>
-                            </tr>
-                            <tr>
-                                <td>Master</td>
-                                <td><input className="form-input" type="text" {...register("master_institution")}/></td>
-                                <td><input className="form-input" type="text" {...register("master_group")}/></td>
-                                <td><input className="form-input" type="text" {...register("master_result")}/></td>
-                                <td><input className="form-input" type="text" {...register("master_year")}/></td>
-                            </tr>
-                            <tr>
-                                <td><input className="form-input" type="text" {...register("other_deg")}/></td>
-                                <td><input className="form-input" type="text" {...register("other_institution")}/></td>
-                                <td><input className="form-input" type="text" {...register("other_group")}/></td>
-                                <td><input className="form-input" type="text" {...register("other_result")}/></td>
-                                <td><input className="form-input" type="text" {...register("other_year")}/></td>
-                            </tr>
-                        </tbody>
-                    </table>
+                    <label className="form-label">SSC Certificate (jpg/jpeg):</label>
+                    <input className="form-input" type="file"  accept=".jpg,.jpeg" {...register("ssc_result")} required/>
+
+                    <label className="form-label">HSC Certificate (jpg/jpeg):</label>
+                    <input className="form-input" type="file"  accept=".jpg,.jpeg" {...register("hsc_result")} />
+
+                    <label className="form-label">Bachelor Certificate (jpg/jpeg):</label>
+                    <input className="form-input" type="file"  accept=".jpg,.jpeg" {...register("bachelor_result")} />
+
+                    <label className="form-label">Master Certificate (jpg/jpeg):</label>
+                    <input className="form-input" type="file"  accept=".jpg,.jpeg" {...register("masters_result")} />
+
+                    <label className="form-label">Other Degree Certificate (jpg/jpeg):</label>
+                    <input className="form-input" type="file"  accept=".jpg,.jpeg" {...register("other_result")} />
                 </div>
-                <h3>English Proficiency Test</h3>
-                <select className="form-select" id="preferred-country" {...register("en_proficiency")}>
+                
+                <h3 style={{margin:"20px 0 10px"}}>English Proficiency Test</h3>
+                <select className="form-select" id="preferred-country" {...register("en_proficiency")} required>
                     <option value="IELTS">IELTS</option>
                     <option value="OIETC">OIETC</option>
                     <option value="DUOLINGO">DUOLINGO</option>
@@ -118,34 +102,14 @@ const page = () => {
                     <option value="ESOL">ESOL</option>
                 </select>
                 
-                <div className='table-content'>
-                    <table className="">
-                        <thead>
-                            <tr>
-                                <th>Listening</th>
-                                <th>Reading</th>
-                                <th>Writing</th>
-                                <th>Speaking</th>
-                                <th>Overall</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <tr>
-                                <td><input className="form-input" type="text" {...register("listening")}/></td>
-                                <td><input className="form-input" type="text" {...register("reading")}/></td>
-                                <td><input className="form-input" type="text" {...register("writing")}/></td>
-                                <td><input className="form-input" type="text" {...register("speaking")}/></td>
-                                <td><input className="form-input" type="text" {...register("overall")}/></td>
-                            </tr>
-                        </tbody>
-                    </table>
-                </div>
+                <label style={{margin:"20px 0 10px"}} className="form-label">English Test Certificate (jpg/jpeg):</label>
+                <input className="form-input" type="file"  accept=".jpg,.jpeg" {...register("en_result")} required/>
                 
                 <label className="form-label" htmlFor="test-date">Test Taken Date:</label>
-                <input className="form-input" type="date" {...register("exam_taken_time")}/>
+                <input className="form-input" type="date" {...register("exam_taken_time")}required/>
 
                 <label className="form-label" htmlFor="preferred-country">Preferred Country:</label>
-                <select className="form-select" {...register("prefered_country")}>
+                <select className="form-select" {...register("prefered_country")}required>
                     <option value="uk">UK</option>
                     <option value="usa">USA</option>
                     <option value="aus">Australia</option>

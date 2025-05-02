@@ -2,7 +2,6 @@ import { responseError, responseSuccess } from '@/types/common'
 import { accessToken } from '@/utils/accessToken'
 import {  getNewAccessToken } from '@/utils/removeCookie'
 import { setCookie } from '@/utils/setCookies'
-import { logOut } from '@/utils/authAction'
 import axios from 'axios'
 
 
