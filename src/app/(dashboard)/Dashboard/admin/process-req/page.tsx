@@ -7,6 +7,7 @@ import Loader from '@/component/shared/Loader/Loader'
 import { faAngleDoubleRight, faCancel } from '@fortawesome/free-solid-svg-icons'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { useDeleteProcessReqMutation, useGetALlProcessReqQuery } from '@/redux/endpoints/proceed/proceedEndpoints'
+import Link from 'next/link'
 
 
 
@@ -133,40 +134,25 @@ const page = () => {
                         <thead>
                             <tr>
                                 <th>DEGREE</th>
-                                <th>INSTITUTION NAME</th>
-                                <th>GROUP</th>
-                                <th>PASSING YEAR</th>
                                 <th>RESULT</th>
                             </tr>
                         </thead>
                         <tbody>
                             <tr>
                                 <td>SSC</td>
-                                <td>{data?.data[number]?.ssc_institution}</td>
-                                <td>{data?.data[number]?.ssc_group}</td>
-                                <td>{data?.data[number]?.ssc_year}</td>
-                                <td>{data?.data[number]?.ssc_result}</td>
+                                <td><a style={{color:"white"}} href={data?.data[number]?.ssc_result?.url} target='_blank'>go</a></td>
                             </tr>
                             <tr>
                                 <td>HSC</td>
-                                <td>{data?.data[number]?.hsc_institution}</td>
-                                <td>{data?.data[number]?.hsc_group}</td>
-                                <td>{data?.data[number]?.hsc_year}</td>
-                                <td>{data?.data[number]?.hsc_result}</td>
+                                <td><a style={{color:"white"}} href={data?.data[number]?.hsc_result?.url} target='_blank'>go</a></td>
                             </tr>
                             <tr>
-                                <td>SSC</td>
-                                <td>{data?.data[number]?.Bachelor_institution}</td>
-                                <td>{data?.data[number]?.Bachelor_group}</td>
-                                <td>{data?.data[number]?.Bachelor_year}</td>
-                                <td>{data?.data[number]?.Bachelor_result}</td>
+                                <td>Bachelor</td>
+                                <td><a style={{color:"white"}} href={data?.data[number]?.bachelor_result?.url} target='_blank'>go</a></td>
                             </tr>
                             <tr>
-                                <td>{data?.data[number]?.other_deg}</td>
-                                <td>{data?.data[number]?.other_institution}</td>
-                                <td>{data?.data[number]?.other_group}</td>
-                                <td>{data?.data[number]?.other_year}</td>
-                                <td>{data?.data[number]?.other_result}</td>
+                                <td>OTHER</td>
+                                <td><a style={{color:"white"}} href={data?.data[number]?.other_result?.url} target='_blank'>go</a></td>
                             </tr>
                         </tbody>
                     </table>
@@ -179,21 +165,13 @@ const page = () => {
                         <thead>
                             <tr>
                                 <th>Test Name</th>
-                                <th>Reading</th>
-                                <th>Writing</th>
-                                <th>Listening</th>
-                                <th>Speaking</th>
-                                <th>Overall</th>
+                                <th>Certificate</th>
                             </tr>
                         </thead>
                         <tbody>
                             <tr>
                                 <td>{data?.data[number]?.en_proficiency}</td>
-                                <td>{data?.data[number]?.reading}</td>
-                                <td>{data?.data[number]?.writing}</td>
-                                <td>{data?.data[number]?.listening}</td>
-                                <td>{data?.data[number]?.speaking}</td>
-                                <td>{data?.data[number]?.overall}</td>
+                                <td><a style={{color:"white"}} href={data?.data[number]?.en_result?.url} target='_blank'>go</a></td>
                             </tr>
                         </tbody>
                     </table>
