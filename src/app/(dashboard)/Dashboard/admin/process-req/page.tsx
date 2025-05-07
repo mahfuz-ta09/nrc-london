@@ -7,7 +7,6 @@ import Loader from '@/component/shared/Loader/Loader'
 import { faAngleDoubleRight, faCancel } from '@fortawesome/free-solid-svg-icons'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { useDeleteProcessReqMutation, useGetALlProcessReqQuery } from '@/redux/endpoints/proceed/proceedEndpoints'
-import Link from 'next/link'
 
 
 
@@ -60,7 +59,7 @@ const page = () => {
                             <th className="th">Status</th>
                             <th className="th">Change Status</th>
                             <th className="th">Details</th>
-                            <th className="th">Delete</th>
+                            {/* <th className="th">Delete</th> */}
                         </tr>
                     </thead>
                     <tbody className="tbody">
@@ -85,7 +84,7 @@ const page = () => {
                                     </select>
                                 </td>
                                 <td className="td" data-label="details"><FontAwesomeIcon onClick={()=>{setOpen(!open);setNumber(index)}} icon={faAngleDoubleRight}/></td>
-                                <td className="td" data-label="Delete"><FontAwesomeIcon onClick={()=>handleDelete(person?._id)} icon={faCancel}/></td>
+                                {/* <td className="td" data-label="Delete"><FontAwesomeIcon onClick={()=>handleDelete(person?._id)} icon={faCancel}/></td> */}
                             </tr>
                         ))
                     }
