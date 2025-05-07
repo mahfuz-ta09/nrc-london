@@ -29,7 +29,6 @@ const page = () => {
         const formData = new FormData()
             
         Object.entries(insertedData).forEach(([key, value]) => {
-            console.log(key, value)
             if(value instanceof FileList) {
                 for (let i = 0; i < value.length; i++) {
                     formData.append(key, value[i]);

@@ -32,10 +32,10 @@ const ContactPage = () => {
                 data.email=user?.Uemail
                 const res = await sendEmail({ data: data })
                 reset()
-                if(res?.data){
-                    toast.success("Message sent!")
+                if(res?.data?.success==='false'){
+                    toast.error("Faild to send message!")
                 }else{
-                    toast.error("Faild")
+                    toast.success("Message sent!")
                 }
             }catch(err){
                 console.log(err)
