@@ -40,7 +40,7 @@ const page = () => {
                 </p>
                 <ul className="text-blk des">
                     <li>Over 500 students successfully placed in top institutions worldwide</li>
-                    <li>Collaborations with more than 80 agents globally</li>
+                    <li>Collaborations with more than 100 agents globally</li>
                     <li>Strong partnerships with reputable institutions, ensuring a wide range of study options for our students</li>
                 </ul>
                 <p className="text-blk des">
