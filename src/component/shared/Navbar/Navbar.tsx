@@ -42,7 +42,7 @@ const Navbar = () => {
                 <div className="navimage">
                     <Link href="/"><Image className='nav-logo' src={logo} alt="logo" /></Link>
                     <div className='nav-text'>
-                        <h2>University</h2>
+                        <h2>Global University</h2>
                         <h2>Representative</h2>
                     </div>
                 </div>

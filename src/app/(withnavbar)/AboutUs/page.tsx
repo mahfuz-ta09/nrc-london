@@ -25,13 +25,15 @@ const page = () => {
                 </p>
                 <p className="text-blk des">
                     Established in 2022 as MKN Pvt. Ltd. and re-registered in 2025 as NRC Education Group Limited
-                    (Global trading name: NRC Educational Consultants and MKN Global Consultancy for some parts of Bangladesh),
+                    (Global trading name: NRC Educational Consultants),
                     we have grown into a leading educational consultancy firm specializing in study abroad opportunities.
                 </p>
                 <p className="text-blk des">
-                    Our founder, Kamrul Islam, holds a degree in Business Management from Bath Spa University and brings
-                    over a decade of experience in the education sector. With a passion for empowering students to achieve
-                    their academic goals, our team provides personalized support and guidance throughout the study abroad journey.
+                    Our founder, Mr. Kamrul Islam, is a graduate in Business Management from Bath Spa University, UK, and brings over a decade of 
+                    hands-on experience in the education sector. Having once been an international student himself, Kamrul's own journey of coming 
+                    to the UK and successfully completing his studies serves as a powerful source of insight and inspiration for our institution. 
+                    His firsthand understanding of the challenges and opportunities faced by students abroad enables our team to offer personalized support, 
+                    practical advice, and dedicated guidance at every step of the study abroad journey.
                 </p>
                 <p className="text-blk des">
                     <strong>Our Achievements:</strong>
@@ -42,7 +44,7 @@ const page = () => {
                     <li>Strong partnerships with reputable institutions, ensuring a wide range of study options for our students</li>
                 </ul>
                 <p className="text-blk des">
-                    At NRC Ltd., we are committed to delivering exceptional service, expertise, and results.
+                    At NRC Educational Consultants Ltd., we are committed to delivering exceptional service, expertise, and results.
                     Join us in shaping the future of international education.
                 </p>
                 <button onClick={() => router.push('/Services')} className="explore">
