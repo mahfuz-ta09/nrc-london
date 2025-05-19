@@ -63,7 +63,7 @@ const ContactPage = () => {
                         </p>
                         <p>
                             <FontAwesomeIcon icon={faEnvelope} className="icon email-icon" />
-                            <a href="mailto:nrc@gmail.com">Info@nrclondon.co.uk</a>
+                            <a href="info@nrcedu-uk.com">info@nrcedu-uk.com</a>
                         </p>
                         <p>
                             <FontAwesomeIcon icon={faMapMarkerAlt} className="icon address-icon" />
