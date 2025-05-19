@@ -7,6 +7,7 @@ import Review from "@/component/additional/Review/Review"
 import Process from "@/component/shared/Process/Process"
 import FAQ from "@/component/UI/FAQ/FAQ"
 import HomeTestPrep from "@/component/shared/HomeTestPrep/HomeTestPrep"
+import AboutUs from "@/component/shared/HomeAboutUs/AboutUs"
 
 const Page = () => {
   const faqItems = [
@@ -38,6 +39,7 @@ const Page = () => {
     <>
         <Banner />
         <div className="home-contain">
+          <AboutUs />
           <PopularCourse />
           <UniOption/>
           <Process />

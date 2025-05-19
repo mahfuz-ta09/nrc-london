@@ -1,0 +1,141 @@
+.speciality-container{
+    width:100%;
+    height: auto;
+    background: rgb(255, 255, 255);
+    padding: 40px 0;
+}
+
+.specialty-section{
+    max-width: 1300px;
+    margin: 0 auto;
+    width: 100%;
+}
+
+.specialty-content{
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 20px;
+}
+
+.first-half{
+    padding: 40px 20px;
+    border-radius: 10px;
+    display: flex;
+    align-items: start;
+    justify-content: center;
+    flex-direction: column;
+}
+
+.first-half span{
+    font-size: 20px;
+    line-height: 22px;
+    font-weight: 600;
+}
+
+.first-half-text{
+    font-size: 18px;
+    font-weight: 600;
+    color: #000;
+}
+
+.first-half-header span{
+    font-size: 14px;
+    margin-right: 5px;
+}
+.first-half-header{
+    font-size: 34px;
+    font-weight: 400;
+    color: #000;
+}
+
+.first-half p{
+    font-size: 14px;
+    line-height: 22px;
+    color: #000;
+    margin: 20px 0;
+}
+
+.second-half{
+    padding: 60px 20px;
+    position: relative;
+}
+
+.second-half-img{
+    width: 100%;
+    object-fit: contain;
+    border-radius: 10px;
+}
+
+ 
+.second-half-img-logo{
+    position: absolute;
+    width: 180px;
+    height: auto;
+    left: -10px;
+    bottom: 10px;
+    background: white;
+    border-top-right-radius: 60px;
+}
+
+.contact-about{
+    font-size: 18px;
+    line-height: 20px;
+    text-decoration: none;
+    color: #000;
+    border: 1px solid #000;
+    padding: 5px 20px;
+    width: 150px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-top: 10px;
+    &:hover{
+        scale: 0.9;
+        transition: all 0.3s ease-in-out;
+    }
+}
+
+.contact-contact{
+    font-size: 18px;
+    line-height: 20px;
+    text-decoration: none;
+    color: #000;
+    border: 1px solid #000;
+    padding: 5px 20px;
+    width: 150px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    &:hover{
+        scale: 0.9;
+        transition: all 0.3s ease-in-out;
+    }
+}
+
+@media screen and (max-width: 700px){
+    .speciality-container{
+        padding: 10px 0;
+    }
+    
+    .first-half{
+        padding: 20px 20px;
+        border-radius: 10px;
+        text-align: start;
+    }
+
+    .specialty-content{
+        display: grid;
+        grid-template-columns: repeat(1, 1fr);
+    }
+
+    .second-half{
+        padding: 20px 15px;
+        gap: 10px;
+    }
+
+ 
+    .second-half-img-logo{
+        width: 120px;
+    }
+
+}

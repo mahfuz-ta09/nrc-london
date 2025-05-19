@@ -4,13 +4,14 @@ import logo from"../../../assets/nrc.logo.png"
 import Image from 'next/image'
 import Link from 'next/link'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faBars, faBook, faPhone, faUser, faXmark } from '@fortawesome/free-solid-svg-icons'
+import { faBars, faBook, faHome, faPhone, faUser, faXmark } from '@fortawesome/free-solid-svg-icons'
 import { useState } from 'react'
 import { useRouter } from 'next/navigation'
 import { logOut } from '@/utils/authAction'
 import { useUserInfo } from '@/utils/useUserInfo'
 import UniNav from './UniNav'
 import SubNav from './SubNav'
+
 
 
 
@@ -47,6 +48,9 @@ const Navbar = () => {
                     </div>
                 </div>
                 <div className={isOpen ? 'nav-links show':'nav-links hide'}>
+                    <div className='link-holder'>
+                        <Link onClick={()=>setIsOpen(false)} className='link' href="/"><FontAwesomeIcon icon={faHome}/></Link>
+                    </div>
 
                     <SubNav />
                     <div className='link-holder'>
@@ -78,10 +82,6 @@ const Navbar = () => {
                     </div>
 
                     <UniNav />
-                    
-                    <div className='link-holder'>
-                        <Link onClick={()=>setIsOpen(false)} className='link' href="/AboutUs">About us</Link>
-                    </div>
                     
                     <div className='link-holder'>
                         <p className='link'>Recruitement partner</p>

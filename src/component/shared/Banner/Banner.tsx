@@ -21,8 +21,7 @@ const Banner = () => {
                     <p>Empower yourself with knowledge and build a brighter future. Our comprehensive courses and expert support will guide you every step of the way.</p>
                     <div className="banner-buttons">
                         <button onClick={()=>router.push('/Proceed')} className='banner-button-3rd'>I am a Student</button>
-                        <button onClick={()=>router.push('/Contact')} className='banner-button-3rd'>contact</button>
-                        <button onClick={()=>router.push('/RecruitmentPartner/Becomeanagent')} className='banner-button-3rd'>Recruitment Partner</button>
+                        <button onClick={()=>router.push('/RecruitmentPartner/Becomeanagent')} className='banner-button-3rd'>become an agent</button>
                     </div>
                 </div>
                 {/* <Image className="banner-photo" src={BannerImg} alt="Banner" /> */}
