@@ -4,7 +4,7 @@ import '../../../css/shared/Banner/Banner.css'
 import { faArrowAltCircleRight, faCalendarDays, faGraduationCap, faPlaneDeparture, faSchool } from '@fortawesome/free-solid-svg-icons'
 import { useRouter } from 'next/navigation'
 import imgBgBanner from '../../../assets/banner-background.png'
-import BannerImg from '../../../assets/laptop.webp'
+import BannerImg from '../../../assets/image-banner.png'
 import Image from 'next/image'
 
 
@@ -25,40 +25,40 @@ const Banner = () => {
                     </div>
                 </div>
                 {/* <Image className="banner-photo" src={BannerImg} alt="Banner" /> */}
-            <div className="banner-addition">
-                <div className="achiev">
-                    <FontAwesomeIcon className='achiev-photo' icon={faPlaneDeparture}/>
-                    <div className="achiev-details">
-                        <h1>30+</h1>
-                        <p>Study</p>
-                        <p>Destination</p>
+                <div className="banner-addition">
+                    <div className="achiev">
+                        <FontAwesomeIcon className='achiev-photo' icon={faPlaneDeparture}/>
+                        <div className="achiev-details">
+                            <h1>30+</h1>
+                            <p>Study</p>
+                            <p>Destination</p>
+                        </div>
+                    </div>
+                    <div className="achiev">
+                        <FontAwesomeIcon className='achiev-photo' icon={faSchool}/>
+                        <div className="achiev-details">
+                            <h1>70+</h1>
+                            <p>Global</p>
+                            <p>Institutions</p>
+                        </div>
+                    </div>
+                    <div className="achiev">
+                        <FontAwesomeIcon className='achiev-photo' icon={faCalendarDays} />
+                        <div className="achiev-details">
+                            <h1>24/7</h1>
+                            <p>Online</p>
+                            <p>Presence</p>
+                        </div>
+                    </div>
+                    <div className="achiev">
+                        <FontAwesomeIcon className='achiev-photo' icon={faGraduationCap} />
+                        <div className="achiev-details">
+                            <h1>500+</h1>
+                            <p>Students</p>
+                            <p>Consulted</p>
+                        </div>
                     </div>
                 </div>
-                <div className="achiev">
-                    <FontAwesomeIcon className='achiev-photo' icon={faSchool}/>
-                    <div className="achiev-details">
-                        <h1>70+</h1>
-                        <p>Global</p>
-                        <p>Institutions</p>
-                    </div>
-                </div>
-                <div className="achiev">
-                    <FontAwesomeIcon className='achiev-photo' icon={faCalendarDays} />
-                    <div className="achiev-details">
-                        <h1>24/7</h1>
-                        <p>Online</p>
-                        <p>Presence</p>
-                    </div>
-                </div>
-                <div className="achiev">
-                    <FontAwesomeIcon className='achiev-photo' icon={faGraduationCap} />
-                    <div className="achiev-details">
-                        <h1>500+</h1>
-                        <p>Students</p>
-                        <p>Consulted</p>
-                    </div>
-                </div>
-            </div>
             </div>
 
 
