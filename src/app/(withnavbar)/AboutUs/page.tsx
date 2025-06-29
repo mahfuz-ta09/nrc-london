@@ -65,7 +65,7 @@ const page = () => {
                 <p className='h-text'>London, UK</p>
                 <p className='h-text'>Mobile: +4407710615979</p>
                 <p className='h-text'>Land: 02033554453</p>
-                <p className='h-text'>Email: admin@mknglobal.co.uk</p>
+                <p className='h-text'>Email: info@nrcedu-uk.com</p>
             </div>
           </div>
 

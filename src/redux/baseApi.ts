@@ -7,6 +7,7 @@ url = 'https://nrc-server-production-19f8.up.railway.app/app/v1'
 
 
 
+
 export const baseApi = createApi({
     reducerPath: 'api',
     baseQuery: axiosBaseQuery({ 
