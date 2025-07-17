@@ -1,5 +1,6 @@
 import '@/css/HomeAboutUs/AboutUs.css'
 import logo from"../../../assets/nrc.logo.png"
+import office from"../../../assets/office-image.jpg"
 import Image from 'next/image'
 import Link from 'next/link'
 
@@ -10,7 +11,8 @@ const AboutUs = () => {
                 <div className='specialty-content'>
 
                     <div className="second-half">
-                        <img className='second-half-img' src="https://images.pexels.com/photos/23496627/pexels-photo-23496627/free-photo-of-group-of-friends-taking-selfie-in-office.jpeg"  alt="logo" />
+                        {/* <img className='second-half-img' src="https://images.pexels.com/photos/23496627/pexels-photo-23496627/free-photo-of-group-of-friends-taking-selfie-in-office.jpeg"  alt="logo" /> */}
+                        <Image className='second-half-img' src={office} alt="logo" />
                         <Image className='second-half-img-logo' src={logo} alt="logo" />
                     </div>
 
