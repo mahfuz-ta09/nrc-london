@@ -12,7 +12,6 @@ const AddCountryMOdal = ({ isOpen , setIsOpen }:Props) => {
                 <h5>Add New Country</h5>
                 
                 <form className="country-submit-form">
-                    <h3>serial:1</h3>
                     <label htmlFor="country">Country Name</label>
                     <input type="text" className="cntry-name-in"/>
 
