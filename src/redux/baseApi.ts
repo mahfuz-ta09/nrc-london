@@ -1,13 +1,22 @@
 import { axiosBaseQuery } from '@/axios/axiosBaseQuery'
 import { createApi } from '@reduxjs/toolkit/query/react'
 
-let url = ''
-url = 'https://nrc-server-production-19f8.up.railway.app/app/v1'
-// url = 'http://localhost:7373/app/v1'
 
 
+export type AppEnv = 'LOCAL' | 'staging' | 'PRODUCTION';
+export const APP_ENV = (process.env.NEXT_PUBLIC_APP_ENV as AppEnv) ?? 'PRODUCTION';
+export const url =
+  APP_ENV === 'LOCAL'
+    ? process.env.NEXT_PUBLIC_LOCAL_API!
+    : process.env.NEXT_PUBLIC_DEPLOYED_API!;
+
+    
+if (!url) {
+  throw new Error('API_BASE_URL is not defined');
+}
 
 
+console.log("from base api",url)
 export const baseApi = createApi({
     reducerPath: 'api',
     baseQuery: axiosBaseQuery({ 

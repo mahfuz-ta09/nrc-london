@@ -1,13 +1,22 @@
 import { instance as axiosTokenInstance } from "@/axios/axiosInstance"
 
-let API_URL = ''
-API_URL = "https://nrc-server-production-19f8.up.railway.app/app/v1/auth"
-// API_URL = "http://localhost:7373/app/v1/auth"
 
+export type AppEnv = 'LOCAL' | 'staging' | 'PRODUCTION';
+export const APP_ENV = (process.env.NEXT_PUBLIC_APP_ENV as AppEnv) ?? 'PRODUCTION';
+export const url =
+  APP_ENV === 'LOCAL'
+    ? process.env.NEXT_PUBLIC_LOCAL_API!
+    : process.env.NEXT_PUBLIC_DEPLOYED_API!;
 
+    
+if (!url) {
+  throw new Error('API_BASE_URL is not defined');
+}
+
+console.log("from remove cookie",url)
 
 export const cookieRemove = async() =>{
-    const res = await fetch(`${API_URL}/logout`,{
+    const res = await fetch(`${url}/auth/logout`,{
         method: 'POST',
         credentials: 'include'
     })
@@ -17,7 +26,7 @@ export const cookieRemove = async() =>{
 
 export const  getNewAccessToken = async()=>{
     return await axiosTokenInstance({
-        url: `${API_URL}/access-token`,
+        url: `${url}/auth/access-token`,
         method: 'POST',
         headers: {
             'Content-Type': 'application/json'  

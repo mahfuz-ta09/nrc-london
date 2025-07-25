@@ -1,11 +1,20 @@
 import { setCookie } from "@/utils/setCookies";
 import { useState, useCallback } from "react"
 
-let API_URL = ''
 
-API_URL = "https://nrc-server-production-19f8.up.railway.app/app/v1/auth"
-// API_URL = "http://localhost:7373/app/v1/auth"
+export type AppEnv = 'LOCAL' | 'staging' | 'PRODUCTION';
+export const APP_ENV = (process.env.NEXT_PUBLIC_APP_ENV as AppEnv) ?? 'PRODUCTION';
+export const url =
+  APP_ENV === 'LOCAL'
+    ? process.env.NEXT_PUBLIC_LOCAL_API!
+    : process.env.NEXT_PUBLIC_DEPLOYED_API!;
 
+    
+if (!url) {
+  throw new Error('API_BASE_URL is not defined');
+}
+
+console.log("from use auth",url)
 export default () => {
     const [loading, setLoading] = useState(false);
     const [error, setError] = useState<string | null>(null);
@@ -15,7 +24,7 @@ export default () => {
         setError(null);
 
         try {
-            const response = await fetch(`${API_URL}/login`, {
+            const response = await fetch(`${url}/auth/login`, {
                 method: "POST",
                 body: formData,
                 credentials: "include",
@@ -40,7 +49,7 @@ export default () => {
         setLoading(true);
         setError(null);
         try {
-            const response = await fetch(`${API_URL}/signup`, {
+            const response = await fetch(`${url}/auth/signup`, {
                 method: "POST",
                 body: formData,
                 credentials: "include",
@@ -61,7 +70,7 @@ export default () => {
         setLoading(true);
         setError(null);
         try {
-            const response = await fetch(`${API_URL}/verify`, {
+            const response = await fetch(`${url}/auth/verify`, {
                 method: "POST",
                 headers: {
                     'content-type': 'application/json',
@@ -84,7 +93,7 @@ export default () => {
         setLoading(true);
         setError(null);
         try {
-            const response = await fetch(`${API_URL}/reset`, {
+            const response = await fetch(`${url}/auth/reset`, {
                 method: "POST",
                 credentials: "include",
                 headers: {
