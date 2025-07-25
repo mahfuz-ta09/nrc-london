@@ -1,13 +1,15 @@
 'use client'
 import { useRef, useState } from 'react'
-import { toast } from 'react-toastify'
+// import { toast } from 'react-toastify'
 import '@/css/Dashboard/admin/country-uni.css'
-import Loader from '@/component/shared/Loader/Loader'
-import { faAngleDoubleRight, faCancel, faPen } from '@fortawesome/free-solid-svg-icons'
+// import Loader from '@/component/shared/Loader/Loader'
+import { faArrowCircleLeft, faArrowCircleRight, faPen } from '@fortawesome/free-solid-svg-icons'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import AddCountryMOdal from './AddCountryMOdal'
 
 
 const page = () => {
+    const [isOpen,setIsOpen] = useState<boolean>(false)
     const scrollRef = useRef<HTMLDivElement | null>(null);
     let isDown = false;
     let startX:number;
@@ -47,7 +49,7 @@ const page = () => {
         
         <div className="header">
           <h1>Manage countries/universites/subjects</h1>
-          <button className='header-add-btn'>Add New Country</button>
+          <button onClick={()=>setIsOpen(!isOpen)} className='header-add-btn'>Add New Country</button>
         </div>
 
         <div className="country-list-slide"
@@ -56,6 +58,7 @@ const page = () => {
                 onMouseLeave={handleMouseLeave}
                 onMouseUp={handleMouseUp}
                 onMouseMove={handleMouseMove}>
+
                 <div className="country-list">
                     <div className="country">
                         <img className='country-bg-img1' src="https://i.ibb.co/ZRqzgZf7/london-Bridge.jpg" alt="" />
@@ -68,7 +71,7 @@ const page = () => {
                         </div>
                         <div className="country-btn-cont">
                             <button className='country-btn'>edit <FontAwesomeIcon icon={faPen}/></button>
-                            <button className='country-btn'>add University</button>
+                            <button className='country-btn'>add university</button>
                         </div>
                     </div>
                     <div className="country">
@@ -82,7 +85,7 @@ const page = () => {
                         </div>
                         <div className="country-btn-cont">
                             <button className='country-btn'>edit <FontAwesomeIcon icon={faPen}/></button>
-                            <button className='country-btn'>add University</button>
+                            <button className='country-btn'>add university</button>
                         </div>
                     </div>
                     <div className="country">
@@ -96,7 +99,7 @@ const page = () => {
                         </div>
                         <div className="country-btn-cont">
                             <button className='country-btn'>edit <FontAwesomeIcon icon={faPen}/></button>
-                            <button className='country-btn'>add University</button>
+                            <button className='country-btn'>add university</button>
                         </div>
                     </div>
                     <div className="country">
@@ -110,7 +113,7 @@ const page = () => {
                         </div>
                         <div className="country-btn-cont">
                             <button className='country-btn'>edit <FontAwesomeIcon icon={faPen}/></button>
-                            <button className='country-btn'>add University</button>
+                            <button className='country-btn'>add university</button>
                         </div>
                     </div>
                     <div className="country">
@@ -124,7 +127,7 @@ const page = () => {
                         </div>
                         <div className="country-btn-cont">
                             <button className='country-btn'>edit <FontAwesomeIcon icon={faPen}/></button>
-                            <button className='country-btn'>add University</button>
+                            <button className='country-btn'>add university</button>
                         </div>
                     </div>
                     <div className="country">
@@ -138,7 +141,7 @@ const page = () => {
                         </div>
                         <div className="country-btn-cont">
                             <button className='country-btn'>edit <FontAwesomeIcon icon={faPen}/></button>
-                            <button className='country-btn'>add University</button>
+                            <button className='country-btn'>add university</button>
                         </div>
                     </div>
                     <div className="country">
@@ -152,18 +155,22 @@ const page = () => {
                         </div>
                         <div className="country-btn-cont">
                             <button className='country-btn'>edit <FontAwesomeIcon icon={faPen}/></button>
-                            <button className='country-btn'>add University</button>
+                            <button className='country-btn'>add university</button>
                         </div>
                     </div>
                 </div>
+        </div>
+
+        <div className="indicator-button">
+            <button className='ind-btn'><FontAwesomeIcon icon={faArrowCircleLeft}/></button>
+            <button className='ind-btn'><FontAwesomeIcon icon={faArrowCircleRight}/></button>
         </div>
         {/* <div className={open? "mod-open" : "modal"}>
             <button onClick={()=>setOpen(!open)} className='mod-close'>Close</button>
             
         </div> */}
 
-        <div className="add-country-modal"></div>
-
+            <AddCountryMOdal isOpen={isOpen} setIsOpen={setIsOpen}/>
       </div>
     )
 }

@@ -56,14 +56,16 @@
     user-select: none;
     width: 300px;
     height: 180px;
-    border-radius: 4px;
-    border: 1px solid rgba(255,255,255,0.5);
-    box-shadow: 1px 1px 0px 2px rgba(255,255,255,0.3);
-    background: linear-gradient(to left,rgba(0,0,0,0.3),rgba(255, 255, 255, 0.3));
+    border-radius: 7px;
     position: relative;
 
-    &:hover{    
-        box-shadow: 1px 1px 0px 2px rgba(255,255,255,0.5);
+    &:hover{
+        box-shadow: 1px 1px 10px rgba(255, 255, 255, 0.5);
+    }
+
+    &:hover .overlay{    
+        border-radius: 7px;
+        background: linear-gradient(to left,rgba(0,0,0,0.7),rgba(0,0,0, 0.7));
     }
 }
 
@@ -71,10 +73,11 @@
 
 .overlay{
     position: absolute;
-    background: linear-gradient(to left,rgba(0,0,0,0.6),rgba(0,0,0, 0.6));
+    background: linear-gradient(to left,rgba(0,0,0,0.5),rgba(0,0,0, 0.5));
     width: 100%;
     height: 100%;
     z-index: 2;
+    border-radius: 7px;
 }
 
 
@@ -84,6 +87,7 @@
     height: 100%;
     object-fit: cover;
     z-index: 1;
+    border-radius: 7px;
 }
 
 .country-bg-img2{
@@ -132,4 +136,146 @@
     &:hover{
         scale: 1.1;
     }
+}
+
+.indicator-button{
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.ind-btn{
+    background: transparent;
+    color: #fff;
+    font-size: 30px;
+    border: none;
+}
+
+
+/* ----------------------------------design of add country modal starting here--------------------------------- */
+
+.country-mod{
+    width: 100%;
+    height: 100%;
+    background: rgb(0, 0, 0,0.6);
+    position: fixed;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    z-index: 11;
+    transition: .5s ease-in-out all;
+}
+
+.cntry-open{
+    visibility: visible;
+    transition: .5s ease-in-out all;
+}
+
+.cntry-close{
+    visibility: hidden;
+}
+
+.add-uni-container{
+    width: 550px;
+    height: auto;
+    position: fixed;
+    top: 30%;
+    left: 50%;
+    transform: translate(-50%,-50%);
+    background: #efefef;
+    border-radius: 5px;
+    padding: 25px;
+}
+
+.add-uni-container h5{
+    font-weight: 700;
+    font-size: 16px;
+    padding-bottom: 30px;
+}
+
+
+.country-submit-form {
+    width: 100%;
+    margin: auto;
+    display: flex;
+    flex-direction: column;
+    overflow-y: scroll;
+    overflow-x: hidden;
+}
+
+
+.form-flag {
+    display: flex;
+    gap: 20px;
+    justify-content: space-between;
+    padding-top: 20px;
+    padding-bottom: 20px;
+}
+
+.cntry-name-in{
+    padding: 5px;
+    border-radius: 2px;
+    border: 1px solid;
+    margin-top: 3px;
+}
+
+
+.flag-input {
+    display: flex;
+    flex-direction: column;
+    flex: 1;
+}
+
+
+.country-add-btn-grp {
+    display: flex;
+    justify-content: space-between;
+    gap: 12px;
+    padding-top: 30px;
+}
+
+.country-add-btn-grp button{
+    flex: 1;
+    padding: 10px;
+    font-weight: bold;
+    border: none;
+    background-color: #004a62;
+    color: white;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+.country-add-btn-grp button:hover {
+    background-color: #013d52;    
+}
+
+.close-modal{
+    background: transparent;
+    border: none;
+    color: #fff;
+    font-size: 22px;
+    position: fixed;
+    right: 20px;
+    top: 20px;
+    font-weight: 900;
+
+}
+
+@media screen and (max-width:450px) {
+        
+    .add-uni-container{
+        width: 96%;
+    }
+    
+
+    .form-flag {
+        display: flex;
+        gap: 20px;
+        justify-content: space-between;
+        flex-direction: column;
+        padding-top: 20px;
+        padding-bottom: 20px;
+    }
+
 }
