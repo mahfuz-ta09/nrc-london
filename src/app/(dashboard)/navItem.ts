@@ -74,11 +74,11 @@ const sideNavItem = (role : Role) => {
                     path        : `${role}/process-req`,
                     icon        : faHandshake,
                 },
-                // {
-                //     title       : "Manage user",
-                //     path        : `${role}/manage-user`,
-                //     icon        : faPen,
-                // },
+                {
+                    title       : "Country&Uni",
+                    path        : `${role}/country-uni`,
+                    icon        : faPen,
+                },
                 // {
                 //     title       : "Test preparation",
                 //     path        : `${role}/test-prep`,

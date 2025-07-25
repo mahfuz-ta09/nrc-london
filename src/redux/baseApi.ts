@@ -16,7 +16,7 @@ if (!url) {
 }
 
 
-console.log("from base api",url)
+
 export const baseApi = createApi({
     reducerPath: 'api',
     baseQuery: axiosBaseQuery({ 

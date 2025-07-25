@@ -14,7 +14,7 @@ if (!url) {
   throw new Error('API_BASE_URL is not defined');
 }
 
-console.log("from use auth",url)
+
 export default () => {
     const [loading, setLoading] = useState(false);
     const [error, setError] = useState<string | null>(null);

@@ -13,7 +13,7 @@ if (!url) {
   throw new Error('API_BASE_URL is not defined');
 }
 
-console.log("from remove cookie",url)
+
 
 export const cookieRemove = async() =>{
     const res = await fetch(`${url}/auth/logout`,{

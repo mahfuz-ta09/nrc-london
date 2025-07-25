@@ -108,7 +108,7 @@
 	align-items: center;
 	justify-content: start;
 	gap: 20px;
-	z-index: 1;
+	z-index: 10;
 }
 
 
