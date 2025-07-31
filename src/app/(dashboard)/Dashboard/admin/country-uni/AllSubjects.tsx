@@ -18,10 +18,16 @@ const AllSubjects = ({ isSubOPen , setIsSubOpen , setUniName , uniName} : Props)
 
                 <div className="subjects-add-form-cont">
                     <h3>edit or add new subject to {uniName}</h3>
+
                     <form className="sub-add-form">
+                        <input type="text" placeholder='Enter subject name' />
                         <input type="text" placeholder='Enter subject name' />
                         <button>add</button>
                     </form>
+                    
+                    <div className='sub-list'>
+                        fsdf dsf sdfsdf
+                    </div>
                 </div>
 
             </div>

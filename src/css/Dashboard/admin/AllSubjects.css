@@ -46,3 +46,32 @@
     font-weight: 400;
     margin-bottom: 10px;
 }
+
+.sub-add-form{
+    display: flex;
+    align-items: center;
+    justify-content: start;
+    gap: 10px;
+}
+
+.sub-add-form input{
+    padding: 5px;
+
+}
+
+.sub-add-form button{
+    padding: 7px 13px;
+    border: none;
+    background: #046580;
+    color: #fff;
+    border-radius: 3px;
+}
+
+.sub-list{
+    border-top: 1px dotted;
+    margin: 10px 0;
+    display: flex;
+    align-items: center;
+    justify-content: start;
+    gap: 5px;
+}
