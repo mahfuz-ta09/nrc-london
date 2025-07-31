@@ -1,0 +1,72 @@
+.university-list-container{
+    margin: 40px 0;
+}
+
+
+.university-list-header{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 20px;
+}
+
+
+.university-list-header-title{
+    font-size: 20px;
+    color: #fff;
+    font-weight: 400;
+}
+
+.uni-list-filter{
+    background-color: transparent;
+    border: none;
+    color: #fff;
+    font-size: 20px;
+
+    &:hover{
+        scale: 1.5;
+    }
+}
+
+
+.university-list{
+    overflow: auto;
+    scrollbar-width: none;
+}
+
+.university-list-table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 20px;
+}
+
+.university-list-table th,
+.university-list-table td {
+  border: 1px solid #ddd;
+  padding: 12px;
+  text-align: left;
+  color: #fff;
+}
+
+.university-list-table thead {
+  background: #062e3b;
+}
+
+.university-list-table tr:hover {
+  background: #062e3b;
+}
+
+
+.university-list-table-btn{
+  padding: 2px 10px;
+  border: none;
+  border-radius: 4px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 1px 1px 10px #000;
+
+  &:hover{
+    scale: 1.2;
+  }
+}

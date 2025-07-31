@@ -1,15 +1,17 @@
 
 type Props = {
   isOpen: boolean
+  countryTest: string
   setIsOpen: React.Dispatch<React.SetStateAction<boolean>>
+  setCountryTast: React.Dispatch<React.SetStateAction<string>>
 }
 
-const AddCountryMOdal = ({ isOpen , setIsOpen }:Props) => {
+const AddCountryMOdal = ({ isOpen , setIsOpen , countryTest , setCountryTast }:Props) => {
   return (
         <div className={isOpen?"country-mod cntry-open":"cntry-close"}>
-            <button className="close-modal" onClick={()=>setIsOpen(false)}>X</button>
+            <button className="close-modal" onClick={()=>{setIsOpen(false);setCountryTast('')}}>X</button>
             <div className="add-uni-container">
-                <h5>Add New Country</h5>
+                <h5>{countryTest} New Country</h5>
                 
                 <form className="country-submit-form">
                     <label htmlFor="country">Country Name</label>

@@ -6,10 +6,12 @@ import '@/css/Dashboard/admin/country-uni.css'
 import { faArrowCircleLeft, faArrowCircleRight, faPen } from '@fortawesome/free-solid-svg-icons'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import AddCountryMOdal from './AddCountryMOdal'
+import UniversityList from './UniversityList'
 
 
 const page = () => {
     const [isOpen,setIsOpen] = useState<boolean>(false)
+    const [countryTest,setCountryTest] = useState<string>('')
     const scrollRef = useRef<HTMLDivElement | null>(null);
     let isDown = false;
     let startX:number;
@@ -49,7 +51,7 @@ const page = () => {
         
         <div className="header">
           <h1>Manage countries/universites/subjects</h1>
-          <button onClick={()=>setIsOpen(!isOpen)} className='header-add-btn'>Add New Country</button>
+          <button onClick={()=>{setIsOpen(!isOpen);setCountryTest("add")}} className='header-add-btn'>Add New Country</button>
         </div>
 
         <div className="country-list-slide"
@@ -70,7 +72,7 @@ const page = () => {
                             <p>total university listed: 10</p>
                         </div>
                         <div className="country-btn-cont">
-                            <button className='country-btn'>edit <FontAwesomeIcon icon={faPen}/></button>
+                            <button  onClick={()=>{setIsOpen(!isOpen);setCountryTest("edit")}}   className='country-btn'>edit <FontAwesomeIcon icon={faPen}/></button>
                             <button className='country-btn'>add university</button>
                         </div>
                     </div>
@@ -84,7 +86,7 @@ const page = () => {
                             <p>total university listed: 10</p>
                         </div>
                         <div className="country-btn-cont">
-                            <button className='country-btn'>edit <FontAwesomeIcon icon={faPen}/></button>
+                            <button onClick={()=>{setIsOpen(!isOpen);setCountryTest("edit")}}   className='country-btn'>edit <FontAwesomeIcon icon={faPen}/></button>
                             <button className='country-btn'>add university</button>
                         </div>
                     </div>
@@ -98,7 +100,7 @@ const page = () => {
                             <p>total university listed: 10</p>
                         </div>
                         <div className="country-btn-cont">
-                            <button className='country-btn'>edit <FontAwesomeIcon icon={faPen}/></button>
+                            <button  onClick={()=>{setIsOpen(!isOpen);setCountryTest("edit")}}   className='country-btn'>edit <FontAwesomeIcon icon={faPen}/></button>
                             <button className='country-btn'>add university</button>
                         </div>
                     </div>
@@ -112,7 +114,7 @@ const page = () => {
                             <p>total university listed: 10</p>
                         </div>
                         <div className="country-btn-cont">
-                            <button className='country-btn'>edit <FontAwesomeIcon icon={faPen}/></button>
+                            <button  onClick={()=>{setIsOpen(!isOpen);setCountryTest("edit")}}   className='country-btn'>edit <FontAwesomeIcon icon={faPen}/></button>
                             <button className='country-btn'>add university</button>
                         </div>
                     </div>
@@ -126,7 +128,7 @@ const page = () => {
                             <p>total university listed: 10</p>
                         </div>
                         <div className="country-btn-cont">
-                            <button className='country-btn'>edit <FontAwesomeIcon icon={faPen}/></button>
+                            <button  onClick={()=>{setIsOpen(!isOpen);setCountryTest("edit")}}   className='country-btn'>edit <FontAwesomeIcon icon={faPen}/></button>
                             <button className='country-btn'>add university</button>
                         </div>
                     </div>
@@ -140,7 +142,7 @@ const page = () => {
                             <p>total university listed: 10</p>
                         </div>
                         <div className="country-btn-cont">
-                            <button className='country-btn'>edit <FontAwesomeIcon icon={faPen}/></button>
+                            <button  onClick={()=>{setIsOpen(!isOpen);setCountryTest("edit")}}   className='country-btn'>edit <FontAwesomeIcon icon={faPen}/></button>
                             <button className='country-btn'>add university</button>
                         </div>
                     </div>
@@ -154,7 +156,7 @@ const page = () => {
                             <p>total university listed: 10</p>
                         </div>
                         <div className="country-btn-cont">
-                            <button className='country-btn'>edit <FontAwesomeIcon icon={faPen}/></button>
+                            <button  onClick={()=>{setIsOpen(!isOpen);setCountryTest("edit")}}   className='country-btn'>edit <FontAwesomeIcon icon={faPen}/></button>
                             <button className='country-btn'>add university</button>
                         </div>
                     </div>
@@ -170,7 +172,12 @@ const page = () => {
             
         </div> */}
 
-            <AddCountryMOdal isOpen={isOpen} setIsOpen={setIsOpen}/>
+            <UniversityList />
+            <AddCountryMOdal 
+                isOpen={isOpen} 
+                setIsOpen={setIsOpen}
+                setCountryTast={setCountryTest}
+                countryTest={countryTest}/>
       </div>
     )
 }
