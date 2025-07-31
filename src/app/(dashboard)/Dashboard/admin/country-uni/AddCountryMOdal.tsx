@@ -11,7 +11,7 @@ const AddCountryMOdal = ({ isOpen , setIsOpen , countryTest , setCountryTast }:P
         <div className={isOpen?"country-mod cntry-open":"cntry-close"}>
             <button className="close-modal" onClick={()=>{setIsOpen(false);setCountryTast('')}}>X</button>
             <div className="add-uni-container">
-                <h5>{countryTest} New Country</h5>
+                <h5>{countryTest} Country</h5>
                 
                 <form className="country-submit-form">
                     <label htmlFor="country">Country Name</label>

@@ -7,12 +7,22 @@ import { faArrowCircleLeft, faArrowCircleRight, faPen } from '@fortawesome/free-
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import AddCountryMOdal from './AddCountryMOdal'
 import UniversityList from './UniversityList'
+import AddUniversity from './AddUniversity'
 
 
 const page = () => {
     const [isOpen,setIsOpen] = useState<boolean>(false)
     const [countryTest,setCountryTest] = useState<string>('')
-    const scrollRef = useRef<HTMLDivElement | null>(null);
+    const [action,setAction] = useState<string>('add')
+    const [isUniOpen,setIsUniOpen] = useState<boolean>(false)
+    const scrollRef = useRef<HTMLDivElement | null>(null)
+    
+    
+    // const [countryTest,setCountryTest] = useState<string>('')
+    
+
+
+
     let isDown = false;
     let startX:number;
     let scrollLeft:number;
@@ -73,7 +83,7 @@ const page = () => {
                         </div>
                         <div className="country-btn-cont">
                             <button  onClick={()=>{setIsOpen(!isOpen);setCountryTest("edit")}}   className='country-btn'>edit <FontAwesomeIcon icon={faPen}/></button>
-                            <button className='country-btn'>add university</button>
+                            <button onClick={()=>{setIsUniOpen(!isUniOpen);setAction('add')}} className='country-btn'>add university</button>
                         </div>
                     </div>
                     <div className="country">
@@ -87,7 +97,7 @@ const page = () => {
                         </div>
                         <div className="country-btn-cont">
                             <button onClick={()=>{setIsOpen(!isOpen);setCountryTest("edit")}}   className='country-btn'>edit <FontAwesomeIcon icon={faPen}/></button>
-                            <button className='country-btn'>add university</button>
+                            <button onClick={()=>{setIsUniOpen(!isUniOpen);setAction('add')}}className='country-btn'>add university</button>
                         </div>
                     </div>
                     <div className="country">
@@ -101,7 +111,7 @@ const page = () => {
                         </div>
                         <div className="country-btn-cont">
                             <button  onClick={()=>{setIsOpen(!isOpen);setCountryTest("edit")}}   className='country-btn'>edit <FontAwesomeIcon icon={faPen}/></button>
-                            <button className='country-btn'>add university</button>
+                            <button onClick={()=>{setIsUniOpen(!isUniOpen);setAction('add')}}className='country-btn'>add university</button>
                         </div>
                     </div>
                     <div className="country">
@@ -115,7 +125,7 @@ const page = () => {
                         </div>
                         <div className="country-btn-cont">
                             <button  onClick={()=>{setIsOpen(!isOpen);setCountryTest("edit")}}   className='country-btn'>edit <FontAwesomeIcon icon={faPen}/></button>
-                            <button className='country-btn'>add university</button>
+                            <button onClick={()=>{setIsUniOpen(!isUniOpen);setAction('add')}}className='country-btn'>add university</button>
                         </div>
                     </div>
                     <div className="country">
@@ -129,7 +139,7 @@ const page = () => {
                         </div>
                         <div className="country-btn-cont">
                             <button  onClick={()=>{setIsOpen(!isOpen);setCountryTest("edit")}}   className='country-btn'>edit <FontAwesomeIcon icon={faPen}/></button>
-                            <button className='country-btn'>add university</button>
+                            <button onClick={()=>{setIsUniOpen(!isUniOpen);setAction('add')}}className='country-btn'>add university</button>
                         </div>
                     </div>
                     <div className="country">
@@ -143,7 +153,7 @@ const page = () => {
                         </div>
                         <div className="country-btn-cont">
                             <button  onClick={()=>{setIsOpen(!isOpen);setCountryTest("edit")}}   className='country-btn'>edit <FontAwesomeIcon icon={faPen}/></button>
-                            <button className='country-btn'>add university</button>
+                            <button onClick={()=>{setIsUniOpen(!isUniOpen);setAction('add')}}className='country-btn'>add university</button>
                         </div>
                     </div>
                     <div className="country">
@@ -157,7 +167,7 @@ const page = () => {
                         </div>
                         <div className="country-btn-cont">
                             <button  onClick={()=>{setIsOpen(!isOpen);setCountryTest("edit")}}   className='country-btn'>edit <FontAwesomeIcon icon={faPen}/></button>
-                            <button className='country-btn'>add university</button>
+                            <button onClick={()=>{setIsUniOpen(!isUniOpen);setAction('add')}}className='country-btn'>add university</button>
                         </div>
                     </div>
                 </div>
@@ -167,17 +177,22 @@ const page = () => {
             <button className='ind-btn'><FontAwesomeIcon icon={faArrowCircleLeft}/></button>
             <button className='ind-btn'><FontAwesomeIcon icon={faArrowCircleRight}/></button>
         </div>
-        {/* <div className={open? "mod-open" : "modal"}>
-            <button onClick={()=>setOpen(!open)} className='mod-close'>Close</button>
-            
-        </div> */}
+        
+        
+        <UniversityList />
+        <AddUniversity
+            action={action}
+            setAction={setAction}
+            isUniOpen={isUniOpen}
+            setIsUniOpen={setIsUniOpen}/>
 
-            <UniversityList />
-            <AddCountryMOdal 
-                isOpen={isOpen} 
-                setIsOpen={setIsOpen}
-                setCountryTast={setCountryTest}
-                countryTest={countryTest}/>
+        <AddCountryMOdal 
+            isOpen={isOpen} 
+            setIsOpen={setIsOpen}
+            setCountryTast={setCountryTest}
+            countryTest={countryTest}/>
+
+        
       </div>
     )
 }
