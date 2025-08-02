@@ -7,14 +7,9 @@ type PropsType = {
     setIsUniOpen: React.Dispatch<React.SetStateAction<boolean>>
 }
 
-const testOptions = ["IELTS", "OITC", "TOEFL", "DUOLINGO","SAT","ACT","GRE",];
+const testOptions = ["IELTS", "OITC", "TOEFL", "DUOLINGO","SAT","ACT","GRE",]
 
 const AddUniversity: React.FC<PropsType> = ({ isUniOpen, setIsUniOpen , setAction , action }) => {
-    const [formData, setFormData] = useState({
-        country: '',
-        university: '',
-        deposit: '',
-    })
     const [selectedTests, setSelectedTests] = useState<{ [key: string]: string }>({})
 
     const handleTestSelect = (e: React.ChangeEvent<HTMLSelectElement>) => {

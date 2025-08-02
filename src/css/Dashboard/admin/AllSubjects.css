@@ -39,6 +39,7 @@
     background: #efefef;
     border-radius:5px;
     padding: 10px;
+    overflow-y: auto;
 }
 
 .subjects-add-form-cont h3{
@@ -73,5 +74,33 @@
     display: flex;
     align-items: center;
     justify-content: start;
+    flex-wrap: wrap;
     gap: 5px;
+    overflow: hidden;
+}
+
+
+.sub-list-details{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 2px;
+    margin: 5px 0;
+    padding: 4px;
+    background:#046580;
+}
+
+.sub-list-details h1{
+    text-align: center;
+    font-size: 15px;
+    font-weight: 300;
+    color: #fff;
+    border-right: 1px solid #fff;
+}
+
+
+@media screen and (max-width:450px) {
+    .allsubjects{
+        width: 95%;
+    }
 }

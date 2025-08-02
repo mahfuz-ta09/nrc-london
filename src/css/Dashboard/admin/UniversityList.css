@@ -7,6 +7,7 @@
     display: flex;
     align-items: center;
     justify-content: space-between;
+    position: relative;
     padding: 0 20px;
 }
 
@@ -22,10 +23,37 @@
     border: none;
     color: #fff;
     font-size: 20px;
-
     &:hover{
         scale: 1.5;
     }
+}
+
+.uni-filter{
+    position: absolute;
+    background: #011e27;
+    width:auto;
+    max-height: 200px;
+    right: 80px;
+    overflow-y: scroll;
+    scrollbar-width: 5px ;
+    display: grid;
+    gap:3px;
+    transition: .3s ease-in-out;
+    box-shadow: 3px 3px 20px #000;
+}
+
+.uni-filter .option{
+    padding: 3px 5px;
+}
+
+.show-uni-option{
+    visibility: visible;
+    padding: 10px;
+    transition: .3s ease-in-out all;
+}
+
+.hide-uni-option{
+    visibility: hidden;
 }
 
 
