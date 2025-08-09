@@ -86,7 +86,7 @@ export const {
     useGetSingleUniversityQuery,
     useGetUniversityQuery,
     useUpdateUniversityMutation,
-    // useGetAllUniByCountryQuery,
+    useGetAllUniByCountryQuery,
 
 
 } = universityApi

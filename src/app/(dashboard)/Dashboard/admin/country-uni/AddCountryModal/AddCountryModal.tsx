@@ -54,7 +54,7 @@ const AddCountryModal = ({addCounty,setAddCountry}: ModalProps) => {
             if(addCounty?.action==="add")res = await createCountryList(form_data)
             if(addCounty?.action==="edit" && addCounty?.id)res = await editCountryList({data: form_data,id:addCounty?.id})
             
-            // console.log(res)
+            
             if(res?.data?.data?.acknowledged){
                 toast.success("Operation successful!!!")
                 setAddCountry({
