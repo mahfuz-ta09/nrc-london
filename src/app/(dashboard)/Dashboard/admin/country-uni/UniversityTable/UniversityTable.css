@@ -1,0 +1,39 @@
+.university-table{
+    width: 90%;
+    margin: 100px auto 0;
+}
+
+.university-table h1{
+    color: #fff;
+    font-size: 25px;
+    margin-bottom: 10px;
+}
+
+.table-container{
+    width: 100%;
+    overflow: auto;
+}
+
+#customers {
+  font-family: Arial, Helvetica, sans-serif;
+  border-collapse: collapse;
+  width: 100%;
+}
+
+#customers td, #customers th {
+  border: 1px solid #ddd;
+  padding: 8px;
+  color: #fff;
+}
+
+#customers tr:hover {
+    background-color: #000000;
+}
+
+#customers th {
+    padding-top: 12px;
+    padding-bottom: 12px;
+    text-align: left;
+    background-color: #04AA6D;
+    color: white;
+}

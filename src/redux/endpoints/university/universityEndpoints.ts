@@ -59,7 +59,6 @@ const universityApi = baseApi.injectEndpoints({
             invalidatesTags: ["university"]
         }),
 
-
         updateUniversity: build.mutation<any, { data: any, id: string }>({
             query: ({ data , id }) => ({
               url         : `/university/update/${id}`,
@@ -69,6 +68,12 @@ const universityApi = baseApi.injectEndpoints({
             }),
             invalidatesTags: ["university"]
         }),
+        
+
+
+
+
+// all new 
 
     }),
     overrideExisting: true,
@@ -81,5 +86,7 @@ export const {
     useGetSingleUniversityQuery,
     useGetUniversityQuery,
     useUpdateUniversityMutation,
-    useGetAllUniByCountryQuery
+    // useGetAllUniByCountryQuery,
+
+
 } = universityApi

@@ -1,0 +1,116 @@
+'use client'
+import { useCreateCountryListMutation, useEditCountryListMutation } from '@/redux/endpoints/countryBaseUni/countryBaseUniversity'
+import './AddCountryModal.css'
+// import Loader from '@/component/shared/Loader/Loader'
+import { useForm, SubmitHandler } from "react-hook-form"
+import { toast } from 'react-toastify'
+
+type ModalProps = {
+    addCounty:{
+        action:string,
+        id:string,
+        isOPen: boolean,
+        name: string
+    },
+    setAddCountry: any
+}
+
+type CountryData = {
+    countryFlag: FileList | null,
+    famousFile: FileList | null,
+    country: string,
+    serial: number,
+    countryFull: string
+}
+
+
+const AddCountryModal = ({addCounty,setAddCountry}: ModalProps) => {
+    const {
+            register,
+            handleSubmit,
+            reset,
+            formState: { errors },
+        } = useForm<CountryData>()
+    const [ createCountryList , { isLoading: creationLoader } ] = useCreateCountryListMutation()
+    const [ editCountryList , { isLoading: editLoader } ] = useEditCountryListMutation()
+
+
+    const onSubmit: SubmitHandler<CountryData> = async(data: CountryData) => {
+        try{
+            let res
+            var form_data = new FormData()
+            
+            Object.entries(data).forEach(([key, value]) => {
+                if(value instanceof FileList) {
+                    for (let i = 0; i < value.length; i++) {
+                        form_data.append(key, value[i]);
+                    }
+                }else if (value !== undefined && value !== null) {
+                    form_data.append(key, String(value));
+                }
+            })
+
+
+            if(addCounty?.action==="add")res = await createCountryList(form_data)
+            if(addCounty?.action==="edit" && addCounty?.id)res = await editCountryList({data: form_data,id:addCounty?.id})
+            
+            // console.log(res)
+            if(res?.data?.data?.acknowledged){
+                toast.success("Operation successful!!!")
+                setAddCountry({
+                    isOpen: false,
+                    id:"",
+                    name:''
+                })
+                reset()
+            }else{
+                toast.error(res?.data?.message || "Failed!")
+            }
+        }catch(err){
+            console.log(err)
+        }
+    }
+    console.log( addCounty)
+    return (
+        <div className={addCounty?.isOPen? 'modal-container openmoda-container' :'modal-container'}>
+            <div className='modal-body'>
+                <h1>{addCounty?.action} country to list</h1>
+                <h1>{addCounty?.name}</h1>
+                    
+                <button onClick={()=>setAddCountry((prev:any) => ({...prev ,id:'',name:'', isOPen: false , action:""}))} className="cancel-btn">X</button>
+                
+                <form  onSubmit={handleSubmit(onSubmit)} className='modal-from'>
+                    <div className='input-container'>
+                        <label htmlFor="">Insert country name in short</label>
+                        <input type='text' {...register("country")}/>
+                    </div>
+                    
+                    <div className='input-container'>
+                        <label htmlFor="">Insert country name</label>
+                        <input type='text' {...register("countryFull")}/>
+                    </div>
+                    
+                    <div className='input-container'>
+                        <label htmlFor="serial">Enter the serial you want to show in fron page</label>
+                        <input type='number' min={1} {...register("serial")}/>
+                    </div>
+                    
+                    <div className='input-container'>
+                        <label htmlFor="">Add Country flag</label>
+                        <input type='file' {...register("countryFlag")}/>
+                    </div>
+
+                    <div className='input-container'>
+                        <label htmlFor="serial">Add an image of the country</label>
+                        <input type='file' {...register("famousFile")}/>
+                    </div>
+                    
+                    {(creationLoader||editLoader) ? 'Loading...' :<button type='submit' className='modal-sbmt-btn'>submit</button>}
+                </form>
+
+            </div>
+        </div>
+    )
+}
+
+export default AddCountryModal

@@ -1,0 +1,204 @@
+.modal-container {
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 100;
+    background: rgba(0, 0, 0, 0.7);
+    height: 100%;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    visibility: hidden;
+    opacity: 0;
+    transition: opacity 0.4s ease, visibility 0.4s ease;
+}
+
+
+.openmoda-container {
+    visibility: visible;
+    opacity: 1;
+}
+
+.modal-body {
+    overflow: scroll;
+    width: 700px;
+    max-height: 80vh;
+    background: #ffffff;
+    border-radius: 4px;
+    padding: 2rem;
+    margin: 2rem auto;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+    transform: scale(0.85);
+    opacity: 0;
+    transition: transform 0.4s ease, opacity 0.4s ease;
+    scrollbar-width: none;
+}
+
+.openmoda-container .modal-body {
+    transform: scale(1);
+    opacity: 1;
+}
+
+.closemoda-container .modal-body {
+    transform: scale(0.85);
+    opacity: 0;
+}
+
+.modal-body::-webkit-scrollbar {
+    display: none;
+}
+
+.modal-body h1{
+    font-size: 20px;
+    font-weight: 700;
+    text-align: center;
+    margin-bottom: 30px;
+}
+
+
+.modal-from {
+    width: 100%;
+    position: relative;
+}
+.cancel-btn{
+    position: absolute;
+    right:10px;
+    top:  10px;
+    font-size: 25px;
+    color: #000;
+    font-weight: 900;
+    background: transparent;
+    border: none;
+}
+
+.input-container {
+    margin-bottom: 1.5rem;
+    position: relative;
+}
+
+.input-container:last-child {
+    margin-bottom: 0;
+}
+
+.input-container label {
+    display: block;
+    margin-bottom: 0.5rem;
+    font-weight: 600;
+    color: #374151;
+    font-size: 0.875rem;
+    letter-spacing: 0.025em;
+}
+
+
+.input-container input {
+    width: 100%;
+    padding: 0.75rem 1rem;
+    border: 2px solid #e5e7eb;
+    border-radius: 8px;
+    font-size: 1rem;
+    transition: all 0.2s ease-in-out;
+    background-color: #ffffff;
+    box-sizing: border-box;
+}
+
+
+.input-container input[type="text"] {
+    font-family: inherit;
+}
+
+
+.input-container input[type="file"] {
+    padding: 0.5rem;
+    cursor: pointer;
+    background-color: #f9fafb;
+    border-style: dashed;
+}
+
+.input-container input[type="file"]::-webkit-file-upload-button {
+    background: #004a62;
+    color: white;
+    border: none;
+    padding: 0.5rem 1rem;
+    border-radius: 6px;
+    cursor: pointer;
+    font-weight: 500;
+    margin-right: 0.75rem;
+    transition: background-color 0.2s ease;
+}
+
+.input-container input[type="file"]::-webkit-file-upload-button:hover {
+    background: #003c50;
+}
+
+
+.input-container input:focus {
+    outline: none;
+    border-color: #004157;
+    box-shadow: 0 0 0 3px rgba(79, 70, 229, 0.1);
+}
+
+.input-container input[type="file"]:focus {
+    border-color: #004a62;
+    background-color: #f0f0ff;
+}
+
+
+.input-container input:hover:not(:focus) {
+    border-color: #d1d5db;
+}
+
+.input-container input[type="file"]:hover:not(:focus) {
+    background-color: #f3f4f6;
+    border-color: #d1d5db;
+}
+
+/* Placeholder Styling */
+.input-container input::placeholder {
+    color: #9ca3af;
+    font-style: italic;
+}
+
+/* Invalid/Error States */
+.input-container input:invalid {
+    border-color: #ef4444;
+}
+
+.input-container input:invalid:focus {
+    border-color: #ef4444;
+    box-shadow: 0 0 0 3px rgba(239, 68, 68, 0.1);
+}
+
+
+@media (max-width: 640px) {
+    .modal-body{
+        width: 95%;
+        margin: auto ;
+
+    }
+
+    .modal-body form {
+        margin: 1rem 0;
+        border-radius: 0px;
+    }
+  
+    .input-container {
+        margin-bottom: 1.25rem;
+    }
+  
+    .input-container input {
+        padding: 0.875rem;
+    }
+}
+
+
+.modal-body form .modal-sbmt-btn{
+    background: #004a62;
+    color: white;
+    border: none;
+    padding: 0.8rem 2rem;
+    border-radius: 6px;
+    cursor: pointer;
+    font-weight: 500;
+    margin-right: 0.75rem;
+}

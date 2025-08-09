@@ -1,0 +1,21 @@
+.university-content{
+    margin: 10px;
+}
+
+.university-content-header{
+    font-size: 15px;
+    color: #fff;
+    font-weight: 300;
+}
+.university-content-btn{
+    padding: 4px 9px;
+    border-radius: 3px;
+    margin-top: 10px;
+    border: 1px solid #000;
+    box-shadow: 1px 1px 10px #000;
+}
+
+.university-content-btn:hover{
+    scale: .9;
+    box-shadow: 1px 1px 10px rgb(0, 0, 0,0,6);
+}
