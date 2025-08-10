@@ -33,7 +33,10 @@
     font-size: 22px;
     z-index: 1;
 }
-
+.loading-msg{
+    position: absolute;
+    color: aqua;
+}
 .delete-btn:hover{
     scale:1.3;
 }

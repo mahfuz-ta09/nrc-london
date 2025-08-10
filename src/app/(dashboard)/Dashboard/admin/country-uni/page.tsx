@@ -6,15 +6,12 @@ import { Suspense } from 'react'
 import Loader from '@/component/shared/Loader/Loader'
 import CountryLists from './CountryCardSlider/CountryLists'
 import UniversityTable from './UniversityTable/UniversityTable'
+import AddUniModal from './AddUniModal/AddUniModal'
 
 
 const page = () => {
-    const [addCounty,setAddCountry] = useState({
-        action:"",
-        id:'',
-        isOPen: false,
-        name:''
-    })
+    const [addCounty,setAddCountry] = useState({action:"",id:'',isOPen: false,name:''})
+    const [addUni,setAddUni] = useState({action:"",id:'',isOPen: false,name:''})
     
     return (
       <div className='university-content'>
@@ -32,10 +29,21 @@ const page = () => {
         </Suspense>
 
 
-        <AddCountryModal 
-            setAddCountry={setAddCountry}
-            addCounty={addCounty}
-        />
+        <Suspense fallback={<Loader />}>
+            <AddCountryModal 
+                setAddCountry={setAddCountry}
+                addCounty={addCounty}
+            />
+        </Suspense>
+        
+
+        <Suspense fallback={<Loader />}>
+            <AddUniModal 
+                setAddUni={setAddUni}
+                addUni={addUni}
+            />
+        </Suspense>
+        
       </div>
     )
 }

@@ -15,7 +15,6 @@
 }
 
 #customers {
-  font-family: Arial, Helvetica, sans-serif;
   border-collapse: collapse;
   width: 100%;
 }
@@ -27,13 +26,29 @@
 }
 
 #customers tr:hover {
-    background-color: #000000;
+    background-color: rgb(0, 0, 0,0.2);
 }
 
 #customers th {
     padding-top: 12px;
     padding-bottom: 12px;
     text-align: left;
-    background-color: #04AA6D;
+    background-color: #003f28;
     color: white;
+}
+
+
+.University-edit-btn{
+    border :1px solid #fff;
+    border-radius: 50%;
+    width: 30px;
+    height: 30px;
+    background: transparent;
+    color: #fff;
+    font-weight: 700;
+
+    &:hover{
+        transition: .5s ease;
+        scale: .85;
+    }
 }

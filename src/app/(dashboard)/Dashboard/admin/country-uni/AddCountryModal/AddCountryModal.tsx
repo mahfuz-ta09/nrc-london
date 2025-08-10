@@ -70,7 +70,8 @@ const AddCountryModal = ({addCounty,setAddCountry}: ModalProps) => {
             console.log(err)
         }
     }
-    console.log( addCounty)
+
+    
     return (
         <div className={addCounty?.isOPen? 'modal-container openmoda-container' :'modal-container'}>
             <div className='modal-body'>

@@ -73,6 +73,28 @@ const universityApi = baseApi.injectEndpoints({
 
 
 
+
+
+        addUniversity: build.mutation<any, { data: any, id: string }>({
+            query: ({data,id}) => ({
+              url         : `/university/add/${id}`,
+              method      : "POST",
+              headers: {
+                  'Content-Type': 'multipart/form-data',
+              },
+              data
+            }),
+            invalidatesTags: ["country-uni"]
+        }),
+
+        getUniversityList: build.query<any, { all?: string , country?: string , page?: string , total?: string }>({
+            query: ({ all, country, page, total }) => ({
+                url: `/university`,
+                method: 'GET',
+                params: { all, country, page, total }
+            }),
+            providesTags: ["country-uni"]
+        }),
 // all new 
 
     }),
@@ -89,4 +111,6 @@ export const {
     useGetAllUniByCountryQuery,
 
 
+    useAddUniversityMutation,
+    useGetUniversityListQuery
 } = universityApi

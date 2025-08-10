@@ -16,6 +16,15 @@ const universityApi = baseApi.injectEndpoints({
         }),
 
 
+        deleteCountry: build.mutation<any, string>({
+          query: (id:string) =>({
+            url    : `/country/base/delete/${id}`,
+            method : 'DELETE',
+          }),
+          invalidatesTags: ["country-uni"]
+        }),
+
+
         editCountryList: build.mutation<any, { data: any, id: string }>({
             query: ({ data , id }) => ({
               url         : `/country/base/edit/${id}`,
@@ -37,6 +46,14 @@ const universityApi = baseApi.injectEndpoints({
             providesTags: ["country-uni"]
         }),
 
+        getAllCountryName: build.query<any, void>({
+            query: () =>({
+                url    : '/country/base/country',
+                method : 'GET'
+            }),
+            providesTags: ["country-uni"]
+        }),
+
     }),
     overrideExisting: true,
 })
@@ -47,5 +64,7 @@ const universityApi = baseApi.injectEndpoints({
 export const {
     useCreateCountryListMutation,
     useEditCountryListMutation,
-    useGetAllCountryBaseQuery
+    useGetAllCountryBaseQuery,
+    useDeleteCountryMutation,
+    useGetAllCountryNameQuery
 } = universityApi

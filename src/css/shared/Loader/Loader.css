@@ -4,11 +4,12 @@
     display: flex;
     align-items: center;
     justify-content: center;
-    background: rgba(0, 0, 0);
+    flex-direction: column;
+    background: rgba(0, 0, 0,0.3);
     position: fixed;
     top: 0;
     left: 0;
-    z-index: 999999999;
+    z-index: 99999;
 }
 
 .spinner {
