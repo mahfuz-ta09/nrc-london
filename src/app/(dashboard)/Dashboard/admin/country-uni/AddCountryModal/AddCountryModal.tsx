@@ -20,9 +20,16 @@ type CountryData = {
     famousFile: FileList | null,
     country: string,
     serial: number,
-    countryFull: string
+    countryFull: string,
+    currency:string
 }
-
+const countryCurrencyMap = {
+  US: "$",
+  BD: "৳",
+  IN: "₹",
+  UK: "£",
+  EU: "€"
+};
 
 const AddCountryModal = ({addCounty,setAddCountry}: ModalProps) => {
     const {
@@ -90,7 +97,16 @@ const AddCountryModal = ({addCounty,setAddCountry}: ModalProps) => {
                         <label htmlFor="">Insert country name</label>
                         <input type='text' {...register("countryFull")}/>
                     </div>
-                    
+                    <div className="input-container">
+                        <label htmlFor="">Select currency</label>
+                        <select {...register("currency")}>
+                        {Object.entries(countryCurrencyMap).map(([code, sign]) => (
+                            <option key={code} value={sign}>
+                            {code} ({sign})
+                            </option>
+                        ))}
+                        </select>
+                    </div>
                     <div className='input-container'>
                         <label htmlFor="serial">Enter the serial you want to show in fron page</label>
                         <input type='number' min={1} {...register("serial")}/>

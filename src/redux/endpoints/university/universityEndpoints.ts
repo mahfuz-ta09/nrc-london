@@ -75,10 +75,25 @@ const universityApi = baseApi.injectEndpoints({
 
 
 
+
+
         addUniversity: build.mutation<any, { data: any, id: string }>({
             query: ({data,id}) => ({
               url         : `/university/add/${id}`,
               method      : "POST",
+              headers: {
+                  'Content-Type': 'multipart/form-data',
+              },
+              data
+            }),
+            invalidatesTags: ["country-uni"]
+        }),
+
+
+        editUniversity: build.mutation<any, { data: any, id: string , universityName: string}>({
+            query: ({data,id,universityName}) => ({
+              url         : `/university/edit/${id}/${universityName}`,
+              method      : "PATCH",
               headers: {
                   'Content-Type': 'multipart/form-data',
               },
@@ -95,7 +110,14 @@ const universityApi = baseApi.injectEndpoints({
             }),
             providesTags: ["country-uni"]
         }),
-// all new 
+
+        deleteUni : build.mutation<any, { id: string, name: string }>({
+            query: ({ id , name }) => ({
+              url: `/university/remove/${id}/${name}`,
+              method: "DELETE",
+            }),
+            invalidatesTags: ["country-uni"]
+        }),
 
     }),
     overrideExisting: true,
@@ -111,6 +133,9 @@ export const {
     useGetAllUniByCountryQuery,
 
 
+
     useAddUniversityMutation,
-    useGetUniversityListQuery
+    useGetUniversityListQuery,
+    useEditUniversityMutation,
+    useDeleteUniMutation
 } = universityApi

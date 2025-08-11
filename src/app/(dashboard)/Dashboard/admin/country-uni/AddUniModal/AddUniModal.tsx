@@ -2,7 +2,7 @@ import { useState } from 'react'
 import './AddUniModal.css'
 import { useForm, SubmitHandler } from "react-hook-form"
 import { toast } from 'react-toastify'
-import { useAddUniversityMutation } from '@/redux/endpoints/university/universityEndpoints'
+import { useAddUniversityMutation, useEditUniversityMutation } from '@/redux/endpoints/university/universityEndpoints'
 import Loader from '@/component/shared/Loader/Loader'
 
 type ModalProps = {
@@ -27,23 +27,26 @@ type UniData = {
     aboutUni: any
 }
 
-const testOptions = ["IELTS", "OITC", "TOEFL", "DUOLINGO"]
-const qualificationOptions = ["master", "bsc", "phd", "diploma","experience"]
+const testOptions = ["IELTS", "TOEFL", "DUOLINGO","GRE","PTE","OET","GMAT","SAT","ACT","APT"]
+const qualificationOptions = ["master", "bsc", "phd", "diploma","under grad","experience"]
 
 const AddUniModal = ({ addUni, setAddUni }: ModalProps) => {
-    const [addUniversity , { isLoading}] = useAddUniversityMutation()
+    const [addUniversity , { isLoading: createLoading }] = useAddUniversityMutation()
+    const [editUniversity , { isLoading: editLoading}] = useEditUniversityMutation()
+
+
     const { register, handleSubmit, reset, setValue } = useForm<UniData>({
         defaultValues: {
             englishProf: {},
             qualifications: {}
         }
     })
-
+    
     const [selectedTests, setSelectedTests] = useState<string[]>([])
     const [selectedQualifications, setSelectedQualifications] = useState<string[]>([])
 
 
-    if(isLoading){
+    if(createLoading ||editLoading ){
         return <Loader />
     }
 
@@ -57,20 +60,21 @@ const AddUniModal = ({ addUni, setAddUni }: ModalProps) => {
                     for (let i = 0; i < value.length; i++) {
                         form_data.append(key, value[i]);
                     }
-                }else if (typeof value === "object" && value !== null) {
+                } else if (typeof value === "object" && value !== null) {
                     Object.entries(value).forEach(([subKey, subValue]) => {
-                        if (subValue !== undefined && subValue !== null) {
-                            form_data.append(`${key}[${subKey}]`, String(subValue));
+                        if (subValue !== undefined && subValue !== null && subValue !== "" && !Number.isNaN(subValue)) {
+                        form_data.append(`${key}[${subKey}]`, String(subValue));
                         }
                     });
-                }else if (value !== undefined && value !== null) {
+                } else if (value !== undefined && value !== null && value !== "" && !Number.isNaN(value)) {
                     form_data.append(key, String(value));
                 }
+
             });
 
             
             if(addUni?.action==="add")res = await addUniversity({data:form_data,id: addUni?.id})
-            // if(addUni?.action==="edit" && addUni?.id)res = await editCountryList({data: form_data,id:addCounty?.id})
+            if(addUni?.action==="edit")res = await editUniversity({data: form_data,id:addUni?.id, universityName:addUni?.name})
             
             
             if(res?.data?.data?.acknowledged){
@@ -82,7 +86,7 @@ const AddUniModal = ({ addUni, setAddUni }: ModalProps) => {
                 })
                 reset()
             }else{
-                toast.error(res?.data?.message || "Failed!")
+                toast.error(res?.data?.message || "Failed! to operate")
             }
         }catch(err){
             toast.error("Something went wrong!")
@@ -112,7 +116,7 @@ const AddUniModal = ({ addUni, setAddUni }: ModalProps) => {
     return (
         <div className={addUni?.isOPen ? 'modal-container openmoda-container' : 'modal-container'}>
             <div className='modal-body'>
-                <h1>{addUni?.action} university to {addUni?.name}</h1>
+                <h1 style={{color:"black"}}>{addUni?.action} university to {addUni?.name}</h1>
 
                 <button
                     onClick={() => setAddUni((prev:any) => ({ ...prev, id: '', name: '', isOPen: false, action: "" }))}
@@ -123,11 +127,12 @@ const AddUniModal = ({ addUni, setAddUni }: ModalProps) => {
 
                 <form onSubmit={handleSubmit(onSubmit)} className='modal-from'>
                     <div className='input-container'>
-                        <label>University name (short)</label>
+                        <label>University name</label>
                         <input type='text' {...register("universityName")} />
                     </div>
 
                     <div className='input-container'>
+                        <label>you can use lowest or highest</label>
                         <label>Tuition fee (lowest)</label>
                         <input type='number' min={0} {...register("lowFee", { valueAsNumber: true })} />
                         <label style={{ marginTop: "10px" }}>Tuition fee (highest)</label>
@@ -159,6 +164,7 @@ const AddUniModal = ({ addUni, setAddUni }: ModalProps) => {
                                 <label>{test} Score:</label>
                                 <input
                                     type="number"
+                                    step="any"
                                     {...register(`englishProf.${test}`, { valueAsNumber: true })}
                                     placeholder={`Enter ${test} score`}
                                     style={{ padding: '4px', marginLeft: '10px' }}
