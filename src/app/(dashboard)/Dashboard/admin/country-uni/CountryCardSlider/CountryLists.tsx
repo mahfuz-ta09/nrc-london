@@ -15,12 +15,19 @@ const CountryLists = () => {
     const { data, isLoading } = useGetAllCountryBaseQuery()
     const [deleteCountry, { isLoading: deleteLoading }] = useDeleteCountryMutation()
     
-    // Slider state
+    
+    useEffect(() => {
+        if (sliderRef.current) {
+            sliderRef.current.style.cursor = 'grab'
+        }
+    }, [])
+
     const sliderRef = useRef<HTMLDivElement>(null)
     const [isDragging, setIsDragging] = useState(false)
     const [startX, setStartX] = useState(0)
     const [scrollLeft, setScrollLeft] = useState(0)
 
+    // Move the loading check after all hooks
     if (isLoading) {
         return <Loader />
     }
@@ -43,7 +50,7 @@ const CountryLists = () => {
         }
     }
 
-    // Mouse drag handlers
+
     const handleMouseDown = (e: React.MouseEvent) => {
         if (!sliderRef.current) return
         setIsDragging(true)
@@ -104,12 +111,6 @@ const CountryLists = () => {
         }
         callback()
     }
-
-    useEffect(() => {
-        if (sliderRef.current) {
-            sliderRef.current.style.cursor = 'grab'
-        }
-    }, [])
 
     return (
         <div className='country-slider-container'>

@@ -1,3 +1,4 @@
+'use client'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import './UniversityTable.css'
 import { faAdd, faList, faPen, faTrash } from '@fortawesome/free-solid-svg-icons'
