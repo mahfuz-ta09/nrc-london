@@ -56,7 +56,12 @@ const UniversityTable = () => {
             toast.error("Something went wrong!")
         }
     }
-    
+    const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>) => {
+        setPara({
+        ...para,
+        [e.target.name]: e.target.value
+        });
+    };
 
     return (
         <div className='university-table'>
@@ -69,6 +74,30 @@ const UniversityTable = () => {
                     {single?.country}
                 </button>)
             }
+            <div style={{ display: "flex", gap: "10px", marginBottom: "20px" }}>
+                <input
+                type="text"
+                name="all"
+                placeholder="Search by name"
+                value={para.all}
+                onChange={handleChange}
+                />
+                <input
+                type="number"
+                name="page"
+                placeholder="Page"
+                value={para.page}
+                onChange={handleChange}
+                />
+                <input
+                type="number"
+                name="total"
+                placeholder="Rows per page"
+                value={para.total}
+                onChange={handleChange}
+                />
+            </div>
+
             <div className='table-container'>
                 <table id="customers">
                     <thead>
@@ -80,6 +109,7 @@ const UniversityTable = () => {
                             <th>initital deposite</th>
                             <th>required english</th>
                             <th>required qualification</th>
+                            <th>details</th>
                             <th>add subject</th>
                             <th>all subject</th>
                             <th>delete university</th>
@@ -108,6 +138,7 @@ const UniversityTable = () => {
                                         </div>
                                     ))}
                                 </td>
+                                <td>{uni?.aboutUni}</td>
                                 <td><button style={{background:"green"}}  className='University-edit-btn'><FontAwesomeIcon icon={faAdd}/></button></td>
                                 <td><button style={{background:"teal"}}  className='University-edit-btn'><FontAwesomeIcon icon={faList}/></button></td>
                                 <td><button style={{background:"red"}} onClick={()=>handleDelete(uni?.countryId,uni?.universityName)} className='University-edit-btn'><FontAwesomeIcon icon={faTrash}/></button></td>
