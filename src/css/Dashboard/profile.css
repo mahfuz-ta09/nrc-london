@@ -1,11 +1,10 @@
 .profile-card {
     display: flex;
-    align-items: center;
-    justify-content: center;
     background: #e7e7e7;
     border: 1px solid #ddd;
     border-radius: 10px;
     width: 900px;
+    height: auto;
     top: 50%;
     left: 50%;
     transform: translate(-50%,-50%);
@@ -173,6 +172,12 @@ hr {
     .profile-card {
         width: 95%;
         flex-direction: column;
+    }
+    .profile-image img {
+        width: 100%;
+        max-width: 250px;
+        object-fit: cover;
+        border-radius: 5px;
     }
     
 }
