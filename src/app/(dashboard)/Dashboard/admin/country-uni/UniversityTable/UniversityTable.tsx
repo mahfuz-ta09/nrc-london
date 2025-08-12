@@ -65,38 +65,63 @@ const UniversityTable = () => {
 
     return (
         <div className='university-table'>
-            <h1>University: {para?.country?para?.country:'all'} / total:{data?.meta?.totalCount}</h1>
+            <h1>university: {para?.country?para?.country:'all'} / total:{data?.meta?.totalCount}</h1>
             {
-                country?.data?.map((single:any)=><button
+                country?.data?.map((single:any)=><button style={{
+                        padding: "5px 9px",
+                        border: "1px solid #ccc",
+                        borderRadius: "6px",
+                        outline: "none",
+                        margin:"10px 2px 10px 0px",
+                        fontSize: "14px",
+                        flex: "1"}}
                     onClick={() => setPara(prev => ({ ...prev, all: '', country: single.country, page: '1', total: '10' }))}
                     key={single?._id}
                 >
                     {single?.country}
                 </button>)
             }
-            <div style={{ display: "flex", gap: "10px", marginBottom: "20px" }}>
+            <div
+                style={{
+                    display: "flex",
+                    gap: "12px",
+                    marginBottom: "20px",
+                    alignItems: "center",
+                    flexWrap: "wrap"
+                }}
+                >
                 <input
-                type="text"
-                name="all"
-                placeholder="Search by name"
-                value={para.all}
-                onChange={handleChange}
+                    type="number"
+                    name="page"
+                    placeholder="Page"
+                    value={para.page}
+                    onChange={handleChange}
+                    style={{
+                    padding: "8px 12px",
+                    border: "1px solid #ccc",
+                    borderRadius: "6px",
+                    outline: "none",
+                    fontSize: "14px",
+                    width: "80px"
+                    }}
                 />
                 <input
-                type="number"
-                name="page"
-                placeholder="Page"
-                value={para.page}
-                onChange={handleChange}
-                />
-                <input
-                type="number"
-                name="total"
-                placeholder="Rows per page"
-                value={para.total}
-                onChange={handleChange}
+                    type="number"
+                    name="total"
+                    placeholder="Rows per page"
+                    value={para.total}
+                    onChange={handleChange}
+                    style={{
+                    padding: "8px 12px",
+                    border: "1px solid #ccc",
+                    borderRadius: "6px",
+                    outline: "none",
+                    fontSize: "14px",
+                    width: "120px"
+                    }}
                 />
             </div>
+
 
             <div className='table-container'>
                 <table id="customers">
