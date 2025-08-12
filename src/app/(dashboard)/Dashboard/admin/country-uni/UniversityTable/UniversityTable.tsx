@@ -8,6 +8,8 @@ import { Suspense, useState } from 'react'
 import { useGetAllCountryNameQuery } from '@/redux/endpoints/countryBaseUni/countryBaseUniversity'
 import AddUniModal from '../AddUniModal/AddUniModal'
 import { toast } from 'react-toastify'
+import SubjectControllModal from './SubjectControllModal'
+import SubjectListModal from './SubjectListModal'
 
 
 type paraType = {
@@ -21,6 +23,8 @@ const UniversityTable = () => {
     const {data:country, isLoading: nameLoading}= useGetAllCountryNameQuery()
     const [deleteUni , { isLoading: deleteLoading }] = useDeleteUniMutation()
     const [addUni,setAddUni] = useState({action:"",id:'',isOPen: false,name:''})
+    const [listSubject,setListSubject] = useState({action:"",id:'',isOPen: false,name:''})
+    const [addSub,setAddSub] = useState({action:"",id:'',isOPen: false,name:''})
     const [para,setPara] = useState<paraType>({all:'',country:'',page:'1',total:'10'})
     const { data , isLoading } = useGetUniversityListQuery({
         all: para.all || "",
@@ -56,7 +60,7 @@ const UniversityTable = () => {
             toast.error("Something went wrong!")
         }
     }
-    
+
     const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>) => {
         setPara({
         ...para,
@@ -152,16 +156,17 @@ const UniversityTable = () => {
                                     ))}
                                 </td>
                                 <td>{uni?.aboutUni}</td>
-                                <td><button style={{background:"green"}}  className='University-edit-btn'><FontAwesomeIcon icon={faAdd}/></button></td>
-                                <td><button style={{background:"teal"}}  className='University-edit-btn'><FontAwesomeIcon icon={faList}/></button></td>
+                                <td><button style={{background:"green"}} onClick={() => setAddSub(prev => ({ ...prev , isOPen: true, name:`${uni?.universityName}`, action: "add"}))} className='University-edit-btn'><FontAwesomeIcon icon={faAdd}/></button></td>
+                                <td><button style={{background:"teal"}} onClick={() => setListSubject(prev => ({ ...prev , isOPen: true, name:`${uni?.universityName}`, action: "add"}))} className='University-edit-btn'><FontAwesomeIcon icon={faList}/></button></td>
                                 <td><button style={{background:"red"}} onClick={()=>handleDelete(uni?.countryId,uni?.universityName)} className='University-edit-btn'><FontAwesomeIcon icon={faTrash}/></button></td>
-                                <td><button style={{background:"green"}}  onClick={() => setAddUni(prev => ({ ...prev , isOPen: true, name:`${uni?.universityName}`, id:`${uni?.countryId}` , action: "edit"}))} className='University-edit-btn'><FontAwesomeIcon icon={faPen}/></button></td>
+                                <td><button style={{background:"green"}} onClick={() => setAddUni(prev => ({ ...prev , isOPen: true, name:`${uni?.universityName}`, id:`${uni?.countryId}` , action: "edit"}))} className='University-edit-btn'><FontAwesomeIcon icon={faPen}/></button></td>
                             </tr>
                         )}
                     </tbody>
                 </table>
 
             </div>
+            
             <div
                 style={{
                     display: "flex",
@@ -212,6 +217,21 @@ const UniversityTable = () => {
                     addUni={addUni}
                 />
             </Suspense>
+
+            <Suspense fallback={<Loader />}>
+                <SubjectControllModal
+                    setAddSub={setAddSub}
+                    addSub={addSub}
+                />
+            </Suspense>
+
+            <Suspense fallback={<Loader />}>
+                <SubjectListModal
+                    setListSubject={setListSubject}
+                    listSubject={listSubject}
+                />
+            </Suspense>
+
         </div>
     )
 }

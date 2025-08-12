@@ -117,7 +117,8 @@ const AddUniModal = ({ addUni, setAddUni }: ModalProps) => {
     return (
         <div className={addUni?.isOPen ? 'modal-container openmoda-container' : 'modal-container'}>
             <div className='modal-body'>
-                <h1 style={{color:"black"}}>{addUni?.action} university to {addUni?.name}</h1>
+                {addUni?.action==='add'?<h1 style={{color:"black"}}>{addUni?.action} university to {addUni?.name}</h1>
+                :<h1 style={{color:"black"}}>{addUni?.action} {addUni?.name}</h1>}
 
                 <button
                     onClick={() => setAddUni((prev:any) => ({ ...prev, id: '', name: '', isOPen: false, action: "" }))}
