@@ -25,9 +25,6 @@ const Profile = ({profileData , setProfileData}:{profileData:boolean,setProfileD
 
     const onSubmit: SubmitHandler<IFormInput> = async(data) => {
         try {
-            const isConfirmed = window.confirm(`Are you sure you want to delete?`)
-            if (!isConfirmed) return; 
-            
             const formData = convertFormData(data)
             const res = await updateUserProfile({ data: formData , id: Uid })
             if(res?.data?.data?.modifiedCount === 1) {

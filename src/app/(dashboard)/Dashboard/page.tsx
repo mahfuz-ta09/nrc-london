@@ -23,6 +23,9 @@ const page = () => {
 
     const handleDelete = async(Uid:string) => {
         try {
+            const isConfirmed = window.confirm(`Are you sure you want to delete?`)
+            if (!isConfirmed) return; 
+            
             const res = await deleteReview(Uid)
             if(res?.data?.data?.modifiedCount === 1) {
                 toast.success("Comment deleted successfully")
