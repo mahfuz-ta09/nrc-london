@@ -1,183 +1,105 @@
-.country-slider-container {
+.country-slider-container{
     width: 90%;
-    overflow: hidden; /* Changed from overflow-x: scroll to hidden for drag functionality */
+    overflow-x: scroll;
     margin: 10px auto;
-    position: relative; /* Added for proper positioning */
-    cursor: grab; /* Added grab cursor */
+    display: flex;
 }
 
-.country-slider-container:active {
-    cursor: grabbing; /* Added grabbing cursor when active */
-}
-
-.country-card-slider {
+.country-card-slider{
     display: flex;
     align-items: center;
     justify-content: start;
     gap: 10px;
     padding: 10px 0;
-    transition: scroll-behavior 0.2s ease; /* Added smooth transition */
-    overflow: hidden; /* Added to prevent default scrollbar */
-    scroll-behavior: smooth; /* Added for smooth scrolling */
 }
 
-.country-card {
+.country-card{
     width: 250px;
     height: 200px;
-    border: 1px solid rgba(0, 0, 0, 0.5);
-    box-shadow: 3px 3px 15px rgba(0, 0, 0, 0.5);
+    border: 1px solid rgba(0,0,0,0.5);
+    box-shadow: 3px 3px 15px rgba(0,0,0,0.5);
     position: relative;
     border-radius: 3px;
     user-select: none;
-    flex-shrink: 0; /* Added to prevent cards from shrinking */
-    transition: transform 0.2s ease, box-shadow 0.2s ease; /* Added smooth hover transition */
 }
 
-.country-card:hover {
-    transform: translateY(-2px); /* Added subtle lift effect */
-    box-shadow: 5px 5px 20px rgba(0, 0, 0, 0.7); /* Enhanced hover shadow */
-}
-
-.delete-btn {
+.delete-btn{
     position: absolute;
     top: 10px;
     left: 10px;
     color: #fff;
-    background: rgba(255, 0, 0, 0.7); /* Added semi-transparent red background */
+    background: transparent;
     border: none;
     font-size: 22px;
     z-index: 1;
-    border-radius: 50%; /* Made circular */
-    width: 35px; /* Added fixed width */
-    height: 35px; /* Added fixed height */
-    display: flex; /* Added for centering icon */
-    align-items: center; /* Center icon vertically */
-    justify-content: center; /* Center icon horizontally */
-    transition: all 0.2s ease; /* Added smooth transition */
-    cursor: pointer; /* Added pointer cursor */
 }
-
-.loading-msg {
+.loading-msg{
     position: absolute;
     color: aqua;
-    top: 10px; /* Added positioning */
-    left: 10px; /* Added positioning */
-    background: rgba(0, 0, 0, 0.7); /* Added background for visibility */
-    padding: 5px 10px; /* Added padding */
-    border-radius: 4px; /* Added border radius */
-    font-size: 12px; /* Added font size */
+}
+.delete-btn:hover{
+    scale:1.3;
 }
 
-.delete-btn:hover {
-    scale: 1.3;
-    background: rgba(255, 0, 0, 0.9); /* Darker red on hover */
-    box-shadow: 0 0 10px rgba(255, 0, 0, 0.5); /* Added glow effect */
+.country-cardhover{
+    box-shadow: 3px 3px 10px (0,0,0,0.9);
 }
-
-.country-card-img1 {
+.country-card-img1{
     width: 100%;
     height: 100%;
     object-fit: cover;
     position: absolute;
-    border-radius: 3px; /* Added to match card border radius */
-    pointer-events: none; /* Added to prevent image drag interference */
 }
 
-.country-card-img2 {
+.country-card-img2{
     position: absolute;
     top: 5px;
     right: 5px;
     width: 60px;
-    height: 60px;
-    border: 2px solid #fff; /* Increased border width */
+    height:  60px;
+    border: 1px solid #fff;
     border-radius: 50%;
-    object-fit: cover; /* Changed from contain to cover for better flag display */
+    object-fit: contain;
     box-shadow: 2px 2px 10px #000;
-    pointer-events: none; /* Added to prevent image drag interference */
 }
 
-.card-details {
+
+
+
+.card-details{
     position: absolute;
-    bottom: 0;
+    bottom:0;
     right: 0;
     width: 100%;
-    background: linear-gradient(rgba(0, 0, 0, 0.2), rgba(0, 0, 0, 0.8)); /* Made gradient stronger */
+    background: linear-gradient(rgba(0,0,0,0.2),rgba(0,0,0,0.5));
     display: flex;
     align-items: start;
     justify-content: center;
     flex-direction: column;
-    border-radius: 0 0 3px 3px; /* Adjusted to match card bottom corners */
-    padding: 8px; /* Increased padding */
+    border-radius: 3px;
+    padding: 5px;
 }
 
-.card-details h1 {
-    font-size: 13px; /* Slightly smaller for better fit */
+.card-details h1{
+    font-size: 15px;
     color: #fff;
-    margin: 2px 0; /* Added margin for better spacing */
-    text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.8); /* Added text shadow for readability */
-    line-height: 1.2; /* Added line height */
 }
 
-.cardtails-btn {
+
+.cardtails-btn{
     display: flex;
     align-items: center;
     justify-content: start;
     width: 100%;
-    gap: 8px; /* Increased gap */
-    padding: 8px 0; /* Increased padding */
-    margin-top: 5px; /* Added margin top */
+    gap: 5px;
+    padding: 4px 0;
 }
 
-.cardtails-btn button {
+.cardtails-btn button{
     flex: 1;
-    padding: 6px 8px; /* Increased padding */
+    padding: 3px 5px;
     border: none;
     border-radius: 4px;
-    background: rgba(255, 255, 255, 0.9); /* Added semi-transparent background */
-    color: #333; /* Added text color */
-    font-size: 12px; /* Added font size */
-    font-weight: 600; /* Added font weight */
-    cursor: pointer; /* Added pointer cursor */
-    transition: all 0.2s ease; /* Added smooth transition */
-    text-transform: capitalize; /* Added text transform */
 }
 
-.cardtails-btn button:hover {
-    background: #fff; /* Solid white on hover */
-    transform: translateY(-1px); /* Subtle lift effect */
-    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2); /* Added shadow on hover */
-}
 
-.cardtails-btn button:active {
-    transform: translateY(0); /* Reset transform on click */
-}
-
-/* Additional styles for drag functionality */
-.country-card-slider.dragging {
-    scroll-behavior: auto; /* Disable smooth scroll during drag */
-}
-
-.country-card-slider.dragging .country-card {
-    pointer-events: none; /* Disable interactions during drag */
-}
-
-/* Responsive adjustments */
-/* @media (max-width: 768px) {
-    .country-slider-container {
-        width: 95%;
-    }
-    
-    .country-card {
-        width: 220px;
-        height: 180px;
-    }
-    
-    .card-details h1 {
-        font-size: 12px;
-    }
-    
-    .cardtails-btn button {
-        font-size: 11px;
-        padding: 5px 6px;
-    }
-} */

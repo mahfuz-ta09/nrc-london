@@ -7,7 +7,6 @@ import { useState } from "react"
 import Profile from "./profileUi/Profile"
 import { useDeleteReviewMutation } from "@/redux/endpoints/review/reviewEndpoints"
 import { toast } from "react-toastify"
-import { useRouter } from "next/navigation"
 
 
 const page = () => {
@@ -15,7 +14,6 @@ const page = () => {
     const [profileData, setProfileData] = useState<boolean>(false)
     const { data: profile, refetch , isLoading: profileLoading } = useGetProfileByIdQuery(data?.Uid)
     const [deleteReview , { isLoading: deleteLoading }] = useDeleteReviewMutation()
-
 
     const iUrl = "https://i.ibb.co.com/d06pb1G0/Blue-and-White-Modern-Computer-Illustrative-Tech-Website-Logo.png"
     
