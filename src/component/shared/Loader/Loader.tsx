@@ -5,7 +5,7 @@ const Loader = () => {
   return (
     <div className='loader-container'>
       <div className="spinner"></div>
-      <h1 style={{color:"white"}}>Loading...</h1>
+      <h1 style={{color:"white"}}>NRC Educational Consultants Ltd.</h1>
     </div>
   )
 }
