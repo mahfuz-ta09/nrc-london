@@ -1,6 +1,6 @@
 'use client'
 import { SubmitHandler, useForm } from 'react-hook-form'
-import "@/css/Dashboard/profile.css"
+import "@/app/(dashboard)/Dashboard/admin/country-uni/AddCountryModal/AddCountryModal.css"
 import { useUpdateUserProfileMutation } from '@/redux/endpoints/profile/profileEndpoints'
 import { useUserInfo } from '@/utils/useUserInfo'
 import { toast } from 'react-toastify'
@@ -17,7 +17,7 @@ interface IFormInput {
 }
 
 
-const Profile = ({profileData}:{profileData:boolean}) => {
+const Profile = ({profileData , setProfileData}:{profileData:boolean,setProfileData:any}) => {
     const { Uid } = useUserInfo()
     const { register , handleSubmit , reset } = useForm<IFormInput>()
     const [updateUserProfile , { isLoading: uploadLoading }] = useUpdateUserProfileMutation()
@@ -40,37 +40,62 @@ const Profile = ({profileData}:{profileData:boolean}) => {
 
 
     return (
-        <div className={profileData? "profile-edit-container" : "profile-container-hode"}>
+        <div className={profileData? 'modal-container openmoda-container' :'modal-container'}>
             
-            <form onSubmit={handleSubmit(onSubmit)}>
-                <h1 className="form-label" >Update your profile</h1>
-                <label className="form-label" htmlFor="name">Name:</label>
-                <input className="form-input" type="text" {...register("name")}/>
-                
-                <label className="form-label" htmlFor="Country">Country:</label>
-                <input className="form-input" type="text" {...register("country")}/>
-                
-                
-                <label className="form-label" htmlFor="Password">Reset password:</label>
-                <input className="form-input" type="text" {...register("password")}/>
-                
-                <label className="form-label" htmlFor="Country">Comment/delete/update:</label>
-                <textarea className="form-input" style={{minHeight:"10vh",padding:'10px',width:'100%'}} {...register("review")}/>
+            <div className='modal-body'>
+                <button
+                    onClick={() => setProfileData(!profileData)}
+                    className="cancel-btn"
+                >
+                    X
+                </button>
 
-                <label className="form-label" htmlFor="mobile">Mobile Number:</label>
-                <input className="form-input" type="number" {...register("phone")}/>
+                <form onSubmit={handleSubmit(onSubmit)} className='modal-from'>
+                    <h1 className="form-label" >Update your profile</h1>
+                    <div className='input-container'>
+                        <label className="form-label" htmlFor="name">Name:</label>
+                        <input className="form-input" type="text" {...register("name")}/>
+                    </div>
+                    
+                    <div className='input-container'>
+                        <label className="form-label" htmlFor="Country">Country:</label>
+                        <input className="form-input" type="text" {...register("country")}/>
+                    </div>
+                    
+                    
+                    <div className='input-container'>
+                        <label className="form-label" htmlFor="Password">Reset password:</label>
+                        <input className="form-input" type="text" {...register("password")}/>
+                    </div>
+                    
+                    <div className='input-container'>
+                        <label className="form-label" htmlFor="Country">Comment/delete/update:</label>
+                        <textarea className="form-input" style={{minHeight:"10vh",padding:'10px',width:'100%'}} {...register("review")}/>
+                    </div>
 
-                <label className="form-label" htmlFor="dob">Date of Birth:</label>
-                <input className="form-input" type="date" {...register("dob")}/>
-                
-                <label className="form-label" htmlFor="file">Your image:</label>
-                <input style={{color:"white"}} id="file" type="file" {...register("file")}  />
-                
-                {uploadLoading ? <p>Loading...</p> : <button className='prfl-udate-btn' type="submit" >Update</button>}
-            </form>
+                    <div className='input-container'>
+                        <label className="form-label" htmlFor="mobile">Mobile Number:</label>
+                        <input className="form-input" type="number" {...register("phone")}/>
+                    </div>
 
+                    <div className='input-container'>
+                        <label className="form-label" htmlFor="dob">Date of Birth:</label>
+                        <input className="form-input" type="date" {...register("dob")}/>
+                    </div>
+                    
+                    <div className='input-container'>
+                        <label className="form-label" htmlFor="file">Your image:</label>
+                        <input style={{color:"white"}} id="file" type="file" {...register("file")}  />
+                    </div>
+                    
+                    {uploadLoading ? <p>Loading...</p> : <button className='modal-sbmt-btn'type="submit" >Update</button>}
+                </form> 
+                
+
+            </div>
         </div>
     )
 }
 
 export default Profile
+
