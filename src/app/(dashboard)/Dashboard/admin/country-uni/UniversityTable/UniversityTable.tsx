@@ -66,27 +66,14 @@ const UniversityTable = () => {
     return (
         <div className='university-table'>
             <h1>university: {para?.country?para?.country:'all'} / total:{data?.meta?.totalCount}</h1>
-            {
-                country?.data?.map((single:any)=><button style={{
-                        padding: "5px 9px",
-                        border: "1px solid #ccc",
-                        borderRadius: "6px",
-                        outline: "none",
-                        margin:"10px 2px 10px 0px",
-                        fontSize: "14px",
-                        flex: "1"}}
-                    onClick={() => setPara(prev => ({ ...prev, all: '', country: single.country, page: '1', total: '10' }))}
-                    key={single?._id}
-                >
-                    {single?.country}
-                </button>)
-            }
+            
             <div
                 style={{
                     display: "flex",
+                    flexDirection:'column',
                     gap: "12px",
                     marginBottom: "20px",
-                    alignItems: "center",
+                    alignItems: "end",
                     flexWrap: "wrap"
                 }}
                 >
@@ -102,7 +89,7 @@ const UniversityTable = () => {
                     borderRadius: "6px",
                     outline: "none",
                     fontSize: "14px",
-                    width: "80px"
+                    width: "140px"
                     }}
                 />
                 <input
@@ -117,9 +104,50 @@ const UniversityTable = () => {
                     borderRadius: "6px",
                     outline: "none",
                     fontSize: "14px",
-                    width: "120px"
+                    width: "140px"
                     }}
                 />
+            </div>
+            <div
+                style={{
+                    display: "flex",
+                    gap: "5px",
+                    overflowX: "auto",
+                    whiteSpace: "nowrap",
+                    paddingBottom: "16px",
+                    scrollbarWidth: "thin",
+                    scrollbarColor: "#ccc transparent"
+                }}
+                >
+                {country?.data?.map((single: any) => (
+                    <button
+                    key={single?._id}
+                    style={{
+                        padding: "2px 7px",
+                        border: "1px solid #ccc",
+                        borderRadius: "6px",
+                        outline: "none",
+                        fontSize: "11px",
+                        backgroundColor: "#f8f8f8",
+                        cursor: "pointer",
+                        flexShrink: 0,
+                        transition: "background 0.2s ease"
+                    }}
+                        onClick={() =>
+                            setPara(prev => ({
+                            ...prev,
+                            all: "",
+                            country: single.country,
+                            page: "1",
+                            total: "10"
+                            }))
+                        }
+                        onMouseEnter={(e) => (e.currentTarget.style.backgroundColor = "#eee")}
+                        onMouseLeave={(e) => (e.currentTarget.style.backgroundColor = "#f8f8f8")}
+                    >
+                        {single?.country}
+                    </button>
+                ))}
             </div>
 
 
