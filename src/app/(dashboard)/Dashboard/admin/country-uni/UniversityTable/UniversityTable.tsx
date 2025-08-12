@@ -56,6 +56,7 @@ const UniversityTable = () => {
             toast.error("Something went wrong!")
         }
     }
+    
     const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>) => {
         setPara({
         ...para,
@@ -203,6 +204,8 @@ const UniversityTable = () => {
                     }}
                 />
             </div>
+
+
             <Suspense fallback={<Loader />}>
                 <AddUniModal 
                     setAddUni={setAddUni}
