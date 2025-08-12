@@ -70,47 +70,6 @@ const UniversityTable = () => {
             <div
                 style={{
                     display: "flex",
-                    flexDirection:'column',
-                    gap: "12px",
-                    marginBottom: "20px",
-                    alignItems: "end",
-                    flexWrap: "wrap"
-                }}
-                >
-                <input
-                    type="number"
-                    name="page"
-                    placeholder="Page"
-                    value={para.page}
-                    onChange={handleChange}
-                    style={{
-                    padding: "8px 12px",
-                    border: "1px solid #ccc",
-                    borderRadius: "6px",
-                    outline: "none",
-                    fontSize: "14px",
-                    width: "140px"
-                    }}
-                />
-                <input
-                    type="number"
-                    name="total"
-                    placeholder="Rows per page"
-                    value={para.total}
-                    onChange={handleChange}
-                    style={{
-                    padding: "8px 12px",
-                    border: "1px solid #ccc",
-                    borderRadius: "6px",
-                    outline: "none",
-                    fontSize: "14px",
-                    width: "140px"
-                    }}
-                />
-            </div>
-            <div
-                style={{
-                    display: "flex",
                     gap: "5px",
                     overflowX: "auto",
                     whiteSpace: "nowrap",
@@ -179,16 +138,16 @@ const UniversityTable = () => {
                                 <td>{uni?.initialDeposite}</td>
                                 <td>
                                     {Object.entries(uni?.englishProf || {}).map(([key, value]) => (
-                                        <div style={{display:'block',width:'100%'}}  key={key}>
+                                        <h1 style={{fontSize:"15px",display:'block',width:'100%'}}  key={key}>
                                             {key}: {String(value)}
-                                        </div>
+                                        </h1>
                                     ))}
                                 </td>
                                 <td>
                                     {Object.entries(uni?.qualifications || {}).map(([key, value]) => (
-                                        <div style={{display:'block',width:'100%'}} key={key}>
-                                        {key}: {String(value)}
-                                        </div>
+                                        <h1 style={{fontSize:"15px",display:'block',width:'100%'}} key={key}>
+                                            {key}: {String(value)}
+                                        </h1>
                                     ))}
                                 </td>
                                 <td>{uni?.aboutUni}</td>
@@ -201,6 +160,48 @@ const UniversityTable = () => {
                     </tbody>
                 </table>
 
+            </div>
+            <div
+                style={{
+                    display: "flex",
+                    flexDirection:'row',
+                    width:'100%',
+                    gap: "12px",
+                    marginTop: "20px",
+                    alignItems: "end",
+                    flexWrap: "wrap"
+                }}
+                >
+                <input
+                    type="number"
+                    name="page"
+                    placeholder="Page"
+                    value={para.page}
+                    onChange={handleChange}
+                    style={{
+                    padding: "8px 12px",
+                    border: "1px solid #ccc",
+                    borderRadius: "6px",
+                    outline: "none",
+                    fontSize: "14px",
+                    width: "140px"
+                    }}
+                />
+                <input
+                    type="number"
+                    name="total"
+                    placeholder="Rows per page"
+                    value={para.total}
+                    onChange={handleChange}
+                    style={{
+                    padding: "8px 12px",
+                    border: "1px solid #ccc",
+                    borderRadius: "6px",
+                    outline: "none",
+                    fontSize: "14px",
+                    width: "140px"
+                    }}
+                />
             </div>
             <Suspense fallback={<Loader />}>
                 <AddUniModal 
