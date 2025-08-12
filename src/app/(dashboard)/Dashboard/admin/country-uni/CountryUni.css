@@ -1,5 +1,7 @@
 .university-content{
-    margin: 10px;
+    /* margin: 10px; */
+    width: 95%;
+    margin: 0 auto;
 }
 
 .university-content-header{

@@ -82,3 +82,34 @@ export interface IFormInput {
 }
 
 
+export const countryCurrencyMap = {
+  US: "$",      // United States Dollar
+  BD: "৳",      // Bangladeshi Taka
+  IN: "₹",      // Indian Rupee
+  UK: "£",      // British Pound Sterling
+  EU: "€",      // Euro
+  CA: "$",      // Canadian Dollar
+  AU: "$",      // Australian Dollar
+  JP: "¥",      // Japanese Yen
+  CN: "¥",      // Chinese Yuan
+  SA: "﷼",      // Saudi Riyal
+  AE: "د.إ",    // UAE Dirham
+  PK: "₨",      // Pakistani Rupee
+  LK: "₨",      // Sri Lankan Rupee
+  NP: "₨",      // Nepalese Rupee
+  KR: "₩",      // South Korean Won
+  RU: "₽",      // Russian Ruble
+  TH: "฿",      // Thai Baht
+  MY: "RM",     // Malaysian Ringgit
+  SG: "$",      // Singapore Dollar
+  ZA: "R",      // South African Rand
+  NG: "₦",      // Nigerian Naira
+  BR: "R$",     // Brazilian Real
+  MX: "$",      // Mexican Peso
+  AR: "$",      // Argentine Peso
+  CL: "$",      // Chilean Peso
+  TR: "₺",      // Turkish Lira
+  IR: "﷼",      // Iranian Rial
+  KH: "៛",      // Cambodian Riel
+  VN: "₫"       // Vietnamese Dong
+};

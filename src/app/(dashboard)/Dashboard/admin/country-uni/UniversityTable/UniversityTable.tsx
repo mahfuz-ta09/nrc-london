@@ -108,10 +108,10 @@ const UniversityTable = () => {
                                         </div>
                                     ))}
                                 </td>
-                                <td><button className='University-edit-btn'><FontAwesomeIcon icon={faAdd}/></button></td>
-                                <td><button className='University-edit-btn'><FontAwesomeIcon icon={faList}/></button></td>
-                                <td><button onClick={()=>handleDelete(uni?.countryId,uni?.universityName)} className='University-edit-btn'><FontAwesomeIcon icon={faTrash}/></button></td>
-                                <td><button onClick={() => setAddUni(prev => ({ ...prev , isOPen: true, name:`${uni?.universityName}`, id:`${uni?.countryId}` , action: "edit"}))} className='University-edit-btn'><FontAwesomeIcon icon={faPen}/></button></td>
+                                <td><button style={{background:"green"}}  className='University-edit-btn'><FontAwesomeIcon icon={faAdd}/></button></td>
+                                <td><button style={{background:"teal"}}  className='University-edit-btn'><FontAwesomeIcon icon={faList}/></button></td>
+                                <td><button style={{background:"red"}} onClick={()=>handleDelete(uni?.countryId,uni?.universityName)} className='University-edit-btn'><FontAwesomeIcon icon={faTrash}/></button></td>
+                                <td><button style={{background:"green"}}  onClick={() => setAddUni(prev => ({ ...prev , isOPen: true, name:`${uni?.universityName}`, id:`${uni?.countryId}` , action: "edit"}))} className='University-edit-btn'><FontAwesomeIcon icon={faPen}/></button></td>
                             </tr>
                         )}
                     </tbody>

@@ -4,6 +4,8 @@ import './AddCountryModal.css'
 // import Loader from '@/component/shared/Loader/Loader'
 import { useForm, SubmitHandler } from "react-hook-form"
 import { toast } from 'react-toastify'
+import { countryCurrencyMap } from '@/types/common'
+import Loader from '@/component/shared/Loader/Loader'
 
 type ModalProps = {
     addCounty:{
@@ -23,13 +25,7 @@ type CountryData = {
     countryFull: string,
     currency:string
 }
-const countryCurrencyMap = {
-  US: "$",
-  BD: "৳",
-  IN: "₹",
-  UK: "£",
-  EU: "€"
-};
+
 
 const AddCountryModal = ({addCounty,setAddCountry}: ModalProps) => {
     const {
@@ -41,6 +37,10 @@ const AddCountryModal = ({addCounty,setAddCountry}: ModalProps) => {
     const [ createCountryList , { isLoading: creationLoader } ] = useCreateCountryListMutation()
     const [ editCountryList , { isLoading: editLoader } ] = useEditCountryListMutation()
 
+
+    if(creationLoader||editLoader){
+        return <Loader />
+    }
 
     const onSubmit: SubmitHandler<CountryData> = async(data: CountryData) => {
         try{
@@ -121,8 +121,7 @@ const AddCountryModal = ({addCounty,setAddCountry}: ModalProps) => {
                         <label htmlFor="serial">Add an image of the country</label>
                         <input type='file' {...register("famousFile")}/>
                     </div>
-                    
-                    {(creationLoader||editLoader) ? 'Loading...' :<button type='submit' className='modal-sbmt-btn'>submit</button>}
+                    <button type='submit' className='modal-sbmt-btn'>submit</button>
                 </form>
 
             </div>
