@@ -15,13 +15,13 @@
 
 .uni-content{
     margin: 0 auto;
-    max-width: 1280px;
     width: 100%;
     height: 100%;
-    overflow-x: auto;
+    overflow-x: scroll;
     padding: 30px 40px;
     transition: .3s ease-in;
     scroll-behavior: smooth;
+    user-select: none;
 }
 
 .uni-content::-webkit-scrollbar{
@@ -39,7 +39,7 @@
 .unicaro .uni{
     position: relative;
     height: 400px;
-    min-width: 360px;
+    min-width: 320px;
     display: flex;
     align-items: center;
     justify-content: center;

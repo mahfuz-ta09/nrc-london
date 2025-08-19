@@ -39,7 +39,12 @@ const sideNavItem = (role : Role) => {
                     title   : "Agents",
                     path    : `${role}/AllAgents`,
                     icon    : faUser,
-                }
+                },
+                {
+                    title       : "Country&Uni",
+                    path        : `${role}/country-uni`,
+                    icon        : faPen,
+                },
             );
             break;
         case USER_ROLE.ADMIN:
@@ -59,11 +64,6 @@ const sideNavItem = (role : Role) => {
                     path        : `${role}/university`,
                     icon        : faBuilding,
                 },
-                // {
-                //     title       : "Services",
-                //     path        : `${role}/banner`,
-                //     icon        : faPaperPlane,
-                // },
                 {
                     title       : "Reviews",
                     path        : `${role}/reviews`,
@@ -79,11 +79,6 @@ const sideNavItem = (role : Role) => {
                     path        : `${role}/country-uni`,
                     icon        : faPen,
                 },
-                // {
-                //     title       : "Test preparation",
-                //     path        : `${role}/test-prep`,
-                //     icon        : faPen,
-                // },
             );
             break;
         case USER_ROLE.STUDENT:

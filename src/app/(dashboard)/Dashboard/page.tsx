@@ -39,59 +39,59 @@ const page = () => {
     }
     
     return (
-     <div>
-     <div className="profile-card">
-        <div className="profile-image">
-          <img
-            src={profile?.data?.image ? profile?.data?.image : iUrl}
-            alt={profile?.data?.name || "Profile picture"}
-          />
-        </div>
-
-
-
-      <div className="profile-info">
-        <h2 className="profile-name">{profile?.data?.name}</h2>
-        <p className="profile-email">{data?.Uemail}</p>
-        <p><strong>ID:</strong> {data?.Uid}</p>
-        <p><strong>Role:</strong> {data?.Urole}</p>
-        <p><strong>Status:</strong> {data?.Ustatus}</p>
-        <hr />
-        <p><strong>Account Created:</strong> {profile?.data?.createdAt}</p>
-        <p><strong>DOB:</strong> {profile?.data?.dob}</p>
-        <p><strong>Phone:</strong> {profile?.data?.phone}</p>
-        <p><strong>Country:</strong> {profile?.data?.country}</p>
-
-        {/* Review Section */}
-        {profile?.data?.review && (
-          <div className="profile-review">
-            <p><strong>Your previous comment:</strong></p>
-            <p className="review-text">{profile?.data?.review}</p>
-            {deleteLoading ? (
-              <p>Loading...</p>
-            ) : (
-              <button
-                className="delete-btn"
-                onClick={() => handleDelete(data?.Uid)}
-              >
-                Delete
-              </button>
-            )}
+     <div className="profile-container">
+      <div className="profile-card">
+          <div className="profile-image">
+            <img
+              src={profile?.data?.image ? profile?.data?.image : iUrl}
+              alt="Profile picture"
+            />
           </div>
-        )}
 
-        {/* Action buttons */}
-        <div className="profile-actions">
-          <button
-            className="btn"
-            onClick={() => setProfileData(!profileData)}
-          >
-            {profileData ? "Close" : "Profile"}
-          </button>
+
+
+        <div className="profile-info">
+          <h2 className="profile-name">{profile?.data?.name}</h2>
+          <p className="profile-email">{data?.Uemail}</p>
+          <p><strong>ID:</strong> {data?.Uid}</p>
+          <p><strong>Role:</strong> {data?.Urole}</p>
+          <p><strong>Status:</strong> {data?.Ustatus}</p>
+          <hr />
+          <p><strong>Account Created:</strong> {profile?.data?.createdAt}</p>
+          <p><strong>DOB:</strong> {profile?.data?.dob}-</p>
+          <p><strong>Phone:</strong> {profile?.data?.phone}</p>
+          <p><strong>Country:</strong> {profile?.data?.country}</p>
+
+          {/* Review Section */}
+          {profile?.data?.review && (
+            <div className="profile-review">
+              <p><strong>Your previous comment:</strong></p>
+              <p className="review-text">{profile?.data?.review}</p>
+              {deleteLoading ? (
+                <p>Loading...</p>
+              ) : (
+                <button
+                  className="delete-btn"
+                  onClick={() => handleDelete(data?.Uid)}
+                >
+                  Delete
+                </button>
+              )}
+            </div>
+          )}
+
+          {/* Action buttons */}
+          <div className="profile-actions">
+            <button
+              className="btn"
+              onClick={() => setProfileData(!profileData)}
+            >
+              {profileData ? "Close" : "Profile"}
+            </button>
+          </div>
         </div>
       </div>
-    </div>
-      <Profile setProfileData={setProfileData} profileData={profileData}/>
+        <Profile setProfileData={setProfileData} profileData={profileData}/>
     </div>
 
     )

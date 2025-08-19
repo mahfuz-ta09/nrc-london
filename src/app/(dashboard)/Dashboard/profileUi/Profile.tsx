@@ -1,6 +1,6 @@
 'use client'
 import { SubmitHandler, useForm } from 'react-hook-form'
-import "@/app/(dashboard)/Dashboard/admin/country-uni/AddCountryModal/AddCountryModal.css"
+import "@/app/(dashboard)/DashboardSharedItem/SharedCountryUni/AddCountryModal/AddCountryModal.css"
 import { useUpdateUserProfileMutation } from '@/redux/endpoints/profile/profileEndpoints'
 import { useUserInfo } from '@/utils/useUserInfo'
 import { toast } from 'react-toastify'
