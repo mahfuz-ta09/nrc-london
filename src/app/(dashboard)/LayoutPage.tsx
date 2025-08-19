@@ -48,7 +48,7 @@ const LayoutPage = () => {
         <div ref={navRef} className={isOpen? "dash-nav active":"dash-nav hide"}>
             <div className="dash-nav-element">
                 <div className='dash-nav-header'>
-                    <h1>NRC-london</h1>
+                    <h1>NRC-Education</h1>
                     <NavLink />
                 </div>
                   <button  className='nav-logout-btn' onClick={() => {logOut(),route.refresh()}} ref={btnRef} ><FontAwesomeIcon icon={faRightFromBracket} className='nav-icon'/>logout</button>

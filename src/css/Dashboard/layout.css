@@ -78,6 +78,7 @@
 	display: flex;
 	align-items: center;
 	justify-content: start;
+	text-decoration: none;
 	gap: 10px;
 	font-size: 20px;
 	color: #b6b6b6;
@@ -193,12 +194,13 @@
 }
 
 .header-title h1{
-    font-size: 17px;
+    font-size: 16px;
+	font-weight: 300;
 }
 
 @media screen and (max-width:450px) {
 	.dash-nav {
-		width: 70vw;
+		width: 200px;
 		height: 100%;
 		background: #004a62;
 		border-right: 3px solid white;
@@ -213,7 +215,7 @@
 	}
 
 	.dash-nav.hide {
-		left: -70vw; 
+		left: -200px; 
 	}
 
 }

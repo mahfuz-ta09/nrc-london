@@ -18,7 +18,7 @@ const Layout = ({ children } : {children : React.ReactNode}) => {
             <div className="dash-item">
               <div className="dash-item-header">
                   <div className='header-title'>
-                      <h1>hello mr {isLoading ? "Loading.." :profile?.data?.name}</h1>
+                      <h1>{isLoading ? "Loading.." :profile?.data?.name}</h1>
                       <h1>wellcome to dashboard</h1>
                   </div>
               </div>
