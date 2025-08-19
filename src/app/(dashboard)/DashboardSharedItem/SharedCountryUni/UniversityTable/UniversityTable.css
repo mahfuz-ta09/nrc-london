@@ -54,3 +54,46 @@
         scale: .85;
     }
 }
+
+.all-btn-container{
+    display: flex;
+    gap: 5px;
+    overflow-x: auto;
+    white-space: nowrap;
+    padding-bottom: 16px;
+    scrollbar-width: thin;
+    scrollbar-color: #ccc transparent;
+}
+.all-btn{
+    padding: 2px 7px;
+    border: 1px solid #ccc;
+    border-radius: 6px;
+    outline: none;
+    font-size: 11px;
+    background: #f8f8f8;
+    cursor: pointer;
+    flex-shrink: 0;
+    transition: background 0.2s ease;
+    &:hover{
+        scale: 1.05;
+        background: #005f38;
+    }
+}
+
+.pagination-container{
+    display: flex;
+    flex-direction: row;
+    width: 100%;
+    gap: 12px;
+    margin-top: 20px;
+    align-items: end;
+    flex-wrap: wrap;
+}
+
+.pagination-input{
+    padding: 8px 12px;
+    border: 1px solid #ccc;
+    border-radius: 6px;
+    font-size: 14px;
+    width: 100%;
+}

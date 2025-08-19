@@ -13,10 +13,11 @@ import SubjectListModal from './SubjectListModal'
 
 
 type paraType = {
-    all:string,
-    country:string,
-    page:string,
-    total:string,
+    all?:string,
+    country?:string,
+    page?:string,
+    total?:string,
+    uniName?:string
 }
 
 const UniversityTable = () => {
@@ -25,12 +26,13 @@ const UniversityTable = () => {
     const [addUni,setAddUni] = useState({action:"",id:'',isOPen: false,name:''})
     const [listSubject,setListSubject] = useState({action:"",id:'',isOPen: false,name:''})
     const [addSub,setAddSub] = useState({action:"",id:'',isOPen: false,name:''})
-    const [para,setPara] = useState<paraType>({all:'',country:'',page:'1',total:'10'})
+    const [para,setPara] = useState<paraType>({all:'',country:'',page:'1',total:'10',uniName:''})
     const { data , isLoading } = useGetUniversityListQuery({
         all: para.all || "",
         country: para.country || "",
         page: para.page || "1",
-        total: para.total || "10"
+        total: para.total || "10",
+        uniName: para.uniName || ""
     })
     
 
@@ -66,37 +68,31 @@ const UniversityTable = () => {
         ...para,
         [e.target.name]: e.target.value
         });
-    };
+    }
+    
 
     return (
         <div className='university-table'>
             <h1>university: {para?.country?para?.country:'all'} / total:{data?.meta?.totalCount}</h1>
             
-            <div
-                style={{
-                    display: "flex",
-                    gap: "5px",
-                    overflowX: "auto",
-                    whiteSpace: "nowrap",
-                    paddingBottom: "16px",
-                    scrollbarWidth: "thin",
-                    scrollbarColor: "#ccc transparent"
-                }}
-                >
+            <div className='all-btn-container'>
+                <button className='all-btn'
+                        onClick={() =>
+                                setPara(prev => ({
+                                ...prev,
+                                all: "all",
+                                country: "",
+                                page: "1",
+                                total: "10"
+                                }))
+                        }
+                        onMouseEnter={(e) => (e.currentTarget.style.backgroundColor = "#eee")}
+                        onMouseLeave={(e) => (e.currentTarget.style.backgroundColor = "#f8f8f8")}
+                    >all</button>
                 {country?.data?.map((single: any) => (
                     <button
-                    key={single?._id}
-                    style={{
-                        padding: "2px 7px",
-                        border: "1px solid #ccc",
-                        borderRadius: "6px",
-                        outline: "none",
-                        fontSize: "11px",
-                        backgroundColor: "#f8f8f8",
-                        cursor: "pointer",
-                        flexShrink: 0,
-                        transition: "background 0.2s ease"
-                    }}
+                        key={single?._id}
+                        className='all-btn'
                         onClick={() =>
                             setPara(prev => ({
                             ...prev,
@@ -167,30 +163,16 @@ const UniversityTable = () => {
 
             </div>
             
-            <div
-                style={{
-                    display: "flex",
-                    flexDirection:'row',
-                    width:'100%',
-                    gap: "12px",
-                    marginTop: "20px",
-                    alignItems: "end",
-                    flexWrap: "wrap"
-                }}
-                >
+            <div className='pagination-container'>
                 <input
                     type="number"
                     name="page"
                     placeholder="Page"
                     value={para.page}
                     onChange={handleChange}
+                    className='pagination-input'
                     style={{
-                    padding: "8px 12px",
-                    border: "1px solid #ccc",
-                    borderRadius: "6px",
-                    outline: "none",
-                    fontSize: "14px",
-                    width: "140px"
+                        width: "140px"
                     }}
                 />
                 <input
@@ -199,13 +181,20 @@ const UniversityTable = () => {
                     placeholder="Rows per page"
                     value={para.total}
                     onChange={handleChange}
+                    className='pagination-input'
                     style={{
-                    padding: "8px 12px",
-                    border: "1px solid #ccc",
-                    borderRadius: "6px",
-                    outline: "none",
-                    fontSize: "14px",
-                    width: "140px"
+                        width: "140px"
+                    }}
+                />
+                <input
+                    type="text"
+                    name="uniName"
+                    placeholder="university name"
+                    value={para.uniName}
+                    onChange={handleChange}
+                    className='pagination-input'
+                    style={{
+                        width: "180px"
                     }}
                 />
             </div>
