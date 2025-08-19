@@ -86,6 +86,8 @@ const AddUniModal = ({ addUni, setAddUni }: ModalProps) => {
                     name:''
                 })
                 reset()
+                setSelectedTests([])
+                setSelectedQualifications([])
             }else{
                 toast.error(res?.data?.message || "Failed! to operate")
             }
@@ -134,10 +136,10 @@ const AddUniModal = ({ addUni, setAddUni }: ModalProps) => {
                     </div>
 
                     <div className='input-container'>
-                        <label>you can use lowest or highest</label>
-                        <label>Tuition fee (lowest)</label>
+                        <label>use the highest or lowest if it is very relevant to the subject.</label>
+                        <label>Tuition fee (lowest)- you can ignore it</label>
                         <input type='number' min={0} {...register("lowFee", { valueAsNumber: true })} />
-                        <label style={{ marginTop: "10px" }}>Tuition fee (highest)</label>
+                        <label style={{ marginTop: "10px" }}>Tuition fee (highest)- you can ignore it</label>
                         <input type='number' min={0} {...register("highFee", { valueAsNumber: true })} />
                     </div>
 
@@ -153,6 +155,7 @@ const AddUniModal = ({ addUni, setAddUni }: ModalProps) => {
 
                     
                     <div className='input-container'>
+                        {addUni.action==='edit' && <label>if you want to delete existing field insert -1</label>}
                         <label>English proficiency test required</label>
                         <select onChange={handleTestSelect}>
                             <option value="">-- Select a test --</option>
@@ -167,6 +170,7 @@ const AddUniModal = ({ addUni, setAddUni }: ModalProps) => {
                                 <input
                                     type="number"
                                     step="any"
+                                    min={-1}
                                     {...register(`englishProf.${test}`, { valueAsNumber: true })}
                                     placeholder={`Enter ${test} score`}
                                     style={{ padding: '4px', marginLeft: '10px' }}
@@ -177,6 +181,7 @@ const AddUniModal = ({ addUni, setAddUni }: ModalProps) => {
 
                     
                     <div className='input-container'>
+                        {addUni.action==='edit' && <label>if you want to delete existing field insert -1</label>}
                         <label>Required qualifications</label>
                         <select onChange={handleQualificationSelect}>
                             <option value="">-- Select qualification --</option>

@@ -6,7 +6,7 @@
     border: 1px solid #ddd;
     border-radius: 10px;
     width: 900px;
-    overflow: scroll;
+    overflow-y: scroll;
     height:70vh;
     top: 50%;
     left: 50%;
@@ -65,7 +65,7 @@ hr {
     margin: 5px 0;
 }
 
-.delete-btn {
+.profile-delete-btn {
     padding: 5px 12px;
     background: #f44336;
     color: white;
@@ -74,7 +74,7 @@ hr {
     cursor: pointer;
 }
 
-.delete-btn:hover {
+.profile-delete-btn:hover {
     background: #d32f2f;
 }
 

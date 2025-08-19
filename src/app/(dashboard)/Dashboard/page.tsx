@@ -62,7 +62,7 @@ const page = () => {
           <p><strong>Phone:</strong> {profile?.data?.phone}</p>
           <p><strong>Country:</strong> {profile?.data?.country}</p>
 
-          {/* Review Section */}
+          
           {profile?.data?.review && (
             <div className="profile-review">
               <p><strong>Your previous comment:</strong></p>
@@ -71,7 +71,7 @@ const page = () => {
                 <p>Loading...</p>
               ) : (
                 <button
-                  className="delete-btn"
+                  className="profile-delete-btn"
                   onClick={() => handleDelete(data?.Uid)}
                 >
                   Delete

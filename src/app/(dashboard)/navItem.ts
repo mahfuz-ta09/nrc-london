@@ -1,5 +1,5 @@
 import { NavContent, Role } from "@/types/nav/type"
-import { faBook, faBuilding, faHand, faHandshake, faPaperPlane, faPen, faUser } from "@fortawesome/free-solid-svg-icons";
+import { faBook, faBookOpen, faChartBar, faGlobe, faStar, faTasks, faUniversity, faUser, faUsers, faUserShield, faUserTie } from "@fortawesome/free-solid-svg-icons";
 
 const sideNavItem = (role : Role) => {
     const navItem:NavContent[] = []
@@ -23,27 +23,27 @@ const sideNavItem = (role : Role) => {
                 {
                     title   : "Manage Admin",
                     path    : `${role}/manage-admin`,
-                    icon    : faUser,
+                    icon    : faUserShield,
                 },
                 {
                     title   : "Manage Users",
                     path    : `${role}/manage-users`,
-                    icon    : faUser,
+                    icon    : faUsers,
                 },
                 {
                     title   : "Statistics",
                     path    : `${role}/web-stat`,
-                    icon    : faUser,
+                    icon    : faChartBar,
                 },
                 {
                     title   : "Agents",
                     path    : `${role}/AllAgents`,
-                    icon    : faUser,
+                    icon    : faUserTie,
                 },
                 {
-                    title       : "Country&Uni",
-                    path        : `${role}/country-uni`,
-                    icon        : faPen,
+                    title    : "Country&Uni",
+                    path     : `${role}/country-uni`,
+                    icon     : faGlobe,
                 },
             );
             break;
@@ -57,27 +57,27 @@ const sideNavItem = (role : Role) => {
                 {
                     title       : "Subjects",
                     path        : `${role}/subjects`,
-                    icon        : faBook,
+                    icon        : faBookOpen,
                 },
                 {
                     title       : "University",
                     path        : `${role}/university`,
-                    icon        : faBuilding,
+                    icon        : faUniversity,
                 },
                 {
                     title       : "Reviews",
                     path        : `${role}/reviews`,
-                    icon        : faHand,
+                    icon        : faStar,
                 },
                 {
                     title       : "Process Req",
                     path        : `${role}/process-req`,
-                    icon        : faHandshake,
+                    icon        : faTasks,
                 },
                 {
                     title       : "Country&Uni",
                     path        : `${role}/country-uni`,
-                    icon        : faPen,
+                    icon        : faGlobe,
                 },
             );
             break;
