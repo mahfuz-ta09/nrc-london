@@ -27,7 +27,7 @@
     position: relative;
     border-radius: 3px;
     user-select: none;
-    transition: 0.3s ease-in-out;
+    transition: 0.1s ease;
 }
 
 .country-card:hover {
@@ -42,7 +42,7 @@
     height: 100%;
     background: rgba(0,0,0,0.8);
     border-radius: 3px;
-    transition: 0.3s ease-in-out;
+    transition: 0.1s ease;
 }
 .country-card:hover .overlay{
     background: rgba(0,0,0,0.1);
