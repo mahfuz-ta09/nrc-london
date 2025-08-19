@@ -15,7 +15,8 @@ const CountryLists = () => {
     const { data, isLoading } = useGetAllCountryBaseQuery()
     const [deleteCountry, { isLoading: deleteLoading }] = useDeleteCountryMutation()
 
-    // For mouse drag
+    
+    
     const sliderRef = useRef<HTMLDivElement>(null)
     const isDownRef = useRef(false)
     const startXRef = useRef(0)
@@ -88,7 +89,7 @@ const CountryLists = () => {
                             </button>
                             <img className='country-card-img1' loading='lazy' src={country?.famousFile_url} alt="" />
                             <img className='country-card-img2' loading='lazy' src={country?.countryFlag_url} alt="" />
-
+                            <div className="overlay"></div>
                             <div className="card-details">
                                 <h1>country name: {country?.country}</h1>
                                 <h1>serial in home: {country?.serial}</h1>
