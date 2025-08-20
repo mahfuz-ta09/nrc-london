@@ -73,14 +73,13 @@ const UniversityTable = () => {
     
     return (
         <div className='university-table'>
-            <h1>university: {para?.country?para?.country:'all'} / total:{data?.meta?.totalCount}</h1>
+            {(data?.meta?.totalCount || country?.meta?.total) && <h1>university: {para?.country?para?.country:'all'} & total: {data?.meta?.totalCount}</h1>}
             
-            <div className='all-btn-container'>
+            {(data?.meta?.totalCount || country?.meta?.total) && <div className='all-btn-container'>
                 <button className='all-btn'
-                        onClick={() =>
-                            setPara(prev => ({...prev,all: "all",country: "",page: "1",total: "10"}))}
-                            onMouseEnter={(e) => (e.currentTarget.style.backgroundColor = "#eee")}
-                            onMouseLeave={(e) => (e.currentTarget.style.backgroundColor = "#f8f8f8")}
+                        onClick={() =>setPara(prev => ({...prev,all: "all",country: "",page: "1",total: "10"}))}
+                        onMouseEnter={(e) => (e.currentTarget.style.backgroundColor = "#eee")}
+                        onMouseLeave={(e) => (e.currentTarget.style.backgroundColor = "#f8f8f8")}
                     >all</button>
                 {country?.data?.map((single: any) => (
                     <button
@@ -101,62 +100,65 @@ const UniversityTable = () => {
                         {single?.country}
                     </button>
                 ))}
-            </div>
+            </div>}
 
 
-            <div className='table-container'>
-                <table id="customers">
-                    <thead>
-                        <tr>
-                            <th>university name</th>
-                            <th>country image</th>
-                            <th>schoolarship</th>
-                            <th>tuition fee</th>
-                            <th>initital deposite</th>
-                            <th>required english</th>
-                            <th>required qualification</th>
-                            <th>details</th>
-                            <th>add subject</th>
-                            <th>all subject</th>
-                            <th>delete university</th>
-                            <th>edit university</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        {data?.data?.map((uni:any,index:number)=>
-                            <tr key={index} className=''>
-                                <td>{uni?.universityName}</td>
-                                <td><img style={{width:"50px",height:"50px",borderRadius:"50%"}} src={uni?.universityImage?.url} /></td>
-                                <td>{uni?.scholarship}</td>
-                                <td>from:{uni?.lowFee}/to:{uni?.highFee}</td>
-                                <td>{uni?.initialDeposite}</td>
-                                <td>
-                                    {Object.entries(uni?.englishProf || {}).map(([key, value]) => (
-                                        <h1 style={{fontSize:"15px",display:"inline-block",width:'100%'}}  key={key}>
-                                            {key}: {String(value)}
-                                        </h1>
-                                    ))}
-                                </td>
-                                <td>
-                                    {Object.entries(uni?.qualifications || {}).map(([key, value]) => (
-                                        <h1 style={{fontSize:"15px",display:"inline-block",width:'100%'}} key={key}>
-                                            {key}: {String(value)}
-                                        </h1>
-                                    ))}
-                                </td>
-                                <td>{uni?.aboutUni}</td>
-                                <td><button style={{background:"green"}} onClick={() => setAddSub(prev => ({ ...prev , isOPen: true,id: uni?.countryId, name:`${uni?.universityName}`, action: "add"}))} className='University-edit-btn'><FontAwesomeIcon icon={faAdd}/></button></td>
-                                <td><button style={{background:"teal"}} onClick={() => setListSubject(prev => ({ ...prev ,id: uni?.countryId, isOPen: true, name:`${uni?.universityName}`, action: ""}))} className='University-edit-btn'><FontAwesomeIcon icon={faList}/></button></td>
-                                <td><button style={{background:"red"}} onClick={()=> handleDelete(uni?.countryId,uni?.universityName)} className='University-edit-btn'><FontAwesomeIcon icon={faTrash}/></button></td>
-                                <td><button style={{background:"green"}} onClick={()=> setAddUni(prev => ({ ...prev , isOPen: true, name:`${uni?.universityName}`, id:`${uni?.countryId}` , action: "edit"}))} className='University-edit-btn'><FontAwesomeIcon icon={faPen}/></button></td>
-                            </tr>
-                        )}
-                    </tbody>
-                </table>
-
-            </div>
+            {data?.meta?.totalCount!==0 && 
             
-            <div className='pagination-container'>
+                <div className='table-container'>
+                    <table id="customers">
+                        <thead>
+                            <tr>
+                                <th>university name</th>
+                                <th>country image</th>
+                                <th>schoolarship</th>
+                                <th>tuition fee</th>
+                                <th>initital deposite</th>
+                                <th>required english</th>
+                                <th>required qualification</th>
+                                <th>details</th>
+                                <th>add subject</th>
+                                <th>all subject</th>
+                                <th>delete university</th>
+                                <th>edit university</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {data?.data?.map((uni:any,index:number)=>
+                                <tr key={index} className=''>
+                                    <td>{uni?.universityName}</td>
+                                    <td><img style={{width:"50px",height:"50px",borderRadius:"50%"}} src={uni?.universityImage?.url} /></td>
+                                    <td>{uni?.scholarship}</td>
+                                    <td>from:{uni?.lowFee}/to:{uni?.highFee}</td>
+                                    <td>{uni?.initialDeposite}</td>
+                                    <td>
+                                        {Object.entries(uni?.englishProf || {}).map(([key, value]) => (
+                                            <h1 style={{fontSize:"15px",display:"inline-block",width:'100%'}}  key={key}>
+                                                {key}: {String(value)}
+                                            </h1>
+                                        ))}
+                                    </td>
+                                    <td>
+                                        {Object.entries(uni?.qualifications || {}).map(([key, value]) => (
+                                            <h1 style={{fontSize:"15px",display:"inline-block",width:'100%'}} key={key}>
+                                                {key}: {String(value)}
+                                            </h1>
+                                        ))}
+                                    </td>
+                                    <td>{uni?.aboutUni}</td>
+                                    <td><button style={{background:"green"}} onClick={() => setAddSub(prev => ({ ...prev , isOPen: true,id: uni?.countryId, name:`${uni?.universityName}`, action: "add"}))} className='University-edit-btn'><FontAwesomeIcon icon={faAdd}/></button></td>
+                                    <td><button style={{background:"teal"}} onClick={() => setListSubject(prev => ({ ...prev ,id: uni?.countryId, isOPen: true, name:`${uni?.universityName}`, action: ""}))} className='University-edit-btn'><FontAwesomeIcon icon={faList}/></button></td>
+                                    <td><button style={{background:"red"}} onClick={()=> handleDelete(uni?.countryId,uni?.universityName)} className='University-edit-btn'><FontAwesomeIcon icon={faTrash}/></button></td>
+                                    <td><button style={{background:"green"}} onClick={()=> setAddUni(prev => ({ ...prev , isOPen: true, name:`${uni?.universityName}`, id:`${uni?.countryId}` , action: "edit"}))} className='University-edit-btn'><FontAwesomeIcon icon={faPen}/></button></td>
+                                </tr>
+                            )}
+                        </tbody>
+                    </table>
+
+                </div>
+            }
+                
+            {data?.meta?.totalCount!==0 && <div className='pagination-container'>
                 <input
                     type="number"
                     name="page"
@@ -192,7 +194,7 @@ const UniversityTable = () => {
                         width: "180px"
                     }}
                 />
-            </div>
+            </div>}
 
 
             <Suspense fallback={<Loader />}>

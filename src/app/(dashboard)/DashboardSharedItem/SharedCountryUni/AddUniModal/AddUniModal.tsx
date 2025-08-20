@@ -142,8 +142,7 @@ const AddUniModal = ({ addUni, setAddUni }: ModalProps) => {
 
                 <button
                     onClick={() =>{setSelectedTests([]);setSelectedQualifications([]);setAddUni((prev:any) => ({ ...prev, id: '', name: '', isOPen: false, action: "" }))}}
-                    className="cancel-btn"
-                > X </button>
+                    className="cancel-btn"> X </button>
 
                 <form onSubmit={handleSubmit(onSubmit)} className='modal-from'>
                     <div className='input-container'>
@@ -153,14 +152,14 @@ const AddUniModal = ({ addUni, setAddUni }: ModalProps) => {
 
                     <div className='input-container'>
                         <label>use the highest or lowest if it is very relevant to the subject.</label>
-                        <label>Tuition fee (lowest)- you can ignore it</label>
+                        <label>Tuition fee (lowest)- optional</label>
                         <input type='number' min={0} {...register("lowFee", { valueAsNumber: true })} />
-                        <label style={{ marginTop: "10px" }}>Tuition fee (highest)- you can ignore it</label>
+                        <label style={{ marginTop: "10px" }}>Tuition fee (highest)- optional</label>
                         <input type='number' min={0} {...register("highFee", { valueAsNumber: true })} />
                     </div>
 
                     <div className='input-container'>
-                        <label>Scholarship</label>
+                        <label>Scholarship(insert 0 if no scholarship)</label>
                         <input type='number' min={0} {...register("scholarship", { valueAsNumber: true })} />
                     </div>
 

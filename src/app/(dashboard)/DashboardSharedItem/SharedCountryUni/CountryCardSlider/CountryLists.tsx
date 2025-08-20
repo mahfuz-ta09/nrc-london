@@ -73,13 +73,12 @@ const CountryLists = () => {
 
     return (
         <div
-            className='country-slider-container'
-            ref={sliderRef}
-            onMouseDown={handleMouseDown}
-            onMouseLeave={handleMouseLeave}
-            onMouseUp={handleMouseUp}
-            onMouseMove={handleMouseMove}
-        >
+                className='country-slider-container'
+                ref={sliderRef}
+                onMouseDown={handleMouseDown}
+                onMouseLeave={handleMouseLeave}
+                onMouseUp={handleMouseUp}
+                onMouseMove={handleMouseMove}>
             <div className='country-card-slider' style={{ width: `${data?.meta?.total * 290}px` }}>
                 {
                     data?.data?.map((country: any) =>
