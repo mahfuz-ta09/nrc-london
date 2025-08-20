@@ -98,6 +98,7 @@ const SubjectControllModal = ({ addSub, setAddSub }: ModalProps) => {
                     name:''
                 })
                 reset()
+                setSelectedQualifications([])
             }else{
                 toast.error(res?.data?.message || "Failed! to operate")
             }
@@ -124,8 +125,7 @@ const SubjectControllModal = ({ addSub, setAddSub }: ModalProps) => {
                 </h1>
 
                 <button className="cancel-btn"
-                    onClick={() =>setAddSub((prev: any) => ({...prev,id: "",name: "",isOPen: false,action: "",}))
-                    }> X </button>
+                    onClick={() =>{setSelectedQualifications([]);setAddSub((prev: any) => ({...prev,id: "",name: "",isOPen: false,action: ""}))}}> X </button>
 
                 <form onSubmit={handleSubmit(onSubmit)} className="modal-from">
 

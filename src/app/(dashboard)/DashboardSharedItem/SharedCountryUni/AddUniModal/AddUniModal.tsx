@@ -141,7 +141,7 @@ const AddUniModal = ({ addUni, setAddUni }: ModalProps) => {
                 :<h1 style={{color:"black"}}>{addUni?.action} {addUni?.name}</h1>}
 
                 <button
-                    onClick={() => setAddUni((prev:any) => ({ ...prev, id: '', name: '', isOPen: false, action: "" }))}
+                    onClick={() =>{setSelectedTests([]);setSelectedQualifications([]);setAddUni((prev:any) => ({ ...prev, id: '', name: '', isOPen: false, action: "" }))}}
                     className="cancel-btn"
                 > X </button>
 
