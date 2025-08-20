@@ -71,6 +71,7 @@ const UniversityTable = () => {
     }
     
     
+    
     return (
         <div className='university-table'>
             <h1>university: {para?.country?para?.country:'all'} / total:{data?.meta?.totalCount}</h1>
@@ -78,16 +79,9 @@ const UniversityTable = () => {
             <div className='all-btn-container'>
                 <button className='all-btn'
                         onClick={() =>
-                                setPara(prev => ({
-                                ...prev,
-                                all: "all",
-                                country: "",
-                                page: "1",
-                                total: "10"
-                                }))
-                        }
-                        onMouseEnter={(e) => (e.currentTarget.style.backgroundColor = "#eee")}
-                        onMouseLeave={(e) => (e.currentTarget.style.backgroundColor = "#f8f8f8")}
+                            setPara(prev => ({...prev,all: "all",country: "",page: "1",total: "10"}))}
+                            onMouseEnter={(e) => (e.currentTarget.style.backgroundColor = "#eee")}
+                            onMouseLeave={(e) => (e.currentTarget.style.backgroundColor = "#f8f8f8")}
                     >all</button>
                 {country?.data?.map((single: any) => (
                     <button

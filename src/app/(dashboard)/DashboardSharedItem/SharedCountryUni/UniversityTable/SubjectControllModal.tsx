@@ -29,17 +29,27 @@ type UniData = {
     applicationDeadline?:string,
     careerOpportunities?:string,
     accreditation?:string
-    cost?:number
+    cost?:number,
+    placement?:string
 }
 
 const qualificationOptions = [
-  { value: "undergraduate", label: "Undergraduate (Bachelor's)" },
-  { value: "graduate", label: "Graduate (Master's)" },
-  { value: "doctorate", label: "Doctorate (PhD)" },
-  { value: "diploma", label: "Diploma / Certificate" },
-  { value: "foundation", label: "Foundation / Preparatory" }
+  { value: "certificate", label: "Certificate (Short-term / Vocational)" },
+  { value: "diploma", label: "Diploma / Advanced Diploma" },
+  { value: "foundation", label: "Foundation / Preparatory" },
+  { value: "associate", label: "Associate Degree (AA / AS)" },
+  { value: "undergraduate", label: "Undergraduate (Bachelor’s)" },
+  { value: "graduate", label: "Graduate (Master’s)" },
+  { value: "doctorate", label: "Doctorate (PhD / Professional Doctorate)" },
+  { value: "professional", label: "Professional Qualification (ACCA, CFA, PMP, etc.)" },
+  { value: "postdoc", label: "Postdoctoral / Research Fellowship" },
+  { value: "executive", label: "Executive Education / MBA / EMBA" },
+  { value: "vocational", label: "Vocational / Technical Training" },
+  { value: "continuing", label: "Continuing Education / Lifelong Learning" },
+  { value: "online", label: "Online / Distance Learning Program" },
+  { value: "shortcourse", label: "Short Course / Workshop / Bootcamp" },
+  { value: "others", label: "mention others" }
 ];
-
 
 
 const SubjectControllModal = ({ addSub, setAddSub }: ModalProps) => {
@@ -112,58 +122,119 @@ const SubjectControllModal = ({ addSub, setAddSub }: ModalProps) => {
                 <h1 style={{ color: "black" }}>
                     {addSub?.action} subject to {addSub?.name}
                 </h1>
+
                 <button className="cancel-btn"
-                    onClick={() =>
-                        setAddSub((prev: any) => ({
-                        ...prev,
-                        id: "",
-                        name: "",
-                        isOPen: false,
-                        action: "",
-                        }))
+                    onClick={() =>setAddSub((prev: any) => ({...prev,id: "",name: "",isOPen: false,action: "",}))
                     }> X </button>
 
                 <form onSubmit={handleSubmit(onSubmit)} className="modal-from">
 
                     <div className="input-container">
                         <label>subject name</label>
-                        <input type="text" {...register("subjectName")} />
+                        <input type="text" placeholder="e.g. computer science, law" {...register("subjectName")} />
                     </div>
 
 
                     <div className="input-container">
                         <label>duration (months)</label>
-                        <input type="number" min={0} {...register("duration", { valueAsNumber: true })} />
+                        <input type="number" min={0} placeholder="e.g. 12/36/48" {...register("duration", { valueAsNumber: true })} />
                     </div>
 
-
                     <div className="input-container">
-                        <label>program type</label>
+                        <label>Program Type</label>
                         <select {...register("programType")}>
-                        <option value="">-- Select program --</option>
-                        <option value="BSc">BSc</option>
-                        <option value="MSc">MSc</option>
-                        <option value="PhD">PhD</option>
-                        <option value="Diploma">Diploma</option>
+                            <option value="">-- Select Program --</option>
+
+                            <optgroup label="Undergraduate">
+                                <option value="Certificate">Certificate</option>
+                                <option value="Diploma">Diploma</option>
+                                <option value="Associate">Associate Degree (AA/AS/AAS)</option>
+                                <option value="BA">Bachelor of Arts (BA)</option>
+                                <option value="BSc">Bachelor of Science (BSc/BS)</option>
+                                <option value="BBA">Bachelor of Business Administration (BBA)</option>
+                                <option value="BEng">Bachelor of Engineering (BEng)</option>
+                                <option value="LLB">Bachelor of Laws (LLB)</option>
+                                <option value="MBBS">Bachelor of Medicine (MBBS/MD)</option>
+                            </optgroup>
+
+                            <optgroup label="Postgraduate">
+                                <option value="PGCert">Postgraduate Certificate (PGCert)</option>
+                                <option value="PGDip">Postgraduate Diploma (PGDip)</option>
+                                <option value="MA">Master of Arts (MA)</option>
+                                <option value="MSc">Master of Science (MSc/MS)</option>
+                                <option value="MBA">Master of Business Administration (MBA)</option>
+                                <option value="MEng">Master of Engineering (MEng)</option>
+                                <option value="LLM">Master of Laws (LLM)</option>
+                                <option value="MEd">Master of Education (MEd)</option>
+                                <option value="MPH">Master of Public Health (MPH)</option>
+                            </optgroup>
+
+                            <optgroup label="Doctoral">
+                                <option value="PhD">Doctor of Philosophy (PhD/DPhil)</option>
+                                <option value="MD">Doctor of Medicine (MD/DO)</option>
+                                <option value="DBA">Doctor of Business Administration (DBA)</option>
+                                <option value="EdD">Doctor of Education (EdD)</option>
+                                <option value="SJD">Doctor of Juridical Science (SJD/JSD)</option>
+                            </optgroup>
+
+                            <optgroup label="Other / Professional">
+                                <option value="Foundation">Foundation / Pathway Program</option>
+                                <option value="CertificateProfessional">Professional Certificate (ACCA, CFA, PMP, etc.)</option>
+                                <option value="ShortCourse">Short Course</option>
+                                <option value="ExecutiveEducation">Executive Education</option>
+                                <option value="Online">Online / Distance Learning</option>
+                            </optgroup>
                         </select>
                     </div>
 
 
                     <div className="input-container">
-                        <label>faculty / department</label>
-                        <input type="text" {...register("faculty")} placeholder="e.g. Faculty of Engineering" />
+                        <label>placement</label>
+                        <select {...register("placement")}>
+                            <option value="">-- Select program --</option>
+                            <option value="BSc">yes</option>
+                            <option value="MSc">no</option>
+                        </select>
                     </div>
 
+                    <div className="input-container">
+                        <label>Faculty / Department</label>
+                        <select {...register("faculty")}>
+                            <option value="">-- Select faculty / department --</option>
+                            <option value="arts">Faculty of Arts & Humanities</option>
+                            <option value="science">Faculty of Science</option>
+                            <option value="engineering">Faculty of Engineering</option>
+                            <option value="business">Faculty of Business / Management</option>
+                            <option value="law">Faculty of Law</option>
+                            <option value="medicine">Faculty of Medicine</option>
+                            <option value="dentistry">Faculty of Dentistry</option>
+                            <option value="nursing">Faculty of Nursing</option>
+                            <option value="pharmacy">Faculty of Pharmacy</option>
+                            <option value="social_sciences">Faculty of Social Sciences</option>
+                            <option value="education">Faculty of Education</option>
+                            <option value="it">Faculty of Computer Science / IT</option>
+                            <option value="agriculture">Faculty of Agriculture</option>
+                            <option value="architecture">Faculty of Architecture & Design</option>
+                            <option value="economics">Faculty of Economics</option>
+                            <option value="environment">Faculty of Environmental Studies</option>
+                            <option value="communication">Faculty of Communication / Media</option>
+                            <option value="psychology">Faculty of Psychology</option>
+                            <option value="public_health">Faculty of Public Health</option>
+                            <option value="hospitality">Faculty of Hospitality & Tourism</option>
+                            <option value="theology">Faculty of Theology / Religious Studies</option>
+                            <option value="law_enforcement">Faculty of Criminology / Law Enforcement</option>
+                        </select>
+                    </div>
 
                     <div className="input-container">
                         <label>credits</label>
-                        <input type="number" min={0} {...register("credits", { valueAsNumber: true })} />
+                        <input type="number" min={0} placeholder="e.g. 90/100/120 total" {...register("credits", { valueAsNumber: true })} />
                     </div>
 
 
                     <div className="input-container">
                         <label>cost</label>
-                        <input type="number" min={0} {...register("cost", { valueAsNumber: true })} />
+                        <input type="number" min={0} placeholder="e.g. cost to finish the course" {...register("cost", { valueAsNumber: true })} />
                     </div>
 
 
@@ -180,7 +251,7 @@ const SubjectControllModal = ({ addSub, setAddSub }: ModalProps) => {
 
                     
                     <div className="input-container">
-                        <label>required qualifications</label>
+                        <label>required qualifications(optional)</label>
                         <select onChange={handleQualificationSelect}>
                         <option value="">-- Select qualification --</option>
                         {qualificationOptions.map((q) => (
@@ -192,13 +263,12 @@ const SubjectControllModal = ({ addSub, setAddSub }: ModalProps) => {
 
                         {selectedQualifications.map((q) => (
                         <div key={q} style={{ marginTop: "10px" }}>
-                            <label>study cost in {q}:</label>
+                            <label>description about {q}:</label>
                             <input
-                            min={0}
-                            type="number"
-                            {...register(`qualifications.${q}`)}
-                            placeholder={`Enter description for ${q}`}
-                            style={{ padding: "4px", marginLeft: "10px" }}
+                                type="text"
+                                {...register(`qualifications.${q}`)}
+                                placeholder={`Enter description for ${q}`}
+                                style={{ padding: "4px", marginLeft: "10px" }}
                             />
                         </div>
                         ))}
@@ -210,12 +280,24 @@ const SubjectControllModal = ({ addSub, setAddSub }: ModalProps) => {
                         <input type="text" {...register("language")} placeholder="e.g. English" />
                     </div>
 
-
                     <div className="input-container">
-                        <label>intake months</label>
-                        <input type="text" {...register("intakes")} placeholder="e.g. Fall, Spring" />
+                        <label>Intake Months</label>
+                        <select {...register("intakes")}>
+                            <option value="">-- Select intake month --</option>
+                            <option value="january">January (Winter)</option>
+                            <option value="february">February</option>
+                            <option value="march">March</option>
+                            <option value="april">April (Spring)</option>
+                            <option value="may">May (Summer)</option>
+                            <option value="june">June</option>
+                            <option value="july">July</option>
+                            <option value="august">August</option>
+                            <option value="september">September (Fall)</option>
+                            <option value="october">October</option>
+                            <option value="november">November</option>
+                            <option value="december">December</option>
+                        </select>
                     </div>
-
 
                     <div className="input-container">
                         <label>application deadline</label>
@@ -228,12 +310,22 @@ const SubjectControllModal = ({ addSub, setAddSub }: ModalProps) => {
                         <textarea {...register("careerOpportunities")} placeholder="e.g. Software Engineer, Data Scientist" />
                     </div>
 
-
                     <div className="input-container">
-                        <label>accreditation</label>
-                        <input type="text" {...register("accreditation")} placeholder="e.g. UGC Approved" />
+                        <label>Accreditation(optional)</label>
+                        <select {...register("accreditation")}>
+                            <option value="">-- Select accreditation --</option>
+                            <option value="ugc">UGC (University Grants Commission)</option>
+                            <option value="naac">NAAC (National Assessment and Accreditation Council)</option>
+                            <option value="nba">NBA (National Board of Accreditation)</option>
+                            <option value="aacsb">AACSB (Association to Advance Collegiate Schools of Business)</option>
+                            <option value="abet">ABET (Accreditation Board for Engineering and Technology)</option>
+                            <option value="equis">EQUIS (European Quality Improvement System)</option>
+                            <option value="amBa">AMBA (Association of MBAs)</option>
+                            <option value="regional">Regional Accreditation (e.g. Middle States, WASC, etc.)</option>
+                            <option value="professional">Professional Body Accreditation (e.g. Medical Council, Bar Council, Nursing Council)</option>
+                            <option value="other">Other</option>
+                        </select>
                     </div>
-
 
                     <div className="input-container">
                         <label>add description about the course</label>

@@ -36,6 +36,11 @@
     scrollbar-width: none;
 }
 
+#modal-body-id{
+    min-width: 90%;
+    margin: 0 auto;
+}
+
 .openmoda-container .modal-body {
     transform: scale(1);
     opacity: 1;
@@ -173,9 +178,9 @@
 
 @media (max-width: 640px) {
     .modal-body{
-        width: 95%;
-        margin: auto ;
-
+        width: 99%;
+        margin: 0 auto;
+        padding: 5px;
     }
 
     .modal-body form {

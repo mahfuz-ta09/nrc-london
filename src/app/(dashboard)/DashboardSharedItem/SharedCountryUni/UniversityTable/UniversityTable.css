@@ -26,6 +26,7 @@
   border: 1px solid #ddd;
   padding: 8px;
   color: #fff;
+  font-weight: 300;
 }
 
 #customers tr:hover {
@@ -98,4 +99,9 @@
     border-radius: 6px;
     font-size: 14px;
     width: 100%;
+}
+
+@media screen and (max-width: 768px) {
+    
+
 }

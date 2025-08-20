@@ -1,10 +1,9 @@
 'use client'
 import { faTrash } from '@fortawesome/free-solid-svg-icons'
 import './UniversityTable.css'
-import { useForm, SubmitHandler } from "react-hook-form"
 import { toast } from "react-toastify"
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { useGetSubjectListQuery } from '@/redux/endpoints/subject/subjectEndpoints'
+import { useGetSubjectListQuery, useRemoveSubjectMutation } from '@/redux/endpoints/subject/subjectEndpoints'
 import Loader from '@/component/shared/Loader/Loader'
 
 
@@ -26,17 +25,10 @@ type UniData = {
     qualifications: Record<string, string>, 
 }
 
-const qualificationOptions = ["master", "bsc", "phd", "diploma","under grad","experience"]
 
 const SubjectListModal = ({ listSubject, setListSubject }: ModalProps) => {
-    const { register, handleSubmit, reset, setValue } = useForm<UniData>()
-    const { data , isLoading } = useGetSubjectListQuery({
-        all: "",
-        country: listSubject?.id || "",
-        page: "1",
-        total: "10",
-        uniName: listSubject?.name || ""
-    }, {
+    const [removeSubject] = useRemoveSubjectMutation()
+    const { data , isLoading } = useGetSubjectListQuery({all: "",country: listSubject?.id || "",page: "1",total: "10",uniName: listSubject?.name ||""},{
         skip: !listSubject?.id || !listSubject?.name 
     })
 
@@ -48,55 +40,29 @@ const SubjectListModal = ({ listSubject, setListSubject }: ModalProps) => {
     if(!listSubject?.id || !listSubject?.name){
         return null
     }
-    const onSubmit: SubmitHandler<UniData> = async(data) => {
+    
+    const handleDeleteSubject = async(e:any) => {
         try{
-            let res
-            var form_data = new FormData()
-            
-            Object.entries(data).forEach(([key, value]) => {
-                if (value instanceof FileList) {
-                    for (let i = 0; i < value.length; i++) {
-                        form_data.append(key, value[i]);
-                    }
-                } else if (typeof value === "object" && value !== null) {
-                    Object.entries(value).forEach(([subKey, subValue]) => {
-                        if (subValue !== undefined && subValue !== null && subValue !== "" && !Number.isNaN(subValue)) {
-                        form_data.append(`${key}[${subKey}]`, String(subValue));
-                        }
-                    });
-                } else if (value !== undefined && value !== null && value !== "" && !Number.isNaN(value)) {
-                    form_data.append(key, String(value));
-                }
+            const isConfirmed = window.confirm(`Are you sure you want to delete subject?`)
+            if (!isConfirmed) return; 
 
-            });
+            const res = await removeSubject({id: e , countryID: listSubject?.id , countryName: listSubject?.name})
 
-            
-            // if(addUni?.action==="add")res = await addUniversity({data:form_data,id: addUni?.id})
-            // if(addUni?.action==="edit")res = await editUniversity({data: form_data,id:addUni?.id, universityName:addUni?.name})
-            
-            
-            // if(res?.data?.data?.acknowledged){
-            //     toast.success("Operation successful!!!")
-            //     setAddUni({
-            //         isOpen: false,
-            //         id:"",
-            //         name:''
-            //     })
-            //     reset()
-            // }else{
-            //     toast.error(res?.data?.message || "Failed! to operate")
-            // }
+            if(res?.data?.data?.modifiedCount){
+                toast.success("Subject deleted!")
+            }else{
+                toast.error('Failed to delete')
+            }   
         }catch(err){
-            toast.error("Something went wrong!")
+            console.error("Error deleting subject:", err)
+            toast.error("Failed to delete subject")
         }
     }
-
-    // console.log(listSubject)
-    // console.log(data)
+    
     
     return (
         <div className={listSubject?.isOPen ? 'modal-container openmoda-container' : 'modal-container'}>
-            <div className='modal-body'>
+            <div id='modal-body-id' className='modal-body'>
                 <h1 style={{color:"black"}}>check all subject in {listSubject?.name}</h1>
                 <button
                     onClick={() => setListSubject((prev:any) => ({ ...prev, id: '', name: '', isOPen: false, action: "" }))}
@@ -110,20 +76,48 @@ const SubjectListModal = ({ listSubject, setListSubject }: ModalProps) => {
                         <thead>
                             <tr>
                                 <th>subject name</th>
-                                <th>course duration</th>
-                                <th>qualification</th>
+                                <th>course duration(month)</th>
+                                <th>cost</th>
+                                <th>total credit</th>
+                                <th>application deadline</th>
+                                <th>faculty</th>
+                                <th>intake</th>
+                                <th>language</th>
+                                <th>mode of study</th>
+                                <th>program type</th>
+                                <th>qualifications</th>
                                 <th>description</th>
                                 <th>delete</th>
                             </tr>
                         </thead>
                         <tbody>
-                            <tr style={{color:"black"}}>
-                                <td  style={{color:"black"}}>dsf</td>
-                                <td  style={{color:"black"}}>dsf</td>
-                                <td  style={{color:"black"}}>dsf</td>
-                                <td  style={{color:"black"}}>dsf</td>
-                                <td  style={{color:"black"}}><FontAwesomeIcon icon={faTrash}/></td>
-                            </tr>
+                            {
+                                data?.data?.map((subject:any,index:number) => (
+                                    <tr key={index}>
+                                        <td style={{color:"#000"}}>{subject?.subjectName}</td>
+                                        <td style={{color:"#000"}}>{subject?.duration}</td>
+                                        <td style={{color:"#000"}}>{subject?.cost}</td>
+                                        <td style={{color:"#000"}}>{subject?.credits}</td>
+                                        <td style={{color:"#000"}}>{subject?.applicationDeadline}</td>
+                                        <td style={{color:"#000"}}>{subject?.faculty}</td>
+                                        <td style={{color:"#000"}}>{subject?.intake}</td>
+                                        <td style={{color:"#000"}}>{subject?.language}</td>
+                                        <td style={{color:"#000"}}>{subject?.modeOfStudy}</td>
+                                        <td style={{color:"#000"}}>{subject?.programType}</td>
+                                        <td style={{color:"#000"}}>
+                                            {Object.entries(subject?.qualifications || {}).map(([key, value]:[any,any]) => (
+                                                <span key={key}>{key} : {value}</span>
+                                            ))}
+                                        </td>
+                                        <td style={{color:"#000"}}>{subject?.description}</td>
+                                        <td>
+                                            <button onClick={()=>handleDeleteSubject(subject?._id)} style={{color:"#000"}} className='University-edit-btn'>
+                                                <FontAwesomeIcon icon={faTrash} />
+                                            </button>
+                                        </td>
+                                    </tr>
+                                ))
+                            }
                         </tbody>
                     </table>
                 </div>

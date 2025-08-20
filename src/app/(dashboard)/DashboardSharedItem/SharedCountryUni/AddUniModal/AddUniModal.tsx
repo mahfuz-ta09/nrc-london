@@ -30,11 +30,20 @@ type UniData = {
 
 const testOptions = ["IELTS", "TOEFL", "DUOLINGO","GRE","PTE","OET","GMAT","SAT","ACT","APT"]
 const qualificationOptions = [
-  { value: "undergraduate", label: "Undergraduate (Bachelor's)" },
-  { value: "graduate", label: "Graduate (Master's)" },
-  { value: "doctorate", label: "Doctorate (PhD)" },
-  { value: "diploma", label: "Diploma / Certificate" },
-  { value: "foundation", label: "Foundation / Preparatory" }
+  { value: "certificate", label: "Certificate (Short-term / Vocational)" },
+  { value: "diploma", label: "Diploma / Advanced Diploma" },
+  { value: "foundation", label: "Foundation / Preparatory" },
+  { value: "associate", label: "Associate Degree (AA / AS)" },
+  { value: "undergraduate", label: "Undergraduate (Bachelor’s)" },
+  { value: "graduate", label: "Graduate (Master’s)" },
+  { value: "doctorate", label: "Doctorate (PhD / Professional Doctorate)" },
+  { value: "professional", label: "Professional Qualification (ACCA, CFA, PMP, etc.)" },
+  { value: "postdoc", label: "Postdoctoral / Research Fellowship" },
+  { value: "executive", label: "Executive Education / MBA / EMBA" },
+  { value: "vocational", label: "Vocational / Technical Training" },
+  { value: "continuing", label: "Continuing Education / Lifelong Learning" },
+  { value: "online", label: "Online / Distance Learning Program" },
+  { value: "shortcourse", label: "Short Course / Workshop / Bootcamp" }
 ];
 
 

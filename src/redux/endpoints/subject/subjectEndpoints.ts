@@ -91,6 +91,14 @@ const subjectApi = baseApi.injectEndpoints({
     }),
 
 
+        removeSubject : build.mutation<any, { id: string, countryID: string , countryName: string }>({
+            query: ({ id , countryID , countryName }) => ({
+              url: `/subject/remove/${id}/${countryID}/${countryName}`,
+              method: "DELETE",
+            }),
+            invalidatesTags: ["country-uni"]
+        }),
+
   }),
   overrideExisting: true,
 })
@@ -115,5 +123,6 @@ export const {
 
     // new endpoints
     useAddSubjectMutation,
-    useGetSubjectListQuery
+    useGetSubjectListQuery,
+    useRemoveSubjectMutation,
 } = subjectApi
