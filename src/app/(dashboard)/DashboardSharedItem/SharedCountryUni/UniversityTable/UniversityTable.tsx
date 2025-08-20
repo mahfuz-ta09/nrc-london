@@ -71,7 +71,6 @@ const UniversityTable = () => {
     }
     
     
-    
     return (
         <div className='university-table'>
             <h1>university: {para?.country?para?.country:'all'} / total:{data?.meta?.totalCount}</h1>

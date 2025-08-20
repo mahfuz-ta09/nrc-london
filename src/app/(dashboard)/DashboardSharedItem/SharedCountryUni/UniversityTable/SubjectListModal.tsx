@@ -27,12 +27,12 @@ type UniData = {
 
 
 const SubjectListModal = ({ listSubject, setListSubject }: ModalProps) => {
-    const [removeSubject] = useRemoveSubjectMutation()
+    const [removeSubject , { isLoading: removeLoading }] = useRemoveSubjectMutation()
     const { data , isLoading } = useGetSubjectListQuery({all: "",country: listSubject?.id || "",page: "1",total: "10",uniName: listSubject?.name ||""},{
         skip: !listSubject?.id || !listSubject?.name 
     })
 
-    if(isLoading){
+    if(isLoading || removeLoading){
         return <Loader />
     }
 
