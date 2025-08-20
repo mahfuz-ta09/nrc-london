@@ -60,6 +60,37 @@ const subjectApi = baseApi.injectEndpoints({
         }),
         invalidatesTags: ["subjects"]
     }),
+
+
+
+
+
+
+
+
+
+
+    
+    addSubject: build.mutation<any,{data:any,countryId:string, universityName:string}>({
+      query: ({data,countryId, universityName}) => ({
+        url    : `/subject/add/${countryId}/${universityName}`,
+        method : "POST",
+        data
+      }),
+      invalidatesTags: ["country-uni"]
+    }),
+
+
+    getSubjectList: build.query<any, { all?: string , country?: string , page?: string , total?: string , uniName: string}>({
+        query: ({ all, country, page, total , uniName }) => ({
+            url: `/subject`,
+            method: 'GET',
+            params: { all, country, page, total , uniName}
+        }),
+        providesTags: ["country-uni"]
+    }),
+
+
   }),
   overrideExisting: true,
 })
@@ -71,5 +102,18 @@ export const {
     useDeleteSubjectMutation,
     useUpdateSubjectMutation,
     useGetSubNavItemQuery,
-    useGetAllSubByCountryQuery
+    useGetAllSubByCountryQuery,
+
+
+
+
+
+
+
+
+
+
+    // new endpoints
+    useAddSubjectMutation,
+    useGetSubjectListQuery
 } = subjectApi

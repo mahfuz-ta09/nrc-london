@@ -1,7 +1,11 @@
 'use client'
-import { useState } from "react"
+import { faTrash } from '@fortawesome/free-solid-svg-icons'
+import './UniversityTable.css'
 import { useForm, SubmitHandler } from "react-hook-form"
 import { toast } from "react-toastify"
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { useGetSubjectListQuery } from '@/redux/endpoints/subject/subjectEndpoints'
+import Loader from '@/component/shared/Loader/Loader'
 
 
 type ModalProps = {
@@ -26,7 +30,24 @@ const qualificationOptions = ["master", "bsc", "phd", "diploma","under grad","ex
 
 const SubjectListModal = ({ listSubject, setListSubject }: ModalProps) => {
     const { register, handleSubmit, reset, setValue } = useForm<UniData>()
+    const { data , isLoading } = useGetSubjectListQuery({
+        all: "",
+        country: listSubject?.id || "",
+        page: "1",
+        total: "10",
+        uniName: listSubject?.name || ""
+    }, {
+        skip: !listSubject?.id || !listSubject?.name 
+    })
 
+    if(isLoading){
+        return <Loader />
+    }
+
+
+    if(!listSubject?.id || !listSubject?.name){
+        return null
+    }
     const onSubmit: SubmitHandler<UniData> = async(data) => {
         try{
             let res
@@ -70,49 +91,43 @@ const SubjectListModal = ({ listSubject, setListSubject }: ModalProps) => {
         }
     }
 
-
+    // console.log(listSubject)
+    // console.log(data)
+    
     return (
         <div className={listSubject?.isOPen ? 'modal-container openmoda-container' : 'modal-container'}>
-            <h1 style={{color:"black"}}>{listSubject?.action} subject to {listSubject?.name}</h1>
+            <div className='modal-body'>
+                <h1 style={{color:"black"}}>check all subject in {listSubject?.name}</h1>
                 <button
                     onClick={() => setListSubject((prev:any) => ({ ...prev, id: '', name: '', isOPen: false, action: "" }))}
                     className="cancel-btn"
                 >
                     X
                 </button>
-                
-                <div className="modal-from">
-                    <table style={{background:"wheat"}}>
+                    
+                <div className="table-container">
+                    <table id="customers">
                         <thead>
                             <tr>
-                                <th>university name</th>
-                                <th>country image</th>
-                                <th>schoolarship</th>
-                                <th>tuition fee</th>
-                                <th>initital deposite</th>
-                                <th>required english</th>
-                                <th>required qualification</th>
-                                <th>details</th>
-                                <th>add subject</th>
-                                <th>all subject</th>
+                                <th>subject name</th>
+                                <th>course duration</th>
+                                <th>qualification</th>
+                                <th>description</th>
+                                <th>delete</th>
                             </tr>
                         </thead>
                         <tbody>
-                            <tr>
-                                <td>dsf</td>
-                                <td>dsf</td>
-                                <td>dsf</td>
-                                <td>dsf</td>
-                                <td>dsf</td>
-                                <td>dsf</td>
-                                <td>dsf</td>
-                                <td>dsf</td>
-                                <td>dsf</td>
-                                <td>dsf</td>
+                            <tr style={{color:"black"}}>
+                                <td  style={{color:"black"}}>dsf</td>
+                                <td  style={{color:"black"}}>dsf</td>
+                                <td  style={{color:"black"}}>dsf</td>
+                                <td  style={{color:"black"}}>dsf</td>
+                                <td  style={{color:"black"}}><FontAwesomeIcon icon={faTrash}/></td>
                             </tr>
                         </tbody>
                     </table>
                 </div>
+            </div>
         </div>
     )
 }

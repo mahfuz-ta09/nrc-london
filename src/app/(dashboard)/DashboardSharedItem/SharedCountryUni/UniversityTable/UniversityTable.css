@@ -1,6 +1,8 @@
 .university-table{
     width: 100%;
     margin: 80px auto;
+    display: flex;
+    flex-direction: column;
 }
 
 .university-table h1{
@@ -13,6 +15,7 @@
     width: 100%;
     overflow: auto;
 }
+
 
 #customers {
   border-collapse: collapse;
@@ -39,7 +42,6 @@
 
 
 .University-edit-btn{
-    /* border :1px solid #fff; */
     border: none;
     border-radius: 50%;
     width: 30px;

@@ -70,7 +70,7 @@ const UniversityTable = () => {
         });
     }
     
-
+    
     return (
         <div className='university-table'>
             <h1>university: {para?.country?para?.country:'all'} / total:{data?.meta?.totalCount}</h1>
@@ -139,23 +139,23 @@ const UniversityTable = () => {
                                 <td>{uni?.initialDeposite}</td>
                                 <td>
                                     {Object.entries(uni?.englishProf || {}).map(([key, value]) => (
-                                        <h1 style={{fontSize:"15px",display:'block',width:'100%'}}  key={key}>
+                                        <h1 style={{fontSize:"15px",display:"inline-block",width:'100%'}}  key={key}>
                                             {key}: {String(value)}
                                         </h1>
                                     ))}
                                 </td>
                                 <td>
                                     {Object.entries(uni?.qualifications || {}).map(([key, value]) => (
-                                        <h1 style={{fontSize:"15px",display:'block',width:'100%'}} key={key}>
+                                        <h1 style={{fontSize:"15px",display:"inline-block",width:'100%'}} key={key}>
                                             {key}: {String(value)}
                                         </h1>
                                     ))}
                                 </td>
                                 <td>{uni?.aboutUni}</td>
-                                <td><button style={{background:"green"}} onClick={() => setAddSub(prev => ({ ...prev , isOPen: true, name:`${uni?.universityName}`, action: "add"}))} className='University-edit-btn'><FontAwesomeIcon icon={faAdd}/></button></td>
-                                <td><button style={{background:"teal"}} onClick={() => setListSubject(prev => ({ ...prev , isOPen: true, name:`${uni?.universityName}`, action: "add"}))} className='University-edit-btn'><FontAwesomeIcon icon={faList}/></button></td>
-                                <td><button style={{background:"red"}} onClick={()=>handleDelete(uni?.countryId,uni?.universityName)} className='University-edit-btn'><FontAwesomeIcon icon={faTrash}/></button></td>
-                                <td><button style={{background:"green"}} onClick={() => setAddUni(prev => ({ ...prev , isOPen: true, name:`${uni?.universityName}`, id:`${uni?.countryId}` , action: "edit"}))} className='University-edit-btn'><FontAwesomeIcon icon={faPen}/></button></td>
+                                <td><button style={{background:"green"}} onClick={() => setAddSub(prev => ({ ...prev , isOPen: true,id: uni?.countryId, name:`${uni?.universityName}`, action: "add"}))} className='University-edit-btn'><FontAwesomeIcon icon={faAdd}/></button></td>
+                                <td><button style={{background:"teal"}} onClick={() => setListSubject(prev => ({ ...prev ,id: uni?.countryId, isOPen: true, name:`${uni?.universityName}`, action: ""}))} className='University-edit-btn'><FontAwesomeIcon icon={faList}/></button></td>
+                                <td><button style={{background:"red"}} onClick={()=> handleDelete(uni?.countryId,uni?.universityName)} className='University-edit-btn'><FontAwesomeIcon icon={faTrash}/></button></td>
+                                <td><button style={{background:"green"}} onClick={()=> setAddUni(prev => ({ ...prev , isOPen: true, name:`${uni?.universityName}`, id:`${uni?.countryId}` , action: "edit"}))} className='University-edit-btn'><FontAwesomeIcon icon={faPen}/></button></td>
                             </tr>
                         )}
                     </tbody>
@@ -171,6 +171,7 @@ const UniversityTable = () => {
                     value={para.page}
                     onChange={handleChange}
                     className='pagination-input'
+                    min={0}
                     style={{
                         width: "140px"
                     }}
@@ -182,6 +183,7 @@ const UniversityTable = () => {
                     value={para.total}
                     onChange={handleChange}
                     className='pagination-input'
+                    min={0}
                     style={{
                         width: "140px"
                     }}

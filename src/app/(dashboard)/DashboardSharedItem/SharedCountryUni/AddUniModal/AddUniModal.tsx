@@ -29,7 +29,14 @@ type UniData = {
 }
 
 const testOptions = ["IELTS", "TOEFL", "DUOLINGO","GRE","PTE","OET","GMAT","SAT","ACT","APT"]
-const qualificationOptions = ["master", "bsc", "phd", "diploma","under grad","experience"]
+const qualificationOptions = [
+  { value: "undergraduate", label: "Undergraduate (Bachelor's)" },
+  { value: "graduate", label: "Graduate (Master's)" },
+  { value: "doctorate", label: "Doctorate (PhD)" },
+  { value: "diploma", label: "Diploma / Certificate" },
+  { value: "foundation", label: "Foundation / Preparatory" }
+];
+
 
 const AddUniModal = ({ addUni, setAddUni }: ModalProps) => {
     const [addUniversity , { isLoading: createLoading }] = useAddUniversityMutation()
@@ -47,9 +54,11 @@ const AddUniModal = ({ addUni, setAddUni }: ModalProps) => {
     const [selectedQualifications, setSelectedQualifications] = useState<string[]>([])
 
 
-    if(createLoading ||editLoading ){
+    if(createLoading || editLoading ){
         return <Loader />
     }
+
+    
 
     const onSubmit: SubmitHandler<UniData> = async(data) => {
         try{
@@ -125,9 +134,7 @@ const AddUniModal = ({ addUni, setAddUni }: ModalProps) => {
                 <button
                     onClick={() => setAddUni((prev:any) => ({ ...prev, id: '', name: '', isOPen: false, action: "" }))}
                     className="cancel-btn"
-                >
-                    X
-                </button>
+                > X </button>
 
                 <form onSubmit={handleSubmit(onSubmit)} className='modal-from'>
                     <div className='input-container'>
@@ -186,7 +193,7 @@ const AddUniModal = ({ addUni, setAddUni }: ModalProps) => {
                         <select onChange={handleQualificationSelect}>
                             <option value="">-- Select qualification --</option>
                             {qualificationOptions.map(q => (
-                                <option key={q} value={q}>{q}</option>
+                                <option key={q?.value} value={q?.value}>{q?.label}</option>
                             ))}
                         </select>
 
