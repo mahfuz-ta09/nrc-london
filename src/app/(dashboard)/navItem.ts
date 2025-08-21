@@ -74,6 +74,11 @@ const sideNavItem = (role : Role) => {
                     icon        : faUser,
                 },
                 {
+                    title    : "my action",
+                    path     : "---",
+                    icon     : faUser,
+                },
+                {
                     title       : "Subjects",
                     path        : `${role}/subjects`,
                     icon        : faBookOpen,
