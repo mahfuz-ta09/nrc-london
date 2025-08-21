@@ -7,6 +7,7 @@ import { usePostProcessDataMutation } from '@/redux/endpoints/proceed/proceedEnd
 import { toast } from 'react-toastify'
 import { useUserInfo } from '@/utils/useUserInfo'
 import { IFormInput } from '@/types/common'
+import Loader from '@/component/shared/Loader/Loader'
 
 
 
@@ -15,6 +16,9 @@ const page = () => {
     const { register , reset, handleSubmit } = useForm<IFormInput>()
     const [ postProcessData , { isLoading: postLoading }]= usePostProcessDataMutation()
     const { Uemail , Urole } = useUserInfo()
+
+
+    if(postLoading) return <Loader />
 
     const onSubmit: SubmitHandler<IFormInput> = async(data) => {
         if(!Uemail){

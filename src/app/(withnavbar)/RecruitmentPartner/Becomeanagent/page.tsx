@@ -6,6 +6,7 @@ import '@/css/Proceed/Proceed.css'
 import { useUserInfo } from "@/utils/useUserInfo"
 import { useCreateAgentsReqMutation } from "@/redux/endpoints/agent/agentsEndpoints"
 import { toast } from "react-toastify"
+import Loader from "@/component/shared/Loader/Loader"
 
 
 type Inputs = {
@@ -43,6 +44,7 @@ const Becomeanagent = () => {
     } = useForm<Inputs>()
     
 
+    if(agentLoading) return <Loader />
 
     const onSubmit: SubmitHandler<Inputs> = async (data: any) => {
         try {

@@ -11,13 +11,17 @@ const sideNavItem = (role : Role) => {
     }
 
 
-    // console.log("sad",role)
     switch(role){
         case USER_ROLE.SUPER_ADMIN:
             navItem.push(
                 {
                     title    : "Profile",
                     path     : "/",
+                    icon     : faUser,
+                },
+                {
+                    title    : "my action",
+                    path     : "---",
                     icon     : faUser,
                 },
                 {
@@ -49,6 +53,16 @@ const sideNavItem = (role : Role) => {
                     title    : "Country&Uni",
                     path     : `${role}/country-uni`,
                     icon     : faGlobe,
+                },
+                {
+                    title       : "Reviews",
+                    path        : `${role}/reviews`,
+                    icon        : faStar,
+                },
+                {
+                    title       : "Process Req",
+                    path        : `${role}/process-req`,
+                    icon        : faTasks,
                 },
             );
             break;
