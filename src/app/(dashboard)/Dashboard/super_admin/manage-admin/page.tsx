@@ -3,7 +3,7 @@ import '@/css/Dashboard/super_admin/common.css'
 import '@/css/Dashboard/admin/university.css'
 import { useState } from 'react'
 import { useForm, SubmitHandler } from "react-hook-form"
-import { useCreateAdminMutation, useGetALlAdminQuery, useUpdateAdminStatusMutation } from '@/redux/endpoints/sAdmin/superAdmin'
+import { useCreateAdminMutation, useGetALlAdminQuery, useUpdateAdminStatusMutation, useUpdateUserRoleMutation } from '@/redux/endpoints/sAdmin/superAdmin'
 import { toast } from 'react-toastify'
 import Loader from '@/component/shared/Loader/Loader'
 
@@ -24,7 +24,10 @@ const page = () => {
     const [createAdmin , { isLoading : createLoading }] = useCreateAdminMutation()
     const { data , isLoading: dataLoading } = useGetALlAdminQuery()
     const [ updateAdminStatus , { isLoading : updateLoading }] = useUpdateAdminStatusMutation() 
+    const [ updateUserRole , { isLoading : updateUsrLoading }] = useUpdateUserRoleMutation() 
 
+
+    if(createLoading || dataLoading || updateLoading || updateUsrLoading) return <Loader />
 
     const onSubmit: SubmitHandler<Inputs> = async(data) => {
         try{
@@ -33,7 +36,7 @@ const page = () => {
                 reset()
                 toast.success("Admin created!!")
             }else{
-                toast.error("Failed to delete!")
+                toast.warning(res?.data?.errorMessage || "Failed to create admin!")
             }
         }catch(err){
             console.log(err)
@@ -41,18 +44,39 @@ const page = () => {
     }
     
     const handleStatusChange = async(e:React.ChangeEvent<HTMLSelectElement>,id:string) =>{    
-        let a = window.confirm("Do you want to change the status?")
-        if(a){
-            const res = await updateAdminStatus({status: e.target.value , id:id})
-            console.log(res)
-            if(res?.data?.data?.modifiedCount===1){
-                toast.success("Status updated!!")
-            }else{
-                toast.error("Failed to update!")
+        try {  
+            let a = window.confirm("Do you want to change the status?")
+            if(a){
+                const res = await updateAdminStatus({status: e.target.value , id:id})
+                if(res?.data?.data?.modifiedCount){
+                    toast.success("Status updated!!")
+                }else{
+                    toast.error("Failed to update!")
+                }
             }
+        }catch(err){
+            console.log(err)
+            toast.error("Failed to update status!")
         }
     }
 
+    const handleRoleChange = async(e:React.ChangeEvent<HTMLSelectElement>,id:string) =>{
+        try {  
+            let a = window.confirm("Do you want to change the status?")
+            if(a){
+                const res = await updateUserRole({role: e.target.value , id:id})
+                if(res?.data?.data?.modifiedCount){
+                    toast.success("Status updated!!")
+                }else{
+                    toast.error("Failed to update!")
+                }
+            }
+        }catch(err){
+            console.log(err)
+            toast.error("Failed to update status!")
+        }
+    }
+    
     return (
         <div className="sAdmin">
             <div className="sAdmin-header">
@@ -74,6 +98,7 @@ const page = () => {
                             <th className="th">Created</th>
                             <th className="th">Status</th>
                             <th className="th">Change Status</th>
+                            <th className="th">Change role</th>
                         </tr>
                     </thead>
                     <tbody className="tbody">
@@ -104,6 +129,17 @@ const page = () => {
                                             <option value="inactive">inactive</option>
                                             <option value="banned">banned</option>
                                         </select>
+                                    </td>
+                                    <td  data-label="change status" className="td">
+                                            <select style={{width:"100px"}}
+                                                value={admin?.status} 
+                                                onChange={(e) => handleRoleChange(e,admin?._id)}>
+                                                    <option value="">select</option>
+                                                    <option value="user">user</option>
+                                                    <option value="student">student</option>
+                                                    <option value="agent">agent</option>
+                                                    <option value="admin">admin</option>
+                                            </select>
                                     </td>
                                 </tr>
                             ))

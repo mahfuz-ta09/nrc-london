@@ -17,72 +17,6 @@
 }
 
 
-#customers {
-  border-collapse: collapse;
-  width: 100%;
-}
-
-#customers td, #customers th {
-  border: 1px solid #ddd;
-  padding: 8px;
-  color: #fff;
-  font-weight: 300;
-}
-
-#customers tr:hover {
-    background-color: rgb(0, 0, 0,0.2);
-}
-
-#customers th {
-    padding-top: 12px;
-    padding-bottom: 12px;
-    text-align: left;
-    background-color: #003f28;
-    color: white;
-}
-
-
-.University-edit-btn{
-    border: none;
-    border-radius: 50%;
-    width: 30px;
-    height: 30px;
-    border-radius: 50%;
-    background: transparent;
-    color: #fff;
-    font-weight: 700;
-
-    &:hover{
-        transition: .5s ease;
-        scale: .85;
-    }
-}
-
-.all-btn-container{
-    display: flex;
-    gap: 5px;
-    overflow-x: auto;
-    white-space: nowrap;
-    padding-bottom: 16px;
-    scrollbar-width: thin;
-    scrollbar-color: #ccc transparent;
-}
-.all-btn{
-    padding: 2px 7px;
-    border: 1px solid #ccc;
-    border-radius: 6px;
-    outline: none;
-    font-size: 11px;
-    background: #f8f8f8;
-    cursor: pointer;
-    flex-shrink: 0;
-    transition: background 0.2s ease;
-    &:hover{
-        scale: 1.05;
-        background: #005f38;
-    }
-}
-
 .pagination-container{
     display: flex;
     flex-direction: row;
@@ -101,7 +35,174 @@
     width: 100%;
 }
 
-@media screen and (max-width: 768px) {
-    
 
+.table-container-users{
+    width: 95%;
+    overflow: auto;
+    margin: 20px auto;
+    padding: 10px;
+}
+
+
+.table-container-users table {
+  font-family: Arial, Helvetica, sans-serif;
+  border-collapse: collapse;
+  width: 100%;
+}
+
+td, th {
+  border: 1px solid #ddd;
+  padding: 8px;
+  color: white;
+}
+
+
+tr:hover {
+    background-color: #006080;
+}
+
+th {
+  padding-top: 12px;
+  padding-bottom: 12px;
+  text-align: left;
+  background-color: #006080;
+}
+
+.table-img{
+    width: 50px;
+    height: 50px;
+    border-radius: 10px;
+    object-fit: cover;
+    margin-right: 10px;
+}
+
+select{
+    width: 100%;
+    padding: 10px;
+    border-radius: 5px;
+    background: rgba(255,255,255,0.3);
+    color: #000;
+    border: none;
+    font-weight: 600;
+}
+
+.action-btn{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 30px;
+    height: 30px;
+    border-radius: 5px;
+    color: #fff;
+    font-weight: 700;
+    border: none;
+    cursor: pointer;
+}
+
+
+
+
+.filter-header-uni{
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: end;
+    padding: 10px 0;
+    color: white;
+    position: relative;
+    /* top: 380px;
+    right: 30px; */
+}
+
+.filter-header p{
+    font-size: 18px;
+    font-weight: 600;
+    color: #fff;
+}
+
+.filter-header-uni button{
+    font-size: 12px;
+    width: 30px;
+    height:30px;
+    border-radius: 7px;
+    border: none;
+    background: green;
+    color: #fff;
+}
+
+.filter-container {
+  position: absolute;
+  top: 50px;
+  right: 50px;
+  width: 200px;
+  height: auto;
+  background: rgba(0, 0, 0, 0.8);
+  border-radius: 5px;
+  padding: 10px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity 0.3s ease, visibility 0.3s ease;
+}
+
+.filter-container.show {
+  opacity: 1;
+  visibility: visible;
+}
+
+.filter-container input{
+    width: 100%;
+    padding: 6px;
+    border-radius: 5px;
+    background: rgba(255,255,255,0.8);
+    color: #000;
+    border: none;
+    font-weight: 600;
+    margin-bottom: 10px;
+
+}
+.filter-status{
+    color: #fff;
+    font-weight: 200;
+    font-size: 14px;
+    margin: 10px 0;
+}
+
+@media screen and (max-width: 608px) {
+    .filter-header{
+        right: 15px;
+    }
+    
+}
+
+
+
+
+.all-btn-container{
+    display: flex;
+    align-items: center;
+    justify-content: start;
+    flex-direction: row;
+    gap: 5px;
+}
+
+
+.all-btn{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width:auto;
+    height: 20px;
+    padding: 5px ;
+    border-radius: 5px;
+    color: #000;
+    font-size: 10px;
+    font-weight: 300;
+    border: none;
+    background: #fff;
+    cursor: pointer;
 }

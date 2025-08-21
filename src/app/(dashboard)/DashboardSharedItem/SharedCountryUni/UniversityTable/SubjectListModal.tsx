@@ -71,8 +71,8 @@ const SubjectListModal = ({ listSubject, setListSubject }: ModalProps) => {
                     X
                 </button>
                     
-                <div className="table-container">
-                    <table id="customers">
+                <div className="table-container-users">
+                    <table id="">
                         <thead>
                             <tr>
                                 <th>subject name</th>
@@ -111,7 +111,7 @@ const SubjectListModal = ({ listSubject, setListSubject }: ModalProps) => {
                                         </td>
                                         <td style={{color:"#000"}}>{subject?.description}</td>
                                         <td>
-                                            <button onClick={()=>handleDeleteSubject(subject?._id)} style={{color:"#000"}} className='University-edit-btn'>
+                                            <button onClick={()=>handleDeleteSubject(subject?._id)} style={{background:"#f14040"}} className='action-btn'>
                                                 <FontAwesomeIcon icon={faTrash} />
                                             </button>
                                         </td>

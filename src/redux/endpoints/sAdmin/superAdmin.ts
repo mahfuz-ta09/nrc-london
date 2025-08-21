@@ -23,10 +23,11 @@ const sAdminApi = baseApi.injectEndpoints({
       providesTags: ["admin"],
     }),
 
-    getALlUser: build.query<any, void>({
-        query: () => ({
+    getALlUser: build.query<any, {email?:string,name?:string,page?:string,total?:string,status?:string}>({
+        query: ({email,name,page,total,status}) => ({
             url: "/super_admin/users/all",
             method: "GET",
+            params: {email,name,page,total,status}
         }),
       providesTags: ["admin"],
     }),
@@ -39,6 +40,7 @@ const sAdminApi = baseApi.injectEndpoints({
       invalidatesTags: ["admin"],  
     }),
 
+    // change user status, used in manage users & manage admin page
     updateAdminStatus: build.mutation<any, { status: string ; id: string }>({
         query: ({ status, id }) => ({
             url: `/super_admin/update/${id}/${status}`,
@@ -49,6 +51,20 @@ const sAdminApi = baseApi.injectEndpoints({
         }),
       invalidatesTags: ["admin"], 
     }),
+
+
+    // change user role, used in manage users page
+    updateUserRole: build.mutation<any, { role: string ; id: string }>({
+        query: ({ role, id }) => ({
+            url: `/super_admin/update/role/${id}/${role}`,
+            method: "PATCH",
+            headers: { 
+              "Content-Type": "application/json" 
+            },  
+        }),
+      invalidatesTags: ["admin"], 
+    }),
+
 
     getPageReview: build.query<any, { page: number , item: number }>({
         query: ({page,item}) => ({
@@ -67,5 +83,6 @@ export const {
     useGetALlAdminQuery,
     useGetALlUserQuery,
     useUpdateAdminStatusMutation,
-    useDeleteAdminMutation
+    useDeleteAdminMutation,
+    useUpdateUserRoleMutation,
 } = sAdminApi
