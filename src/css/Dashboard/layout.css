@@ -66,12 +66,15 @@
 
 .dash-nav-body{
 	width: 100%;
-	height: 100%;
+	height: 80vh;
+	overflow-y: auto;
+	overflow-x:hidden;
 	display: flex;
 	flex-direction: column;
 	align-items: start;
 	justify-content: start;
 	gap: 10px;
+	padding: 20px 0;
 }
 
 .nav-link{
@@ -84,18 +87,21 @@
 	font-size: 20px;
 	color: #b6b6b6;
 	margin-top: 5px;
+	font-weight: 300;
 }
 
-.nav-link.active{
-	font-size: 20px;
-	font-weight: 900;
-	color: #fff;
-	border-right: 7px solid white;
-}
 
 .nav-link:hover{
 	transition: .3s ease-in-out;
 	scale: 1.02;
+}
+
+.not-link{
+	color: #fff;
+	text-decoration: none;
+	font-size: 20px;
+	font-weight: 300;
+	margin-top: 50px;
 }
 
 .dash-item-header{

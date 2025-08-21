@@ -1,5 +1,5 @@
 import { NavContent, Role } from "@/types/nav/type"
-import { faBook, faBookOpen, faChartBar, faGlobe, faStar, faTasks, faUniversity, faUser, faUsers, faUserShield, faUserTie } from "@fortawesome/free-solid-svg-icons";
+import { faArrowCircleDown, faBookOpen, faChartBar, faGlobe, faStar, faTasks, faUniversity, faUser, faUsers, faUserShield, faUserTie } from "@fortawesome/free-solid-svg-icons";
 
 const sideNavItem = (role : Role) => {
     const navItem:NavContent[] = []
@@ -39,6 +39,11 @@ const sideNavItem = (role : Role) => {
                     title   : "Agents",
                     path    : `${role}/AllAgents`,
                     icon    : faUserTie,
+                },
+                {
+                    title   : "admin action",
+                    path    : `---`,
+                    icon    :  faArrowCircleDown,
                 },
                 {
                     title    : "Country&Uni",
