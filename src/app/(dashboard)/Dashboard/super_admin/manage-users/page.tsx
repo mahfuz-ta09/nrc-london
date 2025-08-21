@@ -25,10 +25,10 @@ const Page = () => {
         status:''
     })
     const [isOpen,setIsOpen] = useState(false)
-    
     const { data , isLoading: dataLoading } = useGetALlUserQuery(para,{ skip: !para.page || !para.total })
     const [ updateAdminStatus , { isLoading : updateLoading }] = useUpdateAdminStatusMutation() 
     const [ updateUserRole , { isLoading : updateUsrLoading }] = useUpdateUserRoleMutation() 
+
 
     if((dataLoading || updateLoading || updateUsrLoading)) return <Loader />
 
@@ -155,6 +155,7 @@ const Page = () => {
                     </div>
                 </div>
             </div>
+            
             <div className="table-container-users">
                 <table className="responsive-table">
                     <thead>

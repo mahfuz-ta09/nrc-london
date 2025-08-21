@@ -188,6 +188,13 @@ select{
     justify-content: start;
     flex-direction: row;
     gap: 5px;
+    user-select: none;
+    gap: 10px;
+    overflow-x: auto;
+    scrollbar-width: thin;   /* Firefox */
+    scrollbar-color: #ccc transparent;
+    padding: 10px;
+    white-space: nowrap;
 }
 
 
