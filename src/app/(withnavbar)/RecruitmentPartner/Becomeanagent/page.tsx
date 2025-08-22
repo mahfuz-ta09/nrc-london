@@ -29,7 +29,6 @@ type Inputs = {
   referral: "google" | "facebook" | "linkedin" | "youtube" | "friends" | "others";
   background_check: FileList;
   license_document: FileList;
-  // 👇 extra new fields
   company_registration_number?: string;
   company_type?: "individual" | "partnership" | "pvt_ltd" | "llc" | "others";
   proof_of_address?: FileList;

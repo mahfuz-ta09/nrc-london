@@ -11,7 +11,7 @@ const page = () => {
 
 
     if(dataLoading) return <Loader />
-    // console.log(data)
+    
     return (
         <div className="sAdmin">
             <div className="sAdmin-header">

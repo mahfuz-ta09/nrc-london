@@ -33,9 +33,9 @@ const agentApi = baseApi.injectEndpoints({
         }),
 
 
-        updateAgentStatus: build.mutation<any, { status: string ; id: string }>({
-            query: ({ status, id }) => ({
-                url: `/agent/update/${id}/${status}`,
+        updateAgentStatus: build.mutation<any, { applicationStat: any ,docStat:any , id: string }>({
+            query: ({ applicationStat, docStat , id }) => ({
+                url: `/agent/update/${id}/${applicationStat}/${docStat}`,
                 method: "PATCH",
                 headers: { 
                 "Content-Type": "application/json" 

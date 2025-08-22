@@ -9,33 +9,77 @@ import { toast } from "react-toastify"
 import { useRouter } from "next/navigation"
 import Link from "next/link"
 import '../css/allagents.css'
+import { useState } from "react"
 
 
 
 const page = () => {
+    const [openCardId, setOpenCardId] = useState<string | null>(null);
+    const [applStat, setApplStat] = useState<string | null>(null);
+    const [docStat, setDocStat] = useState<string | null>(null);
+
     const { data , isLoading: dataLoading} = useGetALlAgentReqQuery()
     const [ updateAgentStatus , { isLoading : updateLoading }] = useUpdateAgentStatusMutation()
     const router = useRouter()
 
-    
-    // const handleStatusChange = async(id:string) =>{    
-    //     let a = window.confirm("Do you want to change the status?")
-    //     if(a){
-    //         const res = await updateAgentStatus({status: "accepted" , id:id})
-    //         if(res?.data?.data?.modifiedCount){
-    //             toast.success("Status updated!!")
-    //         }else{
-    //             toast.error("Failed to update!")
-    //         }
-    //     }
-    // }
 
+    if(updateLoading) return <Loader />
+
+
+    const toggleCard = (id: string) => {
+        setOpenCardId(prev => (prev === id ? null : id));
+    };    
+    
+    const handleStatusChange = async(id:string) =>{  
+        try{  
+            if(!applStat && !docStat) {
+                toast.error("both field unselected!");
+                return;
+            }
+
+            let a = window.confirm("Do you want to change the status?")
+            if(a){
+                const res = await updateAgentStatus({applicationStat: applStat , docStat: docStat , id:id})
+                if(res?.data?.data?.modifiedCount){
+                    toast.success("Status updated!!")
+                }else{
+                    toast.error("Failed to update!")
+                }
+            }
+        }catch(err){
+            console.error("Error updating status:", err);
+            toast.error("Failed to update status!");
+        }
+    }
+    
+    const deleteAgentRequest = async(id:string) =>{    
+        let a = window.confirm("Do you want to change the status?")
+        if(a){
+            // const res = await updateAgentStatus({applicationStat: applStat , docStat: docStat , id:id})
+            // if(res?.data?.data?.modifiedCount){
+            //     toast.success("Status updated!!")
+            // }else{
+            //     toast.error("Failed to update!")
+            // }
+        }
+    }
+
+
+    const applicationStatus = (e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>) => {
+        setApplStat(e.target.value);
+    }
+
+    const documentStatus = (e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>) => {
+            setDocStat(e.target.value);
+    }
+
+    // console.log(applStat, docStat)
+    // console.log(data?.data)
     if(dataLoading) return <Loader />
-    console.log(data)
     return (
         <div className="sAdmin">
             <div className="sAdmin-header">
-                <h1>Agent requests:</h1>
+                <h1>Agent Requests:</h1>
                 {data?.data?.length ? " " : <p style={{color:"white"}}>No agent request available</p>}
                 <button onClick={()=>router.push('/Dashboard/super_admin/AllAgents')}>Check all agents</button>
             </div>
@@ -43,195 +87,209 @@ const page = () => {
 
             {data?.data?.map((req: any) => (
             <div key={req?._id} className="card-container">
+
+                <div className={`card-action-container ${openCardId === req?._id ? "show-card" : ""}`}>
+                    <div className="action-header">
+                        Quick Actions
+                    </div>
+
+                    <div className="select-group">
+                        <label className="select-label">Application Status</label>
+                        <div className="custom-select">
+                            <select onChange={applicationStatus} name="application_status" id="application_status">
+                                <option value="">Select Status</option>
+                                <option value="pending">⏳ Pending</option>
+                                <option value="approved">✅ Approved</option>
+                                <option value="rejected">❌ Rejected</option>
+                                <option value="needs_Info">⚠️ Needs Info</option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <div className="select-group">
+                        <label className="select-label">Document Status</label>
+                        <div className="custom-select">
+                            <select onChange={documentStatus} name="document_status" id="document_status">
+                                <option value="">Select Status</option>
+                                <option value="approved">✅ Approved</option>
+                                <option value="rejected">❌ Rejected</option>
+                                <option value="needs_Info">⚠️ Needs Info</option>
+                            </select>
+                        </div>
+                        <div className="action-buttons">
+                            <button onClick={()=>handleStatusChange(req?._id)} className="action-btn save">💾 Save</button>
+                            <button onClick={()=>deleteAgentRequest(req?._id)} className="action-btn" >🔄 Delete This Agent</button>
+                        </div>
+                    </div>
+                </div>
+
                 <div className="profile-card">
-                {/* Floating Elements (for decoration) */}
-                <div className="floating-elements"></div>
+                    <div className="floating-elements"></div>
 
-                {/* Card Header */}
-                <div className="card-header">
-                    <div className="profile-avatar">
-                    <span>
-                        {req?.name?.split(" ")[0]?.[0]}
-                        {req?.name?.split(" ")[1]?.[0]}
-                    </span>
+                    <div className="card-header "  onClick={() => toggleCard(req?._id)}>
+                        <div className="profile-avatar">
+                            <span>{req?.name?.split(" ")[0][0]}{req?.name?.split(" ")[1]?.[0]}</span>
+                        </div>
+                        <h1 className="profile-name">{req?.name}</h1>
+                        <p className="profile-email">{req?.email}</p>
+                        <span className="profile-id">ID: #{req?._id}</span>
                     </div>
-                    <h1 className="profile-name">{req?.name}</h1>
-                    <p className="profile-email">{req?.email}</p>
-                    <span className="profile-id">ID: #{req?._id}</span>
-                </div>
 
-                {/* Card Content */}
-                <div className="card-content">
-                    <div className="info-grid">
+                    <div className="card-content">
+                        <div className="info-grid">
+                            <div className="info-section">
+                                <h3 className="section-title">Personal Information</h3>
+                                <div className="info-item">
+                                    <div className="info-label">Mobile</div>
+                                    <div className="info-value">{req?.mobile_number}</div>
+                                </div>
+                                <div className="info-item">
+                                    <div className="info-label">Alternate Contact</div>
+                                    <div className="info-value">{req?.alternate_mobile}</div>
+                                </div>
+                                <div className="info-item">
+                                    <div className="info-label">Date of Birth</div>
+                                    <div className="info-value">{req?.dob}</div>
+                                </div>
+                                <div className="info-item">
+                                    <div className="info-label">Agent Address</div>
+                                    <div className="info-value">{req?.address}</div>
+                                </div>
+                                <div className="info-item">
+                                    <div className="info-label">Nationality</div>
+                                    <div className="info-value">{req?.nationality}</div>
+                                </div>
+                                <div className="info-item">
+                                    <div className="info-label">Passport/NID</div>
+                                    <div className="info-value">
+                                        {req?.id_document ? (
+                                        <a href={req?.id_document?.url} target="_blank" rel="noreferrer">
+                                            <span className="status-badge status-verified">View Document ✓</span>
+                                        </a>
+                                        ) : "Not Provided"}
+                                    </div>
+                                </div>
+                                <div className="info-item">
+                                    <div className="info-label">Address</div>
+                                    <div className="info-value">
+                                        {req?.proof_of_address ? (
+                                        <a href={req?.proof_of_address?.url} target="_blank" rel="noreferrer">
+                                            <span className="status-badge status-verified">View Document ✓</span>
+                                        </a>
+                                        ) : "Not Provided"}
+                                    </div>
+                                </div>
+                            </div>
 
-                    {/* Personal Info */}
-                    <InfoSection title="Personal Information" items={[
-                        { label: "Mobile", value: req?.mobile_number },
-                        { label: "Alternate Contact", value: req?.alternate_mobile },
-                        { label: "Date of Birth", value: req?.dob },
-                        { label: "Agent Address", value: req?.address },
-                        { label: "Nationality", value: req?.nationality },
-                    ]} />
+                            <div className="info-section">
+                                <h3 className="section-title">Agency & Documentation</h3>
+                                <div className="info-item">
+                                    <div className="info-label">Passport Number</div>
+                                    <div className="info-value">{req?.passport_number}</div>
+                                </div>
+                                <div className="info-item">
+                                    <div className="info-label">Agency Name</div>
+                                    <div className="info-value">{req?.agency_name}</div>
+                                </div>
+                                <div className="info-item">
+                                    <div className="info-label">Agency Address</div>
+                                    <div className="info-value">{req?.agency_address}</div>
+                                </div>
+                                <div className="info-item">
+                                    <div className="info-label">Agency Website</div>
+                                    <div className="info-value">
+                                        <a href={req?.agency_website} target="_blank" rel="noreferrer">{req?.agency_website}</a>
+                                    </div>
+                                </div>
+                                <div className="info-item">
+                                    <div className="info-label">Working Experience</div>
+                                    <div className="info-value">{req?.experience}</div>
+                                </div>
+                                <div className="info-item">
+                                    <div className="info-label">Services Provided</div>
+                                    <div className="info-value">{req?.services}</div>
+                                </div>
+                            </div>
 
-                    {/* Travel & Documentation */}
-                    <InfoSection title="Travel & Documentation" items={[
-                        { label: "Passport Number", value: req?.passport_number },
-                        { label: "Agency Name", value: req?.agency_name },
-                        { label: "Agency Address", value: req?.agency_address },
-                        {
-                        label: "Agency Website",
-                        value: req?.agency_website ? (
-                            <a href={req?.agency_website} target="_blank" rel="noreferrer">
-                            {req?.agency_website}
-                            </a>
-                        ) : "Not Provided"
-                        },
-                        { label: "Working Experience", value: req?.experience },
-                        { label: "Services Provided", value: req?.services },
-                    ]} />
+                            <div className="info-section">
+                                <h3 className="section-title">Professional Details</h3>
+                                <div className="info-item">
+                                    <div className="info-label">Partner Universities</div>
+                                    <div className="info-value">{req?.partner_universities}</div>
+                                </div>
+                                <div className="info-item">
+                                    <div className="info-label">Business License</div>
+                                    <div className="info-value">
+                                        <a href={req?.license_document?.url} target="_blank" rel="noreferrer">
+                                        <span className="status-badge status-verified">{req?.license_number} ✓</span>
+                                        </a>
+                                    </div>
+                                </div>
+                                <div className="info-item">
+                                    <div className="info-label">Tax ID</div>
+                                    <div className="info-value">{req?.tax_id}</div>
+                                </div>
+                                <div className="info-item">
+                                    <div className="info-label">Background Check</div>
+                                    <div className="info-value">
+                                        {req?.background_check ? (
+                                        <a href={req?.background_check?.url} target="_blank" rel="noreferrer">
+                                            <span className="status-badge status-verified">View Document ✓</span>
+                                        </a>
+                                        ) : "Not Provided"}
+                                    </div>
+                                </div>
+                                <div className="info-item">
+                                    <div className="info-label">Criminal Record</div>
+                                    <div className="info-value">{req?.criminal_record}</div>
+                                </div>
+                            </div>
 
-                    {/* Professional Details */}
-                    <InfoSection title="Professional Details" items={[
-                        { label: "Partner Universities", value: req?.partner_universities },
-                        {
-                        label: "License",
-                        value: req?.license_document ? (
-                            <a href={req?.license_document} target="_blank" rel="noreferrer">
-                            <span className="status-badge status-verified">
-                                {req?.license_number} ✓
-                            </span>
-                            </a>
-                        ) : "Not Provided"
-                        },
-                        { label: "Tax ID", value: req?.tax_id },
-                        {
-                        label: "Background Check",
-                        value: req?.background_check ? (
-                            <a href={req?.background_check} target="_blank" rel="noreferrer">
-                            <span className="status-badge status-verified">View Document ✓</span>
-                            </a>
-                        ) : "Not Provided"
-                        },
-                        { label: "Criminal Record", value: req?.criminal_record || "Not Provided" },
-                    ]} />
+                            {/* Account Info */}
+                            <div className="info-section">
+                                <h3 className="section-title">Account Information</h3>
+                                <div className="info-item">
+                                    <div className="info-label">Created</div>
+                                    <div className="info-value">{req?.createdAt}</div>
+                                </div>
+                                <div className="info-item">
+                                    <div className="info-label">Referral</div>
+                                    <div className="info-value">{req?.referral}</div>
+                                </div>
+                                {/* <div className="info-item">
+                                    <div className="info-label">Role(agent)</div>
+                                    <div className="info-value">
+                                        <span className="status-badge status-active">{req?.role} || pending</span>
+                                    </div>
+                                </div> */}
+                                <div className="info-item">
+                                    <div className="info-label">Status</div>
+                                    <div className="info-value">
+                                        <span className="status-badge">{req?.status}</span>
+                                    </div>
+                                </div>
+                                <div className="info-item">
+                                    <div className="info-label">Application Status</div>
+                                    <div className="info-value">
+                                        <span className="status-badge">{req?.applicationStat}</span>
+                                    </div>
+                                </div>
+                                <div className="info-item">
+                                    <div className="info-label">Document Status</div>
+                                    <div className="info-value">
+                                        <span className="status-badge">{req?.docStat}</span>
+                                    </div>
+                                </div>
+                            </div>
 
-                    {/* Account Info */}
-                    <InfoSection title="Account Information" items={[
-                        { label: "Created", value: new Date(req?.createdAt).toLocaleDateString() },
-                        { label: "Referral", value: req?.referral || "N/A" },
-                        {
-                        label: "Role",
-                        value: <span className="status-badge status-active">{req?.role || "Pending"}</span>
-                        },
-                        {
-                        label: "Status",
-                        value: <span className="status-badge">{req?.status}</span>
-                        },
-                    ]} />
-
+                        </div>
                     </div>
-                </div>
                 </div>
             </div>
             ))}
 
-
-
-
-
-
-
-
-
-            {/* {
-                (dataLoading || updateLoading )? <Loader /> :
-                <div className="table-container">
-                    <table className="table">
-                        <thead className="thead">
-                            <tr className="tr">
-                                <th className="th">Serial</th> 
-                                <th className="th">Id</th> 
-                                <th className="th">Name</th> 
-                                <th className="th">Email</th> 
-                                <th className="th">Mobile number</th>
-                                <th className="th">Alternate mobile</th> 
-                                <th className="th">dob</th> 
-                                <th className="th">Address</th> 
-                                <th className="th">Nationality</th> 
-                                <th className="th">Passport_number</th> 
-                                <th className="th">Agency name</th> 
-                                <th className="th">Agency address</th> 
-                                <th className="th">Agency website</th> 
-                                <th className="th">Experience</th> 
-                                <th className="th">Services</th>
-                                <th className="th">Partner universities</th> 
-                                <th className="th">License number</th> 
-                                <th className="th">License document</th> 
-                                <th className="th">Tax id</th>
-                                <th className="th">Criminal record</th> 
-                                <th className="th">Background check</th> 
-                                <th className="th">Created At</th> 
-                                <th className="th">Referral</th> 
-                                <th className="th">Role</th> 
-                                <th className="th">Services</th> 
-                                <th className="th">Status</th> 
-                                <th className="th">Update Status</th>
-                                <th className="th">Delete</th>
-                            </tr>
-                        </thead>
-                        <tbody className="tbody">
-                            {
-                                data?.data?.map((req:any,index:number)=>(
-                                    <tr key={req?._id} className="tr">
-                                        <td data-label="serial"  className="td" >{index+1}</td>
-                                        <td data-label="id"  className="td" >{req?._id}</td>
-                                        <td data-label="name"  className="td" >{req?.name}</td>
-                                        <td data-label="email"  className="td" >{req?.email}</td>
-                                        <td data-label="mobile"  className="td" >{req?.mobile_number}</td>
-                                        <td data-label="alternate mobile" className="td" >{req?.alternate_mobile}</td>
-                                        <td data-label="dob"  className="td">{req?.dob}</td>
-                                        <td data-label="address"  className="td">{req?.address}</td>
-                                        <td data-label="nationality"  className="td">{req?.nationality}</td>
-                                        <td data-label="passport no" className="td">{req?.passport_number}</td>
-                                        <td data-label="agency name" className="td">{req?.agency_name}</td>
-                                        <td data-label="agency address" className="td">{req?.agency_address}</td>
-                                        <td data-label="agency website" className="td"><Link style={{color:"white"}}  href={req?.agency_website}>visit</Link></td>
-                                        <td data-label="experience"  className="td" >{req?.experience}</td>
-                                        <td data-label="services"  className="td" >{req?.services}</td>
-                                        <td data-label="parter uni" className="td" >{req?.partner_universities}</td>
-                                        <td data-label="license number" className="td" >{req?.license_number}</td>
-                                        <td data-label="license doc" className="td" ><Link style={{color:"white"}} href={req?.license_document}>check</Link></td>
-                                        <td data-label="tax id" className="td" >{req?.tax_id}</td>
-                                        <td data-label="criminal record" className="td" >{req?.criminal_record}</td>
-                                        <td data-label="background check" className="td" ><Link style={{color:"white"}}  href={req?.background_check}>check</Link></td>
-                                        <td data-label="created"  className="td" >{req?.createdAt}</td>
-                                        <td data-label="referral"  className="td" >{req?.referral}</td>
-                                        <td data-label="role"  className="td" >{req?.role}</td>
-                                        <td data-label="services"  className="td" >{req?.services}</td>
-                                        <td data-label="status"  className="td" >{req?.status}</td>
-                                        <td className="td" ><FontAwesomeIcon onClick={()=>handleStatusChange(req?._id)} icon={faCheckDouble}/></td>
-                                        <td className="td" ><FontAwesomeIcon icon={faTrash}/></td>
-                                    </tr>
-                                ))
-                            }
-                        </tbody>
-                    </table>
-                </div>
-            } */}
         </div>
     )
 }
 
 export default page
-
-const InfoSection = ({ title, items }: { title: string, items: { label: string, value: any }[] }) => (
-  <div className="info-section">
-    <h3 className="section-title">{title}</h3>
-    {items.map((item, index) => (
-      <div key={index} className="info-item">
-        <div className="info-label">{item.label}</div>
-        <div className="info-value">{item.value || "Not Provided"}</div>
-      </div>
-    ))}
-  </div>
-);
