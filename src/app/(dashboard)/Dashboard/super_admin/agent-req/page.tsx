@@ -8,6 +8,7 @@ import {  faCheckDouble, faTrash } from "@fortawesome/free-solid-svg-icons"
 import { toast } from "react-toastify"
 import { useRouter } from "next/navigation"
 import Link from "next/link"
+import '../css/allagents.css'
 
 
 
@@ -17,18 +18,20 @@ const page = () => {
     const router = useRouter()
 
     
-    const handleStatusChange = async(id:string) =>{    
-        let a = window.confirm("Do you want to change the status?")
-        if(a){
-            const res = await updateAgentStatus({status: "accepted" , id:id})
-            if(res?.data?.data?.modifiedCount){
-                toast.success("Status updated!!")
-            }else{
-                toast.error("Failed to update!")
-            }
-        }
-    }
+    // const handleStatusChange = async(id:string) =>{    
+    //     let a = window.confirm("Do you want to change the status?")
+    //     if(a){
+    //         const res = await updateAgentStatus({status: "accepted" , id:id})
+    //         if(res?.data?.data?.modifiedCount){
+    //             toast.success("Status updated!!")
+    //         }else{
+    //             toast.error("Failed to update!")
+    //         }
+    //     }
+    // }
 
+    if(dataLoading) return <Loader />
+    console.log(data)
     return (
         <div className="sAdmin">
             <div className="sAdmin-header">
@@ -37,7 +40,110 @@ const page = () => {
                 <button onClick={()=>router.push('/Dashboard/super_admin/AllAgents')}>Check all agents</button>
             </div>
             
-            {
+
+            {data?.data?.map((req: any) => (
+            <div key={req?._id} className="card-container">
+                <div className="profile-card">
+                {/* Floating Elements (for decoration) */}
+                <div className="floating-elements"></div>
+
+                {/* Card Header */}
+                <div className="card-header">
+                    <div className="profile-avatar">
+                    <span>
+                        {req?.name?.split(" ")[0]?.[0]}
+                        {req?.name?.split(" ")[1]?.[0]}
+                    </span>
+                    </div>
+                    <h1 className="profile-name">{req?.name}</h1>
+                    <p className="profile-email">{req?.email}</p>
+                    <span className="profile-id">ID: #{req?._id}</span>
+                </div>
+
+                {/* Card Content */}
+                <div className="card-content">
+                    <div className="info-grid">
+
+                    {/* Personal Info */}
+                    <InfoSection title="Personal Information" items={[
+                        { label: "Mobile", value: req?.mobile_number },
+                        { label: "Alternate Contact", value: req?.alternate_mobile },
+                        { label: "Date of Birth", value: req?.dob },
+                        { label: "Agent Address", value: req?.address },
+                        { label: "Nationality", value: req?.nationality },
+                    ]} />
+
+                    {/* Travel & Documentation */}
+                    <InfoSection title="Travel & Documentation" items={[
+                        { label: "Passport Number", value: req?.passport_number },
+                        { label: "Agency Name", value: req?.agency_name },
+                        { label: "Agency Address", value: req?.agency_address },
+                        {
+                        label: "Agency Website",
+                        value: req?.agency_website ? (
+                            <a href={req?.agency_website} target="_blank" rel="noreferrer">
+                            {req?.agency_website}
+                            </a>
+                        ) : "Not Provided"
+                        },
+                        { label: "Working Experience", value: req?.experience },
+                        { label: "Services Provided", value: req?.services },
+                    ]} />
+
+                    {/* Professional Details */}
+                    <InfoSection title="Professional Details" items={[
+                        { label: "Partner Universities", value: req?.partner_universities },
+                        {
+                        label: "License",
+                        value: req?.license_document ? (
+                            <a href={req?.license_document} target="_blank" rel="noreferrer">
+                            <span className="status-badge status-verified">
+                                {req?.license_number} ✓
+                            </span>
+                            </a>
+                        ) : "Not Provided"
+                        },
+                        { label: "Tax ID", value: req?.tax_id },
+                        {
+                        label: "Background Check",
+                        value: req?.background_check ? (
+                            <a href={req?.background_check} target="_blank" rel="noreferrer">
+                            <span className="status-badge status-verified">View Document ✓</span>
+                            </a>
+                        ) : "Not Provided"
+                        },
+                        { label: "Criminal Record", value: req?.criminal_record || "Not Provided" },
+                    ]} />
+
+                    {/* Account Info */}
+                    <InfoSection title="Account Information" items={[
+                        { label: "Created", value: new Date(req?.createdAt).toLocaleDateString() },
+                        { label: "Referral", value: req?.referral || "N/A" },
+                        {
+                        label: "Role",
+                        value: <span className="status-badge status-active">{req?.role || "Pending"}</span>
+                        },
+                        {
+                        label: "Status",
+                        value: <span className="status-badge">{req?.status}</span>
+                        },
+                    ]} />
+
+                    </div>
+                </div>
+                </div>
+            </div>
+            ))}
+
+
+
+
+
+
+
+
+
+            {/* {
                 (dataLoading || updateLoading )? <Loader /> :
                 <div className="table-container">
                     <table className="table">
@@ -111,9 +217,21 @@ const page = () => {
                         </tbody>
                     </table>
                 </div>
-            }
+            } */}
         </div>
     )
 }
 
 export default page
+
+const InfoSection = ({ title, items }: { title: string, items: { label: string, value: any }[] }) => (
+  <div className="info-section">
+    <h3 className="section-title">{title}</h3>
+    {items.map((item, index) => (
+      <div key={index} className="info-item">
+        <div className="info-label">{item.label}</div>
+        <div className="info-value">{item.value || "Not Provided"}</div>
+      </div>
+    ))}
+  </div>
+);

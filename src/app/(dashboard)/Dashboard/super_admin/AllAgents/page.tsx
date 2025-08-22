@@ -1,18 +1,17 @@
 'use client'
 import Loader from "@/component/shared/Loader/Loader"
 import { useGetALlAgentQuery } from "@/redux/endpoints/agent/agentsEndpoints"
-import '@/css/Dashboard/super_admin/common.css'
-import '@/css/Dashboard/admin/university.css'
 import { useRouter } from "next/navigation"
 import Link from "next/link"
-
+import '../css/allagents.css'
 
 const page = () => {
     const { data , isLoading : dataLoading } = useGetALlAgentQuery()
     const router = useRouter()
 
 
-    
+    if(dataLoading) return <Loader />
+    // console.log(data)
     return (
         <div className="sAdmin">
             <div className="sAdmin-header">
@@ -20,7 +19,7 @@ const page = () => {
                 <button onClick={()=>router.push('/Dashboard/super_admin/agent-req')}>Agent Request?</button>
             </div>
             
-            {
+            {/* {
                 (dataLoading)? <Loader /> :
                 <div className="table-container">
                     <table className="table">
@@ -90,7 +89,114 @@ const page = () => {
                         </tbody>
                     </table>
                 </div>
-            }
+            } */}
+            {data?.data?.map((req:any,index:number)=>(
+            <div className="card-container">
+                <div className="profile-card">
+                    <div className="floating-elements"></div>
+                    
+                    <div className="card-header">
+                        <div className="profile-avatar">
+                            <span>JD</span>
+                        </div>
+                        <h1 className="profile-name">John Doe</h1>
+                        <p className="profile-email">john.doe@example.com</p>
+                        <span className="profile-id">ID: #12345</span>
+                    </div>
+
+                    <div className="card-content">
+                        <div className="info-grid">
+                            <div className="info-section">
+                                <h3 className="section-title">Personal Information</h3>
+                                <div className="info-item">
+                                    <div className="info-label">Mobile</div>
+                                    <div className="info-value">+1 (555) 123-4567</div>
+                                </div>
+                                <div className="info-item">
+                                    <div className="info-label">Alternate Contact</div>
+                                    <div className="info-value">+1 (555) 987-6543</div>
+                                </div>
+                                <div className="info-item">
+                                    <div className="info-label">Date of Birth</div>
+                                    <div className="info-value">January 15, 1990</div>
+                                </div>
+                                <div className="info-item">
+                                    <div className="info-label">Address</div>
+                                    <div className="info-value">123 Main Street, New York, NY 10001</div>
+                                </div>
+                                <div className="info-item">
+                                    <div className="info-label">Nationality</div>
+                                    <div className="info-value">United States</div>
+                                </div>
+                            </div>
+
+                            <div className="info-section">
+                                <h3 className="section-title">Travel & Documentation</h3>
+                                <div className="info-item">
+                                    <div className="info-label">Passport Number</div>
+                                    <div className="info-value">123456789</div>
+                                </div>
+                                <div className="info-item">
+                                    <div className="info-label">Agency</div>
+                                    <div className="info-value">Global Travel Agency</div>
+                                </div>
+                                <div className="info-item">
+                                    <div className="info-label">Experience</div>
+                                    <div className="info-value">5 Years International Travel</div>
+                                </div>
+                                <div className="info-item">
+                                    <div className="info-label">Services</div>
+                                    <div className="info-value">Visa Processing, Travel Planning</div>
+                                </div>
+                            </div>
+
+                            <div className="info-section">
+                                <h3 className="section-title">Professional Details</h3>
+                                <div className="info-item">
+                                    <div className="info-label">Partner</div>
+                                    <div className="info-value">Premium Travel Partners</div>
+                                </div>
+                                <div className="info-item">
+                                    <div className="info-label">License</div>
+                                    <div className="info-value">
+                                        <span className="status-badge status-verified">LIC-2024-001 ✓</span>
+                                    </div>
+                                </div>
+                                <div className="info-item">
+                                    <div className="info-label">Tax Status</div>
+                                    <div className="info-value">
+                                        <span className="status-badge status-active">Compliant ✓</span>
+                                    </div>
+                                </div>
+                                <div className="info-item">
+                                    <div className="info-label">Background Check</div>
+                                    <div className="info-value">
+                                        <span className="status-badge status-verified">Verified ✓</span>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div className="info-section">
+                                <h3 className="section-title">Account Information</h3>
+                                <div className="info-item">
+                                    <div className="info-label">Created</div>
+                                    <div className="info-value">March 15, 2024</div>
+                                </div>
+                                <div className="info-item">
+                                    <div className="info-label">Referral</div>
+                                    <div className="info-value">Sarah Johnson</div>
+                                </div>
+                                <div className="info-item">
+                                    <div className="info-label">Role</div>
+                                    <div className="info-value">
+                                        <span className="status-badge status-active">Travel Consultant</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>))}
         </div>
     )
 }

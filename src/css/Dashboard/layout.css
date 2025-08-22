@@ -9,9 +9,9 @@
 
 .dash-content{
 	width: 100vw;
-	min-height: 100vh;
+	height: 100vh;
+	overflow-y: auto;
 	position: relative;
-	z-index: 100;
 }
 
 .dash-nav {
@@ -49,6 +49,7 @@
 
 .dash-nav-header{
 	width: 100%;
+	/* height: 100vh; */
 	display: flex;
 	flex-direction: column;
 	align-items: start;
