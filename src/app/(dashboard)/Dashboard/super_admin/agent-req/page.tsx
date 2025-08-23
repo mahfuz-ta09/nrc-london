@@ -2,9 +2,9 @@
 import Loader from "@/component/shared/Loader/Loader"
 import { useGetALlAgentReqQuery, useUpdateAgentStatusMutation } from "@/redux/endpoints/agent/agentsEndpoints"
 import '@/css/Dashboard/super_admin/common.css'
-import '@/css/Dashboard/admin/university.css'
+// import '@/css/Dashboard/admin/university.css'
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
-import {  faCheckDouble, faTrash } from "@fortawesome/free-solid-svg-icons"
+import {  faCancel, faCheckDouble, faFilter, faTrash } from "@fortawesome/free-solid-svg-icons"
 import { toast } from "react-toastify"
 import { useRouter } from "next/navigation"
 import Link from "next/link"
@@ -15,6 +15,7 @@ import { useState } from "react"
 
 const page = () => {
     const [openCardId, setOpenCardId] = useState<string | null>(null);
+    const [openFilter, setOpenFilter] = useState<boolean>(false);
     const [applStat, setApplStat] = useState<string | null>(null);
     const [docStat, setDocStat] = useState<string | null>(null);
 
@@ -74,14 +75,60 @@ const page = () => {
     }
 
     // console.log(applStat, docStat)
-    // console.log(data?.data)
+    console.log(data)
     if(dataLoading) return <Loader />
     return (
         <div className="sAdmin">
             <div className="sAdmin-header">
-                <h1>Agent Requests:</h1>
-                {data?.data?.length ? " " : <p style={{color:"white"}}>No agent request available</p>}
-                <button onClick={()=>router.push('/Dashboard/super_admin/AllAgents')}>Check all agents</button>
+                <h1>{data?.meta?.total} Pending Agent Requests</h1>
+                <div className="sAdmin-header-actions">
+                    <button onClick={()=>setOpenFilter(!openFilter)}>{openFilter? <FontAwesomeIcon style={{color:"red"}} icon={faCancel}/>:<FontAwesomeIcon icon={faFilter}/>}</button>
+                    <button onClick={()=>router.push('/Dashboard/super_admin/AllAgents')}>Check all agents</button>
+                </div>
+                <div style={{top:"30px",right:'50px'}} className={`card-action-container ${openFilter ? "show-card" : ""}`}>
+                    <div className="action-header">
+                        Agent Fileter
+                    </div>
+
+                    <div className="select-group">
+                        <label className="select-label">Search By Nationality</label>
+                        <div className="custom-select">
+                            <input type="text" placeholder="search by nationality" />
+                        </div>
+                    </div>
+
+                    <div className="select-group">
+                        <label className="select-label">Search By Email</label>
+                        <div className="custom-select">
+                            <input type="text" placeholder="agent's email" />
+                        </div>
+                    </div>
+
+                    <div className="select-group">
+                        <label className="select-label">Item limit Perpage</label>
+                        <div className="custom-select">
+                            <input type="number" placeholder="insert a number" />
+                        </div>
+                    </div>
+
+                    <div className="select-group">
+                        <label className="select-label">Page Number</label>
+                        <div className="custom-select">
+                            <input type="text" placeholder="Page Number" />
+                        </div>
+                    </div>
+                    <div className="select-group">
+                        <label className="select-label">Search By Application Status</label>
+                        <div className="custom-select">
+                            <select onChange={applicationStatus} name="application_status" id="application_status">
+                                <option value="">Select Status</option>
+                                <option value="pending">⏳ Pending</option>
+                                <option value="rejected">❌ Rejected</option>
+                                <option value="needs_Info">⚠️ Needs Info</option>
+                            </select>
+                        </div>
+                    </div>
+                </div>
             </div>
             
 
@@ -271,13 +318,13 @@ const page = () => {
                                 <div className="info-item">
                                     <div className="info-label">Application Status</div>
                                     <div className="info-value">
-                                        <span className="status-badge">{req?.applicationStat}</span>
+                                        <span className="status-badge status-active">{req?.applicationStat}</span>
                                     </div>
                                 </div>
                                 <div className="info-item">
                                     <div className="info-label">Document Status</div>
-                                    <div className="info-value">
-                                        <span className="status-badge">{req?.docStat}</span>
+                                    <div className="info-value ">
+                                        <span className="status-badge status-active">{req?.docStat}</span>
                                     </div>
                                 </div>
                             </div>

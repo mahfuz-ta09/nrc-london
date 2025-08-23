@@ -1,8 +1,16 @@
-
+/* 
 .card-container {
     width: 100%;
     perspective: 1000px;
     position: relative;
+}
+
+.sAdmin-header-actions{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 10px;
+    margin-bottom: 16px;
 }
 
 .card-action-container {
@@ -280,7 +288,6 @@
     background: linear-gradient(90deg, #667eea, #764ba2, #f093fb);
 }
 .profile-card:hover {
-    /* transform: translateY(-8px) rotateX(5deg); */
     box-shadow: 
         0 35px 70px rgba(0, 0, 0, 0.2),
         0 0 0 1px rgba(255, 255, 255, 0.15);
@@ -475,4 +482,4 @@
     .info-grid {
         grid-template-columns: 1fr;
     }
-}
+} */

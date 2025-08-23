@@ -4,7 +4,7 @@ import { useEffect, useRef, useState } from 'react'
 import dynamic from 'next/dynamic'
 import { useRouter } from 'next/navigation'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faArrowCircleRight, faHome, faRightFromBracket } from '@fortawesome/free-solid-svg-icons'
+import { faArrowCircleRight, faBars, faHome, faRightFromBracket } from '@fortawesome/free-solid-svg-icons'
 import { logOut } from '@/utils/authAction'
 
 
@@ -48,12 +48,12 @@ const LayoutPage = () => {
         <div ref={navRef} className={isOpen? "dash-nav active":"dash-nav hide"}>
             <div className="dash-nav-element">
                 <div className='dash-nav-header'>
-                    <h1>NRC-Education</h1>
+                    <h1>nrcedu-uk</h1>
                     <NavLink />
                 </div>
                   <button  className='nav-logout-btn' onClick={() => {logOut(),route.refresh()}} ref={btnRef} ><FontAwesomeIcon icon={faRightFromBracket} className='nav-icon'/>logout</button>
                   <button  className='nav-icon-home-btn' onClick={() => homeHandler()}><FontAwesomeIcon className='nav-icon' icon={faHome}/></button>
-                  <button  className='nav-icon-btn' onClick={() => handler()} ref={btnRef} ><FontAwesomeIcon icon={faArrowCircleRight} className='nav-icon'/></button>
+                  <button  className='nav-icon-btn' onClick={() => handler()} ref={btnRef} ><FontAwesomeIcon icon={faBars} className='nav-icon'/></button>
             </div>
         </div>
     )
