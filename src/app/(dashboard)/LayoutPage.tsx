@@ -4,7 +4,7 @@ import { useEffect, useRef, useState } from 'react'
 import dynamic from 'next/dynamic'
 import { useRouter } from 'next/navigation'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faArrowCircleRight, faBars, faHome, faRightFromBracket } from '@fortawesome/free-solid-svg-icons'
+import { faBars, faHome, faRightFromBracket } from '@fortawesome/free-solid-svg-icons'
 import { logOut } from '@/utils/authAction'
 
 

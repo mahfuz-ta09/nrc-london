@@ -16,10 +16,11 @@ const agentApi = baseApi.injectEndpoints({
         }),
 
         
-        getALlAgentReq: build.query<any, void>({
-            query: () => ({
+        getALlAgentReq: build.query<any, {limit: string, page:string,email:string,nationality:string, applicationStat:string}>({
+            query: ({limit, page,email,nationality, applicationStat}) => ({
                 url: "/agent/request",
                 method: "GET",
+                params: {limit,page,email,nationality,applicationStat}
             }),
             providesTags: ["agents"],
         }),

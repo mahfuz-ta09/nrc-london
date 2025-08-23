@@ -1,6 +1,4 @@
-
 .container{
-    /* background:linear-gradient(135deg, #002c3a, #004d5c, #007a8c); */
     background: linear-gradient(135deg, #002c3a, #005577, #0088aa);
     min-height: 100vh;
     overflow: hidden;

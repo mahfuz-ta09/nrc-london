@@ -18,8 +18,15 @@ const page = () => {
     const [openFilter, setOpenFilter] = useState<boolean>(false);
     const [applStat, setApplStat] = useState<string | null>(null);
     const [docStat, setDocStat] = useState<string | null>(null);
+    const [agentSearchParameter, setAgentSearchParameter] = useState({limit: "10", page: "1",email:'',nationality:'', applicationStat:''});
 
-    const { data , isLoading: dataLoading} = useGetALlAgentReqQuery()
+    const { data , isLoading: dataLoading} = useGetALlAgentReqQuery({
+            limit: agentSearchParameter?.limit, 
+            page: agentSearchParameter?.page,
+            email:agentSearchParameter?.email,
+            nationality:agentSearchParameter?.nationality, 
+            applicationStat: agentSearchParameter?.applicationStat})
+
     const [ updateAgentStatus , { isLoading : updateLoading }] = useUpdateAgentStatusMutation()
     const router = useRouter()
 
@@ -74,8 +81,17 @@ const page = () => {
             setDocStat(e.target.value);
     }
 
+    const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>) => {
+        setAgentSearchParameter({
+        ...agentSearchParameter,
+        [e.target.name]: e.target.value
+        });
+    }
+
     // console.log(applStat, docStat)
-    console.log(data)
+    // console.log(data)
+    // console.log(agentSearchParameter)
+
     if(dataLoading) return <Loader />
     return (
         <div className="sAdmin">
@@ -93,35 +109,36 @@ const page = () => {
                     <div className="select-group">
                         <label className="select-label">Search By Nationality</label>
                         <div className="custom-select">
-                            <input type="text" placeholder="search by nationality" />
+                            <input onChange={handleChange} name="nationality" type="text" placeholder="search by nationality" />
                         </div>
                     </div>
 
                     <div className="select-group">
                         <label className="select-label">Search By Email</label>
                         <div className="custom-select">
-                            <input type="text" placeholder="agent's email" />
+                            <input onChange={handleChange} name="email" type="text" placeholder="agent's email" />
                         </div>
                     </div>
 
                     <div className="select-group">
                         <label className="select-label">Item limit Perpage</label>
                         <div className="custom-select">
-                            <input type="number" placeholder="insert a number" />
+                            <input onChange={handleChange} name="limit" type="number" placeholder="insert a number" />
                         </div>
                     </div>
 
                     <div className="select-group">
                         <label className="select-label">Page Number</label>
                         <div className="custom-select">
-                            <input type="text" placeholder="Page Number" />
+                            <input onChange={handleChange} name="page" type="text" placeholder="Page Number" />
                         </div>
                     </div>
                     <div className="select-group">
                         <label className="select-label">Search By Application Status</label>
                         <div className="custom-select">
-                            <select onChange={applicationStatus} name="application_status" id="application_status">
-                                <option value="">Select Status</option>
+                            <select onChange={handleChange} name="applicationStat" id="application_status">
+                                {/* <option value="">Select Status</option> */}
+                                <option value="all">⏳ all</option>
                                 <option value="pending">⏳ Pending</option>
                                 <option value="rejected">❌ Rejected</option>
                                 <option value="needs_Info">⚠️ Needs Info</option>
@@ -144,7 +161,7 @@ const page = () => {
                         <label className="select-label">Application Status</label>
                         <div className="custom-select">
                             <select onChange={applicationStatus} name="application_status" id="application_status">
-                                <option value="">Select Status</option>
+                                <option>Select Status</option>
                                 <option value="pending">⏳ Pending</option>
                                 <option value="approved">✅ Approved</option>
                                 <option value="rejected">❌ Rejected</option>
@@ -157,7 +174,7 @@ const page = () => {
                         <label className="select-label">Document Status</label>
                         <div className="custom-select">
                             <select onChange={documentStatus} name="document_status" id="document_status">
-                                <option value="">Select Status</option>
+                                <option>Select Status</option>
                                 <option value="approved">✅ Approved</option>
                                 <option value="rejected">❌ Rejected</option>
                                 <option value="needs_Info">⚠️ Needs Info</option>
