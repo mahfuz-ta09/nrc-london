@@ -1,7 +1,49 @@
-/* 
-.card-container {
+.sAdmin-agent-req{
+    width: 95%;
+    margin: 0 auto;
+    padding: 60px 0;
+    box-sizing: border-box;
+}
+
+.sAdmin-header-agent-req{
     width: 100%;
-    perspective: 1000px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 10px;
+    /* margin-bottom: 20px; */
+    position: relative;
+}
+
+.sAdmin-header-agent-req h1{
+    color: white;
+    font-size: 18px;
+    font-weight: 500;
+}
+
+.sAdmin-header-actions{
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    flex-wrap: wrap;
+}
+
+.sAdmin-header-actions button{
+    padding: 6px 10px;
+    border-radius: 2px;
+    background: rgba(255,255,255,0.3);
+    box-shadow: 1px 1px 10px  rgb(0, 0, 0,0.4);
+    font-weight: 800;
+    color: #fff;
+    border: none;
+    width: fit-content;
+    position: relative;
+    transition: all 0.3s ease;
+}
+
+.card-container-agent-req {
+    width: 100%;
     position: relative;
 }
 
@@ -15,7 +57,7 @@
 
 .card-action-container {
     position: absolute;
-    top: 16px;
+    top: 46px;
     right: 16px;
     z-index: 10;
     display: flex;
@@ -60,7 +102,7 @@
         0 0 0 1px rgba(255, 255, 255, 0.15);
 }
 
-.action-header {
+.agent-action-header {
     color: white;
     font-size: 16px;
     font-weight: 700;
@@ -68,10 +110,19 @@
     margin-bottom: 8px;
     display: flex;
     align-items: center;
-    justify-content: center;
+    justify-content: space-between;
     gap: 8px;
 }
-.action-header::before {
+.agent-action-header button {
+    background: transparent;
+    border: none;
+    color: white;
+    font-size: 18px;
+    cursor: pointer;
+    transition: color 0.3s ease;
+    z-index: 10000;
+}
+.agent-action-header::before {
     content: '⚙️';
     font-size: 18px;
 }
@@ -93,6 +144,24 @@
     width: 100%;
 }
 .custom-select select {
+    width: 100%;
+    padding: 12px 40px 12px 16px;
+    background: rgba(255, 255, 255, 0.15);
+    border: 2px solid rgba(255, 255, 255, 0.2);
+    border-radius: 8px;
+    color: white;
+    font-size: 14px;
+    font-weight: 500;
+    font-family: inherit;
+    cursor: pointer;
+    appearance: none;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    outline: none;
+    transition: all 0.3s ease;
+    backdrop-filter: blur(5px);
+}
+.custom-select input {
     width: 100%;
     padding: 12px 40px 12px 16px;
     background: rgba(255, 255, 255, 0.15);
@@ -167,6 +236,24 @@
     display: flex;
     gap: 8px;
     margin-top: 8px;
+}
+
+.agent-action-btn{
+    position: absolute;
+    top: 16px;
+    right: 16px;
+    z-index: 20;
+    padding: 6px 10px;
+    border-radius: 4px;
+    background: rgba(255,255,255,0.3);
+    box-shadow: 1px 1px 10px  rgb(0, 0, 0,0.4);
+    font-weight: 800;
+    color: #fff;
+    border: none;
+    width: fit-content;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    z-index: 2;
 }
 .action-btn {
     flex: 1;
@@ -266,7 +353,7 @@
         opacity: 0.8;
     }
 }
-.profile-card {
+.agent-req-profile-card {
     background: rgba(255, 255, 255, 0.35);
     backdrop-filter: blur(20px);
     border-radius: 24px;
@@ -278,7 +365,7 @@
     transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
     position: relative;
 }
-.profile-card::before {
+.agent-req-profile-card::before {
     content: '';
     position: absolute;
     top: 0;
@@ -287,18 +374,18 @@
     height: 4px;
     background: linear-gradient(90deg, #667eea, #764ba2, #f093fb);
 }
-.profile-card:hover {
+.agent-req-profile-card:hover {
     box-shadow: 
         0 35px 70px rgba(0, 0, 0, 0.2),
         0 0 0 1px rgba(255, 255, 255, 0.15);
 }
-.card-header {
+.agent-req-card-header {
     padding: 32px 32px 24px;
     background: linear-gradient(135deg, rgba(102, 126, 234, 0.1), rgba(118, 75, 162, 0.1));
     border-bottom: 1px solid rgba(0, 0, 0, 0.06);
     position: relative;
 }
-.profile-avatar {
+.agent-req-profile-avatar {
     width: 80px;
     height: 80px;
     border-radius: 50%;
@@ -310,27 +397,27 @@
     box-shadow: 0 8px 25px rgba(102, 126, 234, 0.3);
     transition: transform 0.3s ease;
 }
-.profile-avatar:hover {
+.agent-req-profile-avatar:hover {
     transform: scale(1.1) rotate(5deg);
 }
-.profile-avatar span {
+.agent-req-profile-avatar span {
     font-size: 28px;
     font-weight: 700;
     color: white;
 }
-.profile-name {
+.agent-req-profile-name {
     font-size: 28px;
     font-weight: 700;
     color: #000000;
     margin-bottom: 4px;
     letter-spacing: -0.5px;
 }
-.profile-email {
+.agent-req-profile-email {
     font-size: 16px;
     color: #000000;
     margin-bottom: 16px;
 }
-.profile-id {
+.agent-req-profile-id {
     display: inline-block;
     background: rgba(102, 126, 234, 0.1);
     color: #00020e;
@@ -340,27 +427,27 @@
     font-weight: 600;
     letter-spacing: 0.5px;
 }
-.card-content {
+.agent-req-card-content {
     padding: 32px;
 }
-.info-grid {
+.agent-req-info-grid {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
     gap: 24px;
 }
-.info-section {
+.agent-req-info-section {
     background: rgba(248, 250, 252, 0.8);
     border-radius: 16px;
     padding: 24px;
     transition: all 0.3s ease;
     border: 1px solid rgba(0, 0, 0, 0.04);
 }
-.info-section:hover {
+.agent-req-info-section:hover {
     background: rgba(248, 250, 252, 1);
     transform: translateY(-2px);
     box-shadow: 0 8px 25px rgba(0, 0, 0, 0.08);
 }
-.section-title {
+.agent-req-section-title {
     font-size: 16px;
     font-weight: 700;
     color: #1a1a1a;
@@ -369,21 +456,21 @@
     align-items: center;
     gap: 8px;
 }
-.section-title::before {
+.agent-req-section-title::before {
     content: '';
     width: 4px;
     height: 20px;
     background: linear-gradient(135deg, #667eea, #764ba2);
     border-radius: 2px;
 }
-.info-item {
+.agent-req-info-item {
     margin-bottom: 12px;
     transition: transform 0.2s ease;
 }
-.info-item:hover {
+.agent-req-info-item:hover {
     transform: translateX(4px);
 }
-.info-label {
+.agent-req-info-label {
     font-size: 12px;
     font-weight: 600;
     color: #666;
@@ -391,13 +478,13 @@
     letter-spacing: 0.5px;
     margin-bottom: 4px;
 }
-.info-value {
+.agent-req-info-value {
     font-size: 14px;
     color: #1a1a1a;
     font-weight: 500;
     word-break: break-word;
 }
-.status-badge {
+.agent-req-status-badge {
     display: inline-flex;
     align-items: center;
     gap: 6px;
@@ -482,4 +569,4 @@
     .info-grid {
         grid-template-columns: 1fr;
     }
-} */
+}

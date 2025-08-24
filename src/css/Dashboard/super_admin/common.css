@@ -1,4 +1,4 @@
-.sAdmin{
+/* .sAdmin{
     width: 95%;
     margin: 0 auto;
 }
@@ -554,7 +554,6 @@ select{
     background: linear-gradient(90deg, #667eea, #764ba2, #f093fb);
 }
 .profile-card:hover {
-    /* transform: translateY(-8px) rotateX(5deg); */
     box-shadow: 
         0 35px 70px rgba(0, 0, 0, 0.2),
         0 0 0 1px rgba(255, 255, 255, 0.15);
@@ -749,4 +748,4 @@ select{
     .info-grid {
         grid-template-columns: 1fr;
     }
-}
+} */

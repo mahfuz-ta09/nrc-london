@@ -41,7 +41,7 @@
 	justify-content: space-between;
 	height: 100%;
 	width: 100%;
-	padding: 15px;
+	padding: 25px 15px 35px;
 	margin: 0 auto;
 	color: white;
 	background: #002633;
@@ -52,18 +52,35 @@
 	height: 100vh;
 	display: flex;
 	flex-direction: column;
-	align-items: start;
+	align-items: center;
+	justify-content: space-between;
+	gap: 20px;
+}
+.dash-nav-header-title{
+	width: 100%;
+	display: flex;
+	flex-direction: row;
+	align-items: center;
 	justify-content: start;
-	gap: 30px;
+	gap: 5px;
 }
 
-.dash-nav-header h1:nth-child(1){
-	font-size: 24px;
-	margin-left: 30px;
+.dash-nav-header-title h1{
+	font-size: 25px;
+	font-weight: 500;
+	color: #fff;
 }
 
-.dash-nav-header h1:nth-child(2){
-	font-size: 14px;
+.dash-nav-header-title button{
+	background: transparent;
+	border: none;
+	outline: none;
+	cursor: pointer;
+}
+
+.dash-nav-header-title button .cross-icon{
+	font-size: 25px;
+	color: red;
 }
 
 .dash-nav-body{
@@ -118,58 +135,68 @@
 	position: fixed;
 	top: 0;
 	width: 100%;
-	height: auto;
-	padding: 10px 15px;
-	background: #004a62;
-	box-shadow: 0 2px 10px #2ec8fb;
+	height: 50px;
+	padding: 20px 10px;
+	background: #002633;
+	box-shadow: 0 2px 10px #969696;
 	color: #fff;
 	display: flex;
 	align-items: center;
 	justify-content: start;
-	gap: 20px;
+	gap: 10px;
 	z-index: 20;
 }
 
-
-.nav-icon-btn{
-	position: fixed;
-	left: 13px;
-	top: 17px;
-    background: transparent;
-    border: none;
+.dash-item-header button{
+	background: transparent;
+	border: none;
+	outline: none;
+	cursor: pointer;
+	color: white;
 	font-size: 25px;
-    color: white;
-	transition: .3s ease-in-out;
-	z-index: 15;
+}
+
+.header-title{
+	display: flex;
+	align-items: start;
+	justify-content: start;
+	flex-direction: column;
+}
+
+.header-title h1{
+    font-size: 14px;
+	font-weight: 300;
+}
+
+.nav-controll-holder{
+	width: 100%;
+	display: flex;
+	align-items: center;
+	justify-content: start;
+	gap: 30px;
+}
+
+.nav-icon-home-btn{
+	background: transparent;
+	border: none;
+	font-size: 22px;
+	color: #fff;
+	cursor: pointer;
+	outline: none;
 }
 
 .nav-logout-btn{
-	position: fixed;
-	right: 30px;
-	top: 20px;
-    background: transparent;
-    border: none;
-	font-size: 20px;
-    color: white;
-	transition: .3s ease-in-out;
-	margin-right: 30px;
+	background: transparent;
+	border: none;
+	font-size: 22px;
+	color: teal;
+	font-weight: 300;
+	cursor: pointer;
+	outline: none;
 	display: flex;
 	align-items: center;
 	justify-content: center;
 	gap: 5px;
-	z-index: 15;
-}
-
-
-.nav-icon-home-btn{
-	position: fixed;
-	right: 15px;
-	top: 20px;
-	font-size: 20px;
-	transition: .3s ease-in-out;
-    background: transparent;
-    border: none;
-    color: white;
 }
 
 .nav-logout-btn:hover .nav-icon{
@@ -191,7 +218,6 @@
 
 .dash-item-content{
 	width: 100%;
-	margin-top: 11vh;
 	z-index: -1;
 }
 
@@ -211,18 +237,6 @@
 	color: #ffaaaa;
 }
 
-.header-title{
-	display: flex;
-	align-items: start;
-	justify-content: start;
-	flex-direction: column;
-	margin-left: 30px;
-}
-
-.header-title h1{
-    font-size: 16px;
-	font-weight: 300;
-}
 
 @media screen and (max-width:450px) {
 	.dash-nav {

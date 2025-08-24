@@ -1,4 +1,5 @@
 import { NavContent, Role } from "@/types/nav/type"
+import { faScreenpal } from "@fortawesome/free-brands-svg-icons";
 import { faArrowCircleDown, faBookOpen, faChartBar, faGlobe, faStar, faTasks, faUniversity, faUser, faUsers, faUserShield, faUserTie } from "@fortawesome/free-solid-svg-icons";
 
 const sideNavItem = (role : Role) => {
@@ -64,6 +65,111 @@ const sideNavItem = (role : Role) => {
                     path        : `${role}/process-req`,
                     icon        : faTasks,
                 },
+                {
+                    title       : "Banner",
+                    path        : `${role}/banner`,
+                    icon        : faScreenpal,
+                },
+                {
+                    title       : "Banner",
+                    path        : `${role}/banner`,
+                    icon        : faScreenpal,
+                },
+                {
+                    title       : "Banner",
+                    path        : `${role}/banner`,
+                    icon        : faScreenpal,
+                },
+                {
+                    title       : "Banner",
+                    path        : `${role}/banner`,
+                    icon        : faScreenpal,
+                },
+                {
+                    title       : "Banner",
+                    path        : `${role}/banner`,
+                    icon        : faScreenpal,
+                },
+                {
+                    title       : "Banner",
+                    path        : `${role}/banner`,
+                    icon        : faScreenpal,
+                },
+                {
+                    title       : "Banner",
+                    path        : `${role}/banner`,
+                    icon        : faScreenpal,
+                },
+                {
+                    title       : "Banner",
+                    path        : `${role}/banner`,
+                    icon        : faScreenpal,
+                },
+                {
+                    title       : "Banner",
+                    path        : `${role}/banner`,
+                    icon        : faScreenpal,
+                },
+                {
+                    title       : "Banner",
+                    path        : `${role}/banner`,
+                    icon        : faScreenpal,
+                },
+                {
+                    title       : "Banner",
+                    path        : `${role}/banner`,
+                    icon        : faScreenpal,
+                },
+                {
+                    title       : "Banner",
+                    path        : `${role}/banner`,
+                    icon        : faScreenpal,
+                },
+                {
+                    title       : "Banner",
+                    path        : `${role}/banner`,
+                    icon        : faScreenpal,
+                },
+                {
+                    title       : "Banner",
+                    path        : `${role}/banner`,
+                    icon        : faScreenpal,
+                },
+                {
+                    title       : "Banner",
+                    path        : `${role}/banner`,
+                    icon        : faScreenpal,
+                },
+                {
+                    title       : "Banner",
+                    path        : `${role}/banner`,
+                    icon        : faScreenpal,
+                },
+                {
+                    title       : "Banner",
+                    path        : `${role}/banner`,
+                    icon        : faScreenpal,
+                },
+                {
+                    title       : "Banner",
+                    path        : `${role}/banner`,
+                    icon        : faScreenpal,
+                },
+                {
+                    title       : "Banner",
+                    path        : `${role}/banner`,
+                    icon        : faScreenpal,
+                },
+                {
+                    title       : "Banner",
+                    path        : `${role}/banner`,
+                    icon        : faScreenpal,
+                },
+                {
+                    title       : "Banner",
+                    path        : `${role}/banner`,
+                    icon        : faScreenpal,
+                },
             );
             break;
         case USER_ROLE.ADMIN:
@@ -102,6 +208,11 @@ const sideNavItem = (role : Role) => {
                     title       : "Country&Uni",
                     path        : `${role}/country-uni`,
                     icon        : faGlobe,
+                },
+                {
+                    title       : "Banner",
+                    path        : `${role}/banner`,
+                    icon        : faScreenpal,
                 },
             );
             break;
