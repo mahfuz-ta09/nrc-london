@@ -25,6 +25,7 @@ const agentApi = baseApi.injectEndpoints({
             providesTags: ["agents"],
         }),
 
+
         getALlAgent: build.query<any, void>({
             query: () => ({
                 url: "/agent/all",
@@ -34,15 +35,24 @@ const agentApi = baseApi.injectEndpoints({
         }),
 
 
-        updateAgentStatus: build.mutation<any, { applicationStat: any ,docStat:any , id: string }>({
-            query: ({ applicationStat, docStat , id }) => ({
-                url: `/agent/update/${id}/${applicationStat}/${docStat}`,
+        updateAgentStatus: build.mutation<any, {id: string , data:any } >({
+            query: ({ id , data }) => ({
+                url: `/agent/update/${id}`,
                 method: "PATCH",
                 headers: { 
-                "Content-Type": "application/json" 
+                    "Content-Type": "application/json" 
                 },  
+                data,
             }),
             invalidatesTags: ["agents"], 
+        }),
+
+        deleteAgent : build.mutation<any,{ id:string }>({
+            query: ({id}) =>({
+                url:`/agent/delete/${id}`,
+                method:'DELETE',
+            }),
+            invalidatesTags:['agents']
         }),
 
     }),
@@ -51,8 +61,9 @@ const agentApi = baseApi.injectEndpoints({
 })
 
 export const {
-    useCreateAgentsReqMutation,
     useGetALlAgentQuery,
+    useDeleteAgentMutation,
     useGetALlAgentReqQuery,
+    useCreateAgentsReqMutation,
     useUpdateAgentStatusMutation,
 } = agentApi

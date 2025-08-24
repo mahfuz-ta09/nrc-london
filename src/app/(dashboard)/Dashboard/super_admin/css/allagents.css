@@ -110,7 +110,7 @@
     margin-bottom: 8px;
     display: flex;
     align-items: center;
-    justify-content: space-between;
+    justify-content: center;
     gap: 8px;
 }
 .agent-action-header button {
@@ -258,7 +258,7 @@
 .action-btn {
     flex: 1;
     padding: 8px 12px;
-    background: rgba(255, 255, 255, 0.1);
+    background: #d32f2f;
     border: 1px solid rgba(255, 255, 255, 0.2);
     border-radius: 6px;
     color: rgba(255, 255, 255, 0.9);
@@ -269,7 +269,7 @@
     text-align: center;
 }
 .action-btn:hover {
-    background: rgba(255, 255, 255, 0.2);
+    background: rgb(211, 47, 47,0.7);
     border-color: rgba(255, 255, 255, 0.4);
     color: white;
     transform: translateY(-1px);

@@ -41,13 +41,14 @@ const page = () => {
     }
 
     if(dataLoading) return <Loader />
+
     return (
         <div className="sAdmin-agent-req">
             <div className="sAdmin-header-agent-req">
                 <h1>{data?.meta?.total} Pending Agent Requests</h1>
                 <div className="sAdmin-header-actions">
                     <button onClick={()=>setOpenFilter(!openFilter)}>{openFilter? <FontAwesomeIcon style={{color:"red"}} icon={faCancel}/>:<FontAwesomeIcon icon={faFilter}/>}</button>
-                    <button onClick={()=>router.push('/Dashboard/super_admin/AllAgents')}>Check all agents</button>
+                    <button onClick={()=>router.push('/Dashboard/super_admin/AllAgents')}>Check All Agents</button>
                 </div>
                 <div style={{top:"30px",right:'50px'}} className={`card-action-container ${openFilter ? "show-card" : ""}`}>
                     <div className="action-header">
@@ -102,7 +103,7 @@ const page = () => {
                 <div className="agent-req-profile-card">
                     <div className="floating-elements"></div>
                     <AgentQuickAction cardId={req?._id} openCardId={openCardId} />
-                    <button onClick={()=>handleQuickaction(req?._id)} className="agent-action-btn">edit status</button>
+                    <button onClick={()=>handleQuickaction(req?._id)} className="agent-action-btn">{openCardId? <span style={{color:"#d32f2f"}}>close</span>:<span>Edit Status</span>}</button>
 
                     <div className="agent-req-card-header">
                         <div className="agent-req-profile-avatar">

@@ -1,9 +1,8 @@
 'use client'
 import '../css/allagents.css'
-import { useState } from "react";
 import { useForm, SubmitHandler } from "react-hook-form"
 import { toast } from "react-toastify";
-import { useUpdateAgentStatusMutation } from "@/redux/endpoints/agent/agentsEndpoints"
+import { useDeleteAgentMutation, useUpdateAgentStatusMutation } from "@/redux/endpoints/agent/agentsEndpoints"
 import Loader from '@/component/shared/Loader/Loader';
 
 type AgentStatusForm = {
@@ -11,33 +10,30 @@ type AgentStatusForm = {
   docStat?: string;
 }
 
-const AgentQuickAction = ({ cardId , openCardId }: { cardId:string ,openCardId?:string } ) => {
+const AgentQuickAction = ({ cardId , openCardId }: { cardId:string ,openCardId:string } ) => {
     const [ updateAgentStatus , { isLoading : updateLoading }] = useUpdateAgentStatusMutation()
+    const [ deleteAgent , { isLoading : deleteLoading}] = useDeleteAgentMutation()
     const { register, handleSubmit, formState: { errors } } = useForm<AgentStatusForm>({
-            defaultValues: {
+        defaultValues:{
                 applicationStat: "",
-                docStat: "",
-            },
+                docStat: ""
+            }
         })
 
     
-    if(updateLoading) return <Loader />
+    if(updateLoading || deleteLoading) return <Loader />
 
-    console.log(cardId,openCardId)
-    
-    const onSubmit: SubmitHandler<AgentStatusForm> = async(value) =>{  
+    const onSubmit: SubmitHandler<AgentStatusForm> = async(data) =>{  
         try{  
-            // if(!applStat && !docStat) {
-            //     toast.error("both field unselected!");
-            //     return;
-            // }
+            if(!data?.applicationStat && !data?.docStat) {
+                toast.error("both field unselected!");
+                return;
+            }
 
-            console.log(value)
-
-
+            console.log(data?.applicationStat,data?.docStat,openCardId)
             let a = window.confirm("Do you want to change the status?")
             if(a){
-                const res = await updateAgentStatus({applicationStat: value?.applicationStat , docStat: value?.docStat , id:cardId})
+                const res = await updateAgentStatus({ id:openCardId , data })
                 if(res?.data?.data?.modifiedCount){
                     toast.success("Status updated!!")
                 }else{
@@ -54,12 +50,12 @@ const AgentQuickAction = ({ cardId , openCardId }: { cardId:string ,openCardId?:
     const deleteAgentRequest = async(id:string) =>{    
         let a = window.confirm("Do you want to change the status?")
         if(a){
-            // const res = await updateAgentStatus({applicationStat: applStat , docStat: docStat , id:id})
-            // if(res?.data?.data?.modifiedCount){
-            //     toast.success("Status updated!!")
-            // }else{
-            //     toast.error("Failed to update!")
-            // }
+            const res = await deleteAgent({ id: id })
+            if(res?.data?.data?.deletedCount){
+                toast.success("Status updated!!")
+            }else{
+                toast.error("Failed to update!")
+            }
         }
     }
 
