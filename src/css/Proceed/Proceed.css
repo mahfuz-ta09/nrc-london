@@ -278,7 +278,7 @@
     }
 }
 .required::after {
-    content: ' *';
+    content: ' ';
     color: #ef4444;
 }
 

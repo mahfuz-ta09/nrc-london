@@ -40,7 +40,6 @@ type Inputs = {
 const Becomeanagent = () => {
   const { Uemail, Urole } = useUserInfo()
   const [createAgentsReq, { isLoading: agentLoading }] = useCreateAgentsReqMutation()
-  
   const {
     register,
     handleSubmit,
@@ -88,13 +87,12 @@ const Becomeanagent = () => {
           <div className="form-content">
             <form id="agentForm" onSubmit={handleSubmit(onSubmit)}>
 
-              {/* Personal Information Section */}
               <div className="form-section">
                 <h3 className="section-title">Personal Information</h3>
 
                 <div className="form-group">
                   <label className="form-label required">Full Name</label>
-                  <input className="form-input" {...register("name", { required: true })} />
+                  <input className="form-input" {...register("name")} />
                   {errors.name && <p className="error">Name is required</p>}
                 </div>
 
@@ -106,7 +104,7 @@ const Becomeanagent = () => {
 
                   <div className="form-group">
                     <label className="form-label required">Mobile Number</label>
-                    <input className="form-input" type="tel" {...register("mobile_number", { required: true })} />
+                    <input className="form-input" type="tel" {...register("mobile_number")} />
                   </div>
                 </div>
 
@@ -118,19 +116,19 @@ const Becomeanagent = () => {
 
                   <div className="form-group">
                     <label className="form-label required">Date of Birth</label>
-                    <input className="form-input" type="date" {...register("dob", { required: true })} />
+                    <input className="form-input" type="date" {...register("dob")} />
                   </div>
                 </div>
 
                 <div className="form-group">
                   <label className="form-label required">Address</label>
-                  <input className="form-input" {...register("address", { required: true })} />
+                  <input className="form-input" {...register("address")} />
                 </div>
 
                 <div className="form-row">
                   <div className="form-group">
                     <label className="form-label required">Nationality</label>
-                    <input className="form-input" {...register("nationality", { required: true })} />
+                    <input className="form-input" {...register("nationality")} />
                   </div>
 
                   <div className="form-group">
@@ -140,18 +138,17 @@ const Becomeanagent = () => {
                 </div>
               </div>
 
-              {/* Agency Information Section */}
               <div className="form-section">
                 <h3 className="section-title">Agency Information</h3>
 
                 <div className="form-group">
                   <label className="form-label required">Agency Name</label>
-                  <input className="form-input" {...register("agency_name", { required: true })} />
+                  <input className="form-input" {...register("agency_name")} />
                 </div>
 
                 <div className="form-group">
                   <label className="form-label required">Agency Address</label>
-                  <input className="form-input" {...register("agency_address", { required: true })} />
+                  <input className="form-input" {...register("agency_address")} />
                 </div>
 
                 <div className="form-row">
@@ -162,13 +159,13 @@ const Becomeanagent = () => {
 
                   <div className="form-group">
                     <label className="form-label required">Years of Experience</label>
-                    <input className="form-input" type="number" {...register("experience", { required: true, min: 0 })} />
+                    <input className="form-input" type="number" {...register("experience")} />
                   </div>
                 </div>
 
                 <div className="form-group">
                   <label className="form-label required">Services Offered</label>
-                  <textarea className="form-textarea" {...register("services", { required: true })}></textarea>
+                  <textarea className="form-textarea" {...register("services")}></textarea>
                 </div>
 
                 <div className="form-group">
@@ -184,24 +181,24 @@ const Becomeanagent = () => {
                 <div className="form-row">
                   <div className="form-group">
                     <label className="form-label required">Business License Number</label>
-                    <input className="form-input" {...register("license_number", { required: true })} />
+                    <input className="form-input" {...register("license_number")} />
                   </div>
 
                   <div className="form-group">
                     <label className="form-label required">Tax Identification Number</label>
-                    <input className="form-input" {...register("tax_id", { required: true })} />
+                    <input className="form-input" {...register("tax_id")} />
                   </div>
                 </div>
 
                 <div className="form-group">
                   <label className="form-label required">Upload Business License</label>
-                  <input className="form-input" type="file" {...register("license_document", { required: true })} accept=".pdf,.jpg,.jpeg,.png" />
+                  <input className="form-input" type="file" {...register("license_document")} accept=".pdf,.jpg,.jpeg,.png" />
                 </div>
 
                 <div className="form-row">
                   <div className="form-group">
                     <label className="form-label required">Do you have any criminal record?</label>
-                    <select className="form-select" {...register("criminal_record", { required: true })}>
+                    <select className="form-select" {...register("criminal_record")}>
                       <option value="">Select an option</option>
                       <option value="no">No</option>
                       <option value="yes">Yes</option>
@@ -210,7 +207,7 @@ const Becomeanagent = () => {
 
                   <div className="form-group">
                     <label className="form-label required">How did you hear about us?</label>
-                    <select className="form-select" {...register("referral", { required: true })}>
+                    <select className="form-select" {...register("referral")}>
                       <option value="">Select an option</option>
                       <option value="google">Google</option>
                       <option value="facebook">Facebook</option>
@@ -224,10 +221,10 @@ const Becomeanagent = () => {
 
                 <div className="form-group">
                   <label className="form-label required">Upload Background Check Document</label>
-                  <input className="form-input" type="file" {...register("background_check", { required: true })} accept=".pdf,.jpg,.jpeg,.png" />
+                  <input className="form-input" type="file" {...register("background_check")} accept=".pdf,.jpg,.jpeg,.png" />
                 </div>
 
-                {/* Extra Fields */}
+                
                 <div className="form-row">
                   <div className="form-group">
                     <label className="form-label">Company Registration Number</label>
@@ -268,7 +265,7 @@ const Becomeanagent = () => {
                 </div>
               </div>
 
-              {/* Submit Button */}
+              
               <button className="form-button" type="submit">Submit Application</button>
             </form>
           </div>

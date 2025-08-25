@@ -1,5 +1,5 @@
 'use client'
-import '../css/allagents.css'
+import '../../css/allagents.css'
 import Loader from "@/component/shared/Loader/Loader"
 import { useGetALlAgentReqQuery } from "@/redux/endpoints/agent/agentsEndpoints"
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
@@ -7,13 +7,13 @@ import {  faCancel, faFilter } from "@fortawesome/free-solid-svg-icons"
 import AgentQuickAction from './AgentQuickAction'
 import { useRouter } from "next/navigation"
 import { useState } from "react"
+import AgentSearchParam from './AgentSearchParam'
 
 
 const page = () => {
-    const [openCardId, setOpenCardId] = useState<string>('');
-    const [openFilter, setOpenFilter] = useState<boolean>(false);
+    const [openCardId, setOpenCardId] = useState<string>('')
+    const [openFilter, setOpenFilter] = useState<boolean>(false)
     const [agentSearchParameter, setAgentSearchParameter] = useState({limit: "10", page: "1",email:'',nationality:'', applicationStat:'all'})
-    
     const { data , isLoading: dataLoading} = useGetALlAgentReqQuery({
             limit: agentSearchParameter?.limit, 
             page: agentSearchParameter?.page,
@@ -24,14 +24,6 @@ const page = () => {
 
 
     if(dataLoading) return <Loader />
-
-
-    const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>) => {
-        setAgentSearchParameter({
-            ...agentSearchParameter,
-            [e.target.name]: e.target.value
-        });
-    }
 
     const handleQuickaction = (id:string) => {
         setOpenCardId((prv:any) => {
@@ -50,51 +42,10 @@ const page = () => {
                     <button onClick={()=>setOpenFilter(!openFilter)}>{openFilter? <FontAwesomeIcon style={{color:"red"}} icon={faCancel}/>:<FontAwesomeIcon icon={faFilter}/>}</button>
                     <button onClick={()=>router.push('/Dashboard/super_admin/AllAgents')}>Check All Agents</button>
                 </div>
-                <div style={{top:"30px",right:'50px'}} className={`card-action-container ${openFilter ? "show-card" : ""}`}>
-                    <div className="action-header">
-                        Agent Fileter
-                    </div>
-
-                    <div className="select-group">
-                        <label className="select-label">Search By Nationality</label>
-                        <div className="custom-select">
-                            <input onChange={handleChange} name="nationality" type="text" placeholder="search by nationality" />
-                        </div>
-                    </div>
-
-                    <div className="select-group">
-                        <label className="select-label">Search By Email</label>
-                        <div className="custom-select">
-                            <input onChange={handleChange} name="email" type="text" placeholder="agent's email" />
-                        </div>
-                    </div>
-
-                    <div className="select-group">
-                        <label className="select-label">Item limit Perpage</label>
-                        <div className="custom-select">
-                            <input onChange={handleChange} name="limit" type="number" placeholder="insert a number" />
-                        </div>
-                    </div>
-
-                    <div className="select-group">
-                        <label className="select-label">Page Number</label>
-                        <div className="custom-select">
-                            <input onChange={handleChange} name="page" type="text" placeholder="Page Number" />
-                        </div>
-                    </div>
-                    <div className="select-group">
-                        <label className="select-label">Search By Application Status</label>
-                        <div className="custom-select">
-                            <select onChange={handleChange} name="applicationStat" id="application_status">
-                                {/* <option value="">Select Status</option> */}
-                                <option value="all">⏳ all</option>
-                                <option value="pending">⏳ Pending</option>
-                                <option value="rejected">❌ Rejected</option>
-                                <option value="needs_Info">⚠️ Needs Info</option>
-                            </select>
-                        </div>
-                    </div>
-                </div>
+                <AgentSearchParam 
+                    agentSearchParameter={agentSearchParameter}
+                    openFilter={openFilter}
+                    setAgentSearchParameter={setAgentSearchParameter}/>
             </div>
             
 
