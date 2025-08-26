@@ -26,9 +26,9 @@ const sideNavItem = (role : Role) => {
                     icon     : faUser,
                 },
                 {
-                    title   : "Manage Admin",
-                    path    : `${role}/manage-admin`,
-                    icon    : faUserShield,
+                    title   : "Statistics",
+                    path    : `${role}/web-stat`,
+                    icon    : faChartBar,
                 },
                 {
                     title   : "Manage Users",
@@ -36,12 +36,12 @@ const sideNavItem = (role : Role) => {
                     icon    : faUsers,
                 },
                 {
-                    title   : "Statistics",
-                    path    : `${role}/web-stat`,
-                    icon    : faChartBar,
+                    title   : "Manage Admin",
+                    path    : `${role}/manage-admin`,
+                    icon    : faUserShield,
                 },
                 {
-                    title   : "Agents",
+                    title   : "Agent Controll",
                     path    : `${role}/AllAgents`,
                     icon    : faUserTie,
                 },
@@ -61,7 +61,7 @@ const sideNavItem = (role : Role) => {
                     icon        : faStar,
                 },
                 {
-                    title       : "Process Req",
+                    title       : "Process Request",
                     path        : `${role}/process-req`,
                     icon        : faTasks,
                 },
@@ -100,7 +100,7 @@ const sideNavItem = (role : Role) => {
                     icon        : faStar,
                 },
                 {
-                    title       : "Process Req",
+                    title       : "Process Request",
                     path        : `${role}/process-req`,
                     icon        : faTasks,
                 },

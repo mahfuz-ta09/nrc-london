@@ -1,6 +1,5 @@
 'use client'
 import '@/css/Dashboard/super_admin/common.css'
-import '@/css/Dashboard/admin/university.css'
 import { useState } from 'react'
 import { useForm, SubmitHandler } from "react-hook-form"
 import { useCreateAdminMutation, useGetALlAdminQuery, useUpdateAdminStatusMutation, useUpdateUserRoleMutation } from '@/redux/endpoints/sAdmin/superAdmin'
@@ -81,10 +80,10 @@ const page = () => {
         <div className="sAdmin">
             <div className="sAdmin-header">
                 <h1>Mange Your Admin Panel</h1>
-                <button onClick={()=>setCreate(!create)}>{create ? "close":"create?"}</button>
+                <button onClick={()=>setCreate(!create)}>{create ? "close":"Create New Admin?"}</button>
             </div>
 
-            <div className="table-container">
+            <div className="table-container-users">
                 <table className="table">
                     <thead className="thead">
                         <tr className="tr">
@@ -148,7 +147,8 @@ const page = () => {
                 </table>
             </div>
 
-            <div className={create ? 'admin-create .show' : 'admin-create close'}>
+            <div className={create ? 'create-show' : 'admin-create'}>
+                <h1>Create A New Admin</h1>
                 <form onSubmit={handleSubmit(onSubmit)} action="">
                     <input type="email" {...register("email")} required/>
                     <input type="password" {...register("password")} required/>

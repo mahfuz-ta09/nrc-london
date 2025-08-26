@@ -1,18 +1,19 @@
 'use client'
+import { useState } from 'react'
+import { toast } from 'react-toastify'
 import '@/css/Dashboard/super_admin/common.css'
 import Loader from "@/component/shared/Loader/Loader"
-import { useGetALlUserQuery, useUpdateAdminStatusMutation, useUpdateUserRoleMutation } from "@/redux/endpoints/sAdmin/superAdmin"
-import { toast } from 'react-toastify'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import Pagination from '@/component/shared/Pagination/Pagination'
 import { faFilter, faTrash } from '@fortawesome/free-solid-svg-icons'
-import { useState } from 'react'
+import { useGetALlUserQuery, useUpdateAdminStatusMutation, useUpdateUserRoleMutation } from "@/redux/endpoints/sAdmin/superAdmin"
 
 
 type paraType = {
     email: string,
     name: string,
-    page: string,
-    total: string,
+    page: number,
+    total: number,
     status: string
 }
 
@@ -20,8 +21,8 @@ const Page = () => {
     const [para,setPara] = useState<paraType>({
         email:'',
         name:'',
-        page:'1',
-        total:'10',
+        page:1,
+        total:10,
         status:''
     })
     const [isOpen,setIsOpen] = useState(false)
@@ -80,9 +81,16 @@ const Page = () => {
         setPara({
             ...para,
             [e.target.name]: e.target.value
-        });
+        })
     }
-
+    
+    const handlePageChange = (p: number) => {
+        setPara({
+            ...para,
+            page : p
+        })
+    }
+    
     return (
         <div className="sAdmin">
             <div className="sAdmin-header">
@@ -225,7 +233,11 @@ const Page = () => {
                     </tbody>
                 </table>
             </div>
-
+            <Pagination 
+                totalPages={data?.meta?.totalPages}
+                currentPage={Number(para?.page)}
+                onPageChange={handlePageChange}
+                siblingCount={1}/>
         </div>
     )
 }

@@ -62,9 +62,7 @@ const AddUniModal = ({ addUni, setAddUni }: ModalProps) => {
     const [selectedQualifications, setSelectedQualifications] = useState<string[]>([])
 
 
-    if(createLoading || editLoading ){
-        return <Loader />
-    }
+    if(createLoading || editLoading ) return <Loader />
 
     
 
@@ -88,7 +86,7 @@ const AddUniModal = ({ addUni, setAddUni }: ModalProps) => {
                     form_data.append(key, String(value));
                 }
 
-            });
+            })
 
             
             if(addUni?.action==="add")res = await addUniversity({data:form_data,id: addUni?.id})

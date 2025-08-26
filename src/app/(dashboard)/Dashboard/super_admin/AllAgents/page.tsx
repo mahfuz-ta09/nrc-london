@@ -1,14 +1,13 @@
 'use client'
-import Loader from "@/component/shared/Loader/Loader"
-import { useGetALlAgentQuery } from "@/redux/endpoints/agent/agentsEndpoints"
-import { useRouter } from "next/navigation"
-import Link from "next/link"
 import '../css/allagents.css'
 import { useState } from "react"
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
-import { faCancel, faFilter } from "@fortawesome/free-solid-svg-icons"
+import { useRouter } from "next/navigation"
+import Loader from "@/component/shared/Loader/Loader"
 import AgentSearchParam from "./agent-req/AgentSearchParam"
 import AgentQuickAction from "./agent-req/AgentQuickAction"
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
+import { faCancel, faFilter } from "@fortawesome/free-solid-svg-icons"
+import { useGetALlAgentQuery } from "@/redux/endpoints/agent/agentsEndpoints"
 
 const page = () => {
     const router = useRouter()
@@ -26,11 +25,11 @@ const page = () => {
     }
 
     if(dataLoading) return <Loader />
-    // console.log(data)
+    
     return (
         <div className="sAdmin-agent-req">
             <div className="sAdmin-header-agent-req">
-                <h1>{data?.meta?.total} Agents</h1>
+                <h1>{data?.meta?.total} Active Agents</h1>
                 <div className="sAdmin-header-actions">
                     <button onClick={()=>setOpenFilter(!openFilter)}>{openFilter? <FontAwesomeIcon style={{color:"red"}} icon={faCancel}/>:<FontAwesomeIcon icon={faFilter}/>}</button>
                     <button onClick={()=>router.push('/Dashboard/super_admin/AllAgents/agent-req')}>Check All Agent Request</button>

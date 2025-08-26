@@ -14,10 +14,11 @@ const reviewApi = baseApi.injectEndpoints({
         invalidatesTags: ["users"],  
       }),
 
-      getALlReview: build.query<any, void>({
-          query: () => ({
+      getALlReview: build.query<any, { page:number , limit:number , email:string , name:string }>({
+          query: ({ page , limit , email , name }) => ({
               url: "/review/all",
               method: "GET",
+              params: { page , limit , email , name }
           }),
         providesTags: ["users"],
       }),

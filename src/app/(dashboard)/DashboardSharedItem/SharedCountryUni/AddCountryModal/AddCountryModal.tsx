@@ -1,10 +1,11 @@
 'use client'
-import { useCreateCountryListMutation, useEditCountryListMutation } from '@/redux/endpoints/countryBaseUni/countryBaseUniversity'
 import './AddCountryModal.css'
-import { useForm, SubmitHandler } from "react-hook-form"
 import { toast } from 'react-toastify'
 import { countryCurrencyMap } from '@/types/common'
 import Loader from '@/component/shared/Loader/Loader'
+import { useForm, SubmitHandler } from "react-hook-form"
+import { useCreateCountryListMutation, useEditCountryListMutation } from '@/redux/endpoints/countryBaseUni/countryBaseUniversity'
+
 
 type ModalProps = {
     addCounty:{
@@ -37,9 +38,7 @@ const AddCountryModal = ({addCounty,setAddCountry}: ModalProps) => {
     const [ editCountryList , { isLoading: editLoader } ] = useEditCountryListMutation()
 
 
-    if( creationLoader || editLoader ){
-        return <Loader />
-    }
+    if( creationLoader || editLoader ) return <Loader />
 
     const onSubmit: SubmitHandler<CountryData> = async(data: CountryData) => {
         try{

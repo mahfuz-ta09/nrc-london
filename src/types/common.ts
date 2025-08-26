@@ -83,6 +83,7 @@ export interface IFormInput {
 
 
 export const countryCurrencyMap = {
+  select: "",      // United States Dollar
   US: "$",      // United States Dollar
   BD: "৳",      // Bangladeshi Taka
   IN: "₹",      // Indian Rupee

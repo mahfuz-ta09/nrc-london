@@ -1,24 +1,26 @@
 'use client'
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import './UniversityTable.css'
-import { faAdd, faFilter, faList, faPen, faTrash } from '@fortawesome/free-solid-svg-icons'
-import { useDeleteUniMutation, useGetUniversityListQuery } from '@/redux/endpoints/university/universityEndpoints'
-import Loader from '@/component/shared/Loader/Loader'
-import { Suspense, useState } from 'react'
-import { useGetAllCountryNameQuery } from '@/redux/endpoints/countryBaseUni/countryBaseUniversity'
-import AddUniModal from '../AddUniModal/AddUniModal'
 import { toast } from 'react-toastify'
-import SubjectControllModal from './SubjectControllModal'
+import { Suspense, useState } from 'react'
 import SubjectListModal from './SubjectListModal'
+import AddUniModal from '../AddUniModal/AddUniModal'
+import Loader from '@/component/shared/Loader/Loader'
+import SubjectControllModal from './SubjectControllModal'
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { faAdd, faFilter, faList, faPen, faTrash } from '@fortawesome/free-solid-svg-icons'
+import { useGetAllCountryNameQuery } from '@/redux/endpoints/countryBaseUni/countryBaseUniversity'
+import { useDeleteUniMutation, useGetUniversityListQuery } from '@/redux/endpoints/university/universityEndpoints'
+import Pagination from '@/component/shared/Pagination/Pagination'
 
 
 type paraType = {
     all?:string,
     country?:string,
-    page?:string,
-    total?:string,
+    page?:number,
+    total?:number,
     uniName?:string
 }
+
 
 const UniversityTable = () => {
     const {data:country, isLoading: nameLoading}= useGetAllCountryNameQuery()
@@ -26,12 +28,12 @@ const UniversityTable = () => {
     const [addUni,setAddUni] = useState({action:"",id:'',isOPen: false,name:''})
     const [listSubject,setListSubject] = useState({action:"",id:'',isOPen: false,name:''})
     const [addSub,setAddSub] = useState({action:"",id:'',isOPen: false,name:''})
-    const [para,setPara] = useState<paraType>({all:'',country:'',page:'1',total:'10',uniName:''})
+    const [para,setPara] = useState<paraType>({all:'',country:'',page:1,total:10,uniName:''})
     const { data , isLoading } = useGetUniversityListQuery({
         all: para.all || "",
         country: para.country || "",
-        page: para.page || "1",
-        total: para.total || "10",
+        page: para.page || 1,
+        total: para.total || 10,
         uniName: para.uniName || ""
     })
     const [isOpen,setIsOpen] = useState(false)
@@ -65,11 +67,18 @@ const UniversityTable = () => {
 
     const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>) => {
         setPara({
-        ...para,
-        [e.target.name]: e.target.value
+            ...para,
+            [e.target.name]: e.target.value
         });
     }
     
+    
+    const handlePageChange = (p: number) => {
+        setPara({
+            ...para,
+            page : p
+        })
+    }
     
     return (
         <div className='university-table'>
@@ -113,7 +122,7 @@ const UniversityTable = () => {
 
             {(data?.meta?.totalCount || country?.meta?.total) && <div className='all-btn-container'>
                 <button className='all-btn'
-                        onClick={() =>setPara(prev => ({...prev,all: "all",country: "",page: "1",total: "10"}))}
+                        onClick={() =>setPara(prev => ({...prev,all: "all",country: "",page: 1,total: 10}))}
                         onMouseEnter={(e) => (e.currentTarget.style.backgroundColor = "#eee")}
                         onMouseLeave={(e) => (e.currentTarget.style.backgroundColor = "#f8f8f8")}
                     >all</button>
@@ -123,11 +132,11 @@ const UniversityTable = () => {
                         className='all-btn'
                         onClick={() =>
                             setPara(prev => ({
-                            ...prev,
-                            all: "",
-                            country: single.country,
-                            page: "1",
-                            total: "10"
+                                ...prev,
+                                all: "",
+                                country: single.country,
+                                page: 1,
+                                total: 10
                             }))
                         }
                         onMouseEnter={(e) => (e.currentTarget.style.backgroundColor = "#eee")}
@@ -190,8 +199,12 @@ const UniversityTable = () => {
                             )}
                         </tbody>
                     </table>
-
             </div>}
+            <Pagination 
+                totalPages={data?.meta?.totalCount}
+                currentPage={Number(para?.page)}
+                onPageChange={handlePageChange}
+                siblingCount={1}/>
 
             <Suspense fallback={<Loader />}>
                 <AddUniModal 

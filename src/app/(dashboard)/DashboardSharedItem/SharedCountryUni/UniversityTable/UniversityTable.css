@@ -131,27 +131,26 @@ select{
 }
 
 .filter-container {
-  position: absolute;
-  top: 50px;
-  right: 50px;
-  width: 200px;
-  height: auto;
-  background: rgba(0, 0, 0, 0.8);
-  border-radius: 5px;
-  padding: 10px;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-
-  opacity: 0;
-  visibility: hidden;
-  transition: opacity 0.3s ease, visibility 0.3s ease;
+    position: absolute;
+    top: 50px;
+    right: 50px;
+    width: 200px;
+    height: auto;
+    background: linear-gradient(135deg, #002c3a, #005577, #0088aa);
+    border-radius: 5px;
+    padding: 10px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity 0.3s ease, visibility 0.3s ease;
 }
 
 .filter-container.show {
-  opacity: 1;
-  visibility: visible;
+    opacity: 1;
+    visibility: visible;
 }
 
 .filter-container input{
