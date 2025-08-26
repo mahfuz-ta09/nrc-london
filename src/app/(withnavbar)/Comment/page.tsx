@@ -1,15 +1,40 @@
 'use client'
-import { useGetALlReviewQuery } from "@/redux/endpoints/review/reviewEndpoints"
 import "@/css/additional/Review/allReview.css"
-import Footer from "@/component/shared/Footer/Footer";
+import Footer from "@/component/shared/Footer/Footer"
+import { useGetALlReviewQuery } from "@/redux/endpoints/review/reviewEndpoints"
+import { useState } from "react"
+import Pagination from "@/component/shared/Pagination/Pagination"
+import Loader from "@/component/shared/Loader/Loader"
+
+type paraType = {
+    email: string,
+    name: string,
+    page: number,
+    limit: number
+}
 
 const ReviewPage = () => {
-    const { data, isLoading } = useGetALlReviewQuery();
+    const [para,setPara] = useState<paraType>({
+            email:'',
+            name:'',
+            page:1,
+            limit:100
+        })
+    const { data, isLoading } = useGetALlReviewQuery(para)
+
+    const handlePageChange = (p: number) => {
+        setPara({
+            ...para,
+            page : p
+        })
+    }
+
+    if(isLoading) return <Loader />
 
     return (
         <div className="review-page">
             <div className="banner">
-                <h1>What Our Students Say</h1>
+                <h1>An Overview of Our Services</h1>
             </div>
 
             <div className="reviews-container wdth">
@@ -31,7 +56,11 @@ const ReviewPage = () => {
                     </div>
                 )}
 
-                
+                <Pagination
+                    totalPages={data?.meta?.totalPages}
+                    currentPage={Number(para?.page)}
+                    onPageChange={handlePageChange}
+                    siblingCount={1}/>
             </div>
             <Footer />
         </div>
