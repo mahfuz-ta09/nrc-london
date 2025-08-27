@@ -2,18 +2,20 @@ import { baseApi } from "@/redux/baseApi";
 
 const bannerEndpoint = baseApi.injectEndpoints({
     endpoints: (build) => ({
-        // Create new banner
-        createBanner: build.mutation({
-            query: (data) => ({
+        createBanner: build.mutation<any, {data:any}>({
+            query: ({data}) => ({
                 url: "/banner/create",
                 method: "POST",
-                body: data,
+                headers:{
+                  'Content-Type': 'multipart/form-data',
+                },
+                data,
             }),
             invalidatesTags: ["banner"],
         }),
 
-        // Get all banners
-        getAllBanners: build.query({
+        
+        getAllBanners: build.query<any, void>({
             query: () => ({
                 url: "/banner/all",
                 method: "GET",
@@ -21,7 +23,7 @@ const bannerEndpoint = baseApi.injectEndpoints({
             providesTags: ["banner"],
         }),
 
-        // Get single banner by ID
+        
         getBannerById: build.query({
             query: (id) => ({
                 url: `/banner/${id}`,
@@ -30,12 +32,15 @@ const bannerEndpoint = baseApi.injectEndpoints({
             providesTags: (_result, _error, id) => [{ type: "banner", id }],
         }),
 
-        // Update banner
-        updateBanner: build.mutation({
-            query: ({ id, ...data }) => ({
+        
+        updateBanner: build.mutation<any,{id:string , data:any}>({
+            query: ({ id, data }) => ({
                 url: `/banner/update/${id}`,
                 method: "PUT",
-                body: data,
+                headers:{
+                  'Content-Type': 'multipart/form-data',
+                },
+                data,
             }),
             invalidatesTags: (_result, _error, { id }) => [
                 { type: "banner", id },
@@ -43,7 +48,7 @@ const bannerEndpoint = baseApi.injectEndpoints({
             ],
         }),
 
-        // Delete banner
+        
         deleteBanner: build.mutation({
             query: (id) => ({
                 url: `/banner/delete/${id}`,

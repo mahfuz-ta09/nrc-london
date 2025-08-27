@@ -111,12 +111,12 @@ const AddCountryModal = ({addCounty,setAddCountry}: ModalProps) => {
                     
                     <div className='input-container'>
                         <label htmlFor="">Add Country flag</label>
-                        <input type='file' {...register("countryFlag")}/>
+                        <input type='file'  accept="image/jpeg, image/jpg, image/png" {...register("countryFlag")}/>
                     </div>
 
                     <div className='input-container'>
                         <label htmlFor="serial">Add an image of the country</label>
-                        <input type='file' {...register("famousFile")}/>
+                        <input type='file'  accept="image/jpeg, image/jpg, image/png" {...register("famousFile")}/>
                     </div>
                     <button type='submit' className='modal-sbmt-btn'>submit</button>
                 </form>

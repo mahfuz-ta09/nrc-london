@@ -44,7 +44,7 @@ const CountryUniContent = () => {
                 />
             </Suspense>
         
-      </div>
+        </div>
     )
 }
 

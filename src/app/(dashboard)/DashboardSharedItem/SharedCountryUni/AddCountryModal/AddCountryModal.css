@@ -59,7 +59,15 @@
     font-size: 20px;
     font-weight: 700;
     text-align: center;
-    margin-bottom: 30px;
+    margin-bottom: 5px;
+    color: #000;
+}
+
+.modal-body p{
+    font-size: 15px;
+    font-weight: 300;
+    text-align: center;
+    margin-bottom: 20px;
     color: #000;
 }
 

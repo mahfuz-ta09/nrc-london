@@ -163,6 +163,19 @@ select{
     cursor: pointer;
     background: #f14040;
 }
+.edit-users-btn{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 30px;
+    height: 30px;
+    border-radius: 5px;
+    color: #fff;
+    font-weight: 700;
+    border: none;
+    cursor: pointer;
+    background: #40f1bc93;
+}
 
 .filter-header{
     width: 110px;

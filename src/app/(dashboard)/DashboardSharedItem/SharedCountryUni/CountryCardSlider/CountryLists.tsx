@@ -85,13 +85,15 @@ const CountryLists = () => {
                     <button onClick={() => handleDelete(country?._id)} className='delete-btn'>
                         <FontAwesomeIcon icon={faTrash} />
                     </button>
-                    <img className='country-card-img1' loading='lazy' src={country?.famousFile_url} alt="" />
-                    <img className='country-card-img2' loading='lazy' src={country?.countryFlag_url} alt="" />
+                    <img className='country-card-img1' loading='lazy' src={country?.famousFile?.url} alt="" />
+                    <img className='country-card-img2' loading='lazy' src={country?.countryFlg?.url} alt="" />
                     <div className="card-details">
                         <h1>country name: {country?.country}</h1>
                         <h1>serial in home: {country?.serial}</h1>
                         <h1>country full name: {country?.countryFull}</h1>
                         <h1>currency: {country?.currency}</h1>
+                        <h1>Updated: {country?.updatedAt}</h1>
+                        <h1>Created: {country?.createdAt}</h1>
                         <div className="cardtails-btn">
                             <button style={{background:"green"}} onClick={() => setAddUni(prev => ({ ...prev, isOPen: true, name: `${country?.country}`, id: `${country?._id}`, action: "add" }))}>add university</button>
                             <button style={{background:"teal"}} onClick={() => setAddCountry(prev => ({ ...prev, isOPen: true, name: `${country?.country}`, id: `${country?._id}`, action: "edit" }))}>edit</button>
