@@ -8,6 +8,7 @@ import Process from "@/component/shared/Process/Process"
 import FAQ from "@/component/UI/FAQ/FAQ"
 import HomeTestPrep from "@/component/shared/HomeTestPrep/HomeTestPrep"
 import AboutUs from "@/component/shared/HomeAboutUs/AboutUs"
+import LandingPage from "@/component/shared/LandingPage/LandingPage"
 
 const Page = () => {
   const faqItems = [
@@ -37,7 +38,8 @@ const Page = () => {
 
   return (
     <>
-        <Banner />
+        {/* <Banner /> */}
+        <LandingPage />
         <div className="home-contain">
           <AboutUs />
           <PopularCourse />

@@ -15,9 +15,9 @@ const bannerEndpoint = baseApi.injectEndpoints({
         }),
 
         
-        getAllBanners: build.query<any, void>({
-            query: () => ({
-                url: "/banner/all",
+        getAllBanners: build.query<any, {status: string}>({
+            query: ({status}) => ({
+                url: `/banner/all/${status}`,
                 method: "GET",
             }),
             providesTags: ["banner"],

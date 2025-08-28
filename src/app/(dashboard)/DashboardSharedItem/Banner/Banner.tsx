@@ -10,7 +10,7 @@ import { useDeleteBannerMutation, useGetAllBannersQuery } from '@/redux/endpoint
 
 const Banner = () => {
     const [addBanner,setAddBanner] = useState({action:"",id:'',isOPen: false,name:''})
-    const { data: banners , isLoading: bannerLoading } = useGetAllBannersQuery()
+    const { data: banners , isLoading: bannerLoading } = useGetAllBannersQuery({status:'all'})
     const [deleteBanner , { isLoading: deleteLoading } ] = useDeleteBannerMutation()
     if(bannerLoading || deleteLoading) return <Loader />
 
