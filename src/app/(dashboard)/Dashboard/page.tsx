@@ -43,7 +43,7 @@ const page = () => {
       <div className="profile-card">
           <div className="profile-image">
             <img
-              src={profile?.data?.image ? profile?.data?.image : iUrl}
+              src={profile?.data?.image ? profile?.data?.image?.url : iUrl}
               alt="Profile picture"
             />
           </div>

@@ -38,9 +38,9 @@ const page = () => {
                     ...logItem,
                     code:data?.code
                 }
-                console.log(obj)
+                
                 const res = await verifyUser(obj)
-                console.log(res)
+                
                 if(res?.success){
                     localStorage.setItem('accessToken',res?.meta?.accessToken)
                     setCookie(res?.meta?.accessToken)

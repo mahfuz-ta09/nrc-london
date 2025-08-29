@@ -41,6 +41,7 @@ instance.interceptors.response.use(
         return responseObject
     }, 
     
+    
     async function (error) {
         if(error?.response?.status === 500){
             const res:any = await getNewAccessToken()

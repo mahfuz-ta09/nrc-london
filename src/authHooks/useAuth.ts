@@ -79,7 +79,8 @@ export default () => {
                 body: JSON.stringify(data),
             });
 
-            const verificationResponse = await response.json();
+            const verificationResponse = await response.json()
+            
             return verificationResponse;
         } catch (err: any) {
             setError(err.message);

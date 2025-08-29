@@ -104,27 +104,27 @@ const page = () => {
 
                         <div className="form-group">
                             <label className="form-label required">SSC Certificate (jpg/jpeg)</label>
-                            <input className="form-input" type="file" accept=".jpg,.jpeg" {...register("ssc_result")}/>
+                            <input className="form-input" type="file" accept=".jpg,.jpeg,.pdf,.png" {...register("ssc_result")}/>
                         </div>
 
                         <div className="form-group">
                             <label className="form-label">HSC Certificate (jpg/jpeg)</label>
-                            <input className="form-input" type="file" accept=".jpg,.jpeg" {...register("hsc_result")} />
+                            <input className="form-input" type="file" accept=".jpg,.jpeg,.pdf,.png" {...register("hsc_result")} />
                         </div>
 
                         <div className="form-group">
                             <label className="form-label">Bachelor Certificate (jpg/jpeg)</label>
-                            <input className="form-input" type="file" accept=".jpg,.jpeg" {...register("bachelor_result")} />
+                            <input className="form-input" type="file" accept=".jpg,.jpeg,.pdf,.png" {...register("bachelor_result")} />
                         </div>
 
                         <div className="form-group">
                             <label className="form-label">Master Certificate (jpg/jpeg)</label>
-                            <input className="form-input" type="file" accept=".jpg,.jpeg" {...register("masters_result")} />
+                            <input className="form-input" type="file" accept=".jpg,.jpeg,.pdf,.png" {...register("masters_result")} />
                         </div>
 
                         <div className="form-group">
                             <label className="form-label">Other Degree Certificate (jpg/jpeg)</label>
-                            <input className="form-input" type="file" accept=".jpg,.jpeg" {...register("other_result")} />
+                            <input className="form-input" type="file" accept=".jpg,.jpeg,.pdf,.png" {...register("other_result")} />
                         </div>
                     </div>
 
@@ -154,7 +154,7 @@ const page = () => {
 
                         <div className="form-group">
                             <label className="form-label required">English Test Certificate (jpg/jpeg)</label>
-                            <input className="form-input" type="file" accept=".jpg,.jpeg" {...register("en_result")}/>
+                            <input className="form-input" type="file" accept=".jpg,.jpeg,.pdf,.png" {...register("en_result")}/>
                         </div>
                     </div>
 
