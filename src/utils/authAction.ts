@@ -1,12 +1,11 @@
-import { deleteCookies } from "./deleteCookies"
-import { cookieRemove } from "./removeCookie"
-
+import { logOutUser } from "./removeCookie"
 
 
 export const logOut = async() =>{
-    localStorage.removeItem('accessToken')
-    deleteCookies()
-    await cookieRemove()
+    const user = JSON.parse(localStorage.getItem('userData') || '{}')
+    console.log(user)
+    await logOutUser({email:user?.email,role: user?.role})
+    // localStorage.removeItem('userData')
     window.dispatchEvent(new Event("tokenChanged"))
     window.location.href = "/"
 }

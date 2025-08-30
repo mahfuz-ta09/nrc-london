@@ -15,6 +15,7 @@ if (!url) {
 }
 
 
+
 export default () => {
     const [loading, setLoading] = useState(false);
     const [error, setError] = useState<string | null>(null);
@@ -31,12 +32,13 @@ export default () => {
             });
 
             const userInfo = await response.json();
+            // console.log(userInfo)
 
-            if (userInfo?.meta?.accessToken) {
-                setCookie(userInfo.meta.accessToken)
+            if(userInfo?.success){
+                localStorage.setItem('userData',JSON.stringify(userInfo?.data))
             }
 
-            return userInfo;
+            return userInfo
         } catch (err: any) {
             setError(err.message);
             return null;
@@ -113,5 +115,5 @@ export default () => {
         }
     }, []);
 
-    return { logInUser, signUpUser, verifyUser, resetPassword, loading, error };
+    return { logInUser, signUpUser, verifyUser, resetPassword, loading, error }
 };

@@ -29,7 +29,7 @@ const SignUpPage = () => {
         var formData = convertFormData(data)
         try{
             const res = await signUpUser(formData)
-            console.log(res) 
+            
             if (res?.success) {
                 toast.success(res?.message)
                 sessionStorage.setItem('logItem', JSON.stringify({

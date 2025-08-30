@@ -42,8 +42,7 @@ const page = () => {
                 const res = await verifyUser(obj)
                 
                 if(res?.success){
-                    localStorage.setItem('accessToken',res?.meta?.accessToken)
-                    setCookie(res?.meta?.accessToken)
+                    localStorage.setItem('userData', JSON.stringify(res.data.userObj))
                     sessionStorage.removeItem('logItem')
                     toast.success(res?.message)
                     router.push('/')

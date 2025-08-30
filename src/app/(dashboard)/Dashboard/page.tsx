@@ -12,21 +12,21 @@ import { toast } from "react-toastify"
 const page = () => {
     const data = useUserInfo()
     const [profileData, setProfileData] = useState<boolean>(false)
-    const { data: profile, refetch , isLoading: profileLoading } = useGetProfileByIdQuery(data?.Uid)
+    const { data: profile, refetch , isLoading: profileLoading } = useGetProfileByIdQuery(data?.Uemail)
     const [deleteReview , { isLoading: deleteLoading }] = useDeleteReviewMutation()
 
-    const iUrl = "https://i.ibb.co.com/d06pb1G0/Blue-and-White-Modern-Computer-Illustrative-Tech-Website-Logo.png"
+    const iUrl = "../../../assets/nrc.logo.png"
     
     
     if(profileLoading || deleteLoading) return <Loader />
 
 
-    const handleDelete = async(Uid:string) => {
+    const handleDelete = async(Uemail:string) => {
         try {
             const isConfirmed = window.confirm(`Are you sure you want to delete?`)
             if (!isConfirmed) return; 
             
-            const res = await deleteReview(Uid)
+            const res = await deleteReview(Uemail)
             if(res?.data?.data?.modifiedCount === 1) {
                 toast.success("Comment deleted successfully")
                 refetch()
@@ -53,9 +53,9 @@ const page = () => {
         <div className="profile-info">
           <h2 className="profile-name">{profile?.data?.name}</h2>
           <p className="profile-email">{data?.Uemail}</p>
-          <p><strong>ID:</strong> {data?.Uid}</p>
+          {/* <p><strong>ID:</strong> {data?.Uid}</p> */}
           <p><strong>Role:</strong> {data?.Urole}</p>
-          <p><strong>Status:</strong> {data?.Ustatus}</p>
+          {/* <p><strong>Status:</strong> {data?.Ustatus}</p> */}
           <hr />
           <p><strong>Account Created:</strong> {profile?.data?.createdAt}</p>
           <p><strong>DOB:</strong> {profile?.data?.dob}-</p>
@@ -72,7 +72,7 @@ const page = () => {
               ) : (
                 <button
                   className="profile-delete-btn"
-                  onClick={() => handleDelete(data?.Uid)}
+                  onClick={() => handleDelete(data?.Uemail)}
                 >
                   Delete
                 </button>

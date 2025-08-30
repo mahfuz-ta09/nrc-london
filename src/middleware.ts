@@ -20,20 +20,18 @@ export async function middleware(request: NextRequest) {
     const { pathname } = request.nextUrl
 
     const cookieStore = await cookies()
-    const accessToken = cookieStore.get("accessToken")?.value
+    const acc = cookieStore.get("nrc_acc")?.value
 
-    const decoded: CustomJwtPayload | null = accessToken ? jwtDecode<CustomJwtPayload>(accessToken) : null;
+    const decoded: CustomJwtPayload | null = acc ? jwtDecode<CustomJwtPayload>(acc) : null;
     let role = decoded?.role ? decoded.role.toUpperCase() : null
 
-    // console.log(role, decoded, pathname)
 
-
-    if (accessToken && authRoutes.includes(pathname)) {
+    if (acc && authRoutes.includes(pathname)) {
         return NextResponse.redirect(new URL('/Dashboard', request.url))
     }
 
     
-    if (!accessToken) {
+    if (!acc) {
         if (authRoutes.includes(pathname)) {
             return NextResponse.next();
         } else {

@@ -15,10 +15,15 @@ if (!url) {
 
 
 
-export const cookieRemove = async() =>{
+export const logOutUser = async(data:any) =>{
+    console.log(data)
     const res = await fetch(`${url}/auth/logout`,{
         method: 'POST',
-        credentials: 'include'
+        credentials: "include",
+        headers: {
+            'content-type': 'application/json',
+        },
+        body: JSON.stringify(data),
     })
     const response = await res.json()
     return response

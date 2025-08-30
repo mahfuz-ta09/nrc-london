@@ -1,44 +1,39 @@
 "use client"
 import { useState, useEffect } from "react"
-import { jwtDecode } from "jwt-decode"
-import { accessToken } from "./accessToken"
 
 
 export const useUserInfo = () => {
-    const [user, setUser] = useState<{ Uemail: string; Urole: string; Uid: string ; Ustatus: string}>({
+    const [user, setUser] = useState<{ Uemail: string; Urole: string;}>({
         Uemail: "",
-        Urole: "",
-        Uid: "",
-        Ustatus: "",
+        Urole: ""
     })
 
     const updateUser = () => {
-        const token = accessToken()
+        const token = JSON.parse(localStorage.getItem('userData') || '{}')
+        console.log(token)
+        
         if (token) {
             try {
-                const decoded: any = jwtDecode(token)
                 setUser({
-                    Uemail: decoded?.email || "",
-                    Urole: decoded?.role || "",
-                    Uid: decoded?.id || "",
-                    Ustatus: decoded?.status || "",
+                    Uemail: token?.email || "",
+                    Urole: token?.role || "",
                 })
             } catch (error) {
                 console.error("Invalid token:", error);
-                setUser({ Uemail: "", Urole: "", Uid: "" , Ustatus: ""})
+                setUser({ Uemail: "", Urole: ""})
             }
         } else {
-            setUser({ Uemail: "", Urole: "", Uid: "" , Ustatus: ""})
+            setUser({ Uemail: "", Urole: ""})
         }
     }
 
-    useEffect(() => {
-        updateUser()
-        window.addEventListener("tokenChanged", updateUser)
-        return () => {
-            window.removeEventListener("tokenChanged", updateUser)
-        }
-    }, [])
+    // useEffect(() => {
+    //     updateUser()
+    //     window.addEventListener("tokenChanged", updateUser)
+    //     return () => {
+    //         window.removeEventListener("tokenChanged", updateUser)
+    //     }
+    // }, [])
 
     return user
 }

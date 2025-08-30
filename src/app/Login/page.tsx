@@ -28,7 +28,6 @@ const LoginPage = () => {
         try{
             const res = await logInUser(formData)
             if(res?.success){
-                localStorage.setItem('accessToken',res?.meta?.accessToken)
                 toast.success(res?.message)
                 router.push('/')
             }else{

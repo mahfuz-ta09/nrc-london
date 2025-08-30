@@ -14,7 +14,7 @@ const Layout = ({ children } : {children : React.ReactNode}) => {
     const navRef = useRef<HTMLDivElement>(null)
     const [isOpen,setIsOpen] = useState(false)
     const data = useUserInfo()
-    const { data: profile , isLoading } = useGetProfileByIdQuery(data?.Uid)
+    const { data: profile , isLoading } = useGetProfileByIdQuery(data?.Uemail)
     
     
     useEffect(() => {
