@@ -21,7 +21,7 @@ export async function middleware(request: NextRequest) {
 
     const cookieStore = await cookies()
     const acc = cookieStore.get("nrc_acc")?.value
-
+    
     const decoded: CustomJwtPayload | null = acc ? jwtDecode<CustomJwtPayload>(acc) : null;
     let role = decoded?.role ? decoded.role.toUpperCase() : null
 
