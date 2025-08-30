@@ -27,13 +27,13 @@ export const useUserInfo = () => {
         }
     }
 
-    // useEffect(() => {
-    //     updateUser()
-    //     window.addEventListener("tokenChanged", updateUser)
-    //     return () => {
-    //         window.removeEventListener("tokenChanged", updateUser)
-    //     }
-    // }, [])
+    useEffect(() => {
+        updateUser()
+        window.addEventListener("tokenChanged", updateUser)
+        return () => {
+            window.removeEventListener("tokenChanged", updateUser)
+        }
+    }, [])
 
     return user
 }

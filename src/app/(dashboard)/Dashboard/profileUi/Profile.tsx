@@ -18,7 +18,7 @@ interface IFormInput {
 
 
 const Profile = ({profileData , setProfileData}:{profileData:boolean,setProfileData:any}) => {
-    const { Uid } = useUserInfo()
+    const { Uemail } = useUserInfo()
     const { register , handleSubmit , reset } = useForm<IFormInput>()
     const [updateUserProfile , { isLoading: uploadLoading }] = useUpdateUserProfileMutation()
     
@@ -26,7 +26,7 @@ const Profile = ({profileData , setProfileData}:{profileData:boolean,setProfileD
     const onSubmit: SubmitHandler<IFormInput> = async(data) => {
         try {
             const formData = convertFormData(data)
-            const res = await updateUserProfile({ data: formData , id: Uid })
+            const res = await updateUserProfile({ data: formData , email: Uemail })
             if(res?.data?.data?.modifiedCount === 1) {
                 reset()
                 toast.success("Profile updated successfully")

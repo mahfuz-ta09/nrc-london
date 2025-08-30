@@ -12,9 +12,9 @@ const profileApi = baseApi.injectEndpoints({
       }),
 
       
-      updateUserProfile: build.mutation<any, { data: FormData, id:string }>({
-          query: ({ data , id }) => ({
-              url: `/profile/update/${id}`,
+      updateUserProfile: build.mutation<any, { data: FormData, email:string }>({
+          query: ({ data , email }) => ({
+              url: `/profile/update/${email}`,
               method: "PATCH", 
               data,
           }),
