@@ -1,5 +1,6 @@
 import { responseError, responseSuccess } from '@/types/common'
 import { accessToken } from '@/utils/accessToken'
+import { deleteCookies } from '@/utils/deleteCookies'
 import {  getNewAccessToken } from '@/utils/removeCookie'
 import { setCookie } from '@/utils/setCookies'
 import axios from 'axios'
@@ -59,6 +60,7 @@ instance.interceptors.response.use(
           console.log(err)
           if(err?.statusCode === 400 && err?.message){
             localStorage.removeItem('nrc_acc')
+            deleteCookies()
             window.location.href='/'
             toast.error(err?.message)
           }
