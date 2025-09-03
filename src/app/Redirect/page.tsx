@@ -5,8 +5,8 @@ import { useEffect } from 'react'
 import { useForm, SubmitHandler } from "react-hook-form"
 import useAuth from '@/authHooks/useAuth'
 import { toast } from 'react-toastify'
-import { setCookie } from '@/utils/setCookies'
 import { sessionValue } from '@/utils/accessToken'
+import { setCookie } from '@/utils/manageCookie'
 
 type Inputs = {
   code: string
