@@ -59,7 +59,7 @@ instance.interceptors.response.use(
           if(err?.statusCode === 400 && err?.message){
             localStorage.removeItem('nrc_acc')
             deleteCookies()
-            // window.location.href='/'
+            window.location.href='/'
             toast.error(err?.message)
           }
         }

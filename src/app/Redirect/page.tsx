@@ -46,7 +46,7 @@ const page = () => {
                     setCookie(res?.data?.userObj)
                     sessionStorage.removeItem('logItem')
                     toast.success(res?.message)
-                    router.push('/')
+                    window.location.href = "/"
                 }else{
                     toast.error(res?.message)
                 }
