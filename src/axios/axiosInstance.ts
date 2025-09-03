@@ -1,8 +1,7 @@
 import { responseError, responseSuccess } from '@/types/common'
 import { accessToken } from '@/utils/accessToken'
-import { deleteCookies } from '@/utils/deleteCookies'
+import { deleteCookies, setCookie } from '@/utils/manageCookie'
 import {  getNewAccessToken } from '@/utils/removeCookie'
-import { setCookie } from '@/utils/setCookies'
 import axios from 'axios'
 import { toast } from 'react-toastify'
 

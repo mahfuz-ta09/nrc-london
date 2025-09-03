@@ -1,4 +1,5 @@
-import { setCookie } from "@/utils/setCookies";
+
+import { setCookie } from "@/utils/manageCookie";
 import { useState, useCallback } from "react"
 
 
