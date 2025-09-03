@@ -17,8 +17,7 @@ instance.interceptors.request.use(function (config) {
     const token = accessToken()
 
     if(token){
-      // config.headers.Authorization = token
-      config.headers.Authorization = `Bearer ${token}`
+      config.headers.Authorization = token
     }
     
     if (!(config.data instanceof FormData)) {
@@ -60,7 +59,7 @@ instance.interceptors.response.use(
           if(err?.statusCode === 400 && err?.message){
             localStorage.removeItem('nrc_acc')
             deleteCookies()
-            window.location.href='/'
+            // window.location.href='/'
             toast.error(err?.message)
           }
         }

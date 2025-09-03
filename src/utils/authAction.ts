@@ -7,5 +7,5 @@ export const logOut = async() =>{
     deleteCookies()
     localStorage.removeItem('nrc_acc')
     window.dispatchEvent(new Event("tokenChanged"))
-    window.location.href = "/"
+    // window.location.href = "/"
 }
