@@ -1,5 +1,7 @@
 import { responseError, responseSuccess } from '@/types/common'
+import { accessToken } from '@/utils/accessToken'
 import {  getNewAccessToken } from '@/utils/removeCookie'
+import { setCookie } from '@/utils/setCookies'
 import axios from 'axios'
 import { toast } from 'react-toastify'
 
@@ -10,6 +12,23 @@ instance.defaults.headers["Accept"] = "application/json"
 instance.defaults.timeout = 60000
 instance.defaults.withCredentials = true
 
+
+instance.interceptors.request.use(function (config) {
+    const token = accessToken()
+
+    if(token){
+      // config.headers.Authorization = token
+      config.headers.Authorization = `Bearer ${token}`
+    }
+    
+    if (!(config.data instanceof FormData)) {
+      config.headers["Content-Type"] = "application/json";
+    }
+
+    return config
+  }, function (error) {
+    return Promise.reject(error)
+})
 
 
 instance.interceptors.response.use(
@@ -30,16 +49,16 @@ instance.interceptors.response.use(
         
         try{
           const accTok = await getNewAccessToken()
-          console.log(accTok)
 
-          if(accTok?.data?.email) {
-            localStorage.setItem('userData',JSON.stringify(accTok?.data))
+          if(accTok?.data) {
+            setCookie(accTok?.data)
+            localStorage.setItem('nrc_acc',accTok?.data)
             return instance(originalRequest)
           }
         }catch(err:any){
           console.log(err)
           if(err?.statusCode === 400 && err?.message){
-            localStorage.removeItem('userData')
+            localStorage.removeItem('nrc_acc')
             window.location.href='/'
             toast.error(err?.message)
           }

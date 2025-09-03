@@ -1,3 +1,4 @@
+
 'use server'
 import { jwtDecode, JwtPayload } from 'jwt-decode'
 import { cookies } from 'next/headers'
@@ -20,18 +21,21 @@ export async function middleware(request: NextRequest) {
     const { pathname } = request.nextUrl
 
     const cookieStore = await cookies()
-    const acc = cookieStore.get("nrc_acc")?.value
-    console.log(acc)
-    const decoded: CustomJwtPayload | null = acc ? jwtDecode<CustomJwtPayload>(acc) : null;
+    const accessToken = cookieStore.get("nrc_acc")?.value
+
+    console.log(accessToken)
+    const decoded: CustomJwtPayload | null = accessToken ? jwtDecode<CustomJwtPayload>(accessToken) : null;
     let role = decoded?.role ? decoded.role.toUpperCase() : null
 
+    console.log(role, decoded, pathname)
 
-    if (acc && authRoutes.includes(pathname)) {
+
+    if (accessToken && authRoutes.includes(pathname)) {
         return NextResponse.redirect(new URL('/Dashboard', request.url))
     }
 
     
-    if (!acc) {
+    if (!accessToken) {
         if (authRoutes.includes(pathname)) {
             return NextResponse.next();
         } else {

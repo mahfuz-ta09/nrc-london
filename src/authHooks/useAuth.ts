@@ -31,11 +31,11 @@ export default () => {
                 credentials: "include",
             });
 
-            const userInfo = await response.json();
-            // console.log(userInfo)
+            const userInfo = await response.json()
 
             if(userInfo?.success){
-                localStorage.setItem('userData',JSON.stringify(userInfo?.data))
+                localStorage.setItem('nrc_acc',JSON.stringify(userInfo?.data))
+                setCookie(userInfo?.data)
             }
 
             return userInfo

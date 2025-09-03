@@ -43,6 +43,7 @@ const page = () => {
                 
                 if(res?.success){
                     localStorage.setItem('userData', JSON.stringify(res.data.userObj))
+                    setCookie(res?.data?.userObj)
                     sessionStorage.removeItem('logItem')
                     toast.success(res?.message)
                     router.push('/')

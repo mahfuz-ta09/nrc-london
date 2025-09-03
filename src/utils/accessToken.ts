@@ -2,7 +2,7 @@
 
 export const accessToken = () => {
     if (typeof window !== "undefined") {
-        return localStorage.getItem("userData") || "";
+        return localStorage.getItem("nrc_acc") || "";
     }
     return ""
 }
