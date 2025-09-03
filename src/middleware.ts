@@ -23,7 +23,7 @@ export async function middleware(request: NextRequest) {
     const cookieStore = await cookies()
     const accessToken = cookieStore.get("nrc_acc")?.value
 
-    console.log(accessToken)
+    // console.log(accessToken)
     const decoded: CustomJwtPayload | null = accessToken ? jwtDecode<CustomJwtPayload>(accessToken) : null;
     let role = decoded?.role ? decoded.role.toUpperCase() : null
 
