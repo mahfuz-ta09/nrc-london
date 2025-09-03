@@ -12,7 +12,7 @@ const DashNavLink = () => {
     // const pathname = usePathname() 
     // const dashTitle:string = "/dashboard/"
     const data = useUserInfo()
-    console.log(data)
+    
     return (
         <div className='dash-nav-body'>
             {

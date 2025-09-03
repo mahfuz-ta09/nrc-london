@@ -6,7 +6,7 @@ import { useForm, SubmitHandler } from "react-hook-form"
 import useAuth from '@/authHooks/useAuth'
 import { toast } from 'react-toastify'
 import { sessionValue } from '@/utils/accessToken'
-import { setCookie } from '@/utils/manageCookie'
+import { setCookie } from '@/utils/setCookie'
 
 type Inputs = {
   code: string
@@ -43,10 +43,10 @@ const page = () => {
                 
                 if(res?.success){
                     localStorage.setItem('userData', JSON.stringify(res.data.userObj))
-                    setCookie(res?.data?.userObj)
+                    // setCookie(res?.data?.userObj)
                     sessionStorage.removeItem('logItem')
                     toast.success(res?.message)
-                    window.location.href = "/"
+                    // window.location.href = "/"
                 }else{
                     toast.error(res?.message)
                 }

@@ -46,6 +46,11 @@ const sideNavItem = (role : Role) => {
                     icon    : faUserTie,
                 },
                 {
+                    title   : "Submitted Sutdents File",
+                    path    : `${role}/AllAgents`,
+                    icon    : faUserTie,
+                },
+                {
                     title   : "admin action",
                     path    : `---`,
                     icon    :  faArrowCircleDown,

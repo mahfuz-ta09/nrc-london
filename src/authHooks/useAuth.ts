@@ -1,5 +1,4 @@
-
-import { setCookie } from "@/utils/manageCookie";
+import { setCookie } from "@/utils/setCookie";
 import { useState, useCallback } from "react"
 
 
@@ -36,7 +35,7 @@ export default () => {
 
             if(userInfo?.success){
                 localStorage.setItem('nrc_acc',JSON.stringify(userInfo?.data))
-                setCookie(userInfo?.data)
+                // setCookie(userInfo?.data)
             }
 
             return userInfo
