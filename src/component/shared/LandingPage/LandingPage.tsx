@@ -20,7 +20,7 @@ const LandingPage = () => {
         if (total <= 1) return;
         const interval = setInterval(() => {
             setCurrent((prev) => (prev + 1) % total);
-        }, 3000)
+        }, 6000)
 
         return () => clearInterval(interval);
     }, [total])
