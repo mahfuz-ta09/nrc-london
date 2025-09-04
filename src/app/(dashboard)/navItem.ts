@@ -67,7 +67,7 @@ const sideNavItem = (role : Role) => {
                 },
                 {
                     title       : "Student file processing",
-                    path        : `${role}/process-req`,
+                    path        : `${role}/st-file`,
                     icon        : faTasks,
                 },
                 {
@@ -106,7 +106,7 @@ const sideNavItem = (role : Role) => {
                 },
                 {
                     title       : "Student file processing",
-                    path        : `${role}/process-req`,
+                    path        : `${role}/st-file`,
                     icon        : faTasks,
                 },
                 {

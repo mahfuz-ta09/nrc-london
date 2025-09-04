@@ -1,0 +1,28 @@
+.dashItem-container{
+
+}
+
+.dashItem-header{
+    display: flex;
+    align-items: start;
+    justify-content: center;
+    flex-direction: column;
+    width: 95%;
+    margin: 0 auto;
+}
+
+.header-button-container{
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: end;
+    flex-wrap: wrap;
+    gap: 10px;
+    margin: 10px 0;
+}
+
+.dashItem-header .header-title{
+    font-size: 15px;
+    color: #fff;
+    font-weight: 300;
+}
