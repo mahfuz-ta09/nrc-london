@@ -67,7 +67,7 @@ const page = () => {
             <h6>User Info</h6>
             <h2>{profile?.data?.name}</h2>
             <p className="profile-email">{data?.Uemail}</p>
-            <h2>ID: {data?.Uid}</h2>
+            <p>ID: {data?.Uid}</p>
             <p><strong>Status:</strong> {data?.Ustatus}</p>
             <p><strong>Account Created:</strong> {profile?.data?.createdAt}</p>
             <p><strong>DOB:</strong> {profile?.data?.dob}</p>
