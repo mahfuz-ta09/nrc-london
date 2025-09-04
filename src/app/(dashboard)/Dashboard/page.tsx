@@ -37,64 +37,49 @@ const page = () => {
             console.log(error)      
         }
     }
-    
+    console.log(profile?.data)
     return (
-     <div className="profile-container">
-      <div className="profile-card">
-          <div className="profile-image">
-            <img
-              src={profile?.data?.image ? profile?.data?.image?.url : iUrl}
-              alt="Profile picture"
-            />
-          </div>
-
-
-
-        <div className="profile-info">
-          <h2 className="profile-name">{profile?.data?.name}</h2>
-          <p className="profile-email">{data?.Uemail}</p>
-          {/* <p><strong>ID:</strong> {data?.Uid}</p> */}
-          <p><strong>Role:</strong> {data?.Urole}</p>
-          {/* <p><strong>Status:</strong> {data?.Ustatus}</p> */}
-          <hr />
-          <p><strong>Account Created:</strong> {profile?.data?.createdAt}</p>
-          <p><strong>DOB:</strong> {profile?.data?.dob}-</p>
-          <p><strong>Phone:</strong> {profile?.data?.phone}</p>
-          <p><strong>Country:</strong> {profile?.data?.country}</p>
-
-          
-          {profile?.data?.review && (
-            <div className="profile-review">
-              <p><strong>Your previous comment:</strong></p>
-              <p className="review-text">{profile?.data?.review}</p>
-              {deleteLoading ? (
-                <p>Loading...</p>
-              ) : (
-                <button
-                  className="profile-delete-btn"
-                  onClick={() => handleDelete(data?.Uemail)}
-                >
-                  Delete
-                </button>
-              )}
+      <div className="profile-container">
+        <div className="profile-card">
+            <div className="profile-image">
+                <img 
+                    src="https://cdn.dribbble.com/userupload/33876250/file/original-73d675e3b35687a79566f8a00dcd1e6c.jpg?resize=752x564&vertical=center" 
+                    alt="Profile picture"
+                />
             </div>
-          )}
 
-          {/* Action buttons */}
-          <div className="profile-actions">
-            <button
-              className="btn"
-              onClick={() => setProfileData(!profileData)}
-            >
-              {profileData ? "Close" : "Profile"}
-            </button>
-          </div>
+            <div className="profile-oval">
+                <div className="profile-info">
+                    <h2 className="profile-name">John Doe</h2>
+                    <p className="profile-email">john.doe@example.com</p>
+                    <p><strong>ID:</strong> USER001</p>
+                    <p><strong>Role:</strong> Administrator</p>
+                    <p><strong>Status:</strong> Active</p>
+                    <hr />
+                    <p><strong>Account Created:</strong> January 15, 2024</p>
+                    <p><strong>DOB:</strong> March 22, 1990</p>
+                    <p><strong>Phone:</strong> +1 (555) 123-4567</p>
+                    <p><strong>Country:</strong> United States</p>
+                </div>
+
+                <div className="profile-review">
+                    <p><strong>Your previous comment:</strong></p>
+                    <p className="review-text">This platform has been incredibly helpful for managing our team's workflow. The interface is intuitive and the features are robust.</p>
+                    <button className="profile-delete-btn">
+                        Delete
+                    </button>
+                </div>
+
+                <div className="profile-actions">
+                    <button className="btn">
+                        Profile
+                    </button>
+                </div>
+            </div>
         </div>
-      </div>
-        <Profile setProfileData={setProfileData} profileData={profileData}/>
     </div>
 
     )
-  }
+}
   
   export default page

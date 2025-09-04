@@ -6,7 +6,6 @@ import { useForm, SubmitHandler } from "react-hook-form"
 import useAuth from '@/authHooks/useAuth'
 import { toast } from 'react-toastify'
 import { sessionValue } from '@/utils/accessToken'
-import { setCookie } from '@/utils/setCookie'
 
 type Inputs = {
   code: string

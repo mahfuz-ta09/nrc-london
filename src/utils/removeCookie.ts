@@ -16,14 +16,12 @@ if (!url) {
 
 
 export const logOutUser = async() =>{
-    // console.log(data)
     const res = await fetch(`${url}/auth/logout`,{
         method: 'POST',
         credentials: "include",
         headers: {
             'content-type': 'application/json',
         },
-        // body: JSON.stringify(data),
     })
     const response = await res.json()
     return response

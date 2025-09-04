@@ -29,7 +29,7 @@ const LoginPage = () => {
             const res = await logInUser(formData)
             if(res?.success){
                 toast.success(res?.message)
-                router.push('/')
+                window.location.href = '/'
             }else{
                 toast.error(res?.message)
             }
