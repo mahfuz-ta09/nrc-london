@@ -201,8 +201,8 @@ const UniversityTable = () => {
                     </table>
             </div>}
             <Pagination 
-                totalPages={data?.meta?.totalCount}
-                currentPage={Number(para?.page)}
+                totalPages={Math.min(data?.meta?.totalPages, 1000)}
+                currentPage={Number(para?.page) || 1}
                 onPageChange={handlePageChange}
                 siblingCount={1}/>
 
