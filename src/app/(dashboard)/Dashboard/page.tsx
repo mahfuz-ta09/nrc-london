@@ -39,45 +39,84 @@ const page = () => {
     }
     console.log(profile?.data)
     return (
-      <div className="profile-container">
-        <div className="profile-card">
+      <div className="courses-container">
+        <div className="course">
+          {/* Left preview: profile image & name */}
+          <div className="course-preview">
             <div className="profile-image">
-                <img 
-                    src="https://cdn.dribbble.com/userupload/33876250/file/original-73d675e3b35687a79566f8a00dcd1e6c.jpg?resize=752x564&vertical=center" 
-                    alt="Profile picture"
-                />
+              <img
+                src={
+                  profile?.data?.image
+                    ? profile?.data?.image?.url
+                    : "https://cdn.dribbble.com/userupload/33876250/file/original-73d675e3b35687a79566f8a00dcd1e6c.jpg?resize=752x564&vertical=center"
+                }
+                alt="Profile picture"
+              />
+            </div>
+          </div>
+
+          {/* Right info section */}
+          <div className="course-info">
+            <div className="progress-container">
+              <div className="progress"></div>
+              <span className="progress-text">
+                Role: {data?.Urole || "N/A"}
+              </span>
             </div>
 
-            <div className="profile-oval">
-                <div className="profile-info">
-                    <h2 className="profile-name">John Doe</h2>
-                    <p className="profile-email">john.doe@example.com</p>
-                    <p><strong>ID:</strong> USER001</p>
-                    <p><strong>Role:</strong> Administrator</p>
-                    <p><strong>Status:</strong> Active</p>
-                    <hr />
-                    <p><strong>Account Created:</strong> January 15, 2024</p>
-                    <p><strong>DOB:</strong> March 22, 1990</p>
-                    <p><strong>Phone:</strong> +1 (555) 123-4567</p>
-                    <p><strong>Country:</strong> United States</p>
-                </div>
+            <h6>User Info</h6>
+            <h2>{profile?.data?.name}</h2>
+            <p className="profile-email">{data?.Uemail}</p>
+            <h2>ID: {data?.Uid}</h2>
+            <p><strong>Status:</strong> {data?.Ustatus}</p>
+            <p><strong>Account Created:</strong> {profile?.data?.createdAt}</p>
+            <p><strong>DOB:</strong> {profile?.data?.dob}</p>
+            <p><strong>Phone:</strong> {profile?.data?.phone}</p>
+            <p><strong>Country:</strong> {profile?.data?.country}</p>
 
-                <div className="profile-review">
-                    <p><strong>Your previous comment:</strong></p>
-                    <p className="review-text">This platform has been incredibly helpful for managing our team's workflow. The interface is intuitive and the features are robust.</p>
-                    <button className="profile-delete-btn">
-                        Delete
-                    </button>
-                </div>
 
-                <div className="profile-actions">
-                    <button className="btn">
-                        Profile
-                    </button>
-                </div>
-            </div>
+            <button
+              className="btn"
+              onClick={() => setProfileData(!profileData)}
+            >
+              {profileData ? "Close Profile" : "Edit Profile"}
+            </button>
+          </div>
         </div>
-    </div>
+
+        {/* Social Panel (optional, reused from given code) */}
+        {/* <div className="social-panel-container">
+          <div className="social-panel">
+            <p>
+              Created with <i className="fa fa-heart"></i> by
+              <a target="_blank" href="https://florin-pop.com">Florin Pop</a>
+            </p>
+            <button className="close-btn">
+              <i className="fas fa-times"></i>
+            </button>
+            <h4>Get in touch on</h4>
+          </div>
+        </div> */}
+
+            {profile?.data?.review && (
+              <div className="profile-review">
+                <p><strong>Your previous comment:</strong></p>
+                <p className="review-text">{profile?.data?.review}</p>
+                {deleteLoading ? (
+                  <p>Loading...</p>
+                ) : (
+                  <button
+                    className="btn profile-delete-btn"
+                    onClick={() => handleDelete(data?.Uemail)}
+                  >
+                    Delete
+                  </button>
+                )}
+              </div>
+            )}
+        {/* Profile modal component */}
+        <Profile setProfileData={setProfileData} profileData={profileData} />
+      </div>
 
     )
 }

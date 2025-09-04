@@ -46,7 +46,7 @@ const sideNavItem = (role : Role) => {
                     icon    : faUserTie,
                 },
                 {
-                    title   : "Submitted Sutdents File",
+                    title   : "Submitted Sutdents Files",
                     path    : `${role}/AllAgents`,
                     icon    : faUserTie,
                 },
@@ -56,7 +56,7 @@ const sideNavItem = (role : Role) => {
                     icon    :  faArrowCircleDown,
                 },
                 {
-                    title    : "Country&Uni",
+                    title    : "countries & universities",
                     path     : `${role}/country-uni`,
                     icon     : faGlobe,
                 },
@@ -66,7 +66,7 @@ const sideNavItem = (role : Role) => {
                     icon        : faStar,
                 },
                 {
-                    title       : "Process Request",
+                    title       : "Student file processing",
                     path        : `${role}/process-req`,
                     icon        : faTasks,
                 },
@@ -105,12 +105,12 @@ const sideNavItem = (role : Role) => {
                     icon        : faStar,
                 },
                 {
-                    title       : "Process Request",
+                    title       : "Student file processing",
                     path        : `${role}/process-req`,
                     icon        : faTasks,
                 },
                 {
-                    title       : "Country&Uni",
+                    title       : "countries & universities",
                     path        : `${role}/country-uni`,
                     icon        : faGlobe,
                 },
