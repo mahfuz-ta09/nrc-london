@@ -35,10 +35,11 @@
 
 .student-info-slider {
   display: flex;
-  gap: 1rem;
+  gap: 30px;
   overflow-x: scroll;
   scrollbar-width: none;
   -ms-overflow-style: none;
+  padding: 20px;
   cursor: grab;
 }
 
@@ -51,9 +52,11 @@
 }
 
 .student-info-card {
-    min-width: 350px;
+    min-width: 300px;
     height: 180px;
-    background: #fff;
+    border: 1px solid rgb(245, 222, 179,0.4);
+    box-shadow: 2px 2px 20px 3px rgba(0,0,0,0.2);
+    background-image: linear-gradient(to top, rgb(48, 207, 208,0.5) 0%, rgb(51, 8, 103,0.5) 100%);
     border-radius: 5px;
     display: flex;
     justify-content: space-between;
@@ -64,7 +67,6 @@
 
 
 .student-card-info-header{
-    background: #efefef;
     height: 70px;
     width: 100%;
     padding: 10px;
@@ -77,22 +79,24 @@
 
 .info-header-icon{
     font-size: 45px;
-    color: rgb(0, 128, 0,0.7);
+    color: #fff;
+    /* color: rgb(0, 128, 0,0.7); */
 }
 
 .student-card-info-header-item h6{
     font-size: 12px;
     font-weight: 300;
     text-decoration: underline;
-    color: rgb(0, 0, 255,0.6);
+    color: #fff;
     letter-spacing: 1px;
+    cursor: pointer;
 }
 
 .student-card-info-header-item h5{
     font-size: 22px;
     font-weight: 400;
     letter-spacing: 2px;
-    color: #000;
+    color: #fff;
 }
 
 .student-card-info-body{
@@ -110,17 +114,17 @@
     font-size: 26px;
     font-weight: 400;
     letter-spacing: 2px;
-    color: #000;    
+    color: #fff;
 }
 
 .student-card-info-body h6{
     font-size: 12px;
     font-weight: 300;
     letter-spacing: 1px;
-    color: #000;
+    color: #fff;
 }
 
-.action-btn{
+.details-action-btn{
     background: #efefef;
     padding: 5px 16px;
     outline: none;
