@@ -1,9 +1,10 @@
 'use client'
 import { useState } from 'react'
-import { useForm, SubmitHandler } from "react-hook-form"
 import { toast } from 'react-toastify'
-import { useAddUniversityMutation, useEditUniversityMutation } from '@/redux/endpoints/university/universityEndpoints'
 import Loader from '@/component/shared/Loader/Loader'
+import { useForm, SubmitHandler } from "react-hook-form"
+import { useAddUniversityMutation, useEditUniversityMutation } from '@/redux/endpoints/university/universityEndpoints'
+
 
 type ModalProps = {
     addUni: {
@@ -43,7 +44,7 @@ const qualificationOptions = [
   { value: "continuing", label: "Continuing Education / Lifelong Learning" },
   { value: "online", label: "Online / Distance Learning Program" },
   { value: "shortcourse", label: "Short Course / Workshop / Bootcamp" }
-];
+]
 
 
 const AddUniModal = ({ addUni, setAddUni }: ModalProps) => {
@@ -139,7 +140,8 @@ const AddUniModal = ({ addUni, setAddUni }: ModalProps) => {
 
                 <button
                     onClick={() =>{setSelectedTests([]);setSelectedQualifications([]);setAddUni((prev:any) => ({ ...prev, id: '', name: '', isOPen: false, action: "" }))}}
-                    className="cancel-btn"> X </button>
+                    className="cancel-btn"> X 
+                </button>
 
                 <form onSubmit={handleSubmit(onSubmit)} className='modal-from'>
                     <div className='input-container'>

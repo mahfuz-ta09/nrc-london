@@ -1,9 +1,9 @@
 'use client'
-import Loader from "@/component/shared/Loader/Loader"
-import { useAddSubjectMutation } from "@/redux/endpoints/subject/subjectEndpoints"
 import { useState } from "react"
-import { useForm, SubmitHandler } from "react-hook-form"
 import { toast } from "react-toastify"
+import Loader from "@/component/shared/Loader/Loader"
+import { useForm, SubmitHandler } from "react-hook-form"
+import { useAddSubjectMutation } from "@/redux/endpoints/subject/subjectEndpoints"
 
 type ModalProps = {
     addSub: {

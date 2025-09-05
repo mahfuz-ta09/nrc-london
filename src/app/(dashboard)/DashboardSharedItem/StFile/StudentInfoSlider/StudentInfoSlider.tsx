@@ -120,36 +120,35 @@ const StudentInfoSlider = () => {
 
     return (
         <div className="student-info-slider-container">
-  <div
-    ref={sliderRef}
-    className="student-info-slider"
-    onMouseDown={handleMouseDown}
-    onMouseLeave={handleMouseLeave}
-    onMouseUp={handleMouseUp}
-    onMouseMove={handleMouseMove}
-  >
-    {workflowSteps.map((step) => (
-      <div key={step.id} className="student-info-card">
-        <div className="student-card-info-header">
-          <FontAwesomeIcon className="info-header-icon" icon={step.icon} />
-          <div className="student-card-info-header-item">
-            <h5>{step.count}</h5>
-            <h6>{step.title}</h6>
-          </div>
+            <div
+                ref={sliderRef}
+                className="student-info-slider"
+                onMouseDown={handleMouseDown}
+                onMouseLeave={handleMouseLeave}
+                onMouseUp={handleMouseUp}
+                onMouseMove={handleMouseMove}>
+                {workflowSteps.map((step) => (
+                    <div key={step.id} className="student-info-card">
+                        <div className="student-card-info-header">
+                            <FontAwesomeIcon className="info-header-icon" icon={step.icon} />
+                            <div className="student-card-info-header-item">
+                                <h5>{step.count}</h5>
+                                <h6>{step.title}</h6>
+                            </div>
+                        </div>
+                        <div className="student-card-info-body">
+                            <h5>{step.count}</h5>
+                            <h6>
+                                {step.bodyTitle} <br /> {step.bodySubtitle}
+                            </h6>
+                            <button className="details-action-btn">
+                                {step.action} <FontAwesomeIcon icon={faArrowRight} />
+                            </button>
+                        </div>
+                    </div>
+                ))}
+            </div>
         </div>
-        <div className="student-card-info-body">
-          <h5>{step.count}</h5>
-          <h6>
-            {step.bodyTitle} <br /> {step.bodySubtitle}
-          </h6>
-          <button className="details-action-btn">
-            {step.action} <FontAwesomeIcon icon={faArrowRight} />
-          </button>
-        </div>
-      </div>
-    ))}
-  </div>
-</div>
 
     )
 }
