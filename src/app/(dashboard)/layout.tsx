@@ -1,19 +1,22 @@
 'use client'
 import '@/css/Dashboard/layout.css'
 import LayoutPage from "./LayoutPage"
-import { useGetProfileByIdQuery } from '@/redux/endpoints/profile/profileEndpoints'
 import { useUserInfo } from '@/utils/useUserInfo'
+import { useEffect, useRef, useState } from 'react'
+import Loader from '@/component/shared/Loader/Loader'
+import { useTokenRefresh } from '@/utils/useTokenRefresh'
 import { faBars } from '@fortawesome/free-solid-svg-icons'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { useEffect, useRef, useState } from 'react'
+import { useGetProfileByIdQuery } from '@/redux/endpoints/profile/profileEndpoints'
 
 
 
 const Layout = ({ children } : {children : React.ReactNode}) => {
-    const btnRef = useRef<HTMLButtonElement>(null)
-    const navRef = useRef<HTMLDivElement>(null)
-    const [isOpen,setIsOpen] = useState(false)
     const data = useUserInfo()
+    const { loading } = useTokenRefresh()
+    const [isOpen,setIsOpen] = useState(false)
+    const navRef = useRef<HTMLDivElement>(null)
+    const btnRef = useRef<HTMLButtonElement>(null)
     const { data: profile , isLoading } = useGetProfileByIdQuery(data?.Uemail)
     
     
@@ -29,6 +32,8 @@ const Layout = ({ children } : {children : React.ReactNode}) => {
         document.removeEventListener("click", handleNavBar);
       }
     }, [])
+
+    if(loading) return <Loader />
 
     const handler = () =>{
       setIsOpen(true)
