@@ -2,6 +2,7 @@
 import { useState } from 'react'
 import { useForm, FormProvider } from 'react-hook-form'
 import '../../SharedCountryUni/AddCountryModal/AddCountryModal.css'
+import { useUserInfo } from '@/utils/useUserInfo'
 
 type ModalProps = {
   modalState: {
@@ -36,6 +37,7 @@ type StudentFileForm = {
 
 const AddStudentFileModal = ({ setModalState, modalState }: ModalProps) => {
     const [step, setStep] = useState(1)
+    const user = useUserInfo()
 
     const methods = useForm<StudentFileForm>({
         defaultValues: {
@@ -64,12 +66,12 @@ const AddStudentFileModal = ({ setModalState, modalState }: ModalProps) => {
         mode: 'onBlur',
     })
 
-    const {register,handleSubmit,watch,formState: { errors }} = methods
+    const {register,watch,formState: { errors }} = methods
 
     const onSubmit = (data: StudentFileForm) => {
         console.log('Final Data:', data)
         // send data to API
-        setModalState({ isOpen: false })
+        // setModalState({ isOpen: false })
     }
 
     const handleNext = async () => {
@@ -81,7 +83,7 @@ const AddStudentFileModal = ({ setModalState, modalState }: ModalProps) => {
     const handleBack = () => {
         if (step > 1) setStep(step - 1)
     }
-console.log(modalState)
+
     return (
         <div className={modalState?.isOpen ? 'modal-container openmoda-container' : 'modal-container' }>
             <div className="modal-body">
@@ -154,68 +156,74 @@ console.log(modalState)
                         <h3 className='phase-title'>Phase 2: Application Information</h3>
 
                         <div className="input-container">
-                        <label>Program</label>
-                        <input {...register('application.program', { required: true })} />
-                        {errors.application?.program && (
-                            <span className="error">Program is required</span>
-                        )}
+                            <label>Program</label>
+                            <input {...register('application.program', { required: true })} />
+                            {errors.application?.program && (
+                                <span className="error">Program is required</span>
+                            )}
                         </div>
 
                         <div className="input-container">
-                        <label>Destination Country</label>
-                        <input
-                            {...register('application.destinationCountry', {
-                            required: true,
-                            })}
-                        />
-                        {errors.application?.destinationCountry && (
-                            <span className="error">Destination country is required</span>
-                        )}
+                            <label>Destination Country</label>
+                            <input
+                                {...register('application.destinationCountry', {
+                                required: true,
+                                })}
+                            />
+                            {errors.application?.destinationCountry && (
+                                <span className="error">Destination country is required</span>
+                            )}
                         </div>
 
                         <div className="input-container">
-                        <label>Intake</label>
-                        <input {...register('application.intake')} />
+                            <label>Intake</label>
+                            <input {...register('application.intake')} />
                         </div>
 
                         <div className="input-container">
-                        <label>Institution</label>
-                        <input {...register('application.institution')} />
+                            <label>Institution</label>
+                            <input {...register('application.institution')} />
                         </div>
 
                         <div className="input-container">
-                        <label>Course Start Date</label>
-                        <input
-                            type="date"
-                            {...register('application.courseStartDate')}
-                        />
+                            <label>Course Start Date</label>
+                            <input
+                                type="date"
+                                {...register('application.courseStartDate')}
+                            />
                         </div>
 
                         <div className="input-container">
-                        <label>Course End Date</label>
-                        <input type="date" {...register('application.courseEndDate')} />
+                            <label>Course End Date </label>
+                            <input type="date" {...register('application.courseEndDate')} />
                         </div>
                     </>
                     )}
 
-                    {/* STEP 3 – Confirmation */}
+
                     {step === 3 && (
                     <>
                         <h3 className='phase-title'>Phase 3: Finalize</h3>
-                        <div className="input-container">
-                        <label>
-                            <input type="checkbox" {...register('allowStudentSelfFill')} />{' '}
-                            Allow student to fill their own file
-                        </label>
+                        <div className="checkbox-container">
+                            <label  htmlFor="allowStudentSelfFill">Allow student to fill their own file</label>
+
+                            <input className='checkbox-input' type="checkbox" {...register('allowStudentSelfFill')} />{' '}
                         </div>
-                        <p>
-                        Review the details and submit. Once submitted, a student file
-                        will be created in the system.
+                        <p className='warning'>
+                            Review the details and submit. Once submitted, a student file
+                            will be created in the system.
                         </p>
+                        
+                        <div className="input-container">
+                            <label>File Initialized By</label>
+                            <input readOnly value={user?.Uemail} />
+                            <input readOnly value={user?.Urole}  />
+                            <input readOnly value={user?.Uid}  />
+                        </div>
                     </>
                     )}
 
-                    {/* Step Navigation */}
+
                     <div className="form-navigation">
                         {step > 1 && (
                             <button type="button" onClick={handleBack}  className='modal-sbmt-btn'>
@@ -223,12 +231,12 @@ console.log(modalState)
                             </button>
                         )}
 
-                        {step < 3 ? (
+                        {step < 3 && (
                             <button type="button" onClick={handleNext}  className='modal-sbmt-btn'>
                             Next
                             </button>
-                        ) : (
-                            <button type="submit"  className='modal-sbmt-btn'>
+                        )}
+                        {step === 3 && (    <button type="submit"  className='modal-sbmt-btn'>
                                 Submit
                             </button>
                         )}

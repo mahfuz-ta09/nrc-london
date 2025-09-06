@@ -23,8 +23,8 @@
 
 .modal-body {
     overflow: scroll;
-    min-width: 60vw;
-    height: 85vh;
+    min-width: 40vw;
+    height: 100vh;
     background: #ffffff;
     border-radius: 2px;
     padding: 2rem;
@@ -34,6 +34,7 @@
     transition: transform 0.4s ease, opacity 0.4s ease;
     scrollbar-width: none;
 }
+
 
 #modal-body-id{
     min-width: 90%;
@@ -70,7 +71,13 @@
     color: #000;
 }
 
-
+.warning{
+    background: #efefef;
+    padding: 10px;
+    border-left: 5px solid #ef4444;
+    margin: 30px 0;
+    border-radius: 5px 0 0 5px;
+}
 .modal-from {
     width: 100%;
     position: relative;
@@ -99,23 +106,36 @@
     align-items: center;
     justify-content: center;
 }
-
+.checkbox-container{
+    display: flex;
+    align-items: start;
+    justify-content: start;
+    gap: 29px;
+}
 .input-container {
-    margin-bottom: 1.5rem;
+    margin: 25px 0;
+    display: flex;
+    align-items: flex-start;
+    flex-direction: column;
+    gap: 15px;
+    cursor: pointer;
     position: relative;
 }
 
-.input-container:last-child {
-    margin-bottom: 0;
+.input-container label {
+    font-size: 16px;
+    color: #283a5a;
+    font-weight: 500;
+    line-height: 1.5;
+    cursor: pointer;
+    user-select: none;
 }
 
-.input-container label {
-    display: block;
-    margin-bottom: 5px;
-    font-weight: 400;
-    color: #002633;
-    font-size: 14px;
-    letter-spacing: 1px;
+
+.checkbox-input {
+    cursor: pointer;
+    width: 20px;
+    height:20px;
 }
 
 
@@ -202,7 +222,8 @@
     .modal-body{
         width: 99%;
         margin: 0 auto;
-        padding: 5px;
+        padding: 15px;
+        height: 80vh;
     }
 
     .modal-body form {
