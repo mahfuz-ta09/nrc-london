@@ -48,7 +48,7 @@ const page = () => {
                 src={
                   profile?.data?.image
                     ? profile?.data?.image?.url
-                    : "https://cdn.dribbble.com/userupload/33876250/file/original-73d675e3b35687a79566f8a00dcd1e6c.jpg?resize=752x564&vertical=center"
+                    : iUrl
                 }
                 alt="Profile picture"
               />
