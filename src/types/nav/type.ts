@@ -6,9 +6,16 @@ export type NavContent = {
     icon: IconDefinition
 }
 
+export type Section = {
+  section: string;
+  items: NavContent[];
+}
+
 export type Role = {
     SUPER_ADMIN?: string
     ADMIN?: string
     STUDENT?: string
     USER?: string
+    AGENT?: string
+    SUB_AGENT?: string
 }

@@ -1,10 +1,10 @@
 'use client'
 import '@/css/Dashboard/layout.css'
 import dynamic from 'next/dynamic'
+import { logOut } from '@/utils/authAction'
 import { useRouter } from 'next/navigation'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faClose, faHome, faRightFromBracket } from '@fortawesome/free-solid-svg-icons'
-import { logOut } from '@/utils/authAction'
 
 
 
