@@ -33,8 +33,6 @@ const sideNavItem = (role: Role): Section[] => {
 
   const common: NavContent[] = [
     { title: "Profile", path: "/", icon: faUser },
-    { title: "Reviews", path: `${role}/reviews`, icon: faStar },
-    { title: "Banner", path: `${role}/banner`, icon: faScreenpal },
   ]
 
   switch (role) {
@@ -42,17 +40,24 @@ const sideNavItem = (role: Role): Section[] => {
       return [
         { section: "My Action", items: common },
         {
-          section: "Administration Action",
-          items: [
-            { title: "Statistics", path: `${role}/web-stat`, icon: faChartBar },
-            { title: "Manage Users", path: `${role}/manage-users`, icon: faUsers },
-            { title: "Manage Admin", path: `${role}/manage-admin`, icon: faUserShield },
-            { title: "Agent Control", path: `${role}/AllAgents`, icon: faUserTie },
-            { title: "Submitted Student Files", path: `${role}/student-files`, icon: faUserGraduate },
-            { title: "Countries & Universities", path: `${role}/country-uni`, icon: faGlobe },
-            { title: "Student File Processing", path: `${role}/st-file`, icon: faTasks },
-          ],
+            section: "Administration Action",
+            items: [
+              { title: "Manage Users", path: `${role}/manage-users`, icon: faUsers },
+              { title: "Manage Admin", path: `${role}/manage-admin`, icon: faUserShield },
+              { title: "Agent Control", path: `${role}/AllAgents`, icon: faUserTie },
+              { title: "Submitted Student Files", path: `${role}/student-files`, icon: faUserGraduate },
+              { title: "Student File Processing", path: `${role}/st-file`, icon: faTasks },
+            ],
         },
+        {
+            section:'Web Controlls',
+            items: [
+                { title: "Statistics", path: `${role}/web-stat`, icon: faChartBar },
+                { title: "Countries & Universities", path: `${role}/country-uni`, icon: faGlobe },
+                { title: "Reviews", path: `${role}/reviews`, icon: faStar },
+                { title: "Banner", path: `${role}/banner`, icon: faScreenpal },
+            ]
+        }
       ]
 
     case USER_ROLE.ADMIN:
@@ -60,14 +65,19 @@ const sideNavItem = (role: Role): Section[] => {
         { section: "My Action", items: common },
         {
           section: "Admin Tools",
-          items: [
-            { title: "Subjects", path: `${role}/subjects`, icon: faBookOpen },
-            { title: "University", path: `${role}/university`, icon: faUniversity },
-            { title: "Countries & Universities", path: `${role}/country-uni`, icon: faGlobe },
-            { title: "Student File Processing", path: `${role}/st-file`, icon: faTasks },
-            { title: "Banner", path: `${role}/banner`, icon: faScreenpal },
-          ],
+            items: [
+                { title: "Subjects", path: `${role}/subjects`, icon: faBookOpen },
+                { title: "University", path: `${role}/university`, icon: faUniversity },
+                { title: "Countries & Universities", path: `${role}/country-uni`, icon: faGlobe },
+                { title: "Banner", path: `${role}/banner`, icon: faScreenpal },
+            ],
         },
+        {
+            section: "Administration Action",
+            items:[
+                { title: "Student File Processing", path: `${role}/st-file`, icon: faTasks },
+            ]
+        }
       ]
 
     case USER_ROLE.STUDENT:
