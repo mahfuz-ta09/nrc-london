@@ -22,9 +22,9 @@ const page = () => {
     const logItem = rawLogItem ? JSON.parse(rawLogItem) : null
     const router = useRouter()
 
-
+    
     useEffect(()=>{
-        if(!logItem?.email || !logItem.id){
+        if(!logItem || !logItem?.email || !logItem.id){
             router.push('/')
         }
     },[])
@@ -41,10 +41,10 @@ const page = () => {
                 const res = await verifyUser(obj)
                 
                 if(res?.success){
-                    localStorage.setItem('userData', JSON.stringify(res.data.userObj))
-                    sessionStorage.removeItem('logItem')
+                    localStorage.setItem('nrc_acc', JSON.stringify({user:res.data.user}))
                     toast.success(res?.message)
                     router.push('/')
+                    localStorage.removeItem('logItem')
                 }else{
                     toast.error(res?.message)
                 }
@@ -60,11 +60,19 @@ const page = () => {
         <div className="redirect-page">
             <div>
                 <h1>Check your email for a code!</h1>
-                <form  onSubmit={handleSubmit(onSubmit)}>
-                    <input type="digit" placeholder='Required 6 digit code' {...register("code", { required: true })}/>
-                    {loading ? 'Loading...' : <button type="submit">Verify</button>}
+                <form onSubmit={handleSubmit(onSubmit)}>
+                    <input 
+                        type="text" 
+                        placeholder="Enter 6-digit code" 
+                        {...register('code')}
+                        pattern="[0-9]{6}"
+                        id="verification-code"
+                        autoComplete="one-time-code"
+                    />
+                    <button type="submit" id="verify-btn">Verify</button>
                 </form>
             </div>
+        
         </div>
     )
 }

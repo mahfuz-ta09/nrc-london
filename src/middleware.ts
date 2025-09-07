@@ -27,7 +27,7 @@ export async function middleware(request: NextRequest) {
     const decoded: CustomJwtPayload | null = accessToken ? jwtDecode<CustomJwtPayload>(accessToken) : null;
     let role = decoded?.role ? decoded.role.toUpperCase() : null
     
-
+    
     if (accessToken && authRoutes.includes(pathname)) {
         return NextResponse.redirect(new URL('/Dashboard', request.url))
     }

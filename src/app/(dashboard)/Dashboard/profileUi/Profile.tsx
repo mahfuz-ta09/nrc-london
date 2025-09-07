@@ -23,7 +23,6 @@ const Profile = ({profileData , setProfileData}:{profileData:boolean,setProfileD
     const [updateUserProfile , { isLoading: uploadLoading }] = useUpdateUserProfileMutation()
     
 
-    console.log(profileData,Uemail)
     const onSubmit: SubmitHandler<IFormInput> = async(data) => {
         try {
             const formData = convertFormData(data)

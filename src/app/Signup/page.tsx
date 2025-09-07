@@ -32,7 +32,7 @@ const SignUpPage = () => {
             
             if (res?.success) {
                 toast.success(res?.message)
-                sessionStorage.setItem('logItem', JSON.stringify({
+                    localStorage.setItem('logItem', JSON.stringify({
                     id: res?.data?.id, 
                     email: data.email
                 }))
