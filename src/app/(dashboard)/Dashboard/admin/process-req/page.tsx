@@ -6,7 +6,7 @@ import '@/css/Dashboard/admin/process-req.css'
 import Loader from '@/component/shared/Loader/Loader'
 import { faAngleDoubleRight, faCancel } from '@fortawesome/free-solid-svg-icons'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { useDeleteProcessReqMutation, useGetALlProcessReqQuery } from '@/redux/endpoints/proceed/proceedEndpoints'
+import { useDeleteProcessReqMutation, useGetALlProcessReqQuery } from '@/redux/endpoints/studentFileProcess/proceedEndpoints'
 
 
 

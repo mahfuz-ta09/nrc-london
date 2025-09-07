@@ -3,6 +3,8 @@ import { useState } from 'react'
 import { useForm, FormProvider } from 'react-hook-form'
 import '../../SharedCountryUni/AddCountryModal/AddCountryModal.css'
 import { useUserInfo } from '@/utils/useUserInfo'
+import { useCreatetStudentFileMutation } from '@/redux/endpoints/studentFileProcess/proceedEndpoints'
+import Loader from '@/component/shared/Loader/Loader'
 
 type ModalProps = {
   modalState: {
@@ -38,6 +40,7 @@ type StudentFileForm = {
 const AddStudentFileModal = ({ setModalState, modalState }: ModalProps) => {
     const [step, setStep] = useState(1)
     const user = useUserInfo()
+    const [createtStudentFile , { isLoading: createLoading }] = useCreatetStudentFileMutation()
 
     const methods = useForm<StudentFileForm>({
         defaultValues: {
@@ -84,6 +87,7 @@ const AddStudentFileModal = ({ setModalState, modalState }: ModalProps) => {
         if (step > 1) setStep(step - 1)
     }
 
+    if(createLoading) <Loader />
     return (
         <div className={modalState?.isOpen ? 'modal-container openmoda-container' : 'modal-container' }>
             <div className="modal-body">

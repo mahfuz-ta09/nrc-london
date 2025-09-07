@@ -48,6 +48,7 @@ const Banner = () => {
                             <th>Id</th>
                             <th>Serial On Banner</th>
                             <th>Title</th>
+                            <th>Additional Title</th>
                             <th>description</th>
                             <th>status</th>
                             <th>Image</th>
@@ -63,11 +64,12 @@ const Banner = () => {
                             <td>{banner?._id}</td>
                             <td>{banner?.serial}</td>
                             <td>{banner?.title}</td>
+                            <td>{banner?.additional_title}</td>
                             <td>{banner?.description}</td>
                             <td>{banner?.status}</td>
                             <td><img className='table-img' src={banner?.imageUrl?.url} alt="" /></td>
-                            <td><button onClick={()=>deleteHandler(banner?._id)} className="delete-users-btn"><FontAwesomeIcon icon={faTrash} /></button></td>
                             <td><button onClick={()=>setAddBanner({action:"edit",id:banner?._id,isOPen: true,name:''})} className="edit-users-btn"><FontAwesomeIcon icon={faEdit} /></button></td>
+                            <td><button onClick={()=>deleteHandler(banner?._id)} className="delete-users-btn"><FontAwesomeIcon icon={faTrash} /></button></td>
                         </tr>
                         ))}
                     </tbody>

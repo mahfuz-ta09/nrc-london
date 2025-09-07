@@ -5,9 +5,23 @@ import { baseApi } from "@/redux/baseApi";
 const proceedApi = baseApi.injectEndpoints({
   endpoints: (build) => ({
     
+    // by students
     postProcessData: build.mutation({
         query: (data) => ({
             url: "/process/create",
+            method: "POST",
+            headers: {
+                'Content-Type': 'multipart/form-data',
+            },
+            data,
+        }),
+      invalidatesTags: ["proceed"],  
+    }),
+    
+    // by superadmin/admin/agents
+    createtStudentFile: build.mutation<any,{data:any}>({
+        query: ({data}) => ({
+            url: "/process/file",
             method: "POST",
             headers: {
                 'Content-Type': 'multipart/form-data',
@@ -59,6 +73,7 @@ const proceedApi = baseApi.injectEndpoints({
 
 export const {
     usePostProcessDataMutation,
+    useCreatetStudentFileMutation,
     useGetALlProcessReqQuery,
     useDeleteProcessReqMutation,
     useUpdatedProcessReqMutation,

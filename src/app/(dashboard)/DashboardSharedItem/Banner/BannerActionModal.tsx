@@ -17,6 +17,7 @@ type ModalProps = {
 
 type CountryData = {
     title: string,
+    additional_title: string,
     description: string,
     status: string,
     serial: number,
@@ -43,10 +44,10 @@ const BannerActionModal = ({addBanner,setAddBanner}: ModalProps) => {
             Object.entries(data).forEach(([key, value]) => {
                 if(value instanceof FileList) {
                     for (let i = 0; i < value.length; i++) {
-                        form_data.append(key, value[i]);
+                        form_data.append(key, value[i])
                     }
                 }else if (value !== undefined && value !== null) {
-                    form_data.append(key, String(value));
+                    form_data.append(key, String(value))
                 }
             })
 
@@ -82,6 +83,11 @@ const BannerActionModal = ({addBanner,setAddBanner}: ModalProps) => {
                     <div className='input-container'>
                         <label htmlFor="title">Insert Banner title</label>
                         <input type='text' {...register("title")}/>
+                    </div>
+                
+                    <div className='input-container'>
+                        <label htmlFor="title">Insert Additional title</label>
+                        <input type='text' {...register("additional_title")}/>
                     </div>
                 
                     <div className='input-container'>
