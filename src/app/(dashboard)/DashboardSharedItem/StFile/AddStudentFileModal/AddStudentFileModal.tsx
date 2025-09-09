@@ -37,6 +37,8 @@ type StudentFileForm = {
   courseStartDate: string
   permission: boolean
   destinationCountry: string
+  refused: boolean
+  refusedCountry: string
 }
 
 const AddStudentFileModal = ({ setModalState, modalState }: ModalProps) => {
@@ -47,28 +49,30 @@ const AddStudentFileModal = ({ setModalState, modalState }: ModalProps) => {
 
     const methods = useForm<StudentFileForm>({
         defaultValues: {
-        name: '',
-        email: '',
-        phone: '',
-        alternative_phone: '',
-        dob: '',
-        passportNo: '',
-        currentAddress: '',
-        countryCitizen: '',
-        testName: '',
-        listening: 0,
-        reading: 0,
-        writing: 0,
-        speaking: 0,
-        overall: 0,
-        schoolership: '',
-        intake: '',
-        program: '',
-        uniName: '',
-        subject: '',
-        courseStartDate: '',
-        permission: false,
-        destinationCountry: ''
+            name: '',
+            email: '',
+            phone: '',
+            alternative_phone: '',
+            dob: '',
+            passportNo: '',
+            currentAddress: '',
+            countryCitizen: '',
+            testName: '',
+            listening: 0,
+            reading: 0,
+            writing: 0,
+            speaking: 0,
+            overall: 0,
+            schoolership: '',
+            intake: '',
+            program: '',
+            uniName: '',
+            subject: '',
+            courseStartDate: '',
+            permission: false,
+            destinationCountry: '',
+            refused: false,
+            refusedCountry: ''
         },
         mode: 'onBlur'
     })
@@ -264,13 +268,13 @@ const AddStudentFileModal = ({ setModalState, modalState }: ModalProps) => {
                         </div>
 
                         <div className="input-container">
-                        <label>Course Start Date</label>
-                        <input type="date" {...register('courseStartDate')} />
+                            <label>Course Start Date</label>
+                            <input type="date" {...register('courseStartDate')} />
                         </div>
 
                         <div className="input-container">
-                        <label>Preferred Subject</label>
-                        <input type="text" {...register('subject')} />
+                            <label>Preferred Subject</label>
+                            <input type="text" {...register('subject')} />
                         </div>
                     </>
                     )}
@@ -283,8 +287,13 @@ const AddStudentFileModal = ({ setModalState, modalState }: ModalProps) => {
                             <label htmlFor="permission">Allow student to fill their own file</label>
                             <input className="checkbox-input" type="checkbox" {...register('permission')} />
                         </div>
+                        <div className="checkbox-container">
+                            <label htmlFor="permission">Was the student ever been refused from any country?</label>
+                            <input className="checkbox-input" type="checkbox" {...register('refused')} />
+                            <input type="text" {...register('refusedCountry')} />
+                        </div>
                         <p className="warning">
-                        Review the details and submit. Once submitted, a student file will be created in the system.
+                            Review the details and submit. Once submitted, a student file will be created in the system.
                         </p>
 
                         <div className="input-container">

@@ -32,6 +32,7 @@ const PopularCourse = () => {
         }
     }
 
+    
     return (
         <div className="popular-container">
             <div className="popular-courses">

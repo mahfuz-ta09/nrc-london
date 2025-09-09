@@ -64,21 +64,21 @@ type country_type = {
 
 export interface IFormInput {
     name: string;
-    mobile_number: string;
-    emergency_number: string;
+    phone: string;
+    ulternative_phone: string;
     dob:number;
     en_proficiency:test_type;
-    en_result:FileList | null;
-    ssc_result:FileList | null;
-    hsc_result:FileList | null;
-    bachelor_result:FileList | null;
-    masters_result:FileList | null;
-    other_result:FileList | null;
-    exam_taken_time:string;
-    prefered_country: country_type;
+    proficiencyCirtificate:FileList | null;
+    ssc:FileList | null;
+    hsc:FileList | null;
+    bachelor:FileList | null;
+    master:FileList | null;
+    other:FileList | null;
+    examTakenTime:string;
+    destinationCountry: country_type;
     referral: Ref;
     refused: Refused;
-    country_name:string;
+    refusedCountry:string;
 }
 
 

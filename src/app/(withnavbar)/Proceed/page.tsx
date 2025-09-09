@@ -69,20 +69,20 @@ const page = () => {
                         <h3 className="section-title">Personal Information</h3>
 
                         <div className="form-group">
-                        <label className="form-label required">Name</label>
-                        <input className="form-input" type="text" {...register("name")}/>
+                            <label className="form-label required">Name</label>
+                            <input className="form-input" type="text" {...register("name")}/>
                         </div>
 
                         <div className="form-row">
-                        <div className="form-group">
-                            <label className="form-label required">Mobile Number</label>
-                            <input className="form-input" type="number" {...register("mobile_number")}/>
-                        </div>
+                            <div className="form-group">
+                                <label className="form-label required">Mobile Number</label>
+                                <input className="form-input" type="number" {...register("phone")}/>
+                            </div>
 
-                        <div className="form-group">
-                            <label className="form-label required">Emergency Number</label>
-                            <input className="form-input" type="number" {...register("emergency_number")}/>
-                        </div>
+                            <div className="form-group">
+                                <label className="form-label required">Emergency Number</label>
+                                <input className="form-input" type="number" {...register("ulternative_phone")}/>
+                            </div>
                         </div>
 
                         <div className="form-row">
@@ -104,27 +104,27 @@ const page = () => {
 
                         <div className="form-group">
                             <label className="form-label required">SSC Certificate (jpg/jpeg)</label>
-                            <input className="form-input" type="file" accept=".jpg,.jpeg,.pdf,.png" {...register("ssc_result")}/>
+                            <input className="form-input" type="file" accept=".jpg,.jpeg,.pdf,.png" {...register("ssc")}/>
                         </div>
 
                         <div className="form-group">
                             <label className="form-label">HSC Certificate (jpg/jpeg)</label>
-                            <input className="form-input" type="file" accept=".jpg,.jpeg,.pdf,.png" {...register("hsc_result")} />
+                            <input className="form-input" type="file" accept=".jpg,.jpeg,.pdf,.png" {...register("hsc")} />
                         </div>
 
                         <div className="form-group">
                             <label className="form-label">Bachelor Certificate (jpg/jpeg)</label>
-                            <input className="form-input" type="file" accept=".jpg,.jpeg,.pdf,.png" {...register("bachelor_result")} />
+                            <input className="form-input" type="file" accept=".jpg,.jpeg,.pdf,.png" {...register("bachelor")} />
                         </div>
 
                         <div className="form-group">
                             <label className="form-label">Master Certificate (jpg/jpeg)</label>
-                            <input className="form-input" type="file" accept=".jpg,.jpeg,.pdf,.png" {...register("masters_result")} />
+                            <input className="form-input" type="file" accept=".jpg,.jpeg,.pdf,.png" {...register("master")} />
                         </div>
 
                         <div className="form-group">
                             <label className="form-label">Other Degree Certificate (jpg/jpeg)</label>
-                            <input className="form-input" type="file" accept=".jpg,.jpeg,.pdf,.png" {...register("other_result")} />
+                            <input className="form-input" type="file" accept=".jpg,.jpeg,.pdf,.png" {...register("other")} />
                         </div>
                     </div>
 
@@ -135,7 +135,7 @@ const page = () => {
                         <div className="form-row">
                             <div className="form-group">
                                 <label className="form-label required">Test Type</label>
-                                <select className="form-select" {...register("en_proficiency")} required>
+                                <select className="form-select" {...register("proficiencyCirtificate")} required>
                                 <option value="IELTS">IELTS</option>
                                 <option value="OIETC">OIETC</option>
                                 <option value="DUOLINGO">DUOLINGO</option>
@@ -148,13 +148,13 @@ const page = () => {
 
                             <div className="form-group">
                                 <label className="form-label required">Test Taken Date</label>
-                                <input className="form-input" type="date" {...register("exam_taken_time")}/>
+                                <input className="form-input" type="date" {...register("examTakenTime")}/>
                             </div>
                         </div>
 
                         <div className="form-group">
                             <label className="form-label required">English Test Certificate (jpg/jpeg)</label>
-                            <input className="form-input" type="file" accept=".jpg,.jpeg,.pdf,.png" {...register("en_result")}/>
+                            <input className="form-input" type="file" accept=".jpg,.jpeg,.pdf,.png" {...register("proficiencyCirtificate")}/>
                         </div>
                     </div>
 
@@ -164,7 +164,7 @@ const page = () => {
 
                         <div className="form-group">
                             <label className="form-label required">Preferred Country</label>
-                            <select className="form-select" {...register("prefered_country")} required>
+                            <select className="form-select" {...register("destinationCountry")} required>
                                 <option value="uk">UK</option>
                                 <option value="usa">USA</option>
                                 <option value="aus">Australia</option>
@@ -202,7 +202,7 @@ const page = () => {
 
                         <div className="form-group">
                             <label className="form-label">Refused Country Name (if any)</label>
-                            <input className="form-input" type="text" {...register("country_name")} />
+                            <input className="form-input" type="text" {...register("refusedCountry")} />
                         </div>
                     </div>
 
