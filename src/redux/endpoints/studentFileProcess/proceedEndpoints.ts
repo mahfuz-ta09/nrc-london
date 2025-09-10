@@ -28,7 +28,16 @@ const proceedApi = baseApi.injectEndpoints({
             },
             data,
         }),
-      invalidatesTags: ["proceed"],  
+        invalidatesTags: ["proceed"],  
+    }),
+    
+    // by superadmin/admin/agents
+    getStudentFileStat: build.query<any,void>({
+        query: () => ({
+            url: "/process/stat",
+            method: "GET",
+        }),
+        providesTags: ["proceed"],  
     }),
 
     getALlProcessReq: build.query<any, void>({
@@ -36,7 +45,7 @@ const proceedApi = baseApi.injectEndpoints({
             url: "/process/all",
             method: "GET",
         }),
-      providesTags: ["proceed"],
+        providesTags: ["proceed"],
     }),
 
     deleteProcessReq: build.mutation<any, string>({
@@ -44,7 +53,7 @@ const proceedApi = baseApi.injectEndpoints({
             url: `/process/delete/${id}`,
             method: "DELETE",
         }),
-      invalidatesTags: ["proceed"],  
+        invalidatesTags: ["proceed"],  
     }),
 
     updatedProcessReq: build.mutation<any, { data: any; id: string }>({
@@ -56,7 +65,7 @@ const proceedApi = baseApi.injectEndpoints({
             },  
             body: data,   
         }),
-      invalidatesTags: ["proceed"], 
+        invalidatesTags: ["proceed"], 
     }),
 
     getProcessReqPagination: build.query<any, { page: number , item: number }>({
@@ -74,6 +83,7 @@ const proceedApi = baseApi.injectEndpoints({
 export const {
     usePostProcessDataMutation,
     useCreatetStudentFileMutation,
+    useGetStudentFileStatQuery,
     useGetALlProcessReqQuery,
     useDeleteProcessReqMutation,
     useUpdatedProcessReqMutation,

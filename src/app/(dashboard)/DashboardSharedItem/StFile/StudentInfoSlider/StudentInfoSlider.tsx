@@ -3,6 +3,7 @@ import { useRef } from "react";
 import '@/css/Dashboard/DashBoardSharedItem/DashboardSharedCss.css'
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faArrowRight, faBuilding, faCircleCheck, faCircleXmark, faComments, faFileCircleCheck, faFlagCheckered, faFolderOpen, faPaperPlane, faPenNib, faSearch } from "@fortawesome/free-solid-svg-icons";
+import { useGetStudentFileStatQuery } from "@/redux/endpoints/studentFileProcess/proceedEndpoints";
 const workflowSteps = [
   {
     id: 1,
@@ -88,7 +89,7 @@ const workflowSteps = [
 ];
 const StudentInfoSlider = () => {
     const sliderRef = useRef<HTMLDivElement>(null);
-
+    const { data , isLoading } = useGetStudentFileStatQuery()
     let isDown = false;
     let startX: number;
     let scrollLeft: number;

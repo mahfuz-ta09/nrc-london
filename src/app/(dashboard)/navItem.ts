@@ -56,6 +56,7 @@ const sideNavItem = (role: Role): Section[] => {
                 { title: "Countries & Universities", path: `${role}/country-uni`, icon: faGlobe },
                 { title: "Reviews", path: `${role}/reviews`, icon: faStar },
                 { title: "Banner", path: `${role}/banner`, icon: faScreenpal },
+                { title: "Blog", path: `${role}/blog`, icon: faScreenpal },
             ]
         }
       ]
@@ -70,6 +71,7 @@ const sideNavItem = (role: Role): Section[] => {
                 { title: "University", path: `${role}/university`, icon: faUniversity },
                 { title: "Countries & Universities", path: `${role}/country-uni`, icon: faGlobe },
                 { title: "Banner", path: `${role}/banner`, icon: faScreenpal },
+                { title: "Blog", path: `${role}/blog`, icon: faScreenpal },
             ],
         },
         {
