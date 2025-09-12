@@ -140,189 +140,189 @@ const AddStudentFileModal = ({ setModalState, modalState }: ModalProps) => {
                 </button>
 
                 <FormProvider {...methods}>
-                <form className="modal-form" onSubmit={methods.handleSubmit(onSubmit)}>
-                    {/* STEP 1 – Student Info */}
-                    {step === 1 && (
-                    <>
-                        <h3 className="phase-title">Phase 1: Student Information</h3>
+                    <form className="modal-form" onSubmit={methods.handleSubmit(onSubmit)}>
+                        {/* STEP 1 – Student Info */}
+                        {step === 1 && (
+                        <>
+                            <h3 className="phase-title">Phase 1: Student Information</h3>
 
-                        <div className="input-container">
-                        <label>Full Name</label>
-                        <input {...register('name', { required: 'Full name is required' })} />
-                        {errors?.name && <span className="error">{errors.name.message}</span>}
+                            <div className="input-container">
+                                <label>Full Name</label>
+                                <input {...register('name', { required: 'Full name is required' })} />
+                                {errors?.name && <span className="error">{errors.name.message}</span>}
+                            </div>
+
+                            <div className="input-container">
+                                <label>
+                                    Student's Email (Once submitted you can't change the email)
+                                </label>
+                                <input
+                                    type="email"
+                                    {...register('email', { required: 'Email is required' })}
+                                />
+                                {errors?.email && <span className="error">{errors.email.message}</span>}
+                            </div>
+
+                            <div className="input-container">
+                                <label>Phone</label>
+                                <input {...register('phone', { required: 'Phone is required' })} />
+                                {errors?.phone && <span className="error">{errors.phone.message}</span>}
+                            </div>
+
+                            <div className="input-container">
+                                <label>Alternative Phone</label>
+                                <input {...register('alternative_phone')} />
+                            </div>
+
+                            <div className="input-container">
+                                <label>Date of Birth</label>
+                                <input type="date" {...register('dob')} />
+                            </div>
+
+                            <div className="input-container">
+                                <label>Passport Number</label>
+                                <input {...register('passportNo')} />
+                            </div>
+
+                            <div className="input-container">
+                                <label>Country of Citizenship</label>
+                                <input {...register('countryCitizen')} />
+                            </div>
+
+                            <div className="input-container">
+                                <label>Current Address</label>
+                                <input {...register('currentAddress')} />
+                            </div>
+                        </>
+                        )}
+
+
+                        {step === 2 && (
+                        <>
+                            <h3 className="phase-title">Phase 2: English Proficiency </h3>
+
+                            <div className="input-container">
+                                <label>Test name</label>
+                                <input {...register('testName', { required: 'Test name is required' })} />
+                                {errors?.testName && <span className="error">{errors.testName.message}</span>}
+                            </div>
+
+                            <div className="input-container">
+                                <label>Listening</label>
+                                <input type="number" step="0.1" {...register('listening', { valueAsNumber: true })} />
+                            </div>
+
+                            <div className="input-container">
+                                <label>Reading</label>
+                                <input type="number" step="0.1" {...register('reading', { valueAsNumber: true })} />
+                            </div>
+
+                            <div className="input-container">
+                                <label>Writing</label>
+                                <input type="number" step="0.1" {...register('writing', { valueAsNumber: true })} />
+                            </div>
+
+                            <div className="input-container">
+                                <label>Speaking</label>
+                                <input type="number" step="0.1" {...register('speaking', { valueAsNumber: true })} />
+                            </div>
+
+                            <div className="input-container">
+                                <label>Overall</label>
+                                <input type="number" step="0.1" {...register('overall', { required: 'Overall score is required', valueAsNumber: true })} />
+                                {errors?.overall && <span className="error">{errors.overall.message}</span>}
+                            </div>
+                        </>
+                        )}
+
+                        {/* STEP 3 – Application Info */}
+                        {step === 3 && (
+                        <>
+                            <h3 className="phase-title">Phase 3: Application Information</h3>
+
+                            <div className="input-container">
+                                <label>Program</label>
+                                <input {...register('program', { required: 'Program is required' })} />
+                                {errors?.program && <span className="error">{errors.program.message}</span>}
+                            </div>
+
+                            <div className="input-container">
+                                <label>Destination Country</label>
+                                <input {...register('destinationCountry', { required: 'Destination country is required' })} />
+                                {errors?.destinationCountry && <span className="error">{errors.destinationCountry.message}</span>}
+                            </div>
+
+                            <div className="input-container">
+                                <label>Intake</label>
+                                <input {...register('intake')} />
+                            </div>
+
+                            <div className="input-container">
+                                <label>Schoolership</label>
+                                <input {...register('schoolership')} />
+                            </div>
+
+                            <div className="input-container">
+                                <label>Institution</label>
+                                <input {...register('uniName')} />
+                            </div>
+
+                            <div className="input-container">
+                                <label>Course Start Date</label>
+                                <input type="date" {...register('courseStartDate')} />
+                            </div>
+
+                            <div className="input-container">
+                                <label>Preferred Subject</label>
+                                <input type="text" {...register('subject')} />
+                            </div>
+                        </>
+                        )}
+
+                        {/* STEP 4 – Finalize */}
+                        {step === 4 && (
+                        <>
+                            <h3 className="phase-title">Phase 4: Finalize</h3>
+                            <div className="checkbox-container">
+                                <label htmlFor="permission">Allow student to fill their own file</label>
+                                <input className="checkbox-input" type="checkbox" {...register('permission')} />
+                            </div>
+                            <div className="checkbox-container">
+                                <label htmlFor="permission">Was the student ever been refused from any country?</label>
+                                <input className="checkbox-input" type="checkbox" {...register('refused')} />
+                                <input type="text" {...register('refusedCountry')} />
+                            </div>
+                            <p className="warning">
+                                Review the details and submit. Once submitted, a student file will be created in the system.
+                            </p>
+
+                            <div className="input-container">
+                            <label>File Initialized By</label>
+                            <input readOnly value={user?.Uemail} />
+                            <input readOnly value={user?.Urole} />
+                            <input readOnly value={user?.Uid} />
+                            </div>
+                        </>
+                        )}
+
+                        <div className="form-navigation">
+                        {step > 1 && (
+                            <button type="button" onClick={handleBack} className="modal-sbmt-btn">
+                            Back
+                            </button>
+                        )}
+                        {step < 4 && (
+                            <button type="button" onClick={handleNext} className="modal-sbmt-btn">
+                            Next
+                            </button>
+                        )}
+                        {step === 4 && (
+                            <button type="submit" className="modal-sbmt-btn">
+                            Submit
+                            </button>
+                        )}
                         </div>
-
-                        <div className="input-container">
-                        <label>
-                            Student's Email (Once submitted you can't change the email)
-                        </label>
-                        <input
-                            type="email"
-                            {...register('email', { required: 'Email is required' })}
-                        />
-                        {errors?.email && <span className="error">{errors.email.message}</span>}
-                        </div>
-
-                        <div className="input-container">
-                        <label>Phone</label>
-                        <input {...register('phone', { required: 'Phone is required' })} />
-                        {errors?.phone && <span className="error">{errors.phone.message}</span>}
-                        </div>
-
-                        <div className="input-container">
-                        <label>Alternative Phone</label>
-                        <input {...register('alternative_phone')} />
-                        </div>
-
-                        <div className="input-container">
-                        <label>Date of Birth</label>
-                        <input type="date" {...register('dob')} />
-                        </div>
-
-                        <div className="input-container">
-                        <label>Passport Number</label>
-                        <input {...register('passportNo')} />
-                        </div>
-
-                        <div className="input-container">
-                        <label>Country of Citizenship</label>
-                        <input {...register('countryCitizen')} />
-                        </div>
-
-                        <div className="input-container">
-                        <label>Current Address</label>
-                        <input {...register('currentAddress')} />
-                        </div>
-                    </>
-                    )}
-
-                    {/* STEP 2 – English Proficiency */}
-                    {step === 2 && (
-                    <>
-                        <h3 className="phase-title">Phase 2: English Proficiency </h3>
-
-                        <div className="input-container">
-                        <label>Test name</label>
-                        <input {...register('testName', { required: 'Test name is required' })} />
-                        {errors?.testName && <span className="error">{errors.testName.message}</span>}
-                        </div>
-
-                        <div className="input-container">
-                        <label>Listening</label>
-                        <input type="number" step="0.1" {...register('listening', { valueAsNumber: true })} />
-                        </div>
-
-                        <div className="input-container">
-                        <label>Reading</label>
-                        <input type="number" step="0.1" {...register('reading', { valueAsNumber: true })} />
-                        </div>
-
-                        <div className="input-container">
-                        <label>Writing</label>
-                        <input type="number" step="0.1" {...register('writing', { valueAsNumber: true })} />
-                        </div>
-
-                        <div className="input-container">
-                        <label>Speaking</label>
-                        <input type="number" step="0.1" {...register('speaking', { valueAsNumber: true })} />
-                        </div>
-
-                        <div className="input-container">
-                        <label>Overall</label>
-                        <input type="number" step="0.1" {...register('overall', { required: 'Overall score is required', valueAsNumber: true })} />
-                        {errors?.overall && <span className="error">{errors.overall.message}</span>}
-                        </div>
-                    </>
-                    )}
-
-                    {/* STEP 3 – Application Info */}
-                    {step === 3 && (
-                    <>
-                        <h3 className="phase-title">Phase 3: Application Information</h3>
-
-                        <div className="input-container">
-                        <label>Program</label>
-                        <input {...register('program', { required: 'Program is required' })} />
-                        {errors?.program && <span className="error">{errors.program.message}</span>}
-                        </div>
-
-                        <div className="input-container">
-                        <label>Destination Country</label>
-                        <input {...register('destinationCountry', { required: 'Destination country is required' })} />
-                        {errors?.destinationCountry && <span className="error">{errors.destinationCountry.message}</span>}
-                        </div>
-
-                        <div className="input-container">
-                        <label>Intake</label>
-                        <input {...register('intake')} />
-                        </div>
-
-                        <div className="input-container">
-                        <label>Schoolership</label>
-                        <input {...register('schoolership')} />
-                        </div>
-
-                        <div className="input-container">
-                        <label>Institution</label>
-                        <input {...register('uniName')} />
-                        </div>
-
-                        <div className="input-container">
-                            <label>Course Start Date</label>
-                            <input type="date" {...register('courseStartDate')} />
-                        </div>
-
-                        <div className="input-container">
-                            <label>Preferred Subject</label>
-                            <input type="text" {...register('subject')} />
-                        </div>
-                    </>
-                    )}
-
-                    {/* STEP 4 – Finalize */}
-                    {step === 4 && (
-                    <>
-                        <h3 className="phase-title">Phase 4: Finalize</h3>
-                        <div className="checkbox-container">
-                            <label htmlFor="permission">Allow student to fill their own file</label>
-                            <input className="checkbox-input" type="checkbox" {...register('permission')} />
-                        </div>
-                        <div className="checkbox-container">
-                            <label htmlFor="permission">Was the student ever been refused from any country?</label>
-                            <input className="checkbox-input" type="checkbox" {...register('refused')} />
-                            <input type="text" {...register('refusedCountry')} />
-                        </div>
-                        <p className="warning">
-                            Review the details and submit. Once submitted, a student file will be created in the system.
-                        </p>
-
-                        <div className="input-container">
-                        <label>File Initialized By</label>
-                        <input readOnly value={user?.Uemail} />
-                        <input readOnly value={user?.Urole} />
-                        <input readOnly value={user?.Uid} />
-                        </div>
-                    </>
-                    )}
-
-                    <div className="form-navigation">
-                    {step > 1 && (
-                        <button type="button" onClick={handleBack} className="modal-sbmt-btn">
-                        Back
-                        </button>
-                    )}
-                    {step < 4 && (
-                        <button type="button" onClick={handleNext} className="modal-sbmt-btn">
-                        Next
-                        </button>
-                    )}
-                    {step === 4 && (
-                        <button type="submit" className="modal-sbmt-btn">
-                        Submit
-                        </button>
-                    )}
-                    </div>
-                </form>
+                    </form>
                 </FormProvider>
             </div>
         </div>

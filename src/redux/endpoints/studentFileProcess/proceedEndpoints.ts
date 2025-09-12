@@ -5,71 +5,71 @@ import { baseApi } from "@/redux/baseApi";
 const proceedApi = baseApi.injectEndpoints({
   endpoints: (build) => ({
     
-    // by students
-    postProcessData: build.mutation({
-        query: (data) => ({
-            url: "/process/create",
-            method: "POST",
-            headers: {
-                'Content-Type': 'multipart/form-data',
-            },
-            data,
+        // by students
+        postProcessData: build.mutation({
+            query: (data) => ({
+                url: "/process/create",
+                method: "POST",
+                headers: {
+                    'Content-Type': 'multipart/form-data',
+                },
+                data,
+            }),
+        invalidatesTags: ["proceed"],  
         }),
-      invalidatesTags: ["proceed"],  
-    }),
     
     // by superadmin/admin/agents
-    createtStudentFile: build.mutation<any,{data:any}>({
-        query: ({data}) => ({
-            url: "/process/file",
-            method: "POST",
-            headers: {
-                'Content-Type': 'multipart/form-data',
-            },
-            data,
+        createtStudentFile: build.mutation<any,{data:any}>({
+            query: ({data}) => ({
+                url: "/process/file",
+                method: "POST",
+                headers: {
+                    'Content-Type': 'multipart/form-data',
+                },
+                data,
+            }),
+            invalidatesTags: ["proceed"],  
         }),
-        invalidatesTags: ["proceed"],  
-    }),
     
-    // by superadmin/admin/agents
-    getStudentFileStat: build.query<any,void>({
-        query: () => ({
-            url: "/process/stat",
-            method: "GET",
+        // by superadmin/admin/agents
+        getStudentFileStat: build.query<any,void>({
+            query: () => ({
+                url: "/process/stat",
+                method: "GET",
+            }),
+            providesTags: ["proceed"],  
         }),
-        providesTags: ["proceed"],  
-    }),
 
-    getALlProcessReq: build.query<any, void>({
-        query: () => ({
-            url: "/process/all",
-            method: "GET",
+        getALlProcessReq: build.query<any, void>({
+            query: () => ({
+                url: "/process/all",
+                method: "GET",
+            }),
+            providesTags: ["proceed"],
         }),
-        providesTags: ["proceed"],
-    }),
 
-    deleteProcessReq: build.mutation<any, string>({
-        query: (id) => ({
-            url: `/process/delete/${id}`,
-            method: "DELETE",
+        deleteProcessReq: build.mutation<any, string>({
+            query: (id) => ({
+                url: `/process/delete/${id}`,
+                method: "DELETE",
+            }),
+            invalidatesTags: ["proceed"],  
         }),
-        invalidatesTags: ["proceed"],  
-    }),
 
-    updatedProcessReq: build.mutation<any, { data: any; id: string }>({
-        query: ({ data, id }) => ({
-            url: `/process/update/${id}`,
-            method: "PATCH",
-            headers: { 
-                "Content-Type": "application/json" 
-            },  
-            body: data,   
+        updatedProcessReq: build.mutation<any, { data: any; id: string }>({
+            query: ({ data, id }) => ({
+                url: `/process/update/${id}`,
+                method: "PATCH",
+                headers: { 
+                    "Content-Type": "application/json" 
+                },  
+                body: data,   
+            }),
+            invalidatesTags: ["proceed"], 
         }),
-        invalidatesTags: ["proceed"], 
-    }),
 
-    getProcessReqPagination: build.query<any, { page: number , item: number }>({
-        query: ({ page , item }) => ({
+        getProcessReqPagination: build.query<any, { page: number , item: number }>({
+            query: ({ page , item }) => ({
                 url: `/process/partial/${page}/${item}`,
                 method: "GET",
             }),
