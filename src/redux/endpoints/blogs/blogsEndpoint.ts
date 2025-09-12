@@ -14,7 +14,7 @@ const blogApi = baseApi.injectEndpoints({
                 },
                 data,
             }),
-            invalidatesTags: ["proceed"],
+            invalidatesTags: ["blog"],
         }),
 
 

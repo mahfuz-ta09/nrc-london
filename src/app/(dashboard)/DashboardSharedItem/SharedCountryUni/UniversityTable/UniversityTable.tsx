@@ -7,10 +7,10 @@ import AddUniModal from '../AddUniModal/AddUniModal'
 import Loader from '@/component/shared/Loader/Loader'
 import SubjectControllModal from './SubjectControllModal'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import Pagination from '@/component/shared/Pagination/Pagination'
 import { faAdd, faFilter, faList, faPen, faTrash } from '@fortawesome/free-solid-svg-icons'
 import { useGetAllCountryNameQuery } from '@/redux/endpoints/countryBaseUni/countryBaseUniversity'
 import { useDeleteUniMutation, useGetUniversityListQuery } from '@/redux/endpoints/university/universityEndpoints'
-import Pagination from '@/component/shared/Pagination/Pagination'
 
 
 type paraType = {
@@ -82,43 +82,41 @@ const UniversityTable = () => {
     
     return (
         <div className='university-table'>
-            {(data?.meta?.totalCount || country?.meta?.total) && <h1>university: {para?.country?para?.country:'all'} & total: {data?.meta?.totalCount}</h1>}
-            
             {data?.meta?.totalCount!==0 && 
-            
-            <div className="filter-header-uni">
-                <p>filter users</p>
-                <button onClick={()=>setIsOpen(!isOpen)}><FontAwesomeIcon icon={faFilter}/></button>
-                
-                <div className={isOpen?"filter-container show":"filter-container"}>
-                    <input
-                        type="number"
-                        name="page"
-                        placeholder="Page"
-                        value={para.page}
-                        onChange={handleChange}
-                        className='pagination-input'
-                        min={0}
-                    />
-                    <input
-                        type="number"
-                        name="total"
-                        placeholder="Rows per page"
-                        value={para.total}
-                        onChange={handleChange}
-                        className='pagination-input'
-                        min={0}
-                    />
-                    <input
-                        type="text"
-                        name="uniName"
-                        placeholder="university name"
-                        value={para.uniName}
-                        onChange={handleChange}
-                        className='pagination-input'
-                    />
+                <div className="filter-header-uni">
+                    {(data?.meta?.totalCount || country?.meta?.total) && <p className='filter-tag'>university ({para?.country? para?.country:'all'} & total: {data?.meta?.totalCount})</p>}
+                    <button onClick={()=>setIsOpen(!isOpen)}><FontAwesomeIcon icon={faFilter}/></button>
+                    
+                    <div className={isOpen?"filter-container show":"filter-container"}>
+                        <input
+                            type="number"
+                            name="page"
+                            placeholder="Page"
+                            value={para.page}
+                            onChange={handleChange}
+                            className='pagination-input'
+                            min={0}
+                        />
+                        <input
+                            type="number"
+                            name="total"
+                            placeholder="Rows per page"
+                            value={para.total}
+                            onChange={handleChange}
+                            className='pagination-input'
+                            min={0}
+                        />
+                        <input
+                            type="text"
+                            name="uniName"
+                            placeholder="university name"
+                            value={para.uniName}
+                            onChange={handleChange}
+                            className='pagination-input'
+                        />
+                    </div>
                 </div>
-            </div>}
+            }
 
             {(data?.meta?.totalCount || country?.meta?.total) && <div className='all-btn-container'>
                 <button className='all-btn'
@@ -200,11 +198,11 @@ const UniversityTable = () => {
                         </tbody>
                     </table>
             </div>}
-            <Pagination 
-                totalPages={Math.min(data?.meta?.totalPages, 1000)}
+            {data?.meta?.totalPages && <Pagination 
+                totalPages={data?.meta?.totalPages}
                 currentPage={Number(para?.page) || 1}
                 onPageChange={handlePageChange}
-                siblingCount={1}/>
+                siblingCount={1}/>}
 
             <Suspense fallback={<Loader />}>
                 <AddUniModal 

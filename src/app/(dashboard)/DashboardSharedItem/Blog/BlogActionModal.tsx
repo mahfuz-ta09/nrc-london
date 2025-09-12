@@ -80,8 +80,8 @@ const BlogActionModal = ({ setModalState, modalState }: ModalProps) => {
 
             if(res?.data?.data?.insertedId){
                 toast.success('Blog inserted seccessfully')
-                // reset()
-                // setModalState({ isOpen: false })
+                reset()
+                setModalState({ isOpen: false })
             }else{
                 toast.error(res?.data || "Failed to insert blog" )
             }
