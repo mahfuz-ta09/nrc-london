@@ -1,32 +1,34 @@
 'use client'
-import { useCreateBlogMutation } from '@/redux/endpoints/blogs/blogsEndpoint'
-import '../SharedCountryUni/AddCountryModal/AddCountryModal.css'
-import { useForm, Controller } from "react-hook-form"
+import { toast } from 'react-toastify'
 import ReactQuill from 'react-quill-new'
 import 'react-quill-new/dist/quill.snow.css'
-import { toast } from 'react-toastify'
+import { useForm, Controller } from "react-hook-form"
+import '../SharedCountryUni/AddCountryModal/AddCountryModal.css'
+import { useCreateBlogMutation } from '@/redux/endpoints/blogs/blogsEndpoint'
+
 
 type ModalProps = {
   modalState: { isOpen: boolean }
   setModalState: React.Dispatch<React.SetStateAction<any>>
 }
 
+
 type BlogFormData = {
-  title: string
-  slug: string
-  author: string
-  meta: {
-    description: string
-    keywords: string
-    ogTitle: string
-    ogDescription: string
-  }
-  content: { summary: string; body: string }
-  categories: string
-  tags: string
-  status: string
-  isFeatured: boolean
-  images: FileList
+    title: string
+    slug: string
+    author: string
+    meta: {
+        description: string
+        keywords: string
+        ogTitle: string
+        ogDescription: string
+    }
+    content: { summary: string; body: string }
+    categories: string
+    tags: string
+    status: string
+    isFeatured: boolean
+    header_image: FileList
 }
 
 const BlogActionModal = ({ setModalState, modalState }: ModalProps) => {
@@ -69,20 +71,11 @@ const BlogActionModal = ({ setModalState, modalState }: ModalProps) => {
                 body: data.content.body,
                 sections: []
             }))
-
             
             formData.append("categories", JSON.stringify(data.categories.split(",").map(c => c.trim())))
             formData.append("tags", JSON.stringify(data.tags.split(",").map(t => t.trim())))
+            formData.append("header_image",data.header_image[0])
 
-            
-            if (data.images && data.images.length > 0) {
-                Array.from(data.images).forEach((file) => {
-                    formData.append("images", file)
-                })
-            }
-
-            console.log("📤 Sending Blog:", Object.fromEntries(formData.entries()))
-            
             const res:any = await createBlog({data:formData})
 
             if(res?.data?.data?.insertedId){
@@ -99,13 +92,24 @@ const BlogActionModal = ({ setModalState, modalState }: ModalProps) => {
 
     const modules = {
         toolbar: [
-        [{ header: [1, 2, 3, false] }],
-        ["bold", "italic", "underline", "strike"],
-        [{ list: "ordered" }, { list: "bullet" }],
-        [{ align: [] }],
-        ["blockquote", "code-block"],
-        ["link", "image", "video"],
-        ["clean"],
+            ['bold', 'italic', 'underline', 'strike'],   
+            ['blockquote', 'code-block'],
+            ['link', 'image', 'video', 'formula'],
+
+            [{ 'header': 1 }, { 'header': 2 }],         
+            [{ 'list': 'ordered'}, { 'list': 'bullet' }, { 'list': 'check' }],
+            [{ 'script': 'sub'}, { 'script': 'super' }],  
+            [{ 'indent': '-1'}, { 'indent': '+1' }],          
+            [{ 'direction': 'rtl' }],                         
+
+            [{ 'size': ['small', false, 'large', 'huge'] }],  
+            [{ 'header': [1, 2, 3, 4, 5, 6, false] }],
+
+            [{ 'color': [] }, { 'background': [] }],
+            [{ 'font': [] }],
+            [{ 'align': [] }],
+
+            ['clean']    
         ],
     }
 
@@ -181,9 +185,9 @@ const BlogActionModal = ({ setModalState, modalState }: ModalProps) => {
                     
                     <div className="input-container">
                         <label>
-                            Blog images
+                            Blog Header Image
                         </label>
-                        <input type="file" multiple {...register("images")} className="input-field" />
+                        <input type="file" {...register("header_image")} className="input-field" />
                     </div>
                     
                     

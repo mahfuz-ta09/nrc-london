@@ -13,7 +13,7 @@ const Blog = () => {
           <div className="header-button-container">
             <button className='save-button' onClick={()=>setModalState({ isOpen: !modalState?.isOpen })}>Add Blog</button>
           </div>
-          {/* <h1 className='header-title'>my students</h1> */}
+          <h1 className='header-title'>Manage blogs</h1>
         </div>
 
         
