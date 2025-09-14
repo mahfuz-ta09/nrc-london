@@ -46,6 +46,7 @@ const BlogActionModal = ({ setModalState, modalState }: ModalProps) => {
     })
 
     const onSubmit = async(data: BlogFormData) => {
+        console.log(data.isFeatured)
         try{
             const formData = new FormData()
 
@@ -141,7 +142,7 @@ const BlogActionModal = ({ setModalState, modalState }: ModalProps) => {
                 <h1>Add New Blog</h1>
                 <button onClick={() => setModalState({ isOpen: false })} className="cancel-btn">X</button>
 
-                <form className="modal-form" style={{minWidth:'60vw'}} onSubmit={handleSubmit(onSubmit)}>
+                <form className="modal-form" style={{width:'60vw'}} onSubmit={handleSubmit(onSubmit)}>
                 
                     <div className="input-container">
                         <label>
@@ -169,7 +170,7 @@ const BlogActionModal = ({ setModalState, modalState }: ModalProps) => {
                         <label>
                             Blog Description
                         </label>
-                        <input {...register("description" ,{ required: true })} placeholder="Author" className="input-field" />
+                        <input {...register("description" ,{ required: true })} placeholder="Descrition" className="input-field" />
                     </div>
                 
                     <div className="input-container">

@@ -18,7 +18,7 @@ const blogApi = baseApi.injectEndpoints({
         }),
 
         getBlogs: build.query<
-            { blogs: any[]; meta: { total: number; page: number; limit: number; totalPages: number } },
+            { data: any[]; meta: { total: number; page: number; limit: number; totalPages: number ; totalCount:number } },
             { page?: number; limit?: number; category?: string; status?: string; isFeatured?: boolean }>({
 
                 query: ({ page = 1, limit = 10, category, status, isFeatured }) => {
