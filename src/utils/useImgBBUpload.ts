@@ -2,6 +2,7 @@ const apiKey = "759c221a2bb6cc68c0c947c44ee5bfc4"
 const url = `https://api.imgbb.com/1/upload?key=${apiKey}`
 import { useState } from "react"
 
+
 const useImgBBUpload = () => {
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState(null);
@@ -10,8 +11,8 @@ const useImgBBUpload = () => {
     setIsLoading(true);
     setError(null);
 
-    const formData = new FormData();
-    formData.append("image", image[0]);
+    const formData = new FormData()
+    formData.append("image", image[0])
 
     try {
       const response = await fetch(url, {

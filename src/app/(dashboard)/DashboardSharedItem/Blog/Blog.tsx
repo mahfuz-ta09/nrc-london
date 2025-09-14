@@ -3,6 +3,7 @@ import Loader from "@/component/shared/Loader/Loader"
 import { Suspense, useState } from "react"
 import BlogActionModal from "./BlogActionModal"
 import '@/css/Dashboard/DashBoardSharedItem/DashboardSharedCss.css'
+import BlogTable from "./BlogTable"
 
 
 const Blog = () => {
@@ -25,9 +26,9 @@ const Blog = () => {
           />
         </Suspense>
 
-        {/* <Suspense fallback={<Loader />}>
-          <StudentInfoSlider />
-        </Suspense> */}
+        <Suspense fallback={<Loader />}>
+          <BlogTable />
+        </Suspense>
       </div>
   )
 }

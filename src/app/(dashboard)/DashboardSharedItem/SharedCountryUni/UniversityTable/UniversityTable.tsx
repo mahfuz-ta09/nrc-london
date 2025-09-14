@@ -23,11 +23,12 @@ type paraType = {
 
 
 const UniversityTable = () => {
+    const [isOpen,setIsOpen] = useState(false)
     const {data:country, isLoading: nameLoading}= useGetAllCountryNameQuery()
     const [deleteUni , { isLoading: deleteLoading }] = useDeleteUniMutation()
     const [addUni,setAddUni] = useState({action:"",id:'',isOPen: false,name:''})
-    const [listSubject,setListSubject] = useState({action:"",id:'',isOPen: false,name:''})
     const [addSub,setAddSub] = useState({action:"",id:'',isOPen: false,name:''})
+    const [listSubject,setListSubject] = useState({action:"",id:'',isOPen: false,name:''})
     const [para,setPara] = useState<paraType>({all:'',country:'',page:1,total:10,uniName:''})
     const { data , isLoading } = useGetUniversityListQuery({
         all: para.all || "",
@@ -36,11 +37,7 @@ const UniversityTable = () => {
         total: para.total || 10,
         uniName: para.uniName || ""
     })
-    const [isOpen,setIsOpen] = useState(false)
 
-    if(isLoading || nameLoading || deleteLoading){
-        return <Loader />
-    }
     
     const handleDelete = async(id:string,uniName:string ) =>{
         try{
@@ -81,6 +78,7 @@ const UniversityTable = () => {
     }
     
     return (
+        (isLoading || nameLoading || deleteLoading) ? <Loader /> :(
         <div className='university-table'>
             {data?.meta?.totalCount!==0 && 
                 <div className="filter-header-uni">
@@ -225,8 +223,8 @@ const UniversityTable = () => {
                 />
             </Suspense>
 
-        </div>
-    )
+        </div>    
+    ))
 }
 
 export default UniversityTable

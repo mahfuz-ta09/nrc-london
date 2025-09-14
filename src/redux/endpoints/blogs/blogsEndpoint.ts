@@ -14,16 +14,38 @@ const blogApi = baseApi.injectEndpoints({
                 },
                 data,
             }),
-            invalidatesTags: ["blog"],
+            invalidatesTags: ["blogs"],
         }),
 
+        getBlogs: build.query<
+            { blogs: any[]; meta: { total: number; page: number; limit: number; totalPages: number } },
+            { page?: number; limit?: number; category?: string; status?: string; isFeatured?: boolean }>({
 
+                query: ({ page = 1, limit = 10, category, status, isFeatured }) => {
+                    const params = new URLSearchParams()
+
+                    if (page) params.append("page", String(page))
+                    if (limit) params.append("limit", String(limit))
+                    if (category) params.append("category", category)
+                    if (status) params.append("status", status)
+                    if (isFeatured !== undefined) params.append("isFeatured", String(isFeatured))
+
+                    return {
+                        url: `/blog/all?${params.toString()}`,
+                        method: "GET",
+                    }
+                },
+                providesTags: ["blogs"],
+        }),
 
     }),
 
     overrideExisting: true,
 })
 
+
+
 export const {
-    useCreateBlogMutation
+    useCreateBlogMutation,
+    useGetBlogsQuery,
 } = blogApi
