@@ -1,5 +1,8 @@
 import { Metadata } from 'next'
+import { Suspense } from 'react'
 import '../../../css/blogs/mainBlogPage.css'
+import Loader from '@/component/shared/Loader/Loader'
+import BlogList from '@/component/BlogList/BlogList'
 
 
 export const metadata:Metadata = {
@@ -11,7 +14,7 @@ export const metadata:Metadata = {
         url: "https://www.nrcedu-uk.com/Blogs",
         images: [
         {
-            url: "https://yoursite.com/og-image.png", // you can use a default OG image
+            url: "https://yoursite.com/og-image.png",
             width: 1200,
             height: 630,
             alt: "NRC Educational Consultants Ltd. Blogs",
@@ -34,6 +37,11 @@ const page = () => {
                     <h1>Read Our blogs</h1>
                     <p>To stay updated</p>
                 </div>
+            </div>
+            <div className="blog-page-body">
+                <Suspense fallback={<Loader />}>
+                    <BlogList />
+                </Suspense>
             </div>
         </div>
     )
