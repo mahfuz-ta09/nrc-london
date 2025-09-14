@@ -52,6 +52,10 @@ const Navbar = () => {
                         <Link onClick={()=>setIsOpen(false)} className='link' href="/"><FontAwesomeIcon icon={faHome}/></Link>
                     </div>
 
+                    <div className='link-holder'>
+                        <Link onClick={()=>setIsOpen(false)} className='link' href="/Blogs">Blogs</Link>
+                    </div>
+
                     <SubNav />
                     <div className='link-holder'>
                         <p className='link'>Test prep</p>

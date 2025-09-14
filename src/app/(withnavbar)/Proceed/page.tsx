@@ -10,6 +10,10 @@ import Loader from '@/component/shared/Loader/Loader'
 
 
 
+// export const metadata = {
+//     title: "Blogs",
+//     description: "Blogs page",
+// }
 
 const page = () => {
     const { register , reset, handleSubmit } = useForm<IFormInput>()
