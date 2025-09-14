@@ -1,31 +1,33 @@
 'use client'
-import { useGetBlogsQuery } from '@/redux/endpoints/blogs/blogsEndpoint'
+import { useDeleteBlogMutation, useGetBlogsQuery } from '@/redux/endpoints/blogs/blogsEndpoint'
 import '../SharedCountryUni/UniversityTable/UniversityTable.css'
 import { faAdd, faEye, faPen, faTrash } from '@fortawesome/free-solid-svg-icons'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { useState } from 'react'
 import Loader from '@/component/shared/Loader/Loader'
 import Pagination from '@/component/shared/Pagination/Pagination'
+import { toast } from 'react-toastify'
 
 const BlogTable = () => {
     const [params,setParams] =  useState({ page: 1, limit: 10 , category: "", status: "", isFeatured: undefined})
-    const { data, isLoading, isError, refetch } =  useGetBlogsQuery({ page: params?.page, limit: params?.limit , category: params?.category, status: params?.status, isFeatured: params?.isFeatured})
+    const [deleteBlog , { isLoading: deleteLoading }] = useDeleteBlogMutation()
+    const { data, isLoading } =  useGetBlogsQuery({ page: params?.page, limit: params?.limit , category: params?.category, status: params?.status, isFeatured: params?.isFeatured})
     
     const handleOnChange = (e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>) => {
-    const { name, value } = e.target
+        const { name, value } = e.target
 
-    setParams(prev => {
-        let newValue: any = value
+        setParams(prev => {
+            let newValue: any = value
 
-        if (name === "page" || name === "limit") {
-            newValue = Number(value)
-            } else if (name === "isFeatured") {
-            newValue = value === "true" ? true : value === "false" ? false : undefined
-            }
+            if (name === "page" || name === "limit") {
+                newValue = Number(value)
+                } else if (name === "isFeatured") {
+                newValue = value === "true" ? true : value === "false" ? false : undefined
+                }
 
-            return {
-            ...prev,
-            [name]: newValue,
+                return {
+                ...prev,
+                [name]: newValue,
             }
         })
     }
@@ -36,22 +38,33 @@ const BlogTable = () => {
             page: newPage,
         }))
     }
-console.log(data?.meta)
+
+    const handleDelete = async(id: string) => {
+        try {
+            const rep = window.confirm("Are you sure you want to delete this blog?")
+            if(!rep) return;
+            const res = await deleteBlog({ id }).unwrap()
+            toast.success("Blog deleted successfully")
+        } catch (error) {
+            toast.error("Failed to delete blog")
+        }
+    }
+    // console.log(data?.data)
     return ((
-        (isLoading) ? <Loader />:
+        (isLoading || deleteLoading ) ? <Loader />:
         <div style={ data?.meta?.totalCount!==0? {display:"block"} : {display:"none"}}>
             
             <div className="params-controlls">
-                <input type="number" name="page" onChange={handleOnChange}/>
-                <input type="number" name="limit" onChange={handleOnChange}/>
-                <input type="text" name="category" onChange={handleOnChange}/>
+                <input placeholder='Enter Page' type="number" name="page" onChange={handleOnChange}/>
+                <input placeholder='Enter Limit per page' type="number" name="limit" onChange={handleOnChange}/>
+                <input placeholder='Enter Category' type="text" name="category" onChange={handleOnChange}/>
                 <select onChange={handleOnChange} name="status" id="">
-                    <option value="">Select status</option>
+                    <option>Select status</option>
                     <option value="published">Published</option>
                     <option value="draft">Draft</option>
                 </select>
                 <select onChange={handleOnChange} name="isFeatured" id="">
-                    <option value="">Select status</option>
+                    <option>Select status</option>
                     <option value="true">yes</option>
                     <option value="false">no</option>
                 </select>
@@ -93,7 +106,7 @@ console.log(data?.meta)
                                         <td>{blog?.slug || ''}</td>
                                         <td>
                                             <button className="action-btn" style={{margin:'5px',background:"green"}} ><FontAwesomeIcon icon={faEye}/></button>
-                                            <button className="action-btn" style={{margin:'5px',background:"#f14040"}} ><FontAwesomeIcon icon={faTrash}/></button>
+                                            <button onClick={()=>handleDelete(blog?._id)} className="action-btn" style={{margin:'5px',background:"#f14040"}} ><FontAwesomeIcon icon={faTrash}/></button>
                                             <button className="action-btn" style={{margin:'5px',background:"green"}} ><FontAwesomeIcon icon={faPen}/></button>
                                         </td>
                                     </tr>

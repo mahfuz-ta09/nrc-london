@@ -70,11 +70,10 @@ const BlogActionModal = ({ setModalState, modalState }: ModalProps) => {
                 const updatedData = new FormData()
                 
                 imgElements.forEach((imgEl) => {
-                    const src = imgEl.getAttribute("src");
+                    const src = imgEl.getAttribute("src")
                     if (src && src.startsWith("data:image")) {
-                        const file = base64ToFile(src, `editor-img-${i}.png`);
-                        console.log("files inside modal",file)
-                        updatedData.append("images", file);
+                        const file = base64ToFile(src, `editor-img-${i}.png`)
+                        updatedData.append("images", file)
                         i++;
                     }
                 })
