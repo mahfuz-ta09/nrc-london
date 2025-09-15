@@ -49,7 +49,7 @@ const BlogTable = () => {
             toast.error("Failed to delete blog")
         }
     }
-    // console.log(data?.data)
+    console.log(data?.data)
     return ((
         (isLoading || deleteLoading ) ? <Loader />:
         <div style={ data?.meta?.totalCount!==0? {display:"block"} : {display:"none"}}>
@@ -99,10 +99,10 @@ const BlogTable = () => {
                                         
                                         </td>
                                         <td>
-                                            {JSON.parse(blog?.categories)?.join(', ') || ''}
+                                            {blog?.categories?.join(', ') || ''}
                                         </td>
                                         <td>{blog?.status || ''}</td>
-                                        <td>{JSON.parse(blog?.isFeatured)? 'Yes' : 'No'}</td>
+                                        <td>{blog?.isFeatured? 'Yes' : 'No'}</td>
                                         <td>{blog?.slug || ''}</td>
                                         <td>
                                             <button className="action-btn" style={{margin:'5px',background:"green"}} ><FontAwesomeIcon icon={faEye}/></button>

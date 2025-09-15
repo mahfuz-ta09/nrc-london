@@ -1,132 +1,59 @@
 'use client'
+import { useState } from 'react'
 import '../../css/blogs/mainBlogPage.css'
+import Loader from '../shared/Loader/Loader'
+import { useGetBlogByCategoryQuery, useGetUniqueCatagoriesQuery } from '@/redux/endpoints/blogs/blogsEndpoint'
 
 const BlogList = () => {
+    const [params,setParams] = useState({category: 'all', page:1, limit:10})
+    const {data:category , isLoading: loadCategory} = useGetUniqueCatagoriesQuery()
+    const { data: blogsData, isLoading: loadBlogs } = useGetBlogByCategoryQuery(params)
+    
+    
+    
     return (
+        (loadCategory||loadBlogs) ? <Loader /> :
         <div className='blog-list-container'>
             <div className="blog-tag-list">
-                <button className="blog-tag-item active">All</button>
-                <button className="blog-tag-item">Study in UK</button>
-                <button className="blog-tag-item">Student Visa</button>
-                <button className="blog-tag-item">Student Visa</button>
-                <button className="blog-tag-item">Student Visa</button>
-                <button className="blog-tag-item">Student Visa</button>
-                <button className="blog-tag-item">Student Visa</button>
-                <button className="blog-tag-item">Student Visa</button>
-                <button className="blog-tag-item">Student Visa</button>
-                <button className="blog-tag-item">Student Visa</button>
-                <button className="blog-tag-item">Student Visa</button>
-                <button className="blog-tag-item">Student Visa</button>
-                <button className="blog-tag-item">Student Visa</button>
-                <button className="blog-tag-item active">Student Visa</button>
-                <button className="blog-tag-item">Student Visa</button>
-                <button className="blog-tag-item">Student Visa</button>
-                <button className="blog-tag-item">Student Visa</button>
-                <button className="blog-tag-item">Student Visa</button>
-                <button className="blog-tag-item">Student Visa</button>
+                <button onClick={()=>setParams({...params,category: "all"})}  className={"all"===params.category?"blog-tag-item active":"blog-tag-item"}>all</button>
+                {
+                    category?.data?.map((category:string, index:number) => (
+                        <button onClick={()=>setParams({...params,category: category})} key={index} className={category===params.category?"blog-tag-item active":"blog-tag-item"}>{category}</button>
+                    ))
+                }
             </div>
         
             <div className="blog-list">
-                <div className="blog-card">
-                    <div className="meta">
-                    <div className="photo" style={{backgroundImage: "url(https://images.unsplash.com/photo-1506744038136-46273834b3fb?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1170&q=80)"}}></div>
-                    <ul className="details">
-                        <li className="author"><a href="#">John Doe</a></li>
-                        <li className="date">Aug. 24, 2015</li>
-                        <li className="tags">
-                        <ul>
-                            <li><a href="#">Learn</a></li>
-                            <li><a href="#">Code</a></li>
-                            <li><a href="#">HTML</a></li>
-                            <li><a href="#">CSS</a></li>
-                        </ul>
-                        </li>
-                    </ul>
-                    </div>
-                    <div className="description">
-                    <h1>Learning to Code</h1>
-                    <h2>Opening a door to the future</h2>
-                    <p> Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ad eum dolorum architecto obcaecati enim dicta praesentium, quam nobis! Neque ad aliquam facilis numquam. Veritatis, sit.</p>
-                    <p className="read-more">
-                        <a href="#">Read More</a>
-                    </p>
-                    </div>
-                </div>
-                <div className="blog-card alt">
-                    <div className="meta">
-                    <div className="photo" style={{backgroundImage: "url(https://images.unsplash.com/photo-1506744038136-46273834b3fb?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1170&q=80)"}}></div>
-                    <ul className="details">
-                        <li className="author"><a href="#">John Doe</a></li>
-                        <li className="date">Aug. 24, 2015</li>
-                        <li className="tags">
-                        <ul>
-                            <li><a href="#">Learn</a></li>
-                            <li><a href="#">Code</a></li>
-                            <li><a href="#">HTML</a></li>
-                            <li><a href="#">CSS</a></li>
-                        </ul>
-                        </li>
-                    </ul>
-                    </div>
-                    <div className="description">
-                    <h1>Learning to Code</h1>
-                    <h2>Opening a door to the future</h2>
-                    <p> Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ad eum dolorum architecto obcaecati enim dicta praesentium, quam nobis! Neque ad aliquam facilis numquam. Veritatis, sit.</p>
-                    <p className="read-more">
-                        <a href="#">Read More</a>
-                    </p>
-                    </div>
-                </div>
-                <div className="blog-card">
-                    <div className="meta">
-                    <div className="photo" style={{backgroundImage: "url(https://images.unsplash.com/photo-1506744038136-46273834b3fb?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1170&q=80)"}}></div>
-                    <ul className="details">
-                        <li className="author"><a href="#">John Doe</a></li>
-                        <li className="date">Aug. 24, 2015</li>
-                        <li className="tags">
-                        <ul>
-                            <li><a href="#">Learn</a></li>
-                            <li><a href="#">Code</a></li>
-                            <li><a href="#">HTML</a></li>
-                            <li><a href="#">CSS</a></li>
-                        </ul>
-                        </li>
-                    </ul>
-                    </div>
-                    <div className="description">
-                    <h1>Learning to Code</h1>
-                    <h2>Opening a door to the future</h2>
-                    <p> Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ad eum dolorum architecto obcaecati enim dicta praesentium, quam nobis! Neque ad aliquam facilis numquam. Veritatis, sit.</p>
-                    <p className="read-more">
-                        <a href="#">Read More</a>
-                    </p>
-                    </div>
-                </div>
-                <div className="blog-card alt">
-                    <div className="meta">
-                    <div className="photo" style={{backgroundImage: "url(https://images.unsplash.com/photo-1506744038136-46273834b3fb?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1170&q=80)"}}></div>
-                    <ul className="details">
-                        <li className="author"><a href="#">John Doe</a></li>
-                        <li className="date">Aug. 24, 2015</li>
-                        <li className="tags">
-                        <ul>
-                            <li><a href="#">Learn</a></li>
-                            <li><a href="#">Code</a></li>
-                            <li><a href="#">HTML</a></li>
-                            <li><a href="#">CSS</a></li>
-                        </ul>
-                        </li>
-                    </ul>
-                    </div>
-                    <div className="description">
-                    <h1>Learning to Code</h1>
-                    <h2>Opening a door to the future</h2>
-                    <p> Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ad eum dolorum architecto obcaecati enim dicta praesentium, quam nobis! Neque ad aliquam facilis numquam. Veritatis, sit.</p>
-                    <p className="read-more">
-                        <a href="#">Read More</a>
-                    </p>
-                    </div>
-                </div>
+                {
+                    blogsData?.data?.map((blog:any, index:number) => (
+                        <div key={index} className="blog-card">
+                            <div className="meta">
+                                <div className="photo" style={{backgroundImage:`url(${blog?.meta?.ogImage?.url})`}}></div>
+                                <ul className="details">
+                                    <li className="author"><a>{blog?.author}</a></li>
+                                    <li className="date">{blog?.publishedAt}</li>
+                                    <li className="tags">
+                                        <ul>
+                                            {
+                                                blog?.tags?.map((tag:string, idx:number) => (
+                                                    <li key={idx}><a>{tag}</a></li>
+                                                ))
+                                            }
+                                        </ul>
+                                    </li>
+                                </ul>
+                            </div>
+                            <div className="description">
+                                <h1>{blog?.title}</h1>
+                                <h2>{blog?.slug}</h2>
+                                <p>{blog?.meta?.ogDescription.slice(0,180)}...</p>
+                                <p className="read-more">
+                                    <a href={`/Blogs/${blog?.slug}`}>Read More</a>
+                                </p>
+                            </div>
+                        </div>
+                    ))
+                }
 
             </div>
         </div>

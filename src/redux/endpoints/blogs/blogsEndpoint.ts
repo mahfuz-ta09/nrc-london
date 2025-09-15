@@ -46,6 +46,23 @@ const blogApi = baseApi.injectEndpoints({
             invalidatesTags: ["blogs"],
         }),
 
+        getUniqueCatagories: build.query<{ data: any }, void>({
+            query: () => ({
+                url: "/blog/categories",
+                method: "GET",
+            }),
+            providesTags: ["blogs"],
+        }),
+
+        getBlogByCategory: build.query<
+            { data: any[]},{ category: string; page?: number; limit?: number }>({
+                query: ({ category, page = 1, limit = 10 }) => ({
+                    url: `/blog/read/${category}/${page}/${limit}`,
+                    method: "GET",
+                }),
+                providesTags: ["blogs"],
+        }),
+
     }),
     
 
@@ -57,5 +74,7 @@ const blogApi = baseApi.injectEndpoints({
 export const {
     useCreateBlogMutation,
     useGetBlogsQuery,
-    useDeleteBlogMutation
+    useDeleteBlogMutation,
+    useGetBlogByCategoryQuery,
+    useGetUniqueCatagoriesQuery,
 } = blogApi
