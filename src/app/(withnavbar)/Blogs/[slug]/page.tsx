@@ -2,7 +2,7 @@ import type { Metadata } from "next"
 import Image from "next/image"
 import "../../../../css/blogs/slugDesign.css"
 
-// ✅ params is just an object, not a Promise
+// ✅ No custom interface needed
 export async function generateMetadata(
   { params }: { params: { slug: string } }
 ): Promise<Metadata> {
@@ -33,7 +33,7 @@ export async function generateMetadata(
   }
 }
 
-// ✅ Page component
+// ✅ Page function – destructure params directly
 export default async function BlogDetail(
   { params }: { params: { slug: string } }
 ) {
