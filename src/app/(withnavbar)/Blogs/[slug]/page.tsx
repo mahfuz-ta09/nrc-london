@@ -2,10 +2,14 @@ import type { Metadata } from "next"
 import Image from "next/image"
 import "../../../../css/blogs/slugDesign.css"
 
-// ✅ params is Promise<{ slug: string }>
-export async function generateMetadata({ params }: { params: Promise<{ slug: string }> }): Promise<Metadata> {
-  const { slug } = await params  // ⬅️ must await here
-  const res = await fetch(`${process.env.NEXT_PUBLIC_LOCAL_API}/blog/${slug}`)
+// ✅ params is just an object, not a Promise
+export async function generateMetadata(
+  { params }: { params: { slug: string } }
+): Promise<Metadata> {
+  const { slug } = params
+  const res = await fetch(`${process.env.NEXT_PUBLIC_LOCAL_API}/blog/${slug}`, {
+    cache: "no-store",
+  })
   const blog = await res.json()
 
   return {
@@ -14,21 +18,29 @@ export async function generateMetadata({ params }: { params: Promise<{ slug: str
     openGraph: {
       title: blog?.data?.title,
       description: blog?.data?.content?.summary,
-      images: blog?.data?.meta?.ogImage?.url ? [{ url: blog?.data.meta.ogImage.url }] : [],
+      images: blog?.data?.meta?.ogImage?.url
+        ? [{ url: blog?.data.meta.ogImage.url }]
+        : [],
     },
     twitter: {
       card: "summary_large_image",
       title: blog?.data?.title,
       description: blog?.data?.content?.summary,
-      images: blog?.data?.meta?.ogImage?.url ? [blog?.data?.meta?.ogImage?.url] : [],
+      images: blog?.data?.meta?.ogImage?.url
+        ? [blog?.data?.meta?.ogImage?.url]
+        : [],
     },
   }
 }
 
-// ✅ Page component params are synchronous
-export default async function BlogDetail({ params }: { params: { slug: string } }) {
+// ✅ Page component
+export default async function BlogDetail(
+  { params }: { params: { slug: string } }
+) {
   const { slug } = params
-  const res = await fetch(`${process.env.NEXT_PUBLIC_LOCAL_API}/blog/${slug}`, { cache: "no-store" })
+  const res = await fetch(`${process.env.NEXT_PUBLIC_LOCAL_API}/blog/${slug}`, {
+    cache: "no-store",
+  })
   const blog = await res.json()
 
   return (
@@ -51,7 +63,9 @@ export default async function BlogDetail({ params }: { params: { slug: string } 
             {blog?.data?.publishedAt} By {blog?.data?.author}
           </em>
         </p>
-        <div dangerouslySetInnerHTML={{ __html: blog?.data?.content?.body || "" }} />
+        <div
+          dangerouslySetInnerHTML={{ __html: blog?.data?.content?.body || "" }}
+        />
       </div>
     </div>
   )
