@@ -100,65 +100,59 @@ const Page = () => {
             <p className='filter-status'>page number:{para.page??'not selected'} | per page:{para.total??'not selected'} | status:{para.status??'not selected'} | search email:{para.email??'not selected'} | search name:{para.name??''}</p>
 
             <div className="filter-header">
-                <p>filter users</p>
                 <button onClick={()=>setIsOpen(!isOpen)}><FontAwesomeIcon icon={faFilter}/></button>
                 
                 <div className={isOpen?"filter-container show":"filter-container"}>
                         
                     <div className="filter-item">
-                        <label>Page</label>
-                        <input
-                        type="number"
-                        name="page"
-                        placeholder="Page"
-                        value={para.page}
-                        onChange={handleChange}
-                        min={1}
+                            <input
+                            type="number"
+                            name="page"
+                            placeholder="Page"
+                            value={para.page}
+                            onChange={handleChange}
+                            min={1}
                         />
                     </div>
                     
                     <div className="filter-item">
-                        <label>Rows per page</label>
                         <input
-                        type="number"
-                        name="total"
-                        placeholder="Rows per page"
-                        value={para.total}
-                        onChange={handleChange}
-                        min={1}
+                            type="number"
+                            name="total"
+                            placeholder="Rows per page"
+                            value={para.total}
+                            onChange={handleChange}
+                            min={1}
                         />
                     </div>
                     
                     <div className="filter-item">
-                        <label>Status</label>
                         <input
-                        type="text"
-                        name="status"
-                        placeholder="Status filter"
-                        value={para.status}
-                        onChange={handleChange}
+                            type="text"
+                            name="status"
+                            placeholder="Status filter(active/inactive/banned)"
+                            value={para.status}
+                            onChange={handleChange}
+                            />
+                    </div>
+                    
+                    <div className="filter-item">
+                        <input
+                            type="text"
+                            name="email"
+                            placeholder="Email filter"
+                            value={para.email}
+                            onChange={handleChange}
                         />
                     </div>
                     
                     <div className="filter-item">
-                        <label>Email</label>
                         <input
-                        type="text"
-                        name="email"
-                        placeholder="Email filter"
-                        value={para.email}
-                        onChange={handleChange}
-                        />
-                    </div>
-                    
-                    <div className="filter-item">
-                        <label>Name</label>
-                        <input
-                        type="text"
-                        name="name"
-                        placeholder="Name filter"
-                        value={para.name}
-                        onChange={handleChange}
+                            type="text"
+                            name="name"
+                            placeholder="Name filter"
+                            value={para.name}
+                            onChange={handleChange}
                         />
                     </div>
                 </div>
