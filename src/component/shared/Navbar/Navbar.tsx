@@ -52,13 +52,10 @@ const Navbar = () => {
                         <Link onClick={()=>setIsOpen(false)} className='link' href="/"><FontAwesomeIcon icon={faHome}/></Link>
                     </div>
 
-                    <div className='link-holder'>
-                        <Link onClick={()=>setIsOpen(false)} className='link' href="/Blogs">Blogs</Link>
-                    </div>
-
+                    <UniNav />
                     <SubNav />
                     <div className='link-holder'>
-                        <p className='link'>Test prep</p>
+                        <p className='link'>test prep</p>
                         <div className='drop-down'>
                             <div className="drop-down-content ">
                                 <div className="drop-down-group">
@@ -85,10 +82,13 @@ const Navbar = () => {
                         </div>
                     </div>
 
-                    <UniNav />
                     
                     <div className='link-holder'>
-                        <p className='link'>Recruitement partner</p>
+                        <Link onClick={()=>setIsOpen(false)} className='link' href="/Blogs">blogs</Link>
+                    </div>
+
+                    <div className='link-holder'>
+                        <p className='link'>recruitement partner</p>
                         <div className='drop-down'>
                             <div className="drop-down-content">
                                 <div className="drop-down-group">
@@ -103,7 +103,7 @@ const Navbar = () => {
                     </div>
                     
                     <div className='link-holder'>
-                        <Link onClick={()=>setIsOpen(false)} className='link' href="/Proceed">Proceed</Link>
+                        <Link onClick={()=>setIsOpen(false)} className='link' href="/Proceed">proceed</Link>
                     </div>
                 </div>
                 <div className={isOpen ? 'link-items show' :'link-items hide'}>

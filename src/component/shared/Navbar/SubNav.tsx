@@ -13,7 +13,7 @@ const UniNav = () => {
  
     return (
         <div className='link-holder'>
-            <p className='link'>Subjects</p>
+            <p className='link'>subjects</p>
             <div className='drop-down'>
                 {isLoading ? (<Loader />
                     ) : (

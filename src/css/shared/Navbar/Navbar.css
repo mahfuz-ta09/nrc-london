@@ -24,8 +24,8 @@
 .mobile-email{
     display: flex;
     align-items: center;
-    justify-content:space-between;
-    gap: 50px;
+    justify-content:end;
+    gap: 15px;
     padding: 0px 10px;
     max-width: 1300px;
     width: 100%;
@@ -33,8 +33,8 @@
 }
 
 .mobile-email h5{
-    font-size: 16px;
-    font-weight: 400;
+    font-size: 14px;
+    font-weight: 300;
 }
 
 .nav-content{
@@ -66,8 +66,9 @@
 }
 
 .nav-text h2{
-    font-size: 14px;
-    font-weight: 300;
+    font-size: 12px;
+    font-weight: 500;
+    letter-spacing: 2px;
 }
 
 .nav-logo{
@@ -169,8 +170,8 @@
 .link{
     color: #dcdce2;
     text-decoration: none;
-    font-weight: 100;
-    font-size: 19px;
+    font-weight: 500;
+    font-size: 17px;
     line-height: 16px;
     gap: 5px;
 }
