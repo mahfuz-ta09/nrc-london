@@ -1,14 +1,15 @@
 'use client'
+import Link from 'next/link'
 import { useState } from 'react'
 import '../../css/blogs/mainBlogPage.css'
 import Loader from '../shared/Loader/Loader'
 import { useGetBlogByCategoryQuery, useGetUniqueCatagoriesQuery } from '@/redux/endpoints/blogs/blogsEndpoint'
-import Link from 'next/link'
 
 const BlogList = () => {
     const [params,setParams] = useState({category: 'all', page:1, limit:10})
     const {data:category , isLoading: loadCategory} = useGetUniqueCatagoriesQuery()
     const { data: blogsData, isLoading: loadBlogs } = useGetBlogByCategoryQuery(params)
+    
     
     return (
         (loadCategory||loadBlogs) ? <Loader /> :
@@ -43,9 +44,9 @@ const BlogList = () => {
                                 </ul>
                             </div>
                             <div className="description">
-                                <h1><Link href={`/Blogs/${blog?.slug}`}>{blog?.title}</Link></h1>
-                                <h2>{blog?.slug}</h2>
-                                <p>{blog?.meta?.ogDescription.slice(0,150)}...</p>
+                                <h1><Link href={`/Blogs/${blog?.slug}`}>{blog?.title.slice(0,85)}...</Link></h1>
+                                {/* <h2>{blog?.summary.slice(0,20)}...</h2> */}
+                                <p>{JSON.parse(blog?.description).slice(0,150)}...</p>
                                 <p className="read-more">
                                     <Link href={`/Blogs/${blog?.slug}`}>Read More</Link>
                                 </p>

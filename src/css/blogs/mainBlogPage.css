@@ -273,6 +273,7 @@
   .blog-card {
     flex-direction: row;
     max-width: 700px;
+    height: auto;
   }
 
   .blog-card .meta {

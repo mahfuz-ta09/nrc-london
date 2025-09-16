@@ -14,21 +14,21 @@ export async function generateMetadata(
     })
 
     const blog = await res.json()
-
+    
     return {
       title: blog?.data?.title || "Blog",
       description: blog?.data?.content?.summary || "",
       openGraph: {
-        title: blog?.data?.title,
-        description: blog?.data?.content?.summary,
+        title: blog?.data?.meta?.ogTitle,
+        description: blog?.data?.meta?.ogDescription,
         images: blog?.data?.meta?.ogImage?.url
           ? [{ url: blog?.data.meta.ogImage.url }]
           : [],
       },
       twitter: {
         card: "summary_large_image",
-        title: blog?.data?.title,
-        description: blog?.data?.content?.summary,
+        title: blog?.data?.meta?.ogTitle,
+        description: blog?.data?.meta?.ogDescription,
         images: blog?.data?.meta?.ogImage?.url
           ? [blog?.data?.meta?.ogImage?.url]
           : [],
@@ -51,7 +51,7 @@ export default async function BlogDetail(
       <div className="blog-header">
         {blog?.data?.meta?.ogImage?.url && (
           <Image
-            src={blog.data.meta.ogImage.url}
+            src={blog?.data?.meta?.ogImage?.url}
             fill
             priority
             alt="blog header image"
@@ -66,8 +66,9 @@ export default async function BlogDetail(
             {blog?.data?.publishedAt} By {blog?.data?.author}
           </em>
         </p>
+        <h4>{JSON.parse(blog?.data?.content)?.summary}</h4>
         <div
-          dangerouslySetInnerHTML={{ __html: blog?.data?.content?.body || "" }}
+          dangerouslySetInnerHTML={{ __html: JSON.parse(blog?.data?.content)?.body || "" }}
         />
       </div>
     </div>

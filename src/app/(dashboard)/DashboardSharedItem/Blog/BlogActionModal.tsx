@@ -60,6 +60,9 @@ const BlogActionModal = ({ setModalState, modalState }: ModalProps) => {
 
     const onSubmit = async(data: BlogFormData) => {
         try{
+            const rep = window.confirm("Are you sure you want to create this blog(do not refresh while uploading)?")
+            if(!rep) return
+
             const formData = new FormData()
 
             formData.append("title", data.title)
@@ -70,13 +73,13 @@ const BlogActionModal = ({ setModalState, modalState }: ModalProps) => {
             formData.append("status", data.status)
             formData.append("isFeatured", (data.isFeatured).toString())
             
-            formData.append("categories", data.categories.split(",").map(c => c.trim()).toString())
-            formData.append("tags", data.tags.split(",").map(t => t.trim()).toString())
-            
+            data?.categories.split(",").map(c => c.trim()).forEach(c => formData.append("categories", c))
+            data?.tags.split(",").map(t => t.trim()).forEach(t => formData.append("tags", t))
+
             formData.append("header_image",data.header_image[0])
 
             formData.append("meta_title", data.meta_title)
-            formData.append("meta_keywords", data.meta_keywords)
+            data?.meta_keywords.split(",").map(k => k.trim()).forEach(k => formData.append("meta_keywords", k))
             formData.append("meta_description", data.meta_description)
 
             const parser = new DOMParser();
@@ -95,7 +98,7 @@ const BlogActionModal = ({ setModalState, modalState }: ModalProps) => {
                         i++;
                     }
                 })
-                
+
                 const uploaded = await uploadImage(updatedData)
                 formData.append("urlLists", JSON.stringify(uploaded))
                 
@@ -115,10 +118,9 @@ const BlogActionModal = ({ setModalState, modalState }: ModalProps) => {
             }))
 
             let res: any
-            const rep = window.confirm("Are you sure you want to create this blog(do not refresh while uploading)?")
             res = await createBlog({data:formData}).unwrap()
-
-            if(res?.data?.data?.insertedId){
+            console.log(res)
+            if(res?.data?.insertedId){
                 toast.success('Blog inserted seccessfully')
                 reset()
                 setModalState({ isOpen: false })
