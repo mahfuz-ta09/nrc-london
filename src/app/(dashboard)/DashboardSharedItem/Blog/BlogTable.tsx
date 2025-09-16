@@ -1,6 +1,7 @@
 'use client'
 import { useState } from 'react'
 import { toast } from 'react-toastify'
+import '@/css/Dashboard/super_admin/common.css'
 import Loader from '@/component/shared/Loader/Loader'
 import '../SharedCountryUni/UniversityTable/UniversityTable.css'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
@@ -58,21 +59,19 @@ const BlogTable = () => {
             <div className="filter-header">
                 <button onClick={()=>setOpen(!open)}><FontAwesomeIcon icon={faFilter}/></button>
                 <div className={open?"filter-container show":"filter-container"}>
-                    <div className="params-controlls">
-                        <input placeholder='Enter Page' type="number" name="page" onChange={handleOnChange}/>
-                        <input placeholder='Enter Limit per page' type="number" name="limit" onChange={handleOnChange}/>
-                        <input placeholder='Enter Category' type="text" name="category" onChange={handleOnChange}/>
-                        <select onChange={handleOnChange} name="status" id="">
-                            <option>Select status</option>
-                            <option value="published">Published</option>
-                            <option value="draft">Draft</option>
-                        </select>
-                        <select onChange={handleOnChange} name="isFeatured" id="">
-                            <option>Is featured</option>
-                            <option value="true">yes</option>
-                            <option value="false">no</option>
-                        </select>
-                    </div>
+                    <input placeholder='Enter Page' type="number" name="page" onChange={handleOnChange}/>
+                    <input placeholder='Enter Limit per page' type="number" name="limit" onChange={handleOnChange}/>
+                    <input placeholder='Enter Category' type="text" name="category" onChange={handleOnChange}/>
+                    <select onChange={handleOnChange} name="status" id="">
+                        <option>Select status</option>
+                        <option value="published">Published</option>
+                        <option value="draft">Draft</option>
+                    </select>
+                    <select onChange={handleOnChange} name="isFeatured" id="">
+                        <option>Is featured</option>
+                        <option value="true">yes</option>
+                        <option value="false">no</option>
+                    </select>
                 </div>
             </div>
 
