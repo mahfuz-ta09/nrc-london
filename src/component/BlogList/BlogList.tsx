@@ -48,7 +48,7 @@ const BlogList = () => {
                                 <h2>{blog?.slug}</h2>
                                 <p>{blog?.meta?.ogDescription.slice(0,180)}...</p>
                                 <p className="read-more">
-                                    <a href={`/Blogs/${blog?.slug}`}>Read More</a>
+                                    <Link href={`/Blogs/${blog?.slug}`}>Read More</Link>
                                 </p>
                             </div>
                         </div>
