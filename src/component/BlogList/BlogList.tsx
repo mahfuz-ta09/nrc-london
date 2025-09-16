@@ -1,6 +1,6 @@
 'use client'
 import { useState } from 'react'
-import '../../css/blogs/mainBlogPage.css'
+// import '../../css/blogs/mainBlogPage.css'
 import Loader from '../shared/Loader/Loader'
 import { useGetBlogByCategoryQuery, useGetUniqueCatagoriesQuery } from '@/redux/endpoints/blogs/blogsEndpoint'
 

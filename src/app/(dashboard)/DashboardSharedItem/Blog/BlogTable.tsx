@@ -1,7 +1,7 @@
 'use client'
 import { useDeleteBlogMutation, useGetBlogsQuery } from '@/redux/endpoints/blogs/blogsEndpoint'
 import '../SharedCountryUni/UniversityTable/UniversityTable.css'
-import { faAdd, faEye, faPen, faTrash } from '@fortawesome/free-solid-svg-icons'
+import { faEye, faPen, faTrash } from '@fortawesome/free-solid-svg-icons'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { useState } from 'react'
 import Loader from '@/component/shared/Loader/Loader'

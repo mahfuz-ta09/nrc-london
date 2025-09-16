@@ -1,13 +1,15 @@
-import type { Metadata } from "next"
+import type { Metadata, Viewport } from "next"
 import "./globals.css"
+import Providers from "@/redux/Providers"
 import {  Kanit ,Roboto_Condensed } from 'next/font/google'
 import { config } from '@fortawesome/fontawesome-svg-core'
 import '@fortawesome/fontawesome-svg-core/styles.css'
-import Providers from "@/redux/Providers"
 import { Bounce, ToastContainer } from "react-toastify"
+
+
 config.autoAddCss = false
 
-const kanit = Roboto_Condensed({ subsets: ['latin'], weight: ['400', '500', '700','800','900'] })
+const kanit = Roboto_Condensed({ subsets: ['latin'], weight: ['300','400', '500', '700','800','900'] })
 
 export const metadata: Metadata = {
     title: {
@@ -24,16 +26,13 @@ export const metadata: Metadata = {
     icons: {
       icon: "/nrc.logo.png",
     },
-    // viewport: {
-    //   width: 'device-width',
-    //   initialScale: 1,
-    //   maximumScale: 1,
-    // },
     manifest: "/site.webmanifest",
-    themeColor: "#ffffff",
     metadataBase: new URL("https://nrcedu-uk.com"),
 };
 
+export const viewport: Viewport = {
+  themeColor: "#000000",
+}
 export default function RootLayout({
     children,
 }: Readonly<{
@@ -61,5 +60,5 @@ export default function RootLayout({
           </body>
         </Providers>
       </html>
-  );
+  )
 }
