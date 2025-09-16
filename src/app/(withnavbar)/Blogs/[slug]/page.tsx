@@ -1,34 +1,39 @@
+import type { Metadata } from "next"
 import Image from "next/image"
-import { Metadata } from "next"
-import '../../../../css/blogs/slugDesign.css'
 
-
-export async function generateMetadata({ params }: { params: { slug: string } }) {
-  const { slug } = await params;
-  const res = await fetch(`${process.env.NEXT_PUBLIC_LOCAL_API}/blog/${slug}`);
-  const blog = await res.json();
-
-  return {
-    title: blog?.data?.title || "Blog",
-    description: blog?.data?.content?.summary || "",
-    openGraph: {
-      title: blog?.data?.title,
-      description: blog?.data?.content?.summary,
-      images: blog?.data?.meta?.ogImage?.url ? [{ url: blog?.data.meta.ogImage.url }] : [],
-    },
-    twitter: {
-      card: "summary_large_image",
-      title: blog?.data?.title,
-      description: blog?.data?.content?.summary,
-      images: blog?.data?.meta?.ogImage?.url ? [blog?.data?.meta?.ogImage?.url] : [],
-    },
-  };
+interface BlogDetailProps {
+  params: {
+    slug: string
+  }
 }
 
-export default async function BlogDetail({ params }: { params: { slug: string } }) {
-  const { slug } = await params;
-  const res = await fetch(`${process.env.NEXT_PUBLIC_LOCAL_API}/blog/${slug}`, { cache: "no-store" });
-  const blog = await res.json();
+export async function generateMetadata({ params }: BlogDetailProps): Promise<Metadata> {
+    const { slug } = params
+    const res = await fetch(`${process.env.NEXT_PUBLIC_LOCAL_API}/blog/${slug}`)
+    const blog = await res.json()
+
+    return {
+      title: blog?.data?.title || "Blog",
+      description: blog?.data?.content?.summary || "",
+      openGraph: {
+        title: blog?.data?.title,
+        description: blog?.data?.content?.summary,
+        images: blog?.data?.meta?.ogImage?.url ? [{ url: blog?.data.meta.ogImage.url }] : [],
+      },
+      twitter: {
+        card: "summary_large_image",
+        title: blog?.data?.title,
+        description: blog?.data?.content?.summary,
+        images: blog?.data?.meta?.ogImage?.url ? [blog?.data?.meta?.ogImage?.url] : [],
+      },
+    }
+}
+
+
+export default async function BlogDetail({ params }: BlogDetailProps) {
+  const { slug } = params
+  const res = await fetch(`${process.env.NEXT_PUBLIC_LOCAL_API}/blog/${slug}`, { cache: "no-store" })
+  const blog = await res.json()
 
   return (
     <div className="blog-detail-container">
