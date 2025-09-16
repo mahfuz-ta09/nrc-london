@@ -115,6 +115,7 @@ const BlogActionModal = ({ setModalState, modalState }: ModalProps) => {
             }))
 
             let res: any
+            const rep = window.confirm("Are you sure you want to create this blog(do not refresh while uploading)?")
             res = await createBlog({data:formData}).unwrap()
 
             if(res?.data?.data?.insertedId){
