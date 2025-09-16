@@ -68,7 +68,7 @@ const BlogActionModal = ({ setModalState, modalState }: ModalProps) => {
 
             formData.append("author", data.author)
             formData.append("status", data.status)
-            formData.append("isFeatured", data.isFeatured)
+            formData.append("isFeatured", (data.isFeatured).toString())
             
             formData.append("categories", JSON.stringify(data.categories.split(",").map(c => c.trim())))
             formData.append("tags", JSON.stringify(data.tags.split(",").map(t => t.trim())))
