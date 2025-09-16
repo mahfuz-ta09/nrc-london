@@ -7,9 +7,9 @@ export async function generateMetadata(
     { params }: { params: Promise<{ slug: string }> }
       ): Promise<Metadata> {
 
-    const { slug } = await params  // ✅ await params
+    const { slug } = await params
 
-    const res = await fetch(`${process.env.NEXT_PUBLIC_LOCAL_API}/blog/${slug}`, {
+    const res = await fetch(`${process.env.NEXT_PUBLIC_DEPLOYED_API}/blog/${slug}`, {
       cache: "no-store",
     })
 
@@ -38,9 +38,9 @@ export async function generateMetadata(
 
 export default async function BlogDetail(
   { params }: { params: Promise<{ slug: string }> }) {
-  const { slug } = await params  // ✅ await params
+  const { slug } = await params
 
-  const res = await fetch(`${process.env.NEXT_PUBLIC_LOCAL_API}/blog/${slug}`, {
+  const res = await fetch(`${process.env.NEXT_PUBLIC_DEPLOYED_API}/blog/${slug}`, {
     cache: "no-store",
   })
 
