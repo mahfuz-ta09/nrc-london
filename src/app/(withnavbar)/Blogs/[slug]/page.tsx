@@ -6,7 +6,7 @@ import "../../../../css/blogs/slugDesign.css"
 export async function generateMetadata(
   { params }: { params: { slug: string } }
 ): Promise<Metadata> {
-  const { slug } = await params
+  const { slug } = params
   const res = await fetch(`${process.env.NEXT_PUBLIC_LOCAL_API}/blog/${slug}`, {
     cache: "no-store",
   })
@@ -33,11 +33,11 @@ export async function generateMetadata(
   }
 }
 
-
+// ✅ Page function – destructure params directly
 export default async function BlogDetail(
   { params }: { params: { slug: string } }
 ) {
-  const { slug } = await params
+  const { slug } = params
   const res = await fetch(`${process.env.NEXT_PUBLIC_LOCAL_API}/blog/${slug}`, {
     cache: "no-store",
   })
