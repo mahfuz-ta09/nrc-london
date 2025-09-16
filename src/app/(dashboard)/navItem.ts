@@ -14,7 +14,8 @@ import {
   faUserTie,
   faUserGraduate,
   faUserPlus,
-  faInfo,
+  faBlog,
+  faImage,
 } from "@fortawesome/free-solid-svg-icons"
 
 type Section = {
@@ -56,8 +57,8 @@ const sideNavItem = (role: Role): Section[] => {
                 { title: "Statistics", path: `${role}/web-stat`, icon: faChartBar },
                 { title: "Countries & Universities", path: `${role}/country-uni`, icon: faGlobe },
                 { title: "Reviews", path: `${role}/reviews`, icon: faStar },
-                { title: "Banner", path: `${role}/banner`, icon: faScreenpal },
-                { title: "Blog", path: `${role}/blog`, icon: faInfo },
+                { title: "Banner", path: `${role}/banner`, icon: faImage },
+                { title: "Blog", path: `${role}/blog`, icon: faBlog },
             ]
         }
       ]
@@ -71,8 +72,8 @@ const sideNavItem = (role: Role): Section[] => {
                 { title: "Subjects", path: `${role}/subjects`, icon: faBookOpen },
                 { title: "University", path: `${role}/university`, icon: faUniversity },
                 { title: "Countries & Universities", path: `${role}/country-uni`, icon: faGlobe },
-                { title: "Banner", path: `${role}/banner`, icon: faScreenpal },
-                { title: "Blog", path: `${role}/blog`, icon: faInfo },
+                { title: "Banner", path: `${role}/banner`, icon: faImage },
+                { title: "Blog", path: `${role}/blog`, icon: faBlog },
             ],
         },
         {
