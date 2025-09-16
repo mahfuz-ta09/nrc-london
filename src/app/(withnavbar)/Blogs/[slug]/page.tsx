@@ -2,11 +2,11 @@ import type { Metadata } from "next"
 import Image from "next/image"
 import "../../../../css/blogs/slugDesign.css"
 
-// ✅ No custom interface needed
+
 export async function generateMetadata(
   { params }: { params: { slug: string } }
 ): Promise<Metadata> {
-  const { slug } = params
+  const { slug } = await params
   const res = await fetch(`${process.env.NEXT_PUBLIC_LOCAL_API}/blog/${slug}`, {
     cache: "no-store",
   })
@@ -33,11 +33,11 @@ export async function generateMetadata(
   }
 }
 
-// ✅ Page function – destructure params directly
+
 export default async function BlogDetail(
   { params }: { params: { slug: string } }
 ) {
-  const { slug } = params
+  const { slug } = await params
   const res = await fetch(`${process.env.NEXT_PUBLIC_LOCAL_API}/blog/${slug}`, {
     cache: "no-store",
   })
