@@ -57,6 +57,15 @@ export default function RootLayout({
                 theme="light"
                 transition={Bounce}
             />
+            <script async src="https://www.googletagmanager.com/gtag/js?id=G-KQ36REED2T"></script>
+            <script>
+              {`
+                window.dataLayer = window.dataLayer || [];
+                function gtag(){dataLayer.push(arguments);}
+                gtag('js', new Date());
+                gtag('config', 'G-KQ36REED2T');
+              `}
+            </script>
           </body>
         </Providers>
       </html>
