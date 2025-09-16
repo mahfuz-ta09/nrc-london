@@ -4,43 +4,46 @@ import "../../../../css/blogs/slugDesign.css"
 
 
 export async function generateMetadata(
-  { params }: { params: { slug: string } }
-): Promise<Metadata> {
-  const { slug } = params
-  const res = await fetch(`${process.env.NEXT_PUBLIC_LOCAL_API}/blog/${slug}`, {
-    cache: "no-store",
-  })
-  const blog = await res.json()
+    { params }: { params: Promise<{ slug: string }> }
+      ): Promise<Metadata> {
 
-  return {
-    title: blog?.data?.title || "Blog",
-    description: blog?.data?.content?.summary || "",
-    openGraph: {
-      title: blog?.data?.title,
-      description: blog?.data?.content?.summary,
-      images: blog?.data?.meta?.ogImage?.url
-        ? [{ url: blog?.data.meta.ogImage.url }]
-        : [],
-    },
-    twitter: {
-      card: "summary_large_image",
-      title: blog?.data?.title,
-      description: blog?.data?.content?.summary,
-      images: blog?.data?.meta?.ogImage?.url
-        ? [blog?.data?.meta?.ogImage?.url]
-        : [],
-    },
-  }
+    const { slug } = await params  // ✅ await params
+
+    const res = await fetch(`${process.env.NEXT_PUBLIC_LOCAL_API}/blog/${slug}`, {
+      cache: "no-store",
+    })
+
+    const blog = await res.json()
+
+    return {
+      title: blog?.data?.title || "Blog",
+      description: blog?.data?.content?.summary || "",
+      openGraph: {
+        title: blog?.data?.title,
+        description: blog?.data?.content?.summary,
+        images: blog?.data?.meta?.ogImage?.url
+          ? [{ url: blog?.data.meta.ogImage.url }]
+          : [],
+      },
+      twitter: {
+        card: "summary_large_image",
+        title: blog?.data?.title,
+        description: blog?.data?.content?.summary,
+        images: blog?.data?.meta?.ogImage?.url
+          ? [blog?.data?.meta?.ogImage?.url]
+          : [],
+      },
+    }
 }
 
-// ✅ Page function – destructure params directly
 export default async function BlogDetail(
-  { params }: { params: { slug: string } }
-) {
-  const { slug } = params
+  { params }: { params: Promise<{ slug: string }> }) {
+  const { slug } = await params  // ✅ await params
+
   const res = await fetch(`${process.env.NEXT_PUBLIC_LOCAL_API}/blog/${slug}`, {
     cache: "no-store",
   })
+
   const blog = await res.json()
 
   return (
