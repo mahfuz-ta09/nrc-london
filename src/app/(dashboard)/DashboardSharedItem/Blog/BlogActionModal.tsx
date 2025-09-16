@@ -70,8 +70,8 @@ const BlogActionModal = ({ setModalState, modalState }: ModalProps) => {
             formData.append("status", data.status)
             formData.append("isFeatured", (data.isFeatured).toString())
             
-            formData.append("categories", JSON.stringify(data.categories.split(",").map(c => c.trim())))
-            formData.append("tags", JSON.stringify(data.tags.split(",").map(t => t.trim())))
+            formData.append("categories", data.categories.split(",").map(c => c.trim()).toString())
+            formData.append("tags", data.tags.split(",").map(t => t.trim()).toString())
             
             formData.append("header_image",data.header_image[0])
 

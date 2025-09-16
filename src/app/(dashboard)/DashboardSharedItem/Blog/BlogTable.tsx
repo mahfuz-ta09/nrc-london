@@ -51,7 +51,8 @@ const BlogTable = () => {
             toast.error("Failed to delete blog")
         }
     }
-    // console.log(data?.data)
+
+    console.log(data)
     return ((
         (isLoading || deleteLoading ) ? <Loader />:
         <div style={ data?.meta?.totalCount!==0? {display:"block"} : {display:"none"}}>
@@ -76,50 +77,48 @@ const BlogTable = () => {
             </div>
 
             <div className='table-container-users'>
-                    <table id="">
-                        <thead>
-                            <tr>
-                                <th>Serial</th>
-                                <th>Blog image</th>
-                                <th>title&author</th>
-                                <th>categories</th>
-                                <th>status</th>
-                                <th>Featured</th>
-                                <th>slug</th>
-                                <th>actions</th>
+                <table id="">
+                    <thead>
+                        <tr>
+                            <th>Serial</th>
+                            <th>Blog image</th>
+                            <th>title&author</th>
+                            <th>categories</th>
+                            <th>status</th>
+                            <th>Featured</th>
+                            <th>slug</th>
+                            <th>actions</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                    {
+                        data?.data?.map((blog:any,index:number)=>
+                            <tr key={index} className=''>
+                                <td>{index+1}</td>
+                                <td><img className='table-img'src={blog?.meta?.ogImage?.url || 'safas'} alt='Blog header iage'/></td>
+                                <td> 
+                                    <h4 style={{marginBottom:"10px"}} >{blog?.title}</h4>
+                                    <br />
+                                    <span style={{fontSize:"14px",color:"gray"}}>by: {blog?.author || 'N/A'}</span>
+                                    <span style={{fontSize:"14px",color:"gray",marginLeft:'15px'}}>by: {blog?.author || 'N/A'}</span>
+                                
+                                </td>
+                                <td>
+                                    {blog?.categories?.join(', ') || ''}
+                                </td>
+                                <td>{blog?.status || ''}</td>
+                                <td>{blog?.isFeatured? 'Yes' : 'No'}</td>
+                                <td>{blog?.slug || ''}</td>
+                                <td>
+                                    <button className="action-btn" style={{margin:'5px',background:"green"}} ><FontAwesomeIcon icon={faEye}/></button>
+                                    <button onClick={()=>handleDelete(blog?._id)} className="action-btn" style={{margin:'5px',background:"#f14040"}} ><FontAwesomeIcon icon={faTrash}/></button>
+                                    <button className="action-btn" style={{margin:'5px',background:"green"}} ><FontAwesomeIcon icon={faPen}/></button>
+                                </td>
                             </tr>
-                        </thead>
-                        <tbody>
-                            {
-                                data?.data?.map((blog:any,index:number)=>
-                                    <tr key={index} className=''>
-                                        <td>{index+1}</td>
-                                        <td><img className='table-img'src={blog?.meta?.ogImage?.url || 'safas'} alt='Blog header iage'/></td>
-                                        <td> 
-                                            <h4 style={{marginBottom:"10px"}} >{blog?.title}</h4>
-
-                                            <br />
-                                            <span style={{fontSize:"14px",color:"gray"}}>by: {blog?.author || 'N/A'}</span>
-                                            <span style={{fontSize:"14px",color:"gray",marginLeft:'15px'}}>by: {blog?.author || 'N/A'}</span>
-                                        
-                                        </td>
-                                        <td>
-                                            {blog?.categories?.join(', ') || ''}
-                                        </td>
-                                        <td>{blog?.status || ''}</td>
-                                        <td>{blog?.isFeatured? 'Yes' : 'No'}</td>
-                                        <td>{blog?.slug || ''}</td>
-                                        <td>
-                                            <button className="action-btn" style={{margin:'5px',background:"green"}} ><FontAwesomeIcon icon={faEye}/></button>
-                                            <button onClick={()=>handleDelete(blog?._id)} className="action-btn" style={{margin:'5px',background:"#f14040"}} ><FontAwesomeIcon icon={faTrash}/></button>
-                                            <button className="action-btn" style={{margin:'5px',background:"green"}} ><FontAwesomeIcon icon={faPen}/></button>
-                                        </td>
-                                    </tr>
-                                )
-                        }
-                        
-                        </tbody>
-                    </table>
+                        )
+                    }
+                    </tbody>
+                </table>
             </div>
             <Pagination 
                 totalPages={data?.meta?.totalPages || 1}

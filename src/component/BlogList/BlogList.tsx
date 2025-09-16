@@ -10,7 +10,6 @@ const BlogList = () => {
     const {data:category , isLoading: loadCategory} = useGetUniqueCatagoriesQuery()
     const { data: blogsData, isLoading: loadBlogs } = useGetBlogByCategoryQuery(params)
     
-    
     return (
         (loadCategory||loadBlogs) ? <Loader /> :
         <div className='blog-list-container'>
@@ -46,7 +45,7 @@ const BlogList = () => {
                             <div className="description">
                                 <h1><Link href={`/Blogs/${blog?.slug}`}>{blog?.title}</Link></h1>
                                 <h2>{blog?.slug}</h2>
-                                <p>{blog?.meta?.ogDescription.slice(0,180)}...</p>
+                                <p>{blog?.meta?.ogDescription.slice(0,150)}...</p>
                                 <p className="read-more">
                                     <Link href={`/Blogs/${blog?.slug}`}>Read More</Link>
                                 </p>
