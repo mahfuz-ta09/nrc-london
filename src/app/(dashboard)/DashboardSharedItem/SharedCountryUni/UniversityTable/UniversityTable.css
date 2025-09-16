@@ -109,53 +109,6 @@ select{
     color: #fff;
 }
 
-.filter-container {
-    position: absolute;
-    top: 50px;
-    right: 50px;
-    width: 200px;
-    height: auto;
-    background: linear-gradient(135deg, #002c3a, #005577, #0088aa);
-    border-radius: 5px;
-    padding: 10px;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    opacity: 0;
-    visibility: hidden;
-    transition: opacity 0.3s ease, visibility 0.3s ease;
-}
-
-.filter-container.show {
-    opacity: 1;
-    visibility: visible;
-}
-
-.filter-container input{
-    width: 100%;
-    padding: 6px;
-    border-radius: 5px;
-    background: rgba(255,255,255,0.8);
-    color: #000;
-    border: none;
-    font-weight: 600;
-    margin-bottom: 10px;
-
-}
-.filter-status{
-    color: #fff;
-    font-weight: 200;
-    font-size: 14px;
-    margin: 10px 0;
-}
-
-@media screen and (max-width: 608px) {
-    .filter-header{
-        right: 15px;
-    }
-    
-}
 
 
 
