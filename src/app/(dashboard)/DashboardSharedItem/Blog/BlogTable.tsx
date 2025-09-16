@@ -49,7 +49,7 @@ const BlogTable = () => {
             toast.error("Failed to delete blog")
         }
     }
-    console.log(data?.data)
+    // console.log(data?.data)
     return ((
         (isLoading || deleteLoading ) ? <Loader />:
         <div style={ data?.meta?.totalCount!==0? {display:"block"} : {display:"none"}}>

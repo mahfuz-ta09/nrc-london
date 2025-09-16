@@ -19,14 +19,22 @@ type ModalProps = {
 type BlogFormData = {
     title: string
     slug: string
-    author: string
     description: string
+
+    author: string
     content: { summary: string; body: string }
+    
     categories: string
     tags: string
+    
     status: string
     isFeatured: boolean
+    
     header_image: FileList
+    
+    meta_title: string
+    meta_keywords: string
+    meta_description: string
 }
 
 const BlogActionModal = ({ setModalState, modalState }: ModalProps) => {
@@ -42,24 +50,34 @@ const BlogActionModal = ({ setModalState, modalState }: ModalProps) => {
             tags: "",
             status: "draft",
             isFeatured: false,
+            meta_title: "",
+            meta_keywords: "",
+            meta_description: "",
+            header_image: {} as FileList,
+            description: "",
         },
     })
 
     const onSubmit = async(data: BlogFormData) => {
-        console.log(data.isFeatured)
         try{
             const formData = new FormData()
 
             formData.append("title", data.title)
-            formData.append("slug",(data.slug || data.title).toLowerCase().replace(/\s+/g, "-"))
+            formData.append("slug",(data.slug).toLowerCase().trim().replace(/\s+/g, "-"))
+            formData.append("description", JSON.stringify(data.description))
+
             formData.append("author", data.author)
             formData.append("status", data.status)
-            formData.append("isFeatured", String(data.isFeatured))
-            formData.append("description", JSON.stringify(data.description))
+            formData.append("isFeatured", data.isFeatured)
+            
             formData.append("categories", JSON.stringify(data.categories.split(",").map(c => c.trim())))
             formData.append("tags", JSON.stringify(data.tags.split(",").map(t => t.trim())))
+            
             formData.append("header_image",data.header_image[0])
 
+            formData.append("meta_title", data.meta_title)
+            formData.append("meta_keywords", data.meta_keywords)
+            formData.append("meta_description", data.meta_description)
 
             const parser = new DOMParser();
             const doc = parser.parseFromString(data.content.body, 'text/html');
@@ -97,7 +115,7 @@ const BlogActionModal = ({ setModalState, modalState }: ModalProps) => {
             }))
 
             let res: any
-            res = await createBlog({data:formData})
+            res = await createBlog({data:formData}).unwrap()
 
             if(res?.data?.data?.insertedId){
                 toast.success('Blog inserted seccessfully')
@@ -159,6 +177,13 @@ const BlogActionModal = ({ setModalState, modalState }: ModalProps) => {
                 
                     <div className="input-container">
                         <label>
+                            Blog Description
+                        </label>
+                        <input {...register("description" ,{ required: true })} placeholder="Descrition" className="input-field" />
+                    </div>
+                
+                    <div className="input-container">
+                        <label>
                             Blog Author
                         </label>
                         <input {...register("author",{ required: true })} placeholder="Author" className="input-field" />
@@ -167,10 +192,25 @@ const BlogActionModal = ({ setModalState, modalState }: ModalProps) => {
                 
                     <div className="input-container">
                         <label>
-                            Blog Description
+                            Meta Title
                         </label>
-                        <input {...register("description" ,{ required: true })} placeholder="Descrition" className="input-field" />
+                        <input {...register("meta_title", { required: true })} placeholder="Meta title(important for seo)" className="input-field" />
                     </div>
+                
+                    <div className="input-container">
+                        <label>
+                            Meta Keywords
+                        </label>
+                        <input {...register("meta_keywords", { required: true })} placeholder="Meta keywords(important for seo-comma separated)" className="input-field" />
+                    </div>
+                
+                    <div className="input-container">
+                        <label>
+                            Meta Description
+                        </label>
+                        <input {...register("meta_description",{ required: true })} placeholder="Meta description(important for seo)" className="input-field" />
+                    </div>
+                
                 
                     <div className="input-container">
                         <label>

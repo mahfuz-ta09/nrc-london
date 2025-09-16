@@ -11,7 +11,7 @@ import { faAngleDoubleLeft, faAngleDoubleRight, faArrowRight } from '@fortawesom
 
 const LandingPage = () => {
     const [current, setCurrent] = useState<number>(0)
-    const { data: banners, isLoading } = useGetAllBannersQuery({ status: 'active' })
+    const { data: banners } = useGetAllBannersQuery({ status: 'active' })
  
     const items = banners?.data || []
     const total = banners?.meta?.total || items.length || 0
@@ -37,7 +37,6 @@ const LandingPage = () => {
         })
     }
     
-    if (isLoading) return <Loader />
     if (total === 0) return <DummyBanner />
         
     return (
