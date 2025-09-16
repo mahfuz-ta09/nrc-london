@@ -3,12 +3,12 @@ import { useState } from 'react'
 import '../../css/blogs/mainBlogPage.css'
 import Loader from '../shared/Loader/Loader'
 import { useGetBlogByCategoryQuery, useGetUniqueCatagoriesQuery } from '@/redux/endpoints/blogs/blogsEndpoint'
+import Link from 'next/link'
 
 const BlogList = () => {
     const [params,setParams] = useState({category: 'all', page:1, limit:10})
     const {data:category , isLoading: loadCategory} = useGetUniqueCatagoriesQuery()
     const { data: blogsData, isLoading: loadBlogs } = useGetBlogByCategoryQuery(params)
-    
     
     
     return (
@@ -44,7 +44,7 @@ const BlogList = () => {
                                 </ul>
                             </div>
                             <div className="description">
-                                <h1>{blog?.title}</h1>
+                                <h1><Link href={`/Blogs/${blog?.slug}`}>{blog?.title}</Link></h1>
                                 <h2>{blog?.slug}</h2>
                                 <p>{blog?.meta?.ogDescription.slice(0,180)}...</p>
                                 <p className="read-more">
