@@ -54,6 +54,7 @@ const Footer = () => {
                             <h2 className="pg-footer-menu-name">Get Started</h2>
                             <ul className="pg-footer-menu-list">
                                 <li><Link href="/AboutUs">About us</Link></li>
+                                <li><Link href="/Blogs">Blogs</Link></li>
                             </ul>
                         </div>
                     </div>

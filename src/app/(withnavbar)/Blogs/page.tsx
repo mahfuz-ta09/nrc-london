@@ -1,8 +1,9 @@
 import { Metadata } from 'next'
 import { Suspense } from 'react'
-import '../../../css/blogs/mainBlogPage.css'
+import style from '../../../css/blogs/mainBlogPage.module.css'
 import Loader from '@/component/shared/Loader/Loader'
 import BlogList from '@/component/BlogList/BlogList'
+import Footer from '@/component/shared/Footer/Footer'
 
 
 export const metadata:Metadata = {
@@ -43,6 +44,7 @@ const page = () => {
                     <BlogList />
                 </Suspense>
             </div>
+            <Footer />
         </div>
     )
 }
