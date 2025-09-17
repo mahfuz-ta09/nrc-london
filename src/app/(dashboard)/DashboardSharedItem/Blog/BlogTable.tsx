@@ -52,7 +52,7 @@ const BlogTable = () => {
         }
     }
 
-    console.log(data)
+    
     return ((
         (isLoading || deleteLoading ) ? <Loader />:
         <div style={ data?.meta?.totalCount!==0? {display:"block"} : {display:"none"}}>

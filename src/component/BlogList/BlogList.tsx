@@ -10,7 +10,7 @@ const BlogList = () => {
     const {data:category , isLoading: loadCategory} = useGetUniqueCatagoriesQuery()
     const { data: blogsData, isLoading: loadBlogs } = useGetBlogByCategoryQuery(params)
     
-    
+    console.log(blogsData)
     return (
         (loadCategory||loadBlogs) ? <Loader /> :
         <div className='blog-list-container'>

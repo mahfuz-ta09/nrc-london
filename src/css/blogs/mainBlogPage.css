@@ -268,7 +268,7 @@
   left: 0%;
 }
 
-/* Responsive: min-width 640px */
+
 @media (min-width: 640px) {
   .blog-card {
     flex-direction: row;

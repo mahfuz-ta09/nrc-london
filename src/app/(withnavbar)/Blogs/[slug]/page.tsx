@@ -66,9 +66,9 @@ export default async function BlogDetail(
             {blog?.data?.publishedAt} By {blog?.data?.author}
           </em>
         </p>
-        <h4>{JSON.parse(blog?.data?.content)?.summary}</h4>
+        <h4>{blog?.data?.content?.summary}</h4>
         <div
-          dangerouslySetInnerHTML={{ __html: JSON.parse(blog?.data?.content)?.body || "" }}
+          dangerouslySetInnerHTML={{ __html: (blog?.data?.content)?.body || "" }}
         />
       </div>
     </div>

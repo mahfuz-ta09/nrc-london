@@ -6,7 +6,6 @@ import { useForm, Controller } from "react-hook-form"
 import { base64ToFile } from '@/utils/convertFileType'
 import '../SharedCountryUni/AddCountryModal/AddCountryModal.css'
 import { useCreateBlogMutation } from '@/redux/endpoints/blogs/blogsEndpoint'
-import useImageUpload from '@/utils/useImageUpload'
 import Loader from '@/component/shared/Loader/Loader'
 
 
@@ -39,7 +38,6 @@ type BlogFormData = {
 
 const BlogActionModal = ({ setModalState, modalState }: ModalProps) => {
     const [createBlog, { isLoading: createLoadig }] = useCreateBlogMutation()
-    const { uploadImage , isLoading: imageLoading, error } = useImageUpload()
     const { register, control, handleSubmit, reset } = useForm<BlogFormData>({
         defaultValues: {
             title: "",
@@ -93,21 +91,14 @@ const BlogActionModal = ({ setModalState, modalState }: ModalProps) => {
                 imgElements.forEach((imgEl) => {
                     const src = imgEl.getAttribute("src")
                     if (src && src.startsWith("data:image")) {
+                        imgEl.setAttribute("src",`__IMAGE_${i}__`)
                         const file = base64ToFile(src, `editor-img-${i}.png`)
                         updatedData.append("images", file)
+                        formData.append("content_image",file)
                         i++;
                     }
                 })
 
-                const uploaded = await uploadImage(updatedData)
-                formData.append("urlLists", JSON.stringify(uploaded))
-                
-                imgElements.forEach((imgEl,index) => {
-                    const src = imgEl.getAttribute("src");
-                    if (src && src.startsWith("data:image")) {
-                        imgEl.setAttribute("src", uploaded?.[index]?.url)
-                    }
-                })
             }
             
             const updatedBody = doc.body.innerHTML
@@ -119,7 +110,7 @@ const BlogActionModal = ({ setModalState, modalState }: ModalProps) => {
 
             let res: any
             res = await createBlog({data:formData}).unwrap()
-            console.log(res)
+            
             if(res?.data?.insertedId){
                 toast.success('Blog inserted seccessfully')
                 reset()
@@ -156,7 +147,7 @@ const BlogActionModal = ({ setModalState, modalState }: ModalProps) => {
     }
 
     return ((
-        (imageLoading || createLoadig) ? <Loader /> :
+        (createLoadig) ? <Loader /> :
         <div className={modalState?.isOpen ? 'modal-container openmoda-container' : 'modal-container'}>
             <div className="modal-body">
                 <h1>Add New Blog</h1>
