@@ -1,5 +1,5 @@
 'use client'
-import { useState } from 'react'
+import { Suspense, useState } from 'react'
 import { toast } from 'react-toastify'
 import '@/css/Dashboard/super_admin/common.css'
 import Loader from '@/component/shared/Loader/Loader'
@@ -8,12 +8,21 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import Pagination from '@/component/shared/Pagination/Pagination'
 import { faEye, faFilter, faPen, faTrash } from '@fortawesome/free-solid-svg-icons'
 import { useDeleteBlogMutation, useGetBlogsQuery } from '@/redux/endpoints/blogs/blogsEndpoint'
+import BlogDetails from './BlogDetails'
 
 const BlogTable = () => {
     const [open,setOpen] = useState(false)
+    const [detail,setDetail] = useState({
+        isOPen: false,
+        slug: '',
+    })
     const [params,setParams] =  useState({ page: 1, limit: 10 , category: "", status: "", isFeatured: undefined})
     const [deleteBlog , { isLoading: deleteLoading }] = useDeleteBlogMutation()
-    const { data, isLoading } =  useGetBlogsQuery({ page: params?.page, limit: params?.limit , category: params?.category, status: params?.status, isFeatured: params?.isFeatured})
+    const { data, isLoading } =  useGetBlogsQuery({ page: params?.page, 
+        limit: params?.limit , 
+        category: params?.category, 
+        status: params?.status, 
+        isFeatured: params?.isFeatured})
     
     const handleOnChange = (e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>) => {
         const { name, value } = e.target
@@ -52,6 +61,7 @@ const BlogTable = () => {
         }
     }
 
+    console.log(data?.data[0])
     
     return ((
         (isLoading || deleteLoading ) ? <Loader />:
@@ -110,7 +120,7 @@ const BlogTable = () => {
                                 <td>{blog?.isFeatured? 'Yes' : 'No'}</td>
                                 <td>{blog?.slug || ''}</td>
                                 <td>
-                                    <button className="action-btn" style={{margin:'5px',background:"green"}} ><FontAwesomeIcon icon={faEye}/></button>
+                                    <button onClick={()=>setDetail({...detail,isOPen: true, slug:blog?.slug})}className="action-btn" style={{margin:'5px',background:"green"}} ><FontAwesomeIcon icon={faEye}/></button>
                                     <button onClick={()=>handleDelete(blog?._id)} className="action-btn" style={{margin:'5px',background:"#f14040"}} ><FontAwesomeIcon icon={faTrash}/></button>
                                     <button className="action-btn" style={{margin:'5px',background:"green"}} ><FontAwesomeIcon icon={faPen}/></button>
                                 </td>
@@ -126,6 +136,11 @@ const BlogTable = () => {
                 onPageChange={handlePageChange}
                 siblingCount={1}
             />
+            <Suspense fallback={<Loader />}>
+                <BlogDetails 
+                    detail={detail}
+                    setDetail={setDetail}/>
+            </Suspense>
         </div>
     ))
 }

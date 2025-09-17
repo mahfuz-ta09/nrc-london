@@ -2,6 +2,7 @@ import type { Metadata } from "next"
 import Image from "next/image"
 import "../../../../css/blogs/slugDesign.css"
 
+const status = 'published'
 
 export async function generateMetadata(
     { params }: { params: Promise<{ slug: string }> }
@@ -9,7 +10,7 @@ export async function generateMetadata(
 
     const { slug } = await params
 
-    const res = await fetch(`${process.env.NEXT_PUBLIC_DEPLOYED_API}/blog/${slug}`, {
+    const res = await fetch(`${process.env.NEXT_PUBLIC_DEPLOYED_API}/blog/single/${slug}/${status}`, {
       cache: "no-store",
     })
 
@@ -40,12 +41,12 @@ export default async function BlogDetail(
   { params }: { params: Promise<{ slug: string }> }) {
   const { slug } = await params
 
-  const res = await fetch(`${process.env.NEXT_PUBLIC_DEPLOYED_API}/blog/${slug}`, {
+  const res = await fetch(`${process.env.NEXT_PUBLIC_DEPLOYED_API}/blog/single/${slug}/${status}`, {
     cache: "no-store",
   })
-
+  
   const blog = await res.json()
-
+  
   return (
     <div className="blog-detail-container">
       <div className="blog-header">
