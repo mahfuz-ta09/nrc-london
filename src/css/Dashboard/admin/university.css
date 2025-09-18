@@ -59,34 +59,6 @@
     border: none;
 }
 
-.table-container {
-    overflow-x: auto;
-    background: transparent;
-    padding: 15px;
-    /* border-radius: 10px; */
-}
-
-.table {
-    width: 100%;
-    border-collapse: collapse;
-    background: transparent;
-    color: #fff;
-    border-radius: 10px;
-    overflow: hidden;
-}
-
-.th, .td {
-    border: 1px solid #ddd;
-    padding: 10px;
-    text-align: center;
-    background: #00394b;
-}
-
-.th {
-    background: #00394b;
-    color: white;
-}
-
 .logo-img {
     width: 50px;
     height: auto;

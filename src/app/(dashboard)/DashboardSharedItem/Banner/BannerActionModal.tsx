@@ -1,5 +1,4 @@
 import { toast } from 'react-toastify'
-import '../SharedCountryUni/AddCountryModal/AddCountryModal.css'
 import { useForm, SubmitHandler } from "react-hook-form"
 import { useCreateBannerMutation, useUpdateBannerMutation } from '@/redux/endpoints/banner/bannerEndpoint'
 import Loader from '@/component/shared/Loader/Loader'
@@ -112,7 +111,7 @@ const BannerActionModal = ({addBanner,setAddBanner}: ModalProps) => {
                         <label htmlFor="description">Add description</label>
                         <textarea {...register("description")}/>
                     </div>
-                    <button type='submit' className='modal-sbmt-btn'>submit</button>
+                    <button type='submit' className='submit-button'>submit</button>
                 </form>
 
             </div>

@@ -332,7 +332,7 @@ const SubjectControllModal = ({ addSub, setAddSub }: ModalProps) => {
                         <textarea {...register("description")} />
                     </div>
 
-                    <button type="submit" className="modal-sbmt-btn">
+                    <button type="submit" className="save-button">
                         Submit
                     </button>
                 </form>

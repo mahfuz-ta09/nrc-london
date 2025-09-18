@@ -1,0 +1,118 @@
+.filter-container {
+    position: absolute;
+    top: 45px;
+    right: 0px;
+    z-index: 10;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    height: auto;
+    width: 300px;
+    background: linear-gradient(135deg, #002c3a, #005577, #0088aa);
+    border-radius: 12px;
+    padding: 20px;
+    box-shadow: 
+        0 15px 35px rgba(0, 44, 58, 0.3),
+        0 0 0 1px rgba(255, 255, 255, 0.1);
+    backdrop-filter: blur(10px);
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    visibility: hidden;
+    opacity: 0;
+    transform: translateY(-10px); 
+}
+
+.filter-container::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 3px;
+    background: linear-gradient(90deg, #00bcd4, #4fc3f7, #81c784);
+    border-radius: 12px 12px 0 0;
+}
+
+.filter-container:hover {
+    transform: translateY(-2px);
+    box-shadow: 
+        0 20px 45px rgba(0, 44, 58, 0.4),
+        0 0 0 1px rgba(255, 255, 255, 0.15);
+}
+.filter-container{
+    animation: slideIn 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+}
+@keyframes slideIn {
+    0% {
+        opacity: 0;
+        transform: translateX(20px) translateY(-10px);
+    }
+    100% {
+        opacity: 1;
+        transform: translateX(0) translateY(0);
+    }
+}
+
+.filter-header-text{
+    color: white;
+    font-size: 16px;
+    font-weight: 700;
+    width: 100%;
+    text-align: start;
+    margin-bottom: 8px;
+    display: flex;
+    align-items: center;
+    justify-content: start;
+    gap: 8px;
+}
+.filter-header-text::before {
+    content: '⚙️';
+    font-size: 18px;
+}
+.filter-container.show {
+    opacity: 1;
+    z-index: 99;
+    visibility: visible;
+}
+
+.filter-item{
+    display: flex;
+    align-items: start;
+    justify-content: start;
+    flex-direction: column;
+    gap: 5px;
+}
+
+.filter-item input{
+    width: 100%;
+    padding: 8px;
+    border-radius: 5px;
+    background: rgba(255,255,255,0.8);
+    color: #000;
+    border: none;
+    font-weight: 600;
+    margin-bottom: 10px;
+
+}
+
+.filter-item select{
+    width: 100%;
+    padding: 6px;
+    border-radius: 5px;
+    background: rgba(255,255,255,0.8);
+    color: #000;
+    border: none;
+    font-weight: 600;
+    margin-bottom: 10px;
+}
+
+.filter-item label{
+    font-size: 14px;
+    font-weight: 300;
+    color: white;
+}
+.filter-status{
+    color: #fff;
+    font-weight: 200;
+    font-size: 14px;
+    margin: 10px 0;
+}

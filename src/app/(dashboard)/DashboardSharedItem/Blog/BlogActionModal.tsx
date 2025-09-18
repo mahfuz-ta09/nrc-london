@@ -4,7 +4,6 @@ import ReactQuill from 'react-quill-new'
 import 'react-quill-new/dist/quill.snow.css'
 import { useForm, Controller } from "react-hook-form"
 import { base64ToFile } from '@/utils/convertFileType'
-import '../SharedCountryUni/AddCountryModal/AddCountryModal.css'
 import { useCreateBlogMutation } from '@/redux/endpoints/blogs/blogsEndpoint'
 import Loader from '@/component/shared/Loader/Loader'
 
@@ -255,7 +254,7 @@ const BlogActionModal = ({ setModalState, modalState }: ModalProps) => {
                     
                     <br/>
                     
-                    <button type="submit" className="modal-sbmt-btn">Create Blog</button>
+                    <button type="submit" className="submit-button">Create Blog</button>
                 </form>
             </div>
         </div>

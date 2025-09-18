@@ -10,41 +10,35 @@ import { faEye, faFilter, faPen, faTrash } from '@fortawesome/free-solid-svg-ico
 import { useDeleteBlogMutation, useGetBlogsQuery } from '@/redux/endpoints/blogs/blogsEndpoint'
 import BlogDetails from './BlogDetails'
 
-const BlogTable = () => {
-    const [open,setOpen] = useState(false)
+
+type Props = {
+    params: {
+        page: number,
+        limit: number,
+        category: string,
+        status: string,
+        isFeatured: boolean | undefined
+    },
+    setParams: any
+}
+
+const BlogTable = ({ params , setParams }: Props) => {
     const [detail,setDetail] = useState({
         isOPen: false,
         slug: '',
     })
-    const [params,setParams] =  useState({ page: 1, limit: 10 , category: "", status: "", isFeatured: undefined})
+
     const [deleteBlog , { isLoading: deleteLoading }] = useDeleteBlogMutation()
-    const { data, isLoading } =  useGetBlogsQuery({ page: params?.page, 
+    const { data, isLoading } =  useGetBlogsQuery({ 
+        page: params?.page, 
         limit: params?.limit , 
         category: params?.category, 
         status: params?.status, 
         isFeatured: params?.isFeatured})
     
-    const handleOnChange = (e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>) => {
-        const { name, value } = e.target
-
-        setParams(prev => {
-            let newValue: any = value
-
-            if (name === "page" || name === "limit") {
-                newValue = Number(value)
-                } else if (name === "isFeatured") {
-                newValue = value === "true" ? true : value === "false" ? false : undefined
-                }
-
-                return {
-                ...prev,
-                [name]: newValue,
-            }
-        })
-    }
     
     const handlePageChange = (newPage: number) => {
-        setParams(prev => ({
+        setParams((prev:any) => ({
             ...prev,
             page: newPage,
         }))
@@ -60,33 +54,11 @@ const BlogTable = () => {
             toast.error("Failed to delete blog")
         }
     }
-
-    console.log(data?.data[0])
     
     return ((
         (isLoading || deleteLoading ) ? <Loader />:
         <div style={ data?.meta?.totalCount!==0? {display:"block"} : {display:"none"}}>
-            
-            <div className="filter-header">
-                <button onClick={()=>setOpen(!open)}><FontAwesomeIcon icon={faFilter}/></button>
-                <div className={open?"filter-container show":"filter-container"}>
-                    <input placeholder='Enter Page' type="number" name="page" onChange={handleOnChange}/>
-                    <input placeholder='Enter Limit per page' type="number" name="limit" onChange={handleOnChange}/>
-                    <input placeholder='Enter Category' type="text" name="category" onChange={handleOnChange}/>
-                    <select onChange={handleOnChange} name="status" id="">
-                        <option>Select status</option>
-                        <option value="published">Published</option>
-                        <option value="draft">Draft</option>
-                    </select>
-                    <select onChange={handleOnChange} name="isFeatured" id="">
-                        <option>Is featured</option>
-                        <option value="true">yes</option>
-                        <option value="false">no</option>
-                    </select>
-                </div>
-            </div>
-
-            <div className='table-container-users'>
+            <div className='table-contant'>
                 <table id="">
                     <thead>
                         <tr>

@@ -1,47 +1,18 @@
 'use client'
-import '@/css/Dashboard/super_admin/common.css'
 import { useState } from 'react'
-import { useForm, SubmitHandler } from "react-hook-form"
-import { useCreateAdminMutation, useGetALlAdminQuery, useUpdateAdminStatusMutation, useUpdateUserRoleMutation } from '@/redux/endpoints/sAdmin/superAdmin'
 import { toast } from 'react-toastify'
 import Loader from '@/component/shared/Loader/Loader'
-
-type Inputs = {
-    email: string
-    password: string
-}
-
+import CreateAdminModal from './CreateAdminModal'
+import { useGetALlAdminQuery, useUpdateAdminStatusMutation, useUpdateUserRoleMutation } from '@/redux/endpoints/sAdmin/superAdmin'
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { faQuestion } from '@fortawesome/free-solid-svg-icons'
 
 const page = () => {
     const [create,setCreate] = useState(false)
-    const {
-        register,
-        handleSubmit,
-        reset,
-        formState: { errors },
-    } = useForm<Inputs>()
-    const [createAdmin , { isLoading : createLoading }] = useCreateAdminMutation()
     const { data , isLoading: dataLoading } = useGetALlAdminQuery()
     const [ updateAdminStatus , { isLoading : updateLoading }] = useUpdateAdminStatusMutation() 
     const [ updateUserRole , { isLoading : updateUsrLoading }] = useUpdateUserRoleMutation() 
 
-
-    if(createLoading || dataLoading || updateLoading || updateUsrLoading) return <Loader />
-
-    const onSubmit: SubmitHandler<Inputs> = async(data) => {
-        try{
-            const res = await createAdmin(data)
-            if(res?.data?.data?.acknowledged){
-                reset()
-                toast.success("Admin created!!")
-            }else{
-                toast.warning(res?.data?.errorMessage || "Failed to create admin!")
-            }
-        }catch(err){
-            console.log(err)
-        }
-    }
-    
     const handleStatusChange = async(e:React.ChangeEvent<HTMLSelectElement>,id:string) =>{    
         try {  
             let a = window.confirm("Do you want to change the status?")
@@ -76,14 +47,18 @@ const page = () => {
         }
     }
     
+
     return (
-        <div className="sAdmin">
-            <div className="sAdmin-header">
-                <h1>Mange Your Admin Panel</h1>
-                <button onClick={()=>setCreate(!create)}>{create ? "close":"Create New Admin?"}</button>
+        ( dataLoading || updateLoading || updateUsrLoading) ? <Loader />:
+        <div className="dashboard-content-item">
+            <div className="dashboard-header-content">
+                <h1 className='tag'>Mange Your Admin Panel</h1>
+                <div className='header-content'>
+                    <button className='header-btn' onClick={()=>setCreate(!create)}>New Admin<FontAwesomeIcon className='header-btn-icon' icon={faQuestion}/> </button>
+                </div>
             </div>
 
-            <div className="table-container-users">
+            <div className="table-contant">
                 <table className="table">
                     <thead className="thead">
                         <tr className="tr">
@@ -101,7 +76,7 @@ const page = () => {
                         </tr>
                     </thead>
                     <tbody className="tbody">
-                        {(dataLoading || createLoading || updateLoading) ? (
+                        {(dataLoading || updateLoading) ? (
                             <tr>
                                 <td className="td" colSpan={8} style={{ textAlign: "center" }}>
                                     <Loader />
@@ -130,7 +105,7 @@ const page = () => {
                                         </select>
                                     </td>
                                     <td  data-label="change status" className="td">
-                                            <select style={{width:"100px"}}
+                                            <select 
                                                 value={admin?.status} 
                                                 onChange={(e) => handleRoleChange(e,admin?._id)}>
                                                     <option value="">select</option>
@@ -147,15 +122,10 @@ const page = () => {
                 </table>
             </div>
 
-            <div className={create ? 'create-show' : 'admin-create'}>
-                <h1>Create A New Admin</h1>
-                <form onSubmit={handleSubmit(onSubmit)} action="">
-                    <input type="email" {...register("email")} required/>
-                    <input type="password" {...register("password")} required/>
-                    {createLoading ? <p style={{color:"white"}}>Loading..</p> :<button className="form-submit" type='submit'>create</button>}
-                </form>
-            </div>
-
+            <CreateAdminModal 
+                create={create}
+                setCreat={setCreate}
+            />
         </div>
     )
 }

@@ -92,74 +92,81 @@ const Page = () => {
     }
     
     return (
-        <div className="sAdmin">
-            <div className="sAdmin-header">
-                <h1>All users</h1>
+        <div className="dashboard-content-item">
+            <div className="dashboard-header-content">
+                <h1 className='tag'>All users</h1>
+                <div className='header-content'>
+                    <button className='header-btn' onClick={()=>setIsOpen(!isOpen)}><FontAwesomeIcon icon={faFilter}/></button>
+                    
+                    <div className={isOpen?"filter-container show":"filter-container"}>
+                        <h3 className='filter-header-text'>Users Filter</h3>
+                        <div className="filter-item">
+                                <label htmlFor="page">enter page number</label>
+                                <input
+                                type="number"
+                                name="page"
+                                placeholder="Page"
+                                value={para.page}
+                                onChange={handleChange}
+                                min={1}
+                            />
+                        </div>
+                        
+                        <div className="filter-item">
+                            <label htmlFor="total">item per page</label>
+                            <input
+                                type="number"
+                                name="total"
+                                placeholder="Rows per page"
+                                value={para.total}
+                                onChange={handleChange}
+                                min={1}
+                            />
+                        </div>
+                        
+                        <div className="filter-item">
+                            <label htmlFor="email">item per page</label>
+                            <input
+                                type="text"
+                                name="email"
+                                placeholder="Email filter"
+                                value={para.email}
+                                onChange={handleChange}
+                            />
+                        </div>
+                        
+                        <div className="filter-item">
+                            <label htmlFor="name">item per page</label>
+                            <input
+                                type="text"
+                                name="name"
+                                placeholder="Name filter"
+                                value={para.name}
+                                onChange={handleChange}
+                            />
+                        </div>
+
+                        <div className="filter-item">
+                            <label htmlFor="page">status</label>
+                            <select
+                                name="status"
+                                value={para.status}
+                                onChange={handleChange}>
+                                    <option value="">select</option>
+                                    <option value="active">active</option>
+                                    <option value="inactive">inactive</option>
+                                </select>
+                        </div>
+                        
+                    </div>
+
+                </div>
             </div>
 
             <p className='filter-status'>page number:{para.page??'not selected'} | per page:{para.total??'not selected'} | status:{para.status??'not selected'} | search email:{para.email??'not selected'} | search name:{para.name??''}</p>
-
-            <div className="filter-header">
-                <button onClick={()=>setIsOpen(!isOpen)}><FontAwesomeIcon icon={faFilter}/></button>
-                
-                <div className={isOpen?"filter-container show":"filter-container"}>
-                        
-                    <div className="filter-item">
-                            <input
-                            type="number"
-                            name="page"
-                            placeholder="Page"
-                            value={para.page}
-                            onChange={handleChange}
-                            min={1}
-                        />
-                    </div>
-                    
-                    <div className="filter-item">
-                        <input
-                            type="number"
-                            name="total"
-                            placeholder="Rows per page"
-                            value={para.total}
-                            onChange={handleChange}
-                            min={1}
-                        />
-                    </div>
-                    
-                    <div className="filter-item">
-                        <input
-                            type="text"
-                            name="status"
-                            placeholder="Status filter(active/inactive/banned)"
-                            value={para.status}
-                            onChange={handleChange}
-                            />
-                    </div>
-                    
-                    <div className="filter-item">
-                        <input
-                            type="text"
-                            name="email"
-                            placeholder="Email filter"
-                            value={para.email}
-                            onChange={handleChange}
-                        />
-                    </div>
-                    
-                    <div className="filter-item">
-                        <input
-                            type="text"
-                            name="name"
-                            placeholder="Name filter"
-                            value={para.name}
-                            onChange={handleChange}
-                        />
-                    </div>
-                </div>
-            </div>
-            
-            <div className="table-container-users">
-                <table className="responsive-table">
+        
+            <div className="table-contant">
+                <table>
                     <thead>
                         <tr>
                             <th>Serial</th>
@@ -217,7 +224,7 @@ const Page = () => {
                             <td>
                             <button
                                 onClick={() => handleUserDelete(admin?._id)}
-                                className="delete-users-btn"
+                                className="action-btn action-btn-delete"
                             >
                                 <FontAwesomeIcon icon={faTrash} />
                             </button>

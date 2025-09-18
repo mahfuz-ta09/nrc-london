@@ -10,12 +10,12 @@ import AddStudentFileModal from './AddStudentFileModal/AddStudentFileModal'
 const stFile = () => {
     const [modalState,setModalState] = useState({ isOpen: false })
     return (
-      <div className="dash-item-container dashItem-content">
-        <div className="dashItem-header">
-          <div className="header-button-container">
-            <button className='save-button' onClick={()=>setModalState({ isOpen: !modalState?.isOpen })}>Add Student</button>
+      <div className="dashboard-content-item">
+        <div className="dashboard-header-content">
+          <h1 className='tag'>my students</h1>
+          <div className="header-content">
+            <button className='header-btn' onClick={()=>setModalState({ isOpen: !modalState?.isOpen })}>Add Student</button>
           </div>
-          {/* <h1 className='header-title'>my students</h1> */}
         </div>
 
         

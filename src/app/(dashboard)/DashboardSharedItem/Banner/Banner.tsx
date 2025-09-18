@@ -40,7 +40,7 @@ const Banner = () => {
             </div>
 
             
-            <div className="table-container-users">
+            <div className="table-contant">
                 <table className="responsive-table">
                     <thead>
                         <tr>

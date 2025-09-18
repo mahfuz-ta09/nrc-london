@@ -14,22 +14,23 @@ import { useDeleteUniMutation, useGetUniversityListQuery } from '@/redux/endpoin
 
 
 type paraType = {
-    all?:string,
-    country?:string,
-    page?:number,
-    total?:number,
-    uniName?:string
+    para:{
+        all?:string,
+        country?:string,
+        page?:number,
+        total?:number,
+        uniName?:string
+    },
+    setPara:any
 }
 
 
-const UniversityTable = () => {
-    const [isOpen,setIsOpen] = useState(false)
+const UniversityTable = ({para,setPara}: paraType) => {
     const {data:country, isLoading: nameLoading}= useGetAllCountryNameQuery()
     const [deleteUni , { isLoading: deleteLoading }] = useDeleteUniMutation()
     const [addUni,setAddUni] = useState({action:"",id:'',isOPen: false,name:''})
     const [addSub,setAddSub] = useState({action:"",id:'',isOPen: false,name:''})
     const [listSubject,setListSubject] = useState({action:"",id:'',isOPen: false,name:''})
-    const [para,setPara] = useState<paraType>({all:'',country:'',page:1,total:10,uniName:''})
     const { data , isLoading } = useGetUniversityListQuery({
         all: para.all || "",
         country: para.country || "",
@@ -62,12 +63,6 @@ const UniversityTable = () => {
         }
     }
 
-    const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>) => {
-        setPara({
-            ...para,
-            [e.target.name]: e.target.value
-        });
-    }
     
     
     const handlePageChange = (p: number) => {
@@ -80,45 +75,10 @@ const UniversityTable = () => {
     return (
         (isLoading || nameLoading || deleteLoading) ? <Loader /> :(
         <div className='university-table'>
-            {data?.meta?.totalCount!==0 && 
-                <div className="filter-header-uni">
-                    {(data?.meta?.totalCount || country?.meta?.total) && <p className='filter-tag'>university ({para?.country? para?.country:'all'} & total: {data?.meta?.totalCount})</p>}
-                    <button onClick={()=>setIsOpen(!isOpen)}><FontAwesomeIcon icon={faFilter}/></button>
-                    
-                    <div className={isOpen?"filter-container show":"filter-container"}>
-                        <input
-                            type="number"
-                            name="page"
-                            placeholder="Page"
-                            value={para.page}
-                            onChange={handleChange}
-                            className='pagination-input'
-                            min={0}
-                        />
-                        <input
-                            type="number"
-                            name="total"
-                            placeholder="Rows per page"
-                            value={para.total}
-                            onChange={handleChange}
-                            className='pagination-input'
-                            min={0}
-                        />
-                        <input
-                            type="text"
-                            name="uniName"
-                            placeholder="university name"
-                            value={para.uniName}
-                            onChange={handleChange}
-                            className='pagination-input'
-                        />
-                    </div>
-                </div>
-            }
 
             {(data?.meta?.totalCount || country?.meta?.total) && <div className='all-btn-container'>
                 <button className='all-btn'
-                        onClick={() =>setPara(prev => ({...prev,all: "all",country: "",page: 1,total: 10}))}
+                        onClick={() =>setPara((prev:any) => ({...prev,all: "all",country: "",page: 1,total: 10}))}
                         onMouseEnter={(e) => (e.currentTarget.style.backgroundColor = "#eee")}
                         onMouseLeave={(e) => (e.currentTarget.style.backgroundColor = "#f8f8f8")}
                     >all</button>
@@ -127,7 +87,7 @@ const UniversityTable = () => {
                         key={single?._id}
                         className='all-btn'
                         onClick={() =>
-                            setPara(prev => ({
+                            setPara((prev:any) => ({
                                 ...prev,
                                 all: "",
                                 country: single.country,
@@ -146,7 +106,7 @@ const UniversityTable = () => {
 
             {data?.meta?.totalCount!==0 && 
             
-            <div className='table-container-users'>
+            <div className='table-contant'>
                     <table id="">
                         <thead>
                             <tr>

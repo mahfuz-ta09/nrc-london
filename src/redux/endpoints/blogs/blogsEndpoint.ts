@@ -63,6 +63,15 @@ const blogApi = baseApi.injectEndpoints({
                 providesTags: ["blogs"],
         }),
 
+        getSingleBlogBySlug: build.query<
+            { data:any },{ slug: string }>({
+                query: ({ slug }) => ({
+                    url: `/blog/all-stat/${slug}`,
+                    method: "GET",
+                }),
+                providesTags: ["blogs"],
+        }),
+
     }),
     
 
@@ -77,4 +86,5 @@ export const {
     useDeleteBlogMutation,
     useGetBlogByCategoryQuery,
     useGetUniqueCatagoriesQuery,
+    useGetSingleBlogBySlugQuery
 } = blogApi

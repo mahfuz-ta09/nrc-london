@@ -1,5 +1,5 @@
 'use client'
-import '../css/allagents.css'
+// import '../css/allagents.css'
 import { useState } from "react"
 import { useRouter } from "next/navigation"
 import Loader from "@/component/shared/Loader/Loader"
@@ -24,15 +24,14 @@ const page = () => {
         })
     }
 
-    if(dataLoading) return <Loader />
-    
     return (
-        <div className="sAdmin-agent-req">
-            <div className="sAdmin-header-agent-req">
-                <h1>{data?.meta?.total} Active Agents</h1>
-                <div className="sAdmin-header-actions">
-                    <button onClick={()=>setOpenFilter(!openFilter)}>{openFilter? <FontAwesomeIcon style={{color:"red"}} icon={faCancel}/>:<FontAwesomeIcon icon={faFilter}/>}</button>
-                    <button onClick={()=>router.push('/Dashboard/super_admin/AllAgents/agent-req')}>Check All Agent Request</button>
+        (dataLoading) ? <Loader /> :
+        <div className="dashboard-content-item">
+            <div className="dashboard-header-content">
+                <h1 className='tag'>{data?.meta?.total} Active Agents</h1>
+                <div className="header-content">
+                    <button className='header-btn' onClick={()=>setOpenFilter(!openFilter)}>{openFilter? <FontAwesomeIcon style={{color:"red"}} icon={faCancel}/>:<FontAwesomeIcon icon={faFilter}/>}</button>
+                    <button className='header-btn' onClick={()=>router.push('/Dashboard/super_admin/AllAgents/agent-req')}>Check All Agent Request</button>
                 </div>
 
                 <AgentSearchParam

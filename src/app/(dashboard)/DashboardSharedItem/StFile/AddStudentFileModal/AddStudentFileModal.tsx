@@ -1,7 +1,6 @@
 'use client'
 import { useState } from 'react'
 import { useForm, FormProvider } from 'react-hook-form'
-import '../../SharedCountryUni/AddCountryModal/AddCountryModal.css'
 import { useUserInfo } from '@/utils/useUserInfo'
 import { useCreatetStudentFileMutation } from '@/redux/endpoints/studentFileProcess/proceedEndpoints'
 import Loader from '@/component/shared/Loader/Loader'
@@ -130,7 +129,7 @@ const AddStudentFileModal = ({ setModalState, modalState }: ModalProps) => {
             : 'modal-container'
         }>
             <div className="modal-body">
-                <h1>Open New Student File</h1>
+                <h1 className='modal-header'>Open New Student File</h1>
 
                 <button
                 onClick={() => setModalState({ isOpen: false })}
@@ -307,17 +306,17 @@ const AddStudentFileModal = ({ setModalState, modalState }: ModalProps) => {
 
                         <div className="form-navigation">
                         {step > 1 && (
-                            <button type="button" onClick={handleBack} className="modal-sbmt-btn">
+                            <button type="button" onClick={handleBack} className="submit-button">
                             Back
                             </button>
                         )}
                         {step < 4 && (
-                            <button type="button" onClick={handleNext} className="modal-sbmt-btn">
+                            <button type="button" onClick={handleNext} className="submit-button">
                             Next
                             </button>
                         )}
                         {step === 4 && (
-                            <button type="submit" className="modal-sbmt-btn">
+                            <button type="submit" className="submit-button">
                             Submit
                             </button>
                         )}

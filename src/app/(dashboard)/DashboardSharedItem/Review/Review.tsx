@@ -61,7 +61,7 @@ const page = () => {
                 (reviewLoading || deleteLoading) ?
                 <Loader /> :
                 
-                <div className="table-container-users">
+                <div className="table-contant">
                     <table className="responsive-table">
                         <thead className="thead">
                             <tr className="tr">

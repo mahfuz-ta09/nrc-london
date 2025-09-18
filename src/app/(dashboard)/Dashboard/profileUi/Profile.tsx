@@ -4,7 +4,6 @@ import { useUserInfo } from '@/utils/useUserInfo'
 import convertFormData from '@/utils/convertFormData'
 import { SubmitHandler, useForm } from 'react-hook-form'
 import { useUpdateUserProfileMutation } from '@/redux/endpoints/profile/profileEndpoints'
-import "@/app/(dashboard)/DashboardSharedItem/SharedCountryUni/AddCountryModal/AddCountryModal.css"
 
 interface IFormInput {
     name: string
@@ -88,7 +87,7 @@ const Profile = ({profileData , setProfileData}:{profileData:boolean,setProfileD
                         <input style={{color:"white"}} id="file" type="file" {...register("file")}  />
                     </div>
                     
-                    {uploadLoading ? <p>Loading...</p> : <button className='modal-sbmt-btn'type="submit" >Update</button>}
+                    {uploadLoading ? <p>Loading...</p> : <button className='submit-button'type="submit" >Update</button>}
                 </form> 
                 
 

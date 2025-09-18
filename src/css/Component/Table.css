@@ -1,0 +1,403 @@
+
+.table-contant {
+    max-width: 1600px;
+    width: 95%;
+    /* height: 80vh; */
+    margin: 20px auto;
+    padding: 0;
+    overflow: scroll;
+    border-radius: 12px;
+    background: rgb(0, 77, 102,0.7);
+    backdrop-filter: blur(20px);
+    border: none;
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.2);
+}
+
+.table-contant table {
+    border-collapse: collapse;
+    width: 100%;
+    background: transparent;
+    border-radius: 12px;
+    border: none;
+    overflow: hidden;
+}
+
+/* table select{
+    border: 2px solid black;
+    padding: 15px;
+    border-radius: 5px;
+    background-color:#004a62;
+    color: #000;
+} */
+
+th {
+    padding: 18px 16px;
+    text-align: left;
+    background: linear-gradient(135deg, #006080 0%, rgb(0, 77, 102) 100%);
+    color: white;
+    font-weight: 600;
+    font-size: 0.875rem;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    border: none;
+    position: relative;
+    white-space: nowrap;
+}
+
+
+th:first-child {
+    border-top-left-radius: 12px;
+    border: none;
+}
+
+th:last-child {
+    border-top-right-radius: 12px;
+    border: none;
+}
+
+td {
+    padding: 16px;
+    color: white;
+    border: none;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+    background: rgba(255, 255, 255, 0.05);
+    font-size: 0.9rem;
+    vertical-align: middle;
+    transition: all 0.3s ease;
+    border: none;
+}
+
+tr {
+    transition: all 0.3s ease;
+    border: none;
+}
+
+tr:hover {
+    transform: translateY(-1px);
+    box-shadow: 0 4px 15px rgba(0, 96, 128, 0.3);
+}
+
+tr:hover td {
+    background: transparent;
+    color: white;
+}
+
+tr:last-child td:first-child {
+    border-bottom-left-radius: 12px;
+    border: none;
+}
+
+tr:last-child td:last-child {
+    border-bottom-right-radius: 12px;
+    border: none;
+}
+
+tr:last-child td {
+    border-bottom: none;
+}
+
+.table-img {
+    width: 60px;
+    height:60px;
+    border-radius: 12px;
+    object-fit: cover;
+    margin-right: 12px;
+    border: 2px solid rgba(255, 255, 255, 0.2);
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+}
+
+.table-img:hover {
+    transform: scale(1.1);
+    border-color: rgba(255, 255, 255, 0.4);
+    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.3);
+}
+
+select {
+    width: 100%;
+    padding: 12px 16px;
+    border-radius: 8px;
+    background: rgba(255, 255, 255, 0.9);
+    color: #333;
+    border: 2px solid rgba(255, 255, 255, 0.3);
+    font-weight: 500;
+    font-size: 0.875rem;
+    transition: all 0.3s ease;
+    cursor: pointer;
+    appearance: none;
+    background-image: url("data:image/svg+xml;charset=UTF-8,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23666' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3e%3cpolyline points='6,9 12,15 18,9'%3e%3c/polyline%3e%3c/svg%3e");
+    background-repeat: no-repeat;
+    background-position: right 12px center;
+    background-size: 16px;
+    padding-right: 45px;
+}
+
+select:focus {
+    outline: none;
+    border-color: #000000;
+    background: rgba(255, 255, 255, 0.95);
+    box-shadow: 0 0 0 3px rgba(0, 96, 128, 0.1);
+}
+
+select:hover {
+    border-color: rgba(0, 96, 128, 0.5);
+    background: rgba(255, 255, 255, 0.95);
+}
+
+
+.action-btn {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 36px;
+    height: 36px;
+    border-radius: 8px;
+    color: #fff;
+    font-weight: 600;
+    border: none;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    margin: 0 2px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
+    position: relative;
+    overflow: hidden;
+}
+
+.action-btn::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.3), transparent);
+    transition: left 0.5s ease;
+}
+
+.action-btn:hover::before {
+    left: 100%;
+}
+
+.action-btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.3);
+}
+
+.action-btn:active {
+    transform: translateY(0);
+}
+
+/* Action Button Variants */
+.action-btn-edit {
+    background: linear-gradient(135deg, #28a745 0%, #20c997 100%);
+}
+
+.action-btn-delete {
+    background: linear-gradient(135deg, #dc3545 0%, #fd7e14 100%);
+}
+
+.action-btn-view {
+    background: linear-gradient(135deg, #007bff 0%, #6610f2 100%);
+}
+
+.action-btn-download {
+    background: linear-gradient(135deg, #17a2b8 0%, #6f42c1 100%);
+}
+
+/* Action Buttons Container */
+.actions-cell {
+    display: flex;
+    gap: 6px;
+    align-items: center;
+    flex-wrap: wrap;
+}
+
+/* Status Badges */
+.status-badge {
+    padding: 6px 12px;
+    border-radius: 20px;
+    font-size: 0.75rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    min-width: fit-content;
+}
+
+.status-active {
+    background: linear-gradient(135deg, #28a745 0%, #20c997 100%);
+    color: white;
+}
+
+.status-inactive {
+    background: linear-gradient(135deg, #6c757d 0%, #adb5bd 100%);
+    color: white;
+}
+
+.status-pending {
+    background: linear-gradient(135deg, #ffc107 0%, #fd7e14 100%);
+    color: #212529;
+}
+
+/* Responsive Design */
+@media screen and (max-width: 1200px) {
+    .table-contant {
+        width: 98%;
+    }
+    
+    th, td {
+        padding: 14px 12px;
+        font-size: 0.85rem;
+    }
+    
+    .action-btn {
+        width: 32px;
+        height: 32px;
+    }
+}
+
+@media screen and (max-width: 768px) {
+    .table-contant {
+        margin: 15px auto;
+        border-radius: 8px;
+    }
+    
+    .table-contant table {
+        border-radius: 8px;
+    }
+    
+    th {
+        padding: 12px 8px;
+        font-size: 0.75rem;
+    }
+    
+    td {
+        padding: 12px 8px;
+        font-size: 0.8rem;
+    }
+    
+    .table-img {
+        width: 40px;
+        height: 40px;
+        margin-right: 8px;
+    }
+    
+    .action-btn {
+        width: 28px;
+        height: 28px;
+        margin: 0 1px;
+    }
+    
+    select {
+        padding: 8px 12px;
+        font-size: 0.8rem;
+    }
+}
+
+/* Mobile First - Stack Table */
+@media screen and (max-width: 640px) {
+    .table-contant {
+        overflow-x: auto;
+        -webkit-overflow-scrolling: touch;
+    }
+    
+    .table-contant table {
+        min-width: 700px; /* Ensure table doesn't get too cramped */
+    }
+    
+    /* Alternative: Card Layout for Mobile */
+    .mobile-card-view {
+        display: none;
+    }
+}
+
+@media screen and (max-width: 480px) {
+    .table-contant {
+        width: 100%;
+        margin: 10px auto;
+        padding: 0;
+        border-radius: 6px;
+    }
+    
+    th, td {
+        padding: 8px 6px;
+        font-size: 0.75rem;
+    }
+    
+    .table-img {
+        width: 35px;
+        height: 35px;
+    }
+    
+    .action-btn {
+        width: 24px;
+        height: 24px;
+    }
+    
+    /* Hide less important columns on very small screens */
+    .hide-mobile {
+        display: none;
+    }
+}
+
+/* Loading State */
+.table-loading {
+    position: relative;
+    overflow: hidden;
+}
+
+.table-loading::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.1), transparent);
+    animation: shimmer 1.5s infinite;
+}
+
+@keyframes shimmer {
+    0% { left: -100%; }
+    100% { left: 100%; }
+}
+
+/* Empty State */
+.table-empty {
+    text-align: center;
+    padding: 60px 20px;
+    color: rgba(255, 255, 255, 0.7);
+}
+
+.table-empty-icon {
+    font-size: 3rem;
+    margin-bottom: 16px;
+    opacity: 0.5;
+}
+
+.table-empty-text {
+    font-size: 1.1rem;
+    font-weight: 500;
+}
+
+/* Scrollbar Styling */
+.table-contant::-webkit-scrollbar {
+    height: 8px;
+}
+
+.table-contant::-webkit-scrollbar-track {
+    background: rgba(255, 255, 255, 0.1);
+    border-radius: 4px;
+}
+
+.table-contant::-webkit-scrollbar-thumb {
+    background: rgba(255, 255, 255, 0.3);
+    border-radius: 4px;
+    transition: all 0.3s ease;
+}
+
+.table-contant::-webkit-scrollbar-thumb:hover {
+    background: rgba(255, 255, 255, 0.5);
+}

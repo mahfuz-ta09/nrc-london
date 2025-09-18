@@ -1,5 +1,5 @@
 'use client'
-import './AddCountryModal.css'
+// import './AddCountryModal.css'
 import { toast } from 'react-toastify'
 import { countryCurrencyMap } from '@/types/common'
 import Loader from '@/component/shared/Loader/Loader'
@@ -118,7 +118,7 @@ const AddCountryModal = ({addCounty,setAddCountry}: ModalProps) => {
                         <label htmlFor="serial">Add an image of the country</label>
                         <input type='file'  accept="image/jpeg, image/jpg, image/png" {...register("famousFile")}/>
                     </div>
-                    <button type='submit' className='modal-sbmt-btn'>submit</button>
+                    <button type='submit' className='submit-button'>submit</button>
                 </form>
 
             </div>

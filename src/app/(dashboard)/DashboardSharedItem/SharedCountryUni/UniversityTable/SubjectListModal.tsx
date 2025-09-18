@@ -71,7 +71,7 @@ const SubjectListModal = ({ listSubject, setListSubject }: ModalProps) => {
                     X
                 </button>
                     
-                <div className="table-container-users">
+                <div className="table-contant">
                     <table id="">
                         <thead>
                             <tr>

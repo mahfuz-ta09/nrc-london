@@ -227,7 +227,7 @@ const AddUniModal = ({ addUni, setAddUni }: ModalProps) => {
                         <textarea {...register("aboutUni")} />
                     </div>
 
-                    <button type='submit' className='modal-sbmt-btn'>Submit</button>
+                    <button type='submit' className='submit-button'>Submit</button>
                 </form>
             </div>
         </div>

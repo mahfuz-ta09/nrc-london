@@ -1,0 +1,51 @@
+
+
+
+.input-container{
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    margin: 30px 0;
+    align-items: start;
+    justify-content: start;
+    gap: 10px;
+}
+
+.input-container label{
+    font-size: 15px;
+    font-weight: 700;
+    color: #252525;
+    text-transform: lowercase;
+}
+
+.input-container input,textarea{
+    font-size: 15px;
+    font-weight: 500;
+    text-transform: lowercase;
+    padding: 15px;
+    width: 100%;
+    border-radius: 5px;
+    border: 1px solid #9e9c9c;
+    background: #fff;
+}
+
+.input-container input[type="file"]{
+    padding: 15px;
+    background: #f8fafccc;
+    border: 2px dashed #d1d5db;
+    cursor: pointer;
+}
+
+.input-container .error{
+    color: red;
+    font-size: 14px;
+    cursor: pointer;
+}
+
+.input-container select{
+    border: 2px solid black;
+    padding: 15px;
+    border-radius: 5px;
+    background-color:#004a62;
+    color: #fff;
+}

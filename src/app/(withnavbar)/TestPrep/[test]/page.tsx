@@ -82,7 +82,7 @@ const Page = () => {
                             ))}
                         </div>
 
-                        <div className="table-container">
+                        <div className="table-contant">
                             <table>
                                 <thead>
                                     <tr>
@@ -114,7 +114,7 @@ const Page = () => {
                     <p className="answer">{test?.targetAudience}</p>
                 </div>
 
-                <div className="table-container">
+                <div className="table-contant">
                     <table>
                         <thead>
                             <tr>
