@@ -73,7 +73,7 @@ const BannerActionModal = ({addBanner,setAddBanner}: ModalProps) => {
     return (
         <div className={addBanner?.isOPen? 'modal-container openmoda-container' :'modal-container'}>
             <div className='modal-body'>
-                <h1>{addBanner?.action} banner</h1>
+                <h4 className="modal-header">{addBanner?.action} banner</h4>
                 {addBanner?.action==='edit' && <p>ID - {addBanner?.id}</p>}
                     
                 <button onClick={()=>setAddBanner((prev:any) => ({...prev ,id:'',name:'', isOPen: false , action:""}))} className="cancel-btn">X</button>

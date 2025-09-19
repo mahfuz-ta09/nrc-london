@@ -78,9 +78,10 @@ const AddCountryModal = ({addCounty,setAddCountry}: ModalProps) => {
 
     
     return (
+        ( creationLoader || editLoader ) ? <Loader /> :
         <div className={addCounty?.isOPen? 'modal-container openmoda-container' :'modal-container'}>
             <div className='modal-body'>
-                <h1>{addCounty?.action} country -{addCounty?.name}</h1>
+                <h4 className="modal-header">{addCounty?.action} country {addCounty?.name}</h4>
                     
                 <button onClick={()=>setAddCountry((prev:any) => ({...prev ,id:'',name:'', isOPen: false , action:""}))} className="cancel-btn">X</button>
                 

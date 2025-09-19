@@ -4,10 +4,10 @@ import { Suspense ,useState } from 'react'
 import AddUniModal from './AddUniModal/AddUniModal'
 import Loader from '@/component/shared/Loader/Loader'
 import CountryLists from './CountryCardSlider/CountryLists'
+import { faFilter } from '@fortawesome/free-solid-svg-icons'
 import AddCountryModal from './AddCountryModal/AddCountryModal'
 import UniversityTable from './UniversityTable/UniversityTable'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faFilter } from '@fortawesome/free-solid-svg-icons'
 
 
 

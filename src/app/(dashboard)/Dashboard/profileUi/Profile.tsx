@@ -50,7 +50,7 @@ const Profile = ({profileData , setProfileData}:{profileData:boolean,setProfileD
                 </button>
 
                 <form onSubmit={handleSubmit(onSubmit)} className='modal-from'>
-                    <h1 className="form-label" >Update your profile</h1>
+                    <h1 className="modal-header">Update your profile</h1>
                     <div className='input-container'>
                         <label className="form-label" htmlFor="name">Name:</label>
                         <input className="form-input" type="text" {...register("name")}/>

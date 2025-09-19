@@ -129,7 +129,7 @@ const AddStudentFileModal = ({ setModalState, modalState }: ModalProps) => {
             : 'modal-container'
         }>
             <div className="modal-body">
-                <h1 className='modal-header'>Open New Student File</h1>
+                <h4 className='modal-header'>Open New Student File</h4>
 
                 <button
                 onClick={() => setModalState({ isOpen: false })}

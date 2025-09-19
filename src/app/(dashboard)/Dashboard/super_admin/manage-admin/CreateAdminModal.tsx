@@ -45,7 +45,7 @@ const CreateAdminModal = ({ create , setCreat }: ModalProps) => {
         (createLoading) ? <Loader /> :
         <div className={create ? 'modal-container openmoda-container' : 'modal-container'}>
             <div className="modal-body">
-                <h1 className="modal-header">Add New Blog</h1>
+                <h4 className="modal-header">Add New Blog</h4>
                 <button onClick={() => setCreat(false)} className="cancel-btn">X</button>
 
                 <form className="modal-form" onSubmit={handleSubmit(onSubmit)}>

@@ -13,7 +13,6 @@ type ModalProps = {
   setModalState: React.Dispatch<React.SetStateAction<any>>
 }
 
-
 type BlogFormData = {
     title: string
     slug: string
@@ -149,7 +148,7 @@ const BlogActionModal = ({ setModalState, modalState }: ModalProps) => {
         (createLoadig) ? <Loader /> :
         <div className={modalState?.isOpen ? 'modal-container openmoda-container' : 'modal-container'}>
             <div className="modal-body">
-                <h1>Add New Blog</h1>
+                <h4 className='modal-header'>Add New Blog</h4>
                 <button onClick={() => setModalState({ isOpen: false })} className="cancel-btn">X</button>
 
                 <form className="modal-form" style={{width:'60vw'}} onSubmit={handleSubmit(onSubmit)}>

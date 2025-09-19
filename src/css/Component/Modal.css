@@ -93,3 +93,11 @@
 .cancel-btn:active {
     transform: rotate(90deg) scale(0.95);
 }
+
+@media screen and (max-width:500px) {
+    
+    .modal-body {
+        min-width: 100vw;
+        height: 80vh;
+    }
+}
