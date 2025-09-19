@@ -27,7 +27,7 @@ const CountryUniContent = () => {
     return (
         <div className='dashboard-content-item'>
             <div className="dashboard-header-content">
-                <h1 className='tag'>Manage country and university</h1>
+                <h1 className='tag'>Manage country&university</h1>
                 <div className="header-content">
                     <button className="header-btn" onClick={() => setIsOpen(!isOpen)}><FontAwesomeIcon icon={faFilter}/></button>
                     <button className="header-btn" onClick={() => setAddCountry(prev => ({ ...prev , isOPen: true , action: "add" }))}>add country</button>
