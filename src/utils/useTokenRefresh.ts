@@ -15,7 +15,7 @@ export const useTokenRefresh = () => {
         } catch (err) {
             console.log("Token refresh failed:", err)
             if (isProtectedRoute(pathname)) {
-                router.push("/Login")
+                router.push("/login")
             }
         } finally {
             setLoading(false)

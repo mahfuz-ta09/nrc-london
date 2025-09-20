@@ -13,7 +13,7 @@ const Page = () => {
           <div className="services-banner-content wdth">
             <h1>Comprehensive Services for Success</h1>
             <p>Explore your limits with us</p>
-            <button onClick={() => router.push('/Contact')}>Contact</button>
+            <button onClick={() => router.push('/contact')}>Contact</button>
           </div>
         </div>
         

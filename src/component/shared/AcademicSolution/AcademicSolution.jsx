@@ -40,7 +40,7 @@ const AcademicSolution = () => {
                 </div>
                 <div className="sol-bottom">
                     <h5>See all our services?</h5>
-                    <button onClick={()=>router.push('/Services')} className='plan-button'>services</button>
+                    <button onClick={()=>router.push('/services')} className='plan-button'>services</button>
                 </div>
             </div>
         </div>

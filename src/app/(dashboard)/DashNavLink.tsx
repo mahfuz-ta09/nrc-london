@@ -20,7 +20,7 @@ const DashNavLink = () => {
                 <div key={idx} className="nav-section">
                     <h3 className="nav-section-title">{section.section}</h3>
                     {section.items.map((item, index) => (
-                        <Link key={index} href={`/Dashboard/${item.path}`} className="nav-link">
+                        <Link key={index} href={`/dashboard/${item.path}`} className="nav-link">
                             <FontAwesomeIcon className="nav-link-icon" icon={item.icon} />
                             <span className='nav-link-title'>{item.title}</span>
                         </Link>

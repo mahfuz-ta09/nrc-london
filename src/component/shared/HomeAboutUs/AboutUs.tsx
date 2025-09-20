@@ -25,8 +25,8 @@ const AboutUs = () => {
                             simplify the journey abroad with integrity and personalized support, while our vision is to 
                             be a leading partner in turning international dreams into reality.
                         </p>
-                        <Link className='contact-contact' href="/Contact">contact</Link>
-                        <Link className='contact-about' href="/AboutUs">About us</Link>
+                        <Link className='contact-contact' href="/contact">contact</Link>
+                        <Link className='contact-about' href="/about-us">About us</Link>
                     </div>
 
                 </div>

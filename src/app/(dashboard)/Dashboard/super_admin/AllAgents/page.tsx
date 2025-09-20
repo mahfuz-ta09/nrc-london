@@ -31,7 +31,7 @@ const page = () => {
                 <h1 className='tag'>{data?.meta?.total} Active Agents</h1>
                 <div className="header-content">
                     <button className='header-btn' onClick={()=>setOpenFilter(!openFilter)}>{openFilter? <FontAwesomeIcon style={{color:"red"}} icon={faCancel}/>:<FontAwesomeIcon icon={faFilter}/>}</button>
-                    <button className='header-btn' onClick={()=>router.push('/Dashboard/super_admin/AllAgents/agent-req')}>Check All Agent Request</button>
+                    <button className='header-btn' onClick={()=>router.push('/dashboard/super_admin/AllAgents/agent-req')}>Check All Agent Request</button>
                 </div>
 
                 <AgentSearchParam

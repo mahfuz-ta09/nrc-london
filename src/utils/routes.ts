@@ -1,6 +1,6 @@
 
 
 export const isProtectedRoute = (url: string) => {
-  const protectedPaths = ["/Dashboard", "/Dashboard/*"]
+  const protectedPaths = ["/dashboard", "/dashboard/*"]
   return protectedPaths.some((path) => url.startsWith(path))
 }

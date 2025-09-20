@@ -40,7 +40,7 @@ const page = () => {
                 <h1>{data?.meta?.total} Pending Agent Requests</h1>
                 <div className="sAdmin-header-actions">
                     <button onClick={()=>setOpenFilter(!openFilter)}>{openFilter? <FontAwesomeIcon style={{color:"red"}} icon={faCancel}/>:<FontAwesomeIcon icon={faFilter}/>}</button>
-                    <button onClick={()=>router.push('/Dashboard/super_admin/AllAgents')}>Check All Agents</button>
+                    <button onClick={()=>router.push('/dashboard/super_admin/AllAgents')}>Check All Agents</button>
                 </div>
                 <AgentSearchParam 
                     agentSearchParameter={agentSearchParameter}

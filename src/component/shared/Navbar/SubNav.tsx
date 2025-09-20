@@ -34,7 +34,7 @@ const UniNav = () => {
 
                         <div className="contact-section">
                                     <Link className='contact-section-link' href="/contact"><FontAwesomeIcon icon={faPhone}/> Contact</Link>
-                                    <Link className='contact-section-link' href="/Dashboard"><FontAwesomeIcon icon={faUser}/> Profile</Link>
+                                    <Link className='contact-section-link' href="/dashboard"><FontAwesomeIcon icon={faUser}/> Profile</Link>
                         </div>
                     </div>
                 )}

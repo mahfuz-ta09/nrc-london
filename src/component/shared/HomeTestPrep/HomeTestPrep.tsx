@@ -71,7 +71,7 @@ const HomeTestPrep = () => {
                             <div key={index} className="test">
                                     <h3>Prepare for {option?.name}</h3>
                                     <p>{option?.purpose.slice(0,30)}...</p>
-                                    <button onClick={()=> router.push(`/TestPrep/${option.name.toLowerCase()}`)}>details <FontAwesomeIcon icon={faArrowAltCircleRight}/> </button>
+                                    <button onClick={()=> router.push(`/test-prep/${option.name.toLowerCase()}`)}>details <FontAwesomeIcon icon={faArrowAltCircleRight}/> </button>
                             </div>)
                         }
                     </div>
