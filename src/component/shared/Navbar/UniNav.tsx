@@ -23,7 +23,7 @@ const UniNav = () => {
                             Array.from({ length: Math.ceil(data.meta.total / 4) }, (_, index) => (
                             <div key={index} className="drop-down-group">
                                 {data.data.slice(4 * index, 4 * index + 4).map((uni: any, ind: number) => (
-                                    <Link key={ind} className="drop-down-link" href={`/University/${uni?.country}`}>
+                                    <Link key={ind} className="drop-down-link" href={`/university/${uni?.country}`}>
                                         <FontAwesomeIcon icon={faGlobe} /> {uni?.country}
                                     </Link>
                                 ))}
@@ -34,7 +34,7 @@ const UniNav = () => {
                         )}
 
                         <div className="contact-section">
-                                    <Link className='contact-section-link' href="/Contact"><FontAwesomeIcon icon={faPhone}/> Contact</Link>
+                                    <Link className='contact-section-link' href="/contact"><FontAwesomeIcon icon={faPhone}/> Contact</Link>
                                     <Link className='contact-section-link' href="/Dashboard"><FontAwesomeIcon icon={faUser}/> Profile</Link>
                         </div>
                     </div>

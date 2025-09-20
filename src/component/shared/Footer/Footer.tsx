@@ -62,9 +62,9 @@ const Footer = () => {
                     <div className="pg-footer-content-column">
                         <div className="pg-footer-menu">
                             <ul className="pg-footer-menu-list">
-                                <li><Link href="/Contact">Contact</Link></li>
-                                <li><Link href="/Services">Services</Link></li>
-                                <li><Link href="/Proceed">Proceed</Link></li>
+                                <li><Link href="/contact">Contact</Link></li>
+                                <li><Link href="/services">Services</Link></li>
+                                <li><Link href="/proceed">Proceed</Link></li>
                             </ul>
                         </div>
                     </div>
@@ -81,7 +81,7 @@ const Footer = () => {
                                             Array.from({ length: Math.ceil((data?.meta?.total || 0) / 4) }, (_, index) => (
                                                 <li key={index} style={{ display: "flex", flexDirection: "column", gap: "5px" }}>
                                                     {data.data.slice(4 * index, 4 * index + 4).map((uni: any, ind: number) => (
-                                                        <Link key={ind} style={{ fontSize: "15px", fontWeight: "400" }} href={`/University/${uni?.country}`}>
+                                                        <Link key={ind} style={{ fontSize: "15px", fontWeight: "400" }} href={`/university/${uni?.country}`}>
                                                             {uni?.country}
                                                         </Link>
                                                     ))}

@@ -56,7 +56,7 @@ const PopularCourse = () => {
                         displayedCourses.map((course:any) => (
                             <div
                                 key={course?._id}
-                                onClick={() => router.push(`/Subjects/${course?.country}`)}
+                                onClick={() => router.push(`/subjects/${course?.country}`)}
                                 className="single-course"
                             >
                                 <FontAwesomeIcon className="single-course-icon" icon={faServer} />

@@ -100,10 +100,10 @@ const LandingPage = () => {
 
                                 <div className="diagonal-cut">
                                     <div className={`action-links slide ${isActive ? 'loaded' : ''}`}>
-                                        <Link className="action-link" href="/Proceed">
+                                        <Link className="action-link" href="/proceed">
                                             apply now <FontAwesomeIcon icon={faArrowRight} className="fas fa-arrow-right"/>
                                         </Link>
-                                        <Link className="action-link" href="/RecruitmentPartner/Becomeanagent">
+                                        <Link className="action-link" href="/recruitment-partner/become-agent">
                                             work as an agent <FontAwesomeIcon icon={faArrowRight} className="fas fa-arrow-right"/>
                                         </Link>
                                     </div>

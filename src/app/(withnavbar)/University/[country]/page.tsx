@@ -45,7 +45,7 @@ const page = () => {
                                         <p className=''>{uni?.initialDepossit}</p>
                                     </div>
                                 </div>
-                                <button onClick={()=>router.push('/Proceed')}className='apply-now'>apply now</button>
+                                <button onClick={()=>router.push('/proceed')}className='apply-now'>apply now</button>
                             </div>
                             
                     )}

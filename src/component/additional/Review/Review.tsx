@@ -28,7 +28,7 @@ const Review = () => {
                         <h1>services look like?</h1>
                     </div>
                     <p>See what our customers have to say about their experience with us.</p>
-                    <button onClick={()=>router.push('/Comment')} className='review-comment'>View all</button>
+                    <button onClick={()=>router.push('/comment')} className='review-comment'>View all</button>
                 </div>
 
                 {isLoading ? <Loader /> : (
