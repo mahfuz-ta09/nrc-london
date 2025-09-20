@@ -1,0 +1,103 @@
+.modal-container {
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 1000;
+    background: rgba(0, 74, 98, 0.3);
+    backdrop-filter: blur(10px);
+    height: 100%;
+    width: 100%;
+    display: flex;
+    align-items: end;
+    justify-content: end;
+    visibility: hidden;
+    opacity: 0;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.openmoda-container {
+    visibility: visible;
+    opacity: 1;
+}
+
+.modal-body {
+    overflow-y: scroll;
+    min-width: 40vw;
+    height: 100vh;
+    background-color:#eff6f8;
+    backdrop-filter: blur(20px);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    border-top-left-radius: 5px;
+    padding: 30px;
+    box-shadow: 
+        0 20px 60px rgba(0, 0, 0, 0.3),
+        0 8px 30px rgba(0, 74, 98, 0.2),
+        inset 0 1px 0 rgba(255, 255, 255, 0.3);
+    transform: scale(0.8) translateY(20px);
+    opacity: 0;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.openmoda-container .modal-body {
+    transform: scale(1) translateY(0);
+    opacity: 1;
+}
+
+.closemoda-container .modal-body {
+    transform: scale(0.8) translateY(20px);
+    opacity: 0;
+}
+
+
+.modal-header {
+    background: linear-gradient(135deg, #006080 0%, #004a62 100%);
+    color: white;
+    font-size: 20px;
+    padding: 10px 15px;
+    border-radius: 10px;
+    position: relative;
+    overflow: hidden;
+}
+
+
+.modal-form{
+    width: 100%;
+}
+
+.cancel-btn {
+    position: absolute;
+    right: 20px;
+    top: 20px;
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    background: rgba(220, 53, 69, 0.7);
+    backdrop-filter: blur(10px);
+    border: 1px solid rgba(255, 255, 255, 0.3);
+    color: white;
+    font-size: 18px;
+    font-weight: 600;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    z-index: 10;
+}
+
+.cancel-btn:hover {
+    transform: rotate(90deg) scale(1.1);
+    box-shadow: 0 4px 15px rgba(220, 53, 69, 0.4);
+}
+
+.cancel-btn:active {
+    transform: rotate(90deg) scale(0.95);
+}
+
+@media screen and (max-width:500px) {
+    
+    .modal-body {
+        min-width: 100vw;
+        height: 80vh;
+    }
+}

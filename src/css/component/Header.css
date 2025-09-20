@@ -1,0 +1,29 @@
+.dashboard-content-item{
+    width: 95%;
+    margin: 0 auto;
+    padding: 60px 0;
+}
+
+.dashboard-header-content{
+    width: 100%;
+    display: flex;
+    align-content: center;
+    justify-content: space-between;
+    margin-bottom: 20px;
+    position: relative;
+}
+
+.dashboard-header-content .tag{
+    color: white;
+    font-size: 20px;
+    font-weight: 300;
+}
+
+
+.header-content{
+    width: auto;
+    display: flex;
+    align-items: center;
+    flex-direction: end;
+    gap: 10px;
+}

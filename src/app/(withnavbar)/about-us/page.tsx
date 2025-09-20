@@ -50,7 +50,7 @@ const page = () => {
                 <button onClick={() => router.push('/Services')} className="explore">
                     View Services
                 </button>
-                <button style={{ marginTop: "20px" }} onClick={() => router.push('/Contact')} className="explore">
+                <button style={{ marginTop: "20px" }} onClick={() => router.push('/contact')} className="explore">
                     Contact Now
                 </button>
             </div>

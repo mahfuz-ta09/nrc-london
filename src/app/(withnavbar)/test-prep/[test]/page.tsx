@@ -58,7 +58,7 @@ const Page = () => {
                     <div className="test-banner-content">
                         <h1 className="test-banner-content-header">{test?.name}</h1>
                         <h1 className="header-abbri">{test?.abbreviation}</h1>
-                        <button onClick={() => router.push('/Contact')}>Contact</button>
+                        <button onClick={() => router.push('/contact')}>Contact</button>
                     </div>
                 </div>
             </div>
