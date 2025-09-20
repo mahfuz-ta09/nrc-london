@@ -17,6 +17,18 @@ const blogApi = baseApi.injectEndpoints({
             invalidatesTags: ["blogs"],
         }),
 
+        updateBlog: build.mutation<any, { data: any , id: string }>({
+            query: ({ data , id }) => ({
+                url: `/blog/update/${id}`,
+                method: 'PATCH',
+                headers: {
+                    'Content-Type': 'multipart/form-data',
+                },
+                data,
+            }),
+            invalidatesTags: ["blogs"],
+        }),
+
         getBlogs: build.query<
             { data: any[]; meta: { total: number; page: number; limit: number; totalPages: number ; totalCount:number } },
             { page?: number; limit?: number; category?: string; status?: string; isFeatured?: boolean }>({
@@ -82,6 +94,7 @@ const blogApi = baseApi.injectEndpoints({
 
 export const {
     useCreateBlogMutation,
+    useUpdateBlogMutation,
     useGetBlogsQuery,
     useDeleteBlogMutation,
     useGetBlogByCategoryQuery,

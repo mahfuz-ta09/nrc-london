@@ -103,7 +103,7 @@ const Navbar = () => {
                     </div>
                     
                     <div className='link-holder'>
-                        <Link onClick={()=>setIsOpen(false)} className='link' href="/Proceed">proceed</Link>
+                        <Link onClick={()=>setIsOpen(false)} className='link' href="/proceed">proceed</Link>
                     </div>
                 </div>
                 <div className={isOpen ? 'link-items show' :'link-items hide'}>

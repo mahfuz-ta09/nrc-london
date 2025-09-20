@@ -1,5 +1,4 @@
 'use client'
-import './CountryUni.css'
 import { Suspense ,useState } from 'react'
 import AddUniModal from './AddUniModal/AddUniModal'
 import Loader from '@/component/shared/Loader/Loader'

@@ -9,6 +9,7 @@ import Pagination from '@/component/shared/Pagination/Pagination'
 import { faEye, faFilter, faPen, faTrash } from '@fortawesome/free-solid-svg-icons'
 import { useDeleteBlogMutation, useGetBlogsQuery } from '@/redux/endpoints/blogs/blogsEndpoint'
 import BlogDetails from './BlogDetails'
+import BlogActionModal from './BlogActionModal'
 
 
 type Props = {
@@ -23,6 +24,7 @@ type Props = {
 }
 
 const BlogTable = ({ params , setParams }: Props) => {
+    const [modalState,setModalState] = useState({ isOpen: false , action:'Add' , id:''})
     const [detail,setDetail] = useState({
         isOPen: false,
         slug: '',
@@ -54,6 +56,7 @@ const BlogTable = ({ params , setParams }: Props) => {
             toast.error("Failed to delete blog")
         }
     }
+
     
     return ((
         (isLoading || deleteLoading ) ? <Loader />:
@@ -94,7 +97,7 @@ const BlogTable = ({ params , setParams }: Props) => {
                                 <td>
                                     <button onClick={()=>setDetail({...detail,isOPen: true, slug:blog?.slug})}className="action-btn" style={{margin:'5px',background:"green"}} ><FontAwesomeIcon icon={faEye}/></button>
                                     <button onClick={()=>handleDelete(blog?._id)} className="action-btn" style={{margin:'5px',background:"#f14040"}} ><FontAwesomeIcon icon={faTrash}/></button>
-                                    <button className="action-btn" style={{margin:'5px',background:"green"}} ><FontAwesomeIcon icon={faPen}/></button>
+                                    <button onClick={()=>setModalState({isOpen: true , action:"Edit" , id:blog?._id})} className="action-btn" style={{margin:'5px',background:"green"}} ><FontAwesomeIcon icon={faPen}/></button>
                                 </td>
                             </tr>
                         )
@@ -112,6 +115,12 @@ const BlogTable = ({ params , setParams }: Props) => {
                 <BlogDetails 
                     detail={detail}
                     setDetail={setDetail}/>
+            </Suspense>
+            <Suspense fallback={<Loader />}>
+                <BlogActionModal
+                    modalState={modalState}
+                    setModalState={setModalState}
+                />
             </Suspense>
         </div>
     ))

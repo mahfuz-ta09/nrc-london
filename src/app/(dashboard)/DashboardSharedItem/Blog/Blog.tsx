@@ -10,8 +10,11 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
 
 const Blog = () => {
     const [open,setOpen] = useState(false)
-    const [modalState,setModalState] = useState({ isOpen: false })    
+    const [modalState,setModalState] = useState({ isOpen: false , action:'Add' , id:'' })    
     const [params,setParams] =  useState({ page: 1, limit: 10 , category: "", status: "", isFeatured: undefined})
+    
+    
+    
     const handleOnChange = (e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>) => {
         const { name, value } = e.target
 
@@ -38,7 +41,7 @@ const Blog = () => {
 
           <div className="header-content">
             <button onClick={()=>setOpen(!open)} className='header-btn'><FontAwesomeIcon icon={faFilter}/></button>
-            <button className='header-btn' onClick={()=>setModalState({ isOpen: !modalState?.isOpen })}>Add Blog</button>
+            <button className='header-btn' onClick={()=>setModalState({ isOpen: !modalState?.isOpen , action: "Add" , id: ''})}>Add Blog</button>
             <div className={open?"filter-container show":"filter-container"}>
                 <div className="filter-item">
                   <label htmlFor="page">insert page number</label>

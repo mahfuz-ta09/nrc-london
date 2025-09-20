@@ -4,13 +4,17 @@ import ReactQuill from 'react-quill-new'
 import 'react-quill-new/dist/quill.snow.css'
 import { useForm, Controller } from "react-hook-form"
 import { base64ToFile } from '@/utils/convertFileType'
-import { useCreateBlogMutation } from '@/redux/endpoints/blogs/blogsEndpoint'
+import { useCreateBlogMutation, useUpdateBlogMutation } from '@/redux/endpoints/blogs/blogsEndpoint'
 import Loader from '@/component/shared/Loader/Loader'
 
 
 type ModalProps = {
-  modalState: { isOpen: boolean }
-  setModalState: React.Dispatch<React.SetStateAction<any>>
+    modalState: { 
+        isOpen: boolean,
+        action: string ,
+        id: string
+    }
+    setModalState: React.Dispatch<React.SetStateAction<any>>
 }
 
 type BlogFormData = {
@@ -36,6 +40,7 @@ type BlogFormData = {
 
 const BlogActionModal = ({ setModalState, modalState }: ModalProps) => {
     const [createBlog, { isLoading: createLoadig }] = useCreateBlogMutation()
+    const [updateBlog, { isLoading: updateLoadig }] = useUpdateBlogMutation()
     const { register, control, handleSubmit, reset } = useForm<BlogFormData>({
         defaultValues: {
             title: "",
@@ -107,15 +112,11 @@ const BlogActionModal = ({ setModalState, modalState }: ModalProps) => {
             }))
 
             let res: any
-            res = await createBlog({data:formData}).unwrap()
-            
-            if(res?.data?.insertedId){
-                toast.success('Blog inserted seccessfully')
-                reset()
-                setModalState({ isOpen: false })
-            }else{
-                toast.error(res?.data || "Failed to insert blog" )
-            }
+            if(modalState?.action==="Add")res = await createBlog({data:formData}).unwrap()
+            else if(modalState?.action==="Edit" && modalState?.id) res = await updateBlog({ data: formData , id: modalState?.id })
+            toast.success(`Blog ${modalState?.action==="Edit"? "edit":"added"} successfully`)
+            reset()
+            setModalState({ isOpen: false , id: ''})
         }catch(err: any){
             toast.error(err?.data || "something went wrong")
         }
@@ -144,41 +145,42 @@ const BlogActionModal = ({ setModalState, modalState }: ModalProps) => {
         ],
     }
 
+    
     return ((
-        (createLoadig) ? <Loader /> :
+        (createLoadig || updateLoadig) ? <Loader /> :
         <div className={modalState?.isOpen ? 'modal-container openmoda-container' : 'modal-container'}>
             <div className="modal-body">
-                <h4 className='modal-header'>Add New Blog</h4>
-                <button onClick={() => setModalState({ isOpen: false })} className="cancel-btn">X</button>
-
+                <h4 className='modal-header'>{modalState?.action} Blog</h4>
+                <button onClick={() => setModalState({ isOpen: false , action: ""})} className="cancel-btn">X</button>
+                {modalState?.id? <h5>document id: {modalState?.id}</h5>:''}
                 <form className="modal-form" style={{width:'60vw'}} onSubmit={handleSubmit(onSubmit)}>
-                
+
                     <div className="input-container">
                         <label>
                             Blog Title
                         </label>
-                        <input {...register("title", { required: true })} placeholder="Blog Title" className="input-field" />
+                        <input {...register("title")} placeholder="Blog Title" className="input-field" />
                     </div>
                 
                     <div className="input-container">
                         <label>
                             Blog Slug
                         </label>
-                        <input {...register("slug", { required: true })} placeholder="Slug (optional)" className="input-field" />
+                        <input {...register("slug")} placeholder="Slug (optional)" className="input-field" />
                     </div>
                 
                     <div className="input-container">
                         <label>
                             Blog Description
                         </label>
-                        <input {...register("description" ,{ required: true })} placeholder="Descrition" className="input-field" />
+                        <input {...register("description")} placeholder="Descrition" className="input-field" />
                     </div>
                 
                     <div className="input-container">
                         <label>
                             Blog Author
                         </label>
-                        <input {...register("author",{ required: true })} placeholder="Author" className="input-field" />
+                        <input {...register("author")} placeholder="Author" className="input-field" />
                     </div>
                 
                 
@@ -186,21 +188,21 @@ const BlogActionModal = ({ setModalState, modalState }: ModalProps) => {
                         <label>
                             Meta Title
                         </label>
-                        <input {...register("meta_title", { required: true })} placeholder="Meta title(important for seo)" className="input-field" />
+                        <input {...register("meta_title")} placeholder="Meta title(important for seo)" className="input-field" />
                     </div>
                 
                     <div className="input-container">
                         <label>
                             Meta Keywords
                         </label>
-                        <input {...register("meta_keywords", { required: true })} placeholder="Meta keywords(important for seo-comma separated)" className="input-field" />
+                        <input {...register("meta_keywords")} placeholder="Meta keywords(important for seo-comma separated)" className="input-field" />
                     </div>
                 
                     <div className="input-container">
                         <label>
                             Meta Description
                         </label>
-                        <input {...register("meta_description",{ required: true })} placeholder="Meta description(important for seo)" className="input-field" />
+                        <input {...register("meta_description")} placeholder="Meta description(important for seo)" className="input-field" />
                     </div>
                 
                 

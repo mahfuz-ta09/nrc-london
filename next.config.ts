@@ -7,6 +7,15 @@ const nextConfig: NextConfig = {
   images: {
     domains:['images.pexels.com','res.cloudinary.com'],
   },
+  // async redirects() {
+  //   return [
+  //     {
+  //       // source: '/Blogs',
+  //       // destination: '/blogs',
+  //       // permanent: true,
+  //     },
+  //   ]
+  // },
   // async headers() {
   //   return [
   //     {
