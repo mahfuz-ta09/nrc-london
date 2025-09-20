@@ -51,14 +51,14 @@ const LoginPage = () => {
                             <input type='email' {...register("email", { required: true })} placeholder="enter your email" className=""/>
                             <input type='password' {...register("password", { required: true })}   placeholder="enter your password" className=""/>
                             <div className="form-link">
-                                <Link className='forgot-link' href="/ResetPass">forgot password?</Link>
+                                <Link className='forgot-link' href="/reset-pass">forgot password?</Link>
                                 <button type="submit" className="">login</button>
                             </div>
                         </form>
                         <div className="social-login">
                                 <button className="" onClick={()=>router.push('/')}>home?</button>
                         </div>
-                        <Link className='forgot-link underline' href="/Signup">Do not have account? sign up</Link>
+                        <Link className='forgot-link underline' href="/signup">Do not have account? sign up</Link>
                     </div>
                     <div className='image-conteiner'>
                         <img src='https://i.ibb.co.com/yN0nYww/books.webp' className="" alt=''/>

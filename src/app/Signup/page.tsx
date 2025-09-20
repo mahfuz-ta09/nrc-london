@@ -61,7 +61,7 @@ const SignUpPage = () => {
                             <button type="submit">signup</button>
                         </div>
                     </form>
-                    <Link className='forgot-link underline' href="/Login">Already have an account? login</Link>
+                    <Link className='forgot-link underline' href="/login">Already have an account? login</Link>
                 </div>
                 <div className='image-conteiner'>
                     <img src='https://i.ibb.co.com/yN0nYww/books.webp' className="" alt=''/>

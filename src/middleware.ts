@@ -6,7 +6,7 @@ import { NextResponse } from 'next/server'
 import type { NextRequest } from 'next/server'
  
 const commonRoutes = ['/Dashboard']
-const authRoutes = ['/Login','/Signup']
+const authRoutes = ['/login','/signup']
 const roleBasedAccess = {
     SUPER_ADMIN: [/^\/Dashboard\/super_admin/],
     ADMIN: [/^\/Dashboard\/admin/],
@@ -37,7 +37,7 @@ export async function middleware(request: NextRequest) {
         if (authRoutes.includes(pathname)) {
             return NextResponse.next();
         } else {
-            return NextResponse.redirect(new URL('/Login', request.url))
+            return NextResponse.redirect(new URL('/login', request.url))
         }
     }
 
@@ -55,7 +55,7 @@ export async function middleware(request: NextRequest) {
 
  
 export const config = {
-  matcher: ['/Login','/Signup','/Dashboard/:page*'],
+  matcher: ['/login','/lignup','/Dashboard/:page*'],
 }
 
 

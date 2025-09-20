@@ -15,6 +15,7 @@ import SubNav from './SubNav'
 
 
 
+
 const Navbar = () => {
     const [isOpen,setIsOpen] = useState(false)
     const data = useUserInfo()
@@ -108,7 +109,7 @@ const Navbar = () => {
                 </div>
                 <div className={isOpen ? 'link-items show' :'link-items hide'}>
                     {
-                        !data?.Uemail ?<button onClick={()=>router.push('/Login')}>login</button>  :
+                        !data?.Uemail ?<button onClick={()=>router.push('/login')}>login</button>  :
                         <button onClick={()=>handleLogOut()}>logout</button>
                     }
                     <button className='dash' onClick={()=>router.push('/Dashboard')}>dashboard</button>
