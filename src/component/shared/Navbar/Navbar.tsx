@@ -84,7 +84,7 @@ const Navbar = () => {
 
                     
                     <div className='link-holder'>
-                        <Link onClick={()=>setIsOpen(false)} className='link' href="/Blogs">blogs</Link>
+                        <Link onClick={()=>setIsOpen(false)} className='link' href="/blogs">blogs</Link>
                     </div>
 
                     <div className='link-holder'>

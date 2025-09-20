@@ -11,7 +11,7 @@ export const metadata:Metadata = {
     openGraph: {
         title: "All Blogs | NRC Educational Consultants Ltd.",
         description: "Explore all blogs from NRC Educational Consultants Ltd. Discover insights, guides, and updates on education, courses, and learning.",
-        url: "https://www.nrcedu-uk.com/Blogs",
+        url: "https://www.nrcedu-uk.com/blogs",
         images: [
         {
             url: "https://yoursite.com/og-image.png",
