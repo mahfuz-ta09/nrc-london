@@ -1,5 +1,5 @@
 'use client'
-import Footer from "@/component/shared/Footer/Footer"
+import Footer from "@/component/shared/footer/Footer"
 import { useForm, SubmitHandler } from "react-hook-form"
 import '@/css/Proceed/Proceed.css'
 import { useUserInfo } from "@/utils/useUserInfo"

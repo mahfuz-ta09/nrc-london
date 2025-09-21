@@ -1,6 +1,6 @@
 'use client';
 import '@/css/TestPrep/CommonStyle.css';
-import Footer from '@/component/shared/Footer/Footer';
+import Footer from '@/component/shared/footer/Footer';
 import FAQ from '@/component/ui/faq/FAQ';
 import { usePathname, useRouter } from "next/navigation";
 import { useEffect, useState } from 'react';

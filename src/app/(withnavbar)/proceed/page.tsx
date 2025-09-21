@@ -1,6 +1,6 @@
 'use client'
 import { SubmitHandler, useForm } from 'react-hook-form'
-import Footer from '@/component/shared/Footer/Footer'
+import Footer from '@/component/shared/footer/Footer'
 import '@/css/Proceed/Proceed.css'
 import { usePostProcessDataMutation } from '@/redux/endpoints/studentfileprocess/proceedEndpoints'
 import { toast } from 'react-toastify'

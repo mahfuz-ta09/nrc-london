@@ -1,5 +1,5 @@
 'use client'
-import Footer from '@/component/shared/Footer/Footer'
+import Footer from '@/component/shared/footer/Footer'
 import Loader from '@/component/shared/loader/loader'
 import '@/css/Students/Subjects/Subjects.css'
 import { useGetAllSubByCountryQuery } from '@/redux/endpoints/subject/subjectEndpoints'

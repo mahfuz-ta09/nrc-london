@@ -1,6 +1,6 @@
 'use client'
 import "@/css/additional/Review/allReview.css"
-import Footer from "@/component/shared/Footer/Footer"
+import Footer from "@/component/shared/footer/Footer"
 import { useGetALlReviewQuery } from "@/redux/endpoints/review/reviewEndpoints"
 import { useState } from "react"
 import Pagination from "@/component/shared/Pagination/Pagination"

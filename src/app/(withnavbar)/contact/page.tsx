@@ -4,7 +4,7 @@ import { faEnvelope, faMapMarkerAlt, faPhone } from '@fortawesome/free-solid-svg
 import { useSendEmailMutation } from '@/redux/endpoints/profile/profileEndpoints'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { useForm, SubmitHandler } from "react-hook-form"
-import Footer from '@/component/shared/Footer/Footer'
+import Footer from '@/component/shared/footer/Footer'
 import { useUserInfo } from '@/utils/useUserInfo'
 import { toast } from 'react-toastify'
 import '@/css/Contact/contact.css'

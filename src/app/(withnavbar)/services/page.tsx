@@ -1,5 +1,5 @@
 'use client'
-import Footer from '@/component/shared/Footer/Footer'
+import Footer from '@/component/shared/footer/Footer'
 import '@/css/Services/Services.css'
 import { useRouter } from 'next/navigation'
 
