@@ -2,7 +2,7 @@
 import { SubmitHandler, useForm } from 'react-hook-form'
 import Footer from '@/component/shared/Footer/Footer'
 import '@/css/Proceed/Proceed.css'
-import { usePostProcessDataMutation } from '@/redux/endpoints/studentFileProcess/proceedEndpoints'
+import { usePostProcessDataMutation } from '@/redux/endpoints/studentfileprocess/proceedEndpoints'
 import { toast } from 'react-toastify'
 import { useUserInfo } from '@/utils/useUserInfo'
 import { IFormInput } from '@/types/common'

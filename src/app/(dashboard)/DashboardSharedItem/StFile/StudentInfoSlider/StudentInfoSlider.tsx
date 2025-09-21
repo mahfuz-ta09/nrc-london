@@ -3,7 +3,7 @@ import { useRef } from "react";
 import '@/css/Dashboard/DashBoardSharedItem/DashboardSharedCss.css'
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faArrowRight, faBuilding, faCircleCheck, faCircleXmark, faComments, faFileCircleCheck, faFlagCheckered, faFolderOpen, faPaperPlane, faPenNib, faSearch } from "@fortawesome/free-solid-svg-icons";
-import { useGetStudentFileStatQuery } from "@/redux/endpoints/studentFileProcess/proceedEndpoints";
+import { useGetStudentFileStatQuery } from "@/redux/endpoints/studentfileprocess/proceedEndpoints";
 const workflowSteps = [
   {
     id: 1,
