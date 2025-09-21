@@ -1,4 +1,3 @@
-// src/app/sitemap.ts
 import { MetadataRoute } from "next";
 
 export default function sitemap(): MetadataRoute.Sitemap {
@@ -23,6 +22,30 @@ export default function sitemap(): MetadataRoute.Sitemap {
     },
     {
       url: "https://www.nrcedu-uk.com/blogs",
+      lastModified: new Date(),
+      changeFrequency: "weekly",
+      priority: 0.8,
+    },
+    {
+      url: "https://www.nrcedu-uk.com/proceed",
+      lastModified: new Date(),
+      changeFrequency: "weekly",
+      priority: 0.7,
+    },
+    {
+      url: "https://www.nrcedu-uk.com/recruitment-partner/become-agent",
+      lastModified: new Date(),
+      changeFrequency: "weekly",
+      priority: 0.7,
+    },
+    {
+      url: "https://www.nrcedu-uk.com/university",
+      lastModified: new Date(),
+      changeFrequency: "weekly",
+      priority: 0.7,
+    },
+    {
+      url: "https://www.nrcedu-uk.com/subjects",
       lastModified: new Date(),
       changeFrequency: "weekly",
       priority: 0.7,
