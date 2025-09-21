@@ -21,6 +21,66 @@ export default function sitemap(): MetadataRoute.Sitemap {
       priority: 0.8,
     },
     {
+      url: "https://www.nrcedu-uk.com/test-prep/ielts",
+      lastModified: new Date(),
+      changeFrequency: "monthly",
+      priority: 0.8,
+    },
+    {
+      url: "https://www.nrcedu-uk.com/test-prep/toefl",
+      lastModified: new Date(),
+      changeFrequency: "monthly",
+      priority: 0.8,
+    },
+    {
+      url: "https://www.nrcedu-uk.com/test-prep/pte",
+      lastModified: new Date(),
+      changeFrequency: "monthly",
+      priority: 0.8,
+    },
+    {
+      url: "https://www.nrcedu-uk.com/test-prep/oet",
+      lastModified: new Date(),
+      changeFrequency: "monthly",
+      priority: 0.8,
+    },
+    {
+      url: "https://www.nrcedu-uk.com/test-prep/duolingo",
+      lastModified: new Date(),
+      changeFrequency: "monthly",
+      priority: 0.8,
+    },
+    {
+      url: "https://www.nrcedu-uk.com/test-prep/gmat",
+      lastModified: new Date(),
+      changeFrequency: "monthly",
+      priority: 0.8,
+    },
+    {
+      url: "https://www.nrcedu-uk.com/test-prep/gre",
+      lastModified: new Date(),
+      changeFrequency: "monthly",
+      priority: 0.8,
+    },
+    {
+      url: "https://www.nrcedu-uk.com/test-prep/sat",
+      lastModified: new Date(),
+      changeFrequency: "monthly",
+      priority: 0.8,
+    },
+    {
+      url: "https://www.nrcedu-uk.com/test-prep/act",
+      lastModified: new Date(),
+      changeFrequency: "monthly",
+      priority: 0.8,
+    },
+    {
+      url: "https://www.nrcedu-uk.com/test-prep/apt",
+      lastModified: new Date(),
+      changeFrequency: "monthly",
+      priority: 0.8,
+    },
+    {
       url: "https://www.nrcedu-uk.com/blogs",
       lastModified: new Date(),
       changeFrequency: "weekly",
@@ -42,13 +102,13 @@ export default function sitemap(): MetadataRoute.Sitemap {
       url: "https://www.nrcedu-uk.com/university",
       lastModified: new Date(),
       changeFrequency: "weekly",
-      priority: 0.7,
+      priority: 0.8,
     },
     {
       url: "https://www.nrcedu-uk.com/subjects",
       lastModified: new Date(),
       changeFrequency: "weekly",
-      priority: 0.7,
+      priority: 0.8,
     },
   ];
 }
