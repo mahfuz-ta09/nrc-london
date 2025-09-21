@@ -47,7 +47,7 @@ const page = () => {
                     At NRC Educational Consultants Ltd., we are committed to delivering exceptional service, expertise, and results.
                     Join us in shaping the future of international education.
                 </p>
-                <button onClick={() => router.push('/Services')} className="explore">
+                <button onClick={() => router.push('/services')} className="explore">
                     View Services
                 </button>
                 <button style={{ marginTop: "20px" }} onClick={() => router.push('/contact')} className="explore">
