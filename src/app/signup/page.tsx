@@ -36,7 +36,7 @@ const SignUpPage = () => {
                     id: res?.data?.id, 
                     email: data.email
                 }))
-                router.push('/Redirect')
+                router.push('/redirect')
             } else {
                 toast.error(res?.message);
             }

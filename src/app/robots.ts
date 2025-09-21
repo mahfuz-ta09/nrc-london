@@ -6,7 +6,7 @@ export default function robots(): MetadataRoute.Robots {
     rules: {
       userAgent: "*",
       allow: "/",
-      disallow: ["/dashboard", "/api"],
+      disallow: ["/dashboard", "/api","login","signup","redirect","reset-pass",],
     },
     sitemap: "https://www.nrcedu-uk.com/sitemap.xml",
   };
