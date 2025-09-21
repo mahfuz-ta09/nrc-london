@@ -87,6 +87,8 @@ const workflowSteps = [
     action: "archive",
   },
 ];
+
+
 const StudentInfoSlider = () => {
     const sliderRef = useRef<HTMLDivElement>(null);
     const { data , isLoading } = useGetStudentFileStatQuery()
