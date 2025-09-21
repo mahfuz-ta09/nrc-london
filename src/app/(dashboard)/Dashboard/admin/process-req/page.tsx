@@ -13,7 +13,7 @@ import { useDeleteProcessReqMutation, useGetALlProcessReqQuery } from '@/redux/e
 const page = () => {
     const [ open,setOpen ] = useState(false)
     const [ number,setNumber ] = useState(0)
-    const [ uniId,setUniId ] = useState("")
+    // const [ uniId,setUniId ] = useState("")
     const { data , isLoading : dataLoading } = useGetALlProcessReqQuery()
     const [ deleteSubject , { isLoading : deleteLoading }] = useDeleteProcessReqMutation()
 
