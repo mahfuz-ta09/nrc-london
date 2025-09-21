@@ -1,7 +1,7 @@
 'use client'
 import { useState } from 'react'
 import { toast } from 'react-toastify'
-import Loader from '@/component/shared/Loader/Loader'
+import Loader from '@/component/shared/loader/loader'
 import { useForm, SubmitHandler } from "react-hook-form"
 import { useAddUniversityMutation, useEditUniversityMutation } from '@/redux/endpoints/university/universityEndpoints'
 

@@ -1,5 +1,5 @@
 import React, { Suspense } from 'react'
-import Loader from '@/component/shared/Loader/Loader'
+import Loader from '@/component/shared/loader/loader'
 import Review from '@/app/(dashboard)/DashboardSharedItem/Review/Review'
 
 

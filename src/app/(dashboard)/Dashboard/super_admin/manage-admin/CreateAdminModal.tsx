@@ -1,5 +1,5 @@
 'use client'
-import Loader from "@/component/shared/Loader/Loader"
+import Loader from "@/component/shared/loader/loader"
 import { useCreateAdminMutation } from "@/redux/endpoints/sAdmin/superAdmin"
 import { useForm, SubmitHandler } from "react-hook-form"
 import { toast } from "react-toastify"

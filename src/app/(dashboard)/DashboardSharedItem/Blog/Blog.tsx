@@ -1,5 +1,5 @@
 'use client'
-import Loader from "@/component/shared/Loader/Loader"
+import Loader from "@/component/shared/loader/loader"
 import { Suspense, useState } from "react"
 import BlogActionModal from "./BlogActionModal"
 import '@/css/Dashboard/DashBoardSharedItem/DashboardSharedCss.css'

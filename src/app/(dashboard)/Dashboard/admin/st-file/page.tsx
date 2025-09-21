@@ -1,4 +1,4 @@
-import Loader from '@/component/shared/Loader/Loader'
+import Loader from '@/component/shared/loader/loader'
 import StFile from '../../../DashboardSharedItem/StFile/StFile'
 import { Suspense } from 'react'
 

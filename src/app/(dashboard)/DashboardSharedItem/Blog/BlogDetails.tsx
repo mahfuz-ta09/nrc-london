@@ -1,6 +1,6 @@
 'use client'
 import "../../../../css/blogs/slugDesign.css"
-import Loader from "@/component/shared/Loader/Loader"
+import Loader from "@/component/shared/loader/loader"
 import { useGetSingleBlogBySlugQuery } from "@/redux/endpoints/blogs/blogsEndpoint"
 
 type DetailType = {

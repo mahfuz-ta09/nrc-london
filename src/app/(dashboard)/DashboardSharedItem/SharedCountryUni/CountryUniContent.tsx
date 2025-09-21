@@ -1,7 +1,7 @@
 'use client'
 import { Suspense ,useState } from 'react'
 import AddUniModal from './AddUniModal/AddUniModal'
-import Loader from '@/component/shared/Loader/Loader'
+import Loader from '@/component/shared/loader/loader'
 import CountryLists from './CountryCardSlider/CountryLists'
 import { faFilter } from '@fortawesome/free-solid-svg-icons'
 import AddCountryModal from './AddCountryModal/AddCountryModal'

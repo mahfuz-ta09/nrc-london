@@ -1,7 +1,7 @@
 'use client'
 import { useState } from 'react'
 import { toast } from 'react-toastify'
-import Loader from '@/component/shared/Loader/Loader'
+import Loader from '@/component/shared/loader/loader'
 import CreateAdminModal from './CreateAdminModal'
 import { useGetALlAdminQuery, useUpdateAdminStatusMutation, useUpdateUserRoleMutation } from '@/redux/endpoints/sAdmin/superAdmin'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'

@@ -5,7 +5,7 @@ import 'react-quill-new/dist/quill.snow.css'
 import { useForm, Controller } from "react-hook-form"
 import { base64ToFile } from '@/utils/convertFileType'
 import { useCreateBlogMutation, useUpdateBlogMutation } from '@/redux/endpoints/blogs/blogsEndpoint'
-import Loader from '@/component/shared/Loader/Loader'
+import Loader from '@/component/shared/loader/loader'
 
 
 type ModalProps = {

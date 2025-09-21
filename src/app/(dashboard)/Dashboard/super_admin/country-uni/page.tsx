@@ -1,5 +1,5 @@
 import CountryUniContent from "@/app/(dashboard)/DashboardSharedItem/SharedCountryUni/CountryUniContent"
-import Loader from "@/component/shared/Loader/Loader"
+import Loader from "@/component/shared/loader/loader"
 import { Suspense } from "react"
 
 const page = () => {

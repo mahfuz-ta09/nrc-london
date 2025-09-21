@@ -1,6 +1,6 @@
 'use client'
 import Link from "next/link"
-import Loader from '../Loader/Loader'
+import Loader from '../loader/loader'
 import '../../../css/shared/Navbar/Navbar.css'
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
 import { faGlobe, faPhone, faUser } from "@fortawesome/free-solid-svg-icons"

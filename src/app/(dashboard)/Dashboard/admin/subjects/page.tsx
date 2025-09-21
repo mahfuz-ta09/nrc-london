@@ -5,7 +5,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faCancel, faPen } from '@fortawesome/free-solid-svg-icons'
 import { useDeleteSubjectMutation, useGetSubjectQuery } from '@/redux/endpoints/subject/subjectEndpoints'
 import { toast } from 'react-toastify'
-import Loader from '@/component/shared/Loader/Loader'
+import Loader from '@/component/shared/loader/loader'
 
 
 

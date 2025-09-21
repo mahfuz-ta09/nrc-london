@@ -1,5 +1,5 @@
 import { Suspense } from "react"
-import Loader from "@/component/shared/Loader/Loader"
+import Loader from "@/component/shared/loader/loader"
 import Blog from "@/app/(dashboard)/DashboardSharedItem/Blog/Blog"
 
 const page = () => {

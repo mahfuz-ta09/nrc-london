@@ -5,7 +5,7 @@ import { faArrowAltCircleLeft, faArrowAltCircleRight } from '@fortawesome/free-s
 import { useGetUniNavItemQuery } from '@/redux/endpoints/university/universityEndpoints'
 import { useRouter } from 'next/navigation'
 import { useRef, useState } from 'react'
-import Loader from '../Loader/Loader'
+import Loader from '../loader/loader'
 
 const UniOption = () => {
     const router = useRouter()

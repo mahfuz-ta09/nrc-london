@@ -1,5 +1,5 @@
 'use client'
-import Loader from "@/component/shared/Loader/Loader"
+import Loader from "@/component/shared/loader/loader"
 import "@/css/Dashboard/profile.css"
 import { useGetProfileByIdQuery } from "@/redux/endpoints/profile/profileEndpoints"
 import { useUserInfo } from "@/utils/useUserInfo"

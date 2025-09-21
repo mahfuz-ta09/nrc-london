@@ -4,7 +4,7 @@ import '../../../css/shared/PopularCourse/PopularCourse.css'
 import { faArrowLeft, faArrowRight, faServer } from '@fortawesome/free-solid-svg-icons'
 import { useRouter } from 'next/navigation'
 import { useGetSubjectQuery } from '@/redux/endpoints/subject/subjectEndpoints'
-import Loader from '../Loader/Loader'
+import Loader from '../loader/loader'
 import { useState } from 'react'
 
 

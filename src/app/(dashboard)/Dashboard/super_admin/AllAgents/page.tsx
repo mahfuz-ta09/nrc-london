@@ -2,7 +2,7 @@
 // import '../css/allagents.css'
 import { useState } from "react"
 import { useRouter } from "next/navigation"
-import Loader from "@/component/shared/Loader/Loader"
+import Loader from "@/component/shared/loader/loader"
 import AgentSearchParam from "./agent-req/AgentSearchParam"
 import AgentQuickAction from "./agent-req/AgentQuickAction"
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"

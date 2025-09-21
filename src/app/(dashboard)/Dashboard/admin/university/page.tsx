@@ -6,7 +6,7 @@ import { useState } from 'react'
 import UpdateUni from './UpdateUni'
 import { useDeleteUniversityMutation, useGetUniversityQuery } from '@/redux/endpoints/university/universityEndpoints'
 import { toast } from 'react-toastify'
-import Loader from '@/component/shared/Loader/Loader'
+import Loader from '@/component/shared/loader/loader'
 
 
 const page = () => {

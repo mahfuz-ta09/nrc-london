@@ -4,7 +4,7 @@ import './UniversityTable.css'
 import { toast } from "react-toastify"
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { useGetSubjectListQuery, useRemoveSubjectMutation } from '@/redux/endpoints/subject/subjectEndpoints'
-import Loader from '@/component/shared/Loader/Loader'
+import Loader from '@/component/shared/loader/loader'
 
 
 type ModalProps = {

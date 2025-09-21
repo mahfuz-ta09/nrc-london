@@ -4,7 +4,7 @@ import '../../../css/shared/Navbar/Navbar.css'
 import { faGlobe, faPhone, faUser } from "@fortawesome/free-solid-svg-icons"
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
 import Link from "next/link"
-import Loader from '../Loader/Loader'
+import Loader from '../loader/loader'
 
 
 const UniNav = () => {

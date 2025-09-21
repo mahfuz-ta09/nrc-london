@@ -1,6 +1,6 @@
 import { Metadata } from 'next'
 import { Suspense } from 'react'
-import Loader from '@/component/shared/Loader/Loader'
+import Loader from '@/component/shared/loader/loader'
 import BlogList from '@/component/BlogList/BlogList'
 import Footer from '@/component/shared/Footer/Footer'
 

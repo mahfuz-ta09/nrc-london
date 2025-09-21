@@ -3,7 +3,7 @@ import '../../css/allagents.css'
 import { useForm, SubmitHandler } from "react-hook-form"
 import { toast } from "react-toastify";
 import { useDeleteAgentMutation, useUpdateAgentStatusMutation } from "@/redux/endpoints/agent/agentsEndpoints"
-import Loader from '@/component/shared/Loader/Loader';
+import Loader from '@/component/shared/loader/loader';
 
 type AgentStatusForm = {
   applicationStat?: string;

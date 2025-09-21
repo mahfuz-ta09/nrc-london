@@ -6,7 +6,7 @@ import { SubmitHandler, useForm } from 'react-hook-form'
 import convertFormData from '@/utils/convertFormData'
 import { toast } from 'react-toastify'
 import useAuth from '@/authHooks/useAuth'
-import Loader from '@/component/shared/Loader/Loader'
+import Loader from '@/component/shared/loader/loader'
 
 
 type Inputs = {

@@ -4,7 +4,7 @@ import Footer from "@/component/shared/Footer/Footer"
 import { useGetALlReviewQuery } from "@/redux/endpoints/review/reviewEndpoints"
 import { useState } from "react"
 import Pagination from "@/component/shared/Pagination/Pagination"
-import Loader from "@/component/shared/Loader/Loader"
+import Loader from "@/component/shared/loader/loader"
 
 type paraType = {
     email: string,

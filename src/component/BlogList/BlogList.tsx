@@ -2,7 +2,7 @@
 import Link from 'next/link'
 import { useState } from 'react'
 import '../../css/blogs/mainBlogPage.css'
-import Loader from '../shared/Loader/Loader'
+import Loader from '../shared/loader/loader'
 import { useGetBlogByCategoryQuery, useGetUniqueCatagoriesQuery } from '@/redux/endpoints/blogs/blogsEndpoint'
 
 const BlogList = () => {

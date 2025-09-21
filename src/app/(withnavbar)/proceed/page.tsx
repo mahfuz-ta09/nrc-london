@@ -6,7 +6,7 @@ import { usePostProcessDataMutation } from '@/redux/endpoints/studentfileprocess
 import { toast } from 'react-toastify'
 import { useUserInfo } from '@/utils/useUserInfo'
 import { IFormInput } from '@/types/common'
-import Loader from '@/component/shared/Loader/Loader'
+import Loader from '@/component/shared/loader/loader'
 
 
 

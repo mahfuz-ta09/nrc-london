@@ -1,6 +1,6 @@
 'use client'
 import Footer from '@/component/shared/Footer/Footer'
-import Loader from '@/component/shared/Loader/Loader'
+import Loader from '@/component/shared/loader/loader'
 import '@/css/Students/Subjects/Subjects.css'
 import { useGetAllSubByCountryQuery } from '@/redux/endpoints/subject/subjectEndpoints'
 import { useParams, useRouter } from 'next/navigation'

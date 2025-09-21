@@ -1,5 +1,5 @@
 import Banner from '@/app/(dashboard)/DashboardSharedItem/Banner/Banner'
-import Loader from '@/component/shared/Loader/Loader'
+import Loader from '@/component/shared/loader/loader'
 import React, { Suspense } from 'react'
 
 const page = () => {

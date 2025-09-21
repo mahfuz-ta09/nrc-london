@@ -2,7 +2,7 @@
 import { useState } from 'react'
 import { toast } from 'react-toastify'
 import '@/css/Dashboard/super_admin/common.css'
-import Loader from '@/component/shared/Loader/Loader'
+import Loader from '@/component/shared/loader/loader'
 import { faTrash } from '@fortawesome/free-solid-svg-icons'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import Pagination from '@/component/shared/Pagination/Pagination'

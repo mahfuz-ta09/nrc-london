@@ -5,7 +5,7 @@ import { faArrowAltCircleLeft, faArrowAltCircleRight, faQuoteRight, faUser } fro
 import { useGetPageReviewQuery } from '@/redux/endpoints/review/reviewEndpoints'
 import { useRouter } from 'next/navigation'
 import { useState, useEffect } from 'react'
-import Loader from '@/component/shared/Loader/Loader'
+import Loader from '@/component/shared/loader/loader'
 
 const Review = () => {
     const router = useRouter()

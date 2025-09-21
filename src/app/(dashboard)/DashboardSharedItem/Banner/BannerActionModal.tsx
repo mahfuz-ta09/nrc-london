@@ -1,7 +1,7 @@
 import { toast } from 'react-toastify'
 import { useForm, SubmitHandler } from "react-hook-form"
 import { useCreateBannerMutation, useUpdateBannerMutation } from '@/redux/endpoints/banner/bannerEndpoint'
-import Loader from '@/component/shared/Loader/Loader'
+import Loader from '@/component/shared/loader/loader'
 
 
 type ModalProps = {

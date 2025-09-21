@@ -2,7 +2,7 @@
 // import './AddCountryModal.css'
 import { toast } from 'react-toastify'
 import { countryCurrencyMap } from '@/types/common'
-import Loader from '@/component/shared/Loader/Loader'
+import Loader from '@/component/shared/loader/loader'
 import { useForm, SubmitHandler } from "react-hook-form"
 import { useCreateCountryListMutation, useEditCountryListMutation } from '@/redux/endpoints/countryBaseUni/countryBaseUniversity'
 

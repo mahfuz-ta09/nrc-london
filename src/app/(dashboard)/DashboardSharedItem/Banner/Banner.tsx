@@ -2,7 +2,7 @@
 import { toast } from 'react-toastify'
 import { Suspense, useState } from "react"
 import BannerActionModal from "./BannerActionModal"
-import Loader from "@/component/shared/Loader/Loader"
+import Loader from "@/component/shared/loader/loader"
 import '../../../../css/Dashboard/super_admin/common.css'
 import { faEdit, faTrash } from "@fortawesome/free-solid-svg-icons"
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"

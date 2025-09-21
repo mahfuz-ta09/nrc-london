@@ -1,6 +1,6 @@
 'use client'
 import '../../css/allagents.css'
-import Loader from "@/component/shared/Loader/Loader"
+import Loader from "@/component/shared/loader/loader"
 import { useGetALlAgentReqQuery } from "@/redux/endpoints/agent/agentsEndpoints"
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
 import {  faCancel, faFilter } from "@fortawesome/free-solid-svg-icons"

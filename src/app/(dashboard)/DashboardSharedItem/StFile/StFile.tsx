@@ -1,6 +1,6 @@
 'use client'
 import { Suspense, useState } from 'react'
-import Loader from '@/component/shared/Loader/Loader'
+import Loader from '@/component/shared/loader/loader'
 import '@/css/Dashboard/DashBoardSharedItem/DashboardSharedCss.css'
 import StudentInfoSlider from './StudentInfoSlider/StudentInfoSlider'
 import AddStudentFileModal from './AddStudentFileModal/AddStudentFileModal'

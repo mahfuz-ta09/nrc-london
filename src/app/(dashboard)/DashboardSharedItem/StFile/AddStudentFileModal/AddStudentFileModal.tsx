@@ -3,7 +3,7 @@ import { useState } from 'react'
 import { useForm, FormProvider } from 'react-hook-form'
 import { useUserInfo } from '@/utils/useUserInfo'
 import { useCreatetStudentFileMutation } from '@/redux/endpoints/studentfileprocess/proceedEndpoints'
-import Loader from '@/component/shared/Loader/Loader'
+import Loader from '@/component/shared/loader/loader'
 import { toast } from 'react-toastify'
 
 type ModalProps = {
