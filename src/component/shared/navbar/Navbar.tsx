@@ -77,7 +77,7 @@ const Navbar = () => {
                                 </div>
                                 <div className="contact-section">
                                     <Link onClick={()=>setIsOpen(false)} className='contact-section-link' href="/contact"><FontAwesomeIcon icon={faPhone}/> Contact</Link>
-                                    <Link onClick={()=>setIsOpen(false)} className='contact-section-link' href="/Dashboard"><FontAwesomeIcon icon={faUser}/> Profile</Link>
+                                    <Link onClick={()=>setIsOpen(false)} className='contact-section-link' href="/dashboard"><FontAwesomeIcon icon={faUser}/> Profile</Link>
                                 </div>
                             </div>
                         </div>
@@ -97,7 +97,7 @@ const Navbar = () => {
                                 </div>
                                 <div className="contact-section">
                                     <Link onClick={()=>setIsOpen(false)} className='contact-section-link' href="/contact"><FontAwesomeIcon icon={faPhone}/> Contact</Link>
-                                    <Link onClick={()=>setIsOpen(false)} className='contact-section-link' href="/Dashboard"><FontAwesomeIcon icon={faUser}/> Profile</Link>
+                                    <Link onClick={()=>setIsOpen(false)} className='contact-section-link' href="/dashboard"><FontAwesomeIcon icon={faUser}/> Profile</Link>
                                 </div>
                             </div>
                         </div>
@@ -112,7 +112,7 @@ const Navbar = () => {
                         !data?.Uemail ?<button onClick={()=>router.push('/login')}>login</button>  :
                         <button onClick={()=>handleLogOut()}>logout</button>
                     }
-                    <button className='dash' onClick={()=>router.push('/Dashboard')}>dashboard</button>
+                    <button className='dash' onClick={()=>router.push('/dashboard')}>dashboard</button>
                 </div>
                 {
                     isOpen ?

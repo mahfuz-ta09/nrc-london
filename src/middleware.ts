@@ -5,12 +5,12 @@ import { cookies } from 'next/headers'
 import { NextResponse } from 'next/server'
 import type { NextRequest } from 'next/server'
  
-const commonRoutes = ['/Dashboard']
+const commonRoutes = ['/dashboard']
 const authRoutes = ['/login','/signup']
 const roleBasedAccess = {
-    SUPER_ADMIN: [/^\/Dashboard\/super_admin/],
-    ADMIN: [/^\/Dashboard\/admin/],
-    STUDENT: [/^\/Dashboard\/student/],
+    SUPER_ADMIN: [/^\/dashboard\/super_admin/],
+    ADMIN: [/^\/dashboard\/admin/],
+    STUDENT: [/^\/dashboard\/student/],
 }
 interface CustomJwtPayload extends JwtPayload {
     role?: string;
@@ -29,7 +29,7 @@ export async function middleware(request: NextRequest) {
     
     
     if (accessToken && authRoutes.includes(pathname)) {
-        return NextResponse.redirect(new URL('/Dashboard', request.url))
+        return NextResponse.redirect(new URL('/dashboard', request.url))
     }
 
     
@@ -55,7 +55,7 @@ export async function middleware(request: NextRequest) {
 
  
 export const config = {
-  matcher: ['/login','/lignup','/Dashboard/:page*'],
+  matcher: ['/login','/lignup','/dashboard/:page*'],
 }
 
 
