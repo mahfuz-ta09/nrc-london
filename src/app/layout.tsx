@@ -21,10 +21,11 @@ export const metadata: Metadata = {
       card: "summary_large_image",
       title: "nrcedu-uk",
       description: "Your future destination",
-      images: ["/nrc.logo.png"],
+      images: ["/icons/icon-512x512.png"],
     },
     icons: {
-      icon: "/nrc.logo.png",
+      icon: "/favicon.ico",
+      apple: "/icons/icon-192x192.png"
     },
     manifest: "/site.webmanifest",
     metadataBase: new URL("https://nrcedu-uk.com"),

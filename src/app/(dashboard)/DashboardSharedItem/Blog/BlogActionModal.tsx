@@ -29,7 +29,7 @@ type BlogFormData = {
     tags: string
     
     status: string
-    isFeatured: boolean
+    isFeatured: string
     
     header_image: FileList
     
@@ -42,6 +42,7 @@ const BlogActionModal = ({ setModalState, modalState }: ModalProps) => {
     const [createBlog, { isLoading: createLoadig }] = useCreateBlogMutation()
     const [updateBlog, { isLoading: updateLoadig }] = useUpdateBlogMutation()
     const { register, control, handleSubmit, reset } = useForm<BlogFormData>({
+        shouldUnregister: true,
         defaultValues: {
             title: "",
             slug: "",
@@ -49,8 +50,8 @@ const BlogActionModal = ({ setModalState, modalState }: ModalProps) => {
             content: { summary: "", body: "" },
             categories: "",
             tags: "",
-            status: "draft",
-            isFeatured: false,
+            status: "",
+            isFeatured: "",
             meta_title: "",
             meta_keywords: "",
             meta_description: "",
@@ -66,13 +67,18 @@ const BlogActionModal = ({ setModalState, modalState }: ModalProps) => {
 
             const formData = new FormData()
 
+            for(var value in data){
+                if(value===''){
+                    
+                }
+            }
             formData.append("title", data.title)
             formData.append("slug",(data.slug).toLowerCase().trim().replace(/\s+/g, "-"))
-            formData.append("description", JSON.stringify(data.description))
+            formData.append("description", data.description)
 
             formData.append("author", data.author)
             formData.append("status", data.status)
-            formData.append("isFeatured", (data.isFeatured).toString())
+            formData.append("isFeatured", data.isFeatured)
             
             data?.categories.split(",").map(c => c.trim()).forEach(c => formData.append("categories", c))
             data?.tags.split(",").map(t => t.trim()).forEach(t => formData.append("tags", t))
@@ -111,12 +117,17 @@ const BlogActionModal = ({ setModalState, modalState }: ModalProps) => {
                 sections: []
             }))
 
-            let res: any
+            let res:any
             if(modalState?.action==="Add")res = await createBlog({data:formData}).unwrap()
-            else if(modalState?.action==="Edit" && modalState?.id) res = await updateBlog({ data: formData , id: modalState?.id })
-            toast.success(`Blog ${modalState?.action==="Edit"? "edit":"added"} successfully`)
-            reset()
-            setModalState({ isOpen: false , id: ''})
+            else if(modalState?.action==="Edit" && modalState?.id)res = await updateBlog({ data: formData , id: modalState?.id }).unwrap()
+            console.log(res)
+            if(res?.data?.modifiedCount){
+                toast.success(`Blog ${modalState?.action==="Edit"? "edit":"added"} successfully`)
+                reset()
+                setModalState({ isOpen: false , id: ''})
+            }else{
+                toast?.error(res?.data)
+            }
         }catch(err: any){
             toast.error(err?.data || "something went wrong")
         }
@@ -247,15 +258,28 @@ const BlogActionModal = ({ setModalState, modalState }: ModalProps) => {
                     
                     
                     <select {...register("status")} className="input-field">
+                        <option value="">select</option>
                         <option value="draft">Draft</option>
                         <option value="published">Published</option>
                     </select>
 
-                    <input style={{margin:"30px 0"}} type="checkbox" {...register("isFeatured")} /> Featured Blog
+                    {/* <input style={{margin:"30px 0"}} type="checkbox" {...register("isFeatured")} /> Featured Blog */}
+                    
+
+                    <div className="input-container">
+                        <label>
+                            Is the blog featured
+                        </label>
+                        <select style={{color:"black",background:"transparent"}} {...register("isFeatured")} className="input-field">
+                            <option value="">select</option>
+                            <option value="yes">yes</option>
+                            <option value="no">no</option>
+                        </select>
+                    </div>
                     
                     <br/>
                     
-                    <button type="submit" className="submit-button">Create Blog</button>
+                    <button type="submit" className="submit-button">{modalState?.action} Blog</button>
                 </form>
             </div>
         </div>

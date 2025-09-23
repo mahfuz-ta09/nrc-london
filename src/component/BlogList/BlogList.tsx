@@ -46,7 +46,7 @@ const BlogList = () => {
                             <div className="description">
                                 <h1><Link href={`/blogs/${blog?.slug}`}>{blog?.title.slice(0,85)}...</Link></h1>
                                 {/* <h2>{blog?.summary.slice(0,20)}...</h2> */}
-                                <p>{JSON.parse(blog?.description).slice(0,150)}...</p>
+                                <p>{blog?.description.slice(0,150)}...</p>
                                 <p className="read-more">
                                     <Link href={`/blogs/${blog?.slug}`}>Read More</Link>
                                 </p>
