@@ -303,9 +303,7 @@
 }
 
 @media screen and (max-width: 480px) {
-    .blog-detail-container {
-        /* padding: 10px; */
-    }
+    
     
     .blog-header {
         height: 200px;
