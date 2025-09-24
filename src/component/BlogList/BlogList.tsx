@@ -1,16 +1,25 @@
 'use client'
 import Link from 'next/link'
-import { useState } from 'react'
-import '../../css/blogs/mainBlogPage.css'
+import Image from 'next/image'
+import '../../css/component/Card.css'
+import { Suspense, useState } from 'react'
 import Loader from '../shared/loader/loader'
 import { useGetBlogByCategoryQuery, useGetUniqueCatagoriesQuery } from '@/redux/endpoints/blogs/blogsEndpoint'
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { faList, faPen, faSackDollar, faTag } from '@fortawesome/free-solid-svg-icons'
+
 
 const BlogList = () => {
     const [params,setParams] = useState({category: 'all', page:1, limit:10})
-    const {data:category , isLoading: loadCategory} = useGetUniqueCatagoriesQuery()
+    const { data:category , isLoading: loadCategory} = useGetUniqueCatagoriesQuery()
     const { data: blogsData, isLoading: loadBlogs } = useGetBlogByCategoryQuery(params)
     
-    console.log(blogsData)
+    console.log(blogsData?.data)
+
+    if (!blogsData?.data || !category?.data) {
+        return <Loader />
+    }
+
     return (
         (loadCategory||loadBlogs) ? <Loader /> :
         <div className='blog-list-container'>
@@ -24,37 +33,28 @@ const BlogList = () => {
             </div>
         
             <div className="blog-list">
-                {
-                    blogsData?.data?.map((blog:any, index:number) => (
-                        <div key={index} className="blog-card">
-                            <div className="meta">
-                                <div className="photo" style={{backgroundImage:`url(${blog?.meta?.ogImage?.url})`}}></div>
-                                <ul className="details">
-                                    <li className="author"><a>{blog?.author}</a></li>
-                                    <li className="date">{blog?.publishedAt}</li>
-                                    <li className="tags">
-                                        <ul>
-                                            {
-                                                blog?.tags?.map((tag:string, idx:number) => (
-                                                    <li key={idx}><a>{tag}</a></li>
-                                                ))
-                                            }
-                                        </ul>
-                                    </li>
-                                </ul>
+                <Suspense fallback={<Loader/>}>
+                    {
+                        blogsData?.data?.map((blog:any, index:number) => (
+                            <div key={index} className="card">
+                                <div className="card-banner">
+                                    <img src={blog?.meta?.ogImage?.url} alt="" />
+                                    <div className="banner-text">
+                                        <p className='banner-auther'><FontAwesomeIcon icon={faPen}/>{blog?.author}</p>
+                                        <p className='banner-published'><FontAwesomeIcon icon={faList}/>{blog?.publishedAt}</p>
+                                        <p className='banner-tags'><FontAwesomeIcon icon={faTag }/>{blog?.tags?.map((t:string,n:number)=>t)}</p>
+                                    </div>
+                                </div>
+                                <div className="card-details">
+                                    <Link className='card-details-title' href={`blogs/${blog?.slug}`}>{blog?.title.slice(0,140)}...</Link>
+                                    <div className="bar"></div>
+                                    <p className='card-details-description'>{blog?.description.slice(0,160)}...</p>
+                                    <Link href={`blogs/${blog?.slug}`} className='learn-more'>learn more</Link>
+                                </div>
                             </div>
-                            <div className="description">
-                                <h1><Link href={`/blogs/${blog?.slug}`}>{blog?.title.slice(0,85)}...</Link></h1>
-                                {/* <h2>{blog?.summary.slice(0,20)}...</h2> */}
-                                <p>{blog?.description.slice(0,150)}...</p>
-                                <p className="read-more">
-                                    <Link href={`/blogs/${blog?.slug}`}>Read More</Link>
-                                </p>
-                            </div>
-                        </div>
-                    ))
-                }
-
+                        ))
+                    }
+                </Suspense>
             </div>
         </div>
     )

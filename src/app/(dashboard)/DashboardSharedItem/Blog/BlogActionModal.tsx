@@ -118,10 +118,11 @@ const BlogActionModal = ({ setModalState, modalState }: ModalProps) => {
             }))
 
             let res:any
+            
             if(modalState?.action==="Add")res = await createBlog({data:formData}).unwrap()
             else if(modalState?.action==="Edit" && modalState?.id)res = await updateBlog({ data: formData , id: modalState?.id }).unwrap()
-            console.log(res)
-            if(res?.data?.modifiedCount){
+            
+            if(res?.data?.modifiedCount || res?.data?.insertedId){
                 toast.success(`Blog ${modalState?.action==="Edit"? "edit":"added"} successfully`)
                 reset()
                 setModalState({ isOpen: false , id: ''})

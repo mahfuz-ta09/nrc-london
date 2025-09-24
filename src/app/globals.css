@@ -3,7 +3,9 @@
 @import '../css/Component/Form.css';
 @import '../css/Component/Buttons.css';
 @import '../css/Component/Header.css';
+@import '../css/component/Buttons.css';
 @import '../css/Component/FilterContainer.css';
+@import '../css/blogs/mainBlogPage.css';
 
 *{
   box-sizing: border-box;
@@ -11,7 +13,78 @@
   margin: 0;
 }
 
+:root {
+  /* Primary brand colors */
+  --primary: #004a62;
+  --primary-light: #006080;
+  --primary-lighter: #007a9a;
+  --primary-dark: #002c3a;
+  --primary-darker: #001f2a;
 
+  /* Secondary colors */
+  --secondary: #f7fafc;
+  --accent-green: #38a169;
+  --accent-orange: #ed8936;
+  --accent-blue: #3182ce;
+
+  /* Text colors */
+  --text-primary: #1a1a1a;
+  --text-secondary: #4a5568;
+  --text-muted: #718096;
+  --text-light: #ffffff;
+  --text-on-primary: #ffffff;
+
+  /* Background variations */
+  --bg-white: #ffffff;
+  --bg-light: #f7fafc;
+  --bg-primary-light: rgba(0, 74, 98, 0.05);
+  --bg-primary-medium: rgba(0, 74, 98, 0.1);
+  --bg-primary-strong: rgba(0, 74, 98, 0.2);
+  --bg-primary-dark: rgba(0, 74, 98, 0.8);
+  --bg-primary-darker: rgba(0, 74, 98, 0.9);
+
+  /* Glassmorphism effects */
+  --glass-bg: rgba(255, 255, 255, 0.1);
+  --glass-border: rgba(255, 255, 255, 0.2);
+  --glass-backdrop: blur(10px);
+
+  /* Gradients */
+  --gradient-primary: linear-gradient(135deg, #004a62 0%, #006080 100%);
+  --gradient-subtle: linear-gradient(135deg, #004a62 0%, #005577 50%, #007a9a 100%);
+  --gradient-hero: linear-gradient(135deg, #002c3a 0%, #004a62 50%, #006080 100%);
+  --gradient-card: linear-gradient(135deg, #004a62 0%, #0088aa 100%);
+
+  /* Box shadows */
+  --shadow-subtle: 0 2px 8px rgba(0, 74, 98, 0.1);
+  --shadow-medium: 0 8px 25px rgba(0, 74, 98, 0.15);
+  --shadow-strong: 0 20px 40px rgba(0, 74, 98, 0.2);
+  --shadow-inset: inset 0 2px 4px rgba(0, 74, 98, 0.1);
+
+  /* Border colors */
+  --border-light: rgba(0, 74, 98, 0.1);
+  --border-medium: rgba(0, 74, 98, 0.2);
+  --border-strong: rgba(0, 74, 98, 0.3);
+
+  /* State colors */
+  --success: #38a169;
+  --warning: #ed8936;
+  --error: #e53e3e;
+  --info: #3182ce;
+
+  /* Spacing scale */
+  --space-xs: 0.25rem;
+  --space-sm: 0.5rem;
+  --space-md: 1rem;
+  --space-lg: 1.5rem;
+  --space-xl: 2rem;
+  --space-2xl: 3rem;
+
+  /* Border radius */
+  --radius-sm: 0.375rem;
+  --radius-md: 0.5rem;
+  --radius-lg: 0.75rem;
+  --radius-xl: 1rem;
+}
 ::-webkit-scrollbar {
   width: 2px;
 }

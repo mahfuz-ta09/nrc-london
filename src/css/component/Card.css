@@ -1,0 +1,111 @@
+
+.card{
+    max-width: 600px;
+    width: 100%;
+    min-height: 300px;
+    display: flex;
+    align-self: center;
+    justify-content: space-between;
+    flex-direction: row;
+    position: relative;
+    border-radius: 5px;
+    box-shadow: 1px 1px 10px rgba(0,0,0,0.6);
+    overflow: hidden;
+}
+
+.card-banner{
+    flex: 1;
+    position: relative;
+}
+
+.banner-text{
+    position: absolute;
+    background: linear-gradient(to top,#042e3b 0%,rgba(0,0,0,0.7));
+    height: 100%;
+    width: 100%;
+    top: 0;
+    left: 0;
+    padding: 15px;
+    display: flex;
+    flex-direction: column;
+    align-items: start;
+    justify-content: start;
+    gap: 5px;
+}
+
+.card:hover .card-banner{
+background: linear-gradient(to top,#042e3b 0%,rgba(0,0,0,0.9));
+}
+
+.banner-auther,.banner-published,.banner-tags{
+    color: whitesmoke;
+    display: flex;
+    flex-direction: row;
+    align-items: start;
+    justify-content: center;
+    gap: 5px;
+    font-size: 15px;
+    letter-spacing: 1px;
+    font-weight: 300;
+}
+.banner-tags{
+    text-decoration: dotted underline;
+}
+.card-banner img{
+    object-fit: cover;
+    width: 100%;
+    height: 100%;
+    border-radius: 5px;
+}
+
+.photo{
+    width: 100%;
+}
+
+.card-details{
+    flex: 2;
+    padding: 5px;
+    display: flex;
+    align-items: start;
+    justify-content: start;
+    flex-direction: column;
+    position: relative;
+}
+
+.card-details-title{
+    font-size: 25px;
+    color: #000;
+    letter-spacing: 1px;
+    text-decoration: underline;
+}
+
+.card-details-title:hover{
+    color: #004a62;
+}
+
+.bar{
+    height: 5px;
+    width: 20%;
+    margin: 10px 0;
+    background: linear-gradient(to right,#004a62 10%,rgba(0,0,0,0.4));
+    border-radius: 50px;
+}
+
+.learn-more{
+    text-decoration: underline solid;
+    right: 15px;
+    bottom: 15px;
+    position: absolute;
+    color: #004a62;
+    padding: 3px;
+}
+
+.card-details-description{
+    font-size: 15px;
+    line-height: 22px;
+    text-align: justify;
+}
+
+@media screen  and (max-width:900px) {
+    
+}
