@@ -67,7 +67,7 @@ const blogApi = baseApi.injectEndpoints({
         }),
 
         getBlogByCategory: build.query<
-            { data: any[]},{ category: string; page?: number; limit?: number }>({
+            { data: any[]; meta: { total: number; page: number; limit: number; totalPages: number ; totalCount:number }},{ category: string; page?: number; limit?: number }>({
                 query: ({ category, page = 1, limit = 10 }) => ({
                     url: `/blog/read/${category}/${page}/${limit}`,
                     method: "GET",

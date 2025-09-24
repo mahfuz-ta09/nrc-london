@@ -1,25 +1,29 @@
 'use client'
 import Link from 'next/link'
-import Image from 'next/image'
 import '../../css/component/Card.css'
 import { Suspense, useState } from 'react'
 import Loader from '../shared/loader/loader'
 import { useGetBlogByCategoryQuery, useGetUniqueCatagoriesQuery } from '@/redux/endpoints/blogs/blogsEndpoint'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faList, faPen, faSackDollar, faTag } from '@fortawesome/free-solid-svg-icons'
+import { faList, faPen , faTag } from '@fortawesome/free-solid-svg-icons'
+import Pagination from '../shared/Pagination/Pagination'
 
 
 const BlogList = () => {
     const [params,setParams] = useState({category: 'all', page:1, limit:10})
     const { data:category , isLoading: loadCategory} = useGetUniqueCatagoriesQuery()
     const { data: blogsData, isLoading: loadBlogs } = useGetBlogByCategoryQuery(params)
-    
-    console.log(blogsData?.data)
 
     if (!blogsData?.data || !category?.data) {
         return <Loader />
     }
 
+    const handlePageChange = (p: number) => {
+        setParams({
+            ...params,
+            page : p
+        })
+    }
     return (
         (loadCategory||loadBlogs) ? <Loader /> :
         <div className='blog-list-container'>
@@ -56,6 +60,12 @@ const BlogList = () => {
                     }
                 </Suspense>
             </div>
+            <Pagination
+                totalPages={blogsData?.meta?.totalPages}
+                currentPage={Number(params?.page)}
+                onPageChange={handlePageChange}
+                siblingCount={1} 
+            />
         </div>
     )
 }
