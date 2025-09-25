@@ -3,10 +3,11 @@ import Link from 'next/link'
 import '../../css/component/Card.css'
 import { Suspense, useState } from 'react'
 import Loader from '../shared/loader/loader'
-import { useGetBlogByCategoryQuery, useGetUniqueCatagoriesQuery } from '@/redux/endpoints/blogs/blogsEndpoint'
+import Pagination from '../shared/Pagination/Pagination'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faList, faPen , faTag } from '@fortawesome/free-solid-svg-icons'
-import Pagination from '../shared/Pagination/Pagination'
+import { useGetBlogByCategoryQuery, useGetUniqueCatagoriesQuery } from '@/redux/endpoints/blogs/blogsEndpoint'
+
 
 
 const BlogList = () => {

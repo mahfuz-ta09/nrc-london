@@ -13,7 +13,7 @@ type DetailType = {
 
 const BlogDetails = ({detail , setDetail}:DetailType) => {
     const { data , isLoading: dataLoading } = useGetSingleBlogBySlugQuery({slug: detail?.slug})
-    console.log(data?.data)
+
     return (
         dataLoading? <Loader /> :
         <div className={ detail.isOPen ? 'modal-container openmoda-container' : 'modal-container'}>
@@ -25,11 +25,11 @@ const BlogDetails = ({detail , setDetail}:DetailType) => {
                 >
                     X
                 </button>
-                    
             </div>
-        <div className=".table-contant">
-            <div style={{maxWidth:"300px"}} dangerouslySetInnerHTML={{__html: data?.data?.content?.body}}/>
-        </div>
+
+            <div className="modal-form">
+                <div dangerouslySetInnerHTML={{__html: data?.data?.content?.body}}/>
+            </div>
         </div>
     )
 }

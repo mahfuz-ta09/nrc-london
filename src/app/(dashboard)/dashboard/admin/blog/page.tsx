@@ -4,11 +4,9 @@ import Blog from "@/app/(dashboard)/DashboardSharedItem/Blog/Blog"
 
 const page = () => {
     return (
-        <div>
-            <Suspense fallback={<Loader />}>
-                <Blog />
-            </Suspense>
-        </div>
+        <Suspense fallback={<Loader />}>
+            <Blog />
+        </Suspense>
     )
 }
 

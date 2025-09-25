@@ -30,13 +30,14 @@ const sideNavItem = (role: Role): Section[] => {
     STUDENT: "student",
     USER: "user",
     AGENT: "agent",
-    SUB_AGENT: "sub_agent",
+    SUB_AGENT: "sub-agent",
   }
 
   const common: NavContent[] = [
     { title: "Profile", path: "/", icon: faUser },
   ]
 
+  
   switch (role) {
     case USER_ROLE.SUPER_ADMIN:
       return [
@@ -59,6 +60,7 @@ const sideNavItem = (role: Role): Section[] => {
                 { title: "Reviews", path: `${role}/reviews`, icon: faStar },
                 { title: "Banner", path: `${role}/banner`, icon: faImage },
                 { title: "Blog", path: `${role}/blog`, icon: faBlog },
+                { title: "Affiliated Universities", path: `${role}/affiliated-universities`, icon: faUniversity },
             ]
         }
       ]
@@ -74,6 +76,7 @@ const sideNavItem = (role: Role): Section[] => {
                 { title: "Countries & Universities", path: `${role}/country-uni`, icon: faGlobe },
                 { title: "Banner", path: `${role}/banner`, icon: faImage },
                 { title: "Blog", path: `${role}/blog`, icon: faBlog },
+                { title: "Affiliated Universities", path: `${role}/affiliated-universities`, icon: faUniversity },
             ],
         },
         {

@@ -4,8 +4,8 @@ import { Suspense, useState } from "react"
 import BannerActionModal from "./BannerActionModal"
 import Loader from "@/component/shared/loader/loader"
 import '../../../../css/Dashboard/super_admin/common.css'
-import { faEdit, faTrash } from "@fortawesome/free-solid-svg-icons"
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
+import { faEdit, faTrash } from "@fortawesome/free-solid-svg-icons"
 import { useDeleteBannerMutation, useGetAllBannersQuery } from '@/redux/endpoints/banner/bannerEndpoint'
 
 const Banner = () => {

@@ -18,45 +18,46 @@ type ModalProps = {
 }
 
 type BlogFormData = {
-    title: string
-    slug: string
-    description: string
+    name:string
+    slug:string
+    description:string
 
-    author: string
-    content: { summary: string; body: string }
-    
-    categories: string
-    tags: string
-    
-    status: string
-    isFeatured: string
-    
+    location:string
+    content:string
+
+    tags:string
+    status:string
+
+    meta_title:string
+    meta_keywords:string
+    meta_description:string
+
     header_image: FileList
-    
-    meta_title: string
-    meta_keywords: string
-    meta_description: string
+    logo: FileList
 }
 
-const BlogActionModal = ({ setModalState, modalState }: ModalProps) => {
+const AffiliatedUniActionModal = ({ setModalState, modalState }: ModalProps) => {
     const [createBlog, { isLoading: createLoadig }] = useCreateBlogMutation()
     const [updateBlog, { isLoading: updateLoadig }] = useUpdateBlogMutation()
     const { register, control, handleSubmit, reset } = useForm<BlogFormData>({
         shouldUnregister: true,
         defaultValues: {
-            title: "",
+            name: "",
             slug: "",
-            author: "",
-            content: { summary: "", body: "" },
-            categories: "",
+            description: "",
+
+            location:"",
+            content: "",
+
             tags: "",
             status: "",
-            isFeatured: "",
+            
             meta_title: "",
             meta_keywords: "",
             meta_description: "",
+            
             header_image: {} as FileList,
-            description: "",
+            logo: {} as FileList,
         },
     })
 
@@ -66,25 +67,24 @@ const BlogActionModal = ({ setModalState, modalState }: ModalProps) => {
             if(!rep) return
 
             const formData = new FormData()
-            formData.append("title", data.title)
+            formData.append("title", data.name)
             formData.append("slug",(data.slug).toLowerCase().trim().replace(/\s+/g, "-"))
             formData.append("description", data.description)
 
-            formData.append("author", data.author)
+            formData.append("location", data.location)
             formData.append("status", data.status)
-            formData.append("isFeatured", data.isFeatured)
             
-            data?.categories.split(",").map(c => c.trim()).forEach(c => formData.append("categories", c))
             data?.tags.split(",").map(t => t.trim()).forEach(t => formData.append("tags", t))
 
             formData.append("header_image",data.header_image[0])
+            formData.append("logo",data.header_image[0])
 
             formData.append("meta_title", data.meta_title)
             data?.meta_keywords.split(",").map(k => k.trim()).forEach(k => formData.append("meta_keywords", k))
             formData.append("meta_description", data.meta_description)
 
             const parser = new DOMParser();
-            const doc = parser.parseFromString(data.content.body, 'text/html');
+            const doc = parser.parseFromString(data.content, 'text/html');
             const imgElements = doc.querySelectorAll('img')
 
             if(imgElements.length > 0){
@@ -105,11 +105,7 @@ const BlogActionModal = ({ setModalState, modalState }: ModalProps) => {
             }
             
             const updatedBody = doc.body.innerHTML
-            formData.append("content", JSON.stringify({
-                summary: data.content.summary,
-                body: updatedBody,
-                sections: []
-            }))
+            formData.append("content", JSON.stringify(updatedBody))
 
             let res:any
             
@@ -163,32 +159,24 @@ const BlogActionModal = ({ setModalState, modalState }: ModalProps) => {
 
                     <div className="input-container">
                         <label>
-                            Blog Title
+                            affiliated university name
                         </label>
-                        <input {...register("title")} placeholder="Blog Title" className="input-field" />
+                        <input {...register("name")} placeholder="Blog Title" className="input-field" />
                     </div>
                 
                     <div className="input-container">
                         <label>
-                            Blog Slug
+                            affiliated university name Slug
                         </label>
-                        <input {...register("slug")} placeholder="Slug (optional)" className="input-field" />
+                        <input {...register("slug")} placeholder="Slug" className="input-field" />
                     </div>
                 
                     <div className="input-container">
                         <label>
-                            Blog Description
+                            description
                         </label>
                         <input {...register("description")} placeholder="Descrition" className="input-field" />
                     </div>
-                
-                    <div className="input-container">
-                        <label>
-                            Blog Author
-                        </label>
-                        <input {...register("author")} placeholder="Author" className="input-field" />
-                    </div>
-                
                 
                     <div className="input-container">
                         <label>
@@ -214,14 +202,12 @@ const BlogActionModal = ({ setModalState, modalState }: ModalProps) => {
                 
                     <div className="input-container">
                         <label>
-                            Blog summary & body 
+                            details 
                         </label>
                     </div>
 
-                    <textarea {...register("content.summary")} placeholder="Blog Summary" className="input-field" />
-
                     <Controller
-                        name="content.body"
+                        name="content"
                         control={control}
                         render={({ field }) => (
                         <ReactQuill
@@ -237,39 +223,38 @@ const BlogActionModal = ({ setModalState, modalState }: ModalProps) => {
                     
                     <div className="input-container">
                         <label>
-                            Blog categories and tags/keywords
+                            Blog tags/keywords
                         </label>
-                        <input {...register("categories")} placeholder="Categories (comma separated)" className="input-field" />
-                        <input {...register("tags")} placeholder="Tags (comma separated)" className="input-field" />
+                        <input {...register("tags")} placeholder="tags (comma separated)" className="input-field" />
                     </div>
 
                     
                     <div className="input-container">
                         <label>
-                            Blog Header Image
+                            header image
                         </label>
                         <input type="file" {...register("header_image")} className="input-field" />
                     </div>
                     
-                    
-                    <select {...register("status")} className="input-field">
-                        <option value="">select</option>
-                        <option value="draft">Draft</option>
-                        <option value="published">Published</option>
-                    </select>
 
-                    {/* <input style={{margin:"30px 0"}} type="checkbox" {...register("isFeatured")} /> Featured Blog */}
                     
-
+                    <div className="input-container">
+                        <label>
+                            university logo
+                        </label>
+                        <input type="file" {...register("logo")} className="input-field" />
+                    </div>
+                    
                     <div className="input-container">
                         <label>
                             Is the blog featured
-                        </label>
-                        <select style={{color:"black",background:"transparent"}} {...register("isFeatured")} className="input-field">
+                        </label>                    
+                        <select {...register("status")} className="input-field">
                             <option value="">select</option>
-                            <option value="yes">yes</option>
-                            <option value="no">no</option>
+                            <option value="draft">Draft</option>
+                            <option value="published">Published</option>
                         </select>
+
                     </div>
                     
                     <br/>
@@ -281,4 +266,4 @@ const BlogActionModal = ({ setModalState, modalState }: ModalProps) => {
     ))
 }
 
-export default BlogActionModal
+export default AffiliatedUniActionModal

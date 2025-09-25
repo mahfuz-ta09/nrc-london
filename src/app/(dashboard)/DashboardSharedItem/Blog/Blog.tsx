@@ -1,11 +1,11 @@
 'use client'
-import Loader from "@/component/shared/loader/loader"
+import BlogTable from "./BlogTable"
 import { Suspense, useState } from "react"
 import BlogActionModal from "./BlogActionModal"
-import '@/css/Dashboard/DashBoardSharedItem/DashboardSharedCss.css'
-import BlogTable from "./BlogTable"
+import Loader from "@/component/shared/loader/loader"
 import { faFilter } from "@fortawesome/free-solid-svg-icons"
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
+import '@/css/Dashboard/DashBoardSharedItem/DashboardSharedCss.css'
 
 
 const Blog = () => {

@@ -1,8 +1,6 @@
 'use client'
 import { toast } from 'react-toastify'
-import BlogDetails from './BlogDetails'
 import { Suspense, useState } from 'react'
-import BlogActionModal from './BlogActionModal'
 import '@/css/Dashboard/super_admin/common.css'
 import Loader from '@/component/shared/loader/loader'
 import '../SharedCountryUni/UniversityTable/UniversityTable.css'
@@ -10,6 +8,8 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import Pagination from '@/component/shared/Pagination/Pagination'
 import { faPen, faTrash } from '@fortawesome/free-solid-svg-icons'
 import { useDeleteBlogMutation, useGetBlogsQuery } from '@/redux/endpoints/blogs/blogsEndpoint'
+import AffiliatedUniDetails from './AffiliatedUniDetails'
+import AffiliatedUniActionModal from './AffiliatedUniActionModal'
 
 
 type Props = {
@@ -23,7 +23,7 @@ type Props = {
     setParams: any
 }
 
-const BlogTable = ({ params , setParams }: Props) => {
+const AffiliatedUniTable = ({ params , setParams }: Props) => {
     const [modalState,setModalState] = useState({ isOpen: false , action:'Add' , id:''})
     const [detail,setDetail] = useState({
         isOPen: false,
@@ -122,12 +122,13 @@ const BlogTable = ({ params , setParams }: Props) => {
             <div></div>
 
             <Suspense fallback={<Loader />}>
-                <BlogDetails 
-                    detail={detail}
-                    setDetail={setDetail}/>
+                <AffiliatedUniDetails 
+                    // detail={detail}
+                    // setDetail={setDetail}
+                />
             </Suspense>
             <Suspense fallback={<Loader />}>
-                <BlogActionModal
+                <AffiliatedUniActionModal
                     modalState={modalState}
                     setModalState={setModalState}
                 />
@@ -136,5 +137,5 @@ const BlogTable = ({ params , setParams }: Props) => {
     ))
 }
 
-export default BlogTable
+export default AffiliatedUniTable
 
