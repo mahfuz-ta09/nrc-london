@@ -1,7 +1,8 @@
+// affiliated-university
 import { Metadata } from 'next'
 import { Suspense } from 'react'
 import Loader from '@/component/shared/loader/loader'
-import BlogList from '@/component/BlogList/BlogList'
+import UniList from './UniList'
 import Footer from '@/component/shared/footer/Footer'
 
 
@@ -11,7 +12,7 @@ export const metadata:Metadata = {
     openGraph: {
         title: "All Blogs | NRC Educational Consultants Ltd.",
         description: "Explore all blogs from NRC Educational Consultants Ltd. Discover insights, guides, and updates on education, courses, and learning.",
-        url: "https://www.nrcedu-uk.com/blogs",
+        url: "https://www.nrcedu-uk.com/affiliated-university",
         images: [
         {
             url: "https://www.nrcedu-uk.com/og-image.png",
@@ -35,13 +36,13 @@ const page = () => {
         <div className="blog-page-container">
             <div className="blog-page-header">
                 <div className="blog-header-content">
-                    <h1>Read Our blogs</h1>
+                    <h1>Official Agent</h1>
                     <p>To stay updated</p>
                 </div>
             </div>
             <div className="blog-page-body">
                 <Suspense fallback={<Loader />}>
-                    <BlogList />
+                    <UniList />
                 </Suspense>
             </div>
             <Footer />

@@ -52,6 +52,14 @@ const affiliatedUniApi = baseApi.injectEndpoints({
                 data, 
             }),
             invalidatesTags: ["affiliated-uni"],
+        }),
+
+        getUniAgents:build.query<any,void>({
+            query:() =>({
+                url: '/affiliated-uni/page-all',
+                method:'GET',
+            }),
+            providesTags: ["affiliated-uni"],
         })
 
     }),
@@ -64,5 +72,6 @@ export const {
     useCreateAffiliatedUniMutation,
     useGetAllAffiliatedUniQuery, 
     useDeleteAffiliatedUniMutation,
-    useUpdateAffiliatedUniMutation
+    useUpdateAffiliatedUniMutation,
+    useGetUniAgentsQuery
 } = affiliatedUniApi

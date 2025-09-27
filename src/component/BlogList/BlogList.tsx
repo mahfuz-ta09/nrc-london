@@ -51,10 +51,10 @@ const BlogList = () => {
                                     </div>
                                 </div>
                                 <div className="card-details">
-                                    <Link className='card-details-title' href={`blogs/${blog?.slug}`}>{blog?.title.slice(0,140)}...</Link>
+                                    <Link className='card-details-title' href={`/${blog?.slug}`}>{blog?.title.slice(0,140)}...</Link>
                                     <div className="bar"></div>
                                     <p className='card-details-description'>{blog?.description.slice(0,160)}...</p>
-                                    <Link href={`blogs/${blog?.slug}`} className='learn-more'>learn more</Link>
+                                    <Link href={`/${blog?.slug}`} className='learn-more'>learn more</Link>
                                 </div>
                             </div>
                         ))
