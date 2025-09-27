@@ -4,8 +4,9 @@ import ReactQuill from 'react-quill-new'
 import 'react-quill-new/dist/quill.snow.css'
 import { useForm, Controller } from "react-hook-form"
 import { base64ToFile } from '@/utils/convertFileType'
-import { useCreateBlogMutation, useUpdateBlogMutation } from '@/redux/endpoints/blogs/blogsEndpoint'
 import Loader from '@/component/shared/loader/loader'
+import { useCreateAffiliatedUniMutation, 
+    useUpdateAffiliatedUniMutation } from '@/redux/endpoints/affiliatedUni/affiliatedUni'
 
 
 type ModalProps = {
@@ -37,8 +38,8 @@ type BlogFormData = {
 }
 
 const AffiliatedUniActionModal = ({ setModalState, modalState }: ModalProps) => {
-    const [createBlog, { isLoading: createLoadig }] = useCreateBlogMutation()
-    const [updateBlog, { isLoading: updateLoadig }] = useUpdateBlogMutation()
+    const [createAffiliatedUni, { isLoading: createLoadig }] = useCreateAffiliatedUniMutation()
+    const [updateAffiliatedUni, { isLoading: updateLoadig }] = useUpdateAffiliatedUniMutation()
     const { register, control, handleSubmit, reset } = useForm<BlogFormData>({
         shouldUnregister: true,
         defaultValues: {
@@ -65,23 +66,23 @@ const AffiliatedUniActionModal = ({ setModalState, modalState }: ModalProps) => 
         try{
             const rep = window.confirm("Are you sure you want to create this blog(do not refresh while uploading)?")
             if(!rep) return
-
-            const formData = new FormData()
-            formData.append("title", data.name)
-            formData.append("slug",(data.slug).toLowerCase().trim().replace(/\s+/g, "-"))
-            formData.append("description", data.description)
-
-            formData.append("location", data.location)
-            formData.append("status", data.status)
             
-            data?.tags.split(",").map(t => t.trim()).forEach(t => formData.append("tags", t))
+            const formData = new FormData()
+            if(data.name)formData.append("name", data.name)
+            if(data.slug)formData.append("slug",(data.slug).toLowerCase().trim().replace(/\s+/g, "-"))
+            if(data.description)formData.append("description", data.description)
 
-            formData.append("header_image",data.header_image[0])
-            formData.append("logo",data.header_image[0])
+            if(data.location)formData.append("location", data.location)
+            if(data.status)formData.append("status", data.status)
+            
+            if(data.tags)data?.tags.split(",").map(t => t.trim()).forEach(t => formData.append("tags", t))
 
-            formData.append("meta_title", data.meta_title)
-            data?.meta_keywords.split(",").map(k => k.trim()).forEach(k => formData.append("meta_keywords", k))
-            formData.append("meta_description", data.meta_description)
+            if (data.header_image?.[0])formData.append("header_image",data.header_image[0])
+            if (data.logo?.[0])formData.append("logo",data.logo[0])
+
+            if(data.meta_title)formData.append("meta_title", data.meta_title)
+            if(data.meta_keywords)data?.meta_keywords.split(",").map(k => k.trim()).forEach(k => formData.append("meta_keywords", k))
+            if(data.meta_description)formData.append("meta_description", data.meta_description)
 
             const parser = new DOMParser();
             const doc = parser.parseFromString(data.content, 'text/html');
@@ -105,12 +106,12 @@ const AffiliatedUniActionModal = ({ setModalState, modalState }: ModalProps) => 
             }
             
             const updatedBody = doc.body.innerHTML
-            formData.append("content", JSON.stringify(updatedBody))
+            if(data.content)formData.append("content", JSON.stringify(updatedBody))
 
             let res:any
             
-            if(modalState?.action==="Add")res = await createBlog({data:formData}).unwrap()
-            else if(modalState?.action==="Edit" && modalState?.id)res = await updateBlog({ data: formData , id: modalState?.id }).unwrap()
+            if(modalState?.action==="Add")res = await createAffiliatedUni({data: formData}).unwrap()
+            else if(modalState?.action==="Edit" && modalState?.id)res = await updateAffiliatedUni({ data: formData , id: modalState?.id }).unwrap()
             
             if(res?.data?.modifiedCount || res?.data?.insertedId){
                 toast.success(`Blog ${modalState?.action==="Edit"? "edit":"added"} successfully`)
@@ -152,7 +153,7 @@ const AffiliatedUniActionModal = ({ setModalState, modalState }: ModalProps) => 
         (createLoadig || updateLoadig) ? <Loader /> :
         <div className={modalState?.isOpen ? 'modal-container openmoda-container' : 'modal-container'}>
             <div className="modal-body">
-                <h4 className='modal-header'>{modalState?.action} Blog</h4>
+                <h4 className='modal-header'>{modalState?.action} Affiliated University</h4>
                 <button onClick={() => setModalState({ isOpen: false , action: ""})} className="cancel-btn">X</button>
                 {modalState?.id? <h5>document id: {modalState?.id}</h5>:''}
                 <form className="modal-form" style={{width:'60vw'}} onSubmit={handleSubmit(onSubmit)}>
@@ -226,6 +227,13 @@ const AffiliatedUniActionModal = ({ setModalState, modalState }: ModalProps) => 
                             Blog tags/keywords
                         </label>
                         <input {...register("tags")} placeholder="tags (comma separated)" className="input-field" />
+                    </div>                    
+                    
+                    <div className="input-container">
+                        <label>
+                            location of the affiliated university
+                        </label>
+                        <input {...register("location")} placeholder="enter the location" className="input-field" />
                     </div>
 
                     

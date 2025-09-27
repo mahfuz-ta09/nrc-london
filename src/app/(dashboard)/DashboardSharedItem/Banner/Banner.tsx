@@ -65,7 +65,7 @@ const Banner = () => {
                             <td>{banner?.serial}</td>
                             <td>{banner?.title}</td>
                             <td>{banner?.additional_title}</td>
-                            <td>{banner?.description}</td>
+                            <td style={{minWidth:"300px",textAlign:'justify'}}>{banner?.description}</td>
                             <td>{banner?.status}</td>
                             <td><img className='table-img' src={banner?.imageUrl?.url} alt="" /></td>
                             <td><button onClick={()=>setAddBanner({action:"edit",id:banner?._id,isOPen: true,name:''})} className="edit-users-btn"><FontAwesomeIcon icon={faEdit} /></button></td>
