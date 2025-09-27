@@ -1,4 +1,3 @@
-// affiliated-university
 import { Metadata } from 'next'
 import { Suspense } from 'react'
 import Loader from '@/component/shared/loader/loader'

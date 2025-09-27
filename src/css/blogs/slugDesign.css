@@ -275,9 +275,11 @@
 
 /* Responsive design */
 @media screen and (max-width: 768px) {
+
     .blog-detail-container {
         /* padding: 15px; */
         max-width: 95%;
+        flex-direction: column;
     }
     .blog-heading{
         font-size: 35px;

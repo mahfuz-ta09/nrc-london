@@ -162,14 +162,14 @@ const AffiliatedUniActionModal = ({ setModalState, modalState }: ModalProps) => 
                         <label>
                             affiliated university name
                         </label>
-                        <input {...register("name")} placeholder="Blog Title" className="input-field" />
+                        <input {...register("name")} placeholder="Blog Title*" className="input-field" />
                     </div>
                 
                     <div className="input-container">
                         <label>
                             affiliated university name Slug
                         </label>
-                        <input {...register("slug")} placeholder="Slug" className="input-field" />
+                        <input {...register("slug")} placeholder="Slug*" className="input-field" />
                     </div>
                 
                     <div className="input-container">
@@ -183,27 +183,27 @@ const AffiliatedUniActionModal = ({ setModalState, modalState }: ModalProps) => 
                         <label>
                             Meta Title
                         </label>
-                        <input {...register("meta_title")} placeholder="Meta title(important for seo)" className="input-field" />
+                        <input {...register("meta_title")} placeholder="Meta title(important for seo)*" className="input-field" />
                     </div>
                 
                     <div className="input-container">
                         <label>
                             Meta Keywords
                         </label>
-                        <input {...register("meta_keywords")} placeholder="Meta keywords(important for seo-comma separated)" className="input-field" />
+                        <input {...register("meta_keywords")} placeholder="Meta keywords(important for seo-comma separated)*" className="input-field" />
                     </div>
                 
                     <div className="input-container">
                         <label>
                             Meta Description
                         </label>
-                        <input {...register("meta_description")} placeholder="Meta description(important for seo)" className="input-field" />
+                        <input {...register("meta_description")} placeholder="Meta description(important for seo)*" className="input-field" />
                     </div>
                 
                 
                     <div className="input-container">
                         <label>
-                            details 
+                            details*(maximum 10 images allowed) 
                         </label>
                     </div>
 
@@ -233,7 +233,7 @@ const AffiliatedUniActionModal = ({ setModalState, modalState }: ModalProps) => 
                         <label>
                             location of the affiliated university
                         </label>
-                        <input {...register("location")} placeholder="enter the location" className="input-field" />
+                        <input {...register("location")} placeholder="enter the location*" className="input-field" />
                     </div>
 
                     
@@ -255,7 +255,7 @@ const AffiliatedUniActionModal = ({ setModalState, modalState }: ModalProps) => 
                     
                     <div className="input-container">
                         <label>
-                            Is the blog featured
+                            publish now?
                         </label>                    
                         <select {...register("status")} className="input-field">
                             <option value="">select</option>

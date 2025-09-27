@@ -66,22 +66,18 @@ const BlogActionModal = ({ setModalState, modalState }: ModalProps) => {
             if(!rep) return
 
             const formData = new FormData()
-            formData.append("title", data.title)
-            formData.append("slug",(data.slug).toLowerCase().trim().replace(/\s+/g, "-"))
-            formData.append("description", data.description)
-
-            formData.append("author", data.author)
-            formData.append("status", data.status)
-            formData.append("isFeatured", data.isFeatured)
-            
-            data?.categories.split(",").map(c => c.trim()).forEach(c => formData.append("categories", c))
-            data?.tags.split(",").map(t => t.trim()).forEach(t => formData.append("tags", t))
-
-            formData.append("header_image",data.header_image[0])
-
-            formData.append("meta_title", data.meta_title)
-            data?.meta_keywords.split(",").map(k => k.trim()).forEach(k => formData.append("meta_keywords", k))
-            formData.append("meta_description", data.meta_description)
+            if(data?.title)formData.append("title", data.title)
+            if(data?.slug)formData.append("slug",(data.slug).toLowerCase().trim().replace(/\s+/g, "-"))
+            if(data?.description)formData.append("description", data.description)
+            if(data?.author)formData.append("author", data.author)
+            if(data?.status)formData.append("status", data.status)
+            if(data?.isFeatured)formData.append("isFeatured", data.isFeatured)
+            if(data?.categories)data?.categories.split(",").map(c => c.trim()).forEach(c => formData.append("categories", c))
+            if(data?.tags)data?.tags.split(",").map(t => t.trim()).forEach(t => formData.append("tags", t))
+            if(data?.header_image)formData.append("header_image",data.header_image[0])
+            if(data?.meta_title)formData.append("meta_title", data.meta_title)
+            if(data?.meta_keywords)data?.meta_keywords.split(",").map(k => k.trim()).forEach(k => formData.append("meta_keywords", k))
+            if(data?.meta_description)formData.append("meta_description", data.meta_description)
 
             const parser = new DOMParser();
             const doc = parser.parseFromString(data.content.body, 'text/html');
@@ -165,14 +161,14 @@ const BlogActionModal = ({ setModalState, modalState }: ModalProps) => {
                         <label>
                             Blog Title
                         </label>
-                        <input {...register("title")} placeholder="Blog Title" className="input-field" />
+                        <input {...register("title")} placeholder="Blog Title*" className="input-field" />
                     </div>
                 
                     <div className="input-container">
                         <label>
                             Blog Slug
                         </label>
-                        <input {...register("slug")} placeholder="Slug (optional)" className="input-field" />
+                        <input {...register("slug")} placeholder="Slug*" className="input-field" />
                     </div>
                 
                     <div className="input-container">
@@ -186,7 +182,7 @@ const BlogActionModal = ({ setModalState, modalState }: ModalProps) => {
                         <label>
                             Blog Author
                         </label>
-                        <input {...register("author")} placeholder="Author" className="input-field" />
+                        <input {...register("author")} placeholder="Author*" className="input-field" />
                     </div>
                 
                 
@@ -214,7 +210,7 @@ const BlogActionModal = ({ setModalState, modalState }: ModalProps) => {
                 
                     <div className="input-container">
                         <label>
-                            Blog summary & body 
+                            Blog summary & body* (maximum 10 images allowed in the body)
                         </label>
                     </div>
 
