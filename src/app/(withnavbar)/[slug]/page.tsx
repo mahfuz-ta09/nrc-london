@@ -75,10 +75,10 @@ export default async function SlugPage({ params }: { params: Promise<{ slug: str
 
     const [blogRes, uniRes] = await Promise.all([
         fetch(`${process.env.NEXT_PUBLIC_DEPLOYED_API}/blog/single/${slug}/${status}`, {
-        cache: "no-store",
+            cache: "no-store",
         }),
-        fetch(`${process.env.NEXT_PUBLIC_LOCAL_API}/affiliated-uni/single/${slug}`, {
-        cache: "no-store",
+        fetch(`${process.env.NEXT_PUBLIC_DEPLOYED_API}/affiliated-uni/single/${slug}`, {
+            cache: "no-store",
         }),
     ])
 
