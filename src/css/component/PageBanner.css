@@ -1,0 +1,138 @@
+.page-container{
+    min-height: 100vh;
+    width: 100%;
+}
+
+.page-banner{
+    background: linear-gradient(
+        rgba(0, 66, 66, 0.9) 60%,
+        rgba(0,0,0,0.6)
+    ), url('../../assets/blogbanner.jpg');
+    background-position: center;
+    background-size: cover;
+    background-repeat:no-repeat ;
+    height: 60vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    position: relative;
+}
+ .banner-image{
+    width: 70%;
+    height: 320px;
+    object-fit: cover;
+    margin: 0px auto;
+    border-radius: 15px;
+}
+
+.banner-content{
+    width: 70%;
+    height: 100%;
+    padding: 50px 0;
+    display: flex;
+    flex-direction: column;
+    justify-content: end;
+    align-items: center;
+    height: 100%;
+}
+
+.bread-crumb{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    padding: 30px 0;
+}
+
+.bread-link1{
+    font-size: 18px;
+    text-decoration: none;
+    color: #9c9a9a;
+}
+
+.bread-link2{
+    font-size: 18px;
+    text-decoration: none;
+    color: #fff;
+}
+
+.bread-dot{
+    height:8px;
+    width: 8px;
+    background: #fff;
+    border-radius: 50%;
+}
+
+.banner-content h1{
+    color: #fff;
+    font-size: 35px;
+    font-weight: 400;
+    margin-bottom: 10px;
+    text-shadow: 1px 1px 2px rgba(0,0,0,0.6);
+    letter-spacing: 2px;
+}
+
+.banner-content p{
+    color: white;
+    font-size: 20px;
+    width: 60%;
+    margin: 10px 0;
+    text-shadow: 1px 1px 3px rgba(0,0,0,0.6);
+    letter-spacing: 1px;
+    font-weight: 400;
+    text-align: center;
+}
+
+.banner-content h3{
+    color: white;
+    font-size: 22px;
+    width: 60%;
+    margin: 10px 0;
+    text-shadow: 1px 1px 3px rgba(0,0,0,0.6);
+    letter-spacing: 1px;
+    font-weight: 700;
+    text-align: center;
+}
+
+.banner-content .banner-link{
+    padding: 9px 53px;
+    border-radius: 4px;
+    margin: 10px auto;
+    border: none;
+    font-size:17px;
+    font-weight: 600;
+    color: #000;
+    background:rgba(121, 204, 231);
+    text-decoration: none;
+}
+
+
+.banner-link{
+
+}
+
+
+@media screen and (max-width: 650px) {
+    .page-banner{
+        width: 100%;
+    }
+    .banner-image{
+        width: 95%;
+        height: 320px;
+        object-fit: cover;
+    }
+    
+    .banner-content{
+        width: 100%;
+    }
+    .banner-content h1{
+        font-size: 25px;
+        text-align: center;
+    }
+
+    .banner-content p{
+        width: 95%;
+        font-size: 15px;
+    }
+}

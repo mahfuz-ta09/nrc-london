@@ -9,16 +9,21 @@
     justify-content: center;
     flex-direction: column;
     z-index: 99999;
-    background: rgb(0, 44, 58);  
+    background: transparent;  
 }
 
 .nav-head{
     height: 3vh;
     width: 100%;
-    background: rgb(0, 28, 37);
     display: flex;
     align-items: center;
     justify-content: center;
+}
+
+.nav-scrolled {
+    background:  rgba(0, 66, 66);
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.25);
+    transition: background 0.4s ease, box-shadow 0.4s ease;
 }
 
 .mobile-email{
@@ -45,7 +50,7 @@
     display: flex;
     align-items: center;
     justify-content: space-between;
-    color: white;
+    color: #fff;
     padding: 0 10px;
 }
 
@@ -76,7 +81,7 @@
     height:40px;
     border: 1px solid #fff;
     border-radius: 50%;
-    background: rgb(255, 255, 255);
+    background: #fff;
     object-fit: cover;
 }
 
@@ -136,7 +141,7 @@
 }
 
 .drop-down-link{
-    color:#cfcbcb;
+    color:#fff;
     text-decoration: none;
     font-size: 19px;
     font-weight: 700;
@@ -148,7 +153,7 @@
 }
 
 .contact-section-link{
-    color:#cfcbcb;
+    color:#fff;
     text-decoration: none;
     font-size: 19px;
     font-weight: 700;
@@ -168,10 +173,11 @@
 }
 
 .link{
-    color: #dcdce2;
+    color: #fff;
     text-decoration: none;
-    font-weight: 500;
+    font-weight: 300;
     font-size: 17px;
+    letter-spacing: 1px;
     line-height: 16px;
     gap: 5px;
 }
@@ -186,22 +192,27 @@
 .link-items button{
     font-size: 15px;
     padding: 7px 19px;
-    font-weight: 700;
+    font-weight: 600;
+    letter-spacing: 2px;
     border: none;
     border-radius: 3px;
-    color: rgba(0,74,98,1);
-    background: #fff;
+    color: #F9C748;
+    border: 1px solid #F9C748;
+    background: transparent;
+    box-shadow: 1px 1px 10px rgba(0, 0, 0, 0.25);
     transition: .2s all;
 }
 
 .link-items .dash{
-    font-size: 15px;
+    font-size: 13px;
     padding: 7px 19px;
-    font-weight: 700;
+    font-weight: 600;
+    letter-spacing: 1px;
     border: none;
     border-radius: 3px;
-    color: #fff;
-    background: rgba(0, 135, 175);
+    color: #000;
+    background: #F9C748;
+    border: 2px solid #F9C748;
     transition: .2s all;
 }
 

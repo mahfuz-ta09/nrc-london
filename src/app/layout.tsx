@@ -1,7 +1,7 @@
 import type { Metadata, Viewport } from "next"
 import "./globals.css"
 import Providers from "@/redux/Providers"
-import {  Kanit ,Roboto_Condensed } from 'next/font/google'
+import { Nunito } from 'next/font/google'
 import { config } from '@fortawesome/fontawesome-svg-core'
 import '@fortawesome/fontawesome-svg-core/styles.css'
 import { Bounce, ToastContainer } from "react-toastify"
@@ -9,7 +9,7 @@ import { Bounce, ToastContainer } from "react-toastify"
 
 config.autoAddCss = false
 
-const kanit = Roboto_Condensed({ subsets: ['latin'], weight: ['300','400', '500', '700','800','900'] })
+const kanit = Nunito({ subsets: ['latin'], weight: ['200','300','400', '500', '700','800','900'] })
 
 export const metadata: Metadata = {
     title: {

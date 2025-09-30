@@ -3,6 +3,10 @@
 const Form = () => {
   return (
     <form className="enquire-form">
+      <div style={{background:"rgba(0, 66, 66)",padding:"15px",color:'white',borderRadius:'5px'}} className="form-top">
+        Ready to take the next step in your educational journey?  
+        Fill out the form below and our expert team will reach out to guide you through every step of the process.
+      </div>
         <h2>Enquire Now</h2>
         <input type="text" placeholder="Enter Full Name*" />
         {/* {errors.fullName && <p className="error">{errors.fullName.message}</p>} */}

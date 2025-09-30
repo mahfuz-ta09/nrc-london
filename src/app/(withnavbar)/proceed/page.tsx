@@ -1,234 +1,46 @@
-'use client'
-import { SubmitHandler, useForm } from 'react-hook-form'
-import Footer from '@/component/shared/footer/Footer'
-import '@/css/Proceed/Proceed.css'
-import { usePostProcessDataMutation } from '@/redux/endpoints/studentfileprocess/proceedEndpoints'
-import { toast } from 'react-toastify'
-import { useUserInfo } from '@/utils/useUserInfo'
-import { IFormInput } from '@/types/common'
-import Loader from '@/component/shared/loader/loader'
+import Banner from "./Banner"
+import type { Metadata } from "next"
+import "@/css/Proceed/Proceed.css"
+import ProceedForm from "./ProceedForm"
+import Footer from "@/component/shared/footer/Footer"
 
-
-
-// export const metadata = {
-//     title: "Blogs",
-//     description: "Blogs page",
-// }
-
-const page = () => {
-    const { register , reset, handleSubmit } = useForm<IFormInput>()
-    const [ postProcessData , { isLoading: postLoading }]= usePostProcessDataMutation()
-    const { Uemail , Urole } = useUserInfo()
-
-
-    if(postLoading) return <Loader />
-
-    const onSubmit: SubmitHandler<IFormInput> = async(data) => {
-        if(!Uemail){
-            toast.error("Please login to proceed!!")
-            return
-        }
-        const insertedData = {
-            ...data,
-            email: Uemail,
-            role: Urole,
-        }
-        const formData = new FormData()
-            
-        Object.entries(insertedData).forEach(([key, value]) => {
-            if(value instanceof FileList) {
-                for (let i = 0; i < value.length; i++) {
-                    formData.append(key, value[i]);
-                }
-            }else if (value !== undefined && value !== null) {
-                formData.append(key, String(value));
-            }
-        })
-
-        try{
-            const res = await postProcessData(formData)
-            if(res?.data?.data?.acknowledged){
-                toast.success("Successfull, we will contact you for further information!!")
-                reset()
-            }else{
-                toast.error(res?.data?.message)
-            }
-        }catch(err){
-            console.log(err)
-        }
-    }
-
-    return (
-      <div className="container">
-        <div className="form-container">
-            <div className="form-wrapper">
-                <div className="floating-elements"></div>
-                <h2 className="form-header">Student Registration Form</h2>
-
-                <div className="form-content">
-                    <form id="studentForm" onSubmit={handleSubmit(onSubmit)}>
-                    
-                    {/* Personal Information Section */}
-                    <div className="form-section">
-                        <h3 className="section-title">Personal Information</h3>
-
-                        <div className="form-group">
-                            <label className="form-label required">Name</label>
-                            <input className="form-input" type="text" {...register("name")}/>
-                        </div>
-
-                        <div className="form-row">
-                            <div className="form-group">
-                                <label className="form-label required">Mobile Number</label>
-                                <input className="form-input" type="number" {...register("phone")}/>
-                            </div>
-
-                            <div className="form-group">
-                                <label className="form-label required">Emergency Number</label>
-                                <input className="form-input" type="number" {...register("ulternative_phone")}/>
-                            </div>
-                        </div>
-
-                        <div className="form-row">
-                            <div className="form-group">
-                                <label className="form-label required">Email</label>
-                                <input className="form-input" type="email" value={Uemail} readOnly />
-                            </div>
-
-                            <div className="form-group">
-                                <label className="form-label required">Date of Birth</label>
-                                <input className="form-input" type="date" {...register("dob")}/>
-                            </div>
-                        </div>
-                    </div>
-
-                    {/* Educational Qualification Section */}
-                    <div className="form-section">
-                        <h3 className="section-title">Educational Qualification</h3>
-
-                        <div className="form-group">
-                            <label className="form-label required">SSC Certificate (jpg/jpeg)</label>
-                            <input className="form-input" type="file" accept=".jpg,.jpeg,.pdf,.png" {...register("ssc")}/>
-                        </div>
-
-                        <div className="form-group">
-                            <label className="form-label">HSC Certificate (jpg/jpeg)</label>
-                            <input className="form-input" type="file" accept=".jpg,.jpeg,.pdf,.png" {...register("hsc")} />
-                        </div>
-
-                        <div className="form-group">
-                            <label className="form-label">Bachelor Certificate (jpg/jpeg)</label>
-                            <input className="form-input" type="file" accept=".jpg,.jpeg,.pdf,.png" {...register("bachelor")} />
-                        </div>
-
-                        <div className="form-group">
-                            <label className="form-label">Master Certificate (jpg/jpeg)</label>
-                            <input className="form-input" type="file" accept=".jpg,.jpeg,.pdf,.png" {...register("master")} />
-                        </div>
-
-                        <div className="form-group">
-                            <label className="form-label">Other Degree Certificate (jpg/jpeg)</label>
-                            <input className="form-input" type="file" accept=".jpg,.jpeg,.pdf,.png" {...register("other")} />
-                        </div>
-                    </div>
-
-                    {/* English Proficiency Section */}
-                    <div className="form-section">
-                        <h3 className="section-title">English Proficiency Test</h3>
-
-                        <div className="form-row">
-                            <div className="form-group">
-                                <label className="form-label required">Test Type</label>
-                                <select className="form-select" {...register("proficiencyCirtificate")} required>
-                                <option value="IELTS">IELTS</option>
-                                <option value="OIETC">OIETC</option>
-                                <option value="DUOLINGO">DUOLINGO</option>
-                                <option value="PTE">PTE</option>
-                                <option value="TOFEL">TOFEL</option>
-                                <option value="MOI">MOI</option>
-                                <option value="ESOL">ESOL</option>
-                                </select>
-                            </div>
-
-                            <div className="form-group">
-                                <label className="form-label required">Test Taken Date</label>
-                                <input className="form-input" type="date" {...register("examTakenTime")}/>
-                            </div>
-                        </div>
-
-                        <div className="form-group">
-                            <label className="form-label required">English Test Certificate (jpg/jpeg)</label>
-                            <input className="form-input" type="file" accept=".jpg,.jpeg,.pdf,.png" {...register("proficiencyCirtificate")}/>
-                        </div>
-                    </div>
-
-                    {/* Preferences Section */}
-                    <div className="form-section">
-                        <h3 className="section-title">Preferences</h3>
-
-                        <div className="form-group">
-                            <label className="form-label required">Preferred Country</label>
-                            <select className="form-select" {...register("destinationCountry")} required>
-                                <option value="uk">UK</option>
-                                <option value="usa">USA</option>
-                                <option value="aus">Australia</option>
-                                <option value="canada">Canada</option>
-                                <option value="denmark">Denmark</option>
-                                <option value="spain">Spain</option>
-                                <option value="sweden">Sweden</option>
-                                <option value="malta">Malta</option>
-                                <option value="hungary">Hungary</option>
-                                <option value="portugal">Portugal</option>
-                                <option value="france">France</option>
-                                <option value="others">Others</option>
-                            </select>
-                        </div>
-
-                        <div className="form-group">
-                            <label className="form-label">How did you know about us?</label>
-                            <select className="form-select" {...register("referral")}>
-                                <option value="google">Google</option>
-                                <option value="facebook">Facebook</option>
-                                <option value="linkedin">LinkedIn</option>
-                                <option value="youtube">YouTube</option>
-                                <option value="friends">Friends</option>
-                                <option value="others">Others</option>
-                            </select>
-                        </div>
-
-                        <div className="form-group">
-                            <label className="form-label">Have you ever been refused entry by any country?</label>
-                            <select className="form-select" {...register("refused")}>
-                                <option value="no">No</option>
-                                <option value="yes">Yes</option>
-                            </select>
-                        </div>
-
-                        <div className="form-group">
-                            <label className="form-label">Refused Country Name (if any)</label>
-                            <input className="form-input" type="text" {...register("refusedCountry")} />
-                        </div>
-                    </div>
-
-                    {/* Submit Section */}
-                    <div className="form-section">
-                        {postLoading ? (
-                        <p>Loading...</p>
-                        ) : (
-                        <button className="form-button" type="submit">
-                            Proceed
-                        </button>
-                        )}
-                    </div>
-                    </form>
-                </div>
-            </div>
-        </div>
-
-        <Footer />
-    </div>
-
-    )
+export const metadata: Metadata = {
+    title: "Student Registration | Spectrum Education Consultancy",
+    description:
+        "Register now to start your journey toward studying abroad with Spectrum Education Consultancy. Complete the student registration form and we'll guide you through every step.",
+    openGraph: {
+        title: "Student Registration | Spectrum Education Consultancy",
+        description:
+        "Register now to start your journey toward studying abroad with Spectrum Education Consultancy.",
+        url: "https://nrcedu-uk.com/proceed",
+        type: "website",
+        images: [
+        {
+            url: "https://nrcedu-uk.com/og-image.jpg",
+            width: 1200,
+            height: 630,
+            alt: "Spectrum Education Consultancy",
+        },
+        ],
+    },
+    twitter: {
+        card: "summary_large_image",
+        title: "Student Registration | Spectrum Education Consultancy",
+        description:
+        "Register now to start your journey toward studying abroad with Spectrum Education Consultancy.",
+        images: ["https://nrcedu-uk.com/og-image.jpg"], 
+    },
+    alternates: {
+        canonical: "https://nrcedu-uk.com/proceed",
+    },
 }
 
-export default page
+export default function Page() {
+    return (
+        <div className="page-container">
+            <Banner />
+            <ProceedForm />
+            <Footer />
+        </div>
+    )
+}

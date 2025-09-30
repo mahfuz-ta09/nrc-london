@@ -5,35 +5,43 @@ import Image from 'next/image'
 import Link from 'next/link'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faBars, faBook, faHome, faPhone, faUser, faXmark } from '@fortawesome/free-solid-svg-icons'
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 import { useRouter } from 'next/navigation'
 import { logOut } from '@/utils/authAction'
 import { useUserInfo } from '@/utils/useUserInfo'
 import UniNav from './UniNav'
 import SubNav from './SubNav'
 
-
-
-
-
 const Navbar = () => {
-    const [isOpen,setIsOpen] = useState(false)
+    const [isOpen, setIsOpen] = useState(false)
+    const [isScrolled, setIsScrolled] = useState(false)
     const data = useUserInfo()
-    const router=useRouter()
+    const router = useRouter()
 
-    
-    const handleNavbar = () =>{
+    const handleNavbar = () => {
         setIsOpen((prev) => !prev)
     }
-    
 
-    const handleLogOut = () =>{
+    const handleLogOut = () => {
         logOut()
         router.refresh()
     }
-    
+
+    // ✅ Scroll listener for background change
+    useEffect(() => {
+        const handleScroll = () => {
+            if (window.scrollY > 400) {
+                setIsScrolled(true)
+            } else {
+                setIsScrolled(false)
+            }
+        }
+        window.addEventListener('scroll', handleScroll)
+        return () => window.removeEventListener('scroll', handleScroll)
+    }, [])
+
     return (
-        <div className='nav-holder'>
+        <div className={`nav-holder ${isScrolled ? 'nav-scrolled' : ''}`}>
             <div className="nav-head">
                 <div className="mobile-email">
                     <h5>+44 2033554453</h5>
@@ -55,6 +63,7 @@ const Navbar = () => {
 
                     <UniNav />
                     <SubNav />
+
                     <div className='link-holder'>
                         <p className='link'>test prep</p>
                         <div className='drop-down'>
@@ -83,7 +92,6 @@ const Navbar = () => {
                         </div>
                     </div>
 
-                    
                     <div className='link-holder'>
                         <Link onClick={()=>setIsOpen(false)} className='link' href="/blogs">blogs</Link>
                     </div>
@@ -102,25 +110,27 @@ const Navbar = () => {
                             </div>
                         </div>
                     </div>
-                    
+
                     <div className='link-holder'>
                         <Link onClick={()=>setIsOpen(false)} className='link' href="/proceed">proceed</Link>
                     </div>
                 </div>
+
                 <div className={isOpen ? 'link-items show' :'link-items hide'}>
                     {
-                        !data?.Uemail ?<button onClick={()=>router.push('/login')}>login</button>  :
-                        <button onClick={()=>handleLogOut()}>logout</button>
+                        !data?.Uemail
+                        ? <button onClick={()=>router.push('/login')}>login</button>
+                        : <button onClick={handleLogOut}>logout</button>
                     }
                     <button className='dash' onClick={()=>router.push('/dashboard')}>dashboard</button>
                 </div>
+
                 {
-                    isOpen ?
-                    <FontAwesomeIcon onClick={handleNavbar} className='menu-icon' icon={faXmark}/>  :
-                    <FontAwesomeIcon onClick={handleNavbar} className='menu-icon' icon={faBars}/>
+                    isOpen
+                    ? <FontAwesomeIcon onClick={handleNavbar} className='menu-icon' icon={faXmark}/>
+                    : <FontAwesomeIcon onClick={handleNavbar} className='menu-icon' icon={faBars}/>
                 }
             </div>
-
         </div>
     )
 }

@@ -1,16 +1,17 @@
 "use client"
-import Link from 'next/link';
 import DummyBanner from './DummyBanner';
 import '@/css/shared/LandingPage/LandingPage.css';
+import { Suspense, useEffect, useState } from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { useGetAllBannersQuery } from '@/redux/endpoints/banner/bannerEndpoint';
-import { faAngleDoubleLeft, faAngleDoubleRight, faArrowRight } from '@fortawesome/free-solid-svg-icons';
-import { Suspense, useEffect, useState } from 'react';
+import { faAngleDoubleLeft, faAngleDoubleRight } from '@fortawesome/free-solid-svg-icons';
+import { useRouter } from 'next/navigation';
+
 
 const LandingPage = () => {
     const [current, setCurrent] = useState<number>(0)
     const { data: banners } = useGetAllBannersQuery({ status: 'active' })
- 
+    const router = useRouter()
     const items = banners?.data || []
     const total = banners?.meta?.total || items.length || 0
     
@@ -37,6 +38,7 @@ const LandingPage = () => {
     
     if (total === 0) return <DummyBanner />
         
+    
     return (
         <Suspense fallback={<DummyBanner/>}>
             <div className="banner">
@@ -74,48 +76,37 @@ const LandingPage = () => {
                                 className={`banner-item ${isActive ? 'banner-item-show' : 'banner-item-hide'}`}
                                 style={{
                                     backgroundImage: banner?.imageUrl?.url 
-                                        ? `linear-gradient(135deg, rgba(0, 44, 58, 0.8), rgba(0, 28,37, 0.6)), url(${banner.imageUrl.url})`
-                                        : 'linear-gradient(135deg, rgba(0, 44, 58, 0.8), rgba(0, 28,37, 0.6))',
+                                        ? `linear-gradient(to left, rgba(0, 66, 66, 0.7) 40%,rgba(0,0,0,0.9)60%), url(${banner.imageUrl.url})`
+                                        : 'linear-gradient(to left, rgba(0, 66, 66, 0.7) 40%,rgba(0,0,0,0.9)60%)',
                                     backgroundSize: "cover",
                                     backgroundPosition: "center",
                                     backgroundRepeat: "no-repeat",
-                                }}
-                            >
+                                }}>
                                 <div className="content">
                                     <div className="left-section">
+                                        <img className='left-image' src='/images/writting.png' alt="Banner image" />
                                         <h1 className="banner-title">
                                             {banner?.title ? (
                                                 <>
-                                                    {banner.title.split(" ")[0]} <br />
-                                                    {banner.title.split(" ").slice(1).join(" ")}
+                                                    {banner.title}
                                                 </>
                                             ) : (
                                                 "NRC Educational Consultants Ltd."
                                             )}
                                         </h1>
+                                        <p className="description">
+                                            {banner?.description || "No description available."}
+                                        </p>
+                                        <div className='btn-container'>
+                                            <button onClick={()=>router.push('/recruitment-partner/become-agent')} className='btn1'>become and agent</button>
+                                            <button onClick={()=>router.push('/proceed')} className='btn2'>start you journey</button>
+                                        </div>
+                                    </div>
+                                    <div className="right-section">
+                                        <img src='/images/tanzim-on-top.webp' alt="Banner image" />
                                     </div>
                                 </div>
 
-                                <div className="diagonal-cut">
-                                    <div className={`action-links slide ${isActive ? 'loaded' : ''}`}>
-                                        <Link className="action-link" href="/proceed">
-                                            apply now <FontAwesomeIcon icon={faArrowRight} className="fas fa-arrow-right"/>
-                                        </Link>
-                                        <Link className="action-link" href="/recruitment-partner/become-agent">
-                                            work as an agent <FontAwesomeIcon icon={faArrowRight} className="fas fa-arrow-right"/>
-                                        </Link>
-                                    </div>
-                                    <div className={`right-section ${isActive ? 'loaded' : ''}`}>
-                                        <div className="content-box">
-                                            <p className="main-heading">
-                                                {banner?.title || "No description available."}
-                                            </p>
-                                            <p className="description">
-                                                {banner?.description || "No description available."}
-                                            </p>
-                                        </div>
-                                    </div>
-                                </div>
                             </div>
                         )
                     })}

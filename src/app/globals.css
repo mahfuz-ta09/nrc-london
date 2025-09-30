@@ -6,6 +6,8 @@
 @import '../css/component/Buttons.css';
 @import '../css/Component/FilterContainer.css';
 @import '../css/blogs/mainBlogPage.css';
+@import '../css//component//PageBanner.css';
+
 
 *{
   box-sizing: border-box;

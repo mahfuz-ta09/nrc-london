@@ -1,8 +1,10 @@
 import { Metadata } from 'next'
 import { Suspense } from 'react'
 import Loader from '@/component/shared/loader/loader'
-import BlogList from '@/component/BlogList/BlogList'
+import BlogList from './BlogList'
 import Footer from '@/component/shared/footer/Footer'
+import Link from 'next/link'
+
 
 
 export const metadata:Metadata = {
@@ -32,13 +34,21 @@ export const metadata:Metadata = {
 
 const page = () => {
     return (
-        <div className="blog-page-container">
-            <div className="blog-page-header">
-                <div className="blog-header-content">
-                    <h1>Read Our blogs</h1>
-                    <p>To stay updated</p>
+        <div className="page-container">
+            <div className="page-banner">
+                <div className="banner-content">
+                    <div className="bread-crumb">
+                        <Link className='bread-link1' href="/">home</Link>
+                        <div className="bread-dot"></div>
+                        <Link className='bread-link2'  href="/blogs">blogs</Link>
+                    </div>
+                    <h1>Blogs</h1>
+                    <p>The world is a book, and those who do not travel read only one page. Education 
+                        abroad helps you read the entire story, one experience at a time.</p>
+                    <Link className="banner-link" href='/proceed'>apply now</Link>
                 </div>
             </div>
+            
             <div className="blog-page-body">
                 <Suspense fallback={<Loader />}>
                     <BlogList />
