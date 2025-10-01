@@ -65,7 +65,8 @@ const Footer = () => {
                             <ul className="pg-footer-menu-list">
                                 <li><Link href="/contact">Contact</Link></li>
                                 <li><Link href="/services">Services</Link></li>
-                                <li><Link href="/proceed">Proceed</Link></li>
+                                <li><Link href="/proceed">Apply Now</Link></li>
+                                <li><Link href="/recruitment-partner/become-agent">Become An Agent</Link></li>
                             </ul>
                         </div>
                     </div>

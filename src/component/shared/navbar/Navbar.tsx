@@ -96,7 +96,7 @@ const Navbar = () => {
                         <Link onClick={()=>setIsOpen(false)} className='link' href="/blogs">blogs</Link>
                     </div>
 
-                    <div className='link-holder'>
+                    {/* <div className='link-holder'>
                         <p className='link'>recruitement partner</p>
                         <div className='drop-down'>
                             <div className="drop-down-content">
@@ -109,11 +109,11 @@ const Navbar = () => {
                                 </div>
                             </div>
                         </div>
-                    </div>
+                    </div> */}
 
-                    <div className='link-holder'>
+                    {/* <div className='link-holder'>
                         <Link onClick={()=>setIsOpen(false)} className='link' href="/proceed">proceed</Link>
-                    </div>
+                    </div> */}
                 </div>
 
                 <div className={isOpen ? 'link-items show' :'link-items hide'}>

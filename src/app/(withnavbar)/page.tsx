@@ -50,11 +50,11 @@ const Page = () => {
 
   return (
     <>
-        {/* <Banner /> */}
         <LandingPage />
+        {/* <Banner /> */}
         <div className="home-contain">
           <AboutUs />
-          <PopularCourse />
+          {/* <PopularCourse /> */}
           <UniOption/>
           <Process />
           <AcademicSolution />
