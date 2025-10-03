@@ -117,7 +117,7 @@ const StudentInfoSlider = () => {
         if (!isDown) return;
         e.preventDefault();
         const x = e.pageX - sliderRef.current!.offsetLeft;
-        const walk = (x - startX) * 1.5; // drag speed
+        const walk = (x - startX) * 1.5;
         sliderRef.current!.scrollLeft = scrollLeft - walk;
     };
 

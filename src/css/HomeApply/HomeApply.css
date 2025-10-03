@@ -56,6 +56,7 @@
 .home-text-header span{
     color:  #F9C748;
 }
+
 .home-text-header::after{
     content: '';
     background: linear-gradient(to right,#F9C748,transparent);
@@ -170,5 +171,8 @@
 
 
 @media screen and (max-width: 568px) {
+    .home-text-header::after{
+        left: 40%;
+    }
     
 }

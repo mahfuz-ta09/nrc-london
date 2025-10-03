@@ -1,124 +1,149 @@
 "use client";
-import { useRef, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import { useRouter } from "next/navigation";
-import Loader from "../loader/loader";
-import '@/css/shared/Unioption/UniOption.css'
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faArrowAltCircleLeft, faArrowAltCircleRight } from "@fortawesome/free-solid-svg-icons";
 import { useGetUniNavItemQuery } from "@/redux/endpoints/university/universityEndpoints";
-import { faArrowAltCircleLeft, faArrowAltCircleRight } from "@fortawesome/free-regular-svg-icons";
+import Loader from "../loader/loader";
+import '../../../css/shared/Unioption/UniOption.css'
 
-
-const UniOption = () => {
+const UniOption: React.FC = () => {
     const router = useRouter();
-    const { data , isLoading } = useGetUniNavItemQuery()
-    const scrollContainerRef = useRef<HTMLDivElement>(null);
-    const [isDragging, setIsDragging] = useState(false);
-    const [startX, setStartX] = useState(0);
-    const [scrollLeft, setScrollLeft] = useState(0);
+    const { data, isLoading } = useGetUniNavItemQuery();
+    const trackRef = useRef<HTMLDivElement | null>(null);
 
-    const handleMouseDown = (e: React.MouseEvent) => {
-        setIsDragging(true);
-        setStartX(e.pageX - (scrollContainerRef.current?.offsetLeft || 0));
-        setScrollLeft(scrollContainerRef.current?.scrollLeft || 0);
-    };
 
-    const handleMouseLeave = () => setIsDragging(false);
-    const handleMouseUp = () => setIsDragging(false);
+    const [cardStep, setCardStep] = useState<number>(0);
+    const GAP = 16;
 
-    const handleMouseMove = (e: React.MouseEvent) => {
-        if (!isDragging) return;
-        e.preventDefault();
-        const x = e.pageX - (scrollContainerRef.current?.offsetLeft || 0);
-        const walk = x - startX;
-        if (scrollContainerRef.current) {
-        scrollContainerRef.current.scrollLeft = scrollLeft - walk;
+    
+    useEffect(() => {
+        const compute = () => {
+        const track = trackRef.current;
+        if (!track) return;
+        const first = track.querySelector<HTMLElement>(".uo-card");
+        if (first) {
+            const w = first.offsetWidth;
+            setCardStep(w + GAP);
+            track.style.setProperty("--uo-card-gap", `${GAP}px`);
         }
-    };
+        };
+        compute();
+        window.addEventListener("resize", compute);
+        return () => window.removeEventListener("resize", compute);
+    }, [isLoading, data]);
 
-    const handleTouchStart = (e: React.TouchEvent) => {
-        setIsDragging(true);
-        setStartX(e.touches[0].pageX - (scrollContainerRef.current?.offsetLeft || 0));
-        setScrollLeft(scrollContainerRef.current?.scrollLeft || 0);
-    };
 
-    const handleTouchMove = (e: React.TouchEvent) => {
-        if (!isDragging) return;
-        const x = e.touches[0].pageX - (scrollContainerRef.current?.offsetLeft || 0);
-        const walk = x - startX;
-        if (scrollContainerRef.current) {
-        scrollContainerRef.current.scrollLeft = scrollLeft - walk;
+    const dragging = useRef({ down: false, startX: 0, scrollLeft: 0 });
+
+    const onPointerDown = (e: React.PointerEvent) => {
+        const track = trackRef.current;
+        if (!track) return;
+        dragging.current.down = true;
+        dragging.current.startX = e.clientX;
+        dragging.current.scrollLeft = track.scrollLeft;
+        (e.target as Element).setPointerCapture?.(e.pointerId);
+        track.classList.add("uo-dragging");
+    };
+        
+    const onPointerMove = (e: React.PointerEvent) => {
+    if (!dragging.current.down || !trackRef.current) return;
+    e.preventDefault();
+
+    const x = e.clientX;
+    const dx = x - dragging.current.startX;
+
+    
+    requestAnimationFrame(() => {
+        if (trackRef.current) {
+        trackRef.current.scrollLeft = dragging.current.scrollLeft - dx;
         }
+    });
     };
 
-    const handleTouchEnd = () => setIsDragging(false);
 
-    const scroll = (direction: "left" | "right") => {
-        if (scrollContainerRef.current) {
-        const scrollAmount = 350;
-        scrollContainerRef.current.scrollBy({
-            left: direction === "left" ? -scrollAmount : scrollAmount,
-            behavior: "smooth",
-        });
-        }
+    const onPointerUp = (e: React.PointerEvent) => {
+        dragging.current.down = false;
+        try { (e.target as Element).releasePointerCapture?.(e.pointerId); } catch {}
+        trackRef.current?.classList.remove("uo-dragging");
+    };
+
+    
+    const scrollByCard = (dir: -1 | 1) => {
+        const track = trackRef.current;
+        if (!track) return;
+        const amount = cardStep || Math.round(track.clientWidth * 0.8);
+        track.scrollBy({ left: dir * amount, behavior: "smooth" });
     };
 
     return (
-        <section className="unioption-container">
-            <div className="unioption-header">
-                <h4 className="option-subtitle">🌍 Study Abroad</h4>
-                <h2 className="home-text-header">
-                    Choose Your <span style={{color:"#008080"}}>Study Destination</span>
+        <section className="uo-container">
+            <div className="uo-inner">
+                <header className="uo-header">
+                <div className="uo-subtitle">🌍 Study Abroad</div>
+                <h2 className="uo-title">
+                    Choose Your <span className="uo-accent">Study Destination</span>
                 </h2>
-                <p className="unioption-description">
-                    Explore top countries offering world-class education, vibrant cultures, and global career opportunities.
-                    Your academic journey starts here.
+                <p className="uo-lead">
+                    Explore top countries offering world-class education, vibrant cultures, and global career
+                    opportunities. Your academic journey starts here.
                 </p>
-            </div>
-            
-            <div className="uni-nav">
-                <button onClick={() => scroll("left")} className="uni-nav-btn">
-                <FontAwesomeIcon icon={faArrowAltCircleLeft} />
-                </button>
-                <button onClick={() => scroll("right")} className="uni-nav-btn">
-                <FontAwesomeIcon icon={faArrowAltCircleRight} />
-                </button>
-            </div>
-            <div
-                className="uni-carousel"
-                ref={scrollContainerRef}
-                onMouseDown={handleMouseDown}
-                onMouseLeave={handleMouseLeave}
-                onMouseUp={handleMouseUp}
-                onMouseMove={handleMouseMove}
-                onTouchStart={handleTouchStart}
-                onTouchMove={handleTouchMove}
-                onTouchEnd={handleTouchEnd}
-                style={{ cursor: isDragging ? "grabbing" : "grab" }}
-            >
-                {isLoading ? (
-                <Loader />
-                ) : (
-                data?.data?.map((option: any) => (
-                    <div key={option.country} className="uni-card">
-                        <img className="uni-image" src={option.image} alt={option.country} />
-                        <img className="uni-flag" src={option.flag} alt={`${option.country} flag`} />
-                        <div className="uni-overlay"></div>
-                        <div className="uni-details">
-                            <h3>Study in {option.country}</h3>
-                            <p>Inspiring higher study abroad</p>
-                            <button onClick={() => router.push(`/university/${option.country}`)}>
-                            Details <FontAwesomeIcon icon={faArrowAltCircleRight} />
-                            </button>
-                        </div>
-                    </div>
-                ))
-                )}
-            </div>
+                </header>
 
+                <div className="uo-controls">
+                <button
+                    aria-label="previous"
+                    className="uo-arrow"
+                    onClick={() => scrollByCard(-1)}
+                    type="button"
+                >
+                    <FontAwesomeIcon icon={faArrowAltCircleLeft} />
+                </button>
+
+                <button
+                    aria-label="next"
+                    className="uo-arrow"
+                    onClick={() => scrollByCard(1)}
+                    type="button"
+                >
+                    <FontAwesomeIcon icon={faArrowAltCircleRight} />
+                </button>
+                </div>
+
+                <div
+                className="uo-track"
+                ref={trackRef}
+                onPointerDown={onPointerDown}
+                onPointerMove={onPointerMove}
+                onPointerUp={onPointerUp}
+                onPointerLeave={() => (dragging.current.down = false)}
+                >
+                {isLoading ? (
+                    <Loader />
+                ) : (
+                    data?.data?.map((option: any) => (
+                    <article className="uo-card" key={option.country}>
+                        <img className="uo-image" src={option.image} alt={option.country} />
+                        <img className="uo-flag" src={option.flag} alt={`${option.country} flag`} />
+                        <div className="uo-overlay" />
+                        <div className="uo-details">
+                        <h3>Study in {option.country}</h3>
+                        <p>Inspiring higher study abroad</p>
+                        <button
+                            className="uo-cta"
+                            onClick={() => router.push(`/university/${option.country}`)}
+                            type="button"
+                        >
+                            Details
+                        </button>
+                        </div>
+                    </article>
+                    ))
+                )}
+                </div>
+            </div>
         </section>
     );
 };
-
-
 
 export default UniOption;

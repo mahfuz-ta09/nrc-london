@@ -27,7 +27,6 @@ const Navbar = () => {
         router.refresh()
     }
 
-    // ✅ Scroll listener for background change
     useEffect(() => {
         const handleScroll = () => {
             if (window.scrollY > 400) {

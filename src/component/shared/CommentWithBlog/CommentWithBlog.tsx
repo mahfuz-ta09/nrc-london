@@ -1,6 +1,6 @@
 "use client";
-import { useState } from "react";
 import Link from "next/link";
+import { useState } from "react";
 import '@/css/shared/CommentWithBlog/CommentWithBlog.css'
 
 const CommentWithBlog = () => {
@@ -29,7 +29,7 @@ const CommentWithBlog = () => {
         },
     ];
 
-    const visibleCount = 3; // Number of cards visible at once
+    const visibleCount = 3;
     const maxIndex = Math.max(0, testimonials.length - visibleCount);
 
     const onPrev = () => {
@@ -40,7 +40,6 @@ const CommentWithBlog = () => {
         setCurrentIndex((prev) => Math.min(maxIndex, prev + 1));
     };
 
-    // Get the visible testimonials based on current index
     const visibleTestimonials = testimonials.slice(currentIndex, currentIndex + visibleCount);
 
     return (
