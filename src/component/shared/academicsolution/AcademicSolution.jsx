@@ -1,50 +1,67 @@
-'use client'
-import { useRouter } from 'next/navigation'
+"use client"
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import '../../../css/shared/AcademicSolution/AcademicSolution.css'
+import { faBookOpen, faGlobe, faListCheck, faUsers } from '@fortawesome/free-solid-svg-icons'
+import Link from 'next/link'
 
+const services = [
+  {
+    icon: faBookOpen,
+    title: "Expert Consultation",
+    description:
+      "Get personalized guidance from our experienced team to help you make informed decisions.",
+  },
+  {
+    icon: faGlobe,
+    title: "Global Network",
+    description:
+      "Access a strong network of partners, institutions, and opportunities across the globe.",
+  },
+  {
+    icon:faUsers,
+    title: "Dedicated Support",
+    description:
+      "Our team is with you every step of the way — from your first inquiry to final success.",
+  },
+  {
+    icon: faListCheck,
+    title: "Reliable & Transparent",
+    description:
+      "We maintain clear processes, honest communication, and dependable service you can trust.",
+  },
+]
 
-const AcademicSolution = () => {
-    const router = useRouter()
-
-    return (
-        <div className='academicSolution-container'>
-            <div className="academicSolution">
-                <h1 className='academicSolution-header'>Your one step Academic solution</h1>
-                <div className="academic-plans">
-                    <div className="single-plan">
-                        <img className="plan-image" src="https://i.ibb.co.com/CKr8VM26/pexels-photo-577585.jpg" alt="Find Your Ideal Study Path" />
-                        <h2 className="plan-header">Find the Perfect Study Path</h2>
-                        <p className="plan-addition">
-                            Choosing the right course and institution is crucial for your success. Our expert consultants help 
-                            you identify the best academic programs that align with your goals, interests, and career aspirations.
-                        </p>
-                    </div>
-                    
-                    <div className="single-plan">
-                        <img className="plan-image" src="https://i.ibb.co.com/dJ0gdkK1/pexels-photo-590041.jpg" alt="Prepare for Success" />
-                        <h2 className="plan-header">Prepare for a Smooth Admission Process</h2>
-                        <p className="plan-addition">
-                            We provide comprehensive support to help you ace your university interviews, prepare strong 
-                            application documents, and meet all admission requirements with confidence.
-                        </p>
-                    </div>
-                    
-                    <div className="single-plan">
-                        <img className="plan-image" src="https://i.ibb.co.com/sd0yFDPk/log.webp" alt="Confidently Take the Next Step" />
-                        <h2 className="plan-header">Take the Leap Towards Your Future</h2>
-                        <p className="plan-addition">
-                            Our commitment doesn’t end with your admission. We offer ongoing support, from visa guidance 
-                            to settling into your new academic environment, ensuring you are well-prepared for the journey ahead.
-                        </p>
-                    </div>
-                </div>
-                <div className="sol-bottom">
-                    <h5>See all our services?</h5>
-                    <button onClick={()=>router.push('/services')} className='plan-button'>services</button>
-                </div>
-            </div>
+const ServicesSection = () => {
+  return (
+    <section className="services-section">
+      <div className="services-container">
+        <div className="services-header">
+        <h4 className="option-subtitle">✨ what we offer</h4>
+          <h2 className='home-text-header' style={{color:"#000"}}>Our <span style={{color:"#008080"}}>Services</span></h2>
+          <p>
+            Explore our range of services designed to support your educational and career journey from start to finish.
+          </p>
         </div>
-    )
+
+        <div className="services-grid">
+          {services.map((service, index) => (
+            <div className="service-card" key={index}>
+              <div className="service-icon"><FontAwesomeIcon icon={service.icon}/></div>
+              <h3>{service.title}</h3>
+              <p>{service.description}</p>
+            </div>
+          ))}
+        </div>
+
+        {/* ✅ CTA Button */}
+        <div className="services-btn-wrapper">
+          <Link href="/services" className="services-btn">
+            View All Services
+          </Link>
+        </div>
+      </div>
+    </section>
+  )
 }
 
-export default AcademicSolution
+export default ServicesSection

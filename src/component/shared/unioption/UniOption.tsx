@@ -1,108 +1,124 @@
-'use client'
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import '../../../css/shared/Unioption/UniOption.css'
-import { faArrowAltCircleLeft, faArrowAltCircleRight } from '@fortawesome/free-solid-svg-icons'
-import { useGetUniNavItemQuery } from '@/redux/endpoints/university/universityEndpoints'
-import { useRouter } from 'next/navigation'
-import { useRef, useState } from 'react'
-import Loader from '../loader/loader'
+"use client";
+import { useRef, useState } from "react";
+import { useRouter } from "next/navigation";
+import Loader from "../loader/loader";
+import '@/css/shared/Unioption/UniOption.css'
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { useGetUniNavItemQuery } from "@/redux/endpoints/university/universityEndpoints";
+import { faArrowAltCircleLeft, faArrowAltCircleRight } from "@fortawesome/free-regular-svg-icons";
+
 
 const UniOption = () => {
-    const router = useRouter()
+    const router = useRouter();
     const { data , isLoading } = useGetUniNavItemQuery()
-    const scrollContainerRef = useRef<HTMLDivElement>(null)
+    const scrollContainerRef = useRef<HTMLDivElement>(null);
+    const [isDragging, setIsDragging] = useState(false);
+    const [startX, setStartX] = useState(0);
+    const [scrollLeft, setScrollLeft] = useState(0);
 
-    // states for drag scrolling
-    const [isDragging, setIsDragging] = useState(false)
-    const [startX, setStartX] = useState(0)
-    const [scrollLeft, setScrollLeft] = useState(0)
-
-    const scroll = (direction: 'left' | 'right') => {
-        if (scrollContainerRef.current) {
-            const scrollAmount = 320
-            scrollContainerRef.current.scrollBy({
-                left: direction === 'left' ? -scrollAmount : scrollAmount,
-                behavior: 'smooth'
-            });
-        }
-    }
-
-    // Mouse + Touch Handlers
     const handleMouseDown = (e: React.MouseEvent) => {
-        if (!scrollContainerRef.current) return
-        setIsDragging(true)
-        setStartX(e.pageX - scrollContainerRef.current.offsetLeft)
-        setScrollLeft(scrollContainerRef.current.scrollLeft)
-    }
+        setIsDragging(true);
+        setStartX(e.pageX - (scrollContainerRef.current?.offsetLeft || 0));
+        setScrollLeft(scrollContainerRef.current?.scrollLeft || 0);
+    };
 
-    const handleMouseLeave = () => setIsDragging(false)
-    const handleMouseUp = () => setIsDragging(false)
+    const handleMouseLeave = () => setIsDragging(false);
+    const handleMouseUp = () => setIsDragging(false);
 
     const handleMouseMove = (e: React.MouseEvent) => {
-        if (!isDragging || !scrollContainerRef.current) return
-        e.preventDefault()
-        const x = e.pageX - scrollContainerRef.current.offsetLeft
-        const walk = (x - startX) * 2
-        scrollContainerRef.current.scrollLeft = scrollLeft - walk
-    }
+        if (!isDragging) return;
+        e.preventDefault();
+        const x = e.pageX - (scrollContainerRef.current?.offsetLeft || 0);
+        const walk = x - startX;
+        if (scrollContainerRef.current) {
+        scrollContainerRef.current.scrollLeft = scrollLeft - walk;
+        }
+    };
 
-    // Touch support
     const handleTouchStart = (e: React.TouchEvent) => {
-        if (!scrollContainerRef.current) return
-        setIsDragging(true)
-        setStartX(e.touches[0].pageX - scrollContainerRef.current.offsetLeft)
-        setScrollLeft(scrollContainerRef.current.scrollLeft)
-    }
+        setIsDragging(true);
+        setStartX(e.touches[0].pageX - (scrollContainerRef.current?.offsetLeft || 0));
+        setScrollLeft(scrollContainerRef.current?.scrollLeft || 0);
+    };
+
     const handleTouchMove = (e: React.TouchEvent) => {
-        if (!isDragging || !scrollContainerRef.current) return
-        const x = e.touches[0].pageX - scrollContainerRef.current.offsetLeft
-        const walk = (x - startX) * 2
-        scrollContainerRef.current.scrollLeft = scrollLeft - walk
-    }
-    const handleTouchEnd = () => setIsDragging(false)
+        if (!isDragging) return;
+        const x = e.touches[0].pageX - (scrollContainerRef.current?.offsetLeft || 0);
+        const walk = x - startX;
+        if (scrollContainerRef.current) {
+        scrollContainerRef.current.scrollLeft = scrollLeft - walk;
+        }
+    };
 
-    return (    
-        <div className='unioption-cotainer'>
-            <div className="wdth">
-                <h2 className='uniHeader'>Have a look at your University options:</h2>
-                
-                <div 
-                    className="uni-content" 
-                    ref={scrollContainerRef}
-                    onMouseDown={handleMouseDown}
-                    onMouseLeave={handleMouseLeave}
-                    onMouseUp={handleMouseUp}
-                    onMouseMove={handleMouseMove}
-                    onTouchStart={handleTouchStart}
-                    onTouchMove={handleTouchMove}
-                    onTouchEnd={handleTouchEnd}
-                    style={{ cursor: isDragging ? "grabbing" : "grab" }}
-                >
-                    <div style={{width:`${340*data?.meta?.total}px`}} className="unicaro">
-                        {
-                            isLoading ? <Loader /> :
-                            data?.data?.map((option:any)=>
-                                <div key={option.country} className="uni">
-                                    <img className="uni-image" src={option.image} alt='' />
-                                    <img className="uni-country-image" src={option.flag} alt='' />
-                                    <div className="overlay"></div>
-                                    <div className="details">
-                                        <h3>Study in {option.country}</h3>
-                                        <p>Inspiring higher study in abroad</p>
-                                        <button onClick={()=> router.push(`/university/${option?.country}`)}>details <FontAwesomeIcon icon={faArrowAltCircleRight}/> </button>
-                                    </div>
-                                </div>)
-                        }
-                    </div>
-                </div>
+    const handleTouchEnd = () => setIsDragging(false);
 
-                <div className="uni-nav">
-                    <button onClick={()=>scroll('left')} className='uni-nav-nav-btn'><FontAwesomeIcon icon={faArrowAltCircleLeft}/></button>
-                    <button onClick={()=>scroll('right')} className='uni-nav-nav-btn'><FontAwesomeIcon icon={faArrowAltCircleRight} /></button>
-                </div>
+    const scroll = (direction: "left" | "right") => {
+        if (scrollContainerRef.current) {
+        const scrollAmount = 350;
+        scrollContainerRef.current.scrollBy({
+            left: direction === "left" ? -scrollAmount : scrollAmount,
+            behavior: "smooth",
+        });
+        }
+    };
+
+    return (
+        <section className="unioption-container">
+            <div className="unioption-header">
+                <h4 className="option-subtitle">🌍 Study Abroad</h4>
+                <h2 className="home-text-header">
+                    Choose Your <span style={{color:"#008080"}}>Study Destination</span>
+                </h2>
+                <p className="unioption-description">
+                    Explore top countries offering world-class education, vibrant cultures, and global career opportunities.
+                    Your academic journey starts here.
+                </p>
             </div>
-        </div>
-    )
-}
+            
+            <div className="uni-nav">
+                <button onClick={() => scroll("left")} className="uni-nav-btn">
+                <FontAwesomeIcon icon={faArrowAltCircleLeft} />
+                </button>
+                <button onClick={() => scroll("right")} className="uni-nav-btn">
+                <FontAwesomeIcon icon={faArrowAltCircleRight} />
+                </button>
+            </div>
+            <div
+                className="uni-carousel"
+                ref={scrollContainerRef}
+                onMouseDown={handleMouseDown}
+                onMouseLeave={handleMouseLeave}
+                onMouseUp={handleMouseUp}
+                onMouseMove={handleMouseMove}
+                onTouchStart={handleTouchStart}
+                onTouchMove={handleTouchMove}
+                onTouchEnd={handleTouchEnd}
+                style={{ cursor: isDragging ? "grabbing" : "grab" }}
+            >
+                {isLoading ? (
+                <Loader />
+                ) : (
+                data?.data?.map((option: any) => (
+                    <div key={option.country} className="uni-card">
+                        <img className="uni-image" src={option.image} alt={option.country} />
+                        <img className="uni-flag" src={option.flag} alt={`${option.country} flag`} />
+                        <div className="uni-overlay"></div>
+                        <div className="uni-details">
+                            <h3>Study in {option.country}</h3>
+                            <p>Inspiring higher study abroad</p>
+                            <button onClick={() => router.push(`/university/${option.country}`)}>
+                            Details <FontAwesomeIcon icon={faArrowAltCircleRight} />
+                            </button>
+                        </div>
+                    </div>
+                ))
+                )}
+            </div>
 
-export default UniOption
+        </section>
+    );
+};
+
+
+
+export default UniOption;

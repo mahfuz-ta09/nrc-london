@@ -9,6 +9,9 @@ import UniOption from "@/component/shared/unioption/UniOption"
 import AcademicSolution from "@/component/shared/academicsolution/AcademicSolution"
 import Footer from "@/component/shared/footer/Footer"
 import FAQ from "@/component/ui/faq/FAQ"
+import HomeApply from "@/component/shared/HomeApply/HomeApply"
+import HomeAgentReq from "@/component/shared/HomeAgentReq/HomeAgentReq"
+import CommentWithBlog from "@/component/shared/CommentWithBlog/CommentWithBlog"
 
 // import Footer from "@/component/shared/Footer/Footer"
 // import UniOption from "@/component/shared/UniOption/UniOption"
@@ -54,13 +57,16 @@ const Page = () => {
         {/* <Banner /> */}
         <div className="home-contain">
           <AboutUs />
-          {/* <PopularCourse /> */}
           <UniOption/>
-          <Process />
+          <HomeApply />
+          <PopularCourse />
           <AcademicSolution />
-          <HomeTestPrep />
-          <Review />
-          <FAQ items={faqItems}  title="Frequently Asked Questions" color="white"/>
+          <HomeAgentReq />
+          <Process />
+          {/* <HomeTestPrep /> */}
+          {/* <Review /> */}
+          <CommentWithBlog />
+          <FAQ items={faqItems}  title="Frequently Asked Questions" color="black"/>
           <Footer />
         </div>
     </>

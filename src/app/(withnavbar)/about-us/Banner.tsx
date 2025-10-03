@@ -11,6 +11,7 @@ export default function Banner() {
                 <Link className="bread-link2" href="/about-us">about us</Link>
             </div>
             <h1>About Us</h1>
+            <div className="title-decoration"></div>
             <p>
                 The world is a book, and those who do not travel read only one page.
                 Education abroad helps you read the entire story, one experience at a time.

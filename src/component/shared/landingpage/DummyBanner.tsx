@@ -3,7 +3,7 @@ import Link from 'next/link'
 import '@/css/shared/LandingPage/LandingPage.css';
 import { faArrowRight } from '@fortawesome/free-solid-svg-icons'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import office from "../../../assets/office-image.jpg"
+// import office from "images/office-image.jpg"
 
 const DummyBanner = () => {
   return (
@@ -12,7 +12,7 @@ const DummyBanner = () => {
                 <div
                     className="banner-item banner-item-show"
                     style={{
-                        backgroundImage: `linear-gradient(135deg, rgba(0, 44, 58, 0.8), rgba(0, 28,37, 0.6)), url(${office.src})`,
+                        backgroundImage: `linear-gradient(135deg, rgba(0, 44, 58, 0.8), rgba(0, 28,37, 0.6)),)`,
                         backgroundSize: "cover",
                         backgroundPosition: "center",
                         backgroundRepeat: "no-repeat",

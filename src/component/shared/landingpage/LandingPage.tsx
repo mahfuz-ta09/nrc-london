@@ -42,7 +42,7 @@ const LandingPage = () => {
         setTimeout(() => setIsTransitioning(false), 800);
     };
     
-    if (total === 0 || isLoading) return <DummyBanner />;
+    // if (total === 0 || isLoading) return <DummyBanner />;
     
     return (
         <Suspense fallback={<DummyBanner/>}>
@@ -92,7 +92,6 @@ const LandingPage = () => {
                     {items.map((banner: any, index: number) => {
                         const isActive = safeIndex === index;
                         
-                        // Get proper background style based on screen size
                         const getBackgroundStyle = () => {
                             if (typeof window === 'undefined') {
                                 return {
@@ -140,14 +139,14 @@ const LandingPage = () => {
                                                 onClick={() => router.push('/proceed')} 
                                                 className='btn-primary'
                                             >
-                                                <span className="btn-icon">🚀</span>
+                                                {/* <span className="btn-icon">🚀</span> */}
                                                 Start Your Journey
                                             </button>
                                             <button 
                                                 onClick={() => router.push('/recruitment-partner/become-agent')} 
                                                 className='btn-secondary'
                                             >
-                                                <span className="btn-icon">🤝</span>
+                                                {/* <span className="btn-icon">🤝</span> */}
                                                 Become an Agent
                                             </button>
                                         </div>

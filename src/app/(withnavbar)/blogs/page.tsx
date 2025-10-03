@@ -43,6 +43,7 @@ const page = () => {
                         <Link className='bread-link2'  href="/blogs">blogs</Link>
                     </div>
                     <h1>Blogs</h1>
+                    <div className="title-decoration"></div>
                     <p>The world is a book, and those who do not travel read only one page. Education 
                         abroad helps you read the entire story, one experience at a time.</p>
                     <Link className="banner-link" href='/proceed'>apply now</Link>

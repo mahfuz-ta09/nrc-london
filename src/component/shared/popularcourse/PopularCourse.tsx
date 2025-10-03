@@ -36,19 +36,31 @@ const PopularCourse = () => {
     return (
         <div className="popular-container">
             <div className="popular-courses">
-                <div className="popular-header">
-                    <h1 className="courses-tag">
+                <div className="unioption-header">
+                <h4 className="option-subtitle">🌍 Study Abroad</h4>
+                <div className="option-title-decoration"></div>
+                <h2 className="unioption-title">
+                    Choose Your <span>Study</span> Destination
+                </h2>
+                <p className="unioption-description">
+                    Explore top countries offering world-class education, vibrant cultures, and global career opportunities.
+                    Your academic journey starts here.
+                </p>
+            </div>
+            
+                {/* <div className="popular-header"> */}
+                    {/* <h1 className="courses-tag">
                         Popular Courses 
-                    </h1>
-                    <div className="btn-grp">
+                    </h1> */}
+                    {/* <div className="btn-grp">
                         <button className="prv" onClick={prevPage} disabled={currentPage === 0}>
                             <FontAwesomeIcon  icon={faArrowLeft}/>
                         </button>
                         <button className="nxt" onClick={nextPage} disabled={currentPage >= totalPages - 1}>
                             <FontAwesomeIcon  icon={faArrowRight}/>
                         </button>
-                    </div>
-                </div>
+                    </div> */}
+                {/* </div> */}
                 <div className="courses">
                     {isLoading ? (
                         <Loader />

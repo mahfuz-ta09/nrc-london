@@ -43,6 +43,7 @@ const page = () => {
                         <Link className='bread-link2'  href="/affiliated-university">affiliated university details</Link>
                     </div>
                     <h1>Official Representatives in Bangladesh</h1>
+                    <div className="title-decoration"></div>
                     <p>
                         Partnering with globally recognized universities, our trusted agents in Bangladesh 
                         guide students through every step — from choosing the right program to a successful admission.
