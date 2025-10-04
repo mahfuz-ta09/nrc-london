@@ -6,7 +6,7 @@ import Link from 'next/link'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faAngleDoubleDown, faAngleDoubleUp, faArrowRight, faBars, faCancel, faHome, faPhone, faUser, faXmark } from '@fortawesome/free-solid-svg-icons'
 import { useState, useEffect, useRef } from 'react'
-import { useRouter } from 'next/navigation'
+import { usePathname, useRouter } from 'next/navigation'
 import { logOut } from '@/utils/authAction'
 import { useUserInfo } from '@/utils/useUserInfo'
 import UniNav from './UniNav'
@@ -20,6 +20,7 @@ const Navbar = () => {
     const data = useUserInfo()
     const router = useRouter()
     const navRef = useRef<HTMLDivElement>(null)
+    const pathname = usePathname()
 
     useEffect(() => {
         setIsOpen(false)
@@ -77,6 +78,7 @@ const Navbar = () => {
         setIsDropDown({uni: false, sub: false, test: false})
     }
 
+    console.log(pathname)
     return (
         <div ref={navRef} className={`nav-holder ${isScrolled ? 'nav-scrolled' : ''}`}>
             <div className="nav-head">
@@ -102,7 +104,7 @@ const Navbar = () => {
 
                 <div className={`nav-links ${isOpen ? 'show' : ''}`}>
                     <div className='link-holder'>
-                        <Link onClick={closeAll} className='link' href="/">
+                        <Link onClick={closeAll} className={pathname==='/'?'link link-color':'link'} href="/">
                             Home <FontAwesomeIcon icon={faHome}/> 
                         </Link>
                     </div>
@@ -113,7 +115,7 @@ const Navbar = () => {
                     <div className='link-holder'>
                         <button 
                             onClick={() => setIsDropDown({uni: false, sub: false, test: !isDropDown.test})} 
-                            className='link'
+                             className={pathname.includes('/test-prep')?'link link-color':'link'} 
                         >
                             Test Prep
                             <FontAwesomeIcon className='link-icon' icon={isDropDown.test ? faAngleDoubleUp : faAngleDoubleDown}/> 

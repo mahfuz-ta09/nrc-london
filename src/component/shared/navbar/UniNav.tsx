@@ -4,6 +4,7 @@ import '../../../css/shared/Navbar/Navbar.css'
 import { faAngleDoubleDown, faAngleDoubleUp, faArrowRight, faCancel, faPhone, faUser } from "@fortawesome/free-solid-svg-icons"
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
 import Link from "next/link"
+import { usePathname } from 'next/navigation'
 
 type props = {
     isDropDown: {
@@ -17,10 +18,10 @@ type props = {
 
 const UniNav = ({isDropDown , setIsDropDown}:props) => {
     const {data,isLoading} = useGetUniNavItemQuery()
-    
+    const pathname = usePathname()
     return (
         <div className='link-holder'>
-            <button onClick={()=>setIsDropDown({test: false, uni:!isDropDown.uni,sub: false})}  className='link'>
+            <button onClick={()=>setIsDropDown({test: false, uni:!isDropDown.uni,sub: false})}className={pathname.includes('/university')?'link link-color':'link'} >
                 universities <FontAwesomeIcon className='link-icon' icon={isDropDown.uni?faAngleDoubleUp:faAngleDoubleDown}/> 
             </button>
             <div className={isDropDown.uni?'drop-down show-dropdown':'drop-down'}>

@@ -4,6 +4,7 @@ import '../../../css/shared/Navbar/Navbar.css'
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
 import { faAngleDoubleDown, faAngleDoubleUp, faCancel, faGlobe, faPhone, faUser } from "@fortawesome/free-solid-svg-icons"
 import { useGetSubNavItemQuery } from '@/redux/endpoints/subject/subjectEndpoints'
+import { usePathname } from "next/navigation"
 
 type props = {
     isDropDown: {
@@ -16,11 +17,11 @@ type props = {
 
 const UniNav = ({isDropDown , setIsDropDown}:props) => {
     const { data , isLoading } = useGetSubNavItemQuery()
-    
+    const pathname = usePathname()
 
     return (
         <div className='link-holder'>
-            <button onClick={()=>setIsDropDown({test: false, uni:false,sub: !isDropDown.sub})}  className='link'>
+            <button onClick={()=>setIsDropDown({test: false, uni:false,sub: !isDropDown.sub})}className={pathname.includes('/subjects')?'link link-color':'link'} >
                 subjects
                 <FontAwesomeIcon className='link-icon' icon={isDropDown.sub?faAngleDoubleUp:faAngleDoubleDown}/> 
             </button>

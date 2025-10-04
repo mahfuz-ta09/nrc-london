@@ -156,6 +156,10 @@
     white-space: nowrap;
 }
 
+.link-color{
+    color: #F9C748;
+}
+
 .link:hover {
     background: rgba(249, 199, 72, 0.15);
     color: #F9C748;
