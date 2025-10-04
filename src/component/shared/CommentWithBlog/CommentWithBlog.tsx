@@ -12,7 +12,6 @@ const CommentWithBlog = () => {
     const { data, refetch, isLoading } = useGetPageReviewQuery({ page, item })
     const [currentIndex, setCurrentIndex] = useState(0);
 
-    console.log(data)
 
     return (
         <section className="prefooter-section">

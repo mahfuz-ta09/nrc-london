@@ -4,8 +4,8 @@ import logo from"../../../assets/nrc.logo.png"
 import Image from 'next/image'
 import Link from 'next/link'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faAngleDoubleDown, faAngleDoubleUp, faBars, faBook, faHome, faPhone, faUser, faXmark } from '@fortawesome/free-solid-svg-icons'
-import { useState, useEffect } from 'react'
+import { faAngleDoubleDown, faAngleDoubleUp, faArrowRight, faBars, faCancel, faHome, faPhone, faUser, faXmark } from '@fortawesome/free-solid-svg-icons'
+import { useState, useEffect, useRef } from 'react'
 import { useRouter } from 'next/navigation'
 import { logOut } from '@/utils/authAction'
 import { useUserInfo } from '@/utils/useUserInfo'
@@ -13,42 +13,76 @@ import UniNav from './UniNav'
 import SubNav from './SubNav'
 import { faFacebook } from '@fortawesome/free-brands-svg-icons'
 
-
 const Navbar = () => {
     const [isOpen, setIsOpen] = useState(false)
-    const [isDropDown,setIsDropDown] = useState(false)
+    const [isDropDown, setIsDropDown] = useState({uni: false, sub: false, test: false})
     const [isScrolled, setIsScrolled] = useState(false)
     const data = useUserInfo()
     const router = useRouter()
+    const navRef = useRef<HTMLDivElement>(null)
 
-    const handleNavbar = () => {
-        setIsOpen((prev) => !prev)
-    }
-
-    const handleLogOut = () => {
-        logOut()
-        router.refresh()
-    }
+    useEffect(() => {
+        setIsOpen(false)
+        setIsDropDown({uni: false, sub: false, test: false})
+    }, [router])
 
     useEffect(() => {
         const handleScroll = () => {
-            if (window.scrollY > 400) {
-                setIsScrolled(true)
-            } else {
-                setIsScrolled(false)
-            }
+            setIsScrolled(window.scrollY > 50)
         }
         window.addEventListener('scroll', handleScroll)
         return () => window.removeEventListener('scroll', handleScroll)
     }, [])
 
+    useEffect(() => {
+        const handleClickOutside = (event: MouseEvent) => {
+            if (navRef.current && !navRef.current.contains(event.target as Node)) {
+                setIsDropDown({uni: false, sub: false, test: false})
+            }
+        }
+
+        if (isDropDown.uni || isDropDown.sub || isDropDown.test) {
+            document.addEventListener('mousedown', handleClickOutside)
+        }
+
+        return () => {
+            document.removeEventListener('mousedown', handleClickOutside)
+        }
+    }, [isDropDown])
+
+    useEffect(() => {
+        if (isOpen) {
+            document.body.style.overflow = 'hidden'
+        } else {
+            document.body.style.overflow = 'unset'
+        }
+        return () => {
+            document.body.style.overflow = 'unset'
+        }
+    }, [isOpen])
+
+    const handleNavbar = () => {
+        setIsOpen((prev) => !prev)
+        setIsDropDown({uni: false, sub: false, test: false})
+    }
+
+    const handleLogOut = () => {
+        logOut()
+        router.refresh()
+        setIsOpen(false)
+    }
+
+    const closeAll = () => {
+        setIsOpen(false)
+        setIsDropDown({uni: false, sub: false, test: false})
+    }
+
     return (
-        <div className={`nav-holder ${isScrolled ? 'nav-scrolled' : ''}`}>
+        <div ref={navRef} className={`nav-holder ${isScrolled ? 'nav-scrolled' : ''}`}>
             <div className="nav-head">
                 <div className="short-info">
                     <div className="short-icon">
                         <FontAwesomeIcon icon={faFacebook}/>
-
                     </div>
                     <div className="mobile-email">
                         <h5>+44 2033554453</h5>
@@ -56,88 +90,124 @@ const Navbar = () => {
                     </div>
                 </div>
             </div>
+
             <div className="nav-content">
-                <div className="navimage">
-                    <Link href="/"><Image className='nav-logo' src={logo} alt="logo" /></Link>
+                <Link href="/" className="navimage" onClick={closeAll}>
+                    <Image className='nav-logo' src={logo} alt="NRC Education logo" priority />
                     <div className='nav-text'>
                         <h2>Global University</h2>
                         <h2>Representative</h2>
                     </div>
-                </div>
-                <div className={isOpen ? 'nav-links show':'nav-links hide'}>
+                </Link>
+
+                <div className={`nav-links ${isOpen ? 'show' : ''}`}>
                     <div className='link-holder'>
-                        <Link onClick={()=>setIsOpen(false)} className='link' href="/"><FontAwesomeIcon icon={faHome}/></Link>
+                        <Link onClick={closeAll} className='link' href="/">
+                            Home <FontAwesomeIcon icon={faHome}/> 
+                        </Link>
                     </div>
 
-                    <UniNav />
-                    <SubNav />
+                    <UniNav isDropDown={isDropDown} setIsDropDown={setIsDropDown} />
+                    <SubNav isDropDown={isDropDown} setIsDropDown={setIsDropDown} />
 
                     <div className='link-holder'>
-                        <button onClick={()=>setIsDropDown(!isDropDown)} className='link'>test prep <FontAwesomeIcon className='link-icon' icon={isDropDown?faAngleDoubleUp:faAngleDoubleDown}/></button>
-                        <div className={isDropDown?'drop-down show-dropdown':'drop-down'}>
-                            <div className="drop-down-content ">
-                                <div className="drop-down-group">
-                                    <Link onClick={()=>setIsOpen(false)} className='drop-down-link' href="/test-prep/ielts"><FontAwesomeIcon icon={faBook}/> IELTS</Link>
-                                    <Link onClick={()=>setIsOpen(false)} className='drop-down-link' href="/test-prep/toefl"><FontAwesomeIcon icon={faBook}/> TOEFL</Link>
-                                    <Link onClick={()=>setIsOpen(false)} className='drop-down-link' href="/test-prep/pte"><FontAwesomeIcon icon={faBook}/> PTE</Link>
-                                    <Link onClick={()=>setIsOpen(false)} className='drop-down-link' href="/test-prep/oet"><FontAwesomeIcon icon={faBook}/> OET</Link>
-                                </div>
-                                <div className="drop-down-group">
-                                    <Link onClick={()=>setIsOpen(false)} className='drop-down-link' href="/test-prep/duolingo"><FontAwesomeIcon icon={faBook}/> DUOLINGO</Link>
-                                    <Link onClick={()=>setIsOpen(false)} className='drop-down-link' href="/test-prep/gre"><FontAwesomeIcon icon={faBook}/> GRE</Link>
-                                    <Link onClick={()=>setIsOpen(false)} className='drop-down-link' href="/test-prep/gmat"><FontAwesomeIcon icon={faBook}/> GMAT</Link>
-                                </div>
-                                <div className="drop-down-group">
-                                    <Link onClick={()=>setIsOpen(false)} className='drop-down-link' href="/test-prep/sat"><FontAwesomeIcon icon={faBook}/> SAT</Link>
-                                    <Link onClick={()=>setIsOpen(false)} className='drop-down-link' href="/test-prep/act"><FontAwesomeIcon icon={faBook}/> ACT</Link>
-                                    <Link onClick={()=>setIsOpen(false)} className='drop-down-link' href="/test-prep/apt"><FontAwesomeIcon icon={faBook}/> APT</Link>
-                                </div>
-                                <div className="contact-section">
-                                    <Link onClick={()=>setIsOpen(false)} className='contact-section-link' href="/contact"><FontAwesomeIcon icon={faPhone}/> Contact</Link>
-                                    <Link onClick={()=>setIsOpen(false)} className='contact-section-link' href="/dashboard"><FontAwesomeIcon icon={faUser}/> Profile</Link>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div className='link-holder'>
-                        <Link onClick={()=>setIsOpen(false)} className='link' href="/blogs">blogs</Link>
-                    </div>
-
-                    {/* <div className='link-holder'>
-                        <p className='link'>recruitement partner</p>
-                        <div className='drop-down'>
+                        <button 
+                            onClick={() => setIsDropDown({uni: false, sub: false, test: !isDropDown.test})} 
+                            className='link'
+                        >
+                            Test Prep
+                            <FontAwesomeIcon className='link-icon' icon={isDropDown.test ? faAngleDoubleUp : faAngleDoubleDown}/> 
+                        </button>
+                        <div className={isDropDown.test ? 'drop-down show-dropdown' : 'drop-down'}>
                             <div className="drop-down-content">
+                                <button 
+                                    onClick={() => setIsDropDown({uni: false, sub: false, test: false})} 
+                                    className="dropdown-cancel"
+                                    aria-label="Close dropdown"
+                                >
+                                    <FontAwesomeIcon icon={faCancel}/>
+                                </button>
                                 <div className="drop-down-group">
-                                    <Link onClick={()=>setIsOpen(false)} className='drop-down-link' href="/recruitment-partner/become-agent">Become an agent</Link>
+                                    <Link onClick={closeAll} className='drop-down-link' href="/test-prep/ielts">
+                                        <FontAwesomeIcon icon={faArrowRight}/> IELTS
+                                    </Link>
+                                    <Link onClick={closeAll} className='drop-down-link' href="/test-prep/toefl">
+                                        <FontAwesomeIcon icon={faArrowRight}/> TOEFL
+                                    </Link>
+                                    <Link onClick={closeAll} className='drop-down-link' href="/test-prep/pte">
+                                        <FontAwesomeIcon icon={faArrowRight}/> PTE
+                                    </Link>
+                                    <Link onClick={closeAll} className='drop-down-link' href="/test-prep/oet">
+                                        <FontAwesomeIcon icon={faArrowRight}/> OET
+                                    </Link>
+                                </div>
+                                <div className="drop-down-group">
+                                    <Link onClick={closeAll} className='drop-down-link' href="/test-prep/duolingo">
+                                        <FontAwesomeIcon icon={faArrowRight}/> Duolingo
+                                    </Link>
+                                    <Link onClick={closeAll} className='drop-down-link' href="/test-prep/gre">
+                                        <FontAwesomeIcon icon={faArrowRight}/> GRE
+                                    </Link>
+                                    <Link onClick={closeAll} className='drop-down-link' href="/test-prep/gmat">
+                                        <FontAwesomeIcon icon={faArrowRight}/> GMAT
+                                    </Link>
+                                </div>
+                                <div className="drop-down-group">
+                                    <Link onClick={closeAll} className='drop-down-link' href="/test-prep/sat">
+                                        <FontAwesomeIcon icon={faArrowRight}/> SAT
+                                    </Link>
+                                    <Link onClick={closeAll} className='drop-down-link' href="/test-prep/act">
+                                        <FontAwesomeIcon icon={faArrowRight}/> ACT
+                                    </Link>
+                                    <Link onClick={closeAll} className='drop-down-link' href="/test-prep/apt">
+                                        <FontAwesomeIcon icon={faArrowRight}/> APT
+                                    </Link>
                                 </div>
                                 <div className="contact-section">
-                                    <Link onClick={()=>setIsOpen(false)} className='contact-section-link' href="/contact"><FontAwesomeIcon icon={faPhone}/> Contact</Link>
-                                    <Link onClick={()=>setIsOpen(false)} className='contact-section-link' href="/dashboard"><FontAwesomeIcon icon={faUser}/> Profile</Link>
+                                    <Link onClick={closeAll} className='contact-section-link' href="/contact">
+                                        <FontAwesomeIcon icon={faPhone}/> Contact
+                                    </Link>
+                                    <Link onClick={closeAll} className='contact-section-link' href="/dashboard">
+                                        <FontAwesomeIcon icon={faUser}/> Profile
+                                    </Link>
                                 </div>
                             </div>
                         </div>
-                    </div> */}
+                    </div>
 
-                    {/* <div className='link-holder'>
-                        <Link onClick={()=>setIsOpen(false)} className='link' href="/proceed">proceed</Link>
-                    </div> */}
+                    <div className='link-holder'>
+                        <Link onClick={closeAll} className='link' href="/blogs">Blogs</Link>
+                    </div>
+
+                    <div className="user-action">
+                        {!data?.Uemail ? (
+                            <button className='log-control' onClick={() => {
+                                router.push('/login')
+                                setIsOpen(false)
+                            }}>
+                                Login
+                            </button>
+                        ) : (
+                            <button className='log-control' onClick={handleLogOut}>
+                                Logout
+                            </button>
+                        )}
+                        <button className='dash' onClick={() => {
+                            router.push('/dashboard')
+                            setIsOpen(false)
+                        }}>
+                            Dashboard
+                        </button>
+                    </div>
                 </div>
 
-                <div className={isOpen ? 'link-items show' :'link-items hide'}>
-                    {
-                        !data?.Uemail
-                        ? <button onClick={()=>router.push('/login')}>login</button>
-                        : <button onClick={handleLogOut}>logout</button>
-                    }
-                    <button className='dash' onClick={()=>router.push('/dashboard')}>dashboard</button>
-                </div>
-
-                {
-                    isOpen
-                    ? <FontAwesomeIcon onClick={handleNavbar} className='menu-icon' icon={faXmark}/>
-                    : <FontAwesomeIcon onClick={handleNavbar} className='menu-icon' icon={faBars}/>
-                }
+                <button 
+                    className='menu-icon' 
+                    onClick={handleNavbar}
+                    aria-label={isOpen ? 'Close menu' : 'Open menu'}
+                >
+                    <FontAwesomeIcon icon={isOpen ? faXmark : faBars}/>
+                </button>
             </div>
         </div>
     )
