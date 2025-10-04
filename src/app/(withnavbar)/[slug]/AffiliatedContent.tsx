@@ -5,6 +5,7 @@ import "../../../css/blogs//slugDesign.css"
 import Link from "next/link"
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
 import { faEye, faThumbsUp } from "@fortawesome/free-solid-svg-icons"
+import AcademicSolution from "@/component/shared/academicsolution/AcademicSolution"
 
 interface AffiliatedContentProps {
   data: any
@@ -51,6 +52,7 @@ export default function AffiliatedContent({ data }: AffiliatedContentProps) {
             </div>
             <div className="blog-form">
               <Form />
+              <AcademicSolution/>
             </div>
           </div>
         </div>

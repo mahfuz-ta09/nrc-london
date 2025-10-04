@@ -2,45 +2,17 @@
 import Link from "next/link";
 import { useState } from "react";
 import '@/css/shared/CommentWithBlog/CommentWithBlog.css'
+import { useGetPageReviewQuery } from "@/redux/endpoints/review/reviewEndpoints";
+import { useRouter } from "next/navigation";
 
 const CommentWithBlog = () => {
+    const router = useRouter()
+    const [page, setPage] = useState(1)
+    const [item] = useState(3)
+    const { data, refetch, isLoading } = useGetPageReviewQuery({ page, item })
     const [currentIndex, setCurrentIndex] = useState(0);
 
-    const testimonials = [
-        {
-            text: 'NRC helped me achieve my dream of studying in the UK. Their guidance throughout the visa process was exceptional and stress-free.',
-            author: 'Sarah Ahmed, University of Manchester'
-        },
-        {
-            text: 'From choosing the right university to landing in Canada, NRC was with me every step of the way. Highly recommend their services!',
-            author: 'Rafiul Islam, University of Toronto'
-        },
-        {
-            text: 'Professional, supportive, and knowledgeable. NRC made my journey to Australia smooth and successful. Thank you!',
-            author: 'Nusrat Jahan, Monash University'
-        },
-        {
-            text: 'The team at NRC went above and beyond to help me secure admission to my dream university in the USA. Forever grateful!',
-            author: 'Mehedi Hasan, Boston University'
-        },
-        {
-            text: 'Best consultancy for international education! They handled everything from applications to accommodation. Excellent service!',
-            author: 'Tasnim Rahman, University of Melbourne'
-        },
-    ];
-
-    const visibleCount = 3;
-    const maxIndex = Math.max(0, testimonials.length - visibleCount);
-
-    const onPrev = () => {
-        setCurrentIndex((prev) => Math.max(0, prev - 1));
-    };
-
-    const onNext = () => {
-        setCurrentIndex((prev) => Math.min(maxIndex, prev + 1));
-    };
-
-    const visibleTestimonials = testimonials.slice(currentIndex, currentIndex + visibleCount);
+    console.log(data)
 
     return (
         <section className="prefooter-section">
@@ -49,15 +21,15 @@ const CommentWithBlog = () => {
                 <div className="testimonial-cards">
                     <button 
                         className="nav-btn" 
-                        onClick={onPrev}
-                        disabled={currentIndex === 0}
+                        disabled={page <= 1} 
+                        onClick={() => setPage(prev => Math.max(prev - 1, 1))}
                         aria-label="Previous testimonials"
                     >
                         ‹
                     </button>
                     
                     <div className="testimonial-list">
-                        {visibleTestimonials.map((testimonial, idx) => (
+                        {data?.data?.map((testimonial:any, idx:number) => (
                             <div 
                                 className="testimonial-card" 
                                 key={currentIndex + idx}
@@ -65,23 +37,27 @@ const CommentWithBlog = () => {
                                     animation: `fadeInUp 0.5s ease-out ${idx * 0.1}s both`
                                 }}
                             >
-                                <p className="testimonial-text">"{testimonial.text}"</p>
-                                <span className="testimonial-author">— {testimonial.author}</span>
+                                <p className="testimonial-text">"{testimonial?.review}"</p>
+                                <span className="testimonial-author">— {testimonial?.name},</span>
+                                <span style={{fontSize:'15px',fontWeight:'400',textTransform:'none'}} className="testimonial-author">{testimonial?.email}</span>
                             </div>
                         ))}
                     </div>
                     
                     <button 
                         className="nav-btn" 
-                        onClick={onNext}
-                        disabled={currentIndex >= maxIndex}
+                        disabled={page >= data?.meta?.totalPages} 
+                        onClick={() => setPage(prev => Math.min(prev + 1, data?.meta?.totalPages))}
                         aria-label="Next testimonials">
                         ›
                     </button>
                 </div>
-
-
-                <div className="testimonial-dots">
+                    <button 
+                        className={`testimonial-dots`}
+                        onClick={()=>router.push('/comment')}
+                    >see all
+                    </button>
+                {/* <div className="testimonial-dots">
                     {Array.from({ length: testimonials.length - visibleCount + 1 }, (_, i) => (
                         <button
                             key={i}
@@ -90,7 +66,7 @@ const CommentWithBlog = () => {
                             aria-label={`Go to testimonial ${i + 1}`}
                         />
                     ))}
-                </div>
+                </div> */}
             </div>
 
             <div className="cta-sections">
@@ -103,9 +79,11 @@ const CommentWithBlog = () => {
                 </div>
                 <div className="cta-box">
                     <h3>Look Who We're Partnered With</h3>
-                    <p>Partner with us to help students achieve their dreams and grow your consultancy network.</p>
+                    <p>
+                    We have partnered with many organizations to ensure a seamless experience for students and professionals who are building their careers abroad.
+                    </p>
                     <Link href="/affiliated-university" className="cta-btn">
-                        Learn More
+                    Learn More
                     </Link>
                 </div>
             </div>

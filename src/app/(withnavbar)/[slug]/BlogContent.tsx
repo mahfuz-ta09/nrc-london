@@ -5,6 +5,7 @@ import "../../../css/blogs/slugDesign.css"
 import Link from "next/link"
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
 import { faEye, faThumbsUp } from "@fortawesome/free-solid-svg-icons"
+import AcademicSolution from "@/component/shared/academicsolution/AcademicSolution"
 
 interface BlogContentProps {
   data: any
@@ -53,6 +54,7 @@ export default function BlogContent({ data }: BlogContentProps) {
                 </div>
                 <div className="blog-form">
                   <Form />
+                  <AcademicSolution/>
                 </div>
               </div>
           </div>
