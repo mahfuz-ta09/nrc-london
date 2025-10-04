@@ -36,7 +36,7 @@ const BannerActionModal = ({addBanner,setAddBanner}: ModalProps) => {
     
     const onSubmit: SubmitHandler<CountryData> = async(data: CountryData) => {
         try{
-            let res
+            let res:any
             var form_data = new FormData()
             
             Object.entries(data).forEach(([key, value]) => {
@@ -52,7 +52,7 @@ const BannerActionModal = ({addBanner,setAddBanner}: ModalProps) => {
             if(addBanner?.action==="add")res = await createBanner({data:form_data})
             if(addBanner?.action==="edit" && addBanner?.id)res = await updateBanner({data: form_data,id:addBanner?.id})
             
-            
+            console.log(res)
             if(res?.data?.data?.acknowledged){
                 toast.success("Operation successful!!!")
                 setAddBanner({
@@ -62,7 +62,7 @@ const BannerActionModal = ({addBanner,setAddBanner}: ModalProps) => {
                 })
                 reset()
             }else{
-                toast.error(res?.data?.message || "Failed!")
+                toast.error(res?.error?.data || "Failed!")
             }
         }catch(err){
             console.log(err)
