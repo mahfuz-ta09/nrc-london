@@ -1,4 +1,5 @@
 'use client'
+import dynamic from 'next/dynamic'
 import { toast } from 'react-toastify'
 import 'react-quill-new/dist/quill.snow.css'
 import { useForm, Controller } from "react-hook-form"
@@ -6,7 +7,6 @@ import { base64ToFile } from '@/utils/convertFileType'
 import Loader from '@/component/shared/loader/loader'
 import { useCreateAffiliatedUniMutation, 
     useUpdateAffiliatedUniMutation } from '@/redux/endpoints/affiliatedUni/affiliatedUni'
-import dynamic from 'next/dynamic'
 
 
 type ModalProps = {
@@ -38,6 +38,7 @@ type BlogFormData = {
 }
 
 const ReactQuill = dynamic(() => import('react-quill-new'), { ssr: false })
+
 const AffiliatedUniActionModal = ({ setModalState, modalState }: ModalProps) => {
     const [createAffiliatedUni, { isLoading: createLoadig }] = useCreateAffiliatedUniMutation()
     const [updateAffiliatedUni, { isLoading: updateLoadig }] = useUpdateAffiliatedUniMutation()

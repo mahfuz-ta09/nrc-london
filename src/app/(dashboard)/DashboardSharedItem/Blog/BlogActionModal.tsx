@@ -1,11 +1,11 @@
 'use client'
 import { toast } from 'react-toastify'
-import ReactQuill from 'react-quill-new'
 import 'react-quill-new/dist/quill.snow.css'
 import { useForm, Controller } from "react-hook-form"
 import { base64ToFile } from '@/utils/convertFileType'
 import { useCreateBlogMutation, useUpdateBlogMutation } from '@/redux/endpoints/blogs/blogsEndpoint'
 import Loader from '@/component/shared/loader/loader'
+import dynamic from 'next/dynamic'
 
 
 type ModalProps = {
@@ -37,6 +37,7 @@ type BlogFormData = {
     meta_keywords: string
     meta_description: string
 }
+const ReactQuill = dynamic(() => import('react-quill-new'), { ssr: false })
 
 const BlogActionModal = ({ setModalState, modalState }: ModalProps) => {
     const [createBlog, { isLoading: createLoadig }] = useCreateBlogMutation()
