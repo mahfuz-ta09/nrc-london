@@ -3,19 +3,20 @@ import '@/css/Dashboard/layout.css'
 import LayoutPage from "./LayoutPage"
 import { useUserInfo } from '@/utils/useUserInfo'
 import { useEffect, useRef, useState } from 'react'
+import Loader from '@/component/shared/loader/loader'
+import { useTokenRefresh } from '@/utils/useTokenRefresh'
 import { faBars } from '@fortawesome/free-solid-svg-icons'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { useGetProfileByIdQuery } from '@/redux/endpoints/profile/profileEndpoints'
-import { useTokenRefresh } from '@/utils/useTokenRefresh'
 
 
 
 const Layout = ({ children } : {children : React.ReactNode}) => {
     const data = useUserInfo()
+    const { LoaderOverlay } = useTokenRefresh()
     const [isOpen,setIsOpen] = useState(false)
     const navRef = useRef<HTMLDivElement>(null)
     const btnRef = useRef<HTMLButtonElement>(null)
-    const { LoaderOverlay } = useTokenRefresh()
     const { data: profile , isLoading } = useGetProfileByIdQuery(data?.Uemail)
     
     
@@ -32,8 +33,7 @@ const Layout = ({ children } : {children : React.ReactNode}) => {
       }
     }, [])
 
-
-
+    
     const handler = () =>{
       setIsOpen(true)
     }
@@ -52,7 +52,7 @@ const Layout = ({ children } : {children : React.ReactNode}) => {
               </div>
               <div className='dash-item-content'>
                   {children}
-                  <LoaderOverlay  />
+                  <LoaderOverlay />
               </div>
             </div>
 

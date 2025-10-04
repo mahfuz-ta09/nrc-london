@@ -7,7 +7,6 @@ import '../SharedCountryUni/UniversityTable/UniversityTable.css'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import Pagination from '@/component/shared/Pagination/Pagination'
 import { faPen, faTrash } from '@fortawesome/free-solid-svg-icons'
-import AffiliatedUniDetails from './AffiliatedUniDetails'
 import AffiliatedUniActionModal from './AffiliatedUniActionModal'
 import { useDeleteAffiliatedUniMutation, useGetAllAffiliatedUniQuery } from '@/redux/endpoints/affiliatedUni/affiliatedUni'
 

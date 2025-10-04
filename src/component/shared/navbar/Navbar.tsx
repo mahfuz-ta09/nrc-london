@@ -4,16 +4,19 @@ import logo from"../../../assets/nrc.logo.png"
 import Image from 'next/image'
 import Link from 'next/link'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faBars, faBook, faHome, faPhone, faUser, faXmark } from '@fortawesome/free-solid-svg-icons'
+import { faAngleDoubleDown, faAngleDoubleUp, faBars, faBook, faHome, faPhone, faUser, faXmark } from '@fortawesome/free-solid-svg-icons'
 import { useState, useEffect } from 'react'
 import { useRouter } from 'next/navigation'
 import { logOut } from '@/utils/authAction'
 import { useUserInfo } from '@/utils/useUserInfo'
 import UniNav from './UniNav'
 import SubNav from './SubNav'
+import { faFacebook } from '@fortawesome/free-brands-svg-icons'
+
 
 const Navbar = () => {
     const [isOpen, setIsOpen] = useState(false)
+    const [isDropDown,setIsDropDown] = useState(false)
     const [isScrolled, setIsScrolled] = useState(false)
     const data = useUserInfo()
     const router = useRouter()
@@ -42,9 +45,15 @@ const Navbar = () => {
     return (
         <div className={`nav-holder ${isScrolled ? 'nav-scrolled' : ''}`}>
             <div className="nav-head">
-                <div className="mobile-email">
-                    <h5>+44 2033554453</h5>
-                    <h5>info@nrcedu-uk.com</h5>
+                <div className="short-info">
+                    <div className="short-icon">
+                        <FontAwesomeIcon icon={faFacebook}/>
+
+                    </div>
+                    <div className="mobile-email">
+                        <h5>+44 2033554453</h5>
+                        <h5>info@nrcedu-uk.com</h5>
+                    </div>
                 </div>
             </div>
             <div className="nav-content">
@@ -64,8 +73,8 @@ const Navbar = () => {
                     <SubNav />
 
                     <div className='link-holder'>
-                        <p className='link'>test prep</p>
-                        <div className='drop-down'>
+                        <button onClick={()=>setIsDropDown(!isDropDown)} className='link'>test prep <FontAwesomeIcon className='link-icon' icon={isDropDown?faAngleDoubleUp:faAngleDoubleDown}/></button>
+                        <div className={isDropDown?'drop-down show-dropdown':'drop-down'}>
                             <div className="drop-down-content ">
                                 <div className="drop-down-group">
                                     <Link onClick={()=>setIsOpen(false)} className='drop-down-link' href="/test-prep/ielts"><FontAwesomeIcon icon={faBook}/> IELTS</Link>

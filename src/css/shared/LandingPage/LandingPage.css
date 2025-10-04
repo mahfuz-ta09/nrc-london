@@ -373,7 +373,7 @@
     filter: drop-shadow(0 20px 40px rgba(0, 0, 0, 0.5));
     animation: floatss 6s ease-in-out infinite;
 }
-
+/* 
 @keyframes floatss {
     0% {
         transform: translateY(0px);
@@ -381,7 +381,7 @@
     100% {
         transform: translateY(-20px);
     }
-}
+} */
 
 .image-glow {
     position: absolute;
@@ -417,7 +417,7 @@
 
 @media screen and (max-width: 768px) {
     .banner {
-        height: 100vh;
+        height: 90vh;
     }
 
     .content {
@@ -505,7 +505,7 @@
 
 @media screen and (max-width: 480px) {
     .banner {
-        height: 100vh;
+        height: 90vh;
         min-height: auto;
     }
 

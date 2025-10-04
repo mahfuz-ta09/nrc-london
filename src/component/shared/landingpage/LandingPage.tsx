@@ -1,11 +1,11 @@
 "use client"
 import DummyBanner from './DummyBanner';
+import { useRouter } from 'next/navigation';
 import '@/css/shared/LandingPage/LandingPage.css';
 import { Suspense, useEffect, useState } from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { useGetAllBannersQuery } from '@/redux/endpoints/banner/bannerEndpoint';
 import { faAngleDoubleLeft, faAngleDoubleRight } from '@fortawesome/free-solid-svg-icons';
-import { useRouter } from 'next/navigation';
 
 const LandingPage = () => {
     const [current, setCurrent] = useState<number>(0);
@@ -16,14 +16,14 @@ const LandingPage = () => {
     const items = banners?.data || [];
     const total = banners?.meta?.total || items.length || 0;
     
-    useEffect(() => {
-        if (total <= 1) return;
-        const interval = setInterval(() => {
-            setCurrent((prev) => (prev + 1) % total);
-        }, 6000);
+    // useEffect(() => {
+    //     if (total <= 1) return;
+    //     const interval = setInterval(() => {
+    //         setCurrent((prev) => (prev + 1) % total);
+    //     }, 12000);
 
-        return () => clearInterval(interval);
-    }, [total]);
+    //     return () => clearInterval(interval);
+    // }, [total]);
 
     const safeIndex = total > 0 ? Math.max(0, Math.min(current, total - 1)) : 0;
 
@@ -95,7 +95,7 @@ const LandingPage = () => {
                         const getBackgroundStyle = () => {
                             if (typeof window === 'undefined') {
                                 return {
-                                    backgroundImage: `linear-gradient(to left, rgba(0, 66, 66, 0.8) 40%, rgba(0, 0, 0, 0.95) 60%), url(${banner?.imageUrl?.url})`,
+                                    backgroundImage: `linear-gradient(to left, rgba(0, 66, 66, 0.8) 40%, rgba(0, 0, 0, 0.85) 60%), url(${banner?.imageUrl?.url})`,
                                     backgroundSize: 'cover',
                                     backgroundPosition: 'center',
                                     backgroundRepeat: 'no-repeat'
@@ -104,8 +104,8 @@ const LandingPage = () => {
 
                             const isMobile = window.innerWidth <= 768;
                             const gradient = isMobile
-                                ? 'linear-gradient(to bottom, rgba(0, 66, 66, 0.85) 0%, rgba(0, 0, 0, 0.95) 100%)'
-                                : 'linear-gradient(to left, rgba(0, 66, 66, 0.8) 40%, rgba(0, 0, 0, 0.95) 60%)';
+                                ? 'linear-gradient(to bottom, rgba(0, 66, 66, 0.7) 0%, rgba(0, 0, 0, 0.85) 100%)'
+                                : 'linear-gradient(to left, rgba(0, 66, 66, 0.7) 40%, rgba(0, 0, 0, 0.85) 60%)';
                             
                             return {
                                 backgroundImage: `${gradient}, url(${banner?.imageUrl?.url})`,
@@ -172,11 +172,11 @@ const LandingPage = () => {
                                     
                                     <div className="right-section">
                                         <div className="image-wrapper">
-                                            <img 
+                                            {/* <img 
                                                 src='/images/banner-photo.webp' 
                                                 alt="Banner image"
                                                 loading="eager"
-                                            />
+                                            /> */}
                                             <div className="image-glow"></div>
                                         </div>
                                     </div>
