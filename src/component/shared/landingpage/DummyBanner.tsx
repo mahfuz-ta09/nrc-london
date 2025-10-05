@@ -1,55 +1,74 @@
 'use client'
 import Link from 'next/link'
-import '@/css/shared/LandingPage/LandingPage.css';
+import '@/css/shared/LandingPage/LandingPage.css'
 import { faArrowRight } from '@fortawesome/free-solid-svg-icons'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-// import office from "images/office-image.jpg"
+import office from "@/assets/office-image.jpg"
 
 const DummyBanner = () => {
-  return (
+    return (
         <div className="banner">
             <div className="banner-wrapper">
                 <div
                     className="banner-item banner-item-show"
                     style={{
-                        backgroundImage: `linear-gradient(135deg, rgba(0, 44, 58, 0.8), rgba(0, 28,37, 0.6)),)`,
-                        backgroundSize: "cover",
-                        backgroundPosition: "center",
-                        backgroundRepeat: "no-repeat",
-                    }}>
+                        backgroundImage: `linear-gradient(to left, rgba(0, 66, 66, 0.7) 40%, rgba(0, 0, 0, 0.85) 60%), url(${office.src})`,
+                        backgroundSize: 'cover',
+                        backgroundPosition: 'center',
+                        backgroundRepeat: 'no-repeat',
+                    }}
+                >
                     <div className="content">
                         <div className="left-section">
-                            <h1 className="banner-title">
-                                Your Journey to<br/> the World Starts Here.
+                            <div className="title-decoration"></div>
+
+                            <h1 className="banner-title placeholder">
+                                NRC Educational Consultants Ltd.
                             </h1>
-                        </div>
-                    </div>
-                   
-                    <div className="diagonal-cut">
-                        <div className="action-links-dummy slide">
-                            <Link className="action-link" href="/proceed">
-                                apply now <FontAwesomeIcon icon={faArrowRight} className="fas fa-arrow-right"/>
-                            </Link>
-                            <Link className="action-link" href="/recruitment-partner/become-agent">
-                                work as an agent <FontAwesomeIcon icon={faArrowRight} className="fas fa-arrow-right"/>
-                            </Link>
-                        </div>
-                            <div className="right-section-dummy">
-                                <div className="content-box-dummy">
-                                    <p className="main-heading-dummy">Study Abroad With Confidence</p>
-                                    <p className="description-dummy">
-                                        Unlock world-class education opportunities, experience global cultures, and build a brighter future. 
-                                        We guide you from application to arrival.
-                                    </p>
-                                </div>
+                            <p className="description placeholder">
+                                Your pathway to global education excellence
+                            </p>
+
+                            <div className="btn-container">
+                                <Link href="/proceed" className="btn-primary">
+                                    Start Your Journey <FontAwesomeIcon icon={faArrowRight} />
+                                </Link>
+                                <Link
+                                    href="/recruitment-partner/become-agent"
+                                    className="btn-secondary"
+                                >
+                                    Become an Agent <FontAwesomeIcon icon={faArrowRight} />
+                                </Link>
                             </div>
 
+                            <div className="stats-section">
+                                <div className="stat-item">
+                                    <span className="stat-number">200+</span>
+                                    <span className="stat-label">Universities</span>
+                                </div>
+                                <div className="stat-divider"></div>
+                                <div className="stat-item">
+                                    <span className="stat-number">30+</span>
+                                    <span className="stat-label">Countries</span>
+                                </div>
+                                <div className="stat-divider"></div>
+                                <div className="stat-item">
+                                    <span className="stat-number">4+</span>
+                                    <span className="stat-label">Years</span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div className="right-section">
+                            <div className="image-wrapper">
+                                {/* Optional placeholder image here */}
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
         </div>
     )
-        
 }
 
 export default DummyBanner

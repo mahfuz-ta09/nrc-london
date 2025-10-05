@@ -3,7 +3,6 @@ import '@/css/Dashboard/layout.css'
 import LayoutPage from "./LayoutPage"
 import { useUserInfo } from '@/utils/useUserInfo'
 import { useEffect, useRef, useState } from 'react'
-import Loader from '@/component/shared/loader/loader'
 import { useTokenRefresh } from '@/utils/useTokenRefresh'
 import { faBars } from '@fortawesome/free-solid-svg-icons'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'

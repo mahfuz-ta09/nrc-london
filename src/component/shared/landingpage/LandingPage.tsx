@@ -42,7 +42,7 @@ const LandingPage = () => {
         setTimeout(() => setIsTransitioning(false), 800);
     };
     
-    // if (total === 0 || isLoading) return <DummyBanner />;
+    if (total === 0 || isLoading) return <DummyBanner />;
     
     return (
         <Suspense fallback={<DummyBanner/>}>
@@ -177,7 +177,7 @@ const LandingPage = () => {
                                                 alt="Banner image"
                                                 loading="eager"
                                             /> */}
-                                            <div className="image-glow"></div>
+                                            {/* <div className="image-glow"></div> */}
                                         </div>
                                     </div>
                                 </div>
