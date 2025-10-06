@@ -156,7 +156,7 @@ const BlogActionModal = ({ setModalState, modalState }: ModalProps) => {
                 <h4 className='modal-header'>{modalState?.action} Blog</h4>
                 <button onClick={() => setModalState({ isOpen: false , action: ""})} className="cancel-btn">X</button>
                 {modalState?.id? <h5>document id: {modalState?.id}</h5>:''}
-                <form className="modal-form" style={{width:'60vw'}} onSubmit={handleSubmit(onSubmit)}>
+                <form className="modal-form" onSubmit={handleSubmit(onSubmit)}>
 
                     <div className="input-container">
                         <label>
