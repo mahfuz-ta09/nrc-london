@@ -9,7 +9,7 @@
 }
 
 .nav-scrolled {
-    background: rgba(0, 66, 66, 0.95);
+    background: rgba(0, 66, 66, 0.75);
     backdrop-filter: blur(15px);
     -webkit-backdrop-filter: blur(15px);
     box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
@@ -18,7 +18,9 @@
 .nav-head {
     width: 100%;
     padding: 8px 0;
-    background: linear-gradient(135deg, #004242, #003333);
+    background: rgba(0, 66, 66, 0.75);
+    backdrop-filter: blur(15px);
+    -webkit-backdrop-filter: blur(15px);
     border-bottom: 1px solid rgba(249, 199, 72, 0.2);
 }
 
@@ -36,7 +38,7 @@
     display: flex;
     align-items: center;
     gap: 15px;
-    color: #F9C748;
+    color: #fff;
     font-size: 1.1rem;
 }
 
@@ -91,8 +93,8 @@
 .nav-logo {
     width: 55px;
     height: 55px;
-    border: 2px solid #F9C748;
-    border-radius: 50%;
+    border: 1px solid #000;
+    border-radius: 100%;
     background: #fff;
     object-fit: cover;
     transition: all 0.3s ease;

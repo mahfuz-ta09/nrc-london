@@ -16,7 +16,7 @@ export default function Banner() {
                 The world is a book, and those who do not travel read only one page.
                 Education abroad helps you read the entire story, one experience at a time.
             </p>
-            <Link className="banner-link" href="/proceed">apply now</Link>
+            {/* <Link className="banner-link" href="/proceed">apply now</Link> */}
             </div>
         </div>
     )
