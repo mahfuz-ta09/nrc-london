@@ -62,7 +62,7 @@ const BlogTable = ({ params , setParams }: Props) => {
         }
     }
 
-    
+    console.log(data)
     return ((
         (isLoading || deleteLoading ) ? <Loader />:
         <div style={ data?.meta?.totalCount!==0? {display:"block"} : {display:"none"}}>
@@ -73,10 +73,10 @@ const BlogTable = ({ params , setParams }: Props) => {
                         <tr>
                             <th>Serial</th>
                             <th>Blog image</th>
-                            <th>title&author</th>
+                            <th>title & last published</th>
                             <th>categories</th>
                             <th>status</th>
-                            <th>Featured</th>
+                            <th>created by</th>
                             <th>slug</th>
                             <th>actions</th>
                         </tr>
@@ -86,19 +86,17 @@ const BlogTable = ({ params , setParams }: Props) => {
                         data?.data?.map((blog:any,index:number)=>
                             <tr key={index} className=''>
                                 <td>{index+1}</td>
-                                <td><img className='table-img'src={blog?.meta?.ogImage?.url || 'safas'} alt='Blog header iage'/></td>
+                                <td><img className='table-img'src={blog?.meta?.ogImage?.url || ''} alt='Blog header iage'/></td>
                                 <td> 
                                     <h4 style={{marginBottom:"10px"}} >{blog?.title}</h4>
                                     <br />
-                                    <span style={{fontSize:"14px",color:"whitesmoke"}}>by: {blog?.author || 'N/A'}</span>
-                                    <span style={{fontSize:"14px",color:"whitesmoke",marginLeft:'15px'}}>by: {blog?.author || 'N/A'}</span>
-                                
+                                    <span style={{fontSize:"14px",color:"whitesmoke"}}>{blog?.publishedAt || 'N/A'}</span>
                                 </td>
                                 <td>
                                     {blog?.categories?.join(', ') || ''}
                                 </td>
                                 <td>{blog?.status || ''}</td>
-                                <td>{blog?.isFeatured? 'Yes' : 'No'}</td>
+                                <td>{blog?.createHistory?.email}</td>
                                 <td>{blog?.slug || ''}</td>
                                 <td>
                                     {/* <button onClick={()=>setDetail({...detail,isOPen: true, slug:blog?.slug})}className="action-btn" style={{margin:'5px',background:"green"}} ><FontAwesomeIcon icon={faEye}/></button> */}

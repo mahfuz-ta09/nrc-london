@@ -29,7 +29,9 @@ const BlogList = () => {
             page : p
         })
     }
-console.log(blogsData)
+
+    
+    
     return (
         (loadCategory||loadBlogs) ? <Loader /> :
         <div className='blog-list-container'>
@@ -56,28 +58,21 @@ console.log(blogsData)
                                             </svg>
                                         </div>
 
-                                        <div className="meta-item">
+                                        {/* <div className="meta-item">
                                             <span>{blog?.stats?.views}</span>
                                             <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
                                                 <path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"></path>
                                                 <circle cx="12" cy="12" r="3"></circle>
                                             </svg>
-                                        </div>
-
+                                        </div> */}
+{/* 
                                         <div className="meta-item">
                                             <span>{blog?.stats?.commentsCount}</span>
                                             <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
                                                 <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"></path>
                                             </svg>
-                                        </div>
+                                        </div> */}
 
-                                        <div className="meta-item">
-                                            <span>{blog?.author}</span>
-                                            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
-                                                <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path>
-                                                <circle cx="12" cy="7" r="4"></circle>
-                                            </svg>
-                                        </div>
                                     </div>
                                 </div>
 
@@ -96,7 +91,7 @@ console.log(blogsData)
                                 </h2>
 
                                 <p className="blog-description">
-                                    {blog?.description.slice(0,90)}...
+                                    {blog?.meta?.ogDescription.slice(0,90)}...
                                 </p>
 
                                 <button onClick={()=>router.push(`/${blog?.slug}`)} className="view-more-btn">

@@ -12,6 +12,7 @@ interface BlogContentProps {
 }
 
 export default function BlogContent({ data }: BlogContentProps) {
+
     return (
       <>
         <div className="page-container">
@@ -43,12 +44,14 @@ export default function BlogContent({ data }: BlogContentProps) {
                 <h5>{data?.stats?.views}<FontAwesomeIcon className="like-icon" icon={faEye}/></h5>
                 <h5>{data?.stats?.likes}<FontAwesomeIcon className="like-icon" icon={faThumbsUp}/></h5>
               </div>
+              
               <div className="blog-detail-container">
+                
                 <div className="blog-body">
                   <div className="blog-detail-container-body">
                     <h4>{data?.content?.summary}</h4>
                     <div
-                      dangerouslySetInnerHTML={{ __html: data?.content?.body || "" }}
+                      dangerouslySetInnerHTML={{ __html: data?.content || "" }}
                     />
                   </div>
                 </div>
