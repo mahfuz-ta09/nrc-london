@@ -10,7 +10,7 @@ import AddCountryModal from '../AddCountryModal/AddCountryModal'
 import { useDeleteCountryMutation, useGetAllCountryBaseQuery } from '@/redux/endpoints/countryBaseUni/countryBaseUniversity'
 
 const CountryLists = () => {
-    const [addCounty, setAddCountry] = useState({ action: "", id: '', isOPen: false, name: '' })
+    const [addCountry, setAddCountry] = useState({ action: "", id: '', isOPen: false, name: '' })
     const [addUni, setAddUni] = useState({ action: "", id: '', isOPen: false, name: '' })
     const { data, isLoading } = useGetAllCountryBaseQuery()
     const [deleteCountry, { isLoading: deleteLoading }] = useDeleteCountryMutation()
@@ -105,7 +105,7 @@ const CountryLists = () => {
             <Suspense fallback={<Loader />}>
                 <AddCountryModal
                     setAddCountry={setAddCountry}
-                    addCounty={addCounty}
+                    addCountry={addCountry}
                 />
             </Suspense>
 

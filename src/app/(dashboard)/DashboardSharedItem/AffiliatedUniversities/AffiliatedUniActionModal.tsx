@@ -21,7 +21,6 @@ type ModalProps = {
 type BlogFormData = {
     name:string
     slug:string
-    description:string
 
     location:string
     content:string
@@ -43,25 +42,7 @@ const AffiliatedUniActionModal = ({ setModalState, modalState }: ModalProps) => 
     const [createAffiliatedUni, { isLoading: createLoadig }] = useCreateAffiliatedUniMutation()
     const [updateAffiliatedUni, { isLoading: updateLoadig }] = useUpdateAffiliatedUniMutation()
     const { register, control, handleSubmit, reset } = useForm<BlogFormData>({
-        shouldUnregister: true,
-        defaultValues: {
-            name: "",
-            slug: "",
-            description: "",
-
-            location:"",
-            content: "",
-
-            tags: "",
-            status: "",
-            
-            meta_title: "",
-            meta_keywords: "",
-            meta_description: "",
-            
-            header_image: {} as FileList,
-            logo: {} as FileList,
-        },
+        shouldUnregister: true
     })
 
     const onSubmit = async(data: BlogFormData) => {
@@ -72,7 +53,6 @@ const AffiliatedUniActionModal = ({ setModalState, modalState }: ModalProps) => 
             const formData = new FormData()
             if(data.name)formData.append("name", data.name)
             if(data.slug)formData.append("slug",(data.slug).toLowerCase().trim().replace(/\s+/g, "-"))
-            if(data.description)formData.append("description", data.description)
 
             if(data.location)formData.append("location", data.location)
             if(data.status)formData.append("status", data.status)
@@ -172,13 +152,6 @@ const AffiliatedUniActionModal = ({ setModalState, modalState }: ModalProps) => 
                             affiliated university name Slug
                         </label>
                         <input {...register("slug")} placeholder="Slug*" className="input-field" />
-                    </div>
-                
-                    <div className="input-container">
-                        <label>
-                            description
-                        </label>
-                        <input {...register("description")} placeholder="Descrition" className="input-field" />
                     </div>
                 
                     <div className="input-container">

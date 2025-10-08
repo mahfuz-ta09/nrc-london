@@ -1,14 +1,17 @@
 'use client'
 // import './AddCountryModal.css'
 import { toast } from 'react-toastify'
+import 'react-quill-new/dist/quill.snow.css'
 import { countryCurrencyMap } from '@/types/common'
 import Loader from '@/component/shared/loader/loader'
-import { useForm, SubmitHandler } from "react-hook-form"
+import { base64ToFile } from '@/utils/convertFileType'
+import { useForm, SubmitHandler , Controller } from "react-hook-form"
 import { useCreateCountryListMutation, useEditCountryListMutation } from '@/redux/endpoints/countryBaseUni/countryBaseUniversity'
+import dynamic from 'next/dynamic'
 
 
 type ModalProps = {
-    addCounty:{
+    addCountry:{
         action:string,
         id:string,
         isOPen: boolean,
@@ -17,21 +20,46 @@ type ModalProps = {
     setAddCountry: any
 }
 
+
 type CountryData = {
     countryFlag: FileList | null,
     famousFile: FileList | null,
+    content_image: FileList | null,
     country: string,
     serial: number,
-    countryFull: string,
-    currency:string
+    slug: string,
+    currency:string,
+    content: string,
+    descriptiopn: string,
 }
 
+const ReactQuill = dynamic(() => import('react-quill-new'), { ssr: false })
 
-const AddCountryModal = ({addCounty,setAddCountry}: ModalProps) => {
+const modules = {
+    toolbar: [
+        ['bold', 'italic', 'underline', 'strike'],   
+        ['blockquote', 'code-block'],
+        ['link', 'image','formula'],
+        [{ 'header': 1 }, { 'header': 2 }],         
+        [{ 'list': 'ordered'}, { 'list': 'bullet' }, { 'list': 'check' }],
+        [{ 'script': 'sub'}, { 'script': 'super' }],  
+        [{ 'indent': '-1'}, { 'indent': '+1' }],          
+        [{ 'direction': 'rtl' }],                         
+        [{ 'size': ['small', false, 'large', 'huge'] }],  
+        [{ 'header': [1, 2, 3, 4, 5, 6, false] }],
+        [{ 'color': [] }, { 'background': [] }],
+        [{ 'font': [] }],
+        [{ 'align': [] }],
+        ['clean']    
+    ],
+}
+
+const AddCountryModal = ({addCountry,setAddCountry}: ModalProps) => {
     const {
             register,
             handleSubmit,
             reset,
+            control,
             formState: { errors },
         } = useForm<CountryData>()
     const [ createCountryList , { isLoading: creationLoader } ] = useCreateCountryListMutation()
@@ -46,18 +74,38 @@ const AddCountryModal = ({addCounty,setAddCountry}: ModalProps) => {
             var form_data = new FormData()
             
             Object.entries(data).forEach(([key, value]) => {
-                if(value instanceof FileList) {
+                if (value instanceof FileList) {
                     for (let i = 0; i < value.length; i++) {
                         form_data.append(key, value[i]);
                     }
-                }else if (value !== undefined && value !== null) {
-                    form_data.append(key, String(value));
+                } else if (value !== undefined && value !== null) {
+                    if (key === 'slug' && typeof value === 'string') {
+                        form_data.append(key,value.toLowerCase().trim().replace(/[^a-z0-9\s-]/g, "").replace(/\s+/g, "-"));
+                    } else if (key === 'content' && typeof value === 'string' && value.trim() !== "") {
+                        const parser = new DOMParser();
+                        const doc = parser.parseFromString(value, 'text/html');
+                        const imgElements = doc.querySelectorAll('img');
+
+                        imgElements.forEach((imgEl, i) => {
+                            const src = imgEl.getAttribute("src");
+                            if (src && src.startsWith("data:image")) {
+                                imgEl.setAttribute("src", `__IMAGE_${i}__`);
+                                const file = base64ToFile(src, `editor-img-${i}.png`);
+                                form_data.append("content_image", file);
+                            }
+                        });
+
+                        form_data.append(key, doc.body.innerHTML);
+                    } else {
+                        form_data.append(key, String(value));
+                    }
                 }
-            })
+            });
 
 
-            if(addCounty?.action==="add")res = await createCountryList(form_data)
-            if(addCounty?.action==="edit" && addCounty?.id)res = await editCountryList({data: form_data,id:addCounty?.id})
+
+            if(addCountry?.action==="add")res = await createCountryList(form_data)
+            if(addCountry?.action==="edit" && addCountry?.id)res = await editCountryList({data: form_data,id:addCountry?.id})
             
             
             if(res?.data?.data?.acknowledged){
@@ -79,21 +127,21 @@ const AddCountryModal = ({addCounty,setAddCountry}: ModalProps) => {
     
     return (
         ( creationLoader || editLoader ) ? <Loader /> :
-        <div className={addCounty?.isOPen? 'modal-container openmoda-container' :'modal-container'}>
+        <div className={addCountry?.isOPen? 'modal-container openmoda-container' :'modal-container'}>
             <div className='modal-body'>
-                <h4 className="modal-header">{addCounty?.action} country {addCounty?.name}</h4>
+                <h4 className="modal-header">{addCountry?.action} country {addCountry?.name}</h4>
                     
                 <button onClick={()=>setAddCountry((prev:any) => ({...prev ,id:'',name:'', isOPen: false , action:""}))} className="cancel-btn">X</button>
                 
                 <form  onSubmit={handleSubmit(onSubmit)} className='modal-from'>
                     <div className='input-container'>
-                        <label htmlFor="">Insert country name in short</label>
+                        <label htmlFor="country">Insert country name in short</label>
                         <input type='text' {...register("country")}/>
                     </div>
                     
                     <div className='input-container'>
-                        <label htmlFor="">Insert country name</label>
-                        <input type='text' {...register("countryFull")}/>
+                        <label htmlFor="slug">slug name*</label>
+                        <input type='text' {...register("slug")}/>
                     </div>
                     <div className="input-container">
                         <label htmlFor="">Select currency</label>
@@ -106,8 +154,26 @@ const AddCountryModal = ({addCounty,setAddCountry}: ModalProps) => {
                         </select>
                     </div>
                     <div className='input-container'>
-                        <label htmlFor="serial">Enter the serial you want to show in fron page</label>
+                        <label htmlFor="serial">Enter the serial you want to show in front page</label>
                         <input type='number' min={1} {...register("serial")}/>
+                    </div>
+                    
+                    <div className='input-container'>
+                        <label htmlFor="serial">Details about country</label>
+                        
+                        <Controller
+                            name="content"
+                            control={control}
+                            render={({ field }) => (
+                            <ReactQuill
+                                theme="snow"
+                                value={field.value}
+                                onChange={field.onChange}
+                                modules={modules}
+                                className=""
+                            />
+                            )}
+                        />
                     </div>
                     
                     <div className='input-container'>

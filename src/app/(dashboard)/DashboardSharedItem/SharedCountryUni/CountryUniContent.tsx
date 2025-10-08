@@ -12,7 +12,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 
 const CountryUniContent = () => {
     const [isOpen,setIsOpen] = useState(false)
-    const [addCounty,setAddCountry] = useState({action:"",id:'',isOPen: false,name:''})
+    const [addCountry,setAddCountry] = useState({action:"",id:'',isOPen: false,name:''})
     const [addUni,setAddUni] = useState({action:"",id:'',isOPen: false,name:''})
     const [para,setPara] = useState({all:'',country:'',page:1,total:10,uniName:''})
         
@@ -86,7 +86,7 @@ const CountryUniContent = () => {
             <Suspense fallback={<Loader />}>
                 <AddCountryModal 
                     setAddCountry={setAddCountry}
-                    addCounty={addCounty}
+                    addCountry={addCountry}
                 />
             </Suspense>
             
