@@ -1,5 +1,6 @@
 'use client'
 
+
 const Form = () => {
   return (
     <form className="enquire-form">

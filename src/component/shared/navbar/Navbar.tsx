@@ -78,7 +78,7 @@ const Navbar = () => {
         setIsDropDown({uni: false, sub: false, test: false})
     }
 
-    console.log(pathname)
+    // console.log(pathname)
     return (
         <div ref={navRef} className={`nav-holder ${isScrolled ? 'nav-scrolled' : ''}`}>
             <div className="nav-head">

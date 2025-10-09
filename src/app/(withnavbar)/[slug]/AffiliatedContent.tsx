@@ -12,6 +12,7 @@ interface AffiliatedContentProps {
 }
 
 export default function AffiliatedContent({ data }: AffiliatedContentProps) {
+  console.log(data)
   return (
     <>
       <div className="page-container">
@@ -23,42 +24,36 @@ export default function AffiliatedContent({ data }: AffiliatedContentProps) {
                 <Link className='bread-link2'  href="">affiliated university details</Link>
             
             </div>
-            {data?.header_image?.url && (
-                <img
-                src={data?.header_image?.url}
-                  alt="blog header image"
-                  className="banner-image"
-              />
-            )}
             </div>
         </div>
 
-        <div className="blog-detail">
-          <h1 className="blog-heading">{data?.name}</h1>
-          <div className="like-dislike">
-            <h5>{data?.stats?.views}<FontAwesomeIcon className="like-icon" icon={faEye}/></h5>
-            <h5>{data?.stats?.likes}<FontAwesomeIcon className="like-icon" icon={faThumbsUp}/></h5>
-          </div>
           
           <div className="blog-detail-container">
             
             <div className="blog-body">
-              <div className="blog-detail-container-body">
-                <h4>{data?.description}</h4>
-                <div
-                  dangerouslySetInnerHTML={{ __html: data?.content || "" }}
-                />
-              </div>
+                  <div className="blog-detail-container-body">
+                {data?.header_image?.url && (
+                    <img
+                    src={data?.header_image?.url}
+                      alt="blog header image"
+                      className="body-image"
+                  />
+                )}
+                <h4>{data?.location}</h4>
+                <h4>{data?.name}</h4>
+                <div dangerouslySetInnerHTML={{ __html: data?.content || "" }} />
             </div>
-            <div className="blog-form">
+            </div>
+
+            <div className="blog-info-part">
               <Form />
               <AcademicSolution/>
             </div>
+          
           </div>
-        </div>
 
+        <Footer />
       </div>
-      <Footer />
     </>
   )
 }

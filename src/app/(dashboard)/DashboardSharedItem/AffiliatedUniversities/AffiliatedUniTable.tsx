@@ -24,10 +24,6 @@ type Props = {
 
 const AffiliatedUniTable = ({ params , setParams }: Props) => {
     const [modalState,setModalState] = useState({ isOpen: false , action:'Add' , id:''})
-    const [detail,setDetail] = useState({
-        isOPen: false,
-        slug: '',
-    })
 
     const [deleteAffiliatedUni , { isLoading: deleteLoading }] = useDeleteAffiliatedUniMutation()
     const { data, isLoading } =  useGetAllAffiliatedUniQuery({ 
@@ -51,7 +47,7 @@ const AffiliatedUniTable = ({ params , setParams }: Props) => {
             const rep = window.confirm("Are you sure you want to delete this blog?")
             if(!rep) return;
             const res = await deleteAffiliatedUni({ id })
-            console.log(res)
+            
             if(res?.data?.data?.deletedCount){
                 toast.success("Affiliated university deleted successfully")
             }else{
@@ -75,7 +71,6 @@ const AffiliatedUniTable = ({ params , setParams }: Props) => {
                             <th>image</th>
                             <th>logo</th>
                             <th>name</th>
-                            <th>description</th>
                             <th>meta title</th>
                             <th>meta description</th>
                             <th>meta keywords</th>
@@ -95,9 +90,6 @@ const AffiliatedUniTable = ({ params , setParams }: Props) => {
                                 <td><img className='table-img'src={blog?.logo?.url || 'safas'} alt='Blog header iage'/></td>
                                 <td> 
                                     <h4>{blog?.name}</h4>
-                                </td>
-                                <td style={{minWidth:"300px",textAlign:'justify'}}> 
-                                    <h4>{blog?.description}</h4>
                                 </td>
                                 <td>
                                     {blog?.meta_title}

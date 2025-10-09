@@ -53,7 +53,7 @@ const BlogList = () => {
                                 </h2>
 
                                 <p className="blog-description">
-                                    {blog?.description.slice(0,90)}...
+                                    {blog?.meta?.meta_description.slice(0,90)}...
                                 </p>
 
                                 <button onClick={()=>router.push(`/${blog?.slug}`)} className="view-more-btn">
