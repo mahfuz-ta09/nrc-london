@@ -1,14 +1,11 @@
 'use client'
-import Link from 'next/link'
 import '../../../css/component/Card.css'
 import { Suspense, useState } from 'react'
 import Loader from '@/component/shared/loader/loader'
 import Pagination from '@/component/shared/Pagination/Pagination'
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faList, faPen , faTag } from '@fortawesome/free-solid-svg-icons'
 import { useGetBlogByCategoryQuery, useGetUniqueCatagoriesQuery } from '@/redux/endpoints/blogs/blogsEndpoint'
 import { useRouter } from 'next/navigation'
-import ServicesSection from '@/component/shared/academicsolution/AcademicSolution'
+import SideInfo from '@/component/ui/faq/SideInfo'
 
 
 
@@ -123,7 +120,7 @@ const BlogList = () => {
                     }
                 </div>
                 
-                <ServicesSection />
+                <SideInfo />
             </div>
         </div>
     )

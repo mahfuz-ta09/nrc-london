@@ -103,13 +103,13 @@
 }
 
 .mini-form {
-    background: rgba(255, 255, 255, 0.15);
-    padding: 1rem;
+    background: rgba(0, 0, 0, 0.15);
+    padding:3rem 2rem;
     border-radius: 10px;
     text-align: center;
     color: #fff;
     backdrop-filter: blur(5px);
-    width: 90%;
+    width: 100%;
 }
 
 .mini-form h4 {

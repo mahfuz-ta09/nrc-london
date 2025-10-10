@@ -1,18 +1,17 @@
 "use client"
-import Form from "./Form"
+import Link from "next/link"
 import Footer from "@/component/shared/footer/Footer"
 import "../../../css/blogs//slugDesign.css"
-import Link from "next/link"
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
-import { faEye, faThumbsUp } from "@fortawesome/free-solid-svg-icons"
-import AcademicSolution from "@/component/shared/academicsolution/AcademicSolution"
+import SideInfo from "../../../component/ui/faq/SideInfo"
+import SideForm from "@/component/ui/faq/SideForm"
 
 interface AffiliatedContentProps {
   data: any
 }
 
 export default function AffiliatedContent({ data }: AffiliatedContentProps) {
-  console.log(data)
+
+  
   return (
     <>
       <div className="page-container">
@@ -46,8 +45,8 @@ export default function AffiliatedContent({ data }: AffiliatedContentProps) {
             </div>
 
             <div className="blog-info-part">
-              <Form />
-              <AcademicSolution/>
+                  <SideForm />
+                  <SideInfo />
             </div>
           
           </div>

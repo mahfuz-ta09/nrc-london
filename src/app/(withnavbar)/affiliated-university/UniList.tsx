@@ -1,18 +1,17 @@
 'use client'
-import Link from 'next/link'
 import { Suspense } from 'react'
 import '../../../css/component/Card.css'
-import Loader from '@/component/shared/loader/loader'
-import { faPen} from '@fortawesome/free-solid-svg-icons'
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { useGetUniAgentsQuery } from '@/redux/endpoints/affiliatedUni/affiliatedUni'
-import ServicesSection from '@/component/shared/academicsolution/AcademicSolution'
 import { useRouter } from 'next/navigation'
+import SideInfo from '@/component/ui/faq/SideInfo'
+import Loader from '@/component/shared/loader/loader'
+import { useGetUniAgentsQuery } from '@/redux/endpoints/affiliatedUni/affiliatedUni'
 
 const BlogList = () => {
     const router = useRouter()
     const { data: blogsData, isLoading: loadBlogs } = useGetUniAgentsQuery()
-    console.log(blogsData)
+    
+    
+    
     return (
         (loadBlogs) ? <Loader /> :
         <div className='blog-list-container'>
@@ -71,7 +70,7 @@ const BlogList = () => {
             
             <div className='blogs-side'>
                 
-                <ServicesSection />
+                <SideInfo />
             </div>
         </div>
     )
