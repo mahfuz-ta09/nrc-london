@@ -1,9 +1,9 @@
 "use client"
-import Footer from "@/component/shared/footer/Footer"
-import "../../../css/blogs/slugDesign.css"
 import Link from "next/link"
-import SideInfo from "../../../component/ui/faq/SideInfo"
+import "../../../css/blogs/slugDesign.css"
 import SideForm from "@/component/ui/faq/SideForm"
+import Footer from "@/component/shared/footer/Footer"
+import SideInfo from "../../../component/ui/faq/SideInfo"
 
 interface BlogContentProps {
   data: any
@@ -14,18 +14,19 @@ export default function BlogContent({ data }: BlogContentProps) {
     return (
         <div className="page-container">
           <div className="page-banner">
+            
             <div className="banner-content">
               <div className="bread-crumb">
                   <Link className='bread-link1' href="/blogs">blogs</Link>
                   <div className="bread-dot"></div>
-                  <Link className='bread-link2'  href="">details blog</Link>
+                  <Link className='bread-link2'  href="">blog details</Link>
               
               </div>
-
             </div>
+            
           </div>
           
-              <div className="blog-detail-container">
+          <div className="blog-detail-container">
                 
                 <div className="blog-body">
                   <div className="blog-detail-container-body">
@@ -47,9 +48,9 @@ export default function BlogContent({ data }: BlogContentProps) {
                   <SideForm />
                   <SideInfo />
                 </div>
-              </div>
+          </div>
 
-        <Footer />
+          <Footer />
         </div>
 
     )

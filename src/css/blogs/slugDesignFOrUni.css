@@ -1,0 +1,619 @@
+/* ============================================
+   MODERN NRC-THEMED UNIVERSITY BLOG STYLES
+   ============================================ */
+
+:root {
+    --nrc-primary: #1e5f74;
+    --nrc-secondary: #2a7f95;
+    --nrc-light: #e8f4f8;
+    --nrc-accent: #156a82;
+    --text-dark: #1a1a1a;
+    --text-medium: #4a4a4a;
+    --text-light: #6b7280;
+    --white: #ffffff;
+    --shadow-sm: 0 1px 3px rgba(30, 95, 116, 0.08);
+    --shadow-md: 0 4px 12px rgba(30, 95, 116, 0.12);
+    --shadow-lg: 0 8px 24px rgba(30, 95, 116, 0.16);
+}
+
+.university-detail-container {
+    max-width: 1400px;
+    width: 100%;
+    margin: -50px auto 0;
+    padding: 0 20px 60px;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 24px;
+    position: relative;
+    z-index: 2;
+}
+
+.university-body {
+    width: 100%;
+}
+
+.university-detail-container-body {
+    background: var(--white);
+    border-radius: 12px;
+    padding: 40px;
+    box-shadow: var(--shadow-md);
+    transition: box-shadow 0.3s ease;
+}
+
+.university-detail-container-body:hover {
+    box-shadow: var(--shadow-lg);
+}
+
+.university-detail-container-body img {
+    width: 100%;
+    margin: 0 auto 32px;
+    height: 400px;
+    object-fit: cover;
+    border-radius: 12px;
+}
+
+.university-detail-container-body > h1 {
+    font-size: 2.75rem;
+    font-weight: 700;
+    color: var(--nrc-primary);
+    line-height: 1.2;
+    letter-spacing: -0.5px;
+    margin: 0 0 16px 0;
+}
+
+.university-detail-container-body > h4 {
+    font-size: 1.125rem;
+    font-weight: 500;
+    color: var(--text-medium);
+    line-height: 1.7;
+    margin: 0 0 32px 0;
+    padding: 20px 28px;
+    background: var(--nrc-light);
+    border-left: 4px solid var(--nrc-primary);
+    border-radius: 8px;
+}
+
+/* Typography Styles */
+.university-detail-container-body h1,
+.university-detail-container-body h2,
+.university-detail-container-body h3,
+.university-detail-container-body h4,
+.university-detail-container-body h5,
+.university-detail-container-body h6 {
+    color: var(--nrc-primary);
+    font-weight: 700;
+    margin: 32px 0 16px 0;
+    line-height: 1.3;
+}
+
+.university-detail-container-body h1 { font-size: 2.25rem; }
+.university-detail-container-body h2 { font-size: 1.875rem; }
+.university-detail-container-body h3 { font-size: 1.5rem; }
+.university-detail-container-body h4 { font-size: 1.25rem; }
+.university-detail-container-body h5 { font-size: 1.125rem; }
+.university-detail-container-body h6 { font-size: 1rem; }
+
+.university-detail-container-body p {
+    color: var(--text-medium);
+    font-size: 1.0625rem;
+    line-height: 1.8;
+    margin: 0 0 18px 0;
+}
+
+.university-detail-container-body strong {
+    color: var(--text-dark);
+    font-weight: 700;
+}
+
+.university-detail-container-body a {
+    color: var(--nrc-secondary);
+    text-decoration: none;
+    font-weight: 600;
+    border-bottom: 2px solid transparent;
+    transition: all 0.3s ease;
+}
+
+.university-detail-container-body a:hover {
+    border-bottom-color: var(--nrc-secondary);
+    color: var(--nrc-accent);
+}
+
+/* Lists */
+.university-detail-container-body ul,
+.university-detail-container-body ol {
+    margin: 20px 0;
+    padding-left: 28px;
+    color: var(--text-medium);
+}
+
+.university-detail-container-body li {
+    margin: 12px 0;
+    line-height: 1.7;
+}
+
+.university-detail-container-body ul li::marker {
+    color: var(--nrc-secondary);
+}
+
+.university-detail-container-body ol li::marker {
+    color: var(--nrc-secondary);
+    font-weight: 700;
+}
+
+/* Blockquotes */
+.university-detail-container-body blockquote {
+    margin: 32px 0;
+    padding: 24px 32px 24px 64px;
+    background: var(--nrc-light);
+    border-left: 5px solid var(--nrc-primary);
+    border-radius: 10px;
+    font-size: 1.125rem;
+    font-style: italic;
+    color: var(--text-medium);
+    position: relative;
+    box-shadow: var(--shadow-sm);
+}
+
+.university-detail-container-body blockquote::before {
+    content: '"';
+    position: absolute;
+    top: 16px;
+    left: 16px;
+    font-size: 3rem;
+    color: rgba(30, 95, 116, 0.2);
+    font-family: Georgia, serif;
+    line-height: 1;
+}
+
+/* Code Blocks */
+.university-detail-container-body pre {
+    background: #1a1f2e;
+    border: 1px solid var(--nrc-primary);
+    border-radius: 10px;
+    padding: 24px;
+    margin: 28px 0;
+    overflow-x: auto;
+    box-shadow: var(--shadow-md);
+}
+
+.university-detail-container-body code {
+    font-family: 'Courier New', Consolas, monospace;
+    font-size: 0.9rem;
+    color: var(--nrc-secondary);
+    background: var(--nrc-light);
+    padding: 3px 8px;
+    border-radius: 4px;
+}
+
+.university-detail-container-body pre code {
+    background: none;
+    padding: 0;
+    color: #7dd3fc;
+}
+
+/* Tables */
+.university-detail-container-body table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 32px 0;
+    background: var(--white);
+    border-radius: 10px;
+    overflow: hidden;
+    box-shadow: var(--shadow-md);
+}
+
+.university-detail-container-body th,
+.university-detail-container-body td {
+    padding: 16px 20px;
+    text-align: left;
+    border: 1px solid var(--nrc-light);
+}
+
+.university-detail-container-body th {
+    background: linear-gradient(135deg, var(--nrc-primary), var(--nrc-secondary));
+    color: var(--white);
+    font-weight: 700;
+    text-transform: uppercase;
+    font-size: 0.875rem;
+    letter-spacing: 0.5px;
+}
+
+.university-detail-container-body td {
+    color: var(--text-medium);
+}
+
+.university-detail-container-body tr:hover {
+    background: var(--nrc-light);
+}
+
+/* Horizontal Rule */
+.university-detail-container-body hr {
+    border: none;
+    height: 2px;
+    background: linear-gradient(90deg, transparent, var(--nrc-primary), transparent);
+    margin: 40px 0;
+}
+
+/* ============================================
+   UNIVERSITY INFO SIDEBAR
+   ============================================ */
+
+.university-info-part {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    position: sticky;
+    top: 20px;
+    align-self: flex-start;
+    background: var(--white);
+    padding: 28px;
+    height: fit-content;
+    max-height: calc(100vh - 40px);
+    overflow-y: auto;
+    width: 100%;
+    border-radius: 12px;
+    box-shadow: var(--shadow-md);
+}
+
+.university-info-part > h3 {
+    font-size: 1.5rem;
+    font-weight: 700;
+    color: var(--nrc-primary);
+    margin: 0 0 16px 0;
+    padding-bottom: 16px;
+    border-bottom: 3px solid var(--nrc-light);
+}
+
+/* ============================================
+   UNIVERSITY COLLAPSIBLE CARDS
+   ============================================ */
+
+.university {
+    background: var(--white);
+    border-radius: 12px;
+    margin-bottom: 16px;
+    box-shadow: var(--shadow-sm);
+    overflow: hidden;
+    transition: all 0.3s ease;
+    border: 1px solid var(--nrc-light);
+}
+
+.university:hover {
+    box-shadow: var(--shadow-md);
+    transform: translateY(-2px);
+}
+
+.check-box {
+    display: none;
+}
+
+/* Header Section */
+.header-info {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    padding: 20px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    position: relative;
+    user-select: none;
+}
+
+.header-info:hover {
+    background: var(--nrc-light);
+}
+
+.header-info img {
+    width: 60px;
+    height: 60px;
+    object-fit: cover;
+    border-radius: 10px;
+    box-shadow: var(--shadow-sm);
+    flex-shrink: 0;
+    border: 2px solid var(--nrc-light);
+}
+
+.header-info p {
+    flex: 1;
+    font-size: 1.0625rem;
+    font-weight: 700;
+    color: var(--nrc-primary);
+    margin: 0;
+    line-height: 1.4;
+}
+
+/* Plus/Minus Toggle Icon */
+.open-plus {
+    width: 36px;
+    height: 36px;
+    background: linear-gradient(135deg, var(--nrc-primary), var(--nrc-secondary));
+    color: var(--white);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.5rem;
+    font-weight: 700;
+    transition: all 0.3s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+    flex-shrink: 0;
+    box-shadow: var(--shadow-sm);
+}
+
+.header-info:hover .open-plus {
+    transform: scale(1.15) rotate(90deg);
+    box-shadow: var(--shadow-md);
+}
+
+/* Expanded Content */
+.university-data {
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94),
+                padding 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+    padding: 0 20px;
+    background: var(--nrc-light);
+}
+
+.university-data > p {
+    color: var(--text-medium);
+    font-size: 0.9375rem;
+    line-height: 1.7;
+    margin: 0;
+}
+
+.check-box:checked ~ .university-data {
+    max-height: 2000px;
+    padding: 24px 20px;
+    border-top: 2px solid var(--nrc-primary);
+}
+
+.check-box:checked ~ .header-info .open-plus {
+    transform: rotate(45deg);
+    background: linear-gradient(135deg, var(--nrc-secondary), var(--nrc-accent));
+}
+
+.check-box:checked ~ .header-info {
+    background: var(--nrc-light);
+}
+
+/* ============================================
+   UNIVERSITY DETAILS GRID
+   ============================================ */
+
+.university-details {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+    gap: 16px;
+    margin-top: 20px;
+}
+
+.detail-item {
+    padding: 18px;
+    background: var(--white);
+    border-radius: 10px;
+    border-left: 4px solid var(--nrc-primary);
+    box-shadow: var(--shadow-sm);
+    transition: all 0.3s ease;
+}
+
+.detail-item:hover {
+    box-shadow: var(--shadow-md);
+    transform: translateX(4px);
+}
+
+.detail-label {
+    font-size: 0.8125rem;
+    color: var(--text-light);
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    margin-bottom: 8px;
+}
+
+.detail-value {
+    font-size: 1rem;
+    color: var(--nrc-primary);
+    font-weight: 600;
+}
+
+/* ============================================
+   RESPONSIVE DESIGN
+   ============================================ */
+
+@media screen and (max-width: 1024px) {
+    .university-detail-container {
+        grid-template-columns: 1fr;
+        margin-top: -40px;
+        gap: 24px;
+    }
+
+    .university-info-part {
+        position: static;
+        max-height: none;
+    }
+
+    .university-detail-container-body {
+        padding: 36px;
+    }
+
+    .university-detail-container-body img {
+        height: 350px;
+    }
+}
+
+@media screen and (max-width: 768px) {
+    .university-detail-container {
+        padding: 0 16px 40px;
+        margin-top: -30px;
+    }
+
+    .university-detail-container-body {
+        padding: 28px 24px;
+        border-radius: 10px;
+    }
+
+    .university-detail-container-body img {
+        height: 280px;
+        margin-bottom: 24px;
+    }
+
+    .university-detail-container-body > h1 {
+        font-size: 2rem;
+    }
+
+    .university-detail-container-body > h4 {
+        font-size: 1rem;
+        padding: 18px 22px;
+    }
+
+    .university-info-part {
+        padding: 24px;
+    }
+
+    .university-info-part > h3 {
+        font-size: 1.375rem;
+    }
+
+    .header-info {
+        padding: 16px;
+        gap: 14px;
+    }
+
+    .header-info img {
+        width: 52px;
+        height: 52px;
+    }
+
+    .header-info p {
+        font-size: 1rem;
+    }
+
+    .open-plus {
+        width: 34px;
+        height: 34px;
+        font-size: 1.4rem;
+    }
+
+    .university-details {
+        grid-template-columns: 1fr;
+        gap: 14px;
+    }
+}
+
+@media screen and (max-width: 480px) {
+    .university-detail-container {
+        padding: 0 12px 32px;
+        margin-top: -25px;
+    }
+
+    .university-detail-container-body {
+        padding: 24px 18px;
+        border-radius: 10px;
+    }
+
+    .university-detail-container-body img {
+        height: 220px;
+        margin-bottom: 20px;
+        border-radius: 10px;
+    }
+
+    .university-detail-container-body > h1 {
+        font-size: 1.625rem;
+        margin-bottom: 14px;
+    }
+
+    .university-detail-container-body > h4 {
+        font-size: 0.9375rem;
+        padding: 16px 18px;
+    }
+
+    .university-detail-container-body h1 { font-size: 1.625rem; }
+    .university-detail-container-body h2 { font-size: 1.5rem; }
+    .university-detail-container-body h3 { font-size: 1.25rem; }
+    .university-detail-container-body p {
+        font-size: 0.9375rem;
+    }
+
+    .university-info-part {
+        padding: 20px;
+    }
+
+    .university-info-part > h3 {
+        font-size: 1.25rem;
+    }
+
+    .university {
+        border-radius: 10px;
+        margin-bottom: 14px;
+    }
+
+    .header-info {
+        padding: 14px;
+        gap: 12px;
+    }
+
+    .header-info img {
+        width: 48px;
+        height: 48px;
+    }
+
+    .header-info p {
+        font-size: 0.9375rem;
+    }
+
+    .open-plus {
+        width: 32px;
+        height: 32px;
+        font-size: 1.35rem;
+    }
+
+    .university-data {
+        padding: 0 14px;
+    }
+
+    .check-box:checked ~ .university-data {
+        padding: 20px 14px;
+    }
+
+    .detail-item {
+        padding: 14px;
+    }
+}
+
+/* ============================================
+   SMOOTH ANIMATIONS
+   ============================================ */
+
+@keyframes fadeSlideIn {
+    from {
+        opacity: 0;
+        transform: translateY(-12px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.check-box:checked ~ .university-data {
+    animation: fadeSlideIn 0.35s ease-out;
+}
+
+/* Custom Scrollbar for Sidebar */
+.university-info-part::-webkit-scrollbar {
+    width: 6px;
+}
+
+.university-info-part::-webkit-scrollbar-track {
+    background: var(--nrc-light);
+    border-radius: 10px;
+}
+
+.university-info-part::-webkit-scrollbar-thumb {
+    background: var(--nrc-secondary);
+    border-radius: 10px;
+}
+
+.university-info-part::-webkit-scrollbar-thumb:hover {
+    background: var(--nrc-primary);
+}

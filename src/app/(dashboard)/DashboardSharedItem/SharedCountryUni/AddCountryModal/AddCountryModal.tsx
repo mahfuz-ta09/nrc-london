@@ -28,6 +28,8 @@ type CountryData = {
     country: string,
     serial: number,
     slug: string,
+    meta_title: string,
+    meta_description: string,
     currency:string,
     content: string,
     descriptiopn: string,
@@ -143,16 +145,28 @@ const AddCountryModal = ({addCountry,setAddCountry}: ModalProps) => {
                         <label htmlFor="slug">slug name*</label>
                         <input type='text' {...register("slug")}/>
                     </div>
+                    
+                    <div className='input-container'>
+                        <label htmlFor="meta_title">Meta title*</label>
+                        <input type='text' {...register("meta_title")}/>
+                    </div>
+                    
+                    <div className='input-container'>
+                        <label htmlFor="meta_description">Meta description</label>
+                        <textarea {...register("meta_description")}/>
+                    </div>
+
                     <div className="input-container">
                         <label htmlFor="">Select currency</label>
                         <select {...register("currency")}>
                         {Object.entries(countryCurrencyMap).map(([code, sign]) => (
                             <option key={code} value={sign}>
-                            {code} ({sign})
+                                {code} ({sign})
                             </option>
                         ))}
                         </select>
                     </div>
+                    
                     <div className='input-container'>
                         <label htmlFor="serial">Enter the serial you want to show in front page</label>
                         <input type='number' min={1} {...register("serial")}/>

@@ -2,8 +2,9 @@
 import '@/css/Students/Subjects/Subjects.css'
 import Footer from '@/component/shared/footer/Footer'
 import { useParams, useRouter } from 'next/navigation'
-import { useGetAllUniByCountryQuery } from '@/redux/endpoints/university/universityEndpoints'
 import Loader from '@/component/shared/loader/loader'
+import { useGetAllUniByCountryQuery } from '@/redux/endpoints/university/universityEndpoints'
+
 
 const page = () => {
     const { country } = useParams()

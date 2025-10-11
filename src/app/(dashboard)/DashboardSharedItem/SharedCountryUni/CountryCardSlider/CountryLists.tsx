@@ -31,12 +31,12 @@ const CountryLists = () => {
             const isConfirmed = window.confirm(`Are you sure you want to delete?`)
             if (!isConfirmed) return;
 
-            const deleteRes = await deleteCountry(id)
-
+            const deleteRes:any = await deleteCountry(id)
+            
             if (deleteRes?.data?.data?.acknowledged) {
                 toast.success("Successfully deleted!")
             } else {
-                toast.error(deleteRes?.data?.message)
+                toast.error(deleteRes?.error?.data)
             }
         } catch (err) {
             toast.error("something went wrong!")

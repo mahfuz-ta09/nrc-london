@@ -7,8 +7,8 @@ import { useParams, useRouter } from 'next/navigation'
 
 
 const Page = () => {
-    const { country } = useParams()
     const router = useRouter()
+    const { country } = useParams()
     const { data , isLoading : dataLoading }= useGetAllSubByCountryQuery(String(country))
 
 
