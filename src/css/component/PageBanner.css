@@ -5,7 +5,7 @@
 
 .page-banner{
     background: linear-gradient(
-        rgba(0, 66, 66, 0.9) 60%,
+        rgb(0, 74, 98,0.7) 60%,
         rgba(0,0,0,0.6) 
     ), url('../../assets/blogbanner.jpg');
     background-position: center;
@@ -18,7 +18,8 @@
     flex-direction: column;
     position: relative;
 }
- .banner-image{
+
+.banner-image{
     width: 70%;
     height: 320px;
     object-fit: cover;
@@ -59,7 +60,7 @@
 .title-decoration {
     width: 60px;
     height: 5px;
-    background: linear-gradient(90deg, #f9c748, #0000);
+    background: linear-gradient(90deg, #76daf3, #0000);
     border-radius: 3px;
     animation: .6s ease-out .4s both slideIn;
 }
@@ -109,7 +110,7 @@
     font-size:17px;
     font-weight: 600;
     color: #000;
-    background:#F9C748;
+    background:#76daf3;
     text-decoration: none;
 }
 

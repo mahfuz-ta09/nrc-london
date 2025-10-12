@@ -78,7 +78,7 @@ const Navbar = () => {
         setIsDropDown({uni: false, sub: false, test: false})
     }
 
-    // console.log(pathname)
+    
     return (
         <div ref={navRef} className={`nav-holder ${isScrolled ? 'nav-scrolled' : ''}`}>
             <div className="nav-head">
@@ -105,7 +105,7 @@ const Navbar = () => {
                 <div className={`nav-links ${isOpen ? 'show' : ''}`}>
                     <div className='link-holder'>
                         <Link onClick={closeAll} className={pathname==='/'?'link link-color':'link'} href="/">
-                            Home <FontAwesomeIcon icon={faHome}/> 
+                            <FontAwesomeIcon icon={faHome}/> Home
                         </Link>
                     </div>
 
@@ -178,7 +178,7 @@ const Navbar = () => {
                     </div>
 
                     <div className='link-holder'>
-                        <Link onClick={closeAll} className='link' href="/blogs">Blogs</Link>
+                        <Link onClick={closeAll}  className={pathname==='/blogs'?'link link-color':'link'}  href="/blogs">Blogs</Link>
                     </div>
 
                     <div className="user-action">

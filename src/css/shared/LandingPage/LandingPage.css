@@ -123,7 +123,7 @@
 }
 
 .dot.active {
-    background: #F9C748;
+    background: #76daf3;
     width: 30px;
     border-radius: 5px;
 }
@@ -178,7 +178,7 @@
     justify-content: space-between;
     gap: 40px;
     padding: 40px 60px;
-    color: white;
+    color: #fff;
 }
 
 
@@ -196,14 +196,6 @@
 .banner-item-show .left-section {
     transform: translateX(0);
     opacity: 1;
-}
-
-.title-decoration {
-    width: 60px;
-    height: 5px;
-    background: linear-gradient(90deg, #F9C748, transparent);
-    border-radius: 3px;
-    animation: slideIn 0.6s ease-out 0.4s both;
 }
 
 
@@ -266,9 +258,9 @@
 }
 
 .btn-primary {
-    background: linear-gradient(135deg, #F9C748 0%, #f7b924 100%);
+    background: linear-gradient(135deg, #71bacc 0%, #76daf3 100%);
     color: #000;
-    box-shadow: 0 4px 15px rgba(249, 199, 72, 0.4);
+    box-shadow: 0 4px 15px rgb(0, 96, 128,0.15);
 }
 
 .btn-primary::before {
@@ -288,7 +280,7 @@
 
 .btn-primary:hover {
     transform: translateY(-3px);
-    box-shadow: 0 8px 25px rgba(249, 199, 72, 0.6);
+    box-shadow: 0 8px 25px rgb(118, 218, 243,0.6);
 }
 
 .btn-secondary {
@@ -327,7 +319,7 @@
 .stat-number {
     font-size: 2rem;
     font-weight: 800;
-    color: #F9C748;
+    color: #76daf3;
     text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
 }
 
@@ -436,10 +428,6 @@
 
     .banner-item-show .left-section {
         transform: translateY(0);
-    }
-
-    .title-decoration {
-        margin: 0 auto;
     }
 
     .right-section {

@@ -114,10 +114,10 @@ const Footer = () => {
 
                 <div className="pg-footer-copyright">
                     <p className="pg-footer-copyright-text">
-                        ©2025 | developed By: Md Mahfuz Anam Tasnim. | All rights reserved.
+                        ©2025 | developed by: Md Mahfuz Anam Tasnim. | mahfuz.ta09@gmail.com
                     </p>
                     <p className="pg-footer-copyright-text">
-                        mahfuz.ta09@gmail.com
+                        All rights reserved.
                     </p>
                 </div>
             </footer>

@@ -81,8 +81,8 @@ const UniOption: React.FC = () => {
             <div className="uo-inner">
                 <header className="uo-header">
                 <div className="uo-subtitle">🌍 Study Abroad</div>
-                <h2 className="uo-title">
-                    Choose Your <span className="uo-accent">Study Destination</span>
+                <h2 className="home-text-header">
+                    Choose Your <span>Study Destination</span>
                 </h2>
                 <p className="uo-lead">
                     Explore top countries offering world-class education, vibrant cultures, and global career

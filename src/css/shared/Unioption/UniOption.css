@@ -21,7 +21,7 @@
 .uo-subtitle {
     font-size: 0.9rem;
     font-weight: 700;
-    color: #00796b;
+    color: #006080;
     letter-spacing: 1px;
     margin-bottom: 0.4rem;
 }
@@ -46,9 +46,6 @@
     border-radius: 50px;
 }
 
-.uo-accent {
-    color: #008080;
-}
 
 .uo-lead {
     max-width: 700px;
@@ -66,7 +63,7 @@
 }
 
 .uo-arrow {
-    background: #008080;
+    background: #006080;
     color: #fff;
     border: none;
     width: 40px;
@@ -81,7 +78,8 @@
 }
 
 .uo-arrow:hover { 
-    transform: translateY(-2px); background: #00a5a5; 
+    transform: translateY(-2px); 
+    background: #76daf3; 
 }
 
 
@@ -181,8 +179,8 @@
 .uo-cta {
     margin-top: 8px;
     width: fit-content;
-    background: #F9C748;
-    color: #000;
+    background: #006080;
+    color: #fff;
     border: none;
     padding: 8px 12px;
     font-weight: 700;
@@ -191,16 +189,31 @@
     transition: transform .12s ease, background .12s ease;
 }
 
-.uo-cta:hover { background: #e6b43b; transform: translateY(-2px); }
+.uo-cta:hover { 
+    background: #004a62; 
+    transform: translateY(-2px); 
+}
 
-/* dragging cursor */
-.uo-track.uo-dragging { cursor: grabbing; user-select: none; }
 
-/* responsive tweaks */
+
+.uo-track.uo-dragging { 
+    cursor: grabbing; 
+    user-select: none; 
+}
+
+
 @media (max-width: 880px) {
-  .uo-controls { justify-content: center; margin-bottom: 8px; }
-  .uo-title { font-size: 1.6rem; }
-  .uo-lead { font-size: 0.95rem; }
+    .uo-controls { 
+        justify-content: center; 
+        margin-bottom: 8px; 
+    }
+    
+    .uo-title { 
+        font-size: 1.6rem; 
+    }
+    .uo-lead { 
+        font-size: 0.95rem; 
+    }
 }
 
 @media (max-width: 480px) {

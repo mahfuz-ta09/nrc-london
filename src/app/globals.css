@@ -16,14 +16,13 @@
 }
 
 :root {
-  /* Primary brand colors */
   --primary: #004a62;
   --primary-light: #006080;
-  --primary-lighter: #007a9a;
+  --primary-lighter: #76daf3;
+
   --primary-dark: #002c3a;
   --primary-darker: #001f2a;
 
-  /* Secondary colors */
   --secondary: #f7fafc;
   --accent-green: #38a169;
   --accent-orange: #ed8936;

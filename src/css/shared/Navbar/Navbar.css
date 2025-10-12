@@ -3,13 +3,13 @@
     position: fixed;
     top: 0;
     left: 0;
-    z-index: 99999;
+    z-index: 9999999;
     background: transparent;
     transition: all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
 }
 
 .nav-scrolled {
-    background: rgba(0, 66, 66, 0.75);
+    background: #004a62;
     backdrop-filter: blur(15px);
     -webkit-backdrop-filter: blur(15px);
     box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
@@ -18,10 +18,10 @@
 .nav-head {
     width: 100%;
     padding: 8px 0;
-    background: rgba(0, 66, 66, 0.75);
+    background: rgba(0, 66, 66, 0.15);
     backdrop-filter: blur(15px);
     -webkit-backdrop-filter: blur(15px);
-    border-bottom: 1px solid rgba(249, 199, 72, 0.2);
+    border-bottom: 1px solid rgb(0, 122, 154,0.5);
 }
 
 .short-info {
@@ -102,13 +102,13 @@
 
 .navimage:hover .nav-logo {
     border-color: #fff;
-    box-shadow: 0 4px 15px rgba(249, 199, 72, 0.4);
+    box-shadow: 0 4px 15px rgb(0, 122, 154);
 }
 
 .nav-text {
     display: flex;
     flex-direction: column;
-    border-left: 2px solid #F9C748;
+    border-left: 2px solid #fff;
     padding-left: 12px;
 }
 
@@ -116,7 +116,6 @@
     font-size: 0.75rem;
     font-weight: 600;
     color: #fff;
-    margin: 0;
     letter-spacing: 1.5px;
     line-height: 1.3;
     text-transform: uppercase;
@@ -159,12 +158,12 @@
 }
 
 .link-color{
-    color: #F9C748;
+    color: #8ee4fa;
 }
 
 .link:hover {
-    background: rgba(249, 199, 72, 0.15);
-    color: #F9C748;
+    background: rgb(118, 218, 243,0.15);
+    color: #76daf3;
 }
 
 .link-icon {
@@ -188,8 +187,8 @@
     right: 0;
     width: 100%;
     min-height: 350px;
-    background: linear-gradient(135deg, #003333, #001a1a);
-    border-top: 2px solid #F9C748;
+    background: #004a62;
+    border-top: 2px solid rgb(118, 218, 243);
     box-shadow: 0 10px 40px rgba(0, 0, 0, 0.5);
     z-index: 999999;
     visibility: hidden;
@@ -261,7 +260,7 @@
 }
 
 .drop-down-link:hover {
-    color: #F9C748;
+    color: rgb(118, 218, 243);
     background: rgba(249, 199, 72, 0.1);
     transform: translateX(5px);
 }
@@ -279,7 +278,7 @@
     min-width: 280px;
     padding: 30px;
     background: rgba(0, 0, 0, 0.3);
-    border: 1px solid rgba(249, 199, 72, 0.3);
+    border: 1px solid rgb(118, 218, 243,0.15);
     border-radius: 15px;
     display: flex;
     flex-direction: column;
@@ -293,7 +292,7 @@
     justify-content: center;
     gap: 12px;
     padding: 14px 20px;
-    background: linear-gradient(135deg, #F9C748, #f7b924);
+    background: linear-gradient(135deg, #76daf3, #76daf3);
     color: #000;
     text-decoration: none;
     font-size: 1rem;
@@ -306,7 +305,7 @@
 
 .contact-section-link:hover {
     transform: translateY(-2px);
-    box-shadow: 0 8px 20px rgba(249, 199, 72, 0.4);
+    box-shadow: 0 8px 20px rgb(118, 218, 243,0.15);
 }
 
 .user-action {
@@ -330,8 +329,8 @@
 
 .log-control {
     background: transparent;
-    color: #F9C748;
-    border: 2px solid #F9C748;
+    color: #6bc3da;
+    border: 2px solid #76daf3;
 }
 
 .log-control:hover {
@@ -340,14 +339,14 @@
 }
 
 .dash {
-    background: linear-gradient(135deg, #F9C748, #f7b924);
+    background: linear-gradient(135deg, #76daf3, #76daf3);
     color: #000;
-    border: 2px solid #F9C748;
+    border: 2px solid #76daf3;
 }
 
 .dash:hover {
     transform: translateY(-2px);
-    box-shadow: 0 8px 20px rgba(249, 199, 72, 0.4);
+    box-shadow: 0 8px 20px rgb(118, 218, 243,0.5);
 }
 
 .menu-icon {
@@ -362,7 +361,7 @@
 }
 
 .menu-icon:hover {
-    color: #F9C748;
+    color: #76daf3;
 }
 
 
@@ -448,7 +447,7 @@
     }
 
     .link:hover {
-        background: rgba(249, 199, 72, 0.15);
+        background: #006080;
     }
 
 

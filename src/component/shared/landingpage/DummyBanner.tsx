@@ -12,7 +12,7 @@ const DummyBanner = () => {
                 <div
                     className="banner-item banner-item-show"
                     style={{
-                        backgroundImage: `linear-gradient(to left, rgba(0, 66, 66, 0.7) 40%, rgba(0, 0, 0, 0.85) 60%), url(${office.src})`,
+                        backgroundImage: `linear-gradient(to bottom, rgba(0, 74, 98) 0%, rgba(0, 0, 0, 0.85) 100%), url(${office.src})`,
                         backgroundSize: 'cover',
                         backgroundPosition: 'center',
                         backgroundRepeat: 'no-repeat',

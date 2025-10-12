@@ -5,7 +5,8 @@ import "../../../css/blogs/slugDesignFOrUni.css"
 import Footer from "@/component/shared/footer/Footer"
 
 
-const UniversityContent = ({ data }:{ data:any }) => {    
+const UniversityContent = ({ data }:{ data:any }) => {  
+    console.log(data) 
     return (
         <div className="page-container">
             <div className="page-banner">
@@ -25,14 +26,14 @@ const UniversityContent = ({ data }:{ data:any }) => {
             <div className="university-detail-container">
                 <div className="university-body">
                     <div className="university-detail-container-body">
-                        <h1>{data?.meta_title}</h1>
-                        <h4>{data?.meta_description}</h4>
                         {data?.famousFile?.url && (
                             <img
                                 src={data?.famousFile?.url}
                                 alt="blog header image"
                             /> )}
 
+                        <h1>{data?.meta_title}</h1>
+                        <h4>{data?.meta_description}</h4>
                         
                         <div dangerouslySetInnerHTML={{ __html: data?.content || "" }}/>
                     </div>

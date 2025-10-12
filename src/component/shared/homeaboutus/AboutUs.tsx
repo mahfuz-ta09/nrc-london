@@ -12,9 +12,7 @@ const AboutUs = () => {
             
             <div className="first-half">
               <p className="first-half-text">Our Mission & Vision</p>
-              <div className="title-decoration"></div>
-
-              <h2 className="first-half-header">
+              <h2 className="home-text-header">
                 <span className="at">at</span>
                 <span className="name"> NRC </span>
                 Educational Consultants Ltd.

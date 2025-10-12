@@ -19,7 +19,7 @@ const FAQ: React.FC<FAQProps> = ({ items, title = "Frequently Asked Questions", 
           <div className="services-header">
             <h4 className="option-subtitle">❓ Got Questions</h4>
             <h2 className="home-text-header" style={{ color: "#000" }}>
-              Frequently <span style={{ color: "#008080" }}>Asked Questions</span>
+              Frequently <span >Asked Questions</span>
             </h2>
             <p>
               We’ve answered some of the most common questions to help you better understand our process and services.  

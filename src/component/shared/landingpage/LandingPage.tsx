@@ -95,7 +95,7 @@ const LandingPage = () => {
                         const getBackgroundStyle = () => {
                             if (typeof window === 'undefined') {
                                 return {
-                                    backgroundImage: `linear-gradient(to left, rgba(0, 66, 66, 0.8) 40%, rgba(0, 0, 0, 0.85) 60%), url(${banner?.imageUrl?.url})`,
+                                    backgroundImage: `linear-gradient(to bottom, rgba(0, 74, 98) 0%, rgba(0, 0, 0, 0.85) 100%), url(${banner?.imageUrl?.url})`,
                                     backgroundSize: 'cover',
                                     backgroundPosition: 'center',
                                     backgroundRepeat: 'no-repeat'
@@ -104,8 +104,8 @@ const LandingPage = () => {
 
                             const isMobile = window.innerWidth <= 768;
                             const gradient = isMobile
-                                ? 'linear-gradient(to bottom, rgba(0, 66, 66, 0.7) 0%, rgba(0, 0, 0, 0.85) 100%)'
-                                : 'linear-gradient(to left, rgba(0, 66, 66, 0.7) 40%, rgba(0, 0, 0, 0.85) 60%)';
+                                ? 'linear-gradient(to bottom, rgba(0, 74, 98,0.5) 0%, rgba(0, 0, 0, 0.85) 100%)'
+                                : 'linear-gradient(to top, rgba(0, 74, 98,0.5) 40%, rgba(0, 0, 0, 0.85) 60%)';
                             
                             return {
                                 backgroundImage: `${gradient}, url(${banner?.imageUrl?.url})`,

@@ -37,7 +37,7 @@ const ServicesSection = () => {
       <div className="services-container">
         <div className="services-header">
         <h4 className="option-subtitle">✨ what we offer</h4>
-          <h2 className='home-text-header' style={{color:"#000"}}>Our <span style={{color:"#008080"}}>Services</span></h2>
+          <h2 className='home-text-header' style={{color:"#000"}}>Our <span>Services</span></h2>
           <p>
             Explore our range of services designed to support your educational and career journey from start to finish.
           </p>
@@ -53,7 +53,7 @@ const ServicesSection = () => {
           ))}
         </div>
 
-        {/* ✅ CTA Button */}
+
         <div className="services-btn-wrapper">
           <Link href="/services" className="services-btn">
             View All Services
