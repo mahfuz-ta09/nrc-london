@@ -176,8 +176,8 @@ const LandingPage = () => {
                                                 src='/images/banner-photo.webp' 
                                                 alt="Banner image"
                                                 loading="eager"
-                                            /> */}
-                                            {/* <div className="image-glow"></div> */}
+                                            />
+                                            <div className="image-glow"></div> */}
                                         </div>
                                     </div>
                                 </div>
