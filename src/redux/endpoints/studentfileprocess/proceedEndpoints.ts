@@ -39,7 +39,30 @@ const proceedApi = baseApi.injectEndpoints({
             }),
             providesTags: ["proceed"],  
         }),
-        
+
+        getFileByConditions: build.query<any, { values: any }>({
+            query: ({ values }) => {
+                const params = new URLSearchParams();
+                console.log("inside process rtx data: ",values)
+                if (values?.personalInfo?.requiredSubmission !== '')params.append("personalInfo[requiredSubmission]", String(values.personalInfo.requiredSubmission));
+                if (values?.personalInfo?.requiredVerification !== '')params.append("personalInfo[requiredVerification]", String(values.personalInfo.requiredVerification));
+                
+                if (values?.englishProficiency?.requiredSubmission !== '')params.append("englishProficiency[requiredSubmission]", String(values.englishProficiency.requiredSubmission));
+                if (values?.englishProficiency?.requiredVerification !== '')params.append("englishProficiency[requiredVerification]", String(values.englishProficiency.requiredVerification));
+                
+                if (values?.prefferedUniSub?.requiredSubmission !== '')params.append("prefferedUniSub[requiredSubmission]", String(values.prefferedUniSub.requiredSubmission));
+                if (values?.prefferedUniSub?.requiredVerification !== '')params.append("prefferedUniSub[requiredVerification]", String(values.prefferedUniSub.requiredVerification));
+                
+                if (values?.studentsFile?.requiredSubmission !== '')params.append("studentsFile[requiredSubmission]", String(values.studentsFile.requiredSubmission));
+                if (values?.studentsFile?.requiredVerification !== '')params.append("studentsFile[requiredVerification]", String(values.studentsFile.requiredVerification));
+
+                return {
+                    url: `/process/get-all?${params.toString()}`,
+                    method: "GET",
+                };
+            },
+            providesTags: ["proceed"],
+        }),
 
         getALlProcessReq: build.query<any, void>({
             query: () => ({
@@ -88,5 +111,6 @@ export const {
     useGetALlProcessReqQuery,
     useDeleteProcessReqMutation,
     useUpdatedProcessReqMutation,
-    useGetProcessReqPaginationQuery
+    useGetProcessReqPaginationQuery,
+    useGetFileByConditionsQuery
 } = proceedApi

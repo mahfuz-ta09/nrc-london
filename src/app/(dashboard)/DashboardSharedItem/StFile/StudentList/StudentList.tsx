@@ -1,12 +1,23 @@
 'use client'
-
 import { faArrowRight } from "@fortawesome/free-solid-svg-icons"
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
 
-const StudentList = () => {
+
+type StudentListProps = {
+    setdetailState: React.Dispatch<React.SetStateAction<{ isOpen: boolean }>>;
+    detailState: { isOpen: boolean };
+    values: any;
+    setValues: React.Dispatch<React.SetStateAction<any>>;
+}
+
+const StudentList = ({ setdetailState,detailState}: StudentListProps) => {
+
+    
     return (
         <div className="table-contant">
-            <table id="">
+            <h1 className='tag'>Review Student Applications</h1>
+
+            <table>
                 <thead>
                     <tr>
                         <th>name/email</th>
@@ -24,11 +35,11 @@ const StudentList = () => {
                             <br/>
                             matasnim11@gmail.com
                         </td>
-                        <td>details <FontAwesomeIcon icon={faArrowRight}/></td>
-                        <td>details <FontAwesomeIcon icon={faArrowRight}/></td>
-                        <td>details <FontAwesomeIcon icon={faArrowRight}/></td>
-                        <td>details <FontAwesomeIcon icon={faArrowRight}/></td>
-                        <td>details <FontAwesomeIcon icon={faArrowRight}/></td>
+                        <td><button onClick={()=>setdetailState({isOpen: true})} className="details-table-action">details <FontAwesomeIcon icon={faArrowRight}/></button></td>
+                        <td><button onClick={()=>setdetailState({isOpen: true})} className="details-table-action">details <FontAwesomeIcon icon={faArrowRight}/></button></td>
+                        <td><button onClick={()=>setdetailState({isOpen: true})} className="details-table-action">details <FontAwesomeIcon icon={faArrowRight}/></button></td>
+                        <td><button onClick={()=>setdetailState({isOpen: true})} className="details-table-action">details <FontAwesomeIcon icon={faArrowRight}/></button></td>
+                        <td><button onClick={()=>setdetailState({isOpen: true})} className="details-table-action">details <FontAwesomeIcon icon={faArrowRight}/></button></td>
                     </tr>
                 </tbody>
             </table>

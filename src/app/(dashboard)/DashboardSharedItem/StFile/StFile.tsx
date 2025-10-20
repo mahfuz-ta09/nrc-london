@@ -12,6 +12,15 @@ import StudentDetailModal from './StudentDetailModal/StudentDetailModal'
 
 const stFile = () => {
     const [modalState,setModalState] = useState({ isOpen: false })
+    const [detailState,setdetailState] = useState({ isOpen: false })
+    const [values,setValues] = useState({
+      personalInfo: { requiredSubmission: '', requiredVerification: '' },
+      englishProficiency: { requiredSubmission: '', requiredVerification: '' },
+      prefferedUniSub: { requiredSubmission: '', requiredVerification: '' },
+      studentsFile: { requiredSubmission: '', requiredVerification: '' },
+      applicationFinished: { finished: '', archived: '' },
+    })
+
     return (
       <div className="dashboard-content-item">
         <div className="dashboard-header-content">
@@ -31,15 +40,28 @@ const stFile = () => {
         </Suspense>
 
         <Suspense fallback={<Loader />}>
-          <StudentInfoSlider />
+          <StudentInfoSlider 
+            values={values}
+            setValues={setValues}
+          />
         </Suspense>
 
         <Suspense fallback={<Loader />}>
-          <StudentList />
+          <StudentList 
+            setdetailState={setdetailState}
+            detailState={detailState}
+              values={values}
+              setValues={setValues}
+          />
         </Suspense>
 
         <Suspense fallback={<Loader />}>
-          <StudentDetailModal />
+          <StudentDetailModal 
+              setdetailState={setdetailState}
+              detailState={detailState} 
+              values={values}
+              setValues={setValues}
+            />
         </Suspense>
       </div>
     )
