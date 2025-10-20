@@ -2,100 +2,26 @@
 import { useRef } from "react";
 import '@/css/Dashboard/DashBoardSharedItem/DashboardSharedCss.css'
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faArrowRight, faBuilding, faCircleCheck, faCircleXmark, faComments, faFileCircleCheck, faFlagCheckered, faFolderOpen, faPaperPlane, faPenNib, faSearch } from "@fortawesome/free-solid-svg-icons";
+import { faArrowRight, faBuilding, faFileSignature, faFolderOpen, faGlobe, faIdCard, faUniversity } from "@fortawesome/free-solid-svg-icons";
+import type { IconDefinition } from "@fortawesome/fontawesome-svg-core"; 
 import { useGetStudentFileStatQuery } from "@/redux/endpoints/studentfileprocess/proceedEndpoints";
-const workflowSteps = [
-  {
-    id: 1,
-    icon: faFolderOpen,
-    count: 0,
-    title: "File Initialized",
-    bodyTitle: "files ready for",
-    bodySubtitle: "initialization",
-    action: "activate",
-  },
-  {
-    id: 2,
-    icon: faSearch,
-    count: 0,
-    title: "Files Under Review",
-    bodyTitle: "files ready for",
-    bodySubtitle: "review finished",
-    action: "review",
-  },
-  {
-    id: 3,
-    icon: faFileCircleCheck,
-    count: 0,
-    title: "Docs Verified",
-    bodyTitle: "files ready for",
-    bodySubtitle: "verification",
-    action: "verify",
-  },
-  {
-    id: 4,
-    icon: faPenNib,
-    count: 0,
-    title: "Preparing Application",
-    bodyTitle: "files ready for",
-    bodySubtitle: "application",
-    action: "prepare",
-  },
-  {
-    id: 5,
-    icon: faPaperPlane,
-    count: 0,
-    title: "Submitted",
-    bodyTitle: "applications waiting for",
-    bodySubtitle: "response",
-    action: "track",
-  },
-  {
-    id: 6,
-    icon: faComments,
-    count: 0,
-    title: "In Progress",
-    bodyTitle: "applications pending",
-    bodySubtitle: "communication",
-    action: "follow up",
-  },
-  {
-    id: 7,
-    icon: faCircleCheck,
-    count: 0,
-    title: "Approved",
-    bodyTitle: "students ready for",
-    bodySubtitle: "post-visa services",
-    action: "complete",
-  },
-  {
-    id: 8,
-    icon: faCircleXmark,
-    count: 0,
-    title: "Rejected",
-    bodyTitle: "cases need",
-    bodySubtitle: "re-application",
-    action: "review",
-  },
-  {
-    id: 9,
-    icon: faFlagCheckered,
-    count: 0,
-    title: "Completed",
-    bodyTitle: "students ready for",
-    bodySubtitle: "archiving",
-    action: "archive",
-  },
-];
 
 
+const content: Record<string, [string, string, string, IconDefinition]> = {
+  file: ["Pending file upload", "Files uploaded"," awaiting review", faFolderOpen],
+  personalData: ["Profile incomplete", "Profile updated"," pending verification", faIdCard],
+  englishProfData: ["English proof missing", "English proof submitted","  awaiting check", faGlobe],
+  englishTest: ["Test not taken", "Test submitted","  pending result check", faFileSignature],
+  universityAssigned: ["University not assigned", "University assigned"," pending confirmation", faUniversity],
+};
+type ContentKey = keyof typeof content;
 const StudentInfoSlider = () => {
     const sliderRef = useRef<HTMLDivElement>(null);
-    const { data , isLoading } = useGetStudentFileStatQuery()
+    const { data: workflowSteps , isLoading } = useGetStudentFileStatQuery()
     let isDown = false;
     let startX: number;
     let scrollLeft: number;
-
+    
     const handleMouseDown = (e: React.MouseEvent) => {
         isDown = true;
         sliderRef.current!.classList.add("active");
@@ -121,6 +47,9 @@ const StudentInfoSlider = () => {
         sliderRef.current!.scrollLeft = scrollLeft - walk;
     };
 
+
+    Object.entries(workflowSteps?.data|| {}).map(([key, value]) => console.log(key,value));
+
     return (
         <div className="student-info-slider-container">
             <div
@@ -130,26 +59,31 @@ const StudentInfoSlider = () => {
                 onMouseLeave={handleMouseLeave}
                 onMouseUp={handleMouseUp}
                 onMouseMove={handleMouseMove}>
-                {workflowSteps.map((step) => (
-                    <div key={step.id} className="student-info-card">
+                {
+                    Object.entries(workflowSteps?.data || {}).map(([key, value]: [ContentKey, any]) => (
+                    <div key={key} className="student-info-card">
                         <div className="student-card-info-header">
-                            <FontAwesomeIcon className="info-header-icon" icon={step.icon} />
+                            <FontAwesomeIcon className="info-header-icon" icon={content[key][3]} />
                             <div className="student-card-info-header-item">
-                                <h5>{step.count}</h5>
-                                <h6>{step.title}</h6>
+                                <h5>{value?.requiredSubmitted}</h5>
+                                <h6>{content[key][0] as string}</h6>
                             </div>
                         </div>
                         <div className="student-card-info-body">
-                            <h5>{step.count}</h5>
+                            <h5>{value?.requiredVerified}</h5>
                             <h6>
-                                {step.bodyTitle} <br /> {step.bodySubtitle}
+                                {content[key][1]} <br />
+                                {content[key][2]} <br />
                             </h6>
                             <button className="details-action-btn">
-                                {step.action} <FontAwesomeIcon icon={faArrowRight} />
+                                View Students <FontAwesomeIcon icon={faArrowRight} />
                             </button>
                         </div>
                     </div>
-                ))}
+                    ))
+
+                }
+                    
             </div>
         </div>
 

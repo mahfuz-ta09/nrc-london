@@ -15,10 +15,10 @@ const proceedApi = baseApi.injectEndpoints({
                 },
                 data,
             }),
-        invalidatesTags: ["proceed"],  
+            invalidatesTags: ["proceed"],  
         }),
     
-    // by superadmin/admin/agents
+        // by superadmin/admin/agents
         createtStudentFile: build.mutation<any,{data:any}>({
             query: ({data}) => ({
                 url: "/process/file",
@@ -39,6 +39,7 @@ const proceedApi = baseApi.injectEndpoints({
             }),
             providesTags: ["proceed"],  
         }),
+        
 
         getALlProcessReq: build.query<any, void>({
             query: () => ({

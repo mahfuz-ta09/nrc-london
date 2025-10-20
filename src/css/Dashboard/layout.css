@@ -1,15 +1,16 @@
 .dashboard-layout{
 	max-width: 2000px;
 	width: 100%;
-	height: 100%;
+	height: 100vh;
 	margin: 0 auto;
 	background: #004a62;
 	overflow: hidden;
 }
 
+
 .dash-content{
 	width: 100vw;
-	height: 100vh;
+	height: 100%;
 	overflow-y: auto;
 	position: relative;
 }

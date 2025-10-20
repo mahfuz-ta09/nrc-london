@@ -56,7 +56,8 @@
     height: 180px;
     border: 1px solid rgb(245, 222, 179,0.4);
     box-shadow: 2px 2px 20px 3px rgba(0,0,0,0.2);
-    background-image: linear-gradient(to top, rgb(48, 207, 208,0.5) 0%, rgb(51, 8, 103,0.5) 100%);
+    background-image: linear-gradient(to top, rgb(0, 0, 0,0.5) 0%, rgb(0, 0 ,0,0.8) 100%);
+    backdrop-filter: blur(16px);
     border-radius: 5px;
     display: flex;
     justify-content: space-between;
@@ -86,7 +87,7 @@
 .student-card-info-header-item h6{
     font-size: 12px;
     font-weight: 300;
-    text-decoration: underline;
+    text-decoration: underline red 2px 2px;
     color: #fff;
     letter-spacing: 1px;
     cursor: pointer;
@@ -126,18 +127,20 @@
 
 .details-action-btn{
     background: #efefef;
-    padding: 5px 16px;
+    padding: 8px 13px;
     outline: none;
-    border: 1px solid #000;
+    border: none;
     position: absolute;
     right: 10px;
     bottom: 10px;
     display: flex;
     align-items: center;
     justify-content: center;
+    border-radius: 3px;
     gap: 5px;
-    font-size: 12px;
+    font-size: 10px;
     cursor: pointer;
+    box-shadow: 0px 1px 5px rgba(255,255,255,0.3);
 
     &:hover{
         color: rgb(0, 0, 0,1);

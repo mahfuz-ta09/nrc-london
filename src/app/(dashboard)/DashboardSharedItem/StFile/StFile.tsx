@@ -4,6 +4,9 @@ import Loader from '@/component/shared/loader/loader'
 import '@/css/Dashboard/DashBoardSharedItem/DashboardSharedCss.css'
 import StudentInfoSlider from './StudentInfoSlider/StudentInfoSlider'
 import AddStudentFileModal from './AddStudentFileModal/AddStudentFileModal'
+import StudentList from './StudentList/StudentList'
+import StudentDetailModal from './StudentDetailModal/StudentDetailModal'
+
 
 
 
@@ -12,7 +15,7 @@ const stFile = () => {
     return (
       <div className="dashboard-content-item">
         <div className="dashboard-header-content">
-          <h1 className='tag'>my students</h1>
+          <h1 className='tag'>Review Student Applications</h1>
           <div className="header-content">
             <button className='header-btn' onClick={()=>setModalState({ isOpen: !modalState?.isOpen })}>Add Student</button>
           </div>
@@ -29,6 +32,14 @@ const stFile = () => {
 
         <Suspense fallback={<Loader />}>
           <StudentInfoSlider />
+        </Suspense>
+
+        <Suspense fallback={<Loader />}>
+          <StudentList />
+        </Suspense>
+
+        <Suspense fallback={<Loader />}>
+          <StudentDetailModal />
         </Suspense>
       </div>
     )

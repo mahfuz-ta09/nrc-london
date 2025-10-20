@@ -1,8 +1,7 @@
 
 .table-contant {
-    max-width: 1600px;
-    width: 95%;
-    /* height: 80vh; */
+    max-width: 2000px;
+    width: 100%;
     margin: 20px auto;
     padding: 0;
     overflow: scroll;
