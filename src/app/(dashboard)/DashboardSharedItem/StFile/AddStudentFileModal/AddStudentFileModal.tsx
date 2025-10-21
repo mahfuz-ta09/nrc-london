@@ -5,7 +5,7 @@ import { useUserInfo } from '@/utils/useUserInfo'
 import { useCreatetStudentFileMutation } from '@/redux/endpoints/studentfileprocess/proceedEndpoints'
 import Loader from '@/component/shared/loader/loader'
 import { toast } from 'react-toastify'
-
+import '@/css/component/Form.css'
 type ModalProps = {
   modalState: {
     isOpen: boolean

@@ -43,7 +43,7 @@ const proceedApi = baseApi.injectEndpoints({
         getFileByConditions: build.query<any, { values: any }>({
             query: ({ values }) => {
                 const params = new URLSearchParams();
-                console.log("inside process rtx data: ",values)
+                
                 if (values?.personalInfo?.requiredSubmission !== '')params.append("personalInfo[requiredSubmission]", String(values.personalInfo.requiredSubmission));
                 if (values?.personalInfo?.requiredVerification !== '')params.append("personalInfo[requiredVerification]", String(values.personalInfo.requiredVerification));
                 

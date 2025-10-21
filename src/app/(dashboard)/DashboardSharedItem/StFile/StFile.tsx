@@ -12,7 +12,7 @@ import StudentDetailModal from './StudentDetailModal/StudentDetailModal'
 
 const stFile = () => {
     const [modalState,setModalState] = useState({ isOpen: false })
-    const [detailState,setdetailState] = useState({ isOpen: false })
+    const [detailState,setdetailState] = useState({ isOpen: false, data: {} , title: ''})
     const [values,setValues] = useState({
       personalInfo: { requiredSubmission: '', requiredVerification: '' },
       englishProficiency: { requiredSubmission: '', requiredVerification: '' },
@@ -48,8 +48,8 @@ const stFile = () => {
 
         <Suspense fallback={<Loader />}>
           <StudentList 
-            setdetailState={setdetailState}
-            detailState={detailState}
+              setdetailState={setdetailState}
+              detailState={detailState}
               values={values}
               setValues={setValues}
           />
