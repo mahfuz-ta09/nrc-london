@@ -1,29 +1,35 @@
+.double-input-container{
+    width: 100%;
+    display: flex;
+    gap: 20px;
+}
+
 .input-container{
     width: 100%;
     display: flex;
     flex-direction: column;
-    margin: 30px 0;
+    margin: 10px 0;
     align-items: start;
     justify-content: start;
     gap: 10px;
 }
 
+.phase-title{
+    margin: 30px 0 10px;
+}
+
 .input-container label{
-    font-size: 15px;
-    font-weight: 700;
-    color: #252525;
-    text-transform: lowercase;
+  font-size: 0.9rem;
+  color: #444;
+  margin-bottom: 5px;
 }
 
 .input-container input,textarea{
-    font-size: 15px;
-    font-weight: 500;
-    text-transform: lowercase;
-    padding: 15px;
-    width: 100%;
-    border-radius: 5px;
-    border: 1px solid #d1d1d1;
-    background: #fff;
+  padding: 8px 10px;
+  border-radius: 6px;
+  border: 1px solid #ccc;
+  outline: none;
+  transition: border 0.2s ease;
 }
 
 .input-container input[type="file"]{
@@ -45,4 +51,112 @@
     border-radius: 5px;
     background-color:#004a62;
     color: #fff;
+}
+
+.checkbox-container{
+    width: auto;
+    display: flex;
+    align-items: center;
+    justify-content: start;
+    flex-direction: row;
+    gap: 10px;
+    margin: 10px 0;
+}
+
+
+.or{
+    width: 100%;
+    text-align: center;
+    margin: 20px 0;
+    border-top: #004a62 1px dashed;
+    font-weight: 500;
+}
+
+.or::after{
+    content: "or";
+    display: inline-block;
+    position: relative;
+    top: -13px;
+    padding: 0 10px;
+    background: #fff;
+    color: #004a62;
+    font-size: 14px;
+}
+
+.final{
+    width: 100%;
+    text-align: center;
+    margin: 20px 0;
+    border-top: #004a62 1px dashed;
+    font-weight: 500;
+}
+
+.final::after{
+    content: "this file is initialized by";
+    display: inline-block;
+    position: relative;
+    top: -13px;
+    padding: 0 10px;
+    background: #fff;
+    color: #004a62;
+    font-size: 14px;
+}
+/* some extra design */
+
+.exam-accordion {
+  width: 100%;
+  border-radius: 10px;
+  overflow: hidden;
+}
+
+.exam-item {
+  position: relative;
+  border-bottom: 1px solid #e5e5e5;
+}
+
+.exam-toggle {
+  display: none;
+}
+
+.exam-title {
+  display: block;
+  font-weight: 600;
+  font-size: 1rem;
+  cursor: pointer;
+  padding: 12px 16px;
+  transition: all 0.3s ease;
+  background: #f9f9f9;
+}
+
+.exam-title:hover {
+  background: #f1f1f1;
+}
+
+.exam-plus {
+  position: absolute;
+  right: 16px;
+  top: 14px;
+  font-weight: bold;
+  transition: transform 0.3s ease;
+}
+
+.exam-toggle:checked + .exam-plus {
+  transform: rotate(45deg);
+}
+
+.exam-content {
+  display: none;
+  padding: 10px 16px 20px;
+  background: #fff;
+}
+
+.exam-toggle:checked ~ .exam-content {
+  display: block;
+}
+
+.checkbox-section {
+  margin-top: 15px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
 }

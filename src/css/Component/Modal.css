@@ -1,7 +1,7 @@
 .modal-container {
     position: fixed;
     top: 0;
-    right: 0;
+    left: 0;
     z-index: 1000;
     background: rgba(0, 74, 98, 0.1);
     backdrop-filter: blur(10px);
@@ -10,7 +10,7 @@
     width: 100%;
     display: flex;
     align-items: end;
-    justify-content: end;
+    justify-content: start;
     visibility: hidden;
     opacity: 0;
     transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
@@ -100,4 +100,119 @@
         min-width: 100vw;
         height: 80vh;
     }
+}
+
+
+
+/* ---------------------------------------some extra design---------------------------------------- */
+
+:root {
+  --primary: #004a62;
+  --primary-light: #006080;
+  --primary-lighter: #76daf3;
+
+  --primary-dark: #002c3a;
+  --primary-darker: #001f2a;
+
+  --secondary: #f7fafc;
+  --accent-green: #38a169;
+  --accent-orange: #ed8936;
+  --accent-blue: #3182ce;
+
+  /* Text colors */
+  --text-primary: #1a1a1a;
+  --text-secondary: #4a5568;
+  --text-muted: #718096;
+  --text-light: #ffffff;
+  --text-on-primary: #ffffff;
+
+  --bg-white: #ffffff;
+  --bg-light: #f7fafc;
+  --bg-primary-light: rgba(0, 74, 98, 0.05);
+  --bg-primary-medium: rgba(0, 74, 98, 0.1);
+  --bg-primary-strong: rgba(0, 74, 98, 0.2);
+  --bg-primary-dark: rgba(0, 74, 98, 0.8);
+  --bg-primary-darker: rgba(0, 74, 98, 0.9);
+
+  /* Glassmorphism effects */
+  --glass-bg: rgba(255, 255, 255, 0.1);
+  --glass-border: rgba(255, 255, 255, 0.2);
+  --glass-backdrop: blur(10px);
+
+  /* Gradients */
+  --gradient-primary: linear-gradient(135deg, #004a62 0%, #006080 100%);
+  --gradient-subtle: linear-gradient(135deg, #004a62 0%, #005577 50%, #007a9a 100%);
+  --gradient-hero: linear-gradient(135deg, #002c3a 0%, #004a62 50%, #006080 100%);
+  --gradient-card: linear-gradient(135deg, #004a62 0%, #0088aa 100%);
+
+  /* Box shadows */
+  --shadow-subtle: 0 2px 8px rgba(0, 74, 98, 0.1);
+  --shadow-medium: 0 8px 25px rgba(0, 74, 98, 0.15);
+  --shadow-strong: 0 20px 40px rgba(0, 74, 98, 0.2);
+  --shadow-inset: inset 0 2px 4px rgba(0, 74, 98, 0.1);
+
+  /* Border colors */
+  --border-light: rgba(0, 74, 98, 0.1);
+  --border-medium: rgba(0, 74, 98, 0.2);
+  --border-strong: rgba(0, 74, 98, 0.3);
+
+
+}
+
+.value-container{
+    width: 100%;
+    display: grid;
+    grid-template-columns: repeat(1fr 1fr);
+    margin: 10px 0;
+    gap: 10px;
+}
+
+.value-body{
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    margin: 10px 0;
+    align-items: start;
+    justify-content: start;
+    gap: 10px;
+    padding: 10px;
+    border-radius: 5px;
+    background: var(--secondary);
+}
+
+.value-body h6{
+    font-size: 15px;
+    font-weight: 500;
+    text-transform: lowercase;
+    padding: 10px;
+    width: 100%;
+    border-radius: 5px;
+    border: 1px dashed var(--primary-darker);
+    background: #fff;
+}
+.file-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 8px 0;
+  border-bottom: 1px solid #ddd;
+}
+
+.file-label {
+  font-weight: 500;
+  color: #333;
+}
+
+.file-link {
+  color: #007bff;
+  text-decoration: none;
+}
+
+.file-link:hover {
+  text-decoration: underline;
+}
+
+.no-file {
+  color: #888;
+  font-style: italic;
 }

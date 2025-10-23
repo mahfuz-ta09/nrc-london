@@ -8,8 +8,6 @@ import StudentList from './StudentList/StudentList'
 import StudentDetailModal from './StudentDetailModal/StudentDetailModal'
 
 
-
-
 const stFile = () => {
     const [modalState,setModalState] = useState({ isOpen: false })
     const [detailState,setdetailState] = useState({ isOpen: false, data: {} , title: ''})
@@ -26,7 +24,7 @@ const stFile = () => {
         <div className="dashboard-header-content">
           <h1 className='tag'>Review Student Applications</h1>
           <div className="header-content">
-            <button className='header-btn' onClick={()=>setModalState({ isOpen: !modalState?.isOpen })}>Add Student</button>
+            <button className='header-btn' onClick={()=>setModalState({ isOpen: !modalState?.isOpen })}>Add New Applicant</button>
           </div>
         </div>
 

@@ -35,7 +35,6 @@
   --text-light: #ffffff;
   --text-on-primary: #ffffff;
 
-  /* Background variations */
   --bg-white: #ffffff;
   --bg-light: #f7fafc;
   --bg-primary-light: rgba(0, 74, 98, 0.05);
@@ -66,25 +65,7 @@
   --border-medium: rgba(0, 74, 98, 0.2);
   --border-strong: rgba(0, 74, 98, 0.3);
 
-  /* State colors */
-  --success: #38a169;
-  --warning: #ed8936;
-  --error: #e53e3e;
-  --info: #3182ce;
 
-  /* Spacing scale */
-  --space-xs: 0.25rem;
-  --space-sm: 0.5rem;
-  --space-md: 1rem;
-  --space-lg: 1.5rem;
-  --space-xl: 2rem;
-  --space-2xl: 3rem;
-
-  /* Border radius */
-  --radius-sm: 0.375rem;
-  --radius-md: 0.5rem;
-  --radius-lg: 0.75rem;
-  --radius-xl: 1rem;
 }
 ::-webkit-scrollbar {
   width: 2px;
