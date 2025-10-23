@@ -25,14 +25,16 @@
 }
 
 .input-container input,textarea{
-  padding: 8px 10px;
-  border-radius: 6px;
-  border: 1px solid #ccc;
-  outline: none;
-  transition: border 0.2s ease;
+    width: 100%;
+    padding: 8px 10px;
+    border-radius: 6px;
+    border: 1px solid #ccc;
+    outline: none;
+    transition: border 0.2s ease;
 }
 
 .input-container input[type="file"]{
+    width: 100%;
     padding: 15px;
     background: #f8fafccc;
     border: 2px dashed #d1d5db;

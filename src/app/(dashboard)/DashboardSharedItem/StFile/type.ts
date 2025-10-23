@@ -16,7 +16,8 @@ export type StudentFileForm = {
     passportNo: string;
     currentAddress: string;
     countryCitizen: string;
-
+    gender:string;
+    maritalStatus:string;
 
     backgroundInfo: [
       {

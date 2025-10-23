@@ -4,7 +4,6 @@ import English from './English';
 import Personal from './Personal';
 import { useState } from 'react';
 import '@/css/component/Form.css';
-import '@/css/additional/FAQ/FAQ.css';
 import { toast } from 'react-toastify';
 import ApplicationInfo from './ApplicationInfo';
 import Loader from '@/component/shared/loader/loader';
@@ -16,16 +15,41 @@ import { useCreatetStudentFileMutation } from '@/redux/endpoints/studentfileproc
 
 const AddStudentFileModal = ({ setModalState, modalState }: ModalProps) => {
     const [step, setStep] = useState(1);
-    const [createStudentFile, { isLoading }] = useCreatetStudentFileMutation();   
     const methods = useForm<StudentFileForm>({});   
     const { register, formState: { errors }, trigger, reset } = methods;    
+    const [createStudentFile, { isLoading }] = useCreatetStudentFileMutation();   
 
     const onSubmit = async (data: StudentFileForm) => {
       try {
-        const payload = {
-          ...data,
-        };    
-        const res: any = await createStudentFile({ data: payload });    
+        const cleanedData = JSON.parse(JSON.stringify(data));
+
+        const englishProficiency = cleanedData.englishProficiency as Record<string, any> | undefined;
+
+        if (englishProficiency) {
+          for (const [testName, testData] of Object.entries(englishProficiency)) {
+            const hasValue = Object.values(testData).some(
+              (val) => val !== "" && val !== null && val !== undefined
+            );
+            if (!hasValue) {
+              delete englishProficiency[testName];
+            }
+          }
+        }
+
+        if (Array.isArray(cleanedData.preferredUniversities)) {
+          cleanedData.preferredUniversities = cleanedData.preferredUniversities.filter((uni:any) =>
+            Object.values(uni).some((val) => val !== "" && val !== null && val !== undefined)
+          );
+        }
+        
+        if (typeof cleanedData.refusedCountry === "string") {
+            cleanedData.refusedCountry = cleanedData.refusedCountry
+            .split(",")
+            .map((v:any) => v.trim())
+            .filter((v:any) => v.length > 0);
+        }
+
+        const res: any = await createStudentFile({ data: cleanedData });    
         if (res?.data?.success) {
             toast.success('Student file created successfully!');
             reset();
