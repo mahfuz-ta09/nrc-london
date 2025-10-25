@@ -34,6 +34,7 @@ const Final = ({register}:{register:any}) => {
             <input value={info?.Urole} readOnly/>
             <input value={info?.Ustatus} readOnly/>
           </div>
+
         </>
     )
 }

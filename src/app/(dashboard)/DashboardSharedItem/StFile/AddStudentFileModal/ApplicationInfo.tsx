@@ -56,8 +56,7 @@ const ApplicationInfo = () => {
             <button
               type="button"
               onClick={() => remove(index)}
-              className="submit-button"
-              style={{ background: "red", color: "white", marginTop: "8px" }}
+              className="remove-btn"
             >
               Remove University
             </button>
@@ -79,7 +78,7 @@ const ApplicationInfo = () => {
               courseStartDate: "",
             })
           }
-          className="submit-button"
+          className="add-btn"
         >
           + Add Another
         </button>

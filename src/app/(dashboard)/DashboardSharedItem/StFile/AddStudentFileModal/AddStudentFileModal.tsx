@@ -4,6 +4,7 @@ import English from './English';
 import Personal from './Personal';
 import { useState } from 'react';
 import '@/css/component/Form.css';
+import FileUpload from './FileUpload';
 import { toast } from 'react-toastify';
 import ApplicationInfo from './ApplicationInfo';
 import Loader from '@/component/shared/loader/loader';
@@ -21,41 +22,45 @@ const AddStudentFileModal = ({ setModalState, modalState }: ModalProps) => {
 
     const onSubmit = async (data: StudentFileForm) => {
       try {
-        const cleanedData = JSON.parse(JSON.stringify(data));
+        const formData = new FormData();
+        const fileMeta: { fileFor: string; originalName: string; newName: string }[] = [];
 
-        const englishProficiency = cleanedData.englishProficiency as Record<string, any> | undefined;
+        for (const key in data) {
+            const value = data[key as keyof StudentFileForm];
 
-        if (englishProficiency) {
-          for (const [testName, testData] of Object.entries(englishProficiency)) {
-            const hasValue = Object.values(testData).some(
-              (val) => val !== "" && val !== null && val !== undefined
-            );
-            if (!hasValue) {
-              delete englishProficiency[testName];
+            if (key === "files" && Array.isArray(value)) {
+              value.forEach((fileObj: any) => {
+                if (fileObj.file && fileObj.file.length > 0) {
+                  const file = fileObj.file[0];
+                  if (file instanceof File) {
+                    const newName = `${fileObj.fileFor.replace(/\s+/g, "_")}`;
+                    formData.append("files", file, newName);
+
+                    fileMeta.push({
+                      fileFor: fileObj.fileFor,
+                      originalName: file.name,
+                      newName,
+                    });
+                  }
+                }
+              });
+
+              formData.append("fileMeta", JSON.stringify(fileMeta));
+            }else if (key === "academicInfo" ||key === "educationBackground" ||key === "preferredUniversities" ||key === "englishProficiency" ||key === "refusedCountry") {
+              formData.append(key, JSON.stringify(value));
+            }else {
+              formData.append(key, String(value));
             }
-          }
         }
 
-        if (Array.isArray(cleanedData.preferredUniversities)) {
-          cleanedData.preferredUniversities = cleanedData.preferredUniversities.filter((uni:any) =>
-            Object.values(uni).some((val) => val !== "" && val !== null && val !== undefined)
-          );
-        }
-        
-        if (typeof cleanedData.refusedCountry === "string") {
-            cleanedData.refusedCountry = cleanedData.refusedCountry
-            .split(",")
-            .map((v:any) => v.trim())
-            .filter((v:any) => v.length > 0);
-        }
-
-        const res: any = await createStudentFile({ data: cleanedData });    
-        if (res?.data?.success) {
+        const res: any = await createStudentFile({ data: formData }); 
+        console.log(res)   
+        if (res?.data?.data?.acknowledged) {
             toast.success('Student file created successfully!');
             reset();
             setModalState({ isOpen: false });
         } else {
-            toast.error(res?.error?.data?.message || 'Something went wrong!');
+            toast.error(res?.error?.data || 'Something went wrong!');
         }
       } catch {
           toast.error('Failed to operate!');
@@ -67,8 +72,9 @@ const AddStudentFileModal = ({ setModalState, modalState }: ModalProps) => {
           1: ['name', 'email'],
         };
         const valid = await trigger(fieldsToValidate[step] || []);
-        if (valid && step < 4) setStep(step + 1);
+        if (valid && step < 5) setStep(step + 1);
     };
+
     const handleBack = () => step > 1 && setStep(step - 1);
     if (isLoading) return <Loader />;
 
@@ -83,7 +89,8 @@ const AddStudentFileModal = ({ setModalState, modalState }: ModalProps) => {
               {step === 1 && <Personal register={register} errors={errors}/>}
               {step === 2 && <English register={register}/>}
               {step === 3 && <ApplicationInfo />}
-              {step === 4 && <Final register={register} />}
+              {step === 4 && <FileUpload />}
+              {step === 5 && <Final register={register} />}
 
 
               <div style={{margin:"20px 0"}} className="form-navigation">
@@ -92,12 +99,12 @@ const AddStudentFileModal = ({ setModalState, modalState }: ModalProps) => {
                     Back
                   </button>
                 )}
-                {step < 4 && (
+                {step < 5 && (
                   <button type="button" onClick={handleNext} className="submit-button">
                     Next
                   </button>
                 )}
-                {step === 4 && (
+                {step === 5 && (
                   <button type="submit" className="submit-button">
                     Submit
                   </button>
