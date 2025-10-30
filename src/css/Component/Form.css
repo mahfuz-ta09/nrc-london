@@ -1,12 +1,15 @@
 .double-input-container{
     width: 100%;
-    display: flex;
-    gap: 20px;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    flex-wrap: wrap;
+    gap: 10px;
 }
 
 .input-container{
-    width: 100%;
+    width: auto;
     display: flex;
+    flex-basis: 48%;
     flex-direction: column;
     margin: 10px 0;
     align-items: start;

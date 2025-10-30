@@ -2,27 +2,14 @@
 import { useRef } from "react";
 import '@/css/Dashboard/DashBoardSharedItem/DashboardSharedCss.css'
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faArrowRight, faFileSignature, faFolderOpen, faIdCard, faUniversity } from "@fortawesome/free-solid-svg-icons";
-import type { IconDefinition } from "@fortawesome/fontawesome-svg-core"; 
+import { faArrowRight} from "@fortawesome/free-solid-svg-icons";
 import { useGetStudentFileStatQuery } from "@/redux/endpoints/studentfileprocess/proceedEndpoints";
-const resetState:any = {
-  personalInfo: { requiredSubmission: '', requiredVerification: '' },
-  englishProficiency: { requiredSubmission: '', requiredVerification: '' },
-  prefferedUniSub: { requiredSubmission: '', requiredVerification: '' },
-  studentsFile: { requiredSubmission: '', requiredVerification: '' },
-  applicationFinished: { finished: '', archived: '' },
-};
+import { content, resetState } from "../type";
 
 type StudentListProps = {
     values: any;
     setValues: React.Dispatch<React.SetStateAction<any>>;
 }
-const content: Record<string, [string, string, string, IconDefinition]> = {
-  studentsFile: ["Pending file upload", "Files uploaded"," awaiting review", faFolderOpen],
-  personalInfo: ["Profile incomplete", "Profile updated"," pending verification", faIdCard],
-  englishProficiency: ["English proof missing", "English proof submitted","  awaiting check", faFileSignature],
-  prefferedUniSub: ["University not assigned", "University assigned"," pending confirmation", faUniversity],
-};
 
 type ContentKey = keyof typeof content;
 

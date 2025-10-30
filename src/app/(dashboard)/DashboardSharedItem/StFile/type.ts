@@ -1,3 +1,6 @@
+import { IconDefinition } from "@fortawesome/fontawesome-svg-core";
+import { faFileSignature, faFolderOpen, faIdCard, faUniversity } from "@fortawesome/free-solid-svg-icons";
+
 export type UniversityInfo = {
   scholarship: number;
   intake: string;
@@ -7,6 +10,7 @@ export type UniversityInfo = {
   courseStartDate: string;
   destinationCountry: string;
 }
+
 export type StudentFileForm = {
     name: string;
     email: string;
@@ -156,7 +160,6 @@ export type ModalProps = {
   setModalState: React.Dispatch<React.SetStateAction<any>>;
 };
 
-
 export const fileCategories = [
   {
     category: "Academic Documents",
@@ -255,4 +258,26 @@ export const examConfig:any = {
   gmat: ["verbal", "reasoning", "quantitative", "writing", "overall", "date"],
   sat: ["math", "reasoning", "quantitative", "writing", "reading", "overall", "date"],
   act: ["math", "reasoning", "quantitative", "writing", "reading", "overall", "date"],
+};
+
+export const content: Record<string, [string, string, string, IconDefinition]> = {
+  studentsFile: ["Pending file upload", "Files uploaded"," awaiting review", faFolderOpen],
+  personalInfo: ["Profile incomplete", "Profile updated"," pending verification", faIdCard],
+  englishProficiency: ["English proof missing", "English proof submitted","  awaiting check", faFileSignature],
+  prefferedUniSub: ["University not assigned", "University assigned"," pending confirmation", faUniversity],
+};
+
+export const resetState:any = {
+  personalInfo: { requiredSubmission: '', requiredVerification: '' },
+  englishProficiency: { requiredSubmission: '', requiredVerification: '' },
+  prefferedUniSub: { requiredSubmission: '', requiredVerification: '' },
+  studentsFile: { requiredSubmission: '', requiredVerification: '' },
+  applicationFinished: { finished: '', archived: '' },
+};
+
+export type StudentListProps = {
+  setdetailState: React.Dispatch<React.SetStateAction<{ isOpen: boolean, data: any, title: string }>>;
+  detailState: { isOpen: boolean, data: any, title: string };
+  values?: any;
+  setValues?: React.Dispatch<React.SetStateAction<any>>;
 };

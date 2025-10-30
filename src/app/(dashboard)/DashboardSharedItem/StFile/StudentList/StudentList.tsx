@@ -49,7 +49,17 @@ const StudentList = ({ setdetailState,detailState, values}: StudentListProps) =>
                                             <br/>
                                             {student?._id}
                                         </td>
-                                        <td><button onClick={()=>setdetailState({isOpen: true ,title:'personal information', data:student?.personalInfo})} className="details-table-action">details <FontAwesomeIcon icon={faArrowRight}/></button></td>
+                                        <td><button onClick={()=>setdetailState({isOpen: true ,title:'personal information', data:{"personalInfo":{
+                                            email: student?.email,
+                                            name: student?.name,
+                                            phone: student?.phone,
+                                            alternativePhone: student?.alternativePhone,
+                                            dob: student?.dob,
+                                            passportNo: student?.passportNo,
+                                            currentAddress: student?.currentAddress,
+                                            countryCitizen: student?.countryCitizen,
+                                            maritalStatus: student?.maritalStatus                        
+                                        },"academicInfo":student?.academicInfo}})} className="details-table-action">details <FontAwesomeIcon icon={faArrowRight}/></button></td>
                                         <td><button onClick={()=>setdetailState({isOpen: true ,title:'assigned university & subjects', data:student?.prefferedUniSub})} className="details-table-action">details <FontAwesomeIcon icon={faArrowRight}/></button></td>
                                         <td><button onClick={()=>setdetailState({isOpen: true ,title:'all files', data:student?.studentsFile})} className="details-table-action">details <FontAwesomeIcon icon={faArrowRight}/></button></td>
                                         <td><button onClick={()=>setdetailState({isOpen: true ,title:'english test', data:student?.englishProficiency})} className="details-table-action">details <FontAwesomeIcon icon={faArrowRight}/></button></td>
