@@ -2,14 +2,8 @@
 import { useGetFileByConditionsQuery } from "@/redux/endpoints/studentfileprocess/proceedEndpoints";
 import { faArrowRight } from "@fortawesome/free-solid-svg-icons"
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
+import { StudentListProps } from "../type";
 
-
-type StudentListProps = {
-    setdetailState: React.Dispatch<React.SetStateAction<{ isOpen: boolean, data: any , title: string}>>;
-    detailState: { isOpen: boolean , data: any, title: string};
-    values: any;
-    setValues: React.Dispatch<React.SetStateAction<any>>;
-}
 
 const StudentList = ({ setdetailState,detailState, values}: StudentListProps) => {
     const { data , isLoading } = useGetFileByConditionsQuery({values: values })
@@ -43,9 +37,9 @@ const StudentList = ({ setdetailState,detailState, values}: StudentListProps) =>
                                 data.data.map((student: any) => (
                                     <tr key={student?._id}>
                                         <td>
-                                            {student?.personalInfo?.name}
+                                            {student?.name}
                                             <br/>
-                                            {student?.personalInfo?.email}
+                                            {student?.email}
                                             <br/>
                                             {student?._id}
                                         </td>
@@ -60,7 +54,7 @@ const StudentList = ({ setdetailState,detailState, values}: StudentListProps) =>
                                             countryCitizen: student?.countryCitizen,
                                             maritalStatus: student?.maritalStatus                        
                                         },"academicInfo":student?.academicInfo}})} className="details-table-action">details <FontAwesomeIcon icon={faArrowRight}/></button></td>
-                                        <td><button onClick={()=>setdetailState({isOpen: true ,title:'assigned university & subjects', data:student?.prefferedUniSub})} className="details-table-action">details <FontAwesomeIcon icon={faArrowRight}/></button></td>
+                                        <td><button onClick={()=>setdetailState({isOpen: true ,title:'assigned university & subjects', data:student?.preferredUniversities})} className="details-table-action">details <FontAwesomeIcon icon={faArrowRight}/></button></td>
                                         <td><button onClick={()=>setdetailState({isOpen: true ,title:'all files', data:student?.studentsFile})} className="details-table-action">details <FontAwesomeIcon icon={faArrowRight}/></button></td>
                                         <td><button onClick={()=>setdetailState({isOpen: true ,title:'english test', data:student?.englishProficiency})} className="details-table-action">details <FontAwesomeIcon icon={faArrowRight}/></button></td>
                                         <td><button onClick={()=>setdetailState({isOpen: true ,title:'educational background', data:student?.educationBackground})} className="details-table-action">details <FontAwesomeIcon icon={faArrowRight}/></button></td>
