@@ -1,36 +1,42 @@
-import { useState } from "react";
-import { useFormContext } from "react-hook-form";
+import { useFormContext } from 'react-hook-form'
 
+type EditableInputProps = {
+  name: string
+  label: string
+  readOnly?: boolean
+}
 
-function EditableInput({name,label,readOnly = false,}: {name: string;label: string;readOnly?: boolean;}) {
-    const { register, watch } = useFormContext();
-    const [isEditing, setIsEditing] = useState(false);
-    const value = watch(name);
-    
-    
-    
-    if (readOnly) {
-      return (
-        <div className="input-container">
-          <label>{label}</label>
-          <input value={value || "___"} readOnly />
-        </div>
-      );
+const EditableInput = ({ name, label, readOnly = false }: EditableInputProps) => {
+    const { register, watch } = useFormContext()
+    const value = watch(name)
+
+    const getInputType = () => {
+        if (label.toLowerCase().includes('date')) return 'date'
+        if (label.toLowerCase().includes('email')) return 'email'
+        if (label.toLowerCase().includes('phone')) return 'tel'
+        if (label.toLowerCase().includes('scholarship')) return 'number'
+        return 'text'
     }
-    console.log(label)
+
+    if (readOnly) {
+        return (
+        <div className="input-container">
+            <label>{label}</label>
+            <input value={value ?? '___'} readOnly />
+        </div>
+        )
+    }
+
     return (
-      <div className="input-container">
+        <div className="input-container">
         <label>{label}</label>
         <input
-          {...register(name)}
-          value={isEditing ? value || "" : value || "___"}
-          readOnly={!isEditing}
-          onClick={() => setIsEditing(true)}
-          onBlur={() => setIsEditing(false)}
-          autoFocus={isEditing}
+            type={getInputType()}
+            {...register(name)}
+            defaultValue={value ?? ''}
         />
-      </div>
-    );
+        </div>
+    )
 }
 
 export default EditableInput
