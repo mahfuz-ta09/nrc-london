@@ -1,22 +1,22 @@
 'use client'
 import { Suspense, useState } from 'react'
+import StudentList from './StudentList/StudentList'
 import Loader from '@/component/shared/loader/loader'
 import '@/css/Dashboard/DashBoardSharedItem/DashboardSharedCss.css'
 import StudentInfoSlider from './StudentInfoSlider/StudentInfoSlider'
-import AddStudentFileModal from './AddStudentFileModal/AddStudentFileModal'
-import StudentList from './StudentList/StudentList'
 import StudentDetailModal from './StudentDetailModal/StudentDetailModal'
+import AddStudentFileModal from './AddStudentFileModal/AddStudentFileModal'
 
 
 const stFile = () => {
     const [modalState,setModalState] = useState({ isOpen: false })
     const [detailState,setdetailState] = useState({ isOpen: false, data: {} , title: ''})
     const [values,setValues] = useState({
-      personalInfo: { requiredSubmission: '', requiredVerification: '' },
-      englishProficiency: { requiredSubmission: '', requiredVerification: '' },
-      prefferedUniSub: { requiredSubmission: '', requiredVerification: '' },
-      studentsFile: { requiredSubmission: '', requiredVerification: '' },
-      applicationFinished: { finished: '', archived: '' },
+        personalInfo: { requiredSubmission: '', requiredVerification: '' },
+        englishProficiency: { requiredSubmission: '', requiredVerification: '' },
+        prefferedUniSub: { requiredSubmission: '', requiredVerification: '' },
+        studentsFile: { requiredSubmission: '', requiredVerification: '' },
+        applicationFinished: { finished: '', archived: '' },
     })
 
     return (
@@ -27,8 +27,6 @@ const stFile = () => {
             <button className='header-btn' onClick={()=>setModalState({ isOpen: !modalState?.isOpen })}>Add New Applicant</button>
           </div>
         </div>
-
-        
 
         <Suspense fallback={<Loader />}>
           <AddStudentFileModal

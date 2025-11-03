@@ -1,9 +1,9 @@
 import { useFormContext } from 'react-hook-form'
 
 type EditableInputProps = {
-  name: string
-  label: string
-  readOnly?: boolean
+    name: string
+    label: string
+    readOnly?: boolean
 }
 
 const EditableInput = ({ name, label, readOnly = false }: EditableInputProps) => {
@@ -20,21 +20,21 @@ const EditableInput = ({ name, label, readOnly = false }: EditableInputProps) =>
 
     if (readOnly) {
         return (
-        <div className="input-container">
-            <label>{label}</label>
-            <input value={value ?? '___'} readOnly />
-        </div>
+            <div className="input-container">
+                <label>{label}</label>
+                <input value={value ?? '___'} readOnly />
+            </div>
         )
     }
 
     return (
         <div className="input-container">
-        <label>{label}</label>
-        <input
-            type={getInputType()}
-            {...register(name)}
-            defaultValue={value ?? ''}
-        />
+            <label>{label}</label>
+            <input
+                type={getInputType()}
+                {...register(name)}
+                defaultValue={value ?? ''}
+            />
         </div>
     )
 }
