@@ -103,17 +103,24 @@ const PersonalInfo = ({ detailState, setdetailState }: StudentListProps) => {
             <form onSubmit={methods.handleSubmit(onSubmit)} className="modal-content">
               
                 <div style={{marginTop:"20px"}}>
-                  <h5>🟡 required verification</h5>
-                  <div className="checkbox-container">
-                    <label>mark verified</label>
-                    <input type="checkbox" />
-                  </div>
-
-                  <h5 style={{marginTop:"10px"}}>🔴 not ready for submission</h5>
-                  <div className="checkbox-container">
-                    <label>mark this part ready for submission</label>
-                    <input type="checkbox" />
-                  </div>
+                    <div className="checkbox-container">
+                        <h5>🟡 required verification</h5>
+                        <br />
+                        { isEditing && (<label>mark verified</label>)}
+                        { isEditing && (<input type="checkbox" />)}
+                    </div>
+                    <div className="checkbox-container">
+                        <h5>🔴 not ready for submission</h5>
+                        <br />
+                        { isEditing && (<label>mark this part ready for submission</label>)}
+                        { isEditing && (<input type="checkbox" />)}
+                    </div>
+                    <div className="checkbox-container">
+                        <h5>🔴 student are not allowed to change these data</h5>
+                        <br />
+                        { isEditing && (<label>mark this part ready for submission</label>)}
+                        { isEditing && (<input type="checkbox" />)}
+                    </div>
                 </div>
                 
                 <h3 className="phase-title">Personal Information</h3>

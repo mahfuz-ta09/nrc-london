@@ -54,19 +54,22 @@ const AssignedUniSub = ({ detailState, setdetailState }: StudentListProps) => {
                 </div>
 
                 <div style={{marginTop:"20px"}}>
-                    <h5>🟡 required verification</h5>
                     <div className="checkbox-container">
-                        <label>mark verified</label>
+                        <h5>🟡 required verification</h5>
+                        <br />
+                        { isEditing && (<label>mark verified</label>)}
                         { isEditing && (<input type="checkbox" />)}
                     </div>
-                    <h5 style={{marginTop:"10px"}}>🔴 not ready for submission</h5>
                     <div className="checkbox-container">
-                        <label>mark this part ready for submission</label>
+                        <h5>🔴 not ready for submission</h5>
+                        <br />
+                        { isEditing && (<label>mark this part ready for submission</label>)}
                         { isEditing && (<input type="checkbox" />)}
                     </div>
-                    <h5 style={{marginTop:"10px"}}>🔴 student are not allowed to change these data</h5>
                     <div className="checkbox-container">
-                        <label>mark this part ready for submission</label>
+                        <h5>🔴 student are not allowed to change these data</h5>
+                        <br />
+                        { isEditing && (<label>mark this part ready for submission</label>)}
                         { isEditing && (<input type="checkbox" />)}
                     </div>
                 </div>

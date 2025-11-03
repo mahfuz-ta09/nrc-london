@@ -124,23 +124,26 @@ const AllFile = ({ detailState, setdetailState }: StudentListProps) => {
                         )}
                     </div>
 
-                    <div style={{marginTop:"20px"}}>
+                <div style={{marginTop:"20px"}}>
+                    <div className="checkbox-container">
                         <h5>🟡 required verification</h5>
-                        <div className="checkbox-container">
-                            <label>mark verified</label>
-                            { isEditing && (<input type="checkbox" />)}
-                        </div>
-                        <h5 style={{marginTop:"10px"}}>🔴 not ready for submission</h5>
-                        <div className="checkbox-container">
-                            <label>mark this part ready for submission</label>
-                            { isEditing && (<input type="checkbox" />)}
-                        </div>
-                        <h5 style={{marginTop:"10px"}}>🔴 student are not allowed to change these data</h5>
-                        <div className="checkbox-container">
-                            <label>mark this part ready for submission</label>
-                            { isEditing && (<input type="checkbox" />)}
-                        </div>
+                        <br />
+                        { isEditing && (<label>mark verified</label>)}
+                        { isEditing && (<input type="checkbox" />)}
                     </div>
+                    <div className="checkbox-container">
+                        <h5>🔴 not ready for submission</h5>
+                        <br />
+                        { isEditing && (<label>mark this part ready for submission</label>)}
+                        { isEditing && (<input type="checkbox" />)}
+                    </div>
+                    <div className="checkbox-container">
+                        <h5>🔴 student are not allowed to change these data</h5>
+                        <br />
+                        { isEditing && (<label>mark this part ready for submission</label>)}
+                        { isEditing && (<input type="checkbox" />)}
+                    </div>
+                </div>
 
                     <form onSubmit={handleSubmit(onSubmit)} className="modal-content">
                         <h3 className="phase-title">Uploaded Files</h3>
