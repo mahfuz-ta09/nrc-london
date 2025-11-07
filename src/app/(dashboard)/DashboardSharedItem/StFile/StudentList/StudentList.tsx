@@ -22,7 +22,7 @@ const StudentList = ({ setdetailState,detailState, values}: StudentListProps) =>
                             <th>assigned universities and subjects</th>
                             <th>files</th>
                             <th>english test</th>
-                            <th>educational background</th>
+                            {/* <th>educational background</th> */}
                             <th>update history</th>
                             <th>delete</th>
                         </tr>
@@ -52,13 +52,15 @@ const StudentList = ({ setdetailState,detailState, values}: StudentListProps) =>
                                             passportNo: student?.passportNo,
                                             currentAddress: student?.currentAddress,
                                             countryCitizen: student?.countryCitizen,
-                                            maritalStatus: student?.maritalStatus                        
+                                            maritalStatus: student?.maritalStatus,                        
+                                            gender: student?.gender,                        
+                                            refusedCountry: student?.refusedCountry,                        
                                         },"academicInfo":student?.academicInfo}})} className="details-table-action">details <FontAwesomeIcon icon={faArrowRight}/></button></td>
                                         <td><button onClick={()=>setdetailState({isOpen: true ,title:'assigned university & subjects', data:student?.preferredUniversities})} className="details-table-action">details <FontAwesomeIcon icon={faArrowRight}/></button></td>
                                         <td><button onClick={()=>setdetailState({isOpen: true ,title:'all files', data:student?.files})} className="details-table-action">details <FontAwesomeIcon icon={faArrowRight}/></button></td>
                                         <td><button onClick={()=>setdetailState({isOpen: true ,title:'english test', data:student?.englishProficiency})} className="details-table-action">details <FontAwesomeIcon icon={faArrowRight}/></button></td>
-                                        <td><button onClick={()=>setdetailState({isOpen: true ,title:'educational background', data:student?.educationBackground})} className="details-table-action">details <FontAwesomeIcon icon={faArrowRight}/></button></td>
-                                        <td><button onClick={()=>setdetailState({isOpen: true ,title:'update history', data:student?.fileEditActivity})} className="details-table-action">details <FontAwesomeIcon icon={faArrowRight}/></button></td>
+                                        {/* <td><button onClick={()=>setdetailState({isOpen: true ,title:'educational background', data:student?.educationBackground})} className="details-table-action">details <FontAwesomeIcon icon={faArrowRight}/></button></td> */}
+                                        <td><button onClick={()=>setdetailState({isOpen: true ,title:'history timeline', data:student?.applicationStatus})} className="details-table-action">details <FontAwesomeIcon icon={faArrowRight}/></button></td>
                                         <td><button className="details-table-action"></button></td>
                                     </tr>
                                 ))

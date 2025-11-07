@@ -24,118 +24,113 @@ const AssignedUniSub = ({ detailState, setdetailState }: StudentListProps) => {
 
     if (!detailState.isOpen) return null
     return (
-        <div
-        className={
-            detailState.isOpen
-            ? 'modal-container openmoda-container'
-            : 'modal-container'
-        }>
-        <div className="modal-body">
-            <h4 className="modal-header">{detailState?.title}</h4>
-            <button
-                onClick={() => setdetailState({ isOpen: false, data: {}, title: '' })}
-                className="cancel-btn"
-            >X</button>
+        <div className={detailState.isOpen? 'modal-container openmoda-container': 'modal-container' }>
+            <div className="modal-body">
+                <h4 className="modal-header">{detailState?.title}</h4>
+                <button
+                    onClick={() => setdetailState({ isOpen: false, data: {}, title: '' })}
+                    className="cancel-btn"
+                >X</button>
 
-            <div className="modal-content">
-                <div style={{ display: 'flex', justifyContent: 'end' }}>
-                    {!isEditing ? (
-                    <button className="add-btn" onClick={() => setIsEditing(true)}>
-                        ✏️ Edit
-                    </button>
-                    ) : (
-                    <button
-                        className="add-btn"
-                        style={{ backgroundColor: '#f55', color: '#fff' }}
-                        onClick={() => setIsEditing(false)}>
-                        ✖ Cancel
-                    </button>
-                    )}
-                </div>
+                <div className="modal-content">
+                    <div style={{ display: 'flex', justifyContent: 'end' }}>
+                        {!isEditing ? (
+                        <button className="add-btn" onClick={() => setIsEditing(true)}>
+                            ✏️ Edit
+                        </button>
+                        ) : (
+                        <button
+                            className="add-btn"
+                            style={{ backgroundColor: '#f55', color: '#fff' }}
+                            onClick={() => setIsEditing(false)}>
+                            ✖ Cancel
+                        </button>
+                        )}
+                    </div>
+    
+                    <div style={{marginTop:"20px"}}>
+                        <div className="checkbox-container">
+                            <h5>🟡 required verification</h5>
+                            <br />
+                            { isEditing && (<label>mark verified</label>)}
+                            { isEditing && (<input type="checkbox" />)}
+                        </div>
+                        <div className="checkbox-container">
+                            <h5>🔴 not ready for submission</h5>
+                            <br />
+                            { isEditing && (<label>mark this part ready for submission</label>)}
+                            { isEditing && (<input type="checkbox" />)}
+                        </div>
+                        <div className="checkbox-container">
+                            <h5>🔴 student are not allowed to change these data</h5>
+                            <br />
+                            { isEditing && (<label>mark this part ready for submission</label>)}
+                            { isEditing && (<input type="checkbox" />)}
+                        </div>
+                    </div>
 
-                <div style={{marginTop:"20px"}}>
-                    <div className="checkbox-container">
-                        <h5>🟡 required verification</h5>
-                        <br />
-                        { isEditing && (<label>mark verified</label>)}
-                        { isEditing && (<input type="checkbox" />)}
-                    </div>
-                    <div className="checkbox-container">
-                        <h5>🔴 not ready for submission</h5>
-                        <br />
-                        { isEditing && (<label>mark this part ready for submission</label>)}
-                        { isEditing && (<input type="checkbox" />)}
-                    </div>
-                    <div className="checkbox-container">
-                        <h5>🔴 student are not allowed to change these data</h5>
-                        <br />
-                        { isEditing && (<label>mark this part ready for submission</label>)}
-                        { isEditing && (<input type="checkbox" />)}
-                    </div>
-                </div>
+                    <FormProvider {...methods}>
+                        <form onSubmit={methods.handleSubmit(onSubmit)} className="modal-content">
+                            {fields.map((field, index) => (
+                                <div 
+                                    style={{
+                                        borderLeft: "1px solid green",
+                                        marginTop: "40px",
+                                        paddingLeft: "10px",
+                                    }} key={field.id} className="double-input-container">
+                                    
+                                    {Object.keys(field || {}).map((key) => (
+                                        <EditableInput
+                                            key={key}
+                                            name={`preferredUniversities.${index}.${key}` as const}
+                                            label={key}
+                                            readOnly={!isEditing}
+                                        />
+                                    ))}
 
-                <FormProvider {...methods}>
-                    <form onSubmit={methods.handleSubmit(onSubmit)} className="modal-content">
-                        {fields.map((field, index) => (
-                            <div 
-                                style={{
-                                    borderLeft: "1px solid green",
-                                    marginTop: "40px",
-                                    paddingLeft: "10px",
-                                }} key={field.id} className="double-input-container">
-                                
-                                {Object.keys(field || {}).map((key) => (
-                                    <EditableInput
-                                        key={key}
-                                        name={`preferredUniversities.${index}.${key}` as const}
-                                        label={key}
-                                        readOnly={!isEditing}
-                                    />
-                                ))}
+                                {isEditing && (
+                                    <button
+                                        type="button"
+                                        onClick={() => remove(index)}
+                                        className="remove-btn"
+                                        style={{ width: '150px' }}
+                                    >
+                                        Remove University
+                                    </button>
+                                )}
+                                </div>
+                            ))}
 
                             {isEditing && (
                                 <button
                                     type="button"
-                                    onClick={() => remove(index)}
-                                    className="remove-btn"
-                                    style={{ width: '150px' }}
-                                >
-                                    Remove University
+                                    onClick={() =>
+                                        append({
+                                            uniName: '',
+                                            program: '',
+                                            subject: '',
+                                            destinationCountry: '',
+                                            intake: '',
+                                            scholarship: 0,
+                                            courseStartDate: '',
+                                        })
+                                    }
+                                    className="add-btn">
+                                + Add Another
                                 </button>
                             )}
-                            </div>
-                        ))}
 
-                        {isEditing && (
-                            <button
-                                type="button"
-                                onClick={() =>
-                                    append({
-                                        uniName: '',
-                                        program: '',
-                                        subject: '',
-                                        destinationCountry: '',
-                                        intake: '',
-                                        scholarship: 0,
-                                        courseStartDate: '',
-                                    })
-                                }
-                                className="add-btn">
-                            + Add Another
-                            </button>
-                        )}
-
-                        {isEditing && (
-                            <div style={{ marginTop: '1rem', textAlign: 'right' }}>
-                            <button type="submit" className="add-btn">
-                                💾 Save Changes
-                            </button>
-                            </div>
-                        )}
-                    </form>
-                </FormProvider>
+                            {isEditing && (
+                                <div style={{ marginTop: '1rem', textAlign: 'right' }}>
+                                <button type="submit" className="add-btn">
+                                    💾 Save Changes
+                                </button>
+                                </div>
+                            )}
+                        </form>
+                    </FormProvider>
+                </div>
             </div>
-        </div>
         </div>
     )
 }

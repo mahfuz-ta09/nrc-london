@@ -106,53 +106,53 @@
     color: #004a62;
     font-size: 14px;
 }
-/* some extra design */
+
 
 .exam-accordion {
-  width: 100%;
-  border-radius: 10px;
-  overflow: hidden;
+    width: 100%;
+    border-radius: 10px;
+    overflow: hidden;
 }
 
 .exam-item {
-  position: relative;
-  border-bottom: 1px solid #e5e5e5;
+    position: relative;
+    border-bottom: 1px solid #e5e5e5;
 }
 
 .exam-toggle {
-  display: none;
+    display: none;
 }
 
 .exam-title {
-  display: block;
-  font-weight: 600;
-  font-size: 1rem;
-  cursor: pointer;
-  padding: 12px 16px;
-  transition: all 0.3s ease;
-  background: #f9f9f9;
+    display: block;
+    font-weight: 600;
+    font-size: 1rem;
+    cursor: pointer;
+    padding: 12px 16px;
+    transition: all 0.3s ease;
+    background: #f9f9f9;
 }
 
 .exam-title:hover {
-  background: #f1f1f1;
+    background: #f1f1f1;
 }
 
 .exam-plus {
-  position: absolute;
-  right: 16px;
-  top: 14px;
-  font-weight: bold;
-  transition: transform 0.3s ease;
+    position: absolute;
+    right: 16px;
+    top: 14px;
+    font-weight: bold;
+    transition: transform 0.3s ease;
 }
 
 .exam-toggle:checked + .exam-plus {
-  transform: rotate(45deg);
+    transform: rotate(45deg);
 }
 
 .exam-content {
-  display: none;
-  padding: 10px 16px 20px;
-  background: #fff;
+    display: none;
+    padding: 10px 16px 20px;
+    background: #fff;
 }
 
 .exam-toggle:checked ~ .exam-content {
@@ -160,10 +160,10 @@
 }
 
 .checkbox-section {
-  margin-top: 15px;
-  display: flex;
-  align-items: center;
-  gap: 8px;
+    margin-top: 15px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
 }
 
 
