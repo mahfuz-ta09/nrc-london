@@ -2,30 +2,80 @@
 import React, { useState } from "react";
 import { FormProvider, useForm } from "react-hook-form";
 import { StudentListProps, examConfig } from "../../type";
+import EditableInput from "../EditableInput";
+import { useEditStudentFileMutation } from "@/redux/endpoints/studentfileprocess/proceedEndpoints";
+import { toast } from "react-toastify";
+
+interface formValue{
+    englishProficiency: {
+        [key: string]: {
+            score?: number;
+            date?: string;
+            listening?: number;
+            reading?: number;
+            writing?: number;
+            speaking?: number;
+        };
+    };
+    permission: {
+        permission_englishProficiency: string;
+    };
+    applicationState: {
+        englishProficiency: {
+            verified: string;
+            complete: string;
+        };
+    };
+}
 
 const EnglishTest = ({ detailState, setdetailState }: StudentListProps) => {
     const [isEditing, setIsEditing] = useState(false);
+    const [editStudentFile,{ isLoading}] = useEditStudentFileMutation()
+    
 
-    const methods = useForm({
+    const methods = useForm<formValue>({
         defaultValues: {
             englishProficiency: detailState?.data || {},
+            permission: {
+                permission_englishProficiency: '',
+            },
+            applicationState: {
+                englishProficiency: {
+                    verified: '',
+                    complete: '',
+                },
+            },
         },
     });
 
     const { register, watch, setValue } = methods;
     const englishData = watch("englishProficiency");
 
-    const onSubmit = (data: any) => {
-        console.log("✅ Updated English Tests:", data);
-        setIsEditing(false);
+    const onSubmit = async(data: any) => {
+        console.log("Updated English Tests:", data);
+        
+        if(isEditing){
+            const confirm = window.confirm("Are you sure aboiut the upgrade?")
+            if(!confirm) return
+            if(!detailState?.id) return
+            
+            const response:any = await editStudentFile({ data: data, id:detailState?.id}) 
+            if(response?.data?.data?.modifiedCount){
+              toast.success("Student file updated successfully")
+              setdetailState({ isOpen: false, data: {}, title: "" })
+            }else{
+              toast.error("Failed to update student file")
+            }
+        }
+        setIsEditing(false)
     };
 
     const addExam = (exam: string) => {
         if (!exam) return;
-        const current = { ...englishData };
-        if (!current[exam]) {
-            current[exam] = {};
-            setValue("englishProficiency", current);
+        const updated = { ...englishData };
+        if (!updated[exam]) {
+            updated[exam] = {};
+            setValue("englishProficiency", updated);
         }
     };
 
@@ -36,77 +86,63 @@ const EnglishTest = ({ detailState, setdetailState }: StudentListProps) => {
     };
 
     if (!detailState.isOpen) return null;
-    
+
     return (
-        <div className={detailState.isOpen? "modal-container openmoda-container": "modal-container"}>
+        <div className={detailState.isOpen ? "modal-container openmoda-container" : "modal-container"}>
             <div className="modal-body">
+
                 <h4 className="modal-header">{detailState?.title}</h4>
+
                 <button
-                    onClick={() =>
-                        setdetailState({ isOpen: false, data: {}, title: "" })
-                    }
+                    onClick={() => setdetailState({ isOpen: false, data: {}, title: "" })}
                     className="cancel-btn"
                 >X</button>
+
                 <div style={{ display: "flex", justifyContent: "end" }}>
                     {!isEditing ? (
                         <button className="add-btn" onClick={() => setIsEditing(true)}>
-                        ✏️ Edit</button>
+                            ✏️ Edit
+                        </button>
                     ) : (
                         <button
                             className="add-btn"
                             style={{ backgroundColor: "#f55", color: "#fff" }}
                             onClick={() => setIsEditing(false)}
-                        >✖ Cancel</button>
+                        >
+                            ✖ Cancel
+                        </button>
                     )}
                 </div>
+
                 <FormProvider {...methods}>
                     <form onSubmit={methods.handleSubmit(onSubmit)} className="modal-content">
-                        
-                        <div style={{marginTop:"20px"}}>
-                            <div className="checkbox-container">
-                                <h5>🟡 required verification</h5>
-                                <br />
-                                { isEditing && (<label>mark verified</label>)}
-                                { isEditing && (<input type="checkbox" />)}
-                            </div>
-                            <div className="checkbox-container">
-                                <h5>🔴 not ready for submission</h5>
-                                <br />
-                                { isEditing && (<label>mark this part ready for submission</label>)}
-                                { isEditing && (<input type="checkbox" />)}
-                            </div>
-                            <div className="checkbox-container">
-                                <h5>🔴 student are not allowed to change these data</h5>
-                                <br />
-                                { isEditing && (<label>mark this part ready for submission</label>)}
-                                { isEditing && (<input type="checkbox" />)}
-                            </div>
-                        </div>
-                        
                         {isEditing && (
                             <div className="input-container">
+                                <label>Want to add new test result?</label>
                                 <select
-                                defaultValue=""
-                                onChange={(e) => {
-                                    addExam(e.target.value);
-                                    e.target.value = "";
-                                }}>
-                                <option value="" disabled>
-                                    Add new test...
-                                </option>
-                                {Object.keys(examConfig).map((exam) => (
-                                    <option key={exam} value={exam}>
-                                    {exam.toUpperCase()}
-                                    </option>
-                                ))}
+                                    defaultValue=""
+                                    onChange={(e) => {
+                                        addExam(e.target.value);
+                                        e.target.value = "";
+                                    }}
+                                >
+                                    <option value="" disabled>Add new test...</option>
+
+                                    {Object.keys(examConfig).map((exam) => (
+                                        <option key={exam} value={exam}>
+                                            {exam.toUpperCase()}
+                                        </option>
+                                    ))}
                                 </select>
                             </div>
                         )}
 
+                        {/* --- No Test Message --- */}
                         {Object.keys(englishData || {}).length === 0 && (
-                            <p style={{ marginTop: "1rem" }}>No English test information available.</p>
+                            <p>No English test information available.</p>
                         )}
 
+                        {/* --- Exam Sections (CLEANED) --- */}
                         {Object.keys(englishData || {}).map((exam) => (
                             <div
                                 key={exam}
@@ -118,20 +154,23 @@ const EnglishTest = ({ detailState, setdetailState }: StudentListProps) => {
                                 }}
                             >
                                 <div
-                                style={{
-                                    display: "flex",
-                                    justifyContent: "space-between",
-                                    alignItems: "center",
-                                }}
+                                    style={{
+                                        display: "flex",
+                                        justifyContent: "space-between",
+                                        alignItems: "center",
+                                    }}
                                 >
-                                <h4>{exam.toUpperCase()}</h4>
-                                {isEditing && (
-                                    <button
-                                        type="button"
-                                        className="remove-btn"
-                                        onClick={() => removeExam(exam)}
-                                    >❌ Remove</button>
-                                )}
+                                    <h4>{exam.toUpperCase()}</h4>
+
+                                    {isEditing && (
+                                        <button
+                                            type="button"
+                                            className="remove-btn"
+                                            onClick={() => removeExam(exam)}
+                                        >
+                                            ❌ Remove
+                                        </button>
+                                    )}
                                 </div>
 
                                 <div
@@ -139,35 +178,60 @@ const EnglishTest = ({ detailState, setdetailState }: StudentListProps) => {
                                     style={{
                                         display: "grid",
                                         gridTemplateColumns:
-                                        "repeat(auto-fit, minmax(200px, 1fr))",
+                                            "repeat(auto-fit, minmax(200px, 1fr))",
                                         gap: "10px",
                                     }}
                                 >
-                                {examConfig[exam]?.map((field: string) => (
-                                    <div key={field} className="input-container">
-                                    <label>{field}</label>
-                                    {isEditing ? (
-                                        <input
-                                            type={field === "date" ? "date" : "number"}
-                                            {...register(`englishProficiency.${exam}.${field}`)}
+                                    {examConfig[exam]?.map((field: any) => (
+                                        <EditableInput 
+                                            key={field}
+                                            name={`englishProficiency.${exam}.${field}`}
+                                            label={field}
+                                            readOnly={!isEditing}
                                         />
-                                    ) : (
-                                        <p>
-                                            {englishData?.[exam]?.[field]
-                                            ? englishData[exam][field]
-                                            : "-"}
-                                        </p>
-                                    )}
-                                    </div>
-                                ))}
+                                    ))}
                                 </div>
                             </div>
                         ))}
 
+                        <div className="input-container">
+                            {isEditing && (<label>Allow student to edit this section?</label>)}
+                            {isEditing && (
+                              <select {...methods.register("permission.permission_englishProficiency")}>
+                                <option value="">Select</option>
+                                <option value="true">Yes</option>
+                                <option value="false">No</option>
+                              </select>
+                            )}
+                        </div>
+ 
+                        <div className="input-container">
+                          {isEditing && (<label>Information Verified?</label>)}
+                          {isEditing && (
+                            <select {...methods.register("applicationState.englishProficiency.verified")}>
+                              <option value="">Select</option>
+                              <option value="true">Verified</option>
+                              <option value="false">Not Verified</option>
+                            </select>
+                          )}
+                        </div>
+
+                        <div className="input-container">
+                          {isEditing && (<label>Section Complete?</label>)}
+                          {isEditing && (
+                            <select {...methods.register("applicationState.englishProficiency.complete")}>
+                              <option value="">Select</option>
+                              <option value="true">Complete</option>
+                              <option value="false">Incomplete</option>
+                            </select>
+                          )}
+                        </div>
+
+
                         {isEditing && (
                             <div style={{ marginTop: "1rem", textAlign: "right" }}>
                                 <button type="submit" className="add-btn">
-                                💾 Save Changes
+                                    💾 Save Changes
                                 </button>
                             </div>
                         )}
@@ -179,3 +243,4 @@ const EnglishTest = ({ detailState, setdetailState }: StudentListProps) => {
 };
 
 export default EnglishTest;
+  

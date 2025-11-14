@@ -62,18 +62,18 @@ const StudentInfoSlider = ({ values , setValues }: StudentListProps) => {
                         <div className="student-card-info-header">
                             <FontAwesomeIcon className="info-header-icon" icon={content[key][3]} />
                             <div className="student-card-info-header-item">
-                                <h5>{value?.requiredSubmission}</h5>
+                                <h5>{value?.complete}</h5>
                                 <h6 onClick={() => setValues((prev:any) => ({
                                     ...resetState,
                                     [key]: { 
                                         ...resetState[key],            
-                                        requiredSubmission: false
+                                        complete: false
                                     }
                                 }))}>{content[key][0] as string}</h6>
                             </div>
                         </div>
                         <div className="student-card-info-body">
-                            <h5>{value?.requiredVerification}</h5>
+                            <h5>{value?.verified}</h5>
                             <h6>
                                 {content[key][1]} <br />
                                 {content[key][2]} <br />
@@ -82,7 +82,7 @@ const StudentInfoSlider = ({ values , setValues }: StudentListProps) => {
                                 ...resetState,
                                 [key]: {                        
                                     ...resetState[key],               
-                                    requiredVerification: true   
+                                    verified: true   
                                 }
                             }))} className="details-action-btn">
                                 View Students <FontAwesomeIcon icon={faArrowRight} />

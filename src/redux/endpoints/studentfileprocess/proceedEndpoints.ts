@@ -40,21 +40,33 @@ const proceedApi = baseApi.injectEndpoints({
             providesTags: ["proceed"],  
         }),
 
+        editStudentFile:build.mutation<any, { data: any; id: string }>({
+            query: ({ data, id }) => {
+                return {
+                    url: `/process/update-file/${id}`,
+                    method: "PATCH",
+                    data,   
+                }
+            },
+            invalidatesTags: ["proceed"], 
+        }),
+
+        
         getFileByConditions: build.query<any, { values: any }>({
             query: ({ values }) => {
                 const params = new URLSearchParams();
                 
-                if (values?.personalInfo?.requiredSubmission !== '')params.append("personalInfo[requiredSubmission]", String(values.personalInfo.requiredSubmission));
-                if (values?.personalInfo?.requiredVerification !== '')params.append("personalInfo[requiredVerification]", String(values.personalInfo.requiredVerification));
+                if (values?.personalInfo?.complete !== '')params.append("personalInfo[complete]", String(values.personalInfo.complete));
+                if (values?.personalInfo?.verified !== '')params.append("personalInfo[verified]", String(values.personalInfo.verified));
                 
-                if (values?.englishProficiency?.requiredSubmission !== '')params.append("englishProficiency[requiredSubmission]", String(values.englishProficiency.requiredSubmission));
-                if (values?.englishProficiency?.requiredVerification !== '')params.append("englishProficiency[requiredVerification]", String(values.englishProficiency.requiredVerification));
+                if (values?.englishProficiency?.complete !== '')params.append("englishProficiency[complete]", String(values.englishProficiency.complete));
+                if (values?.englishProficiency?.verified !== '')params.append("englishProficiency[verified]", String(values.englishProficiency.verified));
                 
-                if (values?.prefferedUniSub?.requiredSubmission !== '')params.append("prefferedUniSub[requiredSubmission]", String(values.prefferedUniSub.requiredSubmission));
-                if (values?.prefferedUniSub?.requiredVerification !== '')params.append("prefferedUniSub[requiredVerification]", String(values.prefferedUniSub.requiredVerification));
+                if (values?.prefferedUniSub?.complete !== '')params.append("prefferedUniSub[complete]", String(values.prefferedUniSub.complete));
+                if (values?.prefferedUniSub?.verified !== '')params.append("prefferedUniSub[verified]", String(values.prefferedUniSub.verified));
                 
-                if (values?.studentsFile?.requiredSubmission !== '')params.append("studentsFile[requiredSubmission]", String(values.studentsFile.requiredSubmission));
-                if (values?.studentsFile?.requiredVerification !== '')params.append("studentsFile[requiredVerification]", String(values.studentsFile.requiredVerification));
+                if (values?.studentsFile?.complete !== '')params.append("studentsFile[complete]", String(values.studentsFile.complete));
+                if (values?.studentsFile?.verified !== '')params.append("studentsFile[verified]", String(values.studentsFile.verified));
 
                 return {
                     url: `/process/get-all?${params.toString()}`,
@@ -63,6 +75,7 @@ const proceedApi = baseApi.injectEndpoints({
             },
             providesTags: ["proceed"],
         }),
+
 
         getALlProcessReq: build.query<any, void>({
             query: () => ({
@@ -112,5 +125,6 @@ export const {
     useDeleteProcessReqMutation,
     useUpdatedProcessReqMutation,
     useGetProcessReqPaginationQuery,
-    useGetFileByConditionsQuery
+    useGetFileByConditionsQuery,
+    useEditStudentFileMutation
 } = proceedApi

@@ -53,8 +53,8 @@
 
 .modal-container {
     position: fixed;
-    top: 0;
-    right: 0;
+    bottom: 0%;
+    right: 0%;
     z-index: 1000;
     background: rgba(0, 74, 98, 0.1);
     backdrop-filter: blur(10px);
@@ -62,8 +62,8 @@
     height: 100%;
     width: 100%;
     display: flex;
-    align-items: end;
-    justify-content: end;
+    align-items: center;
+    justify-content: start;
     visibility: hidden;
     opacity: 0;
     transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
@@ -76,8 +76,8 @@
 
 .modal-body {
     overflow-y: scroll;
-    max-width: 40vw;
-    min-width: 40vw;
+    max-width: 50vw;
+    min-width: 50vw;
     height: 100vh;
     background-color:rgba(255, 255, 255);
     border-top-left-radius: 5px;
