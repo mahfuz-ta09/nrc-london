@@ -1,9 +1,10 @@
 import { useState } from "react";
+import { toast } from "react-toastify";
 import { StudentListProps } from "../type";
 import EditableInput from "./EditableInput";
+import Loader from "@/component/shared/loader/loader";
 import { useForm, FormProvider, useFieldArray } from "react-hook-form";
 import { useEditStudentFileMutation } from "@/redux/endpoints/studentfileprocess/proceedEndpoints";
-import { toast } from "react-toastify";
 
 const personalInfoLabels: Record<string, string> = {
     name: "Student's Name",
@@ -51,6 +52,7 @@ const PersonalInfo = ({ detailState, setdetailState }: StudentListProps) => {
     };
 
     if (!detailState.isOpen) return null;
+    if (isLoading) return <Loader />;
 
 
     return (

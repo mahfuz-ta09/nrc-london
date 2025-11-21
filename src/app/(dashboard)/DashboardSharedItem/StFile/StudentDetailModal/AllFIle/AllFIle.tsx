@@ -9,6 +9,7 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faEye, faFile, faTrash } from "@fortawesome/free-solid-svg-icons";
 import { useEditStudentFileMutation } from "@/redux/endpoints/studentfileprocess/proceedEndpoints";
 import { toast } from "react-toastify";
+import Loader from "@/component/shared/loader/loader";
 
 interface NewFileField {
     fileFor: string;
@@ -100,6 +101,7 @@ const AllFile = ({ detailState, setdetailState }: StudentListProps) => {
     };
 
     if (!detailState.isOpen) return null;
+    if (isLoading) return <Loader />;
 
     return (
         <div className="modal-container openmoda-container">

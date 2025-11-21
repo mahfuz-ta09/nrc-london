@@ -1,10 +1,11 @@
 "use client";
 import React, { useState } from "react";
+import { toast } from "react-toastify";
+import EditableInput from "../EditableInput";
+import Loader from "@/component/shared/loader/loader";
 import { FormProvider, useForm } from "react-hook-form";
 import { StudentListProps, examConfig } from "../../type";
-import EditableInput from "../EditableInput";
 import { useEditStudentFileMutation } from "@/redux/endpoints/studentfileprocess/proceedEndpoints";
-import { toast } from "react-toastify";
 
 interface formValue{
     englishProficiency: {
@@ -84,6 +85,7 @@ const EnglishTest = ({ detailState, setdetailState }: StudentListProps) => {
     };
 
     if (!detailState.isOpen) return null;
+    if (isLoading) return <Loader />;
 
     return (
         <div className={detailState.isOpen ? "modal-container openmoda-container" : "modal-container"}>
