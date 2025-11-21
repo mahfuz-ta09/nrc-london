@@ -1,121 +1,129 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import {
-  FormProvider,
   useForm,
-  useFormContext,
+  FormProvider,
   useFieldArray,
 } from "react-hook-form";
+import { fileCategories, StudentListProps } from "../../type";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faEye, faFile, faTrash } from "@fortawesome/free-solid-svg-icons";
-import { StudentListProps } from "../../type";
+import { useEditStudentFileMutation } from "@/redux/endpoints/studentfileprocess/proceedEndpoints";
+import { toast } from "react-toastify";
 
-interface FileField {
-  fileName?: string;
-  uploadedAt?: string;
-  url?: string;
-  file?: FileList | null;
+interface NewFileField {
+    fileFor: string;
+    file: FileList | null;
 }
 
 interface FileFormValues {
-  files: FileField[];
+    newFiles: NewFileField[];
+    permission: {
+        permission_studentsFile: string;
+    };
+    applicationState: {
+        studentsFile: {
+            verified: string;
+            complete: string;
+        };
+    };
 }
-
-const FileInput = ({name,label,readOnly,field,onRemove,}: {name: any;label: string;readOnly?: boolean;field: FileField;onRemove?: () => void;}) => {
-    const { register, setValue, watch } = useFormContext<FileFormValues>();
-    const fileValue = watch(name);
-
-    return (
-        <div style={{borderLeft: "3px solid #004a62",padding: "10px",borderRadius: "8px",backgroundColor: "#f9f9f9",marginBottom: "15px"}}>
-            <strong>{label}</strong>
-            {readOnly && field?.url ? (
-                <div style={{display: "flex",justifyContent: "space-between",marginTop: "10px"}}>
-                    <div style={{ display: "flex", alignItems: "center", gap: "10px" }}>
-                        <FontAwesomeIcon
-                            icon={faFile}
-                            style={{ fontSize: "35px", color: "#004a62" }}
-                        />
-                        <div>
-                            <div>{field.fileName || "Unknown File"}</div>
-                            <small style={{ color: "gray" }}>{field.uploadedAt}</small>
-                        </div>
-                    </div>
-
-                    <div style={{ display: "flex", alignItems: "center",justifyContent:"center"}}>
-                        <a href={field.url} target="__blank" rel="noreferrer">
-                            <FontAwesomeIcon
-                                icon={faEye}
-                                style={{ cursor: "pointer", color: "#007bff" }}
-                            />
-                        </a>
-                    </div>
-                </div>
-            ) : (
-                 <div style={{ display: "flex", alignItems: "center", gap: "15px" }}>
-                    <input
-                        type="file"
-                        accept=".pdf,.jpg,.jpeg,.png,.doc,.docx"
-                        {...register(name)}
-                        onChange={(e) => setValue(name, e.target.files)}
-                    />
-                    <FontAwesomeIcon
-                        icon={faTrash}
-                        className="remove-btn"
-                        onClick={onRemove}
-                    />
-                </div>
-            )}
-        </div>
-    );
-};
 
 const AllFile = ({ detailState, setdetailState }: StudentListProps) => {
     const [isEditing, setIsEditing] = useState(false);
+    const [deletedFiles, setDeletedFiles] = useState<string[]>([]);
+    const [editStudentFile,{ isLoading}] = useEditStudentFileMutation()
 
     const methods = useForm<FileFormValues>({
         defaultValues: {
-        files:
-            detailState?.data?.map((file: any) => ({
-                fileName: file.fileName,
-                uploadedAt: file.uploadedAt,
-                url: file.url,
-                file: null,
-            })) || [],
+            newFiles: [],
         },
     });
 
-    const { control, handleSubmit } = methods;
+    const { control, handleSubmit, register, setValue } = methods;
+
     const { fields, append, remove } = useFieldArray({
         control,
-        name: "files",
+        name: "newFiles",
     });
 
-    const onSubmit = (data: FileFormValues) => {
-        console.log("✅ Updated Files:", data);
+    const handleDelete = (url: string) => {
+        setDeletedFiles((prev) =>
+            prev.includes(url) ? prev : [...prev, url]
+        );
+    };
+
+    const onSubmit = async(data: FileFormValues) => {
+        if(isEditing){ 
+            const confirm = window.confirm("Are you sure aboiut the upgrade?")
+            if(!confirm) return
+            if(!detailState?.id) return
+             
+            const formData = new FormData();
+            const fileMeta: { fileFor: string; originalName: string; newName: string }[] = [];
+            
+            if(deletedFiles.length){
+                formData.append("deletedFiles", JSON.stringify(deletedFiles));
+            }
+            
+            if(data.newFiles.length){
+                data.newFiles.forEach((fileObj) => {
+                    if (fileObj.file && fileObj.file.length > 0) {
+                        const file = fileObj.file[0];
+                        if (file instanceof File) {
+                            const newName = `${fileObj.fileFor.replace(/\s+/g, "_")}`;
+                            formData.append("files", file, newName);
+                            
+                            fileMeta.push({
+                                fileFor: fileObj.fileFor,
+                                originalName: file.name,
+                                newName,
+                            });
+                        }
+                    }
+                }
+            )}
+            
+            
+            const response:any = await Promise.all([
+                editStudentFile({ data: formData, id:detailState?.id}).unwrap(),
+                editStudentFile({ data: data, id:detailState?.id}).unwrap()
+            ])
+
+            if(response[0]?.data?.modifiedCount || response[1]?.data?.modifiedCount){
+              toast.success("Student file updated successfully")
+              setdetailState({ isOpen: false, data: {}, title: "" })
+            }else{
+              toast.error("Failed to update student file")
+            }
+        }
         setIsEditing(false);
     };
 
     if (!detailState.isOpen) return null;
 
     return (
-        <div className={detailState.isOpen? "modal-container openmoda-container": "modal-container"}>
+        <div className="modal-container openmoda-container">
             <div className="modal-body">
                 <h4 className="modal-header">{detailState?.title}</h4>
-
                 <button
-                    onClick={() =>setdetailState({ isOpen: false, data: {}, title: "" })}
-                    className="cancel-btn"
-                >X
-                </button>
+                    onClick={() => setdetailState({ isOpen: false, data: {}, title: "" }) }
+                    className="cancel-btn" 
+                > X </button>
 
                 <FormProvider {...methods}>
                     <div style={{ display: "flex", justifyContent: "end" }}>
                         {!isEditing ? (
-                            <button className="add-btn" onClick={() => setIsEditing(true)}>
+                            <button
+                                className="add-btn"
+                                type="button"
+                                onClick={() => setIsEditing(true)}
+                            >
                                 ✏️ Edit
                             </button>
                         ) : (
                             <button
                                 className="add-btn"
+                                type="button"
                                 style={{ backgroundColor: "#f55", color: "#fff" }}
                                 onClick={() => setIsEditing(false)}
                             >
@@ -124,66 +132,166 @@ const AllFile = ({ detailState, setdetailState }: StudentListProps) => {
                         )}
                     </div>
 
-                <div style={{marginTop:"20px"}}>
-                    <div className="checkbox-container">
-                        <h5>🟡 required verification</h5>
-                        <br />
-                        { isEditing && (<label>mark verified</label>)}
-                        { isEditing && (<input type="checkbox" />)}
-                    </div>
-                    <div className="checkbox-container">
-                        <h5>🔴 not ready for submission</h5>
-                        <br />
-                        { isEditing && (<label>mark this part ready for submission</label>)}
-                        { isEditing && (<input type="checkbox" />)}
-                    </div>
-                    <div className="checkbox-container">
-                        <h5>🔴 student are not allowed to change these data</h5>
-                        <br />
-                        { isEditing && (<label>mark this part ready for submission</label>)}
-                        { isEditing && (<input type="checkbox" />)}
-                    </div>
-                </div>
+                <form className="modal-content" onSubmit={handleSubmit(onSubmit)}>
+                    <h3 className="phase-title">Uploaded Files</h3>
 
-                    <form onSubmit={handleSubmit(onSubmit)} className="modal-content">
-                        <h3 className="phase-title">Uploaded Files</h3>
+                    {detailState?.data?.map((file: any) => (
+                        <div
+                            key={file._id}
+                            style={{
+                            borderLeft: "3px solid #004a62",
+                            padding: "10px",
+                            borderRadius: "8px",
+                            backgroundColor:deletedFiles.includes(file.publicID) ? "#ffc1c1ff" : "#f9f9f9",
+                            marginBottom: "15px",
+                        }}>
+                            <strong>{file.fileFor}</strong>
+                            <div
+                                style={{
+                                    display: "flex",
+                                    justifyContent: "space-between",
+                                    marginTop: "10px",
+                                }}>
+                                <div style={{ display: "flex", gap: "10px" }}>
+                                    <FontAwesomeIcon
+                                    icon={faFile}
+                                    style={{ fontSize: "35px", color: "#004a62" }}
+                                    />
+                                    <div>
+                                    <div>{file.fileName || "Unknown File"}</div>
+                                    <small style={{ color: "gray" }}>
+                                        {file.uploadedAt}
+                                    </small>
+                                    </div>
+                                </div>
 
-                        {fields.map((field, index) => (
-                            <div key={field.id}>
-                                <FileInput
-                                    name={`files.${index}.file`}
-                                    label={`File ${index + 1}`}
-                                    field={field}
-                                    readOnly={!isEditing}
-                                    onRemove={() => remove(index)}
-                                />
+                                <div style={{ display: "flex",alignItems:"center" , gap: "15px" }}>
+                                    {!isEditing && <a href={file.url} target="__blank" rel="noreferrer">
+                                    <FontAwesomeIcon
+                                        icon={faEye}
+                                        style={{
+                                        cursor: "pointer",
+                                        color: "#007bff",
+                                        fontSize: "20px",
+                                        }}
+                                    />
+                                    </a>}
+
+                                    {isEditing && (
+                                    <button
+                                        type="button"
+                                        className="remove-btn"
+                                        onClick={() => handleDelete(file.publicID)}
+                                    >
+                                        <FontAwesomeIcon icon={faTrash} />
+                                    </button>
+                                    )}
+                                </div>
                             </div>
-                        ))}
+                        </div>
+                    ))}
 
-                        {isEditing && (
-                            <button
-                                type="button"
-                                className="add-btn"
-                                onClick={() =>
-                                    append({
-                                        fileName: "",
-                                        uploadedAt: "",
-                                        url: "",
-                                        file: null,
-                                    })
-                                }>
-                                + Add Another File
-                            </button>
-                        )}
 
+                    {isEditing &&
+                    fields.map((field, index) => (
+                        <div
+                            key={field.id}
+                            className="input-container"
+                            style={{
+                                borderLeft: "3px solid #004a62",
+                                padding: "10px",
+                                borderRadius: "8px",
+                                backgroundColor: "#f9f9f9",
+                                marginBottom: "15px",
+                            }}
+                        >
+                        <label>File Type</label>
+                            <select {...register(`newFiles.${index}.fileFor`, {required: true})}>
+                                <option value="">Select file type</option>
+                                {fileCategories.map((group) => (
+                                <optgroup
+                                    key={group.category}
+                                    label={group.category}
+                                >
+                                    {group.files.map((f) => (
+                                    <option value={f} key={f}>
+                                        {f}
+                                    </option>
+                                    ))}
+                                </optgroup>
+                                ))}
+                            </select>
+
+                            <label>Upload File</label>
+                            <input
+                                type="file"
+                                accept=".pdf,.jpg,.jpeg,.png,.doc,.docx"
+                                {...register(`newFiles.${index}.file`)}
+                            />
+
+                        <button
+                            type="button"
+                            className="remove-btn"
+                            onClick={() => remove(index)}
+                        >
+                            ❌ Remove
+                        </button>
+                        </div>
+                    ))}
+
+                    {isEditing && (
+                    <button
+                        type="button"
+                        className="add-btn"
+                        onClick={() =>
+                        append({
+                            fileFor: "",
+                            file: null,
+                        })
+                        }
+                    >
+                        + Add Another File
+                    </button>
+                    )}
+
+                    <div className="input-container">
+                        {isEditing && (<label>Allow student to edit this section?</label>)}
                         {isEditing && (
-                            <div style={{ marginTop: "1rem", textAlign: "right" }}>
-                                <button type="submit" className="add-btn">
-                                💾 Save Changes
-                                </button>
-                            </div>
+                          <select {...methods.register("permission.permission_studentsFile")}>
+                            <option value="">Select</option>
+                            <option value="true">Yes</option>
+                            <option value="false">No</option>
+                          </select>
                         )}
-                    </form>
+                    </div>
+                    <div className="input-container">
+                      {isEditing && (<label>Information Verified?</label>)}
+                      {isEditing && (
+                        <select {...methods.register("applicationState.studentsFile.verified")}>
+                          <option value="">Select</option>
+                          <option value="true">Verified</option>
+                          <option value="false">Not Verified</option>
+                        </select>
+                      )}
+                    </div>
+                    <div className="input-container">
+                      {isEditing && (<label>Section Complete?</label>)}
+                      {isEditing && (
+                        <select {...methods.register("applicationState.studentsFile.complete")}>
+                          <option value="">Select</option>
+                          <option value="true">Complete</option>
+                          <option value="false">Incomplete</option>
+                        </select>
+                      )}
+                    </div>
+                    {isEditing && (
+                    <div style={{ marginTop: "1rem", textAlign: "right" }}>
+                        <button type="submit" className="add-btn">
+                        💾 Save Changes
+                        </button>
+                    </div>
+                    )}
+                </form>
                 </FormProvider>
             </div>
         </div>

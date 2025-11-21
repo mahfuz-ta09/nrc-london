@@ -40,7 +40,7 @@ const History = ({ detailState, setdetailState }: StudentListProps) => {
                                     </div>
 
                                     <div style={{ fontSize: "14px", marginBottom: "3px" }}>
-                                        <strong>email:</strong> {item?.by?.name}
+                                        <strong>email:</strong> {item?.by?.email}
                                     </div>
 
                                     <div style={{ fontSize: "14px", opacity: 0.8 }}>

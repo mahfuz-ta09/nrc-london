@@ -52,8 +52,6 @@ const EnglishTest = ({ detailState, setdetailState }: StudentListProps) => {
     const englishData = watch("englishProficiency");
 
     const onSubmit = async(data: any) => {
-        console.log("Updated English Tests:", data);
-        
         if(isEditing){
             const confirm = window.confirm("Are you sure aboiut the upgrade?")
             if(!confirm) return
@@ -137,12 +135,11 @@ const EnglishTest = ({ detailState, setdetailState }: StudentListProps) => {
                             </div>
                         )}
 
-                        {/* --- No Test Message --- */}
+
                         {Object.keys(englishData || {}).length === 0 && (
                             <p>No English test information available.</p>
                         )}
 
-                        {/* --- Exam Sections (CLEANED) --- */}
                         {Object.keys(englishData || {}).map((exam) => (
                             <div
                                 key={exam}

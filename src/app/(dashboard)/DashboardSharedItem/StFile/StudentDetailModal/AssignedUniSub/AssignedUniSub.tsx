@@ -1,4 +1,3 @@
-
 import React, { useState } from 'react'
 import { StudentListProps } from '../../type'
 import EditableInput from '../EditableInput'

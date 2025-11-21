@@ -1,0 +1,275 @@
+
+.table-container {
+    max-width: 2000px;
+    margin: 20px auto;
+    /* background: rgb(0, 77, 102,0.7); */
+    border-radius: 12px;
+    /* box-shadow: 0 10px 40px rgba(0, 0, 0, 0.1); */
+    overflow: hidden;
+}
+
+.tag-new {
+    color: white;
+    padding: 14px;
+    margin: 0;
+    font-size: 18px;
+    font-weight: 600;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+
+.tag-new::before {
+    content: "📚";
+    font-size: 28px;
+}
+
+.table-contant-new {
+    overflow-x: auto;
+    background: rgba(0, 77, 102, 0.1 );
+    border-radius: 12px;
+}
+
+.table-contant-new table {
+    padding: 0;
+    overflow: scroll;
+    border: none;
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.2);}
+
+.table-contant-new thead {
+    /* background: #f8fafc; */
+    /* color: #fff; */
+    /* border-bottom: 2px solid #e2e8f0; */
+}
+
+.table-contant-new th {
+    padding: 16px 12px;
+    text-align: left;
+    font-weight: 600;
+    font-size: 13px;
+    color: #fff;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    white-space: nowrap;
+}
+
+.table-contant-new tbody tr {
+    border-bottom: 1px solid #fff;
+    transition: all 0.2s ease;
+}
+
+
+.table-contant-new td {
+    font-size: 14px;
+    color: #334155;
+    vertical-align: top;
+}
+
+.student-info {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+}
+
+.student-name {
+    font-weight: 600;
+    color: #f1f5f9;
+    font-size: 15px;
+}
+
+.student-email {
+    color: #f8f8f8;
+    font-size: 13px;
+}
+
+.student-id {
+    color: #4075be;
+    font-size: 11px;
+    font-family: 'Courier New', monospace;
+    padding: 2px 6px;
+    background: #f1f5f9;
+    border-radius: 4px;
+    display: inline-block;
+    margin-top: 4px;
+}
+
+/* Submitted Information Column */
+.table-text {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    padding: 8px 12px;
+    margin: 4px;
+    background: #f1f5f9;
+    border-radius: 6px;
+    font-size: 13px;
+    font-weight: 500;
+    color: #475569;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    border: 1px solid transparent;
+}
+
+.table-text:hover {
+    background: #e0e7ff;
+    color: #3730a3;
+    border-color: #c7d2fe;
+    transform: translateX(4px);
+}
+
+.table-text svg {
+    width: 14px;
+    height: 14px;
+    color: #64748b;
+}
+
+/* Status Messages */
+.table-message-positive,
+.table-message-negative {
+    padding: 6px 12px;
+    border-radius: 6px;
+    font-size: 13px;
+    font-weight: 500;
+    margin: 4px 0;
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    white-space: nowrap;
+}
+
+.table-message-positive::before {
+    content: "✓";
+    font-size: 14px;
+}
+
+.table-message-negative::before {
+    content: "✕";
+    font-size: 14px;
+}
+
+.table-message-positive {
+    background: #d1fae5;
+    color: #065f46;
+}
+
+.table-message-negative {
+    background: #fee2e2;
+    color: #991b1b;
+}
+
+.status-column {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+}
+
+.details-table,
+.remove-btn {
+    padding: 8px 16px;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+    font-size: 13px;
+    font-weight: 500;
+    transition: all 0.2s ease;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.details-table {
+    background: #0090c0;
+    color: white;
+}
+
+.details-table:hover {
+    background: #3598b9;
+    transform: translateY(-1px);
+    box-shadow: 0 4px 12px rgba(59, 130, 246, 0.3);
+}
+
+.details-table svg {
+    transition: transform 0.2s ease;
+}
+
+.details-table:hover svg {
+    transform: translateX(4px);
+}
+
+.remove-btn {
+    background: #ef4444;
+    color: white;
+    padding: 8px 12px;
+}
+
+.remove-btn:hover {
+    background: #dc2626;
+    transform: scale(1.05);
+}
+
+td[colspan] {
+    text-align: center;
+    padding: 40px;
+    color: #64748b;
+    font-size: 14px;
+}
+
+
+@media (max-width: 1200px) {
+    .table-contant {
+        padding: 16px;
+    }
+    
+    .table-contant-new th, td {
+        padding: 12px 8px;
+        font-size: 12px;
+    }
+    
+    .tag-new {
+        font-size: 20px;
+        padding: 20px 24px;
+    }
+}
+
+
+.table-contant::-webkit-scrollbar {
+    height: 8px;
+}
+
+.table-contant::-webkit-scrollbar-track {
+    background: #f1f5f9;
+    border-radius: 4px;
+}
+
+.table-contant::-webkit-scrollbar-thumb {
+    background: #cbd5e1;
+    border-radius: 4px;
+}
+
+.table-contant::-webkit-scrollbar-thumb:hover {
+    background: #94a3b8;
+}
+
+/* Animation for row appearance */
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(10px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+tbody tr {
+    animation: fadeIn 0.3s ease-out;
+}
+
+/* Focus states for accessibility */
+.table-text:focus,
+.details-table-action:focus,
+.remove-btn:focus {
+    outline: 2px solid #006080;
+    outline-offset: 2px;
+}

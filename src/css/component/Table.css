@@ -406,11 +406,13 @@ select:hover {
     align-items: center;
     justify-content: start;
     flex-direction: row;
-    gap: 15px;
+    gap: 5px;
     text-decoration: underline;
-    margin: 7px 0;
-    font-size: 15px;
+    margin: 13px 0;
+    font-size: 17px;
     cursor: pointer;
+    color: rgb(211, 255, 144);
+    font-weight: 600;
 }
 
 .table-message-negative{
