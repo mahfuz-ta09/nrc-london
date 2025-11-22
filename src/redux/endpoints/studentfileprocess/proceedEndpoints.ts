@@ -76,6 +76,13 @@ const proceedApi = baseApi.injectEndpoints({
             providesTags: ["proceed"],
         }),
 
+        getSingleFileByStudentWithEmail: build.query<any, { email: string }>({
+            query: ({ email }) => ({
+                url: `/process/get-single-files/${email}`,
+                method: "GET",
+            }),
+            providesTags: ["proceed"],
+        }),
 
         getALlProcessReq: build.query<any, void>({
             query: () => ({
@@ -126,5 +133,6 @@ export const {
     useUpdatedProcessReqMutation,
     useGetProcessReqPaginationQuery,
     useGetFileByConditionsQuery,
-    useEditStudentFileMutation
+    useEditStudentFileMutation,
+    useGetSingleFileByStudentWithEmailQuery
 } = proceedApi

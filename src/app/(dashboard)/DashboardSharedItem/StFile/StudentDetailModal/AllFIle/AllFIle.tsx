@@ -4,12 +4,13 @@ import {
   FormProvider,
   useFieldArray,
 } from "react-hook-form";
+import { toast } from "react-toastify";
+import Loader from "@/component/shared/loader/loader";
 import { fileCategories, StudentListProps } from "../../type";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faEye, faFile, faTrash } from "@fortawesome/free-solid-svg-icons";
 import { useEditStudentFileMutation } from "@/redux/endpoints/studentfileprocess/proceedEndpoints";
-import { toast } from "react-toastify";
-import Loader from "@/component/shared/loader/loader";
+
 
 interface NewFileField {
     fileFor: string;

@@ -1,6 +1,4 @@
 'use client'
-import '@/css/component/Form.css'
-import '@/css/component/Modal.css'
 import AllFIle from './AllFIle/AllFIle';
 import { StudentListProps } from '../type';
 import PersonalInfo from './PersonalInfo';

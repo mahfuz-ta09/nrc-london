@@ -16,6 +16,7 @@ import {
   faUserPlus,
   faBlog,
   faImage,
+  faFile,
 } from "@fortawesome/free-solid-svg-icons"
 
 type Section = {
@@ -48,9 +49,14 @@ const sideNavItem = (role: Role): Section[] => {
               { title: "Manage Users", path: `${role}/manage-users`, icon: faUsers },
               { title: "Manage Admin", path: `${role}/manage-admin`, icon: faUserShield },
               { title: "Agent Control", path: `${role}/AllAgents`, icon: faUserTie },
+            ],
+        },
+        {
+            section: 'Student File Processing',
+            items: [
               { title: "Submitted Student Files", path: `${role}/student-files`, icon: faUserGraduate },
               { title: "Student File Processing", path: `${role}/st-file`, icon: faTasks },
-            ],
+            ]
         },
         {
             section:'Web Controlls',
@@ -82,6 +88,12 @@ const sideNavItem = (role: Role): Section[] => {
         {
             section: "Administration Action",
             items:[
+                // { title: "Student File Processing", path: `${role}/st-file`, icon: faTasks },
+            ]
+        },
+        {
+            section: "Student File Processing",
+            items:[
                 { title: "Student File Processing", path: `${role}/st-file`, icon: faTasks },
             ]
         }
@@ -93,8 +105,15 @@ const sideNavItem = (role: Role): Section[] => {
         {
           section: "Study",
           items: [
-            { title: "Schedules", path: `${role}/schedules`, icon: faBookOpen },
-            { title: "My Classes", path: `${role}/my-classes`, icon: faUniversity },
+            // { title: "Schedules", path: `${role}/schedules`, icon: faBookOpen },
+            // { title: "My Classes", path: `${role}/my-classes`, icon: faUniversity },
+          ],
+        },
+        {
+          section: "My Application",
+          items: [
+            { title: "Submitted information", path: `${role}/submitted-info`, icon: faFile },
+            // { title: "My Classes", path: `${role}/my-classes`, icon: faUniversity },
           ],
         },
       ]
@@ -104,6 +123,14 @@ const sideNavItem = (role: Role): Section[] => {
         { section: "My Action", items: common },
         {
           section: "Agent Tools",
+          items: [
+            // { title: "Student Applications", path: `${role}/student-apps`, icon: faUserGraduate },
+            // { title: "Submitted Files", path: `${role}/submitted-files`, icon: faTasks },
+            // { title: "Referral Management", path: `${role}/referrals`, icon: faUserPlus },
+          ],
+        },
+        {
+          section: "Student File Processing",
           items: [
             { title: "Student Applications", path: `${role}/student-apps`, icon: faUserGraduate },
             { title: "Submitted Files", path: `${role}/submitted-files`, icon: faTasks },

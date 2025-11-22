@@ -27,6 +27,7 @@ const PersonalInfo = ({ detailState, setdetailState }: StudentListProps) => {
     const methods = useForm({
       defaultValues: detailState?.data || {},
     });
+    
     const [editStudentFile,{ isLoading}] = useEditStudentFileMutation()
     const { control } = methods;
     const { fields, append, remove } = useFieldArray({
