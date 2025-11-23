@@ -23,7 +23,7 @@ const EditableInput = ({ name, label, readOnly = false }: EditableInputProps) =>
         return (
             <div className="input-container">
                 <label>{label}</label>
-                <h6 style={{width:"100%",padding:"9px",borderRadius:"5px",fontSize:"13px",fontWeight:"500",
+                <h6 style={{width:"100%",padding:"9px",borderRadius:"5px",fontSize:"13px",fontWeight:"700",
                     border:"1px solid #dbdbdbff"}}>{value}</h6>
             </div>
         )

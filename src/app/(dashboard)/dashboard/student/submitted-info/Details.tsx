@@ -1,78 +1,81 @@
 'use client'
 import React from 'react'
 import '../css/Details.css'
-import { useGetSingleFileByStudentWithEmailQuery } from '@/redux/endpoints/studentfileprocess/proceedEndpoints'
 import { useUserInfo } from '@/utils/useUserInfo'
 import Loader from '@/component/shared/loader/loader'
+import { useGetSingleFileByStudentWithEmailQuery } from '@/redux/endpoints/studentfileprocess/proceedEndpoints'
+import ProgressRing from './ProgressRing'
+
 
 const Details = () => {
+    let submitted = 0;
+    let verified = 0;
     const user = useUserInfo()
-    const { data , isLoading, isError } = useGetSingleFileByStudentWithEmailQuery({ email: user.Uemail })
-    console.log(data)
+    const { data , isLoading } = useGetSingleFileByStudentWithEmailQuery({ email: user.Uemail })
     if(isLoading) return <Loader />
-    
+
+
+    let userData = data?.data;
+    console.log(userData);
+
+    if(data?.data?.applicationState){
+        if(userData?.applicationState?.personalInfo?.complete) submitted +=1;
+        if(userData?.applicationState?.personalInfo?.verified) verified +=1;
+        if(userData?.applicationState?.englishProficiency?.complete) submitted +=1;
+        if(userData?.applicationState?.englishProficiency?.verified) verified +=1;
+        if(userData?.applicationState?.studentsFile?.complete) submitted +=1;
+        if(userData?.applicationState?.studentsFile?.verified) verified +=1;
+        if(userData?.applicationState?.prefferedUniSub?.complete) submitted +=1;
+        if(userData?.applicationState?.prefferedUniSub?.verified) verified +=1;
+    }
+    console.log(userData?.applicationState?.personalInfo?.verified)
     return (
         <div className="container-file">
-                <aside className="sidebar">
-                    <div className="progress-card">
-                        <h3>Application Progress</h3>
-                        <div className="progress-ring-container">
-                            <svg className="progress-ring" width="180" height="180">
-                                <circle stroke="#e2e8f0" strokeWidth="12" fill="transparent" r="80" cx="90" cy="90" />
-                                <circle className="progress-ring-circle" stroke="url(#gradient)" strokeWidth="12" fill="transparent" strokeLinecap="round" r="80" cx="90" cy="90" stroke-dasharray="502.4" stroke-dashoffset="125.6"/>
-                                <defs>
-                                    <linearGradient id="gradient" x1="0%" y1="0%" x2="100%" y2="100%">
-                                        <stop offset="0%" style={{stopColor:"#667eea",stopOpacity:"1"}} />
-                                        <stop offset="100%" style={{stopColor:"#764ba2",stopOpacity:"1"}} />
-                                    </linearGradient>
-                                </defs>
-                            </svg>
-                            <div className="progress-ring-text">
-                                <div className="progress-percentage">75%</div>
-                                <div className="progress-label">Complete</div>
-                            </div>
+            <aside className="sidebar">
+                <div className="progress-card">
+                    <h3>Application Progress</h3>
+                    <ProgressRing verified={verified} />
+                    <div className="progress-stats">
+                        <div className="stat-item">
+                            <span className="stat-label">Submitted Data</span>
+                            <span className="stat-value">{submitted} / 4</span>
                         </div>
-                        <div className="progress-stats">
-                            <div className="stat-item">
-                                <span className="stat-label">Completed Steps</span>
-                                <span className="stat-value">3 / 4</span>
-                            </div>
-                            <div className="stat-item">
-                                <span className="stat-label">Verified Items</span>
-                                <span className="stat-value">8 / 10</span>
-                            </div>
-                            <div className="stat-item">
-                                <span className="stat-label">Universities</span>
-                                <span className="stat-value">4 Assigned</span>
-                            </div>
+                        <div className="stat-item">
+                            <span className="stat-label">Verified Items</span>
+                            <span className="stat-value">{verified} / 4</span>
+                        </div>
+                        <div className="stat-item">
+                            <span className="stat-label">Universities</span>
+                            <span className="stat-value">{userData?.preferredUniversities?.length} Assigned</span>
                         </div>
                     </div>
+                </div>
                     
                     
-                    <div className="quick-actions">
-                        <h3>Quick Actions</h3>
-                        <div className="action-list">
-                            <a href="#" className="action-btn">
-                                <span className="action-icon">📤</span>
-                                <span>Upload Documents</span>
-                            </a>
-                            <a href="#" className="action-btn">
-                                <span className="action-icon">✏️</span>
-                                <span>Edit Profile</span>
-                            </a>
-                            <a href="#" className="action-btn">
-                                <span className="action-icon">💬</span>
-                                <span>Contact Support</span>
-                            </a>
-                            <a href="#" className="action-btn">
-                                <span className="action-icon">📥</span>
-                                <span>Download PDF</span>
-                            </a>
-                        </div>
+                <div className="quick-actions">
+                    <h3>Quick Actions</h3>
+                    <div className="action-list">
+                        <a href="#" className="action-btn">
+                            <span className="action-icon">📤</span>
+                            <span>Upload Documents</span>
+                        </a>
+                        <a href="#" className="action-btn">
+                            <span className="action-icon">✏️</span>
+                            <span>Edit Profile & academic info</span>
+                        </a>
+                        <a href="#" className="action-btn">
+                            <span className="action-icon">🎓</span>
+                            <span>Edit Assigned universities</span>
+                        </a>
+                        <a href="#" className="action-btn">
+                            <span className="action-icon">📝</span>
+                            <span>Upload test results</span>
+                        </a>
                     </div>
-                </aside>
+                </div>
+            </aside>
                 
-                <main className="main-content">
+            <main className="main-content">
                     <div className="content-header">
                         <h1>Your Application Journey</h1>
                         <p>Track your progress through each step of the application process</p>
@@ -80,59 +83,80 @@ const Details = () => {
                     
                     <div className="timeline">
                         Step 1: Personal Information 
-                        <div className="timeline-step complete">
-                            <div className="step-marker complete">✓</div>
+                        <div className={userData?.applicationState?.personalInfo?.verified ?"timeline-step complete":"timeline-step pending"}>
+                            <div className={userData?.applicationState?.personalInfo?.verified?"step-marker complete":"step-marker pending"}>{userData?.applicationState?.personalInfo?.verified?"✓":"⏳"}</div>
                             <div className="step-content">
                                 <div className="step-header">
                                     <h3 className="step-title">Personal & Academic Information</h3>
                                     <div className="step-header-content">
-                                        <span className="step-status status-complete">
-                                        <span>✓</span>
-                                        <span>Verified</span>
+                                        <span className={userData?.applicationState?.personalInfo?.verified?"step-status status-complete" :"step-status status-pending"}>
+                                        <span>{userData?.applicationState?.personalInfo?.verified? "✓ Data verified": "✕ Data not verified"}</span>
                                     </span>
-                                    <span className="step-status status-complete">
-                                        <span>✓</span>
-                                        <span>Verified</span>
+                                    <span className={userData?.applicationState?.personalInfo?.complete?"step-status status-complete" :"step-status status-pending"}>
+                                        <span>{userData?.applicationState?.personalInfo?.complete? "✓ submission completed":"✕ submission not completed"}</span>
                                     </span>
-                                    <span className="step-status status-complete">
-                                        <span>✓</span>
-                                        <span>Verified</span>
+                                    <span className={userData?.permission?.complete?"step-status status-complete" :"step-status status-pending"}>
+                                        <span>{userData?.permission?.permission_personalInfo? "✓ Permitted to change":"✕ Not permitted to change"}</span>
                                     </span>
                                     </div>
                                 </div>
                                 <p className="step-description">
-                                    Your personal details and academic background have been submitted and verified by our team.
+                                    Your personal details and academic background will be  verified by our team.
                                 </p>
                                 <div className="step-details">
                                     <div className="detail-box">
                                         <div className="detail-label">Full Name</div>
-                                        <div className="detail-value">Md Mahfuz Anam Tasnim</div>
+                                        <div className="detail-value">{userData?.name}</div>
                                     </div>
                                     <div className="detail-box">
                                         <div className="detail-label">Email</div>
-                                        <div className="detail-value">mahfuzta26@gmail.com</div>
+                                        <div className="detail-value">{userData?.email}</div>
                                     </div>
                                     <div className="detail-box">
                                         <div className="detail-label">Nationality</div>
-                                        <div className="detail-value">Bangladesh</div>
+                                        <div className="detail-value">{userData?.countryCitizen}</div>
                                     </div>
                                     <div className="detail-box">
-                                        <div className="detail-label">Highest Education</div>
-                                        <div className="detail-value">Bachelor's Degree</div>
+                                        <div className="detail-label">marital status</div>
+                                        <div className="detail-value">{userData?.maritalStatus}</div>
                                     </div>
                                     <div className="detail-box">
-                                        <div className="detail-label">GPA</div>
-                                        <div className="detail-value">3.85 / 4.00</div>
+                                        <div className="detail-label">DOB</div>
+                                        <div className="detail-value">{userData?.dob}</div>
                                     </div>
                                     <div className="detail-box">
                                         <div className="detail-label">Passport No.</div>
-                                        <div className="detail-value">A12345678</div>
+                                        <div className="detail-value">{userData?.passportNo}</div>
+                                    </div>
+                                    <div className="detail-box">
+                                        <div className="detail-label">Passport No.</div>
+                                        <div className="detail-value">{userData?.currentAddress}</div>
+                                    </div>
+                                    <div className="detail-box">
+                                        <div className="detail-label">Phone No.</div>
+                                        <div className="detail-value">{userData?.phone}</div>
+                                        <div className="detail-value">{userData?.alternativePhone}(alternative)</div>
                                     </div>
                                 </div>
-                                <div className="step-actions">
+                                <div className="step-details">
+                                    {
+                                        userData?.academicInfo?.map((item: any, index: number) => (
+                                                <div style={{gap:"10px", marginTop:"10px"}} key={index}>
+                                                    <strong style={{fontSize:"12px",fontWeight:"600"}}>{index+1}</strong>
+                                                    {Object.entries(item).map(([key, value]:any) => (
+                                                        <div style={{margin:"10px"}} className="detail-box" key={key + index}>
+                                                            <div className="detail-label">{key}</div>
+                                                            <div className="detail-value">{value}</div>
+                                                        </div>
+                                                    ))}
+                                                </div>
+                                        ))
+                                    }
+                                </div>
+                                {/* <div className="step-actions">
                                     <button className="btn btn-secondary">View Details</button>
                                     <button className="btn btn-secondary">Edit Information</button>
-                                </div>
+                                </div> */}
                             </div>
                         </div>
                         
@@ -295,7 +319,7 @@ const Details = () => {
                             </div>
                         </div>
                     </div>
-                </main>
+            </main>
         </div>
     )
 }
