@@ -48,6 +48,41 @@
     gap: 10px;
 }
 
+.progress-ring {
+    transform: rotate(-90deg);
+}
+
+.progress-ring-circle {
+    transition: stroke-dashoffset 0.5s;
+    transform-origin: 50% 50%;
+}
+
+.progress-ring-text {
+    position: absolute;
+    top: 55%;
+    left:56%;
+    transform: translate(-50%, -50%);
+    text-align: center;
+}
+
+.progress-percentage {
+    font-size: 42px;
+    font-weight: 700;
+    color: #667eea;
+}
+
+.progress-label {
+    font-size: 13px;
+    color: #64748b;
+    margin-top: 4px;
+}
+
+.progress-stats {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+        
 .stat-item {
     display: flex;
     justify-content: space-between;
