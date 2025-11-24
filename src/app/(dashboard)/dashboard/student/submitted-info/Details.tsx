@@ -1,22 +1,32 @@
 'use client'
-import React from 'react'
+import React, { useState } from 'react'
 import '../css/Details.css'
 import { useUserInfo } from '@/utils/useUserInfo'
 import Loader from '@/component/shared/loader/loader'
 import { useGetSingleFileByStudentWithEmailQuery } from '@/redux/endpoints/studentfileprocess/proceedEndpoints'
 import ProgressRing from './ProgressRing'
 
-
 const Details = () => {
+    const [expandedSections, setExpandedSections] = useState<{[key: string]: boolean}>({
+        academic: false,
+        universities: false
+    });
+
+    const toggleSection = (section: string) => {
+        setExpandedSections(prev => ({
+            ...prev,
+            [section]: !prev[section]
+        }));
+    };
+
     let submitted = 0;
     let verified = 0;
     const user = useUserInfo()
-    const { data , isLoading } = useGetSingleFileByStudentWithEmailQuery({ email: user.Uemail })
+    const { data, isLoading } = useGetSingleFileByStudentWithEmailQuery({ email: user.Uemail })
+    
     if(isLoading) return <Loader />
 
-
     let userData = data?.data;
-    console.log(userData);
 
     if(data?.data?.applicationState){
         if(userData?.applicationState?.personalInfo?.complete) submitted +=1;
@@ -28,7 +38,8 @@ const Details = () => {
         if(userData?.applicationState?.prefferedUniSub?.complete) submitted +=1;
         if(userData?.applicationState?.prefferedUniSub?.verified) verified +=1;
     }
-    console.log(userData?.applicationState?.personalInfo?.verified)
+
+    console.log(userData)
     return (
         <div className="container-file">
             <aside className="sidebar">
@@ -46,12 +57,11 @@ const Details = () => {
                         </div>
                         <div className="stat-item">
                             <span className="stat-label">Universities</span>
-                            <span className="stat-value">{userData?.preferredUniversities?.length} Assigned</span>
+                            <span className="stat-value">{userData?.preferredUniversities?.length || 0} Assigned</span>
                         </div>
                     </div>
                 </div>
-                    
-                    
+                
                 <div className="quick-actions">
                     <h3>Quick Actions</h3>
                     <div className="action-list">
@@ -61,264 +71,306 @@ const Details = () => {
                         </a>
                         <a href="#" className="action-btn">
                             <span className="action-icon">✏️</span>
-                            <span>Edit Profile & academic info</span>
+                            <span>Edit Profile</span>
                         </a>
                         <a href="#" className="action-btn">
                             <span className="action-icon">🎓</span>
-                            <span>Edit Assigned universities</span>
+                            <span>Edit Universities</span>
                         </a>
                         <a href="#" className="action-btn">
                             <span className="action-icon">📝</span>
-                            <span>Upload test results</span>
+                            <span>Upload Test Results</span>
                         </a>
                     </div>
                 </div>
             </aside>
-                
+            
             <main className="main-content">
-                    <div className="content-header">
-                        <h1>Your Application Journey</h1>
-                        <p>Track your progress through each step of the application process</p>
-                    </div>
-                    
-                    <div className="timeline">
-                        Step 1: Personal Information 
-                        <div className={userData?.applicationState?.personalInfo?.verified ?"timeline-step complete":"timeline-step pending"}>
-                            <div className={userData?.applicationState?.personalInfo?.verified?"step-marker complete":"step-marker pending"}>{userData?.applicationState?.personalInfo?.verified?"✓":"⏳"}</div>
-                            <div className="step-content">
-                                <div className="step-header">
-                                    <h3 className="step-title">Personal & Academic Information</h3>
-                                    <div className="step-header-content">
-                                        <span className={userData?.applicationState?.personalInfo?.verified?"step-status status-complete" :"step-status status-pending"}>
-                                        <span>{userData?.applicationState?.personalInfo?.verified? "✓ Data verified": "✕ Data not verified"}</span>
+                <div className="content-header">
+                    <h1>Your Application Journey</h1>
+                    <p>Track your progress through each step of the application process</p>
+                </div>
+                
+                <div className="timeline">
+                    <div className={userData?.applicationState?.personalInfo?.verified ? "timeline-step complete" : "timeline-step pending"}>
+                        <div className={userData?.applicationState?.personalInfo?.verified ? "step-marker complete" : "step-marker pending"}>
+                            {userData?.applicationState?.personalInfo?.verified ? "✓" : "⏳"}
+                        </div>
+                        <div className="step-content">
+                            <div className="step-header">
+                                <h3 className="step-title">Personal & Academic Information</h3>
+                                <div className="step-header-content">
+                                    <span className={userData?.applicationState?.personalInfo?.verified ? "step-status status-complete" : "step-status status-pending"}>
+                                        <span className="status-icon">{userData?.applicationState?.personalInfo?.verified ? "✓" : "⏳"}</span>
+                                        <span className="status-text">{userData?.applicationState?.personalInfo?.verified ? "Verified" : "Not Verified"}</span>
                                     </span>
-                                    <span className={userData?.applicationState?.personalInfo?.complete?"step-status status-complete" :"step-status status-pending"}>
-                                        <span>{userData?.applicationState?.personalInfo?.complete? "✓ submission completed":"✕ submission not completed"}</span>
+                                    <span className={userData?.applicationState?.personalInfo?.complete ? "step-status status-complete" : "step-status status-pending"}>
+                                        <span className="status-icon">{userData?.applicationState?.personalInfo?.complete ? "✓" : "⏳"}</span>
+                                        <span className="status-text">{userData?.applicationState?.personalInfo?.complete ? "Complete" : "Incomplete"}</span>
                                     </span>
-                                    <span className={userData?.permission?.complete?"step-status status-complete" :"step-status status-pending"}>
-                                        <span>{userData?.permission?.permission_personalInfo? "✓ Permitted to change":"✕ Not permitted to change"}</span>
+                                    <span className={userData?.permission?.permission_personalInfo ? "step-status status-complete" : "step-status status-locked"}>
+                                        <span className="status-icon">{userData?.permission?.permission_personalInfo ? "✓" : "🔒"}</span>
+                                        <span className="status-text">{userData?.permission?.permission_personalInfo ? "Editable" : "Locked"}</span>
                                     </span>
-                                    </div>
                                 </div>
-                                <p className="step-description">
-                                    Your personal details and academic background will be  verified by our team.
-                                </p>
+                            </div>
+                            <p className="step-description">
+                                Your personal details and academic background will be verified by our team.
+                            </p>
+                            
+                            {/* Personal Info */}
+                            <div className="info-section">
+                                <h4 className="section-subtitle">Personal Information</h4>
                                 <div className="step-details">
                                     <div className="detail-box">
                                         <div className="detail-label">Full Name</div>
-                                        <div className="detail-value">{userData?.name}</div>
+                                        <div className="detail-value">{userData?.name || 'Not provided'}</div>
                                     </div>
                                     <div className="detail-box">
                                         <div className="detail-label">Email</div>
-                                        <div className="detail-value">{userData?.email}</div>
+                                        <div className="detail-value">{userData?.email || 'Not provided'}</div>
+                                    </div>
+                                    <div className="detail-box">
+                                        <div className="detail-label">Date of Birth</div>
+                                        <div className="detail-value">{userData?.dob || 'Not provided'}</div>
                                     </div>
                                     <div className="detail-box">
                                         <div className="detail-label">Nationality</div>
-                                        <div className="detail-value">{userData?.countryCitizen}</div>
+                                        <div className="detail-value">{userData?.countryCitizen || 'Not provided'}</div>
                                     </div>
                                     <div className="detail-box">
-                                        <div className="detail-label">marital status</div>
-                                        <div className="detail-value">{userData?.maritalStatus}</div>
-                                    </div>
-                                    <div className="detail-box">
-                                        <div className="detail-label">DOB</div>
-                                        <div className="detail-value">{userData?.dob}</div>
+                                        <div className="detail-label">Marital Status</div>
+                                        <div className="detail-value">{userData?.maritalStatus || 'Not provided'}</div>
                                     </div>
                                     <div className="detail-box">
                                         <div className="detail-label">Passport No.</div>
-                                        <div className="detail-value">{userData?.passportNo}</div>
+                                        <div className="detail-value">{userData?.passportNo || 'Not provided'}</div>
                                     </div>
                                     <div className="detail-box">
-                                        <div className="detail-label">Passport No.</div>
-                                        <div className="detail-value">{userData?.currentAddress}</div>
+                                        <div className="detail-label">Phone Number</div>
+                                        <div className="detail-value">
+                                            {userData?.phone || 'Not provided'}
+                                            {userData?.alternativePhone && <span className="alt-phone"> (Alt: {userData?.alternativePhone})</span>}
+                                        </div>
                                     </div>
-                                    <div className="detail-box">
-                                        <div className="detail-label">Phone No.</div>
-                                        <div className="detail-value">{userData?.phone}</div>
-                                        <div className="detail-value">{userData?.alternativePhone}(alternative)</div>
+                                    <div className="detail-box detail-box-full">
+                                        <div className="detail-label">Current Address</div>
+                                        <div className="detail-value">{userData?.currentAddress || 'Not provided'}</div>
                                     </div>
                                 </div>
-                                <div className="step-details">
-                                    {
-                                        userData?.academicInfo?.map((item: any, index: number) => (
-                                                <div style={{gap:"10px", marginTop:"10px"}} key={index}>
-                                                    <strong style={{fontSize:"12px",fontWeight:"600"}}>{index+1}</strong>
-                                                    {Object.entries(item).map(([key, value]:any) => (
-                                                        <div style={{margin:"10px"}} className="detail-box" key={key + index}>
-                                                            <div className="detail-label">{key}</div>
-                                                            <div className="detail-value">{value}</div>
+                            </div>
+
+                            {/* Academic Info - Expandable */}
+                            {userData?.academicInfo && userData.academicInfo.length > 0 && (
+                                <div className="expandable-section">
+                                    <button 
+                                        className="expand-toggle" 
+                                        onClick={() => toggleSection('academic')}
+                                    >
+                                        <span>📚 View Academic Qualifications ({userData.academicInfo.length})</span>
+                                        <span className={expandedSections.academic ? "arrow-up" : "arrow-down"}>▼</span>
+                                    </button>
+                                    {expandedSections.academic && (
+                                        <div className="expand-content">
+                                            {userData.academicInfo.map((item: any, index: number) => (
+                                                <div key={index} className="academic-item">
+                                                    <div className="academic-header">
+                                                        <strong className="academic-number">Qualification #{index + 1}</strong>
+                                                    </div>
+                                                    <div className="step-details">
+                                                        {Object.entries(item).map(([key, value]: any) => (
+                                                            <div className="detail-box" key={key + index}>
+                                                                <div className="detail-label">{key}</div>
+                                                                <div className="detail-value">{value || 'Not provided'}</div>
+                                                            </div>
+                                                        ))}
+                                                    </div>
+                                                </div>
+                                            ))}
+                                        </div>
+                                    )}
+                                </div>
+                            )}
+                        </div>
+                    </div>
+                    
+                    {/* Step 2: English Test */}
+                    <div className={userData?.applicationState?.englishProficiency?.verified ? "timeline-step complete" : "timeline-step pending"}>
+                        <div className={userData?.applicationState?.englishProficiency?.verified ? "step-marker complete" : "step-marker pending"}>
+                            {userData?.applicationState?.englishProficiency?.verified ? "✓" : "⏳"}
+                        </div>
+                        <div className="step-content">
+                            <div className="step-header">
+                                <h3 className="step-title">English Proficiency Test</h3>
+                                <div className="step-header-content">
+                                    <span className={userData?.applicationState?.englishProficiency?.verified ? "step-status status-complete" : "step-status status-pending"}>
+                                        <span className="status-icon">{userData?.applicationState?.englishProficiency?.verified ? "✓" : "⏳"}</span>
+                                        <span className="status-text">{userData?.applicationState?.englishProficiency?.verified ? "Verified" : "Not Verified"}</span>
+                                    </span>
+                                    <span className={userData?.applicationState?.englishProficiency?.complete ? "step-status status-complete" : "step-status status-pending"}>
+                                        <span className="status-icon">{userData?.applicationState?.englishProficiency?.complete ? "✓" : "⏳"}</span>
+                                        <span className="status-text">{userData?.applicationState?.englishProficiency?.complete ? "Complete" : "Incomplete"}</span>
+                                    </span>
+                                    <span className={userData?.permission?.permission_englishProficiency ? "step-status status-complete" : "step-status status-locked"}>
+                                        <span className="status-icon">{userData?.permission?.permission_englishProficiency ? "✓" : "🔒"}</span>
+                                        <span className="status-text">{userData?.permission?.permission_englishProficiency ? "Editable" : "Locked"}</span>
+                                    </span>
+                                </div>
+                            </div>
+                            <p className="step-description">
+                                All the tests you have taken will be listed here.
+                            </p>
+                            
+                            {!userData?.englishProficiency || Object.keys(userData.englishProficiency).length === 0 ? (
+                                <div className="empty-state">
+                                    <div className="empty-icon">📝</div>
+                                    <p className="empty-text">No test data submitted yet.</p>
+                                </div>
+                            ) : (
+                                <div className="test-results">
+                                    {Object.keys(userData.englishProficiency).map((testKey: any) => (
+                                        <div key={testKey} className="test-section">
+                                            <h4 className="test-title">{testKey}</h4>
+                                            <div className="step-details">
+                                                {Object.entries(userData.englishProficiency[testKey] || {}).map(([key, value]: any) => (
+                                                    <div className="detail-box" key={testKey + '-' + key}>
+                                                        <div className="detail-label">{key}</div>
+                                                        <div className="detail-value">{String(value)}</div>
+                                                    </div>
+                                                ))}
+                                            </div>
+                                        </div>
+                                    ))}
+                                </div>
+                            )}
+                        </div>
+                    </div>
+                    
+                    {/* Step 3: Documents */}
+                    <div className={userData?.applicationState?.studentsFile?.verified ? "timeline-step complete" : "timeline-step pending"}>
+                        <div className={userData?.applicationState?.studentsFile?.verified ? "step-marker complete" : "step-marker pending"}>
+                            {userData?.applicationState?.studentsFile?.verified ? "✓" : "⏳"}
+                        </div>
+                        <div className="step-content">
+                            <div className="step-header">
+                                <h3 className="step-title">Submitted Documents</h3>
+                                <div className="step-header-content">
+                                    <span className={userData?.applicationState?.studentsFile?.verified ? "step-status status-complete" : "step-status status-pending"}>
+                                        <span className="status-icon">{userData?.applicationState?.studentsFile?.verified ? "✓" : "⏳"}</span>
+                                        <span className="status-text">{userData?.applicationState?.studentsFile?.verified ? "Verified" : "Not Verified"}</span>
+                                    </span>
+                                    <span className={userData?.applicationState?.studentsFile?.complete ? "step-status status-complete" : "step-status status-pending"}>
+                                        <span className="status-icon">{userData?.applicationState?.studentsFile?.complete ? "✓" : "⏳"}</span>
+                                        <span className="status-text">{userData?.applicationState?.studentsFile?.complete ? "Complete" : "Incomplete"}</span>
+                                    </span>
+                                    <span className={userData?.permission?.permission_studentsFile ? "step-status status-complete" : "step-status status-locked"}>
+                                        <span className="status-icon">{userData?.permission?.permission_studentsFile ? "✓" : "🔒"}</span>
+                                        <span className="status-text">{userData?.permission?.permission_studentsFile ? "Editable" : "Locked"}</span>
+                                    </span>
+                                </div>
+                            </div>
+                            <p className="step-description">
+                                All the documents you have submitted will be listed here.
+                            </p>
+                            
+                            {!userData?.files || userData.files.length === 0 ? (
+                                <div className="empty-state">
+                                    <div className="empty-icon">📄</div>
+                                    <p className="empty-text">No documents uploaded yet.</p>
+                                </div>
+                            ) : (
+                                <div className="file-container">
+                                    {userData.files.map((fileItem: any, index: number) => (
+                                        <div key={index} className={`file-item ${fileItem.verified ? 'file-verified' : 'file-pending'}`}>
+                                            <div className="file-icon">📄</div>
+                                            <div className="file-info">
+                                                <div className="file-name">{fileItem.fileName}</div>
+                                                <div className="file-date">{fileItem.uploadedAt}</div>
+                                            </div>
+                                            <a 
+                                                href={fileItem?.url} 
+                                                target="_blank" 
+                                                rel="noopener noreferrer" 
+                                                className="file-view-btn"
+                                            >
+                                                View
+                                            </a>
+                                        </div>
+                                    ))}
+                                </div>
+                            )}
+                        </div>
+                    </div>
+                    
+                    
+                    <div className={userData?.applicationState?.prefferedUniSub?.verified ? "timeline-step complete" : "timeline-step pending"}>
+                        <div className={userData?.applicationState?.prefferedUniSub?.verified ? "step-marker complete" : "step-marker pending"}>
+                            {userData?.applicationState?.prefferedUniSub?.verified ? "✓" : "⏳"}
+                        </div>
+                        <div className="step-content">
+                            <div className="step-header">
+                                <h3 className="step-title">University Assignments</h3>
+                                <div className="step-header-content">
+                                    <span className={userData?.applicationState?.prefferedUniSub?.verified ? "step-status status-complete" : "step-status status-pending"}>
+                                        <span className="status-icon">{userData?.applicationState?.prefferedUniSub?.verified ? "✓" : "⏳"}</span>
+                                        <span className="status-text">{userData?.applicationState?.prefferedUniSub?.verified ? "Verified" : "Not Verified"}</span>
+                                    </span>
+                                    <span className={userData?.applicationState?.prefferedUniSub?.complete ? "step-status status-complete" : "step-status status-pending"}>
+                                        <span className="status-icon">{userData?.applicationState?.prefferedUniSub?.complete ? "✓" : "⏳"}</span>
+                                        <span className="status-text">{userData?.applicationState?.prefferedUniSub?.complete ? "Complete" : "Incomplete"}</span>
+                                    </span>
+                                    <span className={userData?.permission?.permission_prefferedUniSub ? "step-status status-complete" : "step-status status-locked"}>
+                                        <span className="status-icon">{userData?.permission?.permission_prefferedUniSub ? "✓" : "🔒"}</span>
+                                        <span className="status-text">{userData?.permission?.permission_prefferedUniSub ? "Editable" : "Locked"}</span>
+                                    </span>
+                                </div>
+                            </div>
+                            <p className="step-description">
+                                Based on your profile, you have been assigned to universities.
+                            </p>
+                            
+                            {!userData?.preferredUniversities || userData.preferredUniversities.length === 0 ? (
+                                <div className="empty-state">
+                                    <div className="empty-icon">🎓</div>
+                                    <p className="empty-text">No universities assigned yet.</p>
+                                </div>
+                            ) : (
+                                <div className="expandable-section">
+                                    <button 
+                                        className="expand-toggle" 
+                                        onClick={() => toggleSection('universities')}
+                                    >
+                                        <span>View All Universities ({userData.preferredUniversities.length})</span>
+                                        <span className={expandedSections.universities ? "arrow-up" : "arrow-down"}>▼</span>
+                                    </button>
+                                    {expandedSections.universities && (
+                                        <div className="expand-content">
+                                            <div className="universities-grid">  
+                                                <div className="expand-content">
+                                                    {userData.preferredUniversities.map((item: any, index: number) => (
+                                                        <div key={index} className="academic-item">
+                                                            <div className="academic-header">
+                                                                <strong className="academic-number">University #{index + 1}</strong>
+                                                            </div>
+                                                            <div className="step-details">
+                                                                {Object.entries(item).map(([key, value]: any) => (
+                                                                    <div className="detail-box" key={key + index}>
+                                                                        <div className="detail-label">{key}</div>
+                                                                        <div className="detail-value">{value || 'Not provided'}</div>
+                                                                    </div>
+                                                                ))}
+                                                            </div>
                                                         </div>
                                                     ))}
                                                 </div>
-                                        ))
-                                    }
-                                </div>
-                                {/* <div className="step-actions">
-                                    <button className="btn btn-secondary">View Details</button>
-                                    <button className="btn btn-secondary">Edit Information</button>
-                                </div> */}
-                            </div>
-                        </div>
-                        
-                        Step 2: English Test 
-                        <div className="timeline-step complete">
-                            <div className="step-marker complete">✓</div>
-                            <div className="step-content">
-                                <div className="step-header">
-                                    <h3 className="step-title">English Proficiency Test</h3>
-                                    <span className="step-status status-complete">
-                                        <span>✓</span>
-                                        <span>Verified</span>
-                                    </span>
-                                </div>
-                                <p className="step-description">
-                                    Your IELTS test results have been verified. Overall band score: 7.5
-                                </p>
-                                <div className="step-details">
-                                    <div className="detail-box">
-                                        <div className="detail-label">Test Type</div>
-                                        <div className="detail-value">IELTS Academic</div>
-                                    </div>
-                                    <div className="detail-box">
-                                        <div className="detail-label">Test Date</div>
-                                        <div className="detail-value">Oct 15, 2024</div>
-                                    </div>
-                                    <div className="detail-box">
-                                        <div className="detail-label">Listening</div>
-                                        <div className="detail-value">7.5</div>
-                                    </div>
-                                    <div className="detail-box">
-                                        <div className="detail-label">Reading</div>
-                                        <div className="detail-value">8.0</div>
-                                    </div>
-                                    <div className="detail-box">
-                                        <div className="detail-label">Writing</div>
-                                        <div className="detail-value">7.0</div>
-                                    </div>
-                                    <div className="detail-box">
-                                        <div className="detail-label">Speaking</div>
-                                        <div className="detail-value">7.5</div>
-                                    </div>
-                                </div>
-                                <div className="step-actions">
-                                    <button className="btn btn-secondary">View Certificate</button>
-                                    <button className="btn btn-secondary">Update Scores</button>
-                                </div>
-                            </div>
-                        </div>
-                        
-                        Step 3: Documents 
-                        <div className="timeline-step pending">
-                            <div className="step-marker pending">⏳</div>
-                            <div className="step-content">
-                                <div className="step-header">
-                                    <h3 className="step-title">Required Documents</h3>
-                                    <span className="step-status status-pending">
-                                        <span>⏳</span>
-                                        <span>2 Items Pending</span>
-                                    </span>
-                                </div>
-                                <p className="step-description">
-                                    Most documents have been uploaded and verified. Please complete the remaining items.
-                                </p>
-                                <div className="expandable-section">
-                                    <button className="expand-toggle">
-                                    {/* <button className="expand-toggle" onclick="this.nextElementSibling.style.display = this.nextElementSibling.style.display === 'none' ? 'block' : 'none'"> */}
-                                        <span>View Document List</span>
-                                        <span>▼</span>
-                                    </button>
-                                    {/* <div className="expand-content" style="display: none;">
-                                        <div style="display: flex; flex-direction: column; gap: 8px;">
-                                            <div style="display: flex; justify-content: space-between; padding: 8px; background: #f8fafc; border-radius: 6px;">
-                                                <span style="font-size: 14px; color: #1e293b;">✓ Academic Transcript</span>
-                                                <span style="font-size: 12px; color: #059669; font-weight: 600;">Verified</span>
-                                            </div>
-                                            <div style="display: flex; justify-content: space-between; padding: 8px; background: #f8fafc; border-radius: 6px;">
-                                                <span style="font-size: 14px; color: #1e293b;">✓ Degree Certificate</span>
-                                                <span style="font-size: 12px; color: #059669; font-weight: 600;">Verified</span>
-                                            </div>
-                                            <div style="display: flex; justify-content: space-between; padding: 8px; background: #fffbeb; border-radius: 6px;">
-                                                <span style="font-size: 14px; color: #1e293b;">⏳ Passport Copy</span>
-                                                <span style="font-size: 12px; color: #d97706; font-weight: 600;">Required</span>
-                                            </div>
-                                            <div style="display: flex; justify-content: space-between; padding: 8px; background: #fffbeb; border-radius: 6px;">
-                                                <span style="font-size: 14px; color: #1e293b;">⏳ Statement of Purpose</span>
-                                                <span style="font-size: 12px; color: #d97706; font-weight: 600;">Under Review</span>
-                                            </div>
-                                            <div style="display: flex; justify-content: space-between; padding: 8px; background: #f8fafc; border-radius: 6px;">
-                                                <span style="font-size: 14px; color: #1e293b;">✓ Recommendation Letters</span>
-                                                <span style="font-size: 12px; color: #059669; font-weight: 600;">Verified</span>
                                             </div>
                                         </div>
-                                    </div> */}
+                                    )}
                                 </div>
-                                <div className="step-actions">
-                                    <button className="btn btn-primary">Upload Missing Files</button>
-                                    <button className="btn btn-secondary">View All Documents</button>
-                                </div>
-                            </div>
-                        </div>
-                        
-                        Step 4: Universities 
-                        <div className="timeline-step complete">
-                            <div className="step-marker complete">✓</div>
-                            <div className="step-content">
-                                <div className="step-header">
-                                    <h3 className="step-title">University Assignments</h3>
-                                    <span className="step-status status-complete">
-                                        <span>4</span>
-                                        <span>Universities Assigned</span>
-                                    </span>
-                                </div>
-                                <p className="step-description">
-                                    Based on your profile, we've assigned you to 4 universities. 2 applications are verified and ready.
-                                </p>
-                                <div className="expandable-section">
-                                    <button className="expand-toggle" >
-                                    {/* <button className="expand-toggle" onclick="this.nextElementSibling.style.display = this.nextElementSibling.style.display === 'none' ? 'block' : 'none'"> */}
-                                        <span>View Universities</span>
-                                        <span>▼</span>
-                                    </button>
-                                    <div className="expand-content" style={{display:" none"}}>
-                                        <div className="universities-grid">
-                                            <div className="university-item">
-                                                <div>
-                                                    <div className="uni-name">University of Toronto</div>
-                                                    <div className="uni-program">MSc Computer Science • Canada</div>
-                                                </div>
-                                                <span className="uni-badge badge-verified">✓ Verified</span>
-                                            </div>
-                                            <div className="university-item">
-                                                <div>
-                                                    <div className="uni-name">University of Melbourne</div>
-                                                    <div className="uni-program">Master of IT • Australia</div>
-                                                </div>
-                                                <span className="uni-badge badge-review">⏳ Review</span>
-                                            </div>
-                                            <div className="university-item">
-                                                <div>
-                                                    <div className="uni-name">TU Munich</div>
-                                                    <div className="uni-program">MSc Informatics • Germany</div>
-                                                </div>
-                                                <span className="uni-badge badge-verified">✓ Verified</span>
-                                            </div>
-                                            <div className="university-item">
-                                                <div>
-                                                    <div className="uni-name">NUS Singapore</div>
-                                                    <div className="uni-program">MSc Computing • Singapore</div>
-                                                </div>
-                                                <span className="uni-badge badge-review">⏳ Review</span>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div className="step-actions">
-                                    <button className="btn btn-secondary">View All Details</button>
-                                    <button className="btn btn-secondary">Compare Programs</button>
-                                </div>
-                            </div>
+                            )}
                         </div>
                     </div>
+                </div>
             </main>
         </div>
     )
