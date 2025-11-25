@@ -1,17 +1,19 @@
 'use client'
-import React, { useState } from 'react'
+import React, { Suspense, useState } from 'react'
 import '../css/Details.css'
 import { useUserInfo } from '@/utils/useUserInfo'
 import Loader from '@/component/shared/loader/loader'
 import { useGetSingleFileByStudentWithEmailQuery } from '@/redux/endpoints/studentfileprocess/proceedEndpoints'
 import ProgressRing from './ProgressRing'
+import StudentDetailModal from '@/app/(dashboard)/DashboardSharedItem/StFile/StudentDetailModal/StudentDetailModal'
 
 const Details = () => {
+    const [detailState,setdetailState] = useState({ isOpen: false, data: {} , title: '', id:''})
     const [expandedSections, setExpandedSections] = useState<{[key: string]: boolean}>({
         academic: false,
         universities: false
     });
-
+  
     const toggleSection = (section: string) => {
         setExpandedSections(prev => ({
             ...prev,
@@ -65,19 +67,40 @@ const Details = () => {
                 <div className="quick-actions">
                     <h3>Quick Actions</h3>
                     <div className="action-list">
-                        <a href="#" className="action-btn">
+                        <a onClick={() => setdetailState({ isOpen: true, title: 'all files', data: userData?.files, "id": userData?._id })} className="action-btn">
                             <span className="action-icon">📤</span>
                             <span>Upload Documents</span>
                         </a>
-                        <a href="#" className="action-btn">
+                        <a  onClick={() => setdetailState({
+                                isOpen: true, 
+                                title: 'personal information', 
+                                data: {
+                                    "personalInfo": {
+                                        dob: userData?.dob,
+                                        name: userData?.name,
+                                        email: userData?.email,
+                                        phone: userData?.phone,
+                                        gender: userData?.gender,
+                                        passportNo: userData?.passportNo,
+                                        maritalStatus: userData?.maritalStatus,
+                                        currentAddress: userData?.currentAddress,
+                                        countryCitizen: userData?.countryCitizen,
+                                        refusedCountry: userData?.refusedCountry,
+                                        alternativePhone: userData?.alternativePhone,
+                                    },
+                                    "academicInfo": userData?.academicInfo,
+                                    "applicatonState": userData?.applicationState?.personalInfo,
+                                },
+                                id: userData?._id
+                            })} className="action-btn">
                             <span className="action-icon">✏️</span>
                             <span>Edit Profile</span>
                         </a>
-                        <a href="#" className="action-btn">
+                        <a onClick={() => setdetailState({ isOpen: true, title: 'assigned university & subjects', data: userData?.preferredUniversities, id: userData?._id })} className="action-btn">
                             <span className="action-icon">🎓</span>
                             <span>Edit Universities</span>
                         </a>
-                        <a href="#" className="action-btn">
+                        <a onClick={() => setdetailState({ isOpen: true, title: 'english test', data: userData?.englishProficiency, "id": userData?._id })}className="action-btn">
                             <span className="action-icon">📝</span>
                             <span>Upload Test Results</span>
                         </a>
@@ -372,6 +395,12 @@ const Details = () => {
                     </div>
                 </div>
             </main>
+            <Suspense fallback={<Loader />}>
+                <StudentDetailModal
+                    setdetailState={setdetailState}
+                    detailState={detailState}
+                />
+            </Suspense>
         </div>
     )
 }

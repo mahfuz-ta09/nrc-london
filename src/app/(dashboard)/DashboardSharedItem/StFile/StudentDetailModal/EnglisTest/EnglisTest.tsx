@@ -6,6 +6,7 @@ import Loader from "@/component/shared/loader/loader";
 import { FormProvider, useForm } from "react-hook-form";
 import { StudentListProps, examConfig } from "../../type";
 import { useEditStudentFileMutation } from "@/redux/endpoints/studentfileprocess/proceedEndpoints";
+import { useUserInfo } from "@/utils/useUserInfo";
 
 interface formValue{
     englishProficiency: {
@@ -30,6 +31,7 @@ interface formValue{
 }
 
 const EnglishTest = ({ detailState, setdetailState }: StudentListProps) => {
+    const userData = useUserInfo()
     const [isEditing, setIsEditing] = useState(false);
     const [editStudentFile,{ isLoading}] = useEditStudentFileMutation()
     
@@ -192,39 +194,36 @@ const EnglishTest = ({ detailState, setdetailState }: StudentListProps) => {
                                 </div>
                             </div>
                         ))}
-
+                        {(isEditing && userData?.Urole !== 'student') && (
                         <div className="input-container">
-                            {isEditing && (<label>Allow student to edit this section?</label>)}
-                            {isEditing && (
-                              <select {...methods.register("permission.permission_englishProficiency")}>
-                                <option value="">Select</option>
-                                <option value="true">Yes</option>
-                                <option value="false">No</option>
-                              </select>
-                            )}
+                            <label>Allow student to edit this section?</label>
+                            <select {...methods.register("permission.permission_englishProficiency")}>
+                              <option value="">Select</option>
+                              <option value="true">Yes</option>
+                              <option value="false">No</option>
+                            </select>
                         </div>
- 
+                        )}
+                        {(isEditing && userData?.Urole !== 'student') && (
                         <div className="input-container">
-                          {isEditing && (<label>Information Verified?</label>)}
-                          {isEditing && (
+                           <label>Information Verified?</label>
                             <select {...methods.register("applicationState.englishProficiency.verified")}>
                               <option value="">Select</option>
                               <option value="true">Verified</option>
                               <option value="false">Not Verified</option>
                             </select>
-                          )}
                         </div>
-
+                        )}
+                        {(isEditing && userData?.Urole !== 'student') && (
                         <div className="input-container">
-                          {isEditing && (<label>Section Complete?</label>)}
-                          {isEditing && (
+                            <label>Section Complete?</label>
                             <select {...methods.register("applicationState.englishProficiency.complete")}>
                               <option value="">Select</option>
                               <option value="true">Complete</option>
                               <option value="false">Incomplete</option>
                             </select>
-                          )}
                         </div>
+                        )}
 
 
                         {isEditing && (

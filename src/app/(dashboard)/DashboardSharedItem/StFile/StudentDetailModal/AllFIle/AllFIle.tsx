@@ -5,6 +5,7 @@ import {
   useFieldArray,
 } from "react-hook-form";
 import { toast } from "react-toastify";
+import { useUserInfo } from "@/utils/useUserInfo";
 import Loader from "@/component/shared/loader/loader";
 import { fileCategories, StudentListProps } from "../../type";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
@@ -31,6 +32,7 @@ interface FileFormValues {
 }
 
 const AllFile = ({ detailState, setdetailState }: StudentListProps) => {
+    const userData = useUserInfo()
     const [isEditing, setIsEditing] = useState(false);
     const [deletedFiles, setDeletedFiles] = useState<string[]>([]);
     const [editStudentFile,{ isLoading}] = useEditStudentFileMutation()
@@ -256,37 +258,38 @@ const AllFile = ({ detailState, setdetailState }: StudentListProps) => {
                         + Add Another File
                     </button>
                     )}
-
+                    
+                    {(isEditing && userData?.Urole !== 'student') && (
                     <div className="input-container">
-                        {isEditing && (<label>Allow student to edit this section?</label>)}
-                        {isEditing && (
-                          <select {...methods.register("permission.permission_studentsFile")}>
-                            <option value="">Select</option>
-                            <option value="true">Yes</option>
-                            <option value="false">No</option>
-                          </select>
-                        )}
+                        <label>Allow student to edit this section?</label>
+                        <select {...methods.register("permission.permission_studentsFile")}>
+                          <option value="">Select</option>
+                          <option value="true">Yes</option>
+                          <option value="false">No</option>
+                        </select>
                     </div>
+                    )}
+                    {(isEditing && userData?.Urole !== 'student') && (
                     <div className="input-container">
-                      {isEditing && (<label>Information Verified?</label>)}
-                      {isEditing && (
+                        <label>Information Verified?</label>
                         <select {...methods.register("applicationState.studentsFile.verified")}>
                           <option value="">Select</option>
                           <option value="true">Verified</option>
                           <option value="false">Not Verified</option>
                         </select>
-                      )}
                     </div>
+                    )}
+                    {(isEditing && userData?.Urole !== 'student') && (
                     <div className="input-container">
-                      {isEditing && (<label>Section Complete?</label>)}
-                      {isEditing && (
+                      <label>Section Complete?</label>
                         <select {...methods.register("applicationState.studentsFile.complete")}>
                           <option value="">Select</option>
                           <option value="true">Complete</option>
                           <option value="false">Incomplete</option>
                         </select>
-                      )}
                     </div>
+                    )}
+
                     {isEditing && (
                     <div style={{ marginTop: "1rem", textAlign: "right" }}>
                         <button type="submit" className="add-btn">

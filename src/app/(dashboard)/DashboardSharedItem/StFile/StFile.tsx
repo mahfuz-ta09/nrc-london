@@ -33,25 +33,18 @@ const stFile = () => {
               modalState={modalState}
               setModalState={setModalState}
           />
-        </Suspense>
-
-        <Suspense fallback={<Loader />}>
+          
           <StudentInfoSlider 
             values={values}
             setValues={setValues}
           />
-        </Suspense>
 
-        <Suspense fallback={<Loader />}>
           <StudentList 
               setdetailState={setdetailState}
               detailState={detailState}
               values={values}
               setValues={setValues}
           />
-        </Suspense>
-
-        <Suspense fallback={<Loader />}>
           <StudentDetailModal 
               setdetailState={setdetailState}
               detailState={detailState} 

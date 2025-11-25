@@ -10,7 +10,7 @@ import History from './History/History';
 
 const StudentDetailModal = ({ detailState, setdetailState }: StudentListProps) => {
 
-    // console.log(detailState)
+    
     if (detailState?.title === 'personal information') return <PersonalInfo detailState={detailState} setdetailState={setdetailState} />
 
     if (detailState?.title === 'all files') return <AllFIle detailState={detailState} setdetailState={setdetailState} />

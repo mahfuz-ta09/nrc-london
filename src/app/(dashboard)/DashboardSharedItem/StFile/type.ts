@@ -276,7 +276,8 @@ export const resetState:any = {
 };
 
 export type StudentListProps = {
-    setdetailState: React.Dispatch<React.SetStateAction<{ isOpen: boolean, data: any, title: string, id?: string }>>;
+    // setdetailState: React.Dispatch<React.SetStateAction<{ isOpen: boolean, data: any, title: string, id?: string }>>;
+    setdetailState: any;
     detailState: { isOpen: boolean, data: any, title: string , id?: string};
     values?: any;
     setValues?: React.Dispatch<React.SetStateAction<any>>;

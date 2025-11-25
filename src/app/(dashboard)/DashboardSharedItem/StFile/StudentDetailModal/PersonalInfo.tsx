@@ -5,6 +5,7 @@ import EditableInput from "./EditableInput";
 import Loader from "@/component/shared/loader/loader";
 import { useForm, FormProvider, useFieldArray } from "react-hook-form";
 import { useEditStudentFileMutation } from "@/redux/endpoints/studentfileprocess/proceedEndpoints";
+import { useUserInfo } from "@/utils/useUserInfo";
 
 const personalInfoLabels: Record<string, string> = {
     name: "Student's Name",
@@ -23,6 +24,7 @@ const personalInfoLabels: Record<string, string> = {
 };
 
 const PersonalInfo = ({ detailState, setdetailState }: StudentListProps) => {
+    const userData = useUserInfo() 
     const [isEditing, setIsEditing] = useState(false);
     const methods = useForm({
       defaultValues: detailState?.data || {},
@@ -146,40 +148,39 @@ const PersonalInfo = ({ detailState, setdetailState }: StudentListProps) => {
                           + Add Academic Info
                         </button>
 
-
-                        <div className="input-container">
-                            {isEditing && (<label>Allow student to edit this section?</label>)}
-                            {isEditing && (
+                        {(isEditing && userData?.Urole !== 'student') && (
+                          <div className="input-container">
+                              <label>Allow student to edit this section?</label>
                               <select {...methods.register("permission.permission_personalInfo")}>
                                 <option value="">Select</option>
                                 <option value="true">Yes</option>
                                 <option value="false">No</option>
                               </select>
-                            )}
-                        </div>
- 
-                        <div className="input-container">
-                          {isEditing && (<label>Information Verified?</label>)}
-                          {isEditing && (
+                          </div>
+                        )}
+                        
+                        {(isEditing && userData?.Urole !== 'student') && (
+                          <div className="input-container">
+                            <label>Information Verified?</label>
                             <select {...methods.register("applicationState.personalInfo.verified")}>
                               <option value="">Select</option>
                               <option value="true">Verified</option>
                               <option value="false">Not Verified</option>
                             </select>
-                          )}
-                        </div>
+                          </div>
+                        )}
 
-                        <div className="input-container">
-                          {isEditing && (<label>Section Complete?</label>)}
-                          {isEditing && (
-                            <select {...methods.register("applicationState.personalInfo.complete")}>
-                              <option value="">Select</option>
-                              <option value="true">Complete</option>
-                              <option value="false">Incomplete</option>
-                            </select>
-                          )}
-                        </div>
-                    
+                        {(isEditing && userData?.Urole !== 'student') && (
+                          <div className="input-container">
+                              <label>Section Complete?</label>
+                              <select {...methods.register("applicationState.personalInfo.complete")}>
+                                <option value="">Select</option>
+                                <option value="true">Complete</option>
+                                <option value="false">Incomplete</option>
+                              </select>
+                          </div>
+                        )}
+                        
                         <div style={{ marginTop: "1rem", textAlign: "right" }}>
                           <button type="submit" className="add-btn">
                             💾 Save Changes

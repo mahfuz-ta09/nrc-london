@@ -1,9 +1,11 @@
 import React, { useState } from 'react'
+import { toast } from 'react-toastify'
 import { StudentListProps } from '../../type'
 import EditableInput from '../EditableInput'
+import Loader from '@/component/shared/loader/loader'
 import { FormProvider, useFieldArray, useForm } from 'react-hook-form'
-import { toast } from 'react-toastify'
 import { useEditStudentFileMutation } from '@/redux/endpoints/studentfileprocess/proceedEndpoints'
+import { useUserInfo } from '@/utils/useUserInfo'
 
 interface AssignedUniSubForm {
     preferredUniversities: any[]
@@ -19,8 +21,11 @@ interface AssignedUniSubForm {
 }
 
 const AssignedUniSub = ({ detailState, setdetailState }: StudentListProps) => {
+    const userData = useUserInfo()
     const [isEditing, setIsEditing] = useState(false)
     const [editStudentFile,{ isLoading}] = useEditStudentFileMutation()
+
+    if(isLoading) return <Loader />
 
     const methods = useForm<AssignedUniSubForm>({
         defaultValues: {
@@ -139,38 +144,38 @@ const AssignedUniSub = ({ detailState, setdetailState }: StudentListProps) => {
                                 </button>
                             )}
 
-                        <div className="input-container">
-                            {isEditing && (<label>Allow student to edit this section?</label>)}
-                            {isEditing && (
-                              <select {...methods.register("permission.permission_prefferedUniSub")}>
-                                <option value="">Select</option>
-                                <option value="true">Yes</option>
-                                <option value="false">No</option>
-                              </select>
+                            {(isEditing && userData?.Urole !== 'student') && (
+                            <div className="input-container">
+                                <label>Allow student to edit this section?</label>
+                                <select {...methods.register("permission.permission_prefferedUniSub")}>
+                                    <option value="">Select</option>
+                                    <option value="true">Yes</option>
+                                    <option value="false">No</option>
+                                </select>
+                            </div>
                             )}
-                        </div>
- 
-                        <div className="input-container">
-                          {isEditing && (<label>Information Verified?</label>)}
-                          {isEditing && (
-                            <select {...methods.register("applicationState.prefferedUniSub.verified")}>
-                              <option value="">Select</option>
-                              <option value="true">Verified</option>
-                              <option value="false">Not Verified</option>
-                            </select>
-                          )}
-                        </div>
-
-                        <div className="input-container">
-                          {isEditing && (<label>Section Complete?</label>)}
-                          {isEditing && (
-                            <select {...methods.register("applicationState.prefferedUniSub.complete")}>
-                              <option value="">Select</option>
-                              <option value="true">Complete</option>
-                              <option value="false">Incomplete</option>
-                            </select>
-                          )}
-                        </div>
+                            
+                            {(isEditing && userData?.Urole !== 'student') && (
+                            <div className="input-container">
+                                <label>Information Verified?</label>
+                                <select {...methods.register("applicationState.prefferedUniSub.verified")}>
+                                <option value="">Select</option>
+                                <option value="true">Verified</option>
+                                <option value="false">Not Verified</option>
+                                </select>
+                            </div>
+                            )}
+                            
+                            {(isEditing && userData?.Urole !== 'student') && (
+                            <div className="input-container">
+                            <label>Section Complete?</label> 
+                                <select {...methods.register("applicationState.prefferedUniSub.complete")}>
+                                <option value="">Select</option>
+                                <option value="true">Complete</option>
+                                <option value="false">Incomplete</option>
+                                </select>
+                            </div>
+                            )}
                             {isEditing && (
                                 <div style={{ marginTop: '1rem', textAlign: 'right' }}>
                                 <button type="submit" className="add-btn">

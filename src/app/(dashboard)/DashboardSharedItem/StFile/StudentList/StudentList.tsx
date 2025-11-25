@@ -41,7 +41,6 @@ const StudentList = ({ setdetailState, detailState, values }: StudentListProps) 
                                             </div>
                                         </td>
 
-                                        {/* Quick Actions Column */}
                                         <td>
                                             <p className="table-text" onClick={() => setdetailState({
                                                 isOpen: true, title: 'personal information', data: {
