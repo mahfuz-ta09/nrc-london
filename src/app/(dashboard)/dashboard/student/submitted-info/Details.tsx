@@ -6,6 +6,7 @@ import Loader from '@/component/shared/loader/loader'
 import { useGetSingleFileByStudentWithEmailQuery } from '@/redux/endpoints/studentfileprocess/proceedEndpoints'
 import ProgressRing from './ProgressRing'
 import StudentDetailModal from '@/app/(dashboard)/DashboardSharedItem/StFile/StudentDetailModal/StudentDetailModal'
+import { toast } from 'react-toastify'
 
 const Details = () => {
     const [detailState,setdetailState] = useState({ isOpen: false, data: {} , title: '', id:''})
@@ -41,7 +42,55 @@ const Details = () => {
         if(userData?.applicationState?.prefferedUniSub?.verified) verified +=1;
     }
 
-    console.log(userData)
+    const handleToggleSection = (section: string) => {
+        if(section==='personal information' && userData?.permission?.permission_personalInfo===true){
+            setdetailState({
+                isOpen: true, 
+                title: section, 
+                data: {
+                    "personalInfo": {
+                        dob: userData?.dob,
+                        name: userData?.name,
+                        email: userData?.email,
+                        phone: userData?.phone,
+                        gender: userData?.gender,
+                        passportNo: userData?.passportNo,
+                        maritalStatus: userData?.maritalStatus,
+                        currentAddress: userData?.currentAddress,
+                        countryCitizen: userData?.countryCitizen,
+                        refusedCountry: userData?.refusedCountry,
+                        alternativePhone: userData?.alternativePhone,
+                    },
+                    "academicInfo": userData?.academicInfo,
+                    "applicatonState": userData?.applicationState?.personalInfo,
+                },
+                id: userData?._id
+            })
+        }else if(section==='assigned university & subjects' && userData?.permission?.permission_prefferedUniSub===true){
+            setdetailState({ 
+                isOpen: true, 
+                title: section, 
+                data: userData?.preferredUniversities, 
+                id: userData?._id 
+            })
+        }else if(section==='english test' && userData?.permission?.permission_englishProficiency===true){
+            setdetailState({ 
+                isOpen: true, 
+                title: 'english test', 
+                data: userData?.englishProficiency, 
+                id: userData?._id
+            })
+        }else if(section==='all files' && userData?.permission?.permission_studentsFile===true){
+            setdetailState({ 
+                isOpen: true, 
+                title: 'all files', 
+                data: userData?.files, 
+                id: userData?._id 
+            })
+        }else{
+            toast.error("You don't have permission to edit this section")
+        }
+    }
     return (
         <div className="container-file">
             <aside className="sidebar">
@@ -67,40 +116,19 @@ const Details = () => {
                 <div className="quick-actions">
                     <h3>Quick Actions</h3>
                     <div className="action-list">
-                        <a onClick={() => setdetailState({ isOpen: true, title: 'all files', data: userData?.files, "id": userData?._id })} className="action-btn">
+                        <a onClick={() => handleToggleSection('all files')} className="action-btn">
                             <span className="action-icon">📤</span>
                             <span>Upload Documents</span>
                         </a>
-                        <a  onClick={() => setdetailState({
-                                isOpen: true, 
-                                title: 'personal information', 
-                                data: {
-                                    "personalInfo": {
-                                        dob: userData?.dob,
-                                        name: userData?.name,
-                                        email: userData?.email,
-                                        phone: userData?.phone,
-                                        gender: userData?.gender,
-                                        passportNo: userData?.passportNo,
-                                        maritalStatus: userData?.maritalStatus,
-                                        currentAddress: userData?.currentAddress,
-                                        countryCitizen: userData?.countryCitizen,
-                                        refusedCountry: userData?.refusedCountry,
-                                        alternativePhone: userData?.alternativePhone,
-                                    },
-                                    "academicInfo": userData?.academicInfo,
-                                    "applicatonState": userData?.applicationState?.personalInfo,
-                                },
-                                id: userData?._id
-                            })} className="action-btn">
+                        <a  onClick={() => handleToggleSection("personal information")} className="action-btn">
                             <span className="action-icon">✏️</span>
                             <span>Edit Profile</span>
                         </a>
-                        <a onClick={() => setdetailState({ isOpen: true, title: 'assigned university & subjects', data: userData?.preferredUniversities, id: userData?._id })} className="action-btn">
+                        <a onClick={() => handleToggleSection('assigned university & subjects')} className="action-btn">
                             <span className="action-icon">🎓</span>
                             <span>Edit Universities</span>
                         </a>
-                        <a onClick={() => setdetailState({ isOpen: true, title: 'english test', data: userData?.englishProficiency, "id": userData?._id })}className="action-btn">
+                        <a onClick={() => handleToggleSection('english test')}className="action-btn">
                             <span className="action-icon">📝</span>
                             <span>Upload Test Results</span>
                         </a>
@@ -141,7 +169,6 @@ const Details = () => {
                                 Your personal details and academic background will be verified by our team.
                             </p>
                             
-                            {/* Personal Info */}
                             <div className="info-section">
                                 <h4 className="section-subtitle">Personal Information</h4>
                                 <div className="step-details">
@@ -183,7 +210,6 @@ const Details = () => {
                                 </div>
                             </div>
 
-                            {/* Academic Info - Expandable */}
                             {userData?.academicInfo && userData.academicInfo.length > 0 && (
                                 <div className="expandable-section">
                                     <button 
@@ -256,7 +282,7 @@ const Details = () => {
                                             <h4 className="test-title">{testKey}</h4>
                                             <div className="step-details">
                                                 {Object.entries(userData.englishProficiency[testKey] || {}).map(([key, value]: any) => (
-                                                    <div className="detail-box" key={testKey + '-' + key}>
+                                                    <div className="detail-box" key={key}>
                                                         <div className="detail-label">{key}</div>
                                                         <div className="detail-value">{String(value)}</div>
                                                     </div>

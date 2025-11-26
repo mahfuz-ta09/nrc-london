@@ -103,8 +103,8 @@ const AllFile = ({ detailState, setdetailState }: StudentListProps) => {
         setIsEditing(false);
     };
 
-    if (!detailState.isOpen) return null;
     if (isLoading) return <Loader />;
+    if (!detailState.isOpen) return null;
 
     return (
         <div className="modal-container openmoda-container">

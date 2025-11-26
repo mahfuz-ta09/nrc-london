@@ -25,7 +25,6 @@ const AssignedUniSub = ({ detailState, setdetailState }: StudentListProps) => {
     const [isEditing, setIsEditing] = useState(false)
     const [editStudentFile,{ isLoading}] = useEditStudentFileMutation()
 
-    if(isLoading) return <Loader />
 
     const methods = useForm<AssignedUniSubForm>({
         defaultValues: {
@@ -65,6 +64,8 @@ const AssignedUniSub = ({ detailState, setdetailState }: StudentListProps) => {
     }
 
     if (!detailState.isOpen) return null
+    if(isLoading) return <Loader />
+    
     return (
         <div className={detailState.isOpen? 'modal-container openmoda-container': 'modal-container' }>
             <div className="modal-body">
@@ -93,7 +94,7 @@ const AssignedUniSub = ({ detailState, setdetailState }: StudentListProps) => {
                     <FormProvider {...methods}>
                         <form onSubmit={methods.handleSubmit(onSubmit)} className="modal-content">
                             {fields.map((field, index) => (
-                                <div>
+                                <div key={index}>
                                     <div 
                                         style={{
                                             borderLeft: "1px solid green",

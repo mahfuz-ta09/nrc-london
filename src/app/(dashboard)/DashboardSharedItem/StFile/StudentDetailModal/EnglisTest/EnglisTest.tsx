@@ -33,7 +33,7 @@ interface formValue{
 const EnglishTest = ({ detailState, setdetailState }: StudentListProps) => {
     const userData = useUserInfo()
     const [isEditing, setIsEditing] = useState(false);
-    const [editStudentFile,{ isLoading}] = useEditStudentFileMutation()
+    const [ editStudentFile, { isLoading }] = useEditStudentFileMutation()
     
 
     const methods = useForm<formValue>({
@@ -59,13 +59,13 @@ const EnglishTest = ({ detailState, setdetailState }: StudentListProps) => {
             const confirm = window.confirm("Are you sure aboiut the upgrade?")
             if(!confirm) return
             if(!detailState?.id) return
-            
-            const response:any = await editStudentFile({ data: data, id:detailState?.id}) 
+            console.log(data)
+            const response:any = await editStudentFile({ data: data, id:detailState?.id})
             if(response?.data?.data?.modifiedCount){
               toast.success("Student file updated successfully")
               setdetailState({ isOpen: false, data: {}, title: "" })
             }else{
-              toast.error("Failed to update student file")
+              toast.error(response?.error?.data ||"Failed to update student file")
             }
         }
         setIsEditing(false)
