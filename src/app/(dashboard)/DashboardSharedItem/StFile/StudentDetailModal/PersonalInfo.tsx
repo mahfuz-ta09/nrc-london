@@ -43,12 +43,12 @@ const PersonalInfo = ({ detailState, setdetailState }: StudentListProps) => {
             if(!confirm) return
             if(!detailState?.id) return
             
-            const response = await editStudentFile({data:data, id:detailState?.id})
+            const response:any = await editStudentFile({data:data, id:detailState?.id})
             if(response?.data?.data?.modifiedCount){
               toast.success("Student file updated successfully")
               setdetailState({ isOpen: false, data: {}, title: "" })
             }else{
-              toast.error("Failed to update student file")
+              toast.error(response?.error?.data || "Failed to update student file")
             }
         }
         setIsEditing(false);

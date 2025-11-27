@@ -57,7 +57,7 @@ const AssignedUniSub = ({ detailState, setdetailState }: StudentListProps) => {
               toast.success("Student file updated successfully")
               setdetailState({ isOpen: false, data: {}, title: "" })
             }else{
-              toast.error("Failed to update student file")
+              toast.error(response?.error?.data ||"Failed to update student file")
             }
         }
         setIsEditing(false)
@@ -65,7 +65,7 @@ const AssignedUniSub = ({ detailState, setdetailState }: StudentListProps) => {
 
     if (!detailState.isOpen) return null
     if(isLoading) return <Loader />
-    
+
     return (
         <div className={detailState.isOpen? 'modal-container openmoda-container': 'modal-container' }>
             <div className="modal-body">
