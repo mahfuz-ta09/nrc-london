@@ -1,11 +1,11 @@
 'use client'
+import History from './History/History';
 import AllFIle from './AllFIle/AllFIle';
 import { StudentListProps } from '../type';
 import PersonalInfo from './PersonalInfo';
 import EnglisTest from './EnglisTest/EnglisTest';
 import AssignedUniSub from './AssignedUniSub/AssignedUniSub';
 import EducationalBack from './EducationalBack/EducationalBack';
-import History from './History/History';
 
 
 const StudentDetailModal = ({ detailState, setdetailState }: StudentListProps) => {

@@ -1,5 +1,4 @@
-import '../css/Details.css'
-
+import '../ApplicationDetails/css/Details.css'
 
 const ProgressRing = ({ verified }: { verified: number }) => {
   const radius = 80;

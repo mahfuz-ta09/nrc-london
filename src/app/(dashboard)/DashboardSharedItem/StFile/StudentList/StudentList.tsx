@@ -1,50 +1,85 @@
-'use client'
+"use client"
 import '@/css/component/Table1.css'
 import { StudentListProps } from "../type";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
+import { useRouter } from 'next/navigation';
 import { useGetFileByConditionsQuery } from "@/redux/endpoints/studentfileprocess/proceedEndpoints";
-import { faArrowRight, faFile, faIdCard, faPaperclip, faTrash, faUniversity } from "@fortawesome/free-solid-svg-icons"
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faChevronRight, faList, faListCheck } from '@fortawesome/free-solid-svg-icons';
 
 const StudentList = ({ setdetailState, detailState, values }: StudentListProps) => {
-    const { data, isLoading } = useGetFileByConditionsQuery({ values: values })
+    const router = useRouter();
+    const { data, isLoading } = useGetFileByConditionsQuery({ values });
 
-    return (  
-        <div style={{ display: data?.data ? "block" : "none" }} className="table-container">
-            <h1 className='tag-new'>Review Student Applications</h1>
-            <div className="table-contant-new">
+    const students = data?.data || [];
+    
+    return (
+        <div className="table-wrapper">
+            <div className="table-header">
+                <h2>
+                    <span>📋</span>
+                    Student Applications
+                </h2>
+            </div>
+
+            <div className="st-table-container">
                 <table>
                     <thead>
                         <tr>
                             <th>Student Information</th>
-                            <th>information field</th>
-                            <th>Personal & Academic</th>
-                            <th>Assigned Universities</th>
-                            <th>Submitted Files</th>
-                            <th>English Test</th>
-                            <th>action</th>
+                            <th>Quick Actions</th>
+                            <th>Dates</th>
+                            <th>Details</th>
+                            <th>Actions</th>
                         </tr>
                     </thead>
                     <tbody>
-                        {
-                            isLoading ? (
-                                <tr>
-                                    <td colSpan={8}>Loading...</td>
-                                </tr>
-                            ) : data?.data?.length > 0 ? (
-                                data.data.map((student: any) => (
-                                    <tr key={student?._id}>
-                                        <td>
-                                            <div className="student-info">
-                                                <span className="student-name">{student?.name}</span>
-                                                <span className="student-email">{student?.email}</span>
+                        {isLoading && (
+                            <tr className="loading-row">
+                                <td colSpan={6}>
+                                    <div className="loading-spinner"></div>
+                                    <div style={{ color: "#64748b" }}>Loading students...</div>
+                                </td>
+                            </tr>
+                        )}
+
+                        {!isLoading && students.length === 0 && (
+                            <tr className="empty-row">
+                                <td colSpan={6}>
+                                    <div className="empty-icon">📭</div>
+                                    <div className="empty-text">No students found</div>
+                                </td>
+                            </tr>
+                        )}
+
+                        {!isLoading && students.length > 0 && (
+                            students.map((student: any) => (
+                                <tr key={student?._id}>
+                                    <td className="student-info-cell">
+                                        <div className="student-info">
+                                            {/* <button className="action-btn btn-details" onClick={() => router.push(`/dashboard/super_admin/st-file/${student?._id}`)}>
+                                                <span>👁️</span>
+                                                <span>Details</span>
+                                            </button> */}
+                                            <div className="student-avatar">
+                                                {student?.name?.substring(0, 2).toUpperCase()}
+                                            </div>
+                                            <div className="student-details">
+                                                <div className="student-name">{student?.name}</div>
+                                                <div className="student-email">{student?.email}</div>
                                                 <span className="student-id">{student?._id}</span>
                                             </div>
-                                        </td>
+                                            
 
-                                        <td>
-                                            <p className="table-text" onClick={() => setdetailState({
-                                                isOpen: true, title: 'personal information', data: {
-                                                    "personalInfo": {
+                                        </div> 
+                                    </td>
+
+                                    <td className="quick-actions-cell">
+                                        <div className="quick-actions">
+                                            <button className="quick-btn" onClick={() => setdetailState({
+                                                isOpen: true,
+                                                title: "personal information",
+                                                data: {
+                                                    personalInfo: {
                                                         dob: student?.dob,
                                                         name: student?.name,
                                                         email: student?.email,
@@ -57,125 +92,72 @@ const StudentList = ({ setdetailState, detailState, values }: StudentListProps) 
                                                         refusedCountry: student?.refusedCountry,
                                                         alternativePhone: student?.alternativePhone,
                                                     },
-                                                    "academicInfo": student?.academicInfo,
-                                                    "applicatonState": student?.applicationState?.personalInfo,
+                                                    academicInfo: student?.academicInfo,
+                                                    applicatonState: student?.applicationState?.personalInfo,
                                                 },
-                                                "id": student?._id
-                                            })}>
-                                                <FontAwesomeIcon icon={faIdCard} />
-                                                Personal Info
-                                            </p>
-                                            <p className="table-text" onClick={() => setdetailState({ isOpen: true, title: 'assigned university & subjects', data: student?.preferredUniversities, "id": student?._id })}>
-                                                <FontAwesomeIcon icon={faUniversity} />
-                                                Universities
-                                            </p>
-                                            <p className="table-text" onClick={() => setdetailState({ isOpen: true, title: 'english test', data: student?.englishProficiency, "id": student?._id })}>
-                                                <FontAwesomeIcon icon={faPaperclip} />
-                                                Test Results
-                                            </p>
-                                            <p className="table-text" onClick={() => setdetailState({ isOpen: true, title: 'all files', data: student?.files, "id": student?._id })} >
-                                                <FontAwesomeIcon icon={faFile} />
-                                                Files
-                                            </p>
-                                        </td>
+                                                id: student?._id
+                                            })}>👤 Personal</button>
 
-                                        <td>
-                                            <div className="status-column">
-                                                {student?.permission?.permission_personalInfo === true ?
-                                                    <p className="table-message-positive">Edit access granted</p> :
-                                                    <p className="table-message-negative">Access locked</p>
-                                                }
-                                                {student?.applicationState?.personalInfo?.complete === true ?
-                                                    <p className="table-message-positive">Submitted</p> :
-                                                    <p className="table-message-negative">Not submitted</p>
-                                                }
-                                                {student?.applicationState?.personalInfo?.verified === true ?
-                                                    <p className="table-message-positive">Verified</p> :
-                                                    <p className="table-message-negative">Not verified</p>
-                                                }
+                                            <button className="quick-btn" onClick={() => setdetailState({
+                                                isOpen: true, title: 'assigned university & subjects',
+                                                data: student?.preferredUniversities,
+                                                id: student?._id
+                                            })}>🎓 Universities</button>
+
+                                            <button className="quick-btn" onClick={() => setdetailState({
+                                                isOpen: true, title: 'all files',
+                                                data: student?.files,
+                                                id: student?._id
+                                            })}>📄 Files</button>
+
+                                            <button className="quick-btn" onClick={() => setdetailState({
+                                                isOpen: true, title: 'english test',
+                                                data: student?.englishProficiency,
+                                                id: student?._id
+                                            })}>📝 Test</button>
+                                        </div>
+                                    </td>
+
+                                    <td className="dates-cell">
+                                        <div className="date-info">
+                                            <div className="date-item">
+                                                <span className="date-label">Created</span>
+                                                <span className="date-value">{student?.createdAt || "--"}</span>
                                             </div>
-                                        </td>
-
-
-                                        <td>
-                                            <div className="status-column">
-                                                {student?.permission?.permission_prefferedUniSub === true ?
-                                                    <p className="table-message-positive">Edit access granted</p> :
-                                                    <p className="table-message-negative">Access locked</p>
-                                                }
-                                                {student?.applicationState?.prefferedUniSub?.complete === true ?
-                                                    <p className="table-message-positive">Submitted</p> :
-                                                    <p className="table-message-negative">Not submitted</p>
-                                                }
-                                                {student?.applicationState?.prefferedUniSub?.verified === true ?
-                                                    <p className="table-message-positive">Verified</p> :
-                                                    <p className="table-message-negative">Not verified</p>
-                                                }
+                                            <div className="date-item">
+                                                <span className="date-label">Updated</span>
+                                                <span className="date-value">{student?.lastUpdated || "--"}</span>
                                             </div>
-                                        </td>
+                                        </div>
+                                    </td>
 
-                                        <td>
-                                            <div className="status-column">
-                                                {student?.permission?.permission_studentsFile === true ?
-                                                    <p className="table-message-positive">Edit access granted</p> :
-                                                    <p className="table-message-negative">Access locked</p>
-                                                }
-                                                {student?.applicationState?.studentsFile?.complete === true ?
-                                                    <p className="table-message-positive">Submitted</p> :
-                                                    <p className="table-message-negative">Not submitted</p>
-                                                }
-                                                {student?.applicationState?.studentsFile?.verified === true ?
-                                                    <p className="table-message-positive">Verified</p> :
-                                                    <p className="table-message-negative">Not verified</p>
-                                                }
-                                            </div>
-                                        </td>
+                                    <td className="uni-count-cell">
+                                        <button className="action-btn btn-details" onClick={() => router.push(`/dashboard/super_admin/st-file/${student?._id}`)}>
+                                            <FontAwesomeIcon icon={faListCheck}/>
+                                        </button>
+                                    </td>
 
 
-                                        <td>
-                                            <div className="status-column">
-                                                {student?.permission?.permission_englishProficiency === true ?
-                                                    <p className="table-message-positive">Edit access granted</p> :
-                                                    <p className="table-message-negative">Access locked</p>
-                                                }
-                                                {student?.applicationState?.englishProficiency?.complete === true ?
-                                                    <p className="table-message-positive">Submitted</p> :
-                                                    <p className="table-message-negative">Not submitted</p>
-                                                }
-                                                {student?.applicationState?.englishProficiency?.verified === true ?
-                                                    <p className="table-message-positive">Verified</p> :
-                                                    <p className="table-message-negative">Not verified</p>
-                                                }
-                                            </div>
-                                        </td>
-
-                                        <td>
-                                            <button 
-                                                onClick={() => setdetailState({ isOpen: true, title: 'history timeline', data: student?.applicationStatus })} 
-                                                className="details-table"
-                                            >
-                                                Details 
-                                                <FontAwesomeIcon icon={faArrowRight} />
+                                    <td className="actions-cell">
+                                        <div className="action-buttons">
+                                            <button className="action-btn btn-history" onClick={() => setdetailState({ isOpen: true, title: 'history timeline', data: student?.applicationStatus })}>
+                                                <span>📋</span>
+                                                <span>History</span>
                                             </button>
-                                            <button className="remove-btn">
-                                                <FontAwesomeIcon icon={faTrash} />
+
+                                            <button className="action-btn btn-delete">
+                                                <span>🗑️</span>
                                             </button>
-                                        </td>
-
-
-                                    </tr>
-                                ))
-                            ) : (
-                                <tr>
-                                    <td colSpan={8}>No students found.</td>
+                                        </div>
+                                    </td>
                                 </tr>
-                            )
-                        }
+                            ))
+                        )}
                     </tbody>
                 </table>
             </div>
         </div>
-    )
-}
+    );
+};
 
-export default StudentList
+export default StudentList;

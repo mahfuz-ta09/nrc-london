@@ -1,14 +1,16 @@
 'use client'
+// import '../css/Details.css'
+import { toast } from 'react-toastify'
 import React, { Suspense, useState } from 'react'
-import '../css/Details.css'
-import { useUserInfo } from '@/utils/useUserInfo'
 import Loader from '@/component/shared/loader/loader'
 import { useGetSingleFileByStudentWithEmailQuery } from '@/redux/endpoints/studentfileprocess/proceedEndpoints'
-import ProgressRing from './ProgressRing'
 import StudentDetailModal from '@/app/(dashboard)/DashboardSharedItem/StFile/StudentDetailModal/StudentDetailModal'
-import { toast } from 'react-toastify'
+import ProgressRing from './ProgressRing'
+import { useUserInfo } from '@/utils/useUserInfo'
 
-const Details = () => {
+
+const ApplicationDetails = ({ studentId }: { studentId:string }) => {
+    const userInfo = useUserInfo()
     const [detailState,setdetailState] = useState({ isOpen: false, data: {} , title: '', id:''})
     const [expandedSections, setExpandedSections] = useState<{[key: string]: boolean}>({
         academic: false,
@@ -24,13 +26,9 @@ const Details = () => {
 
     let submitted = 0;
     let verified = 0;
-    const user = useUserInfo()
-    const { data, isLoading } = useGetSingleFileByStudentWithEmailQuery({ email: user.Uemail })
+    const { data, isLoading } = useGetSingleFileByStudentWithEmailQuery({ identifier: studentId })
     
-    if(isLoading) return <Loader />
-
     let userData = data?.data;
-
     if(data?.data?.applicationState){
         if(userData?.applicationState?.personalInfo?.complete) submitted +=1;
         if(userData?.applicationState?.personalInfo?.verified) verified +=1;
@@ -43,7 +41,11 @@ const Details = () => {
     }
 
     const handleToggleSection = (section: string) => {
-        if(section==='personal information' && userData?.permission?.permission_personalInfo===true){
+        if(section==='personal information'){
+            if (userInfo?.Urole === "student" && userData?.permission?.permission_personalInfo===false) {
+                toast.error("You don't have permission to edit this section");
+                return;
+            }
             setdetailState({
                 isOpen: true, 
                 title: section, 
@@ -66,21 +68,33 @@ const Details = () => {
                 },
                 id: userData?._id
             })
-        }else if(section==='assigned university & subjects' && userData?.permission?.permission_prefferedUniSub===true){
+        }else if(section==='assigned university & subjects'){
+            if (userInfo?.Urole === "student" && userData?.permission?.permission_prefferedUniSub===false) {
+                toast.error("You don't have permission to edit this section");
+                return;
+            }
             setdetailState({ 
                 isOpen: true, 
                 title: section, 
                 data: userData?.preferredUniversities, 
                 id: userData?._id 
             })
-        }else if(section==='english test' && userData?.permission?.permission_englishProficiency===true){
+        }else if(section==='english test'){
+            if (userInfo?.Urole === "student" && userData?.permission?.permission_englishProficiency===false) {
+                toast.error("You don't have permission to edit this section");
+                return;
+            }
             setdetailState({ 
                 isOpen: true, 
                 title: 'english test', 
                 data: userData?.englishProficiency, 
                 id: userData?._id
             })
-        }else if(section==='all files' && userData?.permission?.permission_studentsFile===true){
+        }else if(section==='all files'){
+            if (userInfo?.Urole === "student" && userData?.permission?.permission_studentsFile===false) {
+                toast.error("You don't have permission to edit this section");
+                return;
+            }
             setdetailState({ 
                 isOpen: true, 
                 title: 'all files', 
@@ -91,6 +105,9 @@ const Details = () => {
             toast.error("You don't have permission to edit this section")
         }
     }
+
+    
+    if(isLoading) return <Loader />
     return (
         <div className="container-file">
             <aside className="sidebar">
@@ -113,24 +130,24 @@ const Details = () => {
                     </div>
                 </div>
                 
-                <div className="quick-actions">
+                <div className="quick-action">
                     <h3>Quick Actions</h3>
                     <div className="action-list">
-                        <a onClick={() => handleToggleSection('all files')} className="action-btn">
-                            <span className="action-icon">📤</span>
-                            <span>Upload Documents</span>
-                        </a>
                         <a  onClick={() => handleToggleSection("personal information")} className="action-btn">
                             <span className="action-icon">✏️</span>
                             <span>Edit Profile</span>
                         </a>
-                        <a onClick={() => handleToggleSection('assigned university & subjects')} className="action-btn">
-                            <span className="action-icon">🎓</span>
-                            <span>Edit Universities</span>
-                        </a>
                         <a onClick={() => handleToggleSection('english test')}className="action-btn">
                             <span className="action-icon">📝</span>
                             <span>Upload Test Results</span>
+                        </a>
+                        <a onClick={() => handleToggleSection('all files')} className="action-btn">
+                            <span className="action-icon">📤</span>
+                            <span>Upload Documents</span>
+                        </a>
+                        <a onClick={() => handleToggleSection('assigned university & subjects')} className="action-btn">
+                            <span className="action-icon">🎓</span>
+                            <span>Edit Universities</span>
                         </a>
                     </div>
                 </div>
@@ -431,4 +448,4 @@ const Details = () => {
     )
 }
 
-export default Details
+export default ApplicationDetails

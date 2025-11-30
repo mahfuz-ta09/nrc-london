@@ -1,13 +1,16 @@
-import Loader from "@/component/shared/loader/loader"
+'use client'
 import { Suspense } from "react"
-import Details from "./Details"
+import { useUserInfo } from "@/utils/useUserInfo"
+import Loader from "@/component/shared/loader/loader"
+import ApplicationDetails from "@/app/(dashboard)/DashboardSharedItem/ApplicationDetails/ApplicationDetails"
 
-
+       
 const page = () => {
+    const userInfo = useUserInfo()
     return (
       <div>
           <Suspense fallback={<Loader/>}>
-            <Details />
+            <ApplicationDetails studentId={userInfo.Uemail}/>
           </Suspense>
       </div>
     )

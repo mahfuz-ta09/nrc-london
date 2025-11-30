@@ -76,9 +76,9 @@ const proceedApi = baseApi.injectEndpoints({
             providesTags: ["proceed"],
         }),
 
-        getSingleFileByStudentWithEmail: build.query<any, { email: string }>({
-            query: ({ email }) => ({
-                url: `/process/get-single-files/${email}`,
+        getSingleFileByStudentWithEmail: build.query<any, { identifier: string }>({
+            query: ({ identifier }) => ({
+                url: `/process/get-single-files/${identifier}`,
                 method: "GET",
             }),
             providesTags: ["proceed"],
