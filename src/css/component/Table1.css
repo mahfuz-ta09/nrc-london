@@ -8,9 +8,9 @@
 }
 
 .table-header {
-    margin-bottom: 20px;
+    /* margin-bottom: 20px;
     padding-bottom: 16px;
-    border-bottom: 2px solid rgba(255, 255, 255, 0.1);
+    border-bottom: 2px solid rgba(255, 255, 255, 0.1); */
 }
 
 .table-header h2 {
@@ -57,7 +57,7 @@
 }
 
 .st-table-container table th {
-    padding: 16px 12px;
+    /* padding: 16px 12px; */
     text-align: left;
     font-size: 12px;
     font-weight: 700;
@@ -152,7 +152,7 @@
 
 
 .quick-actions-cell {
-    min-width: 200px;
+    /* min-width: 200px; */
 }
 
 .quick-actions {
@@ -163,7 +163,7 @@
 
 .quick-btn {
     padding: 6px 10px;
-    border: 1px solid #e2e8f0;
+    border: 1px solid #619ce4;
     border-radius: 6px;
     background: white;
     color: #475569;

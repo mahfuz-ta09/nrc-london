@@ -56,10 +56,6 @@ const StudentList = ({ setdetailState, detailState, values }: StudentListProps) 
                                 <tr key={student?._id}>
                                     <td className="student-info-cell">
                                         <div className="student-info">
-                                            {/* <button className="action-btn btn-details" onClick={() => router.push(`/dashboard/super_admin/st-file/${student?._id}`)}>
-                                                <span>👁️</span>
-                                                <span>Details</span>
-                                            </button> */}
                                             <div className="student-avatar">
                                                 {student?.name?.substring(0, 2).toUpperCase()}
                                             </div>
@@ -140,7 +136,7 @@ const StudentList = ({ setdetailState, detailState, values }: StudentListProps) 
 
                                     <td className="actions-cell">
                                         <div className="action-buttons">
-                                            <button className="action-btn btn-history" onClick={() => setdetailState({ isOpen: true, title: 'history timeline', data: student?.applicationStatus })}>
+                                            <button className="action-btn btn-history" onClick={() => setdetailState({ isOpen: true, title: 'history timeline', data: student?.history })}>
                                                 <span>📋</span>
                                                 <span>History</span>
                                             </button>

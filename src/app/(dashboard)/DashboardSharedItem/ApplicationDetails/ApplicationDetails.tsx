@@ -7,9 +7,11 @@ import { useGetSingleFileByStudentWithEmailQuery } from '@/redux/endpoints/stude
 import StudentDetailModal from '@/app/(dashboard)/DashboardSharedItem/StFile/StudentDetailModal/StudentDetailModal'
 import ProgressRing from './ProgressRing'
 import { useUserInfo } from '@/utils/useUserInfo'
+import { useRouter } from 'next/navigation'
 
 
 const ApplicationDetails = ({ studentId }: { studentId:string }) => {
+    const router = useRouter()
     const userInfo = useUserInfo()
     const [detailState,setdetailState] = useState({ isOpen: false, data: {} , title: '', id:''})
     const [expandedSections, setExpandedSections] = useState<{[key: string]: boolean}>({
@@ -127,27 +129,19 @@ const ApplicationDetails = ({ studentId }: { studentId:string }) => {
                             <span className="stat-label">Universities</span>
                             <span className="stat-value">{userData?.preferredUniversities?.length || 0} Assigned</span>
                         </div>
+                        <div className="stat-item">
+                            <span className="stat-label">Created</span>
+                            <span className="stat-value">{userData?.createdAt}</span>
+                        </div>
                     </div>
                 </div>
                 
                 <div className="quick-action">
                     <h3>Quick Actions</h3>
                     <div className="action-list">
-                        <a  onClick={() => handleToggleSection("personal information")} className="action-btn">
+                        <a  onClick={() => router.push(`/dashboard/super_admin/st-file/${studentId}/apply`)} className="action-btn">
                             <span className="action-icon">✏️</span>
-                            <span>Edit Profile</span>
-                        </a>
-                        <a onClick={() => handleToggleSection('english test')}className="action-btn">
-                            <span className="action-icon">📝</span>
-                            <span>Upload Test Results</span>
-                        </a>
-                        <a onClick={() => handleToggleSection('all files')} className="action-btn">
-                            <span className="action-icon">📤</span>
-                            <span>Upload Documents</span>
-                        </a>
-                        <a onClick={() => handleToggleSection('assigned university & subjects')} className="action-btn">
-                            <span className="action-icon">🎓</span>
-                            <span>Edit Universities</span>
+                            <span>Application</span>
                         </a>
                     </div>
                 </div>
@@ -157,6 +151,17 @@ const ApplicationDetails = ({ studentId }: { studentId:string }) => {
                 <div className="content-header">
                     <h1>Your Application Journey</h1>
                     <p>Track your progress through each step of the application process</p>
+                    <div className="time-stat">
+                        <div className="time-stat-part">
+                            <span className="stat-label">Created</span>
+                            <span className="stat-value">{userData?.createdAt}</span>
+                        </div>
+                        <div className="time-stat-part">
+                            <span className="stat-label">Last Updated</span>
+                            <span className="stat-value">{userData?.lastUpdated}</span>
+                        </div>
+                    </div>
+
                 </div>
                 
                 <div className="timeline">
@@ -179,6 +184,10 @@ const ApplicationDetails = ({ studentId }: { studentId:string }) => {
                                     <span className={userData?.permission?.permission_personalInfo ? "step-status status-complete" : "step-status status-locked"}>
                                         <span className="status-icon">{userData?.permission?.permission_personalInfo ? "✓" : "🔒"}</span>
                                         <span className="status-text">{userData?.permission?.permission_personalInfo ? "Editable" : "Locked"}</span>
+                                    </span>
+                                    <span onClick={() => handleToggleSection("personal information")} className="status-button">
+                                        <span className="status-icon">✏️</span>
+                                        <span className="status-text">Edit Profile</span>
                                     </span>
                                 </div>
                             </div>
@@ -281,6 +290,10 @@ const ApplicationDetails = ({ studentId }: { studentId:string }) => {
                                         <span className="status-icon">{userData?.permission?.permission_englishProficiency ? "✓" : "🔒"}</span>
                                         <span className="status-text">{userData?.permission?.permission_englishProficiency ? "Editable" : "Locked"}</span>
                                     </span>
+                                    <span onClick={() => handleToggleSection('english test')} className="status-button">
+                                        <span className="status-icon">📝</span>
+                                        <span className="status-text">Upload Test Results</span>
+                                    </span>
                                 </div>
                             </div>
                             <p className="step-description">
@@ -332,6 +345,10 @@ const ApplicationDetails = ({ studentId }: { studentId:string }) => {
                                     <span className={userData?.permission?.permission_studentsFile ? "step-status status-complete" : "step-status status-locked"}>
                                         <span className="status-icon">{userData?.permission?.permission_studentsFile ? "✓" : "🔒"}</span>
                                         <span className="status-text">{userData?.permission?.permission_studentsFile ? "Editable" : "Locked"}</span>
+                                    </span>
+                                    <span onClick={() => handleToggleSection('all files')} className="status-button">
+                                        <span className="status-icon">📤</span>
+                                        <span className="status-text">Upload Documents</span>
                                     </span>
                                 </div>
                             </div>
@@ -388,6 +405,10 @@ const ApplicationDetails = ({ studentId }: { studentId:string }) => {
                                     <span className={userData?.permission?.permission_prefferedUniSub ? "step-status status-complete" : "step-status status-locked"}>
                                         <span className="status-icon">{userData?.permission?.permission_prefferedUniSub ? "✓" : "🔒"}</span>
                                         <span className="status-text">{userData?.permission?.permission_prefferedUniSub ? "Editable" : "Locked"}</span>
+                                    </span>
+                                    <span onClick={() => handleToggleSection('assigned university & subjects')} className="status-button">
+                                        <span className="status-icon">🎓</span>
+                                        <span className="status-text">Edit Universities</span>
                                     </span>
                                 </div>
                             </div>
