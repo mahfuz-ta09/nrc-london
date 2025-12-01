@@ -1,4 +1,3 @@
-// app/apply/components/HistoryTab.tsx
 import React from "react";
 import HistoryEvent from "./HistoryEvent";
 

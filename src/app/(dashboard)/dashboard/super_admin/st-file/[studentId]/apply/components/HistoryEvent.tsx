@@ -1,4 +1,3 @@
-// app/apply/components/HistoryEvent.tsx
 import React from "react";
 
 const HistoryEvent: React.FC<{ event: any }> = ({ event }) => {

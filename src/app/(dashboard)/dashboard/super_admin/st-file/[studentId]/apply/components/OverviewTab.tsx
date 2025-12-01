@@ -1,8 +1,9 @@
-// app/apply/components/OverviewTab.tsx
 import React from "react";
 import StatCard from "./StatCard";
 import ActionCard from "./ActionCard";
 import UniversityCard from "./UniversityCard";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faBell, faCircleCheck, faClock, faCopy, faFile, faPaperPlane, faUsers } from "@fortawesome/free-solid-svg-icons";
 
 type Uni = any;
 type Data = { universities: Uni[]; notes: any[]; timeline: any[]; studentName?: string };
@@ -18,16 +19,16 @@ const OverviewTab: React.FC<{ data: Data }> = ({ data }) => {
   return (
     <div className="tab-content">
       <div className="stats-grid">
-        <StatCard title="Total Universities" value={stats.total} icon={<i className="fa-solid fa-users" />} color="blue" />
-        <StatCard title="Submitted" value={stats.submitted} icon={<i className="fa-solid fa-circle-check" />} color="green" />
-        <StatCard title="Pending Action" value={stats.pending} icon={<i className="fa-solid fa-clock" />} color="yellow" />
-        <StatCard title="Drafts" value={stats.draft} icon={<i className="fa-regular fa-file" />} color="gray" />
+        <StatCard title="Total Universities" value={stats.total} icon={<FontAwesomeIcon icon={faUsers} style={{color:"blue"}} />}/>
+        <StatCard title="Submitted" value={stats.submitted} icon={<FontAwesomeIcon icon={faCircleCheck} style={{color:"green"}} />}/>
+        <StatCard title="Pending Action" value={stats.pending} icon={<FontAwesomeIcon icon={faClock} style={{color:"orange"}} />}/>
+        <StatCard title="Drafts" value={stats.draft} icon={<FontAwesomeIcon icon={faFile}  style={{color:"gray"}} />}/>
       </div>
 
       <div className="actions-grid">
-        <ActionCard title="API Submissions" description="1 university ready for automated submission" action="Submit via API" icon={<i className="fa-solid fa-paper-plane" />} color="blue" />
-        <ActionCard title="Manual Submissions" description="2 universities need portal submission" action="View Details" icon={<i className="fa-solid fa-copy" />} color="purple" />
-        <ActionCard title="Follow-ups Required" description="3 pending responses from universities" action="Check Status" icon={<i className="fa-solid fa-bell" />} color="orange" />
+        <ActionCard title="API Submissions" description="1 university ready for automated submission" action="Submit via API" icon={<FontAwesomeIcon icon={faPaperPlane} style={{color:"blue"}} />}/>
+        <ActionCard title="Manual Submissions" description="2 universities need portal submission" action="View Details" icon={<FontAwesomeIcon icon={faCopy} style={{color:"purple"}} />}/>
+        <ActionCard title="Follow-ups Required" description="3 pending responses from universities" action="Check Status" icon={<FontAwesomeIcon icon={faBell}  style={{color:"orange"}} />}/>
       </div>
 
       <div className="card">

@@ -1,4 +1,3 @@
-// app/apply/components/TrackingCard.tsx
 import React from "react";
 
 const TrackingCard: React.FC<{ university: any }> = ({ university }) => {

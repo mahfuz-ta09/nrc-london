@@ -1,4 +1,3 @@
-// app/apply/components/StatCard.tsx
 import React from "react";
 
 const StatCard: React.FC<{ title: string; value: number | string; icon?: React.ReactNode; color?: string }> = ({ title, value, icon, color }) => {

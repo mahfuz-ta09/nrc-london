@@ -1,4 +1,3 @@
-// app/apply/components/DeadlineAlert.tsx
 import React from "react";
 
 const DeadlineAlert: React.FC<{ university: any }> = ({ university }) => {

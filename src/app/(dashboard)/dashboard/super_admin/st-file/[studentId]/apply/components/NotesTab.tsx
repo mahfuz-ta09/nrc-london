@@ -1,4 +1,3 @@
-// app/apply/components/NotesTab.tsx
 import React, { useState } from "react";
 import NoteCard from "./NoteCard";
 

@@ -1,4 +1,3 @@
-// app/apply/components/TrackingTab.tsx
 import React from "react";
 import TrackingCard from "./TrackingCard";
 import DeadlineAlert from "./DeadlineAlert";

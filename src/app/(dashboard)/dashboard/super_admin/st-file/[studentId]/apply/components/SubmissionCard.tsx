@@ -1,4 +1,3 @@
-// app/apply/components/SubmissionCard.tsx
 import React from "react";
 
 const SubmissionCard: React.FC<{ university: any }> = ({ university }) => {
@@ -31,7 +30,7 @@ const SubmissionCard: React.FC<{ university: any }> = ({ university }) => {
         </ol>
       </div>
       <button className="btn btn-secondary">Copy Student Data for Portal</button>
-      <button className="btn btn-primary">Mark as Submitted</button>
+      <button style={{marginLeft:"10px"}} className="btn btn-primary">Mark as Submitted</button>
     </div>
   );
 

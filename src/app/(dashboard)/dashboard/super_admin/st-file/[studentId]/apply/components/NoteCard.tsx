@@ -1,4 +1,3 @@
-// app/apply/components/NoteCard.tsx
 import React from "react";
 
 const NoteCard: React.FC<{ note: any }> = ({ note }) => {

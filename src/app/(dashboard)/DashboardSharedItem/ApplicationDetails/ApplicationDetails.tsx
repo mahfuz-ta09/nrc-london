@@ -1,13 +1,13 @@
 'use client'
-// import '../css/Details.css'
 import { toast } from 'react-toastify'
+import ProgressRing from './ProgressRing'
+import { useRouter } from 'next/navigation'
+import { useUserInfo } from '@/utils/useUserInfo'
 import React, { Suspense, useState } from 'react'
 import Loader from '@/component/shared/loader/loader'
 import { useGetSingleFileByStudentWithEmailQuery } from '@/redux/endpoints/studentfileprocess/proceedEndpoints'
 import StudentDetailModal from '@/app/(dashboard)/DashboardSharedItem/StFile/StudentDetailModal/StudentDetailModal'
-import ProgressRing from './ProgressRing'
-import { useUserInfo } from '@/utils/useUserInfo'
-import { useRouter } from 'next/navigation'
+
 
 
 const ApplicationDetails = ({ studentId }: { studentId:string }) => {

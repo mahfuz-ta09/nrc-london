@@ -1,4 +1,3 @@
-// app/apply/components/ActionCard.tsx
 import React from "react";
 
 const ActionCard: React.FC<{ title: string; description: string; action: string; icon?: React.ReactNode; color?: string }> = ({ title, description, action, icon, color }) => {
