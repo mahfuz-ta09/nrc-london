@@ -7,13 +7,12 @@ import { faArrowRight} from "@fortawesome/free-solid-svg-icons";
 import { useGetStudentFileStatQuery } from "@/redux/endpoints/studentfileprocess/proceedEndpoints";
 
 
-
+type ContentKey = keyof typeof content;
 type StudentListProps = {
     values: any;
     setValues: React.Dispatch<React.SetStateAction<any>>;
 }
 
-type ContentKey = keyof typeof content;
 
 const StudentInfoSlider = ({ values , setValues }: StudentListProps) => {
     const sliderRef = useRef<HTMLDivElement>(null);

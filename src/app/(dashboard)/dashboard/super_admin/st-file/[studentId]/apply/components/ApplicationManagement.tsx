@@ -3,9 +3,9 @@
 import React, { useState } from "react";
 import NotesTab from "./NotesTab";
 import HistoryTab from "./HistoryTab";
-import SubmissionsTab from "./SubmissionsTab";
 import OverviewTab from "./OverviewTab";
 import TrackingTab from "./TrackingTab";
+import SubmissionsTab from "./SubmissionsTab";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faChartSimple, faClock, faCompass, faFolderOpen, faNoteSticky } from "@fortawesome/free-solid-svg-icons";
 

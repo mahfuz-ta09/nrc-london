@@ -2,6 +2,7 @@
 import { toast } from 'react-toastify'
 import ProgressRing from './ProgressRing'
 import { useRouter } from 'next/navigation'
+import '../ApplicationDetails/css/Details.css'
 import { useUserInfo } from '@/utils/useUserInfo'
 import React, { Suspense, useState } from 'react'
 import Loader from '@/component/shared/loader/loader'
@@ -119,19 +120,19 @@ const ApplicationDetails = ({ studentId }: { studentId:string }) => {
                     <div className="progress-stats">
                         <div className="stat-item">
                             <span className="stat-label">Submitted Data</span>
-                            <span className="stat-value">{submitted} / 4</span>
+                            <span className="stat-data">{submitted} / 4</span>
                         </div>
                         <div className="stat-item">
                             <span className="stat-label">Verified Items</span>
-                            <span className="stat-value">{verified} / 4</span>
+                            <span className="stat-data">{verified} / 4</span>
                         </div>
                         <div className="stat-item">
                             <span className="stat-label">Universities</span>
-                            <span className="stat-value">{userData?.preferredUniversities?.length || 0} Assigned</span>
+                            <span className="stat-data">{userData?.preferredUniversities?.length || 0} Assigned</span>
                         </div>
                         <div className="stat-item">
                             <span className="stat-label">Created</span>
-                            <span className="stat-value">{userData?.createdAt}</span>
+                            <span className="stat-data">{userData?.createdAt}</span>
                         </div>
                     </div>
                 </div>
@@ -154,11 +155,11 @@ const ApplicationDetails = ({ studentId }: { studentId:string }) => {
                     <div className="time-stat">
                         <div className="time-stat-part">
                             <span className="stat-label">Created</span>
-                            <span className="stat-value">{userData?.createdAt}</span>
+                            <span className="stat-data">{userData?.createdAt}</span>
                         </div>
                         <div className="time-stat-part">
                             <span className="stat-label">Last Updated</span>
-                            <span className="stat-value">{userData?.lastUpdated}</span>
+                            <span className="stat-data">{userData?.lastUpdated}</span>
                         </div>
                     </div>
 
