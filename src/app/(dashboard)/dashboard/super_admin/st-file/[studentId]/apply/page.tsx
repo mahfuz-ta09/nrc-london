@@ -1,4 +1,3 @@
-// app/apply/page.tsx
 import React from "react";
 import "./css/apply.css";
 import ApplicationManagement from "./components/ApplicationManagement";

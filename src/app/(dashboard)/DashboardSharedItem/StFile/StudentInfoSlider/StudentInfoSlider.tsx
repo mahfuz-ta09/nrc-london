@@ -1,10 +1,12 @@
 "use client";
 import { useRef } from "react";
+import { content, resetState } from "../type";
 import '@/css/Dashboard/DashBoardSharedItem/DashboardSharedCss.css'
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faArrowRight} from "@fortawesome/free-solid-svg-icons";
 import { useGetStudentFileStatQuery } from "@/redux/endpoints/studentfileprocess/proceedEndpoints";
-import { content, resetState } from "../type";
+
+
 
 type StudentListProps = {
     values: any;
