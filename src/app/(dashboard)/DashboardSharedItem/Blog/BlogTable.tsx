@@ -10,7 +10,6 @@ import Pagination from '@/component/shared/Pagination/Pagination'
 import { faPen, faTrash } from '@fortawesome/free-solid-svg-icons'
 import { useDeleteBlogMutation, useGetBlogsQuery } from '@/redux/endpoints/blogs/blogsEndpoint'
 
-
 type Props = {
     params: {
         page: number,
