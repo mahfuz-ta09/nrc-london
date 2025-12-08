@@ -40,6 +40,11 @@ const UniversityDetails = ({ uniDetails, setUniDetails }: ModalProps) => {
                                     {uni.status.replace(/_/g, ' ').toUpperCase()}
                                 </span>
                             )}
+                            {uni.uniType && (
+                                <span className={`uni-status-badge status-${uni.status}`}>
+                                    {uni.uniType.replace(/_/g, ' ').toUpperCase()}
+                                </span>
+                            )}
                         </div>
                     </div>
                     <button

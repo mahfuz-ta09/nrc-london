@@ -29,6 +29,7 @@ type UniData = {
     website?: string,
     admissionEmail?: string,
     phone?: string,
+    uniType?:string,
     
     // Financial
     lowFee: number,
@@ -122,6 +123,7 @@ const AddUniModal = ({ addUni, setAddUni }: ModalProps) => {
             gpaScale: "",
             currency: "",
             feeStructure: "",
+            uniType: "",
             requiredEducationLevel: "",
             submissionMethod: "",
             status: ""
@@ -606,7 +608,7 @@ const AddUniModal = ({ addUni, setAddUni }: ModalProps) => {
                                         <option key={test.value} value={test.value}>{test.label}</option>
                                     ))}
                                 </select>
-
+                            
                                 {selectedTests.map(testName => {
                                     const test = testOptions.find(t => t.value === testName)
                                     return (
@@ -878,14 +880,23 @@ const AddUniModal = ({ addUni, setAddUni }: ModalProps) => {
                                     <span>Part-Time Work Allowed</span>
                                 </label>
                             </div>
-
-                            <div className='input-container' style={{ marginTop: '20px' }}>
-                                <label>Status</label>
-                                <select {...register("status")}>
-                                    <option value="active">Active</option>
-                                    <option value="inactive">Inactive</option>
-                                    <option value="coming_soon">Coming Soon</option>
-                                </select>
+                            <div className="double-input-container">
+                                <div className='input-container' style={{ marginTop: '20px' }}>
+                                    <label>Status</label>
+                                    <select {...register("status")}>
+                                        <option value="active">Active</option>
+                                        <option value="inactive">Inactive</option>
+                                        <option value="coming_soon">Coming Soon</option>
+                                    </select>
+                                </div>
+                                <div className='input-container' style={{ marginTop: '20px' }}>
+                                    <label>University Type</label>
+                                    <select {...register("uniType")}>
+                                        <option value="">select</option>
+                                        <option value="affiliated">Affiliated</option>
+                                        <option value="non_affiliated">Non Affiliated</option>
+                                    </select>
+                                </div>
                             </div>
                         </div>
                     )}
