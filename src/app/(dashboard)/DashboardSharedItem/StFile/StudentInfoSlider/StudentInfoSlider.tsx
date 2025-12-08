@@ -46,17 +46,15 @@ const StudentInfoSlider = ({ values , setValues }: StudentListProps) => {
         sliderRef.current!.scrollLeft = scrollLeft - walk;
     };
 
-    // console.log(workflowSteps?.data,values)
-    
     return (
         <div className="student-info-slider-container">
             <div
                 ref={sliderRef}
-                className="student-info-slider"
+                onMouseUp={handleMouseUp}
                 onMouseDown={handleMouseDown}
                 onMouseLeave={handleMouseLeave}
-                onMouseUp={handleMouseUp}
-                onMouseMove={handleMouseMove}>
+                onMouseMove={handleMouseMove}
+                className="student-info-slider">
                 {
                     Object.entries(workflowSteps?.data || {}).map(([key, value]: [ContentKey, any]) => (
                     <div key={key} className="student-info-card">

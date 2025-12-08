@@ -53,12 +53,36 @@
 }
 
 .input-container select{
-    border: 1px solid #efefef;
-    padding: 15px;
-    border-radius: 5px;
-    background-color:#6f8c96;
-    color: #fff;
+  width: 200px;
+  height: 40px;
+  padding: 8px;
+  font-size: 16px;
+  color: #333;
+  background-color: #f0f0f0;
+  border: 1px solid #ccc;
+  border-radius: 4px;
 }
+
+.input-container option {
+  padding:0 30px 0 10px;
+  min-height:40px;
+  display:flex;
+  align-items:center;
+  background:#d3d1d1;
+  border-top:#222 solid 1px;
+  position:absolute;
+  top:0;
+  width: 100%;
+  pointer-events:none;
+  order:2;
+  z-index:1;
+  transition:background .4s ease-in-out;
+  box-sizing:border-box;
+  overflow:hidden;
+  white-space:nowrap;
+  
+}
+
 
 .checkbox-container{
     width: auto;

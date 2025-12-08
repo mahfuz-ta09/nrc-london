@@ -146,12 +146,12 @@ export type StudentFileForm = {
         file: FileList | null;
     }[];
 
-    preferredUniversities: UniversityInfo[];
+    universityApplications: any[];
     refusedCountry:string[];
     
     permission_personalInfo: boolean;
     permission_englishProficiency: boolean;
-    permission_prefferedUniSub: boolean;
+    permission_universityApplications: boolean;
     permission_studentsFile: boolean;
 };
 
@@ -250,29 +250,29 @@ export const fileCategories = [
 ];
 
 export const examConfig:any = {
-  ielts: ["listening", "reading", "writing", "speaking", "overall", "date", "trfNumber", "testType"],
-  toefl: ["reading", "listening", "speaking", "writing", "total", "date"],
-  pte: ["reading", "listening", "speaking", "writing", "total", "date"],
-  duolingo: ["reading", "listening", "speaking", "writing", "total", "date"],
-  gre: ["verbal", "quantitative", "writing", "overall", "date"],
-  gmat: ["verbal", "reasoning", "quantitative", "writing", "overall", "date"],
-  sat: ["math", "reasoning", "quantitative", "writing", "reading", "overall", "date"],
-  act: ["math", "reasoning", "quantitative", "writing", "reading", "overall", "date"],
+    ielts: ["listening", "reading", "writing", "speaking", "overall", "date", "trfNumber", "testType"],
+    toefl: ["reading", "listening", "speaking", "writing", "total", "date"],
+    pte: ["reading", "listening", "speaking", "writing", "total", "date"],
+    duolingo: ["reading", "listening", "speaking", "writing", "total", "date"],
+    gre: ["verbal", "quantitative", "writing", "overall", "date"],
+    gmat: ["verbal", "reasoning", "quantitative", "writing", "overall", "date"],
+    sat: ["math", "reasoning", "quantitative", "writing", "reading", "overall", "date"],
+    act: ["math", "reasoning", "quantitative", "writing", "reading", "overall", "date"],
 };
 
 export const content: Record<string, [string, string, string, IconDefinition]> = {
-  studentsFile: ["Pending file upload", "Files uploaded"," awaiting review", faFolderOpen],
-  personalInfo: ["Profile incomplete", "Profile updated"," pending verification", faIdCard],
-  englishProficiency: ["English proof missing", "English proof submitted","  awaiting check", faFileSignature],
-  prefferedUniSub: ["University not assigned", "University assigned"," pending confirmation", faUniversity],
+    studentsFile: ["Pending file upload", "Files uploaded"," awaiting review", faFolderOpen],
+    personalInfo: ["Profile incomplete", "Profile updated"," pending verification", faIdCard],
+    englishProficiency: ["English proof missing", "English proof submitted","  awaiting check", faFileSignature],
+    universityApplications: ["University not assigned", "University assigned"," pending confirmation", faUniversity],
 };
 
 export const resetState:any = {
-  personalInfo: { requiredSubmission: '', requiredVerification: '' },
-  englishProficiency: { requiredSubmission: '', requiredVerification: '' },
-  prefferedUniSub: { requiredSubmission: '', requiredVerification: '' },
-  studentsFile: { requiredSubmission: '', requiredVerification: '' },
-  applicationFinished: { finished: '', archived: '' },
+    personalInfo: { complete: '', verified: '' },
+    englishProficiency: { complete: '', verified: '' },
+    universityApplications: { complete: '', verified: '' },
+    studentsFile: { complete: '', verified: '' },
+    applicationFinished: { finished: '', archived: '' },
 };
 
 export type StudentListProps = {

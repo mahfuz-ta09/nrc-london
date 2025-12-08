@@ -7,7 +7,7 @@ const ApplicationInfo = () => {
 
     const { fields, append, remove } = useFieldArray({
       control,
-      name: "preferredUniversities"
+      name: "universityApplications"
     });
 
     return (
@@ -18,39 +18,39 @@ const ApplicationInfo = () => {
           <div key={field.id} className="university-section">
             <div className="input-container">
               <label>University Name</label>
-              <input {...register(`preferredUniversities.${index}.uniName` as const)} />
+              <input {...register(`universityApplications.${index}.uniName` as const)} />
             </div>
             <div className="input-container">
               <label>Program</label>
-              <input {...register(`preferredUniversities.${index}.program` as const)} />
+              <input {...register(`universityApplications.${index}.program` as const)} />
             </div>
 
             <div className="input-container">
               <label>Subject</label>
-              <input {...register(`preferredUniversities.${index}.subject` as const)} />
+              <input {...register(`universityApplications.${index}.subject` as const)} />
             </div>
 
             <div className="input-container">
               <label>Destination Country</label>
-              <input {...register(`preferredUniversities.${index}.destinationCountry` as const)} />
+              <input {...register(`universityApplications.${index}.destinationCountry` as const)} />
             </div>
 
             <div className="input-container">
               <label>Intake</label>
-              <input {...register(`preferredUniversities.${index}.intake` as const)} />
+              <input {...register(`universityApplications.${index}.intake` as const)} />
             </div>
 
             <div className="input-container">
               <label>Scholarship</label>
               <input
                 type="number"
-                {...register(`preferredUniversities.${index}.scholarship` as const)}
+                {...register(`universityApplications.${index}.scholarship` as const)}
               />
             </div>
 
             <div className="input-container">
               <label>Course Start Date</label>
-              <input type="date" {...register(`preferredUniversities.${index}.courseStartDate` as const)} />
+              <input type="date" {...register(`universityApplications.${index}.courseStartDate` as const)} />
             </div>
 
             <button

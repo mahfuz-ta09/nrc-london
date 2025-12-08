@@ -8,12 +8,12 @@ import { useEditStudentFileMutation } from '@/redux/endpoints/studentfileprocess
 import { useUserInfo } from '@/utils/useUserInfo'
 
 interface AssignedUniSubForm {
-    preferredUniversities: any[]
+    universityApplications: any[]
     permission: {
-        permission_prefferedUniSub: string
+        permission_universityApplications: string
     }
     applicationState: {
-        prefferedUniSub: {
+        universityApplications: {
             verified: string
             complete: string
         }
@@ -28,12 +28,12 @@ const AssignedUniSub = ({ detailState, setdetailState }: StudentListProps) => {
 
     const methods = useForm<AssignedUniSubForm>({
         defaultValues: {
-            preferredUniversities: detailState?.data || [],
+            universityApplications: detailState?.data || [],
             permission: {
-                permission_prefferedUniSub: '',
+                permission_universityApplications: '',
             },
             applicationState: {
-                prefferedUniSub: {
+                universityApplications: {
                     verified: '',
                     complete: '',
                 },
@@ -43,7 +43,7 @@ const AssignedUniSub = ({ detailState, setdetailState }: StudentListProps) => {
     const { control } = methods
     const { fields, append, remove } = useFieldArray({
         control,
-        name: 'preferredUniversities',
+        name: 'universityApplications',
     })
 
     const onSubmit = async(data: any) => {
@@ -65,6 +65,8 @@ const AssignedUniSub = ({ detailState, setdetailState }: StudentListProps) => {
 
     if (!detailState.isOpen) return null
     if(isLoading) return <Loader />
+
+    // console.log(detailState)
 
     return (
         <div className={detailState.isOpen? 'modal-container openmoda-container': 'modal-container' }>
@@ -107,7 +109,7 @@ const AssignedUniSub = ({ detailState, setdetailState }: StudentListProps) => {
                                         .map((key) => (
                                             <EditableInput
                                                 key={key}
-                                                name={`preferredUniversities.${index}.${key}` as const}
+                                                name={`universityApplications.${index}.${key}` as const}
                                                 label={key}
                                                 readOnly={!isEditing}
                                             />
@@ -148,7 +150,7 @@ const AssignedUniSub = ({ detailState, setdetailState }: StudentListProps) => {
                             {(isEditing && userData?.Urole !== 'student') && (
                             <div className="input-container">
                                 <label>Allow student to edit this section?</label>
-                                <select {...methods.register("permission.permission_prefferedUniSub")}>
+                                <select {...methods.register("permission.permission_universityApplications")}>
                                     <option value="">Select</option>
                                     <option value="true">Yes</option>
                                     <option value="false">No</option>
@@ -159,7 +161,7 @@ const AssignedUniSub = ({ detailState, setdetailState }: StudentListProps) => {
                             {(isEditing && userData?.Urole !== 'student') && (
                             <div className="input-container">
                                 <label>Information Verified?</label>
-                                <select {...methods.register("applicationState.prefferedUniSub.verified")}>
+                                <select {...methods.register("applicationState.universityApplications.verified")}>
                                 <option value="">Select</option>
                                 <option value="true">Verified</option>
                                 <option value="false">Not Verified</option>
@@ -170,7 +172,7 @@ const AssignedUniSub = ({ detailState, setdetailState }: StudentListProps) => {
                             {(isEditing && userData?.Urole !== 'student') && (
                             <div className="input-container">
                             <label>Section Complete?</label> 
-                                <select {...methods.register("applicationState.prefferedUniSub.complete")}>
+                                <select {...methods.register("applicationState.universityApplications.complete")}>
                                 <option value="">Select</option>
                                 <option value="true">Complete</option>
                                 <option value="false">Incomplete</option>

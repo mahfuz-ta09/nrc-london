@@ -12,10 +12,10 @@ const stFile = () => {
     const [modalState,setModalState] = useState({ isOpen: false })
     const [detailState,setdetailState] = useState({ isOpen: false, data: {} , title: ''})
     const [values,setValues] = useState({
-        personalInfo: { requiredSubmission: '', requiredVerification: '' },
-        englishProficiency: { requiredSubmission: '', requiredVerification: '' },
-        prefferedUniSub: { requiredSubmission: '', requiredVerification: '' },
-        studentsFile: { requiredSubmission: '', requiredVerification: '' },
+        personalInfo: { complete: '', verified: '' },
+        englishProficiency: { complete: '', verified: '' },
+        universityApplications: { complete: '', verified: '' },
+        studentsFile: { complete: '', verified: '' },
         applicationFinished: { finished: '', archived: '' },
     })
 

@@ -15,7 +15,7 @@ const StudentDetailModal = ({ detailState, setdetailState }: StudentListProps) =
 
     if (detailState?.title === 'all files') return <AllFIle detailState={detailState} setdetailState={setdetailState} />
     
-    if (detailState?.title === 'assigned university & subjects') return <AssignedUniSub detailState={detailState} setdetailState={setdetailState} />
+    if (detailState?.title === 'assigned university & subjects/ search course') return <AssignedUniSub detailState={detailState} setdetailState={setdetailState} />
     
     if (detailState?.title === 'english test') return <EnglisTest detailState={detailState} setdetailState={setdetailState} />
     

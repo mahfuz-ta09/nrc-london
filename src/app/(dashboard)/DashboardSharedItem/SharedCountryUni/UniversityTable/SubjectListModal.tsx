@@ -1,6 +1,6 @@
 'use client'
 import { faTrash } from '@fortawesome/free-solid-svg-icons'
-import './UniversityTable.css'
+import './css/UniversityTable.css'
 import { toast } from "react-toastify"
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { useGetSubjectListQuery, useRemoveSubjectMutation } from '@/redux/endpoints/subject/subjectEndpoints'

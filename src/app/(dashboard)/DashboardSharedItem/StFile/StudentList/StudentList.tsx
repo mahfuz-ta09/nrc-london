@@ -95,8 +95,9 @@ const StudentList = ({ setdetailState, detailState, values }: StudentListProps) 
                                             })}>👤 Personal</button>
 
                                             <button className="quick-btn" onClick={() => setdetailState({
-                                                isOpen: true, title: 'assigned university & subjects',
-                                                data: student?.preferredUniversities,
+                                                isOpen: true, 
+                                                title: 'assigned university & subjects/ search course',
+                                                data: student?.universityApplications,
                                                 id: student?._id
                                             })}>🎓 Universities</button>
 
@@ -128,8 +129,11 @@ const StudentList = ({ setdetailState, detailState, values }: StudentListProps) 
                                     </td>
 
                                     <td className="uni-count-cell">
-                                        <button className="action-btn btn-details" onClick={() => router.push(`/dashboard/super_admin/st-file/${student?._id}`)}>
-                                            <FontAwesomeIcon icon={faListCheck}/>
+                                        <button className="action-btn btn-history" onClick={() => router.push(`/dashboard/super_admin/st-file/${student?._id}`)}>
+                                            <FontAwesomeIcon icon={faListCheck}/>student details
+                                        </button>
+                                        <button className="action-btn btn-history" style={{marginTop:"5px"}} onClick={() => router.push(`/dashboard/super_admin/st-file/${student?._id}/apply`)}>
+                                            <FontAwesomeIcon icon={faListCheck}/>application details
                                         </button>
                                     </td>
 

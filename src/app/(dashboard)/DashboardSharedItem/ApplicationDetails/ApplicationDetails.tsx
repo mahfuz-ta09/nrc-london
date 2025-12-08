@@ -39,8 +39,8 @@ const ApplicationDetails = ({ studentId }: { studentId:string }) => {
         if(userData?.applicationState?.englishProficiency?.verified) verified +=1;
         if(userData?.applicationState?.studentsFile?.complete) submitted +=1;
         if(userData?.applicationState?.studentsFile?.verified) verified +=1;
-        if(userData?.applicationState?.prefferedUniSub?.complete) submitted +=1;
-        if(userData?.applicationState?.prefferedUniSub?.verified) verified +=1;
+        if(userData?.applicationState?.universityApplications?.complete) submitted +=1;
+        if(userData?.applicationState?.universityApplications?.verified) verified +=1;
     }
 
     const handleToggleSection = (section: string) => {
@@ -71,15 +71,15 @@ const ApplicationDetails = ({ studentId }: { studentId:string }) => {
                 },
                 id: userData?._id
             })
-        }else if(section==='assigned university & subjects'){
-            if (userInfo?.Urole === "student" && userData?.permission?.permission_prefferedUniSub===false) {
+        }else if(section==='assigned university & subjects/ search course'){
+            if (userInfo?.Urole === "student" && userData?.permission?.permission_universityApplications===false) {
                 toast.error("You don't have permission to edit this section");
                 return;
             }
             setdetailState({ 
                 isOpen: true, 
                 title: section, 
-                data: userData?.preferredUniversities, 
+                data: userData?.universityApplications, 
                 id: userData?._id 
             })
         }else if(section==='english test'){
@@ -128,11 +128,7 @@ const ApplicationDetails = ({ studentId }: { studentId:string }) => {
                         </div>
                         <div className="stat-item">
                             <span className="stat-label">Universities</span>
-                            <span className="stat-data">{userData?.preferredUniversities?.length || 0} Assigned</span>
-                        </div>
-                        <div className="stat-item">
-                            <span className="stat-label">Created</span>
-                            <span className="stat-data">{userData?.createdAt}</span>
+                            <span className="stat-data">{userData?.universityApplications?.length || 0} Assigned</span>
                         </div>
                     </div>
                 </div>
@@ -387,27 +383,27 @@ const ApplicationDetails = ({ studentId }: { studentId:string }) => {
                     </div>
                     
                     
-                    <div className={userData?.applicationState?.prefferedUniSub?.verified ? "timeline-step complete" : "timeline-step pending"}>
-                        <div className={userData?.applicationState?.prefferedUniSub?.verified ? "step-marker complete" : "step-marker pending"}>
-                            {userData?.applicationState?.prefferedUniSub?.verified ? "✓" : "⏳"}
+                    <div className={userData?.applicationState?.universityApplications?.verified ? "timeline-step complete" : "timeline-step pending"}>
+                        <div className={userData?.applicationState?.universityApplications?.verified ? "step-marker complete" : "step-marker pending"}>
+                            {userData?.applicationState?.universityApplications?.verified ? "✓" : "⏳"}
                         </div>
                         <div className="step-content">
                             <div className="step-header">
                                 <h3 className="step-title">University Assignments</h3>
                                 <div className="step-header-content">
-                                    <span className={userData?.applicationState?.prefferedUniSub?.verified ? "step-status status-complete" : "step-status status-pending"}>
-                                        <span className="status-icon">{userData?.applicationState?.prefferedUniSub?.verified ? "✓" : "⏳"}</span>
-                                        <span className="status-text">{userData?.applicationState?.prefferedUniSub?.verified ? "Verified" : "Not Verified"}</span>
+                                    <span className={userData?.applicationState?.universityApplications?.verified ? "step-status status-complete" : "step-status status-pending"}>
+                                        <span className="status-icon">{userData?.applicationState?.universityApplications?.verified ? "✓" : "⏳"}</span>
+                                        <span className="status-text">{userData?.applicationState?.universityApplications?.verified ? "Verified" : "Not Verified"}</span>
                                     </span>
-                                    <span className={userData?.applicationState?.prefferedUniSub?.complete ? "step-status status-complete" : "step-status status-pending"}>
-                                        <span className="status-icon">{userData?.applicationState?.prefferedUniSub?.complete ? "✓" : "⏳"}</span>
-                                        <span className="status-text">{userData?.applicationState?.prefferedUniSub?.complete ? "Complete" : "Incomplete"}</span>
+                                    <span className={userData?.applicationState?.universityApplications?.complete ? "step-status status-complete" : "step-status status-pending"}>
+                                        <span className="status-icon">{userData?.applicationState?.universityApplications?.complete ? "✓" : "⏳"}</span>
+                                        <span className="status-text">{userData?.applicationState?.universityApplications?.complete ? "Complete" : "Incomplete"}</span>
                                     </span>
-                                    <span className={userData?.permission?.permission_prefferedUniSub ? "step-status status-complete" : "step-status status-locked"}>
-                                        <span className="status-icon">{userData?.permission?.permission_prefferedUniSub ? "✓" : "🔒"}</span>
-                                        <span className="status-text">{userData?.permission?.permission_prefferedUniSub ? "Editable" : "Locked"}</span>
+                                    <span className={userData?.permission?.permission_universityApplications ? "step-status status-complete" : "step-status status-locked"}>
+                                        <span className="status-icon">{userData?.permission?.permission_universityApplications ? "✓" : "🔒"}</span>
+                                        <span className="status-text">{userData?.permission?.permission_universityApplications ? "Editable" : "Locked"}</span>
                                     </span>
-                                    <span onClick={() => handleToggleSection('assigned university & subjects')} className="status-button">
+                                    <span onClick={() => handleToggleSection('assigned university & subjects/ search course')} className="status-button">
                                         <span className="status-icon">🎓</span>
                                         <span className="status-text">Edit Universities</span>
                                     </span>
@@ -417,7 +413,7 @@ const ApplicationDetails = ({ studentId }: { studentId:string }) => {
                                 Based on your profile, you have been assigned to universities.
                             </p>
                             
-                            {!userData?.preferredUniversities || userData.preferredUniversities.length === 0 ? (
+                            {!userData?.universityApplications || userData.universityApplications.length === 0 ? (
                                 <div className="empty-state">
                                     <div className="empty-icon">🎓</div>
                                     <p className="empty-text">No universities assigned yet.</p>
@@ -428,14 +424,14 @@ const ApplicationDetails = ({ studentId }: { studentId:string }) => {
                                         className="expand-toggle" 
                                         onClick={() => toggleSection('universities')}
                                     >
-                                        <span>View All Universities ({userData.preferredUniversities.length})</span>
+                                        <span>View All Universities ({userData.universityApplications.length})</span>
                                         <span className={expandedSections.universities ? "arrow-up" : "arrow-down"}>▼</span>
                                     </button>
                                     {expandedSections.universities && (
                                         <div className="expand-content">
                                             <div className="universities-grid">  
                                                 <div className="expand-content">
-                                                    {userData.preferredUniversities.map((item: any, index: number) => (
+                                                    {userData.universityApplications.map((item: any, index: number) => (
                                                         <div key={index} className="academic-item">
                                                             <div className="academic-header">
                                                                 <strong className="academic-number">University #{index + 1}</strong>

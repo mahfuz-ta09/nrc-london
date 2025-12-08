@@ -97,11 +97,11 @@ const CountryUniContent = () => {
                     addUni={addUni}
                 />
             </Suspense>
-        {/* <div className="filter-header-uni"> */}
-                    {/* {(data?.meta?.totalCount || country?.meta?.total) && <p className='filter-tag'>university ({para?.country? para?.country:'all'} & total: {data?.meta?.totalCount})</p>} */}
-                    {/* <button onClick={()=>setIsOpen(!isOpen)}><FontAwesomeIcon icon={faFilter}/></button> */}
-                    
-                {/* </div> */}
+         <div className="filter-header-uni"> 
+                     {/* {(data?.meta?.totalCount || country?.meta?.total) && <p className='filter-tag'>university ({para?.country? para?.country:'all'} & total: {data?.meta?.totalCount})</p>} 
+                     <button onClick={()=>setIsOpen(!isOpen)}><FontAwesomeIcon icon={faFilter}/></button> 
+                     */}
+                 </div> 
         </div>
     )
 }

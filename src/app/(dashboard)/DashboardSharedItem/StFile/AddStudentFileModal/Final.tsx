@@ -19,7 +19,7 @@ const Final = ({register}:{register:any}) => {
             <label>allow student to edit/upload test information</label>
           </div>
           <div className="checkbox-container">
-            <input type="checkbox" {...register('permission_prefferedUniSub')} />
+            <input type="checkbox" {...register('permission_universityApplications')} />
             <label>allow student to edit/upload university information</label>
           </div>
           <div className="checkbox-container">

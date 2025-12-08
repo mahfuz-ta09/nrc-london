@@ -46,7 +46,7 @@ const AddStudentFileModal = ({ setModalState, modalState }: ModalProps) => {
               });
 
               formData.append("fileMeta", JSON.stringify(fileMeta));
-            }else if (key === "academicInfo" ||key === "educationBackground" ||key === "preferredUniversities" ||key === "englishProficiency" ||key === "refusedCountry") {
+            }else if (key === "academicInfo" ||key === "educationBackground" ||key === "universityApplications" ||key === "englishProficiency" ||key === "refusedCountry") {
               formData.append(key, JSON.stringify(value));
             }else {
               formData.append(key, String(value));

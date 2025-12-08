@@ -118,6 +118,7 @@ const universityApi = baseApi.injectEndpoints({
             }),
             invalidatesTags: ["country-uni"]
         }),
+        
 
     }),
     overrideExisting: true,
@@ -137,5 +138,5 @@ export const {
     useAddUniversityMutation,
     useGetUniversityListQuery,
     useEditUniversityMutation,
-    useDeleteUniMutation
+    useDeleteUniMutation,
 } = universityApi

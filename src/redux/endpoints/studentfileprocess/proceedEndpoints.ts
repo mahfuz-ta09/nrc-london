@@ -55,19 +55,19 @@ const proceedApi = baseApi.injectEndpoints({
         getFileByConditions: build.query<any, { values: any }>({
             query: ({ values }) => {
                 const params = new URLSearchParams();
-                
+                console.log("this is values: ",values)
                 if (values?.personalInfo?.complete !== '')params.append("personalInfo[complete]", String(values.personalInfo.complete));
                 if (values?.personalInfo?.verified !== '')params.append("personalInfo[verified]", String(values.personalInfo.verified));
                 
                 if (values?.englishProficiency?.complete !== '')params.append("englishProficiency[complete]", String(values.englishProficiency.complete));
                 if (values?.englishProficiency?.verified !== '')params.append("englishProficiency[verified]", String(values.englishProficiency.verified));
                 
-                if (values?.prefferedUniSub?.complete !== '')params.append("prefferedUniSub[complete]", String(values.prefferedUniSub.complete));
-                if (values?.prefferedUniSub?.verified !== '')params.append("prefferedUniSub[verified]", String(values.prefferedUniSub.verified));
+                if (values?.universityApplications?.complete !== '')params.append("universityApplications[complete]", String(values.universityApplications.complete));
+                if (values?.universityApplications?.verified !== '')params.append("universityApplications[verified]", String(values.universityApplications.verified));
                 
                 if (values?.studentsFile?.complete !== '')params.append("studentsFile[complete]", String(values.studentsFile.complete));
                 if (values?.studentsFile?.verified !== '')params.append("studentsFile[verified]", String(values.studentsFile.verified));
-
+                console.log("this is params: ",params)
                 return {
                     url: `/process/get-all?${params.toString()}`,
                     method: "GET",

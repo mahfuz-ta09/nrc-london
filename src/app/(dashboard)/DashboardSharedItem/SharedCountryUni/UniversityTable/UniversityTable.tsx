@@ -1,15 +1,16 @@
 'use client'
-import './UniversityTable.css'
+import './css/UniversityTable.css'
 import { toast } from 'react-toastify'
 import { Suspense, useState } from 'react'
 import SubjectListModal from './SubjectListModal'
+import UniversityDetails from './UniversityDetails'
 import AddUniModal from '../AddUniModal/AddUniModal'
 import Loader from '@/component/shared/loader/loader'
 import SubjectControllModal from './SubjectControllModal'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import Pagination from '@/component/shared/Pagination/Pagination'
-import { faAdd, faFilter, faList, faPen, faTrash } from '@fortawesome/free-solid-svg-icons'
 import { useGetAllCountryNameQuery } from '@/redux/endpoints/countryBaseUni/countryBaseUniversity'
+import { faAdd, faArrowRight, faFilter, faList, faPen, faTrash } from '@fortawesome/free-solid-svg-icons'
 import { useDeleteUniMutation, useGetUniversityListQuery } from '@/redux/endpoints/university/universityEndpoints'
 
 
@@ -25,11 +26,12 @@ type paraType = {
 }
 
 
-const UniversityTable = ({para,setPara}: paraType) => {
+const UniversityTable = ({ para , setPara }: paraType) => {
     const {data:country, isLoading: nameLoading}= useGetAllCountryNameQuery()
     const [deleteUni , { isLoading: deleteLoading }] = useDeleteUniMutation()
     const [addUni,setAddUni] = useState({action:"",id:'',isOPen: false,name:''})
     const [addSub,setAddSub] = useState({action:"",id:'',isOPen: false,name:''})
+    const [uniDetails,setUniDetails] = useState({isOPen: false,name:'',data:null})
     const [listSubject,setListSubject] = useState({action:"",id:'',isOPen: false,name:''})
     const { data , isLoading } = useGetUniversityListQuery({
         all: para.all || "",
@@ -40,30 +42,29 @@ const UniversityTable = ({para,setPara}: paraType) => {
     })
 
     
-    const handleDelete = async(id:string,uniName:string ) =>{
+    const handleDelete = async(id:string,uniId:string ) =>{
         try{
-            if(!id && !uniName){
+            if(!id && !uniId){
                 toast.error("id missing!")
                 return 
             }
 
-            const isConfirmed = window.confirm(`Are you sure you want to delete "${uniName}"?`)
+            const isConfirmed = window.confirm(`Are you sure you want to delete"?`)
             if (!isConfirmed) return; 
             
-            const res = await deleteUni({id:id,name:uniName})
-
-            if(res?.data?.data?.modifiedCount){
+            const res:any = await deleteUni({id:id,name:uniId}).unwrap()
+            console.log("res.data ",res?.data)
+            if(res?.data?.modifiedCount){
                 toast.success("University deleted!")
             }else{
-                toast.error('Failed to delete')
+                toast.error(res?.err?.data ||'Failed to delete')
             }
-        }catch(err){
+        }catch(err:any){
             console.log(err)
-            toast.error("Something went wrong!")
+            toast.error(err?.data|| "Something went wrong!")
         }
     }
 
-    
     
     const handlePageChange = (p: number) => {
         setPara({
@@ -72,6 +73,7 @@ const UniversityTable = ({para,setPara}: paraType) => {
         })
     }
     
+
     return (
         (isLoading || nameLoading || deleteLoading) ? <Loader /> :(
         <div className='university-table'>
@@ -90,7 +92,7 @@ const UniversityTable = ({para,setPara}: paraType) => {
                             setPara((prev:any) => ({
                                 ...prev,
                                 all: "",
-                                country: single.country,
+                                country: single._id,
                                 page: 1,
                                 total: 10
                             }))
@@ -105,81 +107,66 @@ const UniversityTable = ({para,setPara}: paraType) => {
 
 
             {data?.meta?.totalCount!==0 && 
-            
             <div className='table-contant'>
                     <table id="">
                         <thead>
                             <tr>
+                                <th>university id</th>
                                 <th>university name</th>
                                 <th>country image</th>
-                                <th>schoolarship</th>
-                                <th>tuition fee</th>
-                                <th>initital deposite</th>
-                                <th>required english</th>
-                                <th>required qualification</th>
-                                <th>details</th>
-                                <th>add subject</th>
-                                <th>all subject</th>
-                                <th>delete university</th>
-                                <th>edit university</th>
+                                <th>details/ delete university/ edit university</th>
+                                <th>add subject/ all subject</th>
                             </tr>
                         </thead>
                         <tbody>
                             {data?.data?.map((uni:any,index:number)=>
                                 <tr key={index} className=''>
+                                    <td>{uni?.universityId}</td>
                                     <td>{uni?.universityName}</td>
                                     <td><img className='table-img' src={uni?.universityImage?.url} /></td>
-                                    <td>{uni?.scholarship}</td>
-                                    <td>from:{uni?.lowFee}/to:{uni?.highFee}</td>
-                                    <td>{uni?.initialDeposite}</td>
+                                    
                                     <td>
-                                        {Object.entries(uni?.englishProf || {}).map(([key, value]) => (
-                                            <h1 style={{fontSize:"15px",display:"inline-block",width:'100%'}}  key={key}>
-                                                {key}: {String(value)}
-                                            </h1>
-                                        ))}
+                                        <div style={{display:"flex",height:"100%",gap:"30px"}}>
+                                            <button className="action-btn" style={{background:"green"}} onClick={() => setUniDetails(prev => ({ ...prev , isOPen: true,data: uni, name:`${uni?.universityName}`}))}><FontAwesomeIcon icon={faArrowRight}/></button>
+                                            <button className="action-btn" style={{background:"#f14040"}} onClick={()=> handleDelete(uni?.countryId,uni?.universityId)}><FontAwesomeIcon icon={faTrash}/></button>
+                                            <button className="action-btn" style={{background:"green"}} onClick={()=> setAddUni(prev => ({ ...prev , isOPen: true, name:`${uni?.universityId}`, id:`${uni?.countryId}` , action: "edit"}))} ><FontAwesomeIcon icon={faPen}/></button>
+                                        </div>
                                     </td>
                                     <td>
-                                        {Object.entries(uni?.qualifications || {}).map(([key, value]) => (
-                                            <h1 style={{fontSize:"15px",display:"inline-block",width:'100%'}} key={key}>
-                                                {key}: {String(value)}
-                                            </h1>
-                                        ))}
+                                        <div style={{display:"flex",height:"100%",gap:"30px"}}>
+                                            <button className="action-btn" style={{background:"green"}} onClick={() => setAddSub(prev => ({ ...prev , isOPen: true,id: uni?.countryId, name:`${uni?.universityName}`, action: "add"}))}><FontAwesomeIcon icon={faAdd}/></button>
+                                            <button className="action-btn" style={{background:"teal"}} onClick={() => setListSubject(prev => ({ ...prev ,id: uni?.countryId, isOPen: true, name:`${uni?.universityName}`, action: ""}))}><FontAwesomeIcon icon={faList}/></button>
+                                        </div>
                                     </td>
-                                    <td>{uni?.aboutUni}</td>
-                                    <td><button className="action-btn" style={{background:"green"}} onClick={() => setAddSub(prev => ({ ...prev , isOPen: true,id: uni?.countryId, name:`${uni?.universityName}`, action: "add"}))}><FontAwesomeIcon icon={faAdd}/></button></td>
-                                    <td><button className="action-btn" style={{background:"teal"}} onClick={() => setListSubject(prev => ({ ...prev ,id: uni?.countryId, isOPen: true, name:`${uni?.universityName}`, action: ""}))}><FontAwesomeIcon icon={faList}/></button></td>
-                                    <td><button className="action-btn" style={{background:"#f14040"}} onClick={()=> handleDelete(uni?.countryId,uni?.universityName)}><FontAwesomeIcon icon={faTrash}/></button></td>
-                                    <td><button className="action-btn" style={{background:"green"}} onClick={()=> setAddUni(prev => ({ ...prev , isOPen: true, name:`${uni?.universityName}`, id:`${uni?.countryId}` , action: "edit"}))} ><FontAwesomeIcon icon={faPen}/></button></td>
                                 </tr>
                             )}
                         </tbody>
                     </table>
             </div>}
-            {data?.meta?.totalPages && <Pagination 
-                totalPages={data?.meta?.totalPages}
-                currentPage={Number(para?.page) || 1}
-                onPageChange={handlePageChange}
-                siblingCount={1}/>}
+            {
+                data?.meta?.totalPages && <Pagination 
+                    totalPages={data?.meta?.totalPages}
+                    currentPage={Number(para?.page) || 1}
+                    onPageChange={handlePageChange}
+                    siblingCount={1}/>
+            }
 
             <Suspense fallback={<Loader />}>
                 <AddUniModal 
                     setAddUni={setAddUni}
                     addUni={addUni}
                 />
-            </Suspense>
-
-            <Suspense fallback={<Loader />}>
                 <SubjectControllModal
                     setAddSub={setAddSub}
                     addSub={addSub}
                 />
-            </Suspense>
-
-            <Suspense fallback={<Loader />}>
                 <SubjectListModal
                     setListSubject={setListSubject}
                     listSubject={listSubject}
+                />
+                <UniversityDetails
+                    setUniDetails={setUniDetails}
+                    uniDetails={uniDetails}
                 />
             </Suspense>
 
