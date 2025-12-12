@@ -48,7 +48,7 @@ const UniversityDetails = ({ uniDetails, setUniDetails }: ModalProps) => {
                         </div>
                     </div>
                     <button
-                        onClick={() => setUniDetails((prev: any) => ({ ...prev, data: null, name: '', isOPen: false }))}
+                        onClick={() => setUniDetails((prev: any) => ({ ...prev, data: '', name: '', isOPen: false }))}
                         className="cancel-btn"
                     >
                         ✕

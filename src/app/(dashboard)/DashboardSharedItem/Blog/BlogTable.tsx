@@ -49,7 +49,7 @@ const BlogTable = ({ params , setParams }: Props) => {
             const rep = window.confirm("Are you sure you want to delete this blog?")
             if(!rep) return;
             const res = await deleteBlog({ id })
-            console.log(res)
+            
             if(res?.data?.data?.deletedCount){
                 toast.success("Blog deleted successfully")
             }else{

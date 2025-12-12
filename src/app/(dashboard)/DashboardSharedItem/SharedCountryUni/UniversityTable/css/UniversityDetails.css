@@ -1,6 +1,3 @@
-/* UniversityDetails.css */
-
-/* ========== Header Section ========== */
 .uni-details-header {
     position: relative;
     margin-bottom: 25px;
@@ -832,8 +829,42 @@
     font-size: 14px;
     font-weight: 600;
 }
+/* Constrain images and media within content */
+.content-with-images img,
+.content-with-images video,
+.content-with-images iframe {
+    width: 100% !important;
+    height: 400px !important;
+    object-fit: contain;
+    /* height: auto; */
+    display: block;
+    margin: 16px 0;
+    border-radius: 8px;
+}
 
-/* ========== Responsive Design ========== */
+.content-with-images figure {
+    max-width: 100%;
+    margin: 16px 0;
+}
+
+.content-with-images figure img {
+    width: 100%;
+    height: auto;
+}
+
+/* Handle tables that might be too wide */
+.content-with-images table {
+    max-width: 100%;
+    overflow-x: auto;
+    display: block;
+}
+
+/* Prevent any element from breaking the layout */
+.content-with-images * {
+    max-width: 100%;
+    word-wrap: break-word;
+    overflow-wrap: break-word;
+}
 @media (max-width: 1024px) {
     .modal-body {
         max-width: 70vw;
