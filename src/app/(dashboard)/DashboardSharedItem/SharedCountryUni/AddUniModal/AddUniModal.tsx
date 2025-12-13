@@ -4,6 +4,7 @@ import { useState, useEffect } from 'react'
 import Loader from '@/component/shared/loader/loader'
 import { useForm, SubmitHandler, Controller } from "react-hook-form"
 import { useAddUniversityMutation, useEditUniversityMutation } from '@/redux/endpoints/university/universityEndpoints'
+import { countryCurrencyMap } from '@/types/common'
 
 type ModalProps = {
     addUni: {
@@ -84,7 +85,43 @@ type UniData = {
     status?: string,
 }
 
+const INTAKE_NAMES = [
+    'Fall 2025',
+    'Spring 2025',
+    'Summer 2025',
+    'Winter 2025',
+    'Fall 2026',
+    'Spring 2026',
+    'Summer 2026',
+    'Winter 2026',
+    'January Intake',
+    'February Intake',
+    'March Intake',
+    'April Intake',
+    'May Intake',
+    'June Intake',
+    'July Intake',
+    'August Intake',
+    'September Intake',
+    'October Intake',
+    'November Intake',
+    'December Intake'
+]
 
+const MONTHS = [
+    'January',
+    'February',
+    'March',
+    'April',
+    'May',
+    'June',
+    'July',
+    'August',
+    'September',
+    'October',
+    'November',
+    'December'
+]
 const testOptions = [
     { value: "IELTS", label: "IELTS", sections: ["overall", "reading", "writing", "listening", "speaking"] },
     { value: "TOEFL", label: "TOEFL", sections: ["overall", "reading", "writing", "listening", "speaking"] },
@@ -104,11 +141,58 @@ const qualificationOptions = [
     { value: "phd", label: "PhD/Doctorate" },
     { value: "postdoc", label: "Postdoctoral" },
 ]
+const PREREQUISITE_SUBJECTS = [
+    'Mathematics',
+    'Physics',
+    'Chemistry',
+    'Biology',
+    'Computer Science',
+    'English',
+    'Statistics',
+    'Calculus',
+    'Linear Algebra',
+    'Economics',
+    'Business Studies',
+    'Accounting',
+    'Geography',
+    'History',
+    'Psychology',
+    'Sociology',
+    'Political Science',
+    'Engineering Drawing',
+    'Technical Drawing',
+    'Information Technology'
+]
 
+const ACADEMIC_BACKGROUNDS = [
+    'Engineering',
+    'Computer Science',
+    'Business Administration',
+    'Natural Sciences',
+    'Social Sciences',
+    'Mathematics',
+    'Physics',
+    'Chemistry',
+    'Biology',
+    'Medicine',
+    'Information Technology',
+    'Economics',
+    'Commerce',
+    'Arts & Humanities',
+    'Architecture',
+    'Agriculture',
+    'Environmental Science',
+    'Health Sciences',
+    'Education',
+    'Law',
+    'Media & Communication',
+    'Design',
+    'Pharmacy',
+    'Biotechnology'
+]
 const gpaScaleOptions = ["4.0", "5.0", "10.0", "100"]
 const educationLevelOptions = ["high_school", "bachelors", "masters", "any"]
 const submissionMethodOptions = ["manual", "api", "email", "courier"]
-const currencyOptions = ["USD", "CAD", "GBP", "EUR", "AUD", "INR"]
 const feeStructureOptions = ["per_year", "per_semester", "total_program"]
 
 const AddUniModal = ({ addUni, setAddUni }: ModalProps) => {
@@ -377,12 +461,19 @@ const AddUniModal = ({ addUni, setAddUni }: ModalProps) => {
                                 <div className='input-container'>
                                     <label>Currency *</label>
                                     <select {...register("currency")}>
-                                        {currencyOptions.map(c => <option key={c} value={c}>{c}</option>)}
+                                        <option value="">Select currency...</option>
+                                        {Object.entries(countryCurrencyMap).map(([code, sign]) => (
+                                            <option key={code} value={sign}>
+                                                {code} ({sign})
+                                            </option>
+                                        ))}
                                     </select>
                                 </div>
+                                
                                 <div className='input-container'>
                                     <label>Fee Structure</label>
                                     <select {...register("feeStructure")}>
+                                        <option value="">Select...</option>    
                                         {feeStructureOptions.map(f => (
                                             <option key={f} value={f}>
                                                 {f.replace(/_/g, ' ').replace(/\b\w/g, l => l.toUpperCase())}
@@ -485,7 +576,6 @@ const AddUniModal = ({ addUni, setAddUni }: ModalProps) => {
                         </div>
                     )}
 
-                    {/* REQUIREMENTS TAB */}
                     {activeTab === 'requirements' && (
                         <div style={{ display: 'grid', gap: '15px' }}>
                             <h5 style={{ fontWeight: 'bold', marginBottom: '10px' }}>Admission Requirements</h5>
@@ -498,6 +588,7 @@ const AddUniModal = ({ addUni, setAddUni }: ModalProps) => {
                                 <div className='input-container'>
                                     <label>GPA Scale</label>
                                     <select {...register("gpaScale")}>
+                                        <option value="">select</option>
                                         {gpaScaleOptions.map(s => <option key={s} value={s}>{s}</option>)}
                                     </select>
                                 </div>
@@ -506,6 +597,7 @@ const AddUniModal = ({ addUni, setAddUni }: ModalProps) => {
                             <div className='input-container'>
                                 <label>Required Education Level</label>
                                 <select {...register("requiredEducationLevel")}>
+                                    <option value="">select</option>
                                     {educationLevelOptions.map(e => (
                                         <option key={e} value={e}>
                                             {e.replace(/_/g, ' ').replace(/\b\w/g, l => l.toUpperCase())}
@@ -513,166 +605,155 @@ const AddUniModal = ({ addUni, setAddUni }: ModalProps) => {
                                     ))}
                                 </select>
                             </div>
-
-                            <div className='input-container'>
-                                <label>Prerequisite Subjects</label>
-                                <div style={{ display: 'flex', gap: '10px', marginBottom: '10px' }}>
-                                    <input
-                                        type='text'
-                                        placeholder="e.g., Mathematics, Physics"
-                                        onKeyDown={(e) => {
-                                            if (e.key === 'Enter') {
-                                                e.preventDefault()
-                                                const value = e.currentTarget.value.trim()
-                                                if (value) {
+                            <div className='double-input-container'>
+                                <div className='input-container'>
+                                    <label>Prerequisite Subjects</label>
+                                    <div style={{ display: 'flex', gap: '10px', marginBottom: '10px' }}>
+                                        <select
+                                            style={{
+                                                flex: 1,
+                                                padding: '8px',
+                                                borderRadius: '4px',
+                                                border: '1px solid #d1d5db',
+                                                fontSize: '14px'
+                                            }}
+                                            onChange={(e) => {
+                                                const value = e.target.value
+                                                if (value && !prerequisitesList.includes(value)) {
                                                     addItem(value, prerequisitesList, setPrerequisitesList)
-                                                    e.currentTarget.value = ''
                                                 }
-                                            }
-                                        }}
-                                    />
-                                    <button
-                                        type="button"
-                                        onClick={(e) => {
-                                            const input = e.currentTarget.previousElementSibling as HTMLInputElement
-                                            const value = input.value.trim()
-                                            if (value) {
-                                                addItem(value, prerequisitesList, setPrerequisitesList)
-                                                input.value = ''
-                                            }
-                                        }}
-                                        style={{ padding: '5px 15px', background: '#667eea', color: 'white', border: 'none', borderRadius: '4px', cursor: 'pointer' }}
-                                    >
-                                        Add
-                                    </button>
+                                                e.target.value = ''
+                                            }}
+                                            value=""
+                                        >
+                                            <option value="">Select a subject...</option>
+                                            {PREREQUISITE_SUBJECTS.filter(subj => !prerequisitesList.includes(subj)).map((subj, idx) => (
+                                                <option key={idx} value={subj}>{subj}</option>
+                                            ))}
+                                        </select>
+                                    </div>
+                                    <div style={{ display: 'flex', flexWrap: 'wrap', gap: '8px' }}>
+                                        {prerequisitesList.map((pre, i) => (
+                                            <span key={i} style={{ padding: '5px 10px', background: '#e0e7ff', borderRadius: '15px', fontSize: '14px', display: 'flex', alignItems: 'center', gap: '5px' }}>
+                                                {pre}
+                                                <button type="button" onClick={() => removeItem(pre, prerequisitesList, setPrerequisitesList)} style={{ background: 'none', border: 'none', cursor: 'pointer', color: '#667eea', fontWeight: 'bold' }}>×</button>
+                                            </span>
+                                        ))}
+                                    </div>
                                 </div>
-                                <div style={{ display: 'flex', flexWrap: 'wrap', gap: '8px' }}>
-                                    {prerequisitesList.map((pre, i) => (
-                                        <span key={i} style={{ padding: '5px 10px', background: '#e0e7ff', borderRadius: '15px', fontSize: '14px', display: 'flex', alignItems: 'center', gap: '5px' }}>
-                                            {pre}
-                                            <button type="button" onClick={() => removeItem(pre, prerequisitesList, setPrerequisitesList)} style={{ background: 'none', border: 'none', cursor: 'pointer', color: '#667eea', fontWeight: 'bold' }}>×</button>
-                                        </span>
-                                    ))}
-                                </div>
-                            </div>
 
-                            <div className='input-container'>
-                                <label>Preferred Academic Backgrounds</label>
-                                <div style={{ display: 'flex', gap: '10px', marginBottom: '10px' }}>
-                                    <input
-                                        type='text'
-                                        placeholder="e.g., Engineering, Computer Science"
-                                        onKeyDown={(e) => {
-                                            if (e.key === 'Enter') {
-                                                e.preventDefault()
-                                                const value = e.currentTarget.value.trim()
-                                                if (value) {
+                                <div className='input-container'>
+                                    <label>Preferred Academic Backgrounds</label>
+                                    <div style={{ display: 'flex', gap: '10px', marginBottom: '10px' }}>
+                                        <select
+                                            style={{
+                                                flex: 1,
+                                                padding: '8px',
+                                                borderRadius: '4px',
+                                                border: '1px solid #d1d5db',
+                                                fontSize: '14px'
+                                            }}
+                                            onChange={(e) => {
+                                                const value = e.target.value
+                                                if (value && !backgroundsList.includes(value)) {
                                                     addItem(value, backgroundsList, setBackgroundsList)
-                                                    e.currentTarget.value = ''
                                                 }
-                                            }
-                                        }}
-                                    />
-                                    <button
-                                        type="button"
-                                        onClick={(e) => {
-                                            const input = e.currentTarget.previousElementSibling as HTMLInputElement
-                                            const value = input.value.trim()
-                                            if (value) {
-                                                addItem(value, backgroundsList, setBackgroundsList)
-                                                input.value = ''
-                                            }
-                                        }}
-                                        style={{ padding: '5px 15px', background: '#667eea', color: 'white', border: 'none', borderRadius: '4px', cursor: 'pointer' }}
-                                    >
-                                        Add
-                                    </button>
-                                </div>
-                                <div style={{ display: 'flex', flexWrap: 'wrap', gap: '8px' }}>
-                                    {backgroundsList.map((bg, i) => (
-                                        <span key={i} style={{ padding: '5px 10px', background: '#e0e7ff', borderRadius: '15px', fontSize: '14px', display: 'flex', alignItems: 'center', gap: '5px' }}>
-                                            {bg}
-                                            <button type="button" onClick={() => removeItem(bg, backgroundsList, setBackgroundsList)} style={{ background: 'none', border: 'none', cursor: 'pointer', color: '#667eea', fontWeight: 'bold' }}>×</button>
-                                        </span>
-                                    ))}
+                                                e.target.value = ''
+                                            }}
+                                            value=""
+                                        >
+                                            <option value="">Select a background...</option>
+                                            {ACADEMIC_BACKGROUNDS.filter(bg => !backgroundsList.includes(bg)).map((bg, idx) => (
+                                                <option key={idx} value={bg}>{bg}</option>
+                                            ))}
+                                        </select>
+                                    </div>
+                                    <div style={{ display: 'flex', flexWrap: 'wrap', gap: '8px' }}>
+                                        {backgroundsList.map((bg, i) => (
+                                            <span key={i} style={{ padding: '5px 10px', background: '#e0e7ff', borderRadius: '15px', fontSize: '14px', display: 'flex', alignItems: 'center', gap: '5px' }}>
+                                                {bg}
+                                                <button type="button" onClick={() => removeItem(bg, backgroundsList, setBackgroundsList)} style={{ background: 'none', border: 'none', cursor: 'pointer', color: '#667eea', fontWeight: 'bold' }}>×</button>
+                                            </span>
+                                        ))}
+                                    </div>
                                 </div>
                             </div>
+                            <div className='double-input-container'>
+                                <div className='input-container'>
+                                    <h5 style={{ fontWeight: 'bold', marginTop: '20px', marginBottom: '10px' }}>English Proficiency Tests</h5>
+                                    <label>Add Test Requirement</label>
+                                    <select onChange={handleTestSelect}>
+                                        <option value="">-- Select a test --</option>
+                                        {testOptions.map(test => (
+                                            <option key={test.value} value={test.value}>{test.label}</option>
+                                        ))}
+                                    </select>
+                                
+                                    {selectedTests.map(testName => {
+                                        const test = testOptions.find(t => t.value === testName)
+                                        return (
+                                            <div key={testName} style={{ marginTop: '15px', padding: '15px', background: '#f9fafb', borderRadius: '8px', border: '1px solid #e5e7eb' }}>
+                                                <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '10px' }}>
+                                                    <strong>{test?.label} Requirements</strong>
+                                                    <button
+                                                        type="button"
+                                                        onClick={() => {
+                                                            setSelectedTests(prev => prev.filter(t => t !== testName))
+                                                            setValue(`englishProf.${testName}`, undefined as any)
+                                                        }}
+                                                        style={{ background: '#ef4444', color: 'white', border: 'none', padding: '5px 10px', borderRadius: '4px', cursor: 'pointer' }}
+                                                    >
+                                                        Remove
+                                                    </button>
+                                                </div>
+                                                <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(150px, 1fr))', gap: '10px' }}>
+                                                    {test?.sections.map(section => (
+                                                        <div key={section}>
+                                                            <label style={{ fontSize: '13px', textTransform: 'capitalize' }}>{section}:</label>
+                                                            <input
+                                                                type="number"
+                                                                step="0.5"
+                                                                min={0}
+                                                                {...register(`englishProf.${testName}.${section}`, { valueAsNumber: true })}
+                                                                placeholder="0"
+                                                                style={{ width: '100%', padding: '5px', marginTop: '3px', borderRadius: '4px', border: '1px solid #d1d5db' }}
+                                                            />
+                                                        </div>
+                                                    ))}
+                                                </div>
+                                            </div>
+                                        )
+                                    })}
+                                </div>
 
-                            <h5 style={{ fontWeight: 'bold', marginTop: '20px', marginBottom: '10px' }}>English Proficiency Tests</h5>
-                            
-                            <div className='input-container'>
-                                <label>Add Test Requirement</label>
-                                <select onChange={handleTestSelect}>
-                                    <option value="">-- Select a test --</option>
-                                    {testOptions.map(test => (
-                                        <option key={test.value} value={test.value}>{test.label}</option>
-                                    ))}
-                                </select>
-                            
-                                {selectedTests.map(testName => {
-                                    const test = testOptions.find(t => t.value === testName)
-                                    return (
-                                        <div key={testName} style={{ marginTop: '15px', padding: '15px', background: '#f9fafb', borderRadius: '8px', border: '1px solid #e5e7eb' }}>
-                                            <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '10px' }}>
-                                                <strong>{test?.label} Requirements</strong>
+                                <div className='input-container'>
+                                    <h5 style={{ fontWeight: 'bold', marginTop: '20px', marginBottom: '10px' }}>Program Qualifications Offered</h5>
+
+                                    <label>Add Qualification Level</label>
+                                    <select onChange={handleQualificationSelect}>
+                                        <option value="">-- Select qualification --</option>
+                                        {qualificationOptions.map(q => (
+                                            <option key={q.value} value={q.value}>{q.label}</option>
+                                        ))}
+                                    </select>
+
+                                    <div style={{ marginTop: '10px', display: 'flex', flexWrap: 'wrap', gap: '8px' }}>
+                                        {selectedQualifications.map(q => (
+                                            <span key={q} style={{ padding: '8px 15px', background: '#667eea', color: 'white', borderRadius: '20px', fontSize: '14px', display: 'flex', alignItems: 'center', gap: '5px' }}>
+                                                {qualificationOptions.find(opt => opt.value === q)?.label}
                                                 <button
                                                     type="button"
                                                     onClick={() => {
-                                                        setSelectedTests(prev => prev.filter(t => t !== testName))
-                                                        setValue(`englishProf.${testName}`, undefined as any)
+                                                        setSelectedQualifications(prev => prev.filter(qual => qual !== q))
+                                                        setValue(`qualifications.${q}`, undefined as any)
                                                     }}
-                                                    style={{ background: '#ef4444', color: 'white', border: 'none', padding: '5px 10px', borderRadius: '4px', cursor: 'pointer' }}
+                                                    style={{ background: 'rgba(255,255,255,0.3)', border: 'none', borderRadius: '50%', width: '20px', height: '20px', cursor: 'pointer', color: 'white', fontWeight: 'bold' }}
                                                 >
-                                                    Remove
+                                                    ×
                                                 </button>
-                                            </div>
-                                            <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(150px, 1fr))', gap: '10px' }}>
-                                                {test?.sections.map(section => (
-                                                    <div key={section}>
-                                                        <label style={{ fontSize: '13px', textTransform: 'capitalize' }}>{section}:</label>
-                                                        <input
-                                                            type="number"
-                                                            step="0.5"
-                                                            min={0}
-                                                            {...register(`englishProf.${testName}.${section}`, { valueAsNumber: true })}
-                                                            placeholder="0"
-                                                            style={{ width: '100%', padding: '5px', marginTop: '3px', borderRadius: '4px', border: '1px solid #d1d5db' }}
-                                                        />
-                                                    </div>
-                                                ))}
-                                            </div>
-                                        </div>
-                                    )
-                                })}
-                            </div>
-
-                            <h5 style={{ fontWeight: 'bold', marginTop: '20px', marginBottom: '10px' }}>Program Qualifications Offered</h5>
-
-                            <div className='input-container'>
-                                <label>Add Qualification Level</label>
-                                <select onChange={handleQualificationSelect}>
-                                    <option value="">-- Select qualification --</option>
-                                    {qualificationOptions.map(q => (
-                                        <option key={q.value} value={q.value}>{q.label}</option>
-                                    ))}
-                                </select>
-
-                                <div style={{ marginTop: '10px', display: 'flex', flexWrap: 'wrap', gap: '8px' }}>
-                                    {selectedQualifications.map(q => (
-                                        <span key={q} style={{ padding: '8px 15px', background: '#667eea', color: 'white', borderRadius: '20px', fontSize: '14px', display: 'flex', alignItems: 'center', gap: '5px' }}>
-                                            {qualificationOptions.find(opt => opt.value === q)?.label}
-                                            <button
-                                                type="button"
-                                                onClick={() => {
-                                                    setSelectedQualifications(prev => prev.filter(qual => qual !== q))
-                                                    setValue(`qualifications.${q}`, undefined as any)
-                                                }}
-                                                style={{ background: 'rgba(255,255,255,0.3)', border: 'none', borderRadius: '50%', width: '20px', height: '20px', cursor: 'pointer', color: 'white', fontWeight: 'bold' }}
-                                            >
-                                                ×
-                                            </button>
-                                        </span>
-                                    ))}
+                                            </span>
+                                        ))}
+                                    </div>
                                 </div>
                             </div>
 
@@ -702,23 +783,43 @@ const AddUniModal = ({ addUni, setAddUni }: ModalProps) => {
                                         <div style={{ display: 'grid', gridTemplateColumns: '2fr 1fr 2fr 1fr', gap: '10px' }}>
                                             <div>
                                                 <label style={{ fontSize: '13px' }}>Name</label>
-                                                <input
-                                                    type="text"
+                                                <select
                                                     value={intake.name}
                                                     onChange={(e) => updateIntake(index, 'name', e.target.value)}
-                                                    placeholder="Fall 2025"
-                                                    style={{ width: '100%', padding: '5px', marginTop: '3px' }}
-                                                />
+                                                    style={{ 
+                                                        width: '100%', 
+                                                        padding: '6px', 
+                                                        marginTop: '3px',
+                                                        borderRadius: '4px',
+                                                        border: '1px solid #d1d5db',
+                                                        fontSize: '14px'
+                                                    }}
+                                                >
+                                                    <option value="">Select intake...</option>
+                                                    {INTAKE_NAMES.map((name, idx) => (
+                                                        <option key={idx} value={name}>{name}</option>
+                                                    ))}
+                                                </select>
                                             </div>
                                             <div>
                                                 <label style={{ fontSize: '13px' }}>Month</label>
-                                                <input
-                                                    type="text"
+                                                <select
                                                     value={intake.startMonth}
                                                     onChange={(e) => updateIntake(index, 'startMonth', e.target.value)}
-                                                    placeholder="September"
-                                                    style={{ width: '100%', padding: '5px', marginTop: '3px' }}
-                                                />
+                                                    style={{ 
+                                                        width: '100%', 
+                                                        padding: '6px', 
+                                                        marginTop: '3px',
+                                                        borderRadius: '4px',
+                                                        border: '1px solid #d1d5db',
+                                                        fontSize: '14px'
+                                                    }}
+                                                >
+                                                    <option value="">Select month...</option>
+                                                    {MONTHS.map((month, idx) => (
+                                                        <option key={idx} value={month}>{month}</option>
+                                                    ))}
+                                                </select>
                                             </div>
                                             <div>
                                                 <label style={{ fontSize: '13px' }}>Deadline</label>
@@ -754,6 +855,7 @@ const AddUniModal = ({ addUni, setAddUni }: ModalProps) => {
                             <div className='input-container'>
                                 <label>Submission Method</label>
                                 <select {...register("submissionMethod")}>
+                                    <option value="">Select</option>
                                     {submissionMethodOptions.map(m => (
                                         <option key={m} value={m}>
                                             {m.charAt(0).toUpperCase() + m.slice(1)}
@@ -884,6 +986,7 @@ const AddUniModal = ({ addUni, setAddUni }: ModalProps) => {
                                 <div className='input-container' style={{ marginTop: '20px' }}>
                                     <label>Status</label>
                                     <select {...register("status")}>
+                                        <option value="">Select</option>
                                         <option value="active">Active</option>
                                         <option value="inactive">Inactive</option>
                                         <option value="coming_soon">Coming Soon</option>

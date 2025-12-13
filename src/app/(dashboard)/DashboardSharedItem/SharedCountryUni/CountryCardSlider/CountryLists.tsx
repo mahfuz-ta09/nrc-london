@@ -87,7 +87,7 @@ const CountryLists = () => {
                         <FontAwesomeIcon icon={faTrash} />
                     </button>
                     <button onClick={() => setCountryDetails(prev=>({...prev,data:country , isOPen: true , name: country?.country }))} className='details-btn'>
-                        <FontAwesomeIcon icon={faArrowRight} />
+                        details
                     </button>
                     <img className='country-card-img1' loading='lazy' src={country?.famousFile?.url} alt="" />
                     <img className='country-card-img2' loading='lazy' src={country?.countryFlg?.url} alt="" />

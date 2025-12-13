@@ -29,7 +29,7 @@
 
 .input-container input,textarea{
     width: 100%;
-    padding: 8px 10px;
+    padding:10px;
     border-radius: 6px;
     color: #000;
     font-weight: 600;
@@ -53,10 +53,10 @@
 }
 
 .input-container select{
-    width: 200px;
+    /* width: 200px; */
     height: 40px;
-    padding: 8px;
-    font-size: 16px;
+    padding: 5px;
+    font-size: 13px;
     color: #333;
     background-color: #f0f0f0;
     border: 1px solid #ccc;

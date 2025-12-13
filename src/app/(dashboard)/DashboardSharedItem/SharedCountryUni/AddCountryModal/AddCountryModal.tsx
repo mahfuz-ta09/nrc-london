@@ -179,7 +179,6 @@ const AddCountryModal = ({ addCountry, setAddCountry }: ModalProps) => {
                 </button>
 
                 <form onSubmit={handleSubmit(onSubmit)} className='modal-from'>
-                    {/* Country Name */}
                     <div className='input-container'>
                         <label htmlFor="country">
                             Country Name* 
@@ -251,7 +250,7 @@ const AddCountryModal = ({ addCountry, setAddCountry }: ModalProps) => {
                         </small>
                     </div>
 
-                    {/* Currency */}
+
                     <div className="input-container">
                         <label htmlFor="currency">Currency*</label>
                         <select {...register("currency", { required: addCountry.action === "add" ? "Currency is required" : false})}>
