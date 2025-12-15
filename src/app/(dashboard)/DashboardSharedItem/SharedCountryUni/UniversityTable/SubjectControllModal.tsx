@@ -115,7 +115,6 @@ const SubjectControllModal = ({ addSub, setAddSub }: ModalProps) => {
             if(data?.cost)formData.append('cost', String(data.cost))
             if(data?.placement)formData.append('placement', data.placement)
             
-            // Add qualifications
             Object.entries(data.qualifications).forEach(([key, value]) => {
                 if (value) {
                     formData.append(`qualifications[${key}]`, String(value))
@@ -147,7 +146,7 @@ const SubjectControllModal = ({ addSub, setAddSub }: ModalProps) => {
             toast.error("Something went wrong!")
         }
     }
-    console.log(addSub)
+    
     const handleQualificationSelect = (e: React.ChangeEvent<HTMLSelectElement>) => {
         const selected = e.target.value
         if (selected && !selectedQualifications.includes(selected)) {

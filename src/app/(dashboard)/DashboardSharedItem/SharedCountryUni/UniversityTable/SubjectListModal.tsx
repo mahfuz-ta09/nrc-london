@@ -58,9 +58,9 @@ const SubjectListModal = ({ listSubject, setListSubject, setAddSub }: ModalProps
                 countryId: listSubject?.countryId,
                 universityId: listSubject?.universityId,
                 subjectId: subjectId
-            })
+            }).unwrap()
 
-            if (res?.data?.success) {
+            if (res?.data?.modifiedCount) {
                 toast.success("Subject deleted successfully!")
             } else {
                 toast.error('Failed to delete subject')
@@ -90,45 +90,21 @@ const SubjectListModal = ({ listSubject, setListSubject, setAddSub }: ModalProps
     return (
         <div className={listSubject?.isOPen ? 'modal-container openmoda-container' : 'modal-container'}>
             <div id='modal-body-id' className='modal-body'>
-                <div style={{ 
-                    display: 'flex', 
-                    justifyContent: 'space-between', 
-                    alignItems: 'center',
-                    marginBottom: '20px'
-                }}>
-                    <h1 className='modal-header'>
-                        Subject list of {listSubject?.name}
-                    </h1>
-                    <div style={{ display: 'flex', gap: '10px', alignItems: 'center' }}>
-                        {/* <button
-                            onClick={handleAddSubject}
-                            style={{
-                                padding: '8px 16px',
-                                background: '#10b981',
-                                color: 'white',
-                                border: 'none',
-                                borderRadius: '6px',
-                                cursor: 'pointer',
-                                fontSize: '14px',
-                                fontWeight: '500'
-                            }}
-                        >
-                            + Add New Subject
-                        </button> */}
-                        <button
-                            onClick={() => setListSubject((prev: any) => ({ 
-                                ...prev, 
-                                countryId: '', 
-                                universityId: '', 
-                                name: '', 
-                                isOPen: false, 
-                                action: "" 
-                            }))}
-                            className="cancel-btn"
-                        >
-                            X
-                        </button>
-                    </div>
+                <div>
+                    <h1 className='modal-header'>Subject list of {listSubject?.name}</h1>
+                    <button
+                        onClick={() => setListSubject((prev: any) => ({ 
+                            ...prev, 
+                            countryId: '', 
+                            universityId: '', 
+                            name: '', 
+                            isOPen: false, 
+                            action: "" 
+                        }))}
+                        className="cancel-btn"
+                    >
+                        X
+                    </button>
                 </div>
 
                 {data?.data?.subjects?.length === 0 ? (
@@ -170,7 +146,7 @@ const SubjectListModal = ({ listSubject, setListSubject, setAddSub }: ModalProps
                             <tbody>
                                 {data?.data?.subjects?.map((subject: any) => (
                                     <>
-                                        <tr key={subject?._id}>
+                                        <tr key={subject?.id}>
                                             <td style={{ color: "#fff", fontWeight: '500' }}>
                                                 {subject?.subjectName}
                                             </td>
@@ -190,7 +166,7 @@ const SubjectListModal = ({ listSubject, setListSubject, setAddSub }: ModalProps
                                                     justifyContent: 'center' 
                                                 }}>
                                                     <button
-                                                        onClick={() => toggleRow(subject?._id)}
+                                                        onClick={() => toggleRow(subject?.id)}
                                                         style={{
                                                             background: "#667eea",
                                                             padding: '6px 12px',
@@ -206,12 +182,12 @@ const SubjectListModal = ({ listSubject, setListSubject, setAddSub }: ModalProps
                                                         className='action-btn'
                                                     >
                                                         <FontAwesomeIcon 
-                                                            icon={expandedRows.has(subject?._id) ? faChevronUp : faChevronDown} 
+                                                            icon={expandedRows.has(subject?.id) ? faChevronUp : faChevronDown} 
                                                             style={{ fontSize: '12px' }}
                                                         />
                                                     </button>
                                                     <button
-                                                        onClick={() => handleDeleteSubject(subject?._id)}
+                                                        onClick={() => handleDeleteSubject(subject?.id)}
                                                         style={{ background: "#f14040" }}
                                                         className='action-btn'
                                                     >
@@ -220,8 +196,8 @@ const SubjectListModal = ({ listSubject, setListSubject, setAddSub }: ModalProps
                                                 </div>
                                             </td>
                                         </tr>
-                                        {expandedRows.has(subject?._id) && (
-                                            <tr key={`${subject?._id}-details`}>
+                                        {expandedRows.has(subject?.id) && (
+                                            <tr key={`${subject?.id}-details`}>
                                                 <td colSpan={5} style={{ 
                                                     padding: '0',
                                                     background: '#f8fafc',
