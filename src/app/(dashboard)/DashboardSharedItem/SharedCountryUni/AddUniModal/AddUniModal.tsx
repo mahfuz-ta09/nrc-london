@@ -289,20 +289,27 @@ const AddUniModal = ({ addUni, setAddUni }: ModalProps) => {
             let res:any
             if (addUni?.action === "add") {
                 res = await addUniversity({ data: formData, id: addUni?.id }).unwrap()
+                console.log("saasfsddsafdsfsf",res)
+                if (res?.data?.modifiedCount) {
+                    toast.success(res?.data?.message || "Operation successful!")
+                    handleClose()
+                } else {
+                    toast.error(res?.data || "Operation failed!")
+                }
             }
             if (addUni?.action === "edit") {
                 res = await editUniversity({ data: formData, id: addUni?.id, universityName: addUni?.name }).unwrap()
+                console.log(res)
+                if (res?.data?.modifiedCount) {
+                    toast.success(res?.data?.message || "Operation successful!")
+                    handleClose()
+                } else {
+                    toast.error(res?.error.data || "Operation failed!")
+                }
             }
-            console.log(res)
-            if (res?.data?.modifiedCount) {
-                toast.success(res?.data?.message || "Operation successful!")
-                handleClose()
-            } else {
-                toast.error(res?.error.data || "Operation failed!")
-            }
-        } catch (err) {
+        } catch (err:any) {
             console.error(err)
-            toast.error("Something went wrong!")
+            toast.error(err?.data || "Something went wrong!")
         }
     }
 
@@ -608,33 +615,24 @@ const AddUniModal = ({ addUni, setAddUni }: ModalProps) => {
                             <div className='double-input-container'>
                                 <div className='input-container'>
                                     <label>Prerequisite Subjects</label>
-                                    <div style={{ display: 'flex', gap: '10px', marginBottom: '10px' }}>
-                                        <select
-                                            style={{
-                                                flex: 1,
-                                                padding: '8px',
-                                                borderRadius: '4px',
-                                                border: '1px solid #d1d5db',
-                                                fontSize: '14px'
-                                            }}
-                                            onChange={(e) => {
-                                                const value = e.target.value
-                                                if (value && !prerequisitesList.includes(value)) {
-                                                    addItem(value, prerequisitesList, setPrerequisitesList)
-                                                }
-                                                e.target.value = ''
-                                            }}
-                                            value=""
-                                        >
-                                            <option value="">Select a subject...</option>
-                                            {PREREQUISITE_SUBJECTS.filter(subj => !prerequisitesList.includes(subj)).map((subj, idx) => (
-                                                <option key={idx} value={subj}>{subj}</option>
-                                            ))}
-                                        </select>
-                                    </div>
-                                    <div style={{ display: 'flex', flexWrap: 'wrap', gap: '8px' }}>
+                                    <select
+                                        onChange={(e) => {
+                                            const value = e.target.value
+                                            if (value && !prerequisitesList.includes(value)) {
+                                                addItem(value, prerequisitesList, setPrerequisitesList)
+                                            }
+                                            e.target.value = ''
+                                        }}
+                                        value=""
+                                    >
+                                        <option value="">Select a subject...</option>
+                                        {PREREQUISITE_SUBJECTS.filter(subj => !prerequisitesList.includes(subj)).map((subj, idx) => (
+                                            <option key={idx} value={subj}>{subj}</option>
+                                        ))}
+                                    </select>
+                                    <div>
                                         {prerequisitesList.map((pre, i) => (
-                                            <span key={i} style={{ padding: '5px 10px', background: '#e0e7ff', borderRadius: '15px', fontSize: '14px', display: 'flex', alignItems: 'center', gap: '5px' }}>
+                                            <span key={i}>
                                                 {pre}
                                                 <button type="button" onClick={() => removeItem(pre, prerequisitesList, setPrerequisitesList)} style={{ background: 'none', border: 'none', cursor: 'pointer', color: '#667eea', fontWeight: 'bold' }}>×</button>
                                             </span>
@@ -644,33 +642,24 @@ const AddUniModal = ({ addUni, setAddUni }: ModalProps) => {
 
                                 <div className='input-container'>
                                     <label>Preferred Academic Backgrounds</label>
-                                    <div style={{ display: 'flex', gap: '10px', marginBottom: '10px' }}>
-                                        <select
-                                            style={{
-                                                flex: 1,
-                                                padding: '8px',
-                                                borderRadius: '4px',
-                                                border: '1px solid #d1d5db',
-                                                fontSize: '14px'
-                                            }}
-                                            onChange={(e) => {
-                                                const value = e.target.value
-                                                if (value && !backgroundsList.includes(value)) {
-                                                    addItem(value, backgroundsList, setBackgroundsList)
-                                                }
-                                                e.target.value = ''
-                                            }}
-                                            value=""
-                                        >
-                                            <option value="">Select a background...</option>
-                                            {ACADEMIC_BACKGROUNDS.filter(bg => !backgroundsList.includes(bg)).map((bg, idx) => (
-                                                <option key={idx} value={bg}>{bg}</option>
-                                            ))}
-                                        </select>
-                                    </div>
-                                    <div style={{ display: 'flex', flexWrap: 'wrap', gap: '8px' }}>
+                                    <select
+                                        onChange={(e) => {
+                                            const value = e.target.value
+                                            if (value && !backgroundsList.includes(value)) {
+                                                addItem(value, backgroundsList, setBackgroundsList)
+                                            }
+                                            e.target.value = ''
+                                        }}
+                                        value=""
+                                    >
+                                        <option value="">Select a background...</option>
+                                        {ACADEMIC_BACKGROUNDS.filter(bg => !backgroundsList.includes(bg)).map((bg, idx) => (
+                                            <option key={idx} value={bg}>{bg}</option>
+                                        ))}
+                                    </select>
+                                    <div>
                                         {backgroundsList.map((bg, i) => (
-                                            <span key={i} style={{ padding: '5px 10px', background: '#e0e7ff', borderRadius: '15px', fontSize: '14px', display: 'flex', alignItems: 'center', gap: '5px' }}>
+                                            <span key={i}>
                                                 {bg}
                                                 <button type="button" onClick={() => removeItem(bg, backgroundsList, setBackgroundsList)} style={{ background: 'none', border: 'none', cursor: 'pointer', color: '#667eea', fontWeight: 'bold' }}>×</button>
                                             </span>

@@ -13,7 +13,6 @@ import { useGetAllCountryNameQuery } from '@/redux/endpoints/countryBaseUni/coun
 import { faAdd, faArrowRight, faFilter, faList, faPen, faTrash } from '@fortawesome/free-solid-svg-icons'
 import { useDeleteUniMutation, useGetUniversityListQuery } from '@/redux/endpoints/university/universityEndpoints'
 
-
 type paraType = {
     para:{
         all?:string,
@@ -26,13 +25,15 @@ type paraType = {
 }
 
 
+
 const UniversityTable = ({ para , setPara }: paraType) => {
+    const [isOpen,setIsOpen] = useState(false)
     const {data:country, isLoading: nameLoading}= useGetAllCountryNameQuery()
     const [deleteUni , { isLoading: deleteLoading }] = useDeleteUniMutation()
-    const [addUni,setAddUni] = useState({action:"",id:'',isOPen: false,name:''})
-    const [addSub,setAddSub] = useState({action:"",id:'',isOPen: false,name:''})
+    const [addUni,setAddUni] = useState({action:'',id:'',isOPen: false,name:''})
+    const [addSub,setAddSub] = useState({action:'',universityId:'',countryId:'',universityName:'',isOPen: false})
     const [uniDetails,setUniDetails] = useState({isOPen: false,name:'',data:null})
-    const [listSubject,setListSubject] = useState({action:"",id:'',isOPen: false,name:''})
+    const [listSubject,setListSubject] = useState({action:"",countryId:'',universityId:'',isOPen: false,name:''})
     const { data , isLoading } = useGetUniversityListQuery({
         all: para.all || "",
         country: para.country || "",
@@ -64,7 +65,13 @@ const UniversityTable = ({ para , setPara }: paraType) => {
             toast.error(err?.data|| "Something went wrong!")
         }
     }
-
+    
+    const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>) => {
+        setPara({
+            ...para,
+            [e.target.name]: e.target.value
+        });
+    }
     
     const handlePageChange = (p: number) => {
         setPara({
@@ -76,10 +83,53 @@ const UniversityTable = ({ para , setPara }: paraType) => {
 
     return (
         (isLoading || nameLoading || deleteLoading) ? <Loader /> :(
-        <div className='university-table'>
+        <div style={{}} className='university-table'>
+            
+            <button style={{margin:"20px 0"}} className="header-btn" onClick={() => setIsOpen(!isOpen)}><FontAwesomeIcon icon={faFilter}/></button>
+            <div className={isOpen?"filter-container show":"filter-container"}>
+                        <h4 className='filter-header-text'>University filter</h4>
+                        <div className='filter-item'>
+                            <label htmlFor="page">page</label>
+                            <input
+                                type="number"
+                                name="page"
+                                placeholder="Page"
+                                value={para.page}
+                                onChange={handleChange}
+                                className='pagination-input'
+                                min={0}
+                            />
+                        </div>
+                        <div className='filter-item'>
+                            <label htmlFor="page">Rows per page</label>
+                            <input
+                                type="number"
+                                name="total"
+                                placeholder="Rows per page"
+                                value={para.total}
+                                onChange={handleChange}
+                                className='pagination-input'
+                                min={0}
+                            />
+                        </div>
+                        <div className='filter-item'>
+                            <label htmlFor="page">university name</label>
+                            <input
+                                type="text"
+                                name="uniName"
+                                placeholder="university name"
+                                value={para.uniName}
+                                onChange={handleChange}
+                                className='pagination-input'
+                            />
+                        </div>
+            </div>
+            <p className="total-reasult">total result: {data?.meta?.totalCount}</p>
 
-            {(data?.meta?.totalCount || country?.meta?.total) && <div className='all-btn-container'>
+            {(data?.meta?.totalCount || country?.meta?.total) && 
+            <div className='all-btn-container'>
                 <button className='all-btn'
+                        style={{padding:"8px 12px"}}
                         onClick={() =>setPara((prev:any) => ({...prev,all: "all",country: "",page: 1,total: 10}))}
                         onMouseEnter={(e) => (e.currentTarget.style.backgroundColor = "#eee")}
                         onMouseLeave={(e) => (e.currentTarget.style.backgroundColor = "#f8f8f8")}
@@ -100,29 +150,33 @@ const UniversityTable = ({ para , setPara }: paraType) => {
                         onMouseEnter={(e) => (e.currentTarget.style.backgroundColor = "#eee")}
                         onMouseLeave={(e) => (e.currentTarget.style.backgroundColor = "#f8f8f8")}
                     >
+                        <img 
+                            style={{width:"20px",height:"20px",borderRadius:"50%"}}
+                            src={single?.countryFlg?.url} alt="" 
+                        />
                         {single?.country}
                     </button>
                 ))}
             </div>}
-
-
             {data?.meta?.totalCount!==0 && 
             <div className='table-contant'>
                     <table id="">
                         <thead>
                             <tr>
-                                <th>university id</th>
-                                <th>university name</th>
+                                <th>university id-name</th>
                                 <th>country image</th>
-                                <th>details/ delete university/ edit university</th>
-                                <th>add subject/ all subject</th>
+                                <th>details - delete - edit</th>
+                                <th>add - all subject</th>
                             </tr>
                         </thead>
                         <tbody>
                             {data?.data?.map((uni:any,index:number)=>
                                 <tr key={index} className=''>
-                                    <td>{uni?.universityId}</td>
-                                    <td>{uni?.universityName}</td>
+                                    <td>
+                                        {uni?.universityId}
+                                        <br />
+                                        {uni?.universityName}
+                                    </td>
                                     <td><img className='table-img' src={uni?.universityImage?.url} /></td>
                                     
                                     <td>
@@ -134,8 +188,8 @@ const UniversityTable = ({ para , setPara }: paraType) => {
                                     </td>
                                     <td>
                                         <div style={{display:"flex",height:"100%",gap:"30px"}}>
-                                            <button className="action-btn" style={{background:"green"}} onClick={() => setAddSub(prev => ({ ...prev , isOPen: true,id: uni?.countryId, name:`${uni?.universityName}`, action: "add"}))}><FontAwesomeIcon icon={faAdd}/></button>
-                                            <button className="action-btn" style={{background:"teal"}} onClick={() => setListSubject(prev => ({ ...prev ,id: uni?.countryId, isOPen: true, name:`${uni?.universityName}`, action: ""}))}><FontAwesomeIcon icon={faList}/></button>
+                                            <button className="action-btn" style={{background:"green"}} onClick={() => setAddSub(prev => ({ ...prev ,universityName:uni?.universityName, isOPen: true,countryId: uni?.countryId, universityId:uni?.universityId, action: "add"}))}><FontAwesomeIcon icon={faAdd}/></button>
+                                            <button className="action-btn" style={{background:"teal"}} onClick={() => setListSubject(prev => ({ ...prev ,countryId: uni?.countryId,universityId: uni?.universityId,isOPen: true, name:uni?.universityName, action: ""}))}><FontAwesomeIcon icon={faList}/></button>
                                         </div>
                                     </td>
                                 </tr>
@@ -143,13 +197,18 @@ const UniversityTable = ({ para , setPara }: paraType) => {
                         </tbody>
                     </table>
             </div>}
-            {
+            {/* {
                 data?.meta?.totalPages && <Pagination 
                     totalPages={data?.meta?.totalPages}
                     currentPage={Number(para?.page) || 1}
                     onPageChange={handlePageChange}
                     siblingCount={1}/>
-            }
+            } */}
+            <Pagination 
+                totalPages={data?.meta?.totalPages}
+                currentPage={Number(para?.page) || 1}
+                onPageChange={handlePageChange}
+                siblingCount={1}/>
 
             <Suspense fallback={<Loader />}>
                 <AddUniModal 

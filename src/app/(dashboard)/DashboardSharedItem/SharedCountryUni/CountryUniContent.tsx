@@ -31,9 +31,9 @@ const CountryUniContent = () => {
                     <button className="header-btn" onClick={() => setIsOpen(!isOpen)}><FontAwesomeIcon icon={faFilter}/></button>
                     <button className="header-btn" onClick={() => setAddCountry(prev => ({ ...prev , isOPen: true , action: "add" }))}>add country</button>
                     <div className={isOpen?"filter-container show":"filter-container"}>
-                        <h4 className='filter-header-text'>University filter</h4>
-                        <div className='filter-item'>
-                            <label htmlFor="page">page required</label>
+                        <h4 className='filter-header-text'>Country filter</h4>
+                        {/* <div className='filter-item'>
+                            <label htmlFor="page">page</label>
                             <input
                                 type="number"
                                 name="page"
@@ -45,7 +45,7 @@ const CountryUniContent = () => {
                             />
                         </div>
                         <div className='filter-item'>
-                            <label htmlFor="page">page required</label>
+                            <label htmlFor="page">Rows per page</label>
                             <input
                                 type="number"
                                 name="total"
@@ -57,7 +57,7 @@ const CountryUniContent = () => {
                             />
                         </div>
                         <div className='filter-item'>
-                            <label htmlFor="page">page required</label>
+                            <label htmlFor="page">university name</label>
                             <input
                                 type="text"
                                 name="uniName"
@@ -66,7 +66,7 @@ const CountryUniContent = () => {
                                 onChange={handleChange}
                                 className='pagination-input'
                             />
-                        </div>
+                        </div> */}
                     </div>
                 </div>
             </div>

@@ -9,7 +9,6 @@
 .input-container{
     width: auto;
     display: flex;
-    flex-basis: 48%;
     flex-direction: column;
     margin: 10px 0;
     align-items: start;
@@ -36,6 +35,7 @@
     border: 1px solid #ccc;
     outline: none;
     transition: border 0.2s ease;
+    font-size: 13px;
 }
 
 .input-container input[type="file"]{
@@ -53,9 +53,7 @@
 }
 
 .input-container select{
-    /* width: 200px; */
-    height: 40px;
-    padding: 5px;
+    padding: 10px;
     font-size: 13px;
     color: #333;
     background-color: #f0f0f0;

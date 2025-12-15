@@ -37,7 +37,6 @@ const universityApi = baseApi.injectEndpoints({
             invalidatesTags: ["country-uni"]
         }),
 
-
         getAllCountryBase: build.query<any, void>({
             query: () =>({
                 url    : '/country/base/all',

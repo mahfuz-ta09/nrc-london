@@ -62,7 +62,7 @@
     height: 100%;
     width: 100%;
     display: flex;
-    align-items: center;
+    align-items: end;
     justify-content: start;
     visibility: hidden;
     opacity: 0;
@@ -105,7 +105,7 @@
 .modal-header {
     background: linear-gradient(135deg, #006080 0%, #004a62 100%);
     color: white;
-    font-size: 20px;
+    font-size: 15px;
     padding: 10px 15px;
     border-radius: 10px;
     position: relative;
@@ -152,8 +152,14 @@
     .modal-body {
         min-width: 100vw;
         width: 100%;
-        height: 80vh;
+        bottom: 0;
+        height: 90vh;
     }
+
+    .modal-header {
+        font-size: 10px;
+    }
+
 }
 
 

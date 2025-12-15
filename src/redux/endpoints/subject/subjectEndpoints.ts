@@ -71,29 +71,29 @@ const subjectApi = baseApi.injectEndpoints({
 
 
     
-    addSubject: build.mutation<any,{data:any,countryId:string, universityName:string}>({
-      query: ({data,countryId, universityName}) => ({
-        url    : `/subject/add/${countryId}/${universityName}`,
-        method : "POST",
-        data
-      }),
-      invalidatesTags: ["country-uni"]
-    }),
-
-
-    getSubjectList: build.query<any, { all?: string , country?: string , page?: string , total?: string , uniName: string}>({
-        query: ({ all, country, page, total , uniName }) => ({
-            url: `/subject`,
-            method: 'GET',
-            params: { all, country, page, total , uniName}
+        addSubject: build.mutation<any,{data:any,countryId:string, universityName:string, universityId:string}>({
+          query: ({data,countryId, universityName,universityId}) => ({
+            url    : `/subject/add/${countryId}/${universityId}/${universityName}`,
+            method : "POST",
+            data
+          }),
+          invalidatesTags: ["country-uni"]
         }),
-        providesTags: ["country-uni"]
-    }),
 
 
-        removeSubject : build.mutation<any, { id: string, countryID: string , countryName: string }>({
-            query: ({ id , countryID , countryName }) => ({
-              url: `/subject/remove/${id}/${countryID}/${countryName}`,
+        getSubjectList: build.query<any, { all?: string , countryId?: string , page?: string , total?: string , universityId: string}>({
+            query: ({ all, countryId, page, total , universityId }) => ({
+                url: `/subject`,
+                method: 'GET',
+                params: { all, countryId, page, total , universityId}
+            }),
+            providesTags: ["country-uni"]
+        }),
+
+
+        removeSubject : build.mutation<any, { countryId: string, universityId: string , subjectId: string }>({
+            query: ({ countryId , universityId , subjectId }) => ({
+              url: `/subject/remove/${countryId}/${universityId}/${subjectId}`,
               method: "DELETE",
             }),
             invalidatesTags: ["country-uni"]
