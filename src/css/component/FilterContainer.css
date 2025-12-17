@@ -1,7 +1,7 @@
 .filter-container {
     position: absolute;
-    top: 45px;
-    left: 0px;
+    top: 75px;
+    right: 10px;
     z-index: 10;
     display: flex;
     flex-direction: column;

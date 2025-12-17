@@ -104,36 +104,73 @@ const AddCountryModal = ({ addCountry, setAddCountry }: ModalProps) => {
             let res:any
             const form_data = new FormData()
 
-            Object.entries(data).forEach(([key, value]) => {
-                if (value instanceof FileList) {
-                    for (let i = 0; i < value.length; i++) {
-                        form_data.append(key, value[i])
-                    }
-                } else if (value !== undefined && value !== null) {
-                    if (key === 'slug' && typeof value === 'string') {
-                        form_data.append(key, value.toLowerCase().trim().replace(/[^a-z0-9\s-]/g, "").replace(/\s+/g, "-"))
-                    } else if (key === 'content' && typeof value === 'string' && value.trim() !== "") {
-                        const parser = new DOMParser()
-                        const doc = parser.parseFromString(value, 'text/html')
-                        const imgElements = doc.querySelectorAll('img')
+            if(data?.country)form_data.append('country', data.country)
+            if(data?.currency)form_data.append('currency', data.currency)
+            if(data?.serial || data?.serial===0)form_data.append('serial', String(data.serial))
+            if (data.slug) {
+                const cleanSlug = data.slug
+                    .toLowerCase()
+                    .trim()
+                    .replace(/[^a-z0-9\s-]/g, "")
+                    .replace(/\s+/g, "-")
+                form_data.append('slug', cleanSlug)
+            }
+            if(data?.meta_title)form_data.append('meta_title', data.meta_title)
+            if(data?.meta_description)form_data.append('meta_description', data.meta_description)
+            if(data?.status)form_data.append('status', data.status)
+            if(data?.isVisible)form_data.append('isVisible', data.isVisible)
+            if(data?.countryFlag && data.countryFlag.length > 0) {
+                form_data.append('countryFlag', data.countryFlag[0])
+            }
+            if(data?.famousFile && data.famousFile.length > 0) {
+                form_data.append('famousFile', data.famousFile[0])
+            }
+            if(data?.content){
+                const parser = new DOMParser()
+                const doc = parser.parseFromString(data?.content, 'text/html')
+                const imgElements = doc.querySelectorAll('img')
 
-                        imgElements.forEach((imgEl, i) => {
-                            const src = imgEl.getAttribute("src")
-                            if (src && src.startsWith("data:image")) {
-                                imgEl.setAttribute("src", `__IMAGE_${i}__`)
-                                const file = base64ToFile(src, `editor-img-${i}.png`)
-                                form_data.append("content_image", file)
-                            }
-                        })
-
-                        form_data.append(key, doc.body.innerHTML)
-                    } else if (key === 'isVisible') {
-                        form_data.append(key, String(value))
-                    } else {
-                        if(key==='serial' && value!==0)form_data.append(key, String(value))
+                imgElements.forEach((imgEl, i) => {
+                    const src = imgEl.getAttribute("src")
+                    if (src && src.startsWith("data:image")) {
+                        imgEl.setAttribute("src", `__IMAGE_${i}__`)
+                        const file = base64ToFile(src, `editor-img-${i}.png`)
+                        form_data.append("content_image", file)
                     }
-                }
-            })
+                })
+
+                form_data.append('content', doc.body.innerHTML)
+            }
+            // Object.entries(data).forEach(([key, value]) => {
+            //     if (value instanceof FileList) {
+            //         for (let i = 0; i < value.length; i++) {
+            //             form_data.append(key, value[i])
+            //         }
+            //     } else if (value !== undefined && value !== null) {
+            //         if (key === 'slug' && typeof value === 'string') {
+            //             form_data.append(key, value.toLowerCase().trim().replace(/[^a-z0-9\s-]/g, "").replace(/\s+/g, "-"))
+            //         } else if (key === 'content' && typeof value === 'string' && value.trim() !== "") {
+            //             const parser = new DOMParser()
+            //             const doc = parser.parseFromString(value, 'text/html')
+            //             const imgElements = doc.querySelectorAll('img')
+
+            //             imgElements.forEach((imgEl, i) => {
+            //                 const src = imgEl.getAttribute("src")
+            //                 if (src && src.startsWith("data:image")) {
+            //                     imgEl.setAttribute("src", `__IMAGE_${i}__`)
+            //                     const file = base64ToFile(src, `editor-img-${i}.png`)
+            //                     form_data.append("content_image", file)
+            //                 }
+            //             })
+
+            //             form_data.append(key, doc.body.innerHTML)
+            //         } else if (key === 'isVisible') {
+            //             form_data.append(key, String(value))
+            //         } else {
+            //             if(key==='serial' && value!==0)form_data.append(key, String(value))
+            //         }
+            //     }
+            // })
 
             if (addCountry?.action === "add") {
                 res = await createCountryList(form_data).unwrap()

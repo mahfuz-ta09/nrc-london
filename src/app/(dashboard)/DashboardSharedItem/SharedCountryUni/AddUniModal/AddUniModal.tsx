@@ -1,10 +1,12 @@
 'use client'
 import { toast } from 'react-toastify'
 import { useState, useEffect } from 'react'
+import { countryCurrencyMap } from '@/types/common'
+import { FILE_CATEGORIES } from '../../StFile/type'
 import Loader from '@/component/shared/loader/loader'
 import { useForm, SubmitHandler, Controller } from "react-hook-form"
 import { useAddUniversityMutation, useEditUniversityMutation } from '@/redux/endpoints/university/universityEndpoints'
-import { countryCurrencyMap } from '@/types/common'
+import { ACADEMIC_BACKGROUNDS, educationLevelOptions, feeStructureOptions, gpaScaleOptions, INTAKE_NAMES, MONTHS, PREREQUISITE_SUBJECTS, qualificationOptions, submissionMethodOptions, testOptions } from '../../Objects/programItem'
 
 type ModalProps = {
     addUni: {
@@ -45,6 +47,7 @@ type UniData = {
     minimumGPA?: number,
     gpaScale?: string,
     requiredEducationLevel?: string,
+    requiredFiles?: string,
     prerequisiteSubjects?: string, // JSON string
     preferredBackgrounds?: string, // JSON string
     
@@ -85,116 +88,6 @@ type UniData = {
     status?: string,
 }
 
-const INTAKE_NAMES = [
-    'Fall 2025',
-    'Spring 2025',
-    'Summer 2025',
-    'Winter 2025',
-    'Fall 2026',
-    'Spring 2026',
-    'Summer 2026',
-    'Winter 2026',
-    'January Intake',
-    'February Intake',
-    'March Intake',
-    'April Intake',
-    'May Intake',
-    'June Intake',
-    'July Intake',
-    'August Intake',
-    'September Intake',
-    'October Intake',
-    'November Intake',
-    'December Intake'
-]
-
-const MONTHS = [
-    'January',
-    'February',
-    'March',
-    'April',
-    'May',
-    'June',
-    'July',
-    'August',
-    'September',
-    'October',
-    'November',
-    'December'
-]
-const testOptions = [
-    { value: "IELTS", label: "IELTS", sections: ["overall", "reading", "writing", "listening", "speaking"] },
-    { value: "TOEFL", label: "TOEFL", sections: ["overall", "reading", "writing", "listening", "speaking"] },
-    { value: "PTE", label: "PTE", sections: ["overall"] },
-    { value: "DUOLINGO", label: "Duolingo", sections: ["overall"] },
-    { value: "GRE", label: "GRE", sections: ["overall", "verbal", "quantitative", "writing"] },
-    { value: "GMAT", label: "GMAT", sections: ["overall", "verbal", "quantitative", "writing", "integrated"] },
-    { value: "SAT", label: "SAT", sections: ["overall", "math", "reading"] },
-    { value: "ACT", label: "ACT", sections: ["overall", "english", "math", "reading", "science"] },
-]
-
-const qualificationOptions = [
-    { value: "certificate", label: "Certificate" },
-    { value: "diploma", label: "Diploma" },
-    { value: "bachelors", label: "Bachelor's" },
-    { value: "masters", label: "Master's" },
-    { value: "phd", label: "PhD/Doctorate" },
-    { value: "postdoc", label: "Postdoctoral" },
-]
-const PREREQUISITE_SUBJECTS = [
-    'Mathematics',
-    'Physics',
-    'Chemistry',
-    'Biology',
-    'Computer Science',
-    'English',
-    'Statistics',
-    'Calculus',
-    'Linear Algebra',
-    'Economics',
-    'Business Studies',
-    'Accounting',
-    'Geography',
-    'History',
-    'Psychology',
-    'Sociology',
-    'Political Science',
-    'Engineering Drawing',
-    'Technical Drawing',
-    'Information Technology'
-]
-
-const ACADEMIC_BACKGROUNDS = [
-    'Engineering',
-    'Computer Science',
-    'Business Administration',
-    'Natural Sciences',
-    'Social Sciences',
-    'Mathematics',
-    'Physics',
-    'Chemistry',
-    'Biology',
-    'Medicine',
-    'Information Technology',
-    'Economics',
-    'Commerce',
-    'Arts & Humanities',
-    'Architecture',
-    'Agriculture',
-    'Environmental Science',
-    'Health Sciences',
-    'Education',
-    'Law',
-    'Media & Communication',
-    'Design',
-    'Pharmacy',
-    'Biotechnology'
-]
-const gpaScaleOptions = ["4.0", "5.0", "10.0", "100"]
-const educationLevelOptions = ["high_school", "bachelors", "masters", "any"]
-const submissionMethodOptions = ["manual", "api", "email", "courier"]
-const feeStructureOptions = ["per_year", "per_semester", "total_program"]
-
 const AddUniModal = ({ addUni, setAddUni }: ModalProps) => {
     const [addUniversity, { isLoading: createLoading }] = useAddUniversityMutation()
     const [editUniversity, { isLoading: editLoading }] = useEditUniversityMutation()
@@ -214,13 +107,14 @@ const AddUniModal = ({ addUni, setAddUni }: ModalProps) => {
         }
     })
 
+    const [tagsList, setTagsList] = useState<string[]>([])
     const [selectedTests, setSelectedTests] = useState<string[]>([])
+    const [selectedFiles, setSelectedFiles] = useState<string[]>([])
+    const [backgroundsList, setBackgroundsList] = useState<string[]>([])
+    const [prerequisitesList, setPrerequisitesList] = useState<string[]>([])
+    const [accreditationList, setAccreditationList] = useState<string[]>([])
     const [selectedQualifications, setSelectedQualifications] = useState<string[]>([])
     const [intakesList, setIntakesList] = useState<Array<{ name: string, startMonth: string, deadline: string, isOpen: boolean }>>([])
-    const [tagsList, setTagsList] = useState<string[]>([])
-    const [prerequisitesList, setPrerequisitesList] = useState<string[]>([])
-    const [backgroundsList, setBackgroundsList] = useState<string[]>([])
-    const [accreditationList, setAccreditationList] = useState<string[]>([])
 
     const watchSubmissionMethod = watch('submissionMethod')
     const watchHasAPI = watch('hasAPIIntegration')
@@ -248,6 +142,9 @@ const AddUniModal = ({ addUni, setAddUni }: ModalProps) => {
             setValue('minimumGPA', data.admissionRequirements?.minimumGPA?.value)
             setValue('gpaScale', data.admissionRequirements?.minimumGPA?.scale)
             
+            if (data.requiredFiles) {
+                setSelectedFiles(Array.isArray(data.requiredFiles) ? data.requiredFiles : [])
+            }
             
             if (data.tags) setTagsList(Array.isArray(data.tags) ? data.tags : [])
             if (data.intakes) setIntakesList(Array.isArray(data.intakes) ? data.intakes : [])
@@ -285,11 +182,10 @@ const AddUniModal = ({ addUni, setAddUni }: ModalProps) => {
             if (prerequisitesList.length > 0) formData.append('prerequisiteSubjects', JSON.stringify(prerequisitesList))
             if (backgroundsList.length > 0) formData.append('preferredBackgrounds', JSON.stringify(backgroundsList))
             if (accreditationList.length > 0) formData.append('accreditation', JSON.stringify(accreditationList))
-
+            if (selectedFiles.length > 0) formData.append('requiredFiles', JSON.stringify(selectedFiles))
             let res:any
             if (addUni?.action === "add") {
                 res = await addUniversity({ data: formData, id: addUni?.id }).unwrap()
-                console.log("saasfsddsafdsfsf",res)
                 if (res?.data?.modifiedCount) {
                     toast.success(res?.data?.message || "Operation successful!")
                     handleClose()
@@ -323,6 +219,7 @@ const AddUniModal = ({ addUni, setAddUni }: ModalProps) => {
         setPrerequisitesList([])
         setBackgroundsList([])
         setAccreditationList([])
+        setSelectedFiles([])
         setActiveTab('basic')
     }
 
@@ -601,16 +498,80 @@ const AddUniModal = ({ addUni, setAddUni }: ModalProps) => {
                                 </div>
                             </div>
 
-                            <div className='input-container'>
-                                <label>Required Education Level</label>
-                                <select {...register("requiredEducationLevel")}>
-                                    <option value="">select</option>
-                                    {educationLevelOptions.map(e => (
-                                        <option key={e} value={e}>
-                                            {e.replace(/_/g, ' ').replace(/\b\w/g, l => l.toUpperCase())}
-                                        </option>
-                                    ))}
-                                </select>
+                            <div className='double-input-container'>
+                                <div className='input-container'>
+                                    <label>Required Education Level</label>
+                                    <select {...register("requiredEducationLevel")}>
+                                        <option value="">select</option>
+                                        {educationLevelOptions.map(e => (
+                                            <option key={e} value={e}>
+                                                {e.replace(/_/g, ' ').replace(/\b\w/g, l => l.toUpperCase())}
+                                            </option>
+                                        ))}
+                                    </select>
+                                </div>
+                                
+                                <div className='input-container'>
+                                    <label>Required Files</label>
+                                    <select
+                                        onChange={(e) => {
+                                            const value = e.target.value
+                                            if (value && !selectedFiles.includes(value)) {
+                                                addItem(value, selectedFiles, setSelectedFiles)
+                                            }
+                                            e.target.value = ''
+                                        }}
+                                        value=""
+                                    >
+                                        <option value="">Select a file requirement...</option>
+                                        {FILE_CATEGORIES.map((category, catIdx) => (
+                                            <optgroup key={catIdx} label={category.category}>
+                                                {category.files
+                                                    .filter(file => !selectedFiles.includes(file))
+                                                    .map((file, fileIdx) => (
+                                                        <option key={fileIdx} value={file}>
+                                                            {file}
+                                                        </option>
+                                                    ))
+                                                }
+                                            </optgroup>
+                                        ))}
+                                    </select>
+                                    <div style={{ marginTop: '10px', display: 'flex', flexWrap: 'wrap', gap: '8px' }}>
+                                        {selectedFiles.map((file, i) => (
+                                            <span 
+                                                style={{ 
+                                                    padding: '8px 15px', 
+                                                    background: '#667eea', 
+                                                    color: 'white', 
+                                                    borderRadius: '20px', 
+                                                    fontSize: '14px', 
+                                                    display: 'flex', 
+                                                    alignItems: 'center', 
+                                                    gap: '5px' 
+                                                }} 
+                                                key={i}
+                                            >
+                                                {file}
+                                                <button 
+                                                    type="button" 
+                                                    onClick={() => removeItem(file, selectedFiles, setSelectedFiles)} 
+                                                    style={{ 
+                                                        background: 'none', 
+                                                        border: 'none', 
+                                                        cursor: 'pointer', 
+                                                        color: '#fff', 
+                                                        fontWeight: 'bold',
+                                                        fontSize: '18px',
+                                                        lineHeight: '1'
+                                                    }}
+                                                >
+                                                    ×
+                                                </button>
+                                            </span>
+                                        ))}
+                                    </div>
+                                </div>
                             </div>
                             <div className='double-input-container'>
                                 <div className='input-container'>
@@ -630,11 +591,11 @@ const AddUniModal = ({ addUni, setAddUni }: ModalProps) => {
                                             <option key={idx} value={subj}>{subj}</option>
                                         ))}
                                     </select>
-                                    <div>
+                                    <div style={{ marginTop: '10px', display: 'flex', flexWrap: 'wrap', gap: '8px' }}>
                                         {prerequisitesList.map((pre, i) => (
-                                            <span key={i}>
+                                            <span style={{ padding: '8px 15px', background: '#667eea', color: 'white', borderRadius: '20px', fontSize: '14px', display: 'flex', alignItems: 'center', gap: '5px' }} key={i}>
                                                 {pre}
-                                                <button type="button" onClick={() => removeItem(pre, prerequisitesList, setPrerequisitesList)} style={{ background: 'none', border: 'none', cursor: 'pointer', color: '#667eea', fontWeight: 'bold' }}>×</button>
+                                                <button type="button" onClick={() => removeItem(pre, prerequisitesList, setPrerequisitesList)} style={{ background: 'none', border: 'none', cursor: 'pointer', color: '#fff', fontWeight: 'bold' }}>×</button>
                                             </span>
                                         ))}
                                     </div>
@@ -657,11 +618,11 @@ const AddUniModal = ({ addUni, setAddUni }: ModalProps) => {
                                             <option key={idx} value={bg}>{bg}</option>
                                         ))}
                                     </select>
-                                    <div>
+                                    <div style={{ marginTop: '10px', display: 'flex', flexWrap: 'wrap', gap: '8px' }}>
                                         {backgroundsList.map((bg, i) => (
-                                            <span key={i}>
+                                            <span style={{ padding: '8px 15px', background: '#667eea', color: 'white', borderRadius: '20px', fontSize: '14px', display: 'flex', alignItems: 'center', gap: '5px' }} key={i}>
                                                 {bg}
-                                                <button type="button" onClick={() => removeItem(bg, backgroundsList, setBackgroundsList)} style={{ background: 'none', border: 'none', cursor: 'pointer', color: '#667eea', fontWeight: 'bold' }}>×</button>
+                                                <button type="button" onClick={() => removeItem(bg, backgroundsList, setBackgroundsList)} style={{ background: 'none', border: 'none', cursor: 'pointer', color: '#fff', fontWeight: 'bold' }}>×</button>
                                             </span>
                                         ))}
                                     </div>

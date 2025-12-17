@@ -69,7 +69,7 @@ const AddStudentFileModal = ({ setModalState, modalState }: ModalProps) => {
 
     const handleNext = async () => {
         const fieldsToValidate: Record<number, (keyof StudentFileForm)[]> = {
-          1: ['name', 'email'],
+          1: [],
         };
         const valid = await trigger(fieldsToValidate[step] || []);
         if (valid && step < 5) setStep(step + 1);

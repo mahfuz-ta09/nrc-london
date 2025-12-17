@@ -160,14 +160,14 @@ export type ModalProps = {
   setModalState: React.Dispatch<React.SetStateAction<any>>;
 };
 
-export const fileCategories = [
+export const FILE_CATEGORIES = [
   {
     category: "Academic Documents",
     files: [
       "Secondary School Certificate (SSC)",
       "Higher Secondary Certificate (HSC)",
-      "Bachelor’s Degree Certificate",
-      "Master’s Degree Certificate",
+      "Bachelor's Degree Certificate",
+      "Master's Degree Certificate",
       "Academic Transcript (All Semesters)",
       "Recommendation Letter from Professor or Employer",
       "Curriculum Vitae (CV)",
@@ -248,7 +248,6 @@ export const fileCategories = [
     ],
   },
 ];
-
 export const examConfig:any = {
     ielts: ["listening", "reading", "writing", "speaking", "overall", "date", "trfNumber", "testType"],
     toefl: ["reading", "listening", "speaking", "writing", "total", "date"],

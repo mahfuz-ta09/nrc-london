@@ -4,6 +4,7 @@ import { toast } from "react-toastify"
 import Loader from "@/component/shared/loader/loader"
 import { useForm, SubmitHandler } from "react-hook-form"
 import { useAddSubjectMutation } from "@/redux/endpoints/subject/subjectEndpoints"
+import { DURATION_UNITS, PROGRAM_LEVELS, programOptions, qualificationOptions } from "../../Objects/programItem"
 
 type ModalProps = {
     addSub: {
@@ -38,43 +39,6 @@ type SubjectData = {
     cost: number,
     placement: string
 }
-
-const qualificationOptions = [
-    { value: "certificate", label: "Certificate (Short-term / Vocational)" },
-    { value: "diploma", label: "Diploma / Advanced Diploma" },
-    { value: "foundation", label: "Foundation / Preparatory" },
-    { value: "associate", label: "Associate Degree (AA / AS)" },
-    { value: "undergraduate", label: "Undergraduate (Bachelor's)" },
-    { value: "graduate", label: "Graduate (Master's)" },
-    { value: "doctorate", label: "Doctorate (PhD / Professional Doctorate)" },
-    { value: "professional", label: "Professional Qualification (ACCA, CFA, PMP, etc.)" },
-    { value: "postdoc", label: "Postdoctoral / Research Fellowship" },
-    { value: "executive", label: "Executive Education / MBA / EMBA" },
-    { value: "vocational", label: "Vocational / Technical Training" },
-    { value: "continuing", label: "Continuing Education / Lifelong Learning" },
-    { value: "online", label: "Online / Distance Learning Program" },
-    { value: "shortcourse", label: "Short Course / Workshop / Bootcamp" },
-    { value: "others", label: "Mention others" }
-]
-
-const PROGRAM_LEVELS = [
-    'Certificate',
-    'Diploma',
-    'Foundation',
-    'Associate Degree',
-    'Undergraduate',
-    'Graduate',
-    'Doctorate',
-    'Professional',
-    'Executive'
-]
-
-const DURATION_UNITS = [
-    'months',
-    'years',
-    'weeks',
-    'semesters'
-]
 
 const SubjectControllModal = ({ addSub, setAddSub }: ModalProps) => {
     const { register, handleSubmit, reset, setValue, watch } = useForm<SubjectData>({
@@ -240,42 +204,16 @@ const SubjectControllModal = ({ addSub, setAddSub }: ModalProps) => {
                         <label>Program Type *</label>
                         <select {...register("programType", { required: true })}>
                             <option value="">-- Select Program --</option>
-                            <optgroup label="Undergraduate">
-                                <option value="Certificate">Certificate</option>
-                                <option value="Diploma">Diploma</option>
-                                <option value="Associate">Associate Degree (AA/AS/AAS)</option>
-                                <option value="BA">Bachelor of Arts (BA)</option>
-                                <option value="BSc">Bachelor of Science (BSc/BS)</option>
-                                <option value="BBA">Bachelor of Business Administration (BBA)</option>
-                                <option value="BEng">Bachelor of Engineering (BEng)</option>
-                                <option value="LLB">Bachelor of Laws (LLB)</option>
-                                <option value="MBBS">Bachelor of Medicine (MBBS/MD)</option>
-                            </optgroup>
-                            <optgroup label="Postgraduate">
-                                <option value="PGCert">Postgraduate Certificate (PGCert)</option>
-                                <option value="PGDip">Postgraduate Diploma (PGDip)</option>
-                                <option value="MA">Master of Arts (MA)</option>
-                                <option value="MSc">Master of Science (MSc/MS)</option>
-                                <option value="MBA">Master of Business Administration (MBA)</option>
-                                <option value="MEng">Master of Engineering (MEng)</option>
-                                <option value="LLM">Master of Laws (LLM)</option>
-                                <option value="MEd">Master of Education (MEd)</option>
-                                <option value="MPH">Master of Public Health (MPH)</option>
-                            </optgroup>
-                            <optgroup label="Doctoral">
-                                <option value="PhD">Doctor of Philosophy (PhD/DPhil)</option>
-                                <option value="MD">Doctor of Medicine (MD/DO)</option>
-                                <option value="DBA">Doctor of Business Administration (DBA)</option>
-                                <option value="EdD">Doctor of Education (EdD)</option>
-                                <option value="SJD">Doctor of Juridical Science (SJD/JSD)</option>
-                            </optgroup>
-                            <optgroup label="Other / Professional">
-                                <option value="Foundation">Foundation / Pathway Program</option>
-                                <option value="CertificateProfessional">Professional Certificate</option>
-                                <option value="ShortCourse">Short Course</option>
-                                <option value="ExecutiveEducation">Executive Education</option>
-                                <option value="Online">Online / Distance Learning</option>
-                            </optgroup>
+                            
+                            {programOptions.map(group => (
+                                <optgroup key={group.label} label={group.label}>
+                                  {group.options.map(option => (
+                                    <option key={option.value} value={option.value}>
+                                      {option.label}
+                                    </option>
+                                  ))}
+                                </optgroup>
+                            ))}
                         </select>
                     </div>
 

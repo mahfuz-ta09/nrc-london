@@ -7,7 +7,7 @@ import {
 import { toast } from "react-toastify";
 import { useUserInfo } from "@/utils/useUserInfo";
 import Loader from "@/component/shared/loader/loader";
-import { fileCategories, StudentListProps } from "../../type";
+import { FILE_CATEGORIES, StudentListProps } from "../../type";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faEye, faFile, faTrash } from "@fortawesome/free-solid-svg-icons";
 import { useEditStudentFileMutation } from "@/redux/endpoints/studentfileprocess/proceedEndpoints";
@@ -213,7 +213,7 @@ const AllFile = ({ detailState, setdetailState }: StudentListProps) => {
                         <label>File Type</label>
                             <select {...register(`newFiles.${index}.fileFor`, {required: true})}>
                                 <option value="">Select file type</option>
-                                {fileCategories.map((group) => (
+                                {FILE_CATEGORIES.map((group) => (
                                 <optgroup
                                     key={group.category}
                                     label={group.category}

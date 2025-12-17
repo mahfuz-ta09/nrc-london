@@ -333,6 +333,19 @@ const UniversityDetails = ({ uniDetails, setUniDetails }: ModalProps) => {
                                             </div>
                                         </div>
                                     )}
+
+                                    {uni?.requiredFiles && uni.requiredFiles.length > 0 && (
+                                        <div className="backgrounds">
+                                            <h4 className="subsection-title">Required Files</h4>
+                                            <div className="badges-container">
+                                                {JSON.parse(uni?.requiredFiles)?.map((bg: string, idx: number) => (
+                                                    <span key={idx} className="badge badge-blue">
+                                                        {bg}
+                                                    </span>
+                                                ))}
+                                            </div>
+                                        </div>
+                                    )}
                                 </div>
                             )}
 

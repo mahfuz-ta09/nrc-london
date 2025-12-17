@@ -1,5 +1,5 @@
 import { useFieldArray, useFormContext } from "react-hook-form";
-import { fileCategories, StudentFileForm } from "../type";
+import { FILE_CATEGORIES, StudentFileForm } from "../type";
 
 const FileUpload = () => {
     const { register, control } = useFormContext<StudentFileForm>();
@@ -19,9 +19,9 @@ const FileUpload = () => {
               <label>File Type</label>
               <select {...register(`files.${index}.fileFor` as const,{required:true})}>
                 <option value="">Select file type</option>
-                {fileCategories.map((group) => (
+                {FILE_CATEGORIES.map((group:any) => (
                   <optgroup key={group.category} label={group.category}>
-                    {group.files.map((file) => (
+                    {group.files.map((file:any) => (
                       <option key={file} value={file}>
                         {file}
                       </option>

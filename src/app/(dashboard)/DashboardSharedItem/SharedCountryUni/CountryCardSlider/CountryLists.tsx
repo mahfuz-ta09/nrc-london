@@ -1,14 +1,14 @@
 'use client'
 import './CardSlider.css'
 import { toast } from 'react-toastify'
+import CountryDetails from './CountryDetails'
 import { Suspense, useRef, useState } from 'react'
 import AddUniModal from '../AddUniModal/AddUniModal'
 import Loader from '@/component/shared/loader/loader'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import AddCountryModal from '../AddCountryModal/AddCountryModal'
-import { faArrowRight, faTrash } from '@fortawesome/free-solid-svg-icons'
+import { faTrash } from '@fortawesome/free-solid-svg-icons'
 import { useDeleteCountryMutation, useGetAllCountryBaseQuery } from '@/redux/endpoints/countryBaseUni/countryBaseUniversity'
-import CountryDetails from './CountryDetails'
 
 
 const CountryLists = () => {
@@ -33,15 +33,14 @@ const CountryLists = () => {
             if (!isConfirmed) return;
 
             const deleteRes:any = await deleteCountry(id).unwrap()
-            console.log(deleteRes)
             if (deleteRes?.data?.deletedCount) {
                 toast.success("Successfully deleted!")
             } else {
                 toast.error(deleteRes?.error?.data)
             }
-        } catch (err) {
-            toast.error("something went wrong!")
-            console.log(err)
+        } catch (err:any) {
+            toast.error(err?.data || "something went wrong!")
+            console.log(err?.data)
         }
     }
 

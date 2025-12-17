@@ -54,15 +54,14 @@ const UniversityTable = ({ para , setPara }: paraType) => {
             if (!isConfirmed) return; 
             
             const res:any = await deleteUni({id:id,name:uniId}).unwrap()
-            console.log("res.data ",res?.data)
             if(res?.data?.modifiedCount){
                 toast.success("University deleted!")
             }else{
                 toast.error(res?.err?.data ||'Failed to delete')
             }
         }catch(err:any){
-            console.log(err)
-            toast.error(err?.data|| "Something went wrong!")
+            // console.log(err)
+            toast.error("University containing subjects cant be deleted or something went wrong!")
         }
     }
     

@@ -10,21 +10,41 @@ const Final = ({register}:{register:any}) => {
             <label>ever refused by any country?</label>
             <input type="text" placeholder='comma separated, e.g: usa,uk' {...register('refusedCountry')} />
           </div>
-          <div className="checkbox-container">
-            <input type="checkbox" {...register('permission_personalInfo')} />
-            <label>allow student to edit/upload personal information</label>
+          <div className="double-input-container">
+              <div className="input-container">
+                <label>allow student to edit/upload personal information</label>
+                <select {...register('permission_personalInfo')}>
+                  <option value="">--select--</option>
+                  <option value="yes">yes</option>
+                  <option value="false">no</option>
+                </select>
+            </div>
+            <div className='input-container'>
+                <label>allow student to edit/upload test information</label>
+                <select {...register('permission_englishProficiency')}>
+                  <option value="">--select--</option>
+                  <option value="yes">yes</option>
+                  <option value="false">no</option>
+                </select>
+            </div>
           </div>
-          <div className="checkbox-container">
-            <input type="checkbox" {...register('permission_englishProficiency')} />
-            <label>allow student to edit/upload test information</label>
-          </div>
-          <div className="checkbox-container">
-            <input type="checkbox" {...register('permission_universityApplications')} />
-            <label>allow student to edit/upload university information</label>
-          </div>
-          <div className="checkbox-container">
-            <input type="checkbox" {...register('permission_studentsFile')} />
-            <label>allow student to edit/upload files</label>
+          <div className="double-input-container">
+              <div className="input-container">
+                <label>allow student to edit/upload university information</label>
+                <select {...register('permission_universityApplications')}>
+                  <option value="">--select--</option>
+                  <option value="yes">yes</option>
+                  <option value="false">no</option>
+                </select>
+            </div>
+            <div className='input-container'>
+                <label>allow student to edit/upload files information</label>
+                <select {...register('permission_studentsFile')}>
+                  <option value="">--select--</option>
+                  <option value="yes">yes</option>
+                  <option value="false">no</option>
+                </select>
+            </div>
           </div>
           
           <div className="final"></div>
