@@ -148,6 +148,15 @@ const Personal = ({ register, errors }: { register: any; errors: any }) => {
                   placeholder="Ex: Bangladesh"
                 />
               </div>
+              <div className="input-container">
+                <label>Study Gap</label>
+                <input
+                  type="number"
+                  {...register(`academicInfo.${index}.studyGap`)}
+                  min={0}
+                  placeholder="Ex: 2022"
+                />
+              </div>
             </div>
 
             <button

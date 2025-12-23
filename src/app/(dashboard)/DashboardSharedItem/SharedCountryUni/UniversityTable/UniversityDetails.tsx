@@ -307,25 +307,23 @@ const UniversityDetails = ({ uniDetails, setUniDetails }: ModalProps) => {
                                     )}
 
 
-                                    {uni.admissionRequirements.prerequisiteSubjects && uni.admissionRequirements.prerequisiteSubjects.length > 0 && (
-                                        <div className="prerequisites">
-                                            <h4 className="subsection-title">Prerequisite Subjects</h4>
+                                    {uni.admissionRequirements.programOffered &&(
+                                        <div className="backgrounds">
+                                            <h4 className="subsection-title">Fields of Study Offered</h4>
                                             <div className="badges-container">
-                                                {uni.admissionRequirements.prerequisiteSubjects.map((subj: string, idx: number) => (
-                                                    <span key={idx} className="badge badge-orange">
-                                                        {subj}
+                                                {Object.keys(uni.admissionRequirements.programOffered).map((bg: string, idx: number) => (
+                                                    <span key={idx} className="badge badge-blue">
+                                                        {bg}
                                                     </span>
                                                 ))}
                                             </div>
                                         </div>
                                     )}
-
-
-                                    {uni.admissionRequirements.preferredBackgrounds && uni.admissionRequirements.preferredBackgrounds.length > 0 && (
+                                    {uni.admissionRequirements.programFields && (
                                         <div className="backgrounds">
-                                            <h4 className="subsection-title">Preferred Academic Backgrounds</h4>
+                                            <h4 className="subsection-title">Program Levels Offered</h4>
                                             <div className="badges-container">
-                                                {uni.admissionRequirements.preferredBackgrounds.map((bg: string, idx: number) => (
+                                                {Object.keys(uni.admissionRequirements.programFields).map((bg: string, idx: number) => (
                                                     <span key={idx} className="badge badge-blue">
                                                         {bg}
                                                     </span>

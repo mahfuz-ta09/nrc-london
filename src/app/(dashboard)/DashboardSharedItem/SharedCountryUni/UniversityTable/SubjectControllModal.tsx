@@ -19,23 +19,16 @@ type ModalProps = {
 
 type SubjectData = {
     subjectName: string,
-    programLevel: string,
-    degree: string,
     duration: {
         value: number,
         unit: string
     },
-    description: string,
     qualifications: Record<string, string>,
-    programType: string,
-    faculty: string,
+    programType: string[],
     credits: number,
     modeOfStudy: string,
     language: string,
-    intakes: string,
-    applicationDeadline: string,
-    careerOpportunities: string,
-    accreditation: string,
+    description_careerOpportunities: string,
     cost: number,
     placement: string
 }
@@ -51,6 +44,7 @@ const SubjectControllModal = ({ addSub, setAddSub }: ModalProps) => {
         }
     })
     const [addSubject, { isLoading: addLoading }] = useAddSubjectMutation()
+    const [selectedProgramTypes, setSelectedProgramTypes] = useState<string[]>([])
     const [selectedQualifications, setSelectedQualifications] = useState<string[]>([])
 
     if (addLoading) {
@@ -62,20 +56,17 @@ const SubjectControllModal = ({ addSub, setAddSub }: ModalProps) => {
             const formData = new FormData()
             
             if(data?.subjectName)formData.append('subjectName', data.subjectName)
-            if(data?.programLevel)formData.append('programLevel', data.programLevel)
-            if(data?.degree)formData.append('degree', data.degree)
             if(data?.duration)formData.append('duration[value]', String(data.duration.value))
             if(data?.duration)formData.append('duration[unit]', data.duration.unit)
-            if(data?.description)formData.append('description', data.description || '')
-            if(data?.programType)formData.append('programType', data.programType)
-            if(data?.faculty)formData.append('faculty', data.faculty)
+            if(selectedProgramTypes?.length>0){
+                selectedProgramTypes.forEach((type,i) => {
+                formData.append(`programType[${i}]`, type)
+                })
+            }
             if(data?.credits)formData.append('credits', String(data.credits))
             if(data?.modeOfStudy)formData.append('modeOfStudy', data.modeOfStudy)
             if(data?.language)formData.append('language', data.language)
-            if(data?.intakes)formData.append('intakes', data.intakes)
-            if(data?.applicationDeadline)formData.append('applicationDeadline', data.applicationDeadline)
-            if(data?.careerOpportunities)formData.append('careerOpportunities', data.careerOpportunities || '')
-            if(data?.accreditation)formData.append('accreditation', data.accreditation || '')
+            if(data?.description_careerOpportunities)formData.append('description_careerOpportunities', data.description_careerOpportunities)
             if(data?.cost)formData.append('cost', String(data.cost))
             if(data?.placement)formData.append('placement', data.placement)
             
@@ -119,7 +110,13 @@ const SubjectControllModal = ({ addSub, setAddSub }: ModalProps) => {
         }
         e.target.value = ""
     }
-
+    const handleProgramTypeSelect = (e: React.ChangeEvent<HTMLSelectElement>) => {
+        const value = e.target.value
+        if (value && !selectedProgramTypes.includes(value)) {
+            setSelectedProgramTypes(prev => [...prev, value])
+        }
+        e.target.value = ""
+    }
     return (
         <div className={addSub?.isOPen ? 'modal-container openmoda-container' : 'modal-container'}>
             <div className="modal-body">
@@ -146,7 +143,7 @@ const SubjectControllModal = ({ addSub, setAddSub }: ModalProps) => {
 
                 <form onSubmit={handleSubmit(onSubmit)} className="modal-from">
 
-                    <div className="double-input-container">
+                    {/* <div className="double-input-container"> */}
                         <div className="input-container">
                             <label>Subject Name *</label>
                             <input 
@@ -156,25 +153,8 @@ const SubjectControllModal = ({ addSub, setAddSub }: ModalProps) => {
                             />
                         </div>
 
-                        <div className="input-container">
-                            <label>Program Level *</label>
-                            <select {...register("programLevel", { required: true })}>
-                                <option value="">-- Select Level --</option>
-                                {PROGRAM_LEVELS.map((level, idx) => (
-                                    <option key={idx} value={level}>{level}</option>
-                                ))}
-                            </select>
-                        </div>
-                    </div>
+                    {/* </div> */}
 
-                    <div className="input-container">
-                        <label>Degree Name</label>
-                        <input 
-                            type="text" 
-                            placeholder="e.g. Bachelor of Science in Computer Science" 
-                            {...register("degree")} 
-                        />
-                    </div>
 
                     <div className="double-input-container">
                         <div className="input-container">
@@ -202,50 +182,58 @@ const SubjectControllModal = ({ addSub, setAddSub }: ModalProps) => {
 
                     <div className="input-container">
                         <label>Program Type *</label>
-                        <select {...register("programType", { required: true })}>
+                        <select onChange={handleProgramTypeSelect}>
                             <option value="">-- Select Program --</option>
-                            
                             {programOptions.map(group => (
                                 <optgroup key={group.label} label={group.label}>
-                                  {group.options.map(option => (
+                                {group.options.map(option => (
                                     <option key={option.value} value={option.value}>
-                                      {option.label}
+                                    {option.label}
                                     </option>
-                                  ))}
+                                ))}
                                 </optgroup>
                             ))}
                         </select>
+
+                        <div style={{ marginTop: '10px', display: 'flex', flexWrap: 'wrap', gap: '8px' }}>
+                            {selectedProgramTypes.map(type => (
+                                    <span 
+                                        style={{ 
+                                            padding: '8px 15px', 
+                                            background: '#667eea', 
+                                            color: 'white', 
+                                            borderRadius: '20px', 
+                                            fontSize: '14px', 
+                                            display: 'flex', 
+                                            alignItems: 'center', 
+                                            gap: '5px' ,
+                                            width:'fit-content'
+                                        }} 
+                                        key={type}
+                                    >
+                                        {type}
+                                        <button 
+                                            type="button" 
+                                            onClick={() => setSelectedProgramTypes(prev => prev.filter(t => t !== type))} 
+                                            style={{ 
+                                                background: 'none', 
+                                                border: 'none', 
+                                                cursor: 'pointer', 
+                                                color: '#fff', 
+                                                fontWeight: 'bold',
+                                                fontSize: '18px',
+                                                lineHeight: '1'
+                                            }}
+                                        >
+                                            ×
+                                        </button>
+                                    </span>
+                            ))}
+                        </div>
                     </div>
 
                     <div className="double-input-container">
-                        <div className="input-container">
-                            <label>Faculty / Department *</label>
-                            <select {...register("faculty", { required: true })}>
-                                <option value="">-- Select Faculty --</option>
-                                <option value="arts">Faculty of Arts & Humanities</option>
-                                <option value="science">Faculty of Science</option>
-                                <option value="engineering">Faculty of Engineering</option>
-                                <option value="business">Faculty of Business / Management</option>
-                                <option value="law">Faculty of Law</option>
-                                <option value="medicine">Faculty of Medicine</option>
-                                <option value="dentistry">Faculty of Dentistry</option>
-                                <option value="nursing">Faculty of Nursing</option>
-                                <option value="pharmacy">Faculty of Pharmacy</option>
-                                <option value="social_sciences">Faculty of Social Sciences</option>
-                                <option value="education">Faculty of Education</option>
-                                <option value="it">Faculty of Computer Science / IT</option>
-                                <option value="agriculture">Faculty of Agriculture</option>
-                                <option value="architecture">Faculty of Architecture & Design</option>
-                                <option value="economics">Faculty of Economics</option>
-                                <option value="environment">Faculty of Environmental Studies</option>
-                                <option value="communication">Faculty of Communication / Media</option>
-                                <option value="psychology">Faculty of Psychology</option>
-                                <option value="public_health">Faculty of Public Health</option>
-                                <option value="hospitality">Faculty of Hospitality & Tourism</option>
-                                <option value="theology">Faculty of Theology / Religious Studies</option>
-                                <option value="law_enforcement">Faculty of Criminology / Law Enforcement</option>
-                            </select>
-                        </div>
+                        
 
                         <div className="input-container">
                             <label>Credits *</label>
@@ -263,13 +251,12 @@ const SubjectControllModal = ({ addSub, setAddSub }: ModalProps) => {
 
                     <div className="double-input-container">
                         <div className="input-container">
-                            <label>Total Cost *</label>
+                            <label>Total Cost </label>
                             <input 
                                 type="number" 
                                 min={0} 
                                 placeholder="Total program cost" 
                                 {...register("cost", { 
-                                    required: true, 
                                     valueAsNumber: true 
                                 })} 
                             />
@@ -357,71 +344,16 @@ const SubjectControllModal = ({ addSub, setAddSub }: ModalProps) => {
                         </div>
                     </div>
 
-                    <div className="double-input-container">
-                        <div className="input-container">
-                            <label>Intake Month *</label>
-                            <select {...register("intakes", { required: true })}>
-                                <option value="">-- Select Intake --</option>
-                                <option value="january">January (Winter)</option>
-                                <option value="february">February</option>
-                                <option value="march">March</option>
-                                <option value="april">April (Spring)</option>
-                                <option value="may">May (Summer)</option>
-                                <option value="june">June</option>
-                                <option value="july">July</option>
-                                <option value="august">August</option>
-                                <option value="september">September (Fall)</option>
-                                <option value="october">October</option>
-                                <option value="november">November</option>
-                                <option value="december">December</option>
-                            </select>
-                        </div>
-
-                        <div className="input-container">
-                            <label>Application Deadline *</label>
-                            <input 
-                                type="date" 
-                                {...register("applicationDeadline", { required: true })} 
-                            />
-                        </div>
-                    </div>
-
                     <div className="input-container">
-                        <label>Accreditation (Optional)</label>
-                        <select {...register("accreditation")}>
-                            <option value="">-- Select Accreditation --</option>
-                            <option value="ugc">UGC (University Grants Commission)</option>
-                            <option value="naac">NAAC (National Assessment and Accreditation Council)</option>
-                            <option value="nba">NBA (National Board of Accreditation)</option>
-                            <option value="aacsb">AACSB (Association to Advance Collegiate Schools of Business)</option>
-                            <option value="abet">ABET (Accreditation Board for Engineering and Technology)</option>
-                            <option value="equis">EQUIS (European Quality Improvement System)</option>
-                            <option value="amba">AMBA (Association of MBAs)</option>
-                            <option value="regional">Regional Accreditation</option>
-                            <option value="professional">Professional Body Accreditation</option>
-                            <option value="other">Other</option>
-                        </select>
-                    </div>
-
-                    <div className="input-container">
-                        <label>Career Opportunities</label>
+                        <label>Description & Career Opportunities</label>
                         <textarea 
-                            {...register("careerOpportunities")} 
-                            placeholder="e.g. Software Engineer, Data Scientist, AI Researcher" 
+                            {...register("description_careerOpportunities")} 
+                            placeholder="e.g. Detailed description of the course/program and you can add Software Engineer, Data Scientist, AI Researcher as opportunities" 
                             rows={3}
                         />
                     </div>
 
-                    <div className="input-container">
-                        <label>Description</label>
-                        <textarea 
-                            {...register("description")} 
-                            placeholder="Detailed description of the course/program"
-                            rows={5}
-                        />
-                    </div>
-
-                    <button type="submit" className="save-button">
+                    <button type="submit" className="submit-button">
                         Add Subject
                     </button>
                 </form>

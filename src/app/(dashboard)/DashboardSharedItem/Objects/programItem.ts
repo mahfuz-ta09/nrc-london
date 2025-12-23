@@ -9,17 +9,18 @@ export const programOptions = [
       { value: "BCom", label: "BCom (Bachelor of Commerce)" },
       { value: "BBA", label: "BBA (Bachelor of Business Administration)" },
       { value: "BBS", label: "BBS (Bachelor of Business Studies)" },
-      { value: "BSc Engineering", label: "BSc in Engineering" },
-      { value: "BSc CSE", label: "BSc in Computer Science & Engineering" },
-      { value: "BSc EEE", label: "BSc in Electrical & Electronic Engineering" },
-      { value: "BSc Civil", label: "BSc in Civil Engineering" },
-      { value: "BSc Mechanical", label: "BSc in Mechanical Engineering" },
+      { value: "BSc_Engineering", label: "BSc in Engineering" },
+      { value: "BSc_CSE", label: "BSc in Computer Science & Engineering" },
+      { value: "BSc_EEE", label: "BSc in Electrical & Electronic Engineering" },
+      { value: "BSc_Civil", label: "BSc in Civil Engineering" },
+      { value: "BSc_Mechanical", label: "BSc in Mechanical Engineering" },
       { value: "LLB", label: "LLB (Bachelor of Laws)" },
       { value: "MBBS", label: "MBBS" },
       { value: "BDS", label: "BDS" },
       { value: "BPharm", label: "Bachelor of Pharmacy" },
       { value: "BArch", label: "Bachelor of Architecture" },
       { value: "BFA", label: "Bachelor of Fine Arts" },
+      { value: "BEd", label: "Bachelor of Education" },
     ],
   },
   {
@@ -31,24 +32,32 @@ export const programOptions = [
       { value: "MCom", label: "MCom (Master of Commerce)" },
       { value: "MBA", label: "MBA (Master of Business Administration)" },
       { value: "EMBA", label: "Executive MBA" },
-      { value: "MSc CSE", label: "MSc in Computer Science & Engineering" },
-      { value: "MSc EEE", label: "MSc in Electrical & Electronic Engineering" },
-      { value: "MSc Civil", label: "MSc in Civil Engineering" },
+      { value: "MSc_CSE", label: "MSc in Computer Science & Engineering" },
+      { value: "MSc_EEE", label: "MSc in Electrical & Electronic Engineering" },
+      { value: "MSc_Civil", label: "MSc in Civil Engineering" },
       { value: "LLM", label: "LLM (Master of Laws)" },
       { value: "MPharm", label: "Master of Pharmacy" },
       { value: "MPH", label: "Master of Public Health" },
+      { value: "MEd", label: "Master of Education" },
+      { value: "MFA", label: "Master of Fine Arts" },
+      { value: "MEng", label: "Master of Engineering" },
+      { value: "BN", label: "Bachelor of Nursing" },
     ],
   },
   {
     label: "Diploma & Professional",
     options: [
-      { value: "Diploma Engineering", label: "Diploma in Engineering" },
-      { value: "Diploma Computer", label: "Diploma in Computer Technology" },
-      { value: "Diploma Business", label: "Diploma in Business Studies" },
+      { value: "Diploma_Engineering", label: "Diploma in Engineering" },
+      { value: "Diploma_Computer", label: "Diploma in Computer Technology" },
+      { value: "Diploma_Business", label: "Diploma in Business Studies" },
       { value: "CA", label: "Chartered Accountancy (CA)" },
       { value: "ACCA", label: "ACCA" },
       { value: "CMA", label: "CMA" },
       { value: "CFA", label: "CFA" },
+      { value: "PMP", label: "PMP (Project Management Professional)" },
+      { value: "CISA", label: "CISA (Certified Information Systems Auditor)" },
+      { value: "CISM", label: "CISM (Certified Information Security Manager)" },
+      { value: "CISSP", label: "CISSP (Certified Information Systems Security Professional)" },
     ],
   },
   {
@@ -61,11 +70,35 @@ export const programOptions = [
   {
     label: "Other",
     options: [
-      { value: "Higher Secondary", label: "Higher Secondary (HSC / A-Level)" },
+      { value: "Higher_Secondary", label: "Higher Secondary (HSC / A-Level)" },
       { value: "Secondary", label: "Secondary (SSC / O-Level)" },
       { value: "Other", label: "Other" },
     ],
   },
+];
+
+
+export const programLevels = [
+    { value: "Short_Course", label: "Short Course" },
+    { value: "Certificate", label: "Certificate" },
+    { value: "Diploma", label: "Diploma" },
+    { value: "Advanced_Diploma", label: "Advanced Diploma" },
+    { value: "Foundation", label: "Foundation" },
+    { value: "Associate_Degree", label: "Associate Degree" },
+
+    { value: "Undergraduate", label: "Undergraduate" },
+    { value: "Bachelor", label: "Bachelor" },
+
+    { value: "Graduate", label: "Graduate" },
+    { value: "Postgraduate_Certificate", label: "Postgraduate Certificate" },
+    { value: "Postgraduate_Diploma", label: "Postgraduate Diploma" },
+    { value: "Master", label: "Master" },
+
+    { value: "Doctorate", label: "Doctorate" },
+    { value: "Postdoctoral", label: "Postdoctoral" },
+
+    { value: "Professional", label: "Professional" },
+    { value: "Executive Program", label: "Executive Program" }
 ];
 
 
@@ -91,12 +124,13 @@ export const PROGRAM_LEVELS = [
     'Certificate',
     'Diploma',
     'Foundation',
-    'Associate Degree',
+    'Associate_Degree',
     'Undergraduate',
     'Graduate',
     'Doctorate',
     'Professional',
-    'Executive'
+    'Executive',
+    'Postdoctoral'
 ]
 
 export const DURATION_UNITS = [
@@ -105,7 +139,6 @@ export const DURATION_UNITS = [
     'weeks',
     'semesters'
 ]
-
 
 
 export const INTAKE_NAMES = [
@@ -182,26 +215,26 @@ export const PREREQUISITE_SUBJECTS = [
 
 export const ACADEMIC_BACKGROUNDS = [
     'Engineering',
-    'Computer Science',
-    'Business Administration',
-    'Natural Sciences',
-    'Social Sciences',
+    'Computer_Science',
+    'Business_Administration',
+    'Natural_Sciences',
+    'Social_Sciences',
     'Mathematics',
     'Physics',
     'Chemistry',
     'Biology',
     'Medicine',
-    'Information Technology',
+    'Information_Technology',
     'Economics',
     'Commerce',
-    'Arts & Humanities',
+    'Arts_&_Humanities',
     'Architecture',
     'Agriculture',
-    'Environmental Science',
-    'Health Sciences',
+    'Environmental_Science',
+    'Health_Sciences',
     'Education',
     'Law',
-    'Media & Communication',
+    'Media_&_Communication',
     'Design',
     'Pharmacy',
     'Biotechnology'

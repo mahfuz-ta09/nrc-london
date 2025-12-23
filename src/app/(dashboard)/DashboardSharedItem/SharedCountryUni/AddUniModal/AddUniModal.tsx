@@ -6,7 +6,7 @@ import { FILE_CATEGORIES } from '../../StFile/type'
 import Loader from '@/component/shared/loader/loader'
 import { useForm, SubmitHandler, Controller } from "react-hook-form"
 import { useAddUniversityMutation, useEditUniversityMutation } from '@/redux/endpoints/university/universityEndpoints'
-import { ACADEMIC_BACKGROUNDS, educationLevelOptions, feeStructureOptions, gpaScaleOptions, INTAKE_NAMES, MONTHS, PREREQUISITE_SUBJECTS, qualificationOptions, submissionMethodOptions, testOptions } from '../../Objects/programItem'
+import { educationLevelOptions, feeStructureOptions, gpaScaleOptions, INTAKE_NAMES, MONTHS, PROGRAM_LEVELS, programOptions, submissionMethodOptions, testOptions } from '../../Objects/programItem'
 
 type ModalProps = {
     addUni: {
@@ -48,14 +48,13 @@ type UniData = {
     gpaScale?: string,
     requiredEducationLevel?: string,
     requiredFiles?: string,
-    prerequisiteSubjects?: string, // JSON string
-    preferredBackgrounds?: string, // JSON string
     
     // English Proficiency
     englishProf: Record<string, any>,
     
     // Qualifications
-    qualifications: Record<string, string>,
+    programOffered: Record<string, string>,
+    programFields: Record<string, string>,
     
     // Rankings
     worldRanking?: number,
@@ -96,7 +95,7 @@ const AddUniModal = ({ addUni, setAddUni }: ModalProps) => {
     const { register, handleSubmit, reset, setValue, watch, control } = useForm<UniData>({
         defaultValues: {
             englishProf: {},
-            qualifications: {},
+            programOffered: {},
             gpaScale: "",
             currency: "",
             feeStructure: "",
@@ -110,10 +109,9 @@ const AddUniModal = ({ addUni, setAddUni }: ModalProps) => {
     const [tagsList, setTagsList] = useState<string[]>([])
     const [selectedTests, setSelectedTests] = useState<string[]>([])
     const [selectedFiles, setSelectedFiles] = useState<string[]>([])
-    const [backgroundsList, setBackgroundsList] = useState<string[]>([])
-    const [prerequisitesList, setPrerequisitesList] = useState<string[]>([])
+    const [selectedPrograms, setselectedPrograms] = useState<string[]>([])
     const [accreditationList, setAccreditationList] = useState<string[]>([])
-    const [selectedQualifications, setSelectedQualifications] = useState<string[]>([])
+    const [selectedProgramFields, setselectedProgramFields] = useState<string[]>([])
     const [intakesList, setIntakesList] = useState<Array<{ name: string, startMonth: string, deadline: string, isOpen: boolean }>>([])
 
     const watchSubmissionMethod = watch('submissionMethod')
@@ -123,28 +121,79 @@ const AddUniModal = ({ addUni, setAddUni }: ModalProps) => {
         if (addUni.action === 'edit' && addUni.data) {
             const data = addUni.data
             
-            
             setValue('universityName', data.universityName)
             setValue('aboutUni', data.aboutUni)
             setValue('city', data.location?.city)
             setValue('state', data.location?.state)
+            setValue('address', data.location?.address)  
             setValue('website', data.contact?.website)
             setValue('admissionEmail', data.contact?.admissionEmail)
-            
+            setValue('phone', data.contact?.phone)  
+            setValue('uniType', data.uniType)  
             
             setValue('lowFee', data.tuitionFees?.lowFee || data.lowFee)
             setValue('highFee', data.tuitionFees?.highFee || data.highFee)
             setValue('currency', data.tuitionFees?.currency || data.currency)
+            setValue('feeStructure', data.tuitionFees?.feeStructure)  
+            setValue('applicationFee', data.tuitionFees?.applicationFee)  
             setValue('scholarship', data.scholarship?.amount || data.scholarship)
             setValue('initialDeposite', data.initialDeposite)
             
-            
             setValue('minimumGPA', data.admissionRequirements?.minimumGPA?.value)
             setValue('gpaScale', data.admissionRequirements?.minimumGPA?.scale)
+            setValue('requiredEducationLevel', data.admissionRequirements?.requiredEducationLevel)  
             
-            if (data.requiredFiles) {
-                setSelectedFiles(Array.isArray(data.requiredFiles) ? data.requiredFiles : [])
+            if (data.admissionRequirements?.requiredFiles) {
+                setSelectedFiles(Array.isArray(data.admissionRequirements.requiredFiles) 
+                    ? data.admissionRequirements.requiredFiles 
+                    : [])
             }
+            
+            if (data.englishProf) {
+                const tests = Object.keys(data.englishProf)
+                setSelectedTests(tests)
+                tests.forEach(test => {
+                    setValue(`englishProf.${test}`, data.englishProf[test])
+                })
+            }
+            
+            if (data.qualifications && Array.isArray(data.qualifications)) {
+                setselectedPrograms(data.qualifications)
+                data.qualifications.forEach((qual: string) => {
+                    setValue(`programOffered.${qual}`, 'available')
+                })
+            }
+            
+            
+            setValue('worldRanking', data.rankings?.worldRanking)
+            setValue('nationalRanking', data.rankings?.nationalRanking)
+            
+            
+            if (data.accreditation) {
+                setAccreditationList(Array.isArray(data.accreditation) ? data.accreditation : [])
+            }
+            
+            
+            setValue('submissionMethod', data.applicationProcess?.submissionMethod)
+            setValue('portalUrl', data.applicationProcess?.portalUrl)
+            setValue('apiEndpoint', data.applicationProcess?.apiEndpoint)
+            setValue('hasAPIIntegration', data.applicationProcess?.hasAPIIntegration)
+            setValue('processingTime', data.applicationProcess?.processingTime)
+            
+            
+            setValue('acceptanceRate', data.studentProfile?.acceptanceRate)
+            setValue('internationalStudentRatio', data.studentProfile?.internationalStudentRatio)
+            
+            
+            setValue('campusHousing', data.features?.campusHousing)
+            setValue('internshipOpportunities', data.features?.internshipOpportunities)
+            setValue('workPermitAvailable', data.features?.workPermitAvailable)
+            setValue('postStudyWorkVisa', data.features?.postStudyWorkVisa)
+            setValue('partTimeWorkAllowed', data.features?.partTimeWorkAllowed)
+            
+            
+            setValue('status', data.status)
+            
             
             if (data.tags) setTagsList(Array.isArray(data.tags) ? data.tags : [])
             if (data.intakes) setIntakesList(Array.isArray(data.intakes) ? data.intakes : [])
@@ -155,7 +204,6 @@ const AddUniModal = ({ addUni, setAddUni }: ModalProps) => {
 
     const onSubmit: SubmitHandler<UniData> = async (data) => {
         try {
-            console.log(data)
             const formData = new FormData()
             Object.entries(data).forEach(([key, value]:any) => {
                 if (value instanceof FileList) {
@@ -163,7 +211,8 @@ const AddUniModal = ({ addUni, setAddUni }: ModalProps) => {
                         formData.append(key, value[i])
                     }
                 } else if (key === 'englishProf' && typeof value === 'object') {
-                    formData.append('englishProf', JSON.stringify(value))
+                    console.log(Object.keys(value).length)
+                    if(Object.keys(value).length>0)formData.append('englishProf', JSON.stringify(value))
                 } else if (key === 'qualifications' && typeof value === 'object') {
                     formData.append('qualifications', JSON.stringify(Object.keys(value).filter(k => value[k])))
                 } else if (typeof value === 'object' && value !== null) {
@@ -179,8 +228,6 @@ const AddUniModal = ({ addUni, setAddUni }: ModalProps) => {
 
             if (intakesList.length > 0) formData.append('intakes', JSON.stringify(intakesList))
             if (tagsList.length > 0) formData.append('tags', JSON.stringify(tagsList))
-            if (prerequisitesList.length > 0) formData.append('prerequisiteSubjects', JSON.stringify(prerequisitesList))
-            if (backgroundsList.length > 0) formData.append('preferredBackgrounds', JSON.stringify(backgroundsList))
             if (accreditationList.length > 0) formData.append('accreditation', JSON.stringify(accreditationList))
             if (selectedFiles.length > 0) formData.append('requiredFiles', JSON.stringify(selectedFiles))
             let res:any
@@ -195,7 +242,7 @@ const AddUniModal = ({ addUni, setAddUni }: ModalProps) => {
             }
             if (addUni?.action === "edit") {
                 res = await editUniversity({ data: formData, id: addUni?.id, universityName: addUni?.name }).unwrap()
-                console.log(res)
+
                 if (res?.data?.modifiedCount) {
                     toast.success(res?.data?.message || "Operation successful!")
                     handleClose()
@@ -213,11 +260,10 @@ const AddUniModal = ({ addUni, setAddUni }: ModalProps) => {
         setAddUni({ isOpen: false, id: "", name: '', action: "" })
         reset()
         setSelectedTests([])
-        setSelectedQualifications([])
+        setselectedPrograms([])
+        setselectedProgramFields([])
         setIntakesList([])
         setTagsList([])
-        setPrerequisitesList([])
-        setBackgroundsList([])
         setAccreditationList([])
         setSelectedFiles([])
         setActiveTab('basic')
@@ -232,11 +278,20 @@ const AddUniModal = ({ addUni, setAddUni }: ModalProps) => {
         e.target.value = ""
     }
 
-    const handleQualificationSelect = (e: React.ChangeEvent<HTMLSelectElement>) => {
+    const handleselectProgramField = (e: React.ChangeEvent<HTMLSelectElement>) => {
         const selected = e.target.value
-        if (selected && !selectedQualifications.includes(selected)) {
-            setSelectedQualifications(prev => [...prev, selected])
-            setValue(`qualifications.${selected}`, "available")
+        if (selected && !selectedPrograms.includes(selected)) {
+            setselectedProgramFields(prev => [...prev, selected])
+            setValue(`programFields.${selected}`, "available")
+        }
+        e.target.value = ""
+    }
+
+    const handleProgramSelect = (e: React.ChangeEvent<HTMLSelectElement>) => {
+        const selected = e.target.value
+        if (selected && !selectedPrograms.includes(selected)) {
+            setselectedPrograms(prev => [...prev, selected])
+            setValue(`programOffered.${selected}`, "available")
         }
         e.target.value = ""
     }
@@ -498,148 +553,92 @@ const AddUniModal = ({ addUni, setAddUni }: ModalProps) => {
                                 </div>
                             </div>
 
-                            <div className='double-input-container'>
-                                <div className='input-container'>
-                                    <label>Required Education Level</label>
-                                    <select {...register("requiredEducationLevel")}>
-                                        <option value="">select</option>
-                                        {educationLevelOptions.map(e => (
-                                            <option key={e} value={e}>
-                                                {e.replace(/_/g, ' ').replace(/\b\w/g, l => l.toUpperCase())}
-                                            </option>
-                                        ))}
-                                    </select>
-                                </div>
-                                
-                                <div className='input-container'>
-                                    <label>Required Files</label>
-                                    <select
-                                        onChange={(e) => {
-                                            const value = e.target.value
-                                            if (value && !selectedFiles.includes(value)) {
-                                                addItem(value, selectedFiles, setSelectedFiles)
+                            <div className='input-container'>
+                                <label>Required Education Level</label>
+                                <select {...register("requiredEducationLevel")}>
+                                    <option value="">select</option>
+                                    {educationLevelOptions.map(e => (
+                                        <option key={e} value={e}>
+                                            {e.replace(/_/g, ' ').replace(/\b\w/g, l => l.toUpperCase())}
+                                        </option>
+                                    ))}
+                                </select>
+                            </div>
+                            
+                            <div className='input-container'>
+                                <label>Required Files</label>
+                                <select
+                                    onChange={(e) => {
+                                        const value = e.target.value
+                                        if (value && !selectedFiles.includes(value)) {
+                                            addItem(value, selectedFiles, setSelectedFiles)
+                                        }
+                                        e.target.value = ''
+                                    }}
+                                    value=""
+                                >
+                                    <option value="">Select a file requirement...</option>
+                                    {FILE_CATEGORIES.map((category, catIdx) => (
+                                        <optgroup key={catIdx} label={category.category}>
+                                            {category.files
+                                                .filter(file => !selectedFiles.includes(file))
+                                                .map((file, fileIdx) => (
+                                                    <option key={fileIdx} value={file}>
+                                                        {file}
+                                                    </option>
+                                                ))
                                             }
-                                            e.target.value = ''
-                                        }}
-                                        value=""
-                                    >
-                                        <option value="">Select a file requirement...</option>
-                                        {FILE_CATEGORIES.map((category, catIdx) => (
-                                            <optgroup key={catIdx} label={category.category}>
-                                                {category.files
-                                                    .filter(file => !selectedFiles.includes(file))
-                                                    .map((file, fileIdx) => (
-                                                        <option key={fileIdx} value={file}>
-                                                            {file}
-                                                        </option>
-                                                    ))
-                                                }
-                                            </optgroup>
-                                        ))}
-                                    </select>
-                                    <div style={{ marginTop: '10px', display: 'flex', flexWrap: 'wrap', gap: '8px' }}>
-                                        {selectedFiles.map((file, i) => (
-                                            <span 
+                                        </optgroup>
+                                    ))}
+                                </select>
+                                <div style={{ marginTop: '10px', display: 'flex', flexWrap: 'wrap', gap: '8px' }}>
+                                    {selectedFiles.map((file, i) => (
+                                        <span 
+                                            style={{ 
+                                                padding: '8px 15px', 
+                                                background: '#667eea', 
+                                                color: 'white', 
+                                                borderRadius: '20px', 
+                                                fontSize: '14px', 
+                                                display: 'flex', 
+                                                alignItems: 'center', 
+                                                gap: '5px' 
+                                            }} 
+                                            key={i} 
+                                        >
+                                            {file}
+                                            <button 
+                                                type="button" 
+                                                onClick={() => removeItem(file, selectedFiles, setSelectedFiles)} 
                                                 style={{ 
-                                                    padding: '8px 15px', 
-                                                    background: '#667eea', 
-                                                    color: 'white', 
-                                                    borderRadius: '20px', 
-                                                    fontSize: '14px', 
-                                                    display: 'flex', 
-                                                    alignItems: 'center', 
-                                                    gap: '5px' 
-                                                }} 
-                                                key={i}
+                                                    background: 'none', 
+                                                    border: 'none', 
+                                                    cursor: 'pointer', 
+                                                    color: '#fff', 
+                                                    fontWeight: 'bold',
+                                                    fontSize: '18px',
+                                                    lineHeight: '1'
+                                                }}
                                             >
-                                                {file}
-                                                <button 
-                                                    type="button" 
-                                                    onClick={() => removeItem(file, selectedFiles, setSelectedFiles)} 
-                                                    style={{ 
-                                                        background: 'none', 
-                                                        border: 'none', 
-                                                        cursor: 'pointer', 
-                                                        color: '#fff', 
-                                                        fontWeight: 'bold',
-                                                        fontSize: '18px',
-                                                        lineHeight: '1'
-                                                    }}
-                                                >
-                                                    ×
-                                                </button>
-                                            </span>
-                                        ))}
-                                    </div>
+                                                ×
+                                            </button>
+                                        </span>
+                                    ))}
                                 </div>
                             </div>
-                            <div className='double-input-container'>
-                                <div className='input-container'>
-                                    <label>Prerequisite Subjects</label>
-                                    <select
-                                        onChange={(e) => {
-                                            const value = e.target.value
-                                            if (value && !prerequisitesList.includes(value)) {
-                                                addItem(value, prerequisitesList, setPrerequisitesList)
-                                            }
-                                            e.target.value = ''
-                                        }}
-                                        value=""
-                                    >
-                                        <option value="">Select a subject...</option>
-                                        {PREREQUISITE_SUBJECTS.filter(subj => !prerequisitesList.includes(subj)).map((subj, idx) => (
-                                            <option key={idx} value={subj}>{subj}</option>
-                                        ))}
-                                    </select>
-                                    <div style={{ marginTop: '10px', display: 'flex', flexWrap: 'wrap', gap: '8px' }}>
-                                        {prerequisitesList.map((pre, i) => (
-                                            <span style={{ padding: '8px 15px', background: '#667eea', color: 'white', borderRadius: '20px', fontSize: '14px', display: 'flex', alignItems: 'center', gap: '5px' }} key={i}>
-                                                {pre}
-                                                <button type="button" onClick={() => removeItem(pre, prerequisitesList, setPrerequisitesList)} style={{ background: 'none', border: 'none', cursor: 'pointer', color: '#fff', fontWeight: 'bold' }}>×</button>
-                                            </span>
-                                        ))}
-                                    </div>
-                                </div>
-
-                                <div className='input-container'>
-                                    <label>Preferred Academic Backgrounds</label>
-                                    <select
-                                        onChange={(e) => {
-                                            const value = e.target.value
-                                            if (value && !backgroundsList.includes(value)) {
-                                                addItem(value, backgroundsList, setBackgroundsList)
-                                            }
-                                            e.target.value = ''
-                                        }}
-                                        value=""
-                                    >
-                                        <option value="">Select a background...</option>
-                                        {ACADEMIC_BACKGROUNDS.filter(bg => !backgroundsList.includes(bg)).map((bg, idx) => (
-                                            <option key={idx} value={bg}>{bg}</option>
-                                        ))}
-                                    </select>
-                                    <div style={{ marginTop: '10px', display: 'flex', flexWrap: 'wrap', gap: '8px' }}>
-                                        {backgroundsList.map((bg, i) => (
-                                            <span style={{ padding: '8px 15px', background: '#667eea', color: 'white', borderRadius: '20px', fontSize: '14px', display: 'flex', alignItems: 'center', gap: '5px' }} key={i}>
-                                                {bg}
-                                                <button type="button" onClick={() => removeItem(bg, backgroundsList, setBackgroundsList)} style={{ background: 'none', border: 'none', cursor: 'pointer', color: '#fff', fontWeight: 'bold' }}>×</button>
-                                            </span>
-                                        ))}
-                                    </div>
-                                </div>
-                            </div>
-                            <div className='double-input-container'>
-                                <div className='input-container'>
-                                    <h5 style={{ fontWeight: 'bold', marginTop: '20px', marginBottom: '10px' }}>English Proficiency Tests</h5>
-                                    <label>Add Test Requirement</label>
-                                    <select onChange={handleTestSelect}>
-                                        <option value="">-- Select a test --</option>
-                                        {testOptions.map(test => (
-                                            <option key={test.value} value={test.value}>{test.label}</option>
-                                        ))}
-                                    </select>
-                                
-                                    {selectedTests.map(testName => {
+                            
+                            
+                            <div className='input-container'>
+                                <h5 style={{ fontWeight: 'bold', marginTop: '20px', marginBottom: '10px' }}>English Proficiency Tests</h5>
+                                <label>Add Test Requirement</label>
+                                <select onChange={handleTestSelect}>
+                                    <option value="">-- Select a test --</option>
+                                    {testOptions.map(test => (
+                                        <option key={test.value} value={test.value}>{test.label}</option>
+                                    ))}
+                                </select>
+                            
+                                {selectedTests.map(testName => {
                                         const test = testOptions.find(t => t.value === testName)
                                         return (
                                             <div key={testName} style={{ marginTop: '15px', padding: '15px', background: '#f9fafb', borderRadius: '8px', border: '1px solid #e5e7eb' }}>
@@ -673,37 +672,100 @@ const AddUniModal = ({ addUni, setAddUni }: ModalProps) => {
                                                 </div>
                                             </div>
                                         )
-                                    })}
-                                </div>
-
-                                <div className='input-container'>
-                                    <h5 style={{ fontWeight: 'bold', marginTop: '20px', marginBottom: '10px' }}>Program Qualifications Offered</h5>
-
-                                    <label>Add Qualification Level</label>
-                                    <select onChange={handleQualificationSelect}>
-                                        <option value="">-- Select qualification --</option>
-                                        {qualificationOptions.map(q => (
-                                            <option key={q.value} value={q.value}>{q.label}</option>
+                                })}
+                            </div>
+                            
+                            <div className='input-container'>
+                                <h5 style={{ fontWeight: 'bold', marginTop: '20px', marginBottom: '10px' }}>Program & field level</h5>
+                                <label>Fields of Study Offered</label>
+                                <select onChange={handleProgramSelect}>
+                                    <option value="">-- Select Program --</option>
+                                    {programOptions.map(group => (
+                                      <optgroup key={group.label} label={group.label}>
+                                        {group.options.map(option => (
+                                            <option key={option.value} value={option.value}>
+                                                {option.label}
+                                            </option>
                                         ))}
-                                    </select>
-
-                                    <div style={{ marginTop: '10px', display: 'flex', flexWrap: 'wrap', gap: '8px' }}>
-                                        {selectedQualifications.map(q => (
+                                      </optgroup>
+                                    ))}
+                                </select>
+                                <div style={{ marginTop: '10px', display: 'flex', flexWrap: 'wrap', gap: '8px' }}>
+                                    {selectedPrograms.map(q => {
+                                        const selectedProgram = programOptions
+                                            .flatMap(group => group.options)
+                                            .find(opt => opt.value === q)
+                                        return (
                                             <span key={q} style={{ padding: '8px 15px', background: '#667eea', color: 'white', borderRadius: '20px', fontSize: '14px', display: 'flex', alignItems: 'center', gap: '5px' }}>
-                                                {qualificationOptions.find(opt => opt.value === q)?.label}
+                                                {selectedProgram?.label}
                                                 <button
                                                     type="button"
                                                     onClick={() => {
-                                                        setSelectedQualifications(prev => prev.filter(qual => qual !== q))
-                                                        setValue(`qualifications.${q}`, undefined as any)
+                                                        setselectedPrograms(prev => prev.filter(qual => qual !== q))
+                                                        setValue(`programOffered.${q}`, undefined as any)
                                                     }}
                                                     style={{ background: 'rgba(255,255,255,0.3)', border: 'none', borderRadius: '50%', width: '20px', height: '20px', cursor: 'pointer', color: 'white', fontWeight: 'bold' }}
                                                 >
                                                     ×
                                                 </button>
                                             </span>
-                                        ))}
-                                    </div>
+                                        )
+                                    })}
+                                </div>
+                            </div>
+                            
+                            <div className='input-container'>
+                                <label style={{ display: 'block', marginBottom: '8px', fontWeight: '500' }}>
+                                    Program Levels Offered
+                                </label>
+                                <select
+                                    onChange={handleselectProgramField}
+                                    style={{
+                                        width: '100%',
+                                        padding: '12px',
+                                        borderRadius: '8px',
+                                        border: 'none',
+                                        fontSize: '14px',
+                                        color: '#1e293b'
+                                    }}
+                                >
+                                    <option value="">-- Select Program Field --</option>
+                                    {PROGRAM_LEVELS.map(group => (
+                                        <option key={group} value={group}>
+                                            {group}
+                                        </option>
+                                    ))}
+                                </select>
+                                <div style={{ marginTop: '10px', display: 'flex', flexWrap: 'wrap', gap: '8px' }}>
+                                    {
+                                        selectedProgramFields.map((field, i) => (
+                                            <span
+                                                key={i}
+                                                style={{
+                                                    padding: '8px 15px',
+                                                    background: '#667eea',
+                                                    color: 'white',
+                                                    borderRadius: '20px',
+                                                    fontSize: '14px',
+                                                    display: 'flex',
+                                                    alignItems: 'center',
+                                                    gap: '5px'
+                                                }}
+                                            >
+                                                {field}
+                                                <button
+                                                    type="button"
+                                                    onClick={() => {
+                                                        setselectedProgramFields(prev => prev.filter(f => f !== field))
+                                                        setValue(`programFields.${field}`, undefined as any)
+                                                    }}
+                                                    style={{ background: 'rgba(255,255,255,0.3)', border: 'none', borderRadius: '50%', width: '20px', height: '20px', cursor: 'pointer', color: 'white', fontWeight: 'bold' }}
+                                                >
+                                                    ×
+                                                </button>
+                                            </span>
+                                        ))
+                                    }
                                 </div>
                             </div>
 
@@ -978,3 +1040,22 @@ const AddUniModal = ({ addUni, setAddUni }: ModalProps) => {
 }
 
 export default AddUniModal
+
+
+
+                    // <div className="input-container">
+                    //     <label>Accreditation (Optional)</label>
+                    //     <select {...register("accreditation")}>
+                    //         <option value="">-- Select Accreditation --</option>
+                    //         <option value="ugc">UGC (University Grants Commission)</option>
+                    //         <option value="naac">NAAC (National Assessment and Accreditation Council)</option>
+                    //         <option value="nba">NBA (National Board of Accreditation)</option>
+                    //         <option value="aacsb">AACSB (Association to Advance Collegiate Schools of Business)</option>
+                    //         <option value="abet">ABET (Accreditation Board for Engineering and Technology)</option>
+                    //         <option value="equis">EQUIS (European Quality Improvement System)</option>
+                    //         <option value="amba">AMBA (Association of MBAs)</option>
+                    //         <option value="regional">Regional Accreditation</option>
+                    //         <option value="professional">Professional Body Accreditation</option>
+                    //         <option value="other">Other</option>
+                    //     </select>
+                    // </div>

@@ -55,7 +55,7 @@ const proceedApi = baseApi.injectEndpoints({
         getFileByConditions: build.query<any, { values: any }>({
             query: ({ values }) => {
                 const params = new URLSearchParams();
-                console.log("this is values: ",values)
+                // console.log("this is values: ",values)
                 if (values?.personalInfo?.complete !== '')params.append("personalInfo[complete]", String(values.personalInfo.complete));
                 if (values?.personalInfo?.verified !== '')params.append("personalInfo[verified]", String(values.personalInfo.verified));
                 
@@ -67,7 +67,7 @@ const proceedApi = baseApi.injectEndpoints({
                 
                 if (values?.studentsFile?.complete !== '')params.append("studentsFile[complete]", String(values.studentsFile.complete));
                 if (values?.studentsFile?.verified !== '')params.append("studentsFile[verified]", String(values.studentsFile.verified));
-                console.log("this is params: ",params)
+                // console.log("this is params: ",params)
                 return {
                     url: `/process/get-all?${params.toString()}`,
                     method: "GET",
@@ -119,6 +119,18 @@ const proceedApi = baseApi.injectEndpoints({
             }),
             providesTags: ["proceed"],
         }),
+
+        searchUniversity : build.mutation<any, { data: any }>({
+            query: ({ data }) => ({
+                url: `/process/assign-university`,
+                method: "POST",
+                headers: { 
+                    "Content-Type": "application/json" 
+                },
+                data,   
+            }),
+            invalidatesTags: ["proceed"], 
+        }),
     }),
 
   overrideExisting: true,
@@ -134,5 +146,6 @@ export const {
     useGetProcessReqPaginationQuery,
     useGetFileByConditionsQuery,
     useEditStudentFileMutation,
-    useGetSingleFileByStudentWithEmailQuery
+    useGetSingleFileByStudentWithEmailQuery,
+    useSearchUniversityMutation,
 } = proceedApi
